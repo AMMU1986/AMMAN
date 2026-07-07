@@ -246,7 +246,9 @@ def get_section1():
             "using appropriate ML architectures; (4) property prediction and virtual screening of "
             "candidate materials; (5) inverse design to generate novel structures with target "
             "properties; and (6) experimental validation with active learning feedback to refine "
-            "models iteratively [3,4]."
+            "models iteratively [3,4]. This workflow is schematically illustrated in Figure 1, "
+            "which depicts the iterative cycle with active learning feedback integration that "
+            "enables continuous model improvement."
         , "body"),
     ]
 
@@ -298,25 +300,26 @@ def get_section2():
             "Deep learning extends traditional machine learning through multi-layered neural "
             "network architectures capable of learning hierarchical representations directly "
             "from raw data [25]. Several architectures have proven particularly effective for "
-            "nanomaterial design. Convolutional Neural Networks (CNNs) excel at processing "
-            "grid-structured data and have been applied extensively to microscopy image analysis "
-            "for automated nanostructure classification and defect detection [26]. Graph Neural "
-            "Networks (GNNs) represent materials as graphs where atoms are nodes and chemical "
-            "bonds are edges, achieving state-of-the-art property prediction through "
-            "message-passing operations that naturally encode crystallographic symmetries and "
-            "periodic boundary conditions [12,13]."
+            "nanomaterial design, as summarized in Table 1. Convolutional Neural Networks (CNNs) "
+            "excel at processing grid-structured data and have been applied extensively to "
+            "microscopy image analysis for automated nanostructure classification and defect "
+            "detection [26]. Graph Neural Networks (GNNs) represent materials as graphs where "
+            "atoms are nodes and chemical bonds are edges, achieving state-of-the-art property "
+            "prediction through message-passing operations that naturally encode crystallographic "
+            "symmetries and periodic boundary conditions [12,13]."
         , "body"),
         (
             "The Crystal Graph Convolutional Neural Network (CGCNN) and Materials Graph Network "
             "(MEGNet) frameworks have demonstrated remarkable accuracy in predicting formation "
             "energies, band gaps, and elastic properties approaching DFT-level uncertainty with "
-            "computational costs reduced by several orders of magnitude [27]. Transformer "
-            "architectures, originally developed for natural language processing, have been "
-            "adapted for materials science applications including text mining of scientific "
-            "literature and multi-modal property prediction [28]. Variational Autoencoders "
-            "(VAEs) and Generative Adversarial Networks (GANs) represent generative deep "
-            "learning approaches capable of producing entirely novel material structures not "
-            "present in training databases [29,30]."
+            "computational costs reduced by several orders of magnitude [27]. A performance "
+            "comparison of these models across multiple properties is presented in Figure 2 and "
+            "quantified in Table 2. Transformer architectures, originally developed for natural "
+            "language processing, have been adapted for materials science applications including "
+            "text mining of scientific literature and multi-modal property prediction [28]. "
+            "Variational Autoencoders (VAEs) and Generative Adversarial Networks (GANs) "
+            "represent generative deep learning approaches capable of producing entirely novel "
+            "material structures not present in training databases [29,30]."
         , "body"),
         ("2.3 Generative AI and Inverse Materials Design", "h2"),
         (
@@ -338,13 +341,14 @@ def get_section2():
         , "body"),
         (
             "Generative Adversarial Networks consist of competing generator and discriminator "
-            "networks trained adversarially. Conditional GANs (cGANs) enable targeted inverse "
-            "design by conditioning the generator on desired property vectors [30]. Applications "
-            "include generation of porous materials with specified surface areas and pore "
-            "volumes, plasmonic nanostructure design for maximum electromagnetic enhancement "
-            "[42], and creation of graphene/BN hybrid structures with tailored electronic "
-            "properties [43]. The AlloyGAN framework combines large language model text mining "
-            "with conditional GANs for inverse alloy design [44]."
+            "networks trained adversarially, as illustrated in Figure 3. Conditional GANs "
+            "(cGANs) enable targeted inverse design by conditioning the generator on desired "
+            "property vectors [30]. Applications include generation of porous materials with "
+            "specified surface areas and pore volumes, plasmonic nanostructure design for "
+            "maximum electromagnetic enhancement [42], and creation of graphene/BN hybrid "
+            "structures with tailored electronic properties [43]. The AlloyGAN framework "
+            "combines large language model text mining with conditional GANs for inverse alloy "
+            "design [44]."
         , "body"),
         (
             "Denoising diffusion probabilistic models (DDPMs) represent the latest advancement "
@@ -361,13 +365,15 @@ def get_section2():
             "Reinforcement learning formulates nanomaterial design as a sequential "
             "decision-making problem with states representing current material configurations, "
             "actions corresponding to atomic or compositional modifications, and rewards derived "
-            "from property evaluations [23,24]. Deep Q-Networks (DQN) and Proximal Policy "
-            "Optimization (PPO) algorithms have discovered compositions with properties 2-5 "
-            "times superior to random search baselines [46]. RL agents can optimize element "
-            "ordering in bimetallic nanoparticles to simultaneously maximize catalytic activity "
-            "and stability [47]. Reinforcement fine-tuning of generative models combines the "
-            "strengths of discriminative and generative capabilities, enabling "
-            "property-directed generation [48]."
+            "from property evaluations [23,24], as depicted in Figure 4. Deep Q-Networks (DQN) "
+            "and Proximal Policy Optimization (PPO) algorithms have discovered compositions "
+            "with properties 2-5 times superior to random search baselines [46]. RL agents can "
+            "optimize element ordering in bimetallic nanoparticles to simultaneously maximize "
+            "catalytic activity and stability [47]. Reinforcement fine-tuning of generative "
+            "models combines the strengths of discriminative and generative capabilities, "
+            "enabling property-directed generation [48]. A comparison of optimization "
+            "strategies including RL, Bayesian optimization, and evolutionary methods is "
+            "provided in Table 3."
         , "body"),
         (
             "Bayesian optimization constructs probabilistic surrogate models, typically Gaussian "
@@ -385,26 +391,26 @@ def get_section2():
         ("2.5 High-Throughput Screening and Autonomous Experimentation", "h2"),
         (
             "High-throughput virtual screening leverages ML surrogate models to rapidly assess "
-            "millions of candidate materials through hierarchical filtering pipelines [2,10]. "
-            "A typical screening workflow proceeds through stages: combinatorial enumeration of "
-            "candidate compositions, thermodynamic stability screening using formation energy "
-            "predictions, target property evaluation using trained ML models, DFT validation of "
-            "top candidates, and synthesis feasibility assessment. GNN models enable "
-            "crystal-structure-aware screening that accounts for polymorphism and structural "
-            "diversity [13,27]."
+            "millions of candidate materials through hierarchical filtering pipelines [2,10], "
+            "as illustrated by the screening funnel in Figure 5. A typical screening workflow "
+            "proceeds through stages: combinatorial enumeration of candidate compositions, "
+            "thermodynamic stability screening using formation energy predictions, target "
+            "property evaluation using trained ML models, DFT validation of top candidates, "
+            "and synthesis feasibility assessment. GNN models enable crystal-structure-aware "
+            "screening that accounts for polymorphism and structural diversity [13,27]."
         , "body"),
         (
             "Active learning represents an intelligent data acquisition strategy that selects "
             "the most informative experiments to maximize information gain per sample [52]. By "
             "combining uncertainty quantification with acquisition functions, active learning "
             "campaigns have demonstrated 3-10 times improvement in discovery efficiency compared "
-            "to random experimental campaigns. Self-driving laboratories combine AI-driven "
-            "experimental design with robotic synthesis platforms and automated characterization "
-            "instruments, enabling closed-loop optimization without human intervention [53]. "
-            "These autonomous platforms have achieved greater than 95% morphological yield for "
-            "gold nanostructures in fewer than 100 iterations, while neural network interatomic "
-            "potentials enable rapid molecular dynamics simulations at near-DFT accuracy for "
-            "property evaluation [36]."
+            "to random experimental campaigns, as shown in Figure 5(c). Self-driving "
+            "laboratories combine AI-driven experimental design with robotic synthesis platforms "
+            "and automated characterization instruments, enabling closed-loop optimization "
+            "without human intervention [53]. These autonomous platforms have achieved greater "
+            "than 95% morphological yield for gold nanostructures in fewer than 100 iterations, "
+            "while neural network interatomic potentials enable rapid molecular dynamics "
+            "simulations at near-DFT accuracy for property evaluation [36]."
         , "body"),
         ("2.6 Foundation Models and Large Language Models", "h2"),
         (
@@ -432,15 +438,15 @@ def get_section3():
         ("3.1 Property Prediction and Materials Optimization", "h2"),
         (
             "Machine learning models trained on curated datasets have demonstrated remarkable "
-            "accuracy in predicting diverse nanomaterial properties across multiple domains. "
-            "Band gap prediction using gradient boosting methods achieves mean absolute error "
-            "(MAE) below 0.3 eV on benchmark datasets from the Materials Project [34]. "
-            "Formation energy prediction using CGCNN and MEGNet approaches DFT-level "
-            "uncertainty of approximately 25 meV/atom [13,27]. For nanoparticle-specific "
-            "properties, ML models successfully predict catalytic activity of alloy "
-            "nanoparticles, localized surface plasmon resonance wavelengths of gold and silver "
-            "nanostructures, quantum dot emission spectra, and colloidal stability indicators "
-            "[35,36]."
+            "accuracy in predicting diverse nanomaterial properties across multiple domains, "
+            "with performance benchmarks detailed in Table 2. Band gap prediction using "
+            "gradient boosting methods achieves mean absolute error (MAE) below 0.3 eV on "
+            "benchmark datasets from the Materials Project [34]. Formation energy prediction "
+            "using CGCNN and MEGNet approaches DFT-level uncertainty of approximately 25 "
+            "meV/atom [13,27]. For nanoparticle-specific properties, ML models successfully "
+            "predict catalytic activity of alloy nanoparticles, localized surface plasmon "
+            "resonance wavelengths of gold and silver nanostructures, quantum dot emission "
+            "spectra, and colloidal stability indicators [35,36]."
         , "body"),
         (
             "Transfer learning and multi-task approaches address data scarcity challenges "
@@ -493,7 +499,8 @@ def get_section3():
             "and justice systems [6,7]. AI methodologies enable the rational design of "
             "nanomaterials with properties specifically optimized for forensic detection "
             "challenges, including sensitivity, selectivity, stability under field conditions, "
-            "and compatibility with diverse evidence substrates."
+            "and compatibility with diverse evidence substrates. The key forensic applications "
+            "of AI-designed nanomaterials are summarized schematically in Figure 6."
         , "body"),
         ("3.4.1 Enhanced Fingerprint Detection", "h3"),
         (
@@ -586,17 +593,17 @@ def get_section4():
         ("4.1 Current Challenges", "h2"),
         (
             "Despite remarkable progress, several fundamental challenges impede the full "
-            "realization of AI-assisted nanomaterial design. Data scarcity remains the most "
-            "pervasive limitation, as most nanomaterial datasets contain fewer than 1,000 "
-            "samples, far below the requirements for robust deep learning model training "
-            "[3,4]. Unlike domains such as computer vision or natural language processing "
-            "where millions of labeled examples are readily available, materials data requires "
-            "expensive experimental measurements or computationally intensive simulations to "
-            "generate. Solutions under active development include transfer learning from "
-            "data-rich to data-scarce domains, physics-informed data augmentation, few-shot "
-            "learning architectures, multi-fidelity approaches combining data at different "
-            "accuracy levels, and federated learning frameworks enabling collaborative model "
-            "training without sharing proprietary data [37]."
+            "realization of AI-assisted nanomaterial design, as summarized in Table 4. Data "
+            "scarcity remains the most pervasive limitation, as most nanomaterial datasets "
+            "contain fewer than 1,000 samples, far below the requirements for robust deep "
+            "learning model training [3,4]. Unlike domains such as computer vision or natural "
+            "language processing where millions of labeled examples are readily available, "
+            "materials data requires expensive experimental measurements or computationally "
+            "intensive simulations to generate. Solutions under active development include "
+            "transfer learning from data-rich to data-scarce domains, physics-informed data "
+            "augmentation, few-shot learning architectures, multi-fidelity approaches combining "
+            "data at different accuracy levels, and federated learning frameworks enabling "
+            "collaborative model training without sharing proprietary data [37]."
         , "body"),
         (
             "Model interpretability presents another significant challenge, as many "
