@@ -359,7 +359,9 @@ def get_section2():
             "can give them instant information about their blood glucose levels, leading to improved disease "
             "management. In summary, the technological pillars of smart healthcare are IoT, cloud computing, "
             "and real-time data systems. All these technologies contribute to smart healthcare ecosystems that "
-            "are proactive, efficient and patient-centric [24]."
+            "are proactive, efficient and patient-centric [24]. Figure 2 illustrates this smart healthcare system "
+            "framework, showing the seamless flow from data collection through AI analytics to improved patient "
+            "outcomes."
         , "body"),
         ("fig2", "figure"),
         ("2.2 Artificial Intelligence Applications in Healthcare", "h2"),
@@ -539,7 +541,9 @@ def get_section3():
             "validation [37]. The research methodology in general is structured in order to design an integrated "
             "framework for smart healthcare analytics. The study's conceptual analysis and real-world insights "
             "provide a comprehensive view of the factors that contribute to the successful adoption and "
-            "implementation of intelligent care systems."
+            "implementation of intelligent care systems. The research methodology framework, depicting the "
+            "sequential phases from literature review through content analysis, framework development, and "
+            "validation, is illustrated in Figure 3."
         , "body"),
         ("fig3", "figure"),
 
@@ -586,7 +590,9 @@ def get_section3():
             "proposed framework provides a comprehensive approach to implementing smart healthcare analytics and "
             "intelligent care systems. It fills in important research gaps and brings together various aspects of "
             "the field, providing a valuable resource for researchers, practitioners, and policy makers. The "
-            "framework should be empirically tested and used in various health care settings in future studies."
+            "framework should be empirically tested and used in various health care settings in future studies. "
+            "As shown in Table 2, the framework's layered architecture supports interoperability through "
+            "standardized technologies and tools across all four layers."
         , "body"),
         ("table2", "table"),
     ]
@@ -637,7 +643,9 @@ def get_section4():
             "systems [45]. The analysis of intelligent care systems results in the conclusion that development of "
             "technology has made a great progress in delivering healthcare services, but the success of these "
             "systems relies on the context of the application and the integration between the various technologies "
-            "used."
+            "used. This comprehensive model is depicted in Figure 4, which demonstrates the seamless interaction "
+            "between AI diagnostics, remote monitoring, telemedicine, and analytics to enhance patient care and "
+            "streamline operations."
         , "body"),
         ("fig4", "figure"),
         ("4.2 Key Findings and Insights", "h2"),
@@ -714,7 +722,9 @@ def get_section4():
             "cutting-edge technologies, healthcare providers can provide more personalized, proactive, and "
             "efficient care. The overall applications in smart healthcare analytics point to its use for better "
             "patient outcomes, increased efficiency, and lower costs. Healthcare organizations can provide "
-            "personalized, proactive, and efficient care with the use of advanced technologies."
+            "personalized, proactive, and efficient care with the use of advanced technologies. Table 3 summarizes "
+            "the key benefits, challenges, success factors, and practical applications that emerged from this "
+            "analysis."
         , "body"),
         ("table3", "table"),
     ]
