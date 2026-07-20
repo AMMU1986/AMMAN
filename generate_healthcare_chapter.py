@@ -928,8 +928,6 @@ def get_references():
         "[16] Agarwal, R., Gao, G., DesRoches, C., & Jha, A. K. (2010). Research commentary - The digital transformation of healthcare. Information Systems Research, 21(4), 796-809. https://doi.org/10.1287/isre.1100.0327",
         "[17] Wamba, S. F., Akter, S., Edwards, A., Chopin, G., & Gnanzou, D. (2015). How big data can make big impact. International Journal of Production Economics, 165, 234-246. https://doi.org/10.1016/j.ijpe.2014.12.031",
         "[18] Yin, Y., Zeng, Y., Chen, X., & Fan, Y. (2016). The Internet of Things in healthcare: An overview. Journal of Industrial Information Integration, 1, 3-13. https://doi.org/10.1016/j.jii.2016.03.004",
-
-        "[18] Dias, D., & Cunha, J. P. S. (2018). Wearable health devices\u2014Vital sign monitoring, systems and technologies. Sensors, 18(8), 2414. https://doi.org/10.3390/s18082414",
         "[19] Nahavandi, D., Alizadehsani, R., Khosravi, A., & Acharya, U. R. (2022). Application of artificial intelligence in wearable devices: Opportunities and challenges. Computer Methods and Programs in Biomedicine, 213, 106541. https://doi.org/10.1016/j.cmpb.2021.106541",
         "[20] Gatouillat, A., Badr, Y., Massot, B., & Sejdic, E. (2018). Internet of Medical Things: A review of recent contributions dealing with cyber-physical systems in medicine. IEEE Internet of Things Journal, 5(5), 3810-3822. https://doi.org/10.1109/JIOT.2018.2849014",
         "[21] Dang, L. M., Piran, M. J., Han, D., Min, K., & Moon, H. (2019). A survey on Internet of Things and cloud computing for healthcare. Electronics, 8(7), 768. https://doi.org/10.3390/electronics8070768",
@@ -964,6 +962,13 @@ def get_references():
         "[49] Abouelmehdi, K., Beni-Hessane, A., & Khaloufi, H. (2018). Big healthcare data: Preserving security and privacy. Journal of Big Data, 5(1), 1. https://doi.org/10.1186/s40537-017-0110-7",
         "[50] Lehne, M., Sass, J., Essenwanger, A., Schepers, J., & Thun, S. (2019). Why digital medicine depends on interoperability. NPJ Digital Medicine, 2(1), 79. https://doi.org/10.1038/s41746-019-0158-1",
         "[51] Krittanawong, C., Zhang, H., Wang, Z., Aydar, M., & Kitai, T. (2017). Artificial intelligence in precision cardiovascular medicine. Journal of the American College of Cardiology, 69(21), 2657-2664. https://doi.org/10.1016/j.jacc.2017.03.571",
+        "[52] Imran, S., Mahmood, T., Morshed, A., & Sellis, T. (2021). Big data analytics in healthcare: A systematic literature review and roadmap for practical implementation. IEEE/CAA Journal of Automatica Sinica, 8(1), 1-22. https://doi.org/10.1109/JAS.2020.1003384",
+        "[53] Senbekov, M., Saliev, T., Bukeyeva, Z., Almabayeva, A., Zhanaliyeva, M., Aitenova, N., Toishibekov, Y., & Fakhradiyev, I. (2020). The recent progress and applications of digital technologies in healthcare: A review. International Journal of Telemedicine and Applications, 2020, 8830200. https://doi.org/10.1155/2020/8830200",
+        "[54] Secinaro, S., Calandra, D., Secinaro, A., Muthurangu, V., & Biancone, P. (2021). The role of artificial intelligence in healthcare: A structured literature review. BMC Medical Informatics and Decision Making, 21(1), 125. https://doi.org/10.1186/s12911-021-01488-9",
+        "[55] Kvedar, J., Coye, M. J., & Everett, W. (2014). Connected health: A review of technologies and strategies to improve patient care with telemedicine and telehealth. Health Affairs, 33(2), 194-199. https://doi.org/10.1377/hlthaff.2013.0992",
+        "[56] Vayena, E., Blasimme, A., & Cohen, I. G. (2018). Machine learning in medicine: Addressing ethical challenges. PLoS Medicine, 15(11), e1002689. https://doi.org/10.1371/journal.pmed.1002689",
+        "[57] Everson, J., & Adler-Milstein, J. (2021). Engagement in health information exchange is associated with readmission reduction. Health Affairs, 40(7), 1059-1067. https://doi.org/10.1377/hlthaff.2020.02420",
+        "[58] Elragal, R., Elragal, A., & Habibipour, A. (2023). Healthcare analytics: A literature review and proposed research agenda. Frontiers in Big Data, 6, 1277976. https://doi.org/10.3389/fdata.2023.1277976",
     ]
 
 
@@ -1325,7 +1330,7 @@ def generate_docx(output_path):
     print(f"Sections: 5 main sections")
     print(f"Tables: 3")
     print(f"Figures: 4 (placeholders)")
-    print(f"References: 51")
+    print(f"References: 58")
 
 
 
