@@ -28,6 +28,21 @@ This concentration extends to talent. The researchers, engineers, and data scien
 
 The data dimension of the AI Equity Gap deserves particular attention. AI systems are only as representative as the data on which they are trained [30]. When training datasets overrepresent certain populations, languages, or contexts while neglecting others, the resulting models perform poorly—or actively harm—underrepresented groups [31]. Natural language processing systems trained predominantly on English-language text struggle to serve speakers of indigenous or low-resource languages [32]. Medical diagnostic algorithms trained on data from affluent populations may misidentify conditions in patients from different ethnic or socioeconomic backgrounds [33]. The principle that AI is not neutral but rather absorbs and amplifies weaknesses in existing systems becomes starkly apparent when examining these data-driven disparities [34].
 
+Table 1 summarizes the key dimensions along which the AI Equity Gap manifests, distinguishing it from the earlier conceptualization of the digital divide.
+
+**Table 1.** Dimensions of the AI Equity Gap: From Digital Divide to AI Inequity
+
+| Dimension | Traditional Digital Divide | AI Equity Gap |
+|-----------|--------------------------|---------------|
+| Core metric | Internet access (binary: connected/unconnected) | Spectrum of AI benefit distribution across populations |
+| Infrastructure | Connectivity and devices | Compute power, cloud access, specialized hardware (GPUs/TPUs) |
+| Data | Information availability | Representativeness, quality, sovereignty, and linguistic coverage of training datasets |
+| Human capital | Basic digital literacy | Multi-level skills from AI literacy to advanced ML engineering |
+| Institutional capacity | Telecom regulation | AI governance, algorithmic auditing, ethical oversight frameworks |
+| Research & innovation | Technology adoption | Capacity for local AI development, adaptation, and frontier research |
+| Geographic concentration | Urban-rural gap within nations | Global North-South divide in AI capabilities and talent [23][24] |
+| Power dynamics | Consumer access to information | Control over AI design, data ownership, and standard-setting processes |
+
 The AI Equity Gap is further reinforced by institutional factors. Nations without robust regulatory frameworks, ethical oversight mechanisms, or strategic AI policies find themselves in a reactive posture, adopting technologies designed elsewhere without the capacity to shape them according to local values and priorities [35]. This institutional deficit creates a dependency relationship in which developing countries become consumers of AI products designed for other contexts rather than creators of solutions tailored to their own challenges [36]. The resulting dynamic risks reproducing colonial patterns of technological dependence in digital form, with knowledge and power flowing from periphery to center rather than circulating equitably [37].
 
 
@@ -59,6 +74,16 @@ The computing dimension of infrastructure merits particular emphasis because it 
 The data lever addresses the representativeness, quality, and accessibility of the information that feeds AI systems. Promoting open data initiatives and data-sharing arrangements can democratize access to the raw material of machine learning, enabling researchers and developers in resource-constrained settings to build systems tailored to local contexts [58]. However, open data alone is insufficient if the underlying datasets reflect the same biases and blind spots that characterize existing information systems [59]. Deliberate efforts to collect data from underrepresented communities, in local languages and reflecting local conditions, are essential to building AI systems that serve diverse populations accurately [60].
 
 The skills lever operates at multiple levels simultaneously. At the foundation, basic digital literacy enables populations to interact with AI-powered services as informed users rather than passive recipients. At intermediate levels, data literacy and computational thinking empower workers across sectors to collaborate productively with intelligent systems [61]. At advanced levels, specialized expertise in machine learning, data science, and AI engineering enables local innovation and adaptation. Building this multi-layered skills ecosystem requires sustained investment in educational institutions. Partnerships between academia and industry can ensure that curricula remain current and that graduates possess practically relevant competencies [62]. Lifelong learning programs acknowledge that the rapid pace of technological change demands continuous skill renewal throughout working careers, not merely front-loaded education during youth [63].
+
+Table 2 presents a structured overview of the three levers, their constituent elements, key challenges, and illustrative policy interventions required to activate each lever effectively.
+
+**Table 2.** The Three Levers for Inclusive AI: Requirements, Challenges, and Policy Interventions
+
+| Lever | Key Components | Primary Challenges in Developing Countries | Illustrative Policy Interventions |
+|-------|---------------|-------------------------------------------|----------------------------------|
+| **Infrastructure** | Electricity access; broadband connectivity; last-mile networks; computing hardware (GPUs, data centers); cloud platforms | Intermittent power supply; limited rural connectivity; prohibitive cost of compute; data sovereignty concerns with foreign cloud providers [53][56] | National data center investment; regional compute cooperatives; universal service obligations; renewable energy for digital infrastructure |
+| **Data** | Representative training datasets; local language corpora; open data platforms; data quality assurance | Absence of underrepresented communities from datasets; low-resource language exclusion; informal economy invisibility; privacy-utility tradeoffs [42][60] | Open data mandates; community-driven data collection; data trusts for indigenous knowledge; multilingual corpus development programs |
+| **Skills** | Basic digital literacy; data literacy; computational thinking; advanced AI/ML expertise; institutional AI readiness | Shortage of qualified instructors; brain drain of AI talent; outdated curricula; limited access to advanced training; gender gaps in STEM [61][63] | Academia-industry partnerships; modular credentialing; lifelong learning subsidies; regional AI excellence centers; return-migration incentives |
 
 
 ### 2.2 Beyond Connectivity: The Role of Digital Public Infrastructure (DPI)
@@ -101,6 +126,18 @@ Healthcare applications corresponding to SDG 3 showcase AI's capacity to extend 
 
 Financial inclusion aligned with SDG 8 has been transformed by AI's capacity to assess creditworthiness through alternative data sources—mobile phone usage patterns, utility payment histories, social network characteristics—that provide insights into individuals who lack the formal financial records that traditional lending institutions require [88]. This capability has opened access to credit, insurance, and savings products for millions of previously excluded individuals, enabling entrepreneurship, risk management, and asset accumulation among populations that conventional financial systems deemed unservable.
 
+Table 3 provides a comprehensive mapping of AI applications to specific Sustainable Development Goals, illustrating the breadth and diversity of AI's potential contributions to the 2030 Agenda.
+
+**Table 3.** AI Applications for Accelerating the Sustainable Development Goals
+
+| SDG | Domain | AI Application | Inclusive Impact | Key Challenge |
+|-----|--------|---------------|-----------------|---------------|
+| SDG 2 (Zero Hunger) | Agriculture | Precision farming; pest/disease prediction; yield forecasting; soil analysis | Smallholder productivity gains of 20-30%; reduced crop losses; optimized resource use [85] | Requires local agronomic data; smartphone penetration; farmer digital literacy |
+| SDG 3 (Good Health) | Healthcare | Medical imaging diagnostics; epidemic prediction; drug discovery; AI-powered triage | Specialist-level diagnostics in rural clinics; early outbreak detection; community health worker augmentation [87] | Data privacy; regulatory approval; integration with existing health systems |
+| SDG 4 (Quality Education) | Education | Adaptive learning platforms; automated assessment; language tutoring; content personalization | Individualized instruction at scale; learning continuity in crisis settings; minority language support [86] | Teacher training for AI tools; internet access; culturally appropriate content |
+| SDG 8 (Decent Work) | Financial inclusion | Alternative credit scoring; fraud detection; micro-insurance; robo-advisory | Access to credit for unbanked populations; reduced lending bias; financial product innovation [88] | Algorithmic fairness; data protection; over-indebtedness risk |
+| SDG 13 (Climate Action) | Environment | Early warning systems; carbon monitoring; renewable energy optimization; climate modeling | Community-level disaster preparedness; optimized clean energy distribution; evidence-based climate policy [84] | Computational cost; model uncertainty; integration with local decision-making |
+
 ### 3.2 AI and the Future of Work
 
 The relationship between artificial intelligence and employment constitutes one of the most consequential—and contested—dimensions of the inclusive growth agenda. Projections suggest that up to forty percent of jobs globally could be significantly affected by AI-driven automation within the coming decade, though the nature of this impact varies enormously across sectors, skill levels, and geographies [7]. Understanding this variation is essential to designing policy responses that protect vulnerable workers while harnessing AI's productivity-enhancing potential.
@@ -135,6 +172,17 @@ The proliferation of national AI strategies in recent years reflects growing rec
 The urgency for developing countries to articulate their own distinctive strategic paths cannot be overstated. Copying strategies designed for economies with abundant capital, established research universities, deep talent pools, and mature regulatory institutions produces documents disconnected from local realities [51]. A country with limited electricity coverage cannot meaningfully implement a strategy premised on ubiquitous cloud computing. A nation with few PhD-level researchers cannot adopt a strategy centered on frontier research. Effective strategies must begin from an honest assessment of existing capabilities, constraints, and comparative advantages, then chart pragmatic pathways toward building the capacity necessary for progressively more sophisticated AI engagement.
 
 A whole-of-government approach demands coordination mechanisms that break down traditional bureaucratic silos. AI policy intersects with economic policy, social policy, infrastructure policy, and governance policy [46]. No single ministry possesses the mandate or expertise to address all these dimensions. Inter-ministerial committees, dedicated AI coordination bodies, or empowered chief AI officers can provide the strategic coherence necessary to align disparate initiatives toward shared objectives.
+
+Table 4 presents a comparative framework of AI governance approaches at national, regional, and global levels, highlighting the distinct mechanisms, strengths, and limitations of each.
+
+**Table 4.** Comparative Framework of AI Governance Approaches Across Scales
+
+| Governance Level | Key Mechanisms | Representative Examples | Strengths | Limitations |
+|-----------------|---------------|------------------------|-----------|-------------|
+| **National** | AI strategies; regulatory frameworks; public investment; procurement policies; ethics boards | EU AI Act; Singapore Model AI Governance Framework; India NITI Aayog AI Strategy [35][51] | Context-specific; enforceable; can align with national development priorities | Fragmented globally; capacity constraints in developing countries; regulatory arbitrage risk |
+| **Regional** | Harmonized regulations; shared infrastructure; joint research programs; common standards | African Union AI Strategy; ASEAN Guide on AI Governance; EU Digital Single Market | Economies of scale; mutual learning; collective bargaining power; South-South cooperation [29] | Sovereignty tensions; uneven member capacities; slow consensus-building |
+| **Multi-stakeholder** | Industry self-regulation; technical standards bodies; civil society advocacy; academic research | IEEE Ethically Aligned Design; Partnership on AI; Global Partnership on AI (GPAI) [18][46] | Technical expertise; agility; broad participation; innovation-friendly | Voluntary compliance; corporate capture risk; limited accountability; exclusion of marginalized voices |
+| **International/UN** | Global norms; capacity-building hubs; technology transfer; monitoring frameworks | UNESCO AI Ethics Recommendation; UN Global Digital Compact; proposed Global AI Hub [49] | Universal legitimacy; inclusivity mandate; normative authority | Slow processes; non-binding instruments; implementation gaps; resource constraints |
 
 Regulatory modernization constitutes a critical component of national strategy. Existing regulatory frameworks—designed for analog economies and traditional business models—frequently prove inadequate for governing AI systems that operate at machine speed, learn and evolve continuously, and produce decisions through processes that resist human interpretation [69]. Updating data governance regulations to address AI-specific challenges such as training data provenance, algorithmic transparency, and automated decision-making is essential. Privacy frameworks must be calibrated to protect individuals from AI-enabled surveillance and profiling without imposing compliance burdens so onerous that they stifle beneficial innovation [71].
 
