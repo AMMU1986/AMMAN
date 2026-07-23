@@ -77,6 +77,19 @@ A mathematical model, regardless of its elegance, has scientific value only inso
 
 Validation strategies include comparing predicted steady states with measured equilibrium concentrations, testing whether predicted dynamic trajectories match time-series data, and verifying that the model correctly predicts the outcome of perturbation experiments. When models fail validation, this failure itself is informative, suggesting missing mechanisms or incorrect assumptions that guide model refinement. The iterative cycle of modeling, prediction, experimental testing, and refinement constitutes the scientific method as applied to mathematical biology.
 
+**Table 1: Summary of Key Concepts in Foundations of Mathematical Biology**
+
+| Topic | Key Equation/Concept | Biological Application | Mathematical Framework |
+|-------|---------------------|----------------------|----------------------|
+| Exponential Growth | dN/dt = rN | Microbial cultures, early colonization | First-order linear ODE |
+| Logistic Growth | dN/dt = rN(1 - N/K) | Density-regulated populations | Nonlinear ODE with carrying capacity |
+| Reaction-Diffusion | du/dt = D∇²u + R(u) | Morphogen gradients, spatial spread | Partial differential equation |
+| Deterministic Modeling | dx/dt = f(x, t) | Large populations, well-mixed systems | Ordinary differential equations |
+| Stochastic Modeling | Master equation / Langevin | Gene expression, small molecule counts | Markov chains, SDEs |
+| Parameter Estimation | Least-squares, MLE, Bayesian | Inferring rate constants from data | Statistical inference |
+| Model Validation | Prediction vs. experiment | Testing mechanistic hypotheses | Iterative refinement cycle |
+| Quasi-Steady-State | Fast variable elimination | Enzyme kinetics simplification | Singular perturbation theory |
+
 ---
 
 
@@ -149,6 +162,19 @@ Bifurcation theory studies how the qualitative structure of a dynamical system c
 Saddle-node bifurcations, where two equilibria (one stable, one unstable) collide and annihilate, underlie critical transitions in ecosystems, such as the sudden collapse of fisheries or the irreversible eutrophication of lakes. Transcritical bifurcations, where stability transfers between two equilibria, describe the invasion threshold in epidemiological models (R_0 = 1). Pitchfork bifurcations arise in systems with symmetry and describe spontaneous symmetry-breaking, relevant to cell polarization and pattern formation.
 
 Bifurcation diagrams, which plot equilibrium values or oscillation amplitudes as functions of a control parameter, provide compact visual summaries of system behavior across parameter ranges. These diagrams reveal hysteresis (history-dependence), bistability (coexisting attractors), and critical thresholds, offering biologists a roadmap for understanding how gradual environmental or physiological changes can trigger abrupt behavioral transitions.
+
+**Table 2: Summary of Dynamical Systems Concepts and Their Biological Significance**
+
+| Dynamical Systems Concept | Mathematical Characterization | Biological Example | Significance |
+|--------------------------|------------------------------|-------------------|--------------|
+| Stable Equilibrium | All eigenvalues Re(λ) < 0 | Population at carrying capacity | Homeostasis, robustness |
+| Unstable Equilibrium | Any eigenvalue Re(λ) > 0 | Disease-free state when R₀ > 1 | Pathogen invasion threshold |
+| Limit Cycle | Isolated closed orbit in phase space | Circadian rhythms, cardiac pacemaker | Sustained biological oscillations |
+| Hopf Bifurcation | Complex eigenvalues cross imaginary axis | Onset of calcium spiking | Emergence of rhythmic behavior |
+| Saddle-Node Bifurcation | Two equilibria collide and annihilate | Ecosystem collapse, lake eutrophication | Critical transitions, tipping points |
+| Transcritical Bifurcation | Stability exchange between equilibria | Epidemic threshold (R₀ = 1) | Invasion/extinction boundaries |
+| Chaos | Sensitive dependence on initial conditions | Cardiac arrhythmias, insect populations | Deterministic unpredictability |
+| Bistability | Two coexisting stable attractors | Cell fate decisions, genetic switches | Cellular memory, irreversible transitions |
 
 ---
 
@@ -229,6 +255,19 @@ At the tissue level, cardiac electrophysiology is described by reaction-diffusio
 
 Beyond cardiac rhythms, mathematical models describe respiratory rhythm generation, circadian clock mechanisms, hormonal pulsatility (insulin, growth hormone), and the cell cycle oscillator. Each of these systems involves feedback loops operating across multiple timescales, and dynamical systems theory provides the unifying framework for understanding their oscillatory behavior, robustness to perturbation, and pathological dysfunction.
 
+**Table 3: Key Mathematical Models in Biological Applications**
+
+| Model | Governing Equations | Key Parameters | Primary Predictions |
+|-------|-------------------|----------------|-------------------|
+| Lotka-Volterra Predator-Prey | dH/dt = aH - bHP; dP/dt = cbHP - dP | a (prey growth), b (predation), c (efficiency), d (predator death) | Neutrally stable oscillations, phase-lagged cycles |
+| Logistic Competition | dN₁/dt = r₁N₁(1 - (N₁ + α₁₂N₂)/K₁) | α₁₂, α₂₁ (competition coefficients) | Competitive exclusion or stable coexistence |
+| SIR Epidemic | dS/dt = -βSI/N; dI/dt = βSI/N - γI | β (transmission), γ (recovery), R₀ = β/γ | Epidemic threshold, herd immunity at 1 - 1/R₀ |
+| Michaelis-Menten Kinetics | v = V_max[S]/(K_m + [S]) | V_max, K_m | Saturating enzyme response |
+| Hodgkin-Huxley Neuron | C dV/dt = -I_ion + I_ext (4 ODEs) | g_Na, g_K, channel gating rates | Action potentials, threshold, refractory period |
+| Hill Function | v = V_max[S]ⁿ/(Kⁿ + [S]ⁿ) | n (Hill coefficient), K (half-max) | Ultrasensitivity, cooperative switching |
+| Rosenzweig-MacArthur | Logistic prey + Type II functional response | K (carrying capacity), handling time | Paradox of enrichment, limit cycles |
+| Beeler-Reuter / Luo-Rudy Cardiac | Multi-channel reaction-diffusion PDE | Ion channel conductances, D (diffusion) | Action potential, reentry, fibrillation |
+
 ---
 
 
@@ -284,6 +323,21 @@ Sensitivity analysis quantifies how model outputs depend on parameter values, id
 In biological modeling, sensitivity analysis serves multiple purposes: it identifies key experimental targets (parameters whose precise measurement would most reduce prediction uncertainty), guides model reduction (insensitive parameters can be fixed without significant loss of accuracy), and assesses model robustness (stable biological systems should be relatively insensitive to parameter perturbations, reflecting evolutionary selection for robustness).
 
 Optimization methods—gradient-based algorithms, evolutionary strategies, Bayesian optimization—enable systematic parameter estimation, optimal experimental design, and the identification of intervention strategies that optimize biological outcomes. Multi-objective optimization addresses the common biological scenario where multiple competing objectives (efficacy vs. toxicity, speed vs. accuracy, growth vs. defense) must be balanced simultaneously.
+
+**Table 4: Computational Tools, Advanced Methods, and Future Directions in Mathematical Biology**
+
+| Category | Tool/Method | Application Domain | Key Capabilities |
+|----------|------------|-------------------|-----------------|
+| General-Purpose Software | MATLAB (ode45, ode15s) | ODE/PDE numerical solution | Adaptive step-size, stiff solvers, visualization |
+| Open-Source Platform | Python (SciPy, FEniCS) | Scientific computing, ML integration | Community support, TensorFlow/PyTorch compatibility |
+| Biochemical Modeling | COPASI, BioNetGen | Metabolic/signaling networks | Automatic ODE generation from reactions |
+| Neuroscience | NEURON, GENESIS | Neural circuit simulation | Cable equation solvers, compartmental models |
+| Machine Learning | PINNs, Neural ODEs | Data-driven dynamics discovery | PDE solution in complex geometries, parameter inference |
+| Equation Discovery | SINDy, Symbolic Regression | Governing equation identification | Parsimonious model discovery from time-series |
+| Sensitivity Analysis | Sobol indices, Morris screening | Parameter importance ranking | Global exploration, interaction detection |
+| Multiscale Modeling | Agent-based models, homogenization | Tissue-level simulation | Cell-level to continuum bridging |
+| Personalized Medicine | Digital twins | Patient-specific prediction | Cardiac ablation planning, oncology dosing |
+| Pattern Formation | Turing instability analysis | Developmental biology | Stripe/spot prediction, morphogenesis |
 
 
 ### 4.3 Challenges, Limitations, and Future Directions
