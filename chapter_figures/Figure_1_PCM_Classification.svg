@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Arial, sans-serif">
+  <!-- Title -->
+  <text x="400" y="35" text-anchor="middle" font-size="18" font-weight="bold" fill="#333">Figure 1: Classification of Phase Change Materials (PCMs)</text>
+
+  <!-- Main PCM box -->
+  <rect x="300" y="55" width="200" height="45" rx="8" fill="#2C3E50" stroke="#1A252F" stroke-width="2"/>
+  <text x="400" y="83" text-anchor="middle" font-size="14" fill="white" font-weight="bold">Phase Change Materials</text>
+
+  <!-- Connecting lines from main -->
+  <line x1="400" y1="100" x2="400" y2="130" stroke="#555" stroke-width="2"/>
+  <line x1="150" y1="130" x2="650" y2="130" stroke="#555" stroke-width="2"/>
+  <line x1="150" y1="130" x2="150" y2="155" stroke="#555" stroke-width="2"/>
+  <line x1="400" y1="130" x2="400" y2="155" stroke="#555" stroke-width="2"/>
+  <line x1="650" y1="130" x2="650" y2="155" stroke="#555" stroke-width="2"/>
+
+  <!-- Organic PCMs -->
+  <rect x="50" y="155" width="200" height="40" rx="6" fill="#27AE60" stroke="#1E8449" stroke-width="2"/>
+  <text x="150" y="180" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Organic PCMs</text>
+
+  <!-- Organic sub-items -->
+  <rect x="30" y="215" width="95" height="35" rx="4" fill="#A9DFBF" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="77" y="237" text-anchor="middle" font-size="11" fill="#1E8449">Paraffins</text>
+
+  <rect x="135" y="215" width="95" height="35" rx="4" fill="#A9DFBF" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="182" y="237" text-anchor="middle" font-size="11" fill="#1E8449">Fatty Acids</text>
+
+  <rect x="30" y="260" width="95" height="35" rx="4" fill="#A9DFBF" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="77" y="282" text-anchor="middle" font-size="11" fill="#1E8449">Esters</text>
+
+  <rect x="135" y="260" width="95" height="35" rx="4" fill="#A9DFBF" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="182" y="282" text-anchor="middle" font-size="11" fill="#1E8449">PEGs</text>
+
+  <!-- Inorganic PCMs -->
+  <rect x="300" y="155" width="200" height="40" rx="6" fill="#2980B9" stroke="#1F618D" stroke-width="2"/>
+  <text x="400" y="180" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Inorganic PCMs</text>
+
+  <!-- Inorganic sub-items -->
+  <rect x="285" y="215" width="105" height="35" rx="4" fill="#AED6F1" stroke="#2980B9" stroke-width="1.5"/>
+  <text x="337" y="237" text-anchor="middle" font-size="11" fill="#1F618D">Salt Hydrates</text>
+
+  <rect x="400" y="215" width="105" height="35" rx="4" fill="#AED6F1" stroke="#2980B9" stroke-width="1.5"/>
+  <text x="452" y="237" text-anchor="middle" font-size="11" fill="#1F618D">Molten Salts</text>
+
+  <rect x="285" y="260" width="105" height="35" rx="4" fill="#AED6F1" stroke="#2980B9" stroke-width="1.5"/>
+  <text x="337" y="282" text-anchor="middle" font-size="11" fill="#1F618D">Metallics</text>
+
+  <!-- Eutectic PCMs -->
+  <rect x="550" y="155" width="200" height="40" rx="6" fill="#E74C3C" stroke="#B03A2E" stroke-width="2"/>
+  <text x="650" y="180" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Eutectic PCMs</text>
+
+  <!-- Eutectic sub-items -->
+  <rect x="545" y="215" width="100" height="35" rx="4" fill="#F5B7B1" stroke="#E74C3C" stroke-width="1.5"/>
+  <text x="595" y="230" text-anchor="middle" font-size="10" fill="#922B21">Organic-</text>
+  <text x="595" y="243" text-anchor="middle" font-size="10" fill="#922B21">Organic</text>
+
+  <rect x="655" y="215" width="100" height="35" rx="4" fill="#F5B7B1" stroke="#E74C3C" stroke-width="1.5"/>
+  <text x="705" y="230" text-anchor="middle" font-size="10" fill="#922B21">Inorganic-</text>
+  <text x="705" y="243" text-anchor="middle" font-size="10" fill="#922B21">Inorganic</text>
+
+  <rect x="600" y="260" width="100" height="35" rx="4" fill="#F5B7B1" stroke="#E74C3C" stroke-width="1.5"/>
+  <text x="650" y="275" text-anchor="middle" font-size="10" fill="#922B21">Organic-</text>
+  <text x="650" y="288" text-anchor="middle" font-size="10" fill="#922B21">Inorganic</text>
+
+  <!-- Properties boxes -->
+  <rect x="20" y="320" width="230" height="160" rx="6" fill="#EAFAF1" stroke="#27AE60" stroke-width="1.5"/>
+  <text x="135" y="342" text-anchor="middle" font-size="12" font-weight="bold" fill="#1E8449">Properties</text>
+  <text x="35" y="362" font-size="11" fill="#333">✓ Chemically stable</text>
+  <text x="35" y="380" font-size="11" fill="#333">✓ No subcooling</text>
+  <text x="35" y="398" font-size="11" fill="#333">✓ Congruent melting</text>
+  <text x="35" y="416" font-size="11" fill="#333">✓ Non-corrosive</text>
+  <text x="35" y="440" font-size="11" fill="#C0392B">✗ Low thermal conductivity</text>
+  <text x="35" y="458" font-size="11" fill="#C0392B">✗ Flammable</text>
+  <text x="35" y="476" font-size="11" fill="#C0392B">✗ Moderate latent heat</text>
+
+  <rect x="285" y="320" width="230" height="160" rx="6" fill="#EBF5FB" stroke="#2980B9" stroke-width="1.5"/>
+  <text x="400" y="342" text-anchor="middle" font-size="12" font-weight="bold" fill="#1F618D">Properties</text>
+  <text x="300" y="362" font-size="11" fill="#333">✓ High latent heat</text>
+  <text x="300" y="380" font-size="11" fill="#333">✓ Higher conductivity</text>
+  <text x="300" y="398" font-size="11" fill="#333">✓ Low cost</text>
+  <text x="300" y="416" font-size="11" fill="#333">✓ Non-flammable</text>
+  <text x="300" y="440" font-size="11" fill="#C0392B">✗ Subcooling</text>
+  <text x="300" y="458" font-size="11" fill="#C0392B">✗ Incongruent melting</text>
+  <text x="300" y="476" font-size="11" fill="#C0392B">✗ Corrosive</text>
+
+  <rect x="550" y="320" width="230" height="160" rx="6" fill="#FDEDEC" stroke="#E74C3C" stroke-width="1.5"/>
+  <text x="665" y="342" text-anchor="middle" font-size="12" font-weight="bold" fill="#922B21">Properties</text>
+  <text x="565" y="362" font-size="11" fill="#333">✓ Sharp melting point</text>
+  <text x="565" y="380" font-size="11" fill="#333">✓ Tailored temperature</text>
+  <text x="565" y="398" font-size="11" fill="#333">✓ Congruent melting</text>
+  <text x="565" y="416" font-size="11" fill="#333">✓ Combined properties</text>
+  <text x="565" y="440" font-size="11" fill="#C0392B">✗ Precise composition needed</text>
+  <text x="565" y="458" font-size="11" fill="#C0392B">✗ Limited data available</text>
+  <text x="565" y="476" font-size="11" fill="#C0392B">✗ Higher cost</text>
+</svg>

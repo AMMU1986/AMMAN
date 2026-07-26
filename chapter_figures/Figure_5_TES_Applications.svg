@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" font-family="Arial, sans-serif">
+  <!-- Title -->
+  <text x="400" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Figure 5: Applications of PCMs in Sustainable Development and Clean Energy</text>
+
+  <!-- Central circle -->
+  <circle cx="400" cy="260" r="65" fill="#2C3E50" stroke="#1A252F" stroke-width="3"/>
+  <text x="400" y="252" text-anchor="middle" font-size="13" fill="white" font-weight="bold">PCM</text>
+  <text x="400" y="268" text-anchor="middle" font-size="13" fill="white" font-weight="bold">Applications</text>
+
+  <!-- Application 1: Buildings (top-left) -->
+  <line x1="348" y1="215" x2="195" y2="120" stroke="#27AE60" stroke-width="2"/>
+  <rect x="80" y="70" width="180" height="80" rx="10" fill="#27AE60" stroke="#1E8449" stroke-width="2"/>
+  <text x="170" y="100" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Building Energy</text>
+  <text x="170" y="118" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Management</text>
+  <text x="170" y="138" text-anchor="middle" font-size="10" fill="#D5F5E3">Walls • Ceilings • Floors</text>
+
+  <!-- Application 2: Solar (top-right) -->
+  <line x1="452" y1="215" x2="590" y2="120" stroke="#F39C12" stroke-width="2"/>
+  <rect x="500" y="70" width="180" height="80" rx="10" fill="#F39C12" stroke="#D68910" stroke-width="2"/>
+  <text x="590" y="100" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Solar Thermal</text>
+  <text x="590" y="118" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Energy Storage</text>
+  <text x="590" y="138" text-anchor="middle" font-size="10" fill="#FEF9E7">Water Heating • CSP</text>
+
+  <!-- Application 3: Battery (right) -->
+  <line x1="462" y1="270" x2="590" y2="270" stroke="#E74C3C" stroke-width="2"/>
+  <rect x="590" y="235" width="180" height="80" rx="10" fill="#E74C3C" stroke="#B03A2E" stroke-width="2"/>
+  <text x="680" y="265" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Battery Thermal</text>
+  <text x="680" y="283" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Management</text>
+  <text x="680" y="303" text-anchor="middle" font-size="10" fill="#FADBD8">EVs • Li-ion Safety</text>
+
+  <!-- Application 4: Electronics (bottom-right) -->
+  <line x1="440" y1="315" x2="570" y2="400" stroke="#8E44AD" stroke-width="2"/>
+  <rect x="500" y="375" width="180" height="80" rx="10" fill="#8E44AD" stroke="#6C3483" stroke-width="2"/>
+  <text x="590" y="405" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Electronics</text>
+  <text x="590" y="423" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Cooling</text>
+  <text x="590" y="443" text-anchor="middle" font-size="10" fill="#E8DAEF">CPUs • Data Centers</text>
+
+  <!-- Application 5: Cold Chain (bottom-left) -->
+  <line x1="355" y1="315" x2="220" y2="400" stroke="#2980B9" stroke-width="2"/>
+  <rect x="80" y="375" width="180" height="80" rx="10" fill="#2980B9" stroke="#1F618D" stroke-width="2"/>
+  <text x="170" y="405" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Cold Chain &amp;</text>
+  <text x="170" y="423" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Logistics</text>
+  <text x="170" y="443" text-anchor="middle" font-size="10" fill="#D6EAF8">Pharma • Food</text>
+
+  <!-- Application 6: Textiles (left) -->
+  <line x1="338" y1="270" x2="220" y2="270" stroke="#1ABC9C" stroke-width="2"/>
+  <rect x="25" y="235" width="180" height="80" rx="10" fill="#1ABC9C" stroke="#148F77" stroke-width="2"/>
+  <text x="115" y="265" text-anchor="middle" font-size="12" fill="white" font-weight="bold">Smart Textiles</text>
+  <text x="115" y="283" text-anchor="middle" font-size="12" fill="white" font-weight="bold">&amp; Aerospace</text>
+  <text x="115" y="303" text-anchor="middle" font-size="10" fill="#D1F2EB">Clothing • Spacecraft</text>
+
+  <!-- SDG note at bottom -->
+  <rect x="250" y="475" width="300" height="20" rx="4" fill="#F4F6F7"/>
+  <text x="400" y="489" text-anchor="middle" font-size="10" fill="#555" font-style="italic">Contributing to SDG 7, SDG 9, SDG 11, and SDG 13</text>
+</svg>
