@@ -13,18 +13,18 @@ FORMATTING INSTRUCTIONS FOR WORD DOCUMENT:
 
 ## EXPERIMENTATION
 
-This chapter presents the detailed experimental methodology adopted for the systematic design, preparation, and characterization of submerged arc welding (SAW) fluxes, followed by multi-pass bead-on-plate experimentation and final weld joint fabrication using API X70 pipeline steel. The experimental work encompasses mineral selection, flux formulation using Design of Experiments (DoE) methodology, physicochemical and thermophysical characterization, and comprehensive mechanical and microstructural evaluation of weld joints. The chapter is organized sequentially to reflect the logical progression of the research from flux design through to final weld characterization.
+This chapter presents the detailed experimental methodology adopted for the systematic design, preparation, and characterization of submerged arc welding (SAW) fluxes [1, 2], followed by multi-pass bead-on-plate experimentation and final weld joint fabrication using API X70 pipeline steel [15]. The experimental work encompasses mineral selection, flux formulation using Design of Experiments (DoE) methodology, physicochemical and thermophysical characterization, and comprehensive mechanical and microstructural evaluation of weld joints. The chapter is organized sequentially to reflect the logical progression of the research from flux design through to final weld characterization.
 
 ## 4.1 Selection of Suitable Minerals Used as Fluxes for Submerged Arc Welding
 
-The selection of mineral constituents for submerged arc welding flux formulation is a critical step that determines the overall welding performance, slag behaviour, and final weld metal properties. In the present investigation, a systematic approach was adopted to select minerals based on their individual thermochemical roles, mutual compatibility in multi-component oxide systems, and relevance to marine and offshore welding applications. The primary mineral constituents selected for flux formulation include silica (SiO₂), titanium dioxide (TiO₂), calcium fluoride (CaF₂), barium oxide (BaO), manganese oxide (MnO), and calcium oxide (CaO). Each constituent was selected based on its specific metallurgical function and contribution to the slag-metal equilibrium reactions during the submerged arc welding process.
+The selection of mineral constituents for submerged arc welding flux formulation is a critical step that determines the overall welding performance, slag behaviour, and final weld metal properties. In the present investigation, a systematic approach was adopted to select minerals based on their individual thermochemical roles, mutual compatibility in multi-component oxide systems, and relevance to marine and offshore welding applications. The primary mineral constituents selected for flux formulation include silica (SiO₂), titanium dioxide (TiO₂), calcium fluoride (CaF₂), barium oxide (BaO), manganese oxide (MnO), and calcium oxide (CaO). Each constituent was selected based on its specific metallurgical function and contribution to the slag-metal equilibrium reactions during the submerged arc welding process [3, 7].
 
 
 **Silica (SiO₂)** serves as the primary network-forming oxide in the flux system. It provides the structural backbone of the silicate slag by forming interconnected SiO₄ tetrahedra, which control slag viscosity, melting temperature, and glass-forming tendency. In the context of submerged arc welding, SiO₂ acts as an acidic constituent that influences the oxygen potential at the slag-metal interface and controls silicon transfer to the weld metal through the equilibrium reaction: SiO₂ (slag) ⇌ [Si] (metal) + 2[O] (metal). The concentration of SiO₂ was varied between 5.0 and 10.0 g per 100 g batch to maintain adequate slag fluidity while avoiding excessive oxygen pickup in the weld metal.
 
-**Titanium dioxide (TiO₂)** was incorporated as an arc-stabilizing constituent and inclusion modifier. TiO₂ enhances electrical conductivity of the molten slag, thereby improving arc stability during the welding operation. Additionally, TiO₂ participates in the formation of complex titanate inclusions in the weld metal, which serve as preferential nucleation sites for acicular ferrite—a microstructural constituent highly desirable for achieving superior low-temperature impact toughness in pipeline steels. The TiO₂ content was varied between 10.0 and 20.0 g per 100 g batch to optimize both arc characteristics and inclusion chemistry.
+**Titanium dioxide (TiO₂)** was incorporated as an arc-stabilizing constituent and inclusion modifier. TiO₂ enhances electrical conductivity of the molten slag, thereby improving arc stability during the welding operation. Additionally, TiO₂ participates in the formation of complex titanate inclusions in the weld metal, which serve as preferential nucleation sites for acicular ferrite—a microstructural constituent highly desirable for achieving superior low-temperature impact toughness in pipeline steels. The TiO₂ content was varied between 10.0 and 20.0 g per 100 g batch to optimize both arc characteristics and inclusion chemistry [5, 9].
 
-**Calcium fluoride (CaF₂)** is a well-established fluxing agent in welding metallurgy. Its primary role is to reduce the melting point and viscosity of the slag, thereby improving slag fluidity and detachability from the solidified weld bead. CaF₂ also contributes to the basicity of the flux system and acts as a strong desulphurizing agent through the provision of fluoride ions that lower the activity of sulphur in the slag-metal system. Furthermore, CaF₂ reduces the diffusible hydrogen content in the weld metal by lowering the partial pressure of water vapour in the arc atmosphere. The CaF₂ content was varied over a wide range of 20.0 to 35.0 g per 100 g batch, reflecting its dominant role in controlling slag properties for offshore welding conditions where slag detachability and hydrogen control are of paramount importance.
+**Calcium fluoride (CaF₂)** is a well-established fluxing agent in welding metallurgy. Its primary role is to reduce the melting point and viscosity of the slag, thereby improving slag fluidity and detachability from the solidified weld bead. CaF₂ also contributes to the basicity of the flux system and acts as a strong desulphurizing agent through the provision of fluoride ions that lower the activity of sulphur in the slag-metal system. Furthermore, CaF₂ reduces the diffusible hydrogen content in the weld metal by lowering the partial pressure of water vapour in the arc atmosphere. The CaF₂ content was varied over a wide range of 20.0 to 35.0 g per 100 g batch, reflecting its dominant role in controlling slag properties for offshore welding conditions where slag detachability and hydrogen control are of paramount importance [4, 7].
 
 
 **Barium oxide (BaO)** was included as a basic oxide constituent to enhance the arc stability and contribute to slag formation. BaO possesses a high theoretical density (5.72 g/cm³) and acts as a strong basic oxide that increases the basicity index of the flux formulation. It contributes free oxygen ions (O²⁻) to the molten slag, which participate in desulphurization reactions and modify the oxygen potential at the slag-metal interface. The dissociation of BaO in the molten slag enhances the activity of other basic species and promotes alloy element recovery to the weld metal. BaO content was varied between 5.0 and 10.0 g per 100 g batch.
@@ -49,14 +49,14 @@ The purity of all mineral powders used in the present investigation was 99%, and
 | 5 | MnO | E | 10.0 – 25.0 |
 | 6 | CaO | F | 8.0 (constant) |
 
-The selection rationale for these minerals was further guided by established ternary and quaternary phase equilibrium diagrams, which provided thermodynamic justification for the compositional ranges and identified regions of favourable phase stability, low liquidus temperatures, and controlled slag fluidity. These phase diagrams served as the scientific foundation for the systematic flux design approach described in the subsequent section.
+The selection rationale for these minerals was further guided by established ternary and quaternary phase equilibrium diagrams, which provided thermodynamic justification for the compositional ranges and identified regions of favourable phase stability, low liquidus temperatures, and controlled slag fluidity. These phase diagrams served as the scientific foundation for the systematic flux design approach described in the subsequent section [4, 5, 6].
 
 ### 4.1.1 Design of Experimentation for Flux Formulation
 
 The traditional trial-and-error method of flux development was replaced in the present investigation by a systematic Design of Experiments (DoE) approach. The inherent constraint in mixture experiments—where mineral constituents are interdependent and an increase in one component necessarily requires a decrease in one or more other components—necessitated the use of mixture design methodology rather than conventional factorial or response surface designs.
 
 
-Design-Expert software (version 13, Stat-Ease Inc., Minneapolis, MN, USA) was employed to generate an experimental flux design matrix for the SiO₂, TiO₂, CaF₂, BaO, MnO, and fixed CaO ingredient system. The D-optimal design criterion was selected because the lower and upper bound constraints imposed on the variables (Table 4.1) are not compatible with standard simplex-lattice or simplex-centroid designs. The D-optimal algorithm maximizes the determinant of the information matrix (X'X), thereby minimizing the variance of the estimated model coefficients and providing the most efficient experimental design within the constrained mixture space. To minimize systematic bias, replicate compositions were randomly positioned within the design space.
+Design-Expert software (version 13, Stat-Ease Inc., Minneapolis, MN, USA) was employed to generate an experimental flux design matrix for the SiO₂, TiO₂, CaF₂, BaO, MnO, and fixed CaO ingredient system. The D-optimal design criterion was selected because the lower and upper bound constraints imposed on the variables (Table 4.1) are not compatible with standard simplex-lattice or simplex-centroid designs [1, 2]. The D-optimal algorithm maximizes the determinant of the information matrix (X'X), thereby minimizing the variance of the estimated model coefficients and providing the most efficient experimental design within the constrained mixture space. To minimize systematic bias, replicate compositions were randomly positioned within the design space.
 
 The mixture formulation was designed according to the following mathematical constraints:
 
@@ -79,7 +79,7 @@ The compositional design space was analysed using several fundamental ternary ph
 
 The resulting D-optimal design generated twenty-five experimental flux compositions distributed across the polyhedron design space, including vertex points, centre edge points, plane centre points, and an overall centroid point. Table 4.2 presents the complete design matrix with the compositional details and calculated basicity indices for all twenty-five flux formulations.
 
-The basicity index (BI) of the twenty-five fluxes was calculated using the modified Tulliani equation:
+The basicity index (BI) of the twenty-five fluxes was calculated using the modified Tulliani equation [3]:
 
 **Equation 4.3:** BI = (CaO + CaF₂ + MgO + BaO + SrO + Na₂O) + 0.5(MnO + Fe) / SiO₂ + 0.5(TiO₂ + Al₂O₃ + ZrO₂)
 
@@ -152,7 +152,7 @@ These parameters were established through pre-trial tests where bead profile con
 
 ## 4.2 SAW Flux Preparation
 
-The preparation of agglomerated submerged arc welding fluxes was carried out in the laboratory following a systematic and reproducible procedure. The agglomeration technique was selected over the fused flux manufacturing route because it offers greater flexibility in compositional control, lower processing temperatures, and the ability to incorporate thermally sensitive constituents such as carbonates and fluorides without decomposition. The complete flux preparation procedure involved sequential steps of powder processing, mixing, binder addition, agglomeration, drying, baking, and particle size classification.
+The preparation of agglomerated submerged arc welding fluxes was carried out in the laboratory following a systematic and reproducible procedure. The agglomeration technique was selected over the fused flux manufacturing route because it offers greater flexibility in compositional control, lower processing temperatures, and the ability to incorporate thermally sensitive constituents such as carbonates and fluorides without decomposition [7, 8, 9]. The complete flux preparation procedure involved sequential steps of powder processing, mixing, binder addition, agglomeration, drying, baking, and particle size classification.
 
 ### 4.2.1 Powder Processing and Weighing
 
@@ -246,7 +246,7 @@ The measured bulk density values for the twenty-five formulations ranged from 1.
 
 ### 4.3.2 Thermal Properties (Thermal Conductivity, Thermal Diffusivity, and Specific Heat) Measurement
 
-The simultaneous determination of thermal conductivity, thermal diffusivity, and volumetric specific heat capacity of all twenty-five flux formulations was performed using the Hot Disk Transient Plane Source (TPS-2500S) thermal analyser. This instrument operates according to the international standard method ISO 22007-2, which specifies the transient plane source technique for the determination of thermal properties of homogeneous and heterogeneous materials.
+The simultaneous determination of thermal conductivity, thermal diffusivity, and volumetric specific heat capacity of all twenty-five flux formulations was performed using the Hot Disk Transient Plane Source (TPS-2500S) thermal analyser. This instrument operates according to the international standard method ISO 22007-2, which specifies the transient plane source technique for the determination of thermal properties of homogeneous and heterogeneous materials [10, 11].
 
 
 **Principle of Operation:**
@@ -310,7 +310,7 @@ XRD measurements were carried out using a powder X-ray diffractometer equipped w
 
 **Phase Identification Methodology:**
 
-The recorded diffraction patterns were analysed by comparing the observed peak positions (2θ values), relative intensities, and d-spacing values with the standard reference patterns from the International Centre for Diffraction Data (ICDD) Powder Diffraction File (PDF) database. The following crystalline phases were targeted for identification based on the known mineral constituents:
+The recorded diffraction patterns were analysed by comparing the observed peak positions (2θ values), relative intensities, and d-spacing values with the standard reference patterns from the International Centre for Diffraction Data (ICDD) Powder Diffraction File (PDF) database. The following crystalline phases were targeted for identification based on the known mineral constituents [12]:
 
 (i) **Fluorite (CaF₂):** Expected reflections at 2θ = 28.3° (111), 32.2° (200), 47.0° (220), and 55.8° (311);
 (ii) **Rutile (TiO₂):** Expected reflections at 2θ = 27.4° (110), 36.1° (101), 41.2° (111), and 54.4° (211);
@@ -537,7 +537,7 @@ This section describes the materials, equipment, and experimental procedures emp
 
 **Base Metal – API X70 Pipeline Steel:**
 
-API 5L X70 grade pipeline steel plates of 22 mm thickness were used as the base material for all weld joint fabrication. API X70 is a high-strength low-alloy (HSLA) steel widely used in the construction of high-pressure oil and gas transmission pipelines due to its excellent combination of strength, ductility, weldability, and low-temperature toughness. The steel is manufactured through thermo-mechanical controlled processing (TMCP), which produces a fine-grained microstructure comprising acicular ferrite, bainitic ferrite, and finely dispersed martensite-austenite (MA) constituents.
+API 5L X70 grade pipeline steel plates of 22 mm thickness were used as the base material for all weld joint fabrication [15]. API X70 is a high-strength low-alloy (HSLA) steel widely used in the construction of high-pressure oil and gas transmission pipelines due to its excellent combination of strength, ductility, weldability, and low-temperature toughness. The steel is manufactured through thermo-mechanical controlled processing (TMCP), which produces a fine-grained microstructure comprising acicular ferrite, bainitic ferrite, and finely dispersed martensite-austenite (MA) constituents.
 
 The chemical composition of the API X70 base metal, as determined by optical emission spectrometry (OES), is presented in Table 4.4. The steel exhibits an ultra-low carbon content (0.059 wt.%) with microalloying additions of niobium (0.062%), titanium (0.02%), and molybdenum (0.002%) that provide precipitation strengthening and grain refinement. The calculated carbon equivalent of the base metal is CE = 0.33, which falls within the acceptable range for field-weldable pipeline steels.
 
@@ -632,7 +632,7 @@ A comprehensive mechanical characterization programme was undertaken on all four
 
 #### 4.5.4.1 Weld Specimen Tensile Testing
 
-Transverse tensile test specimens were extracted from each weld joint in accordance with ASTM E8/E8M standard for tension testing of metallic materials. The specimen geometry included the weld metal, both heat-affected zones, and portions of the unaffected base metal on either side.
+Transverse tensile test specimens were extracted from each weld joint in accordance with ASTM E8/E8M standard for tension testing of metallic materials [14]. The specimen geometry included the weld metal, both heat-affected zones, and portions of the unaffected base metal on either side.
 
 **Specimen Dimensions:**
 - Gauge length: 50 mm
@@ -660,7 +660,7 @@ The fracture location provides important information regarding the relative stre
 
 #### 4.5.4.2 Weld Specimen Impact Testing
 
-Charpy V-notch (CVN) impact testing was performed to evaluate the fracture toughness of the weld joints at both room temperature and sub-zero temperature (-55°C). Sub-zero testing at -55°C is critical for pipeline steels intended for arctic or cold-climate service, where the operating temperature may fall well below the ductile-to-brittle transition temperature (DBTT).
+Charpy V-notch (CVN) impact testing was performed to evaluate the fracture toughness of the weld joints at both room temperature and sub-zero temperature (-55°C) [13]. Sub-zero testing at -55°C is critical for pipeline steels intended for arctic or cold-climate service, where the operating temperature may fall well below the ductile-to-brittle transition temperature (DBTT).
 
 **Specimen Geometry (as per ASTM E23):**
 - Dimensions: 10 mm × 10 mm × 55 mm (standard full-size Charpy specimen)
