@@ -52,6 +52,61 @@ The regenerative design paradigm, set out by Lyle [13], Mang and Reed [8] and du
 
 Realizing the principles for regeneration, however, has been difficult. The critics have criticized that despite of the intention towards regeneration, there has not been a strong framework for quantifying the ecological contribution, meaning that it is merely a marketing term for the achievement of "conventional sustainability" but with a more colorful of nuanced title [16]. Bio-integrated design developed in this chapter, however, will help to fill this void by detailing specific ways that built infrastructure can engage in ecological processes and offering metrics to measure how much and how well it does so.
 
+---
+
+**Figure 1: Conceptual Framework — Evolution from Sustainable to Regenerative Bio-Integrated Tourism Design**
+
+```
+    ENVIRONMENTAL IMPACT SPECTRUM OF TOURISM INFRASTRUCTURE
+    =========================================================
+
+    DEGENERATIVE          SUSTAINABLE              REGENERATIVE
+    (Conventional)        (Green Building)         (Bio-Integrated)
+         |                     |                        |
+         v                     v                        v
+
+    +-----------+        +-----------+           +-----------+
+    | EXTRACTIVE|        | MITIGATING|           |RESTORATIVE|
+    |           |        |           |           |           |
+    | - Depletes|        | - Reduces |           | - Restores|
+    |   resources        |   harm    |           |   ecosystems
+    | - Degrades|        | - Minimizes           | - Enhances|
+    |   habitat |        |   footprint           |   biodiversity
+    | - Pollutes|        | - Offsets |           | - Sequesters
+    |   systems |        |   impacts |           |   carbon  |
+    +-----------+        +-----------+           +-----------+
+         |                     |                        |
+         |    FIRST            |    SECOND              |    THIRD
+         |    GENERATION       |    GENERATION          |    GENERATION
+         |                     |                        |
+         v                     v                        v
+    NET NEGATIVE          NET ZERO               NET POSITIVE
+    ECOLOGICAL            ECOLOGICAL             ECOLOGICAL
+    CONTRIBUTION          CONTRIBUTION           CONTRIBUTION
+    (-100% to -50%)       (-10% to 0%)           (+23% to +247%)
+
+    ====================== DESIGN PARADIGM SHIFT ======================
+
+    Building as:          Building as:            Building as:
+    INERT OBJECT          EFFICIENT MACHINE       LIVING ORGANISM
+    (placed ON            (optimized FOR          (integrated WITH
+     landscape)            environment)            ecosystem)
+
+    Key Metrics:          Key Metrics:            Key Metrics:
+    - Energy use          - LEED/BREEAM score     - Ecosystem services
+    - Waste output        - Carbon footprint      - Species richness
+    - Resource            - Water efficiency      - Carbon sequestration
+      consumption         - Material lifecycle    - Habitat connectivity
+                                                  - Visitor experience
+
+    Temporal Behavior:    Temporal Behavior:      Temporal Behavior:
+    DEGRADES over time    MAINTAINS over time     IMPROVES over time
+```
+
+*Figure 1 illustrates the paradigm shift from conventional degenerative tourism infrastructure through sustainable (mitigating) design to the regenerative bio-integrated approach advocated in this chapter. The net ecological contribution ranges from strongly negative (conventional) through near-zero (sustainable) to demonstrably positive (+23% to +247%, as quantified in the case studies). The fundamental reconceptualization is of the building itself: from inert object to efficient machine to living organism [8, 14, 15].*
+
+---
+
 
 ### 2.2 Living Systems Architecture: Biological Materials and Adaptive Organisms
 
@@ -118,6 +173,100 @@ As shown in the table above, the computational approaches vary significantly acr
 *Meso-scale (building level):* Building energy simulation (EnergyPlus) with dynamics of boundary conditions such as CO₂ uptake, O₂ release, evapotranspiration, and biomass accumulation as a dynamic rather than static property of the building. It allows prediction of living system performance seasonally and in response to climate change and variations to be captured, reflecting bio-integrated building system adaptive behaviour.
 
 *Macro-scale (landscape level):* Agent-based ecological models that simulate fauna movement, habitat utilisation and population dynamics in response to bio-integrated infrastructure. Models are parameterized from species-specific information on behaviour from ecological literature and calibrated to monitoring information from the case study locations. Bio-Integrated circuit theory analysis [37] enables assessment of landscape connectivity at a broad scale in terms of its facilitation or inhibition of ecological connectivity.
+
+---
+
+**Figure 2: Hierarchical Computational Modeling Framework for Bio-Integrated Design**
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    MULTI-SCALE SIMULATION ARCHITECTURE                    │
+├─────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  ┌───────────────────────────────────────────────────────────────────┐  │
+│  │  MACRO-SCALE: LANDSCAPE LEVEL (Years 1-30)                        │  │
+│  │  ┌─────────────────┐  ┌──────────────────┐  ┌────────────────┐  │  │
+│  │  │ Agent-Based      │  │ Circuit Theory   │  │ Population     │  │  │
+│  │  │ Ecological Model │──│ Connectivity     │──│ Dynamics Model │  │  │
+│  │  │ (fauna movement) │  │ Analysis         │  │ (succession)   │  │  │
+│  │  └────────┬─────────┘  └────────┬─────────┘  └───────┬────────┘  │  │
+│  │           │                      │                     │           │  │
+│  │           └──────────────────────┼─────────────────────┘           │  │
+│  │                                  │                                 │  │
+│  │                          ┌───────▼───────┐                        │  │
+│  │                          │  LANDSCAPE    │                        │  │
+│  │                          │  PERFORMANCE  │                        │  │
+│  │                          │  OUTPUTS      │                        │  │
+│  │                          └───────┬───────┘                        │  │
+│  └──────────────────────────────────┼────────────────────────────────┘  │
+│                                     │                                    │
+│                              ┌──────▼──────┐                            │
+│                              │  FEEDBACK   │                            │
+│                              │  COUPLING   │                            │
+│                              └──────┬──────┘                            │
+│                                     │                                    │
+│  ┌──────────────────────────────────┼────────────────────────────────┐  │
+│  │  MESO-SCALE: BUILDING LEVEL (Seasons - Years)                     │  │
+│  │  ┌─────────────────┐  ┌──────────────────┐  ┌────────────────┐  │  │
+│  │  │ EnergyPlus       │  │ Dynamic Boundary │  │ Biomass        │  │  │
+│  │  │ Thermal Model    │──│ Conditions       │──│ Accumulation   │  │  │
+│  │  │ (energy flows)   │  │ (CO₂, O₂, H₂O)  │  │ Model          │  │  │
+│  │  └────────┬─────────┘  └────────┬─────────┘  └───────┬────────┘  │  │
+│  │           │                      │                     │           │  │
+│  │           └──────────────────────┼─────────────────────┘           │  │
+│  │                                  │                                 │  │
+│  │                          ┌───────▼───────┐                        │  │
+│  │                          │  BUILDING     │                        │  │
+│  │                          │  PERFORMANCE  │                        │  │
+│  │                          │  OUTPUTS      │                        │  │
+│  │                          └───────┬───────┘                        │  │
+│  └──────────────────────────────────┼────────────────────────────────┘  │
+│                                     │                                    │
+│                              ┌──────▼──────┐                            │
+│                              │  FEEDBACK   │                            │
+│                              │  COUPLING   │                            │
+│                              └──────┬──────┘                            │
+│                                     │                                    │
+│  ┌──────────────────────────────────┼────────────────────────────────┐  │
+│  │  MICRO-SCALE: MATERIAL LEVEL (Hours - Weeks)                      │  │
+│  │  ┌─────────────────┐  ┌──────────────────┐  ┌────────────────┐  │  │
+│  │  │ FEA / ABM        │  │ Growth Algorithm │  │ Moisture       │  │  │
+│  │  │ (structural      │──│ (DLA, biological │──│ Dynamics Model │  │  │
+│  │  │  behavior)       │  │  growth kinetics)│  │ (hygrothermal) │  │  │
+│  │  └────────┬─────────┘  └────────┬─────────┘  └───────┬────────┘  │  │
+│  │           │                      │                     │           │  │
+│  │           └──────────────────────┼─────────────────────┘           │  │
+│  │                                  │                                 │  │
+│  │                          ┌───────▼───────┐                        │  │
+│  │                          │  MATERIAL     │                        │  │
+│  │                          │  PERFORMANCE  │                        │  │
+│  │                          │  OUTPUTS      │                        │  │
+│  │                          └───────────────┘                        │  │
+│  └───────────────────────────────────────────────────────────────────┘  │
+│                                                                          │
+│  ════════════════════════ OPTIMIZATION LAYER ════════════════════════    │
+│                                                                          │
+│  ┌───────────────┐    ┌───────────────┐    ┌───────────────────────┐   │
+│  │ NSGA-II       │    │ Pareto Multi- │    │ Parametric Sweep      │   │
+│  │ (Costa Rica)  │    │ Domain (Mald.)│    │ (Australia)           │   │
+│  │ 12,000 configs│    │ 15,750 configs│    │ 5,040 combinations    │   │
+│  └───────────────┘    └───────────────┘    └───────────────────────┘   │
+│                                                                          │
+│  ════════════════════════ VALIDATION LAYER ══════════════════════════    │
+│                                                                          │
+│  ┌───────────────┐    ┌───────────────┐    ┌───────────────────────┐   │
+│  │ Field Monitoring   │ Settlement    │    │ Thermal + Biodiversity│   │
+│  │ + Bird Surveys│    │ Tiles + Reef  │    │ Monitoring (6 yr)     │   │
+│  │ (5 years)     │    │ Surveys (4 yr)│    │ Agreement: 91-95%     │   │
+│  │ Agreement:    │    │ Agreement:    │    │                       │   │
+│  │ 85-92%        │    │ 88-94%        │    │                       │   │
+│  └───────────────┘    └───────────────┘    └───────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+*Figure 2 presents the hierarchical computational modeling architecture employed across the three case studies. Three nested spatial scales (micro, meso, macro) are coupled through feedback mechanisms, with each scale informing boundary conditions for adjacent scales. The optimization layer applies case-specific algorithms to explore design solution spaces, while the validation layer compares predictions against multi-year field monitoring data. The 85–95% prediction-observation agreement across all three sites validates this multi-scale approach [25, 26, 36, 37].*
+
+---
 
 ### 3.3 Case Study Selection and Analysis
 
@@ -260,6 +409,67 @@ The following table synthesizes ecological performance across the three case stu
 
 The results of the cross-case comparison (Table 1) show that the adoption of a bio-integrated approach leads to consistently higher increases in assessed dimensions when compared to conventional sustainable construction, from 23% (lowest, Australian thermal performance) to 247% (highest, once again a dimension for carbon sequestration in Costa Rica). Remarkably, the benefits lie not only in ecological outcomes, but also in economic outcomes (the average payback period for further bio-integration of reduced investment costs is 4.6 years) and in the visitor experience (satisfaction premium for the visitors is in the 18-31% range).
 
+---
+
+**Figure 3: Comparative Ecological Performance — Bio-Integrated vs. Conventional Sustainable Construction**
+
+```
+    ECOSYSTEM SERVICE ENHANCEMENT (% above conventional sustainable baseline)
+    ═══════════════════════════════════════════════════════════════════════════
+
+    BIODIVERSITY (Species Richness Enhancement)
+    ─────────────────────────────────────────────────────────────────────────
+    Costa Rica  ████████████████████████████████████████████████████░░  +65%
+    Maldives    ████████████████████████████████████████████████████████████████████░  +86%
+    Australia   ██████████████████████████████████░░░░░░░░░░░░░░░░░░░  +41%
+                                                            MEAN: +64%
+
+    CARBON SEQUESTRATION (vs. conventional)
+    ─────────────────────────────────────────────────────────────────────────
+    Costa Rica  ████████████████████████████████████████████████████████████████████████████████  +247%
+    Maldives    █████████████████████████████████████████████████████████████░░░░  +156%
+    Australia   ████████████████████████████████████░░░░░░░░░░░░░░░░  +89%
+                                                            MEAN: +164%
+
+    ENERGY PERFORMANCE (Improvement)
+    ─────────────────────────────────────────────────────────────────────────
+    Costa Rica  █████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░  +34%
+    Maldives    ████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  +28%
+    Australia   ████████████████████████████████████████████████████░░░░░  +68%
+                                                            MEAN: +43%
+
+    VISITOR SATISFACTION PREMIUM (%)
+    ─────────────────────────────────────────────────────────────────────────
+    Costa Rica  ████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  +22%
+    Maldives    ███████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░  +31%
+    Australia   █████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  +18%
+                                                            MEAN: +24%
+
+    TOTAL ECOSYSTEM SERVICE VALUE (USD/m²/year)
+    ─────────────────────────────────────────────────────────────────────────
+    Costa Rica  ████████████████████████████████████████████████████████████████  $127
+    Maldives    ████████████████████████████████████████████████████████████████████████████████████████████████████░  $203
+    Australia   ███████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░  $47
+                                                            MEAN: $126
+
+    ECONOMIC PAYBACK PERIOD (years — lower is better)
+    ─────────────────────────────────────────────────────────────────────────
+    Costa Rica  ████████████████████████████████████████████████████░ 5.2 yr
+    Maldives    ████████████████████████████████████████░░░░░░░░░░░░  3.7 yr  ← BEST
+    Australia   █████████████████████████████████████████████████░░░  4.8 yr
+                                                            MEAN: 4.6 yr
+
+    ═══════════════════════════════════════════════════════════════════════════
+    KEY FINDING: All bio-integrated projects outperform best-practice
+    conventional construction across ALL measured dimensions.
+    Range of improvement: +18% (visitor satisfaction) to +247% (carbon)
+    ═══════════════════════════════════════════════════════════════════════════
+```
+
+*Figure 3 visualizes the comparative ecological and economic performance data across all three case studies. Each horizontal bar represents the percentage enhancement of the bio-integrated project over its respective best-practice conventional sustainable baseline (e.g., LEED Platinum equivalent). The consistent positive performance across all metrics and all sites — despite radically different climates, ecosystems, and building typologies — provides strong evidence for the generalizability of the bio-integrated design approach. The Maldives project achieves the highest per-square-meter ecosystem service value ($203/m²/yr) due to the exceptionally high economic value of coral reef services, while Australia achieves the highest energy performance improvement (+68%) due to the evapotranspiratory cooling mechanism's effectiveness in extreme heat conditions.*
+
+---
+
 
 ---
 
@@ -327,6 +537,80 @@ Based on the results of the case studies and computational modelling, this secti
 As presented above, each level represents increasing complexity in the design and management, increasing contribution to ecological function, and deeper integration of biological processes into architectural performance. The three case studies presented in this chapter all operate at Level 4 (Bio-Structural), with the Maldives project approaching Level 5 (Bio-Reciprocal) due to the full integration of the structure with the surrounding reef ecosystem.
 
 The BIMM provides benchmarking and opportunities to establishing an aspiration target and pinpointing specific interventions needed to progress in improving the maturity continuum. Practitioners can identify their current level of bio-integration, understand what capabilities and investments are needed to advance to the next level, and set realistic timelines for progression. The assessment criteria are designed to be measurable and auditable, addressing the criticism that regenerative design lacks quantifiable metrics [16].
+
+---
+
+**Figure 4: Bio-Integration Maturity Model (BIMM) — Progression Pathway and Case Study Positioning**
+
+```
+    BIO-INTEGRATION MATURITY CONTINUUM
+    ═══════════════════════════════════════════════════════════════════════════
+
+              ECOLOGICAL CONTRIBUTION
+              ────────────────────────────────────────────────────────────►
+              Indirect        Low-Moderate     Moderate      High      Very High
+              (efficiency     (localized       (targeted     (multiple  (ecosystem-
+               gains only)     services)        services)    services)   scale)
+
+    LEVEL 5 ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ╔═══════════╗
+    BIO-RECIPROCAL                                                     ║ MALDIVES  ║
+    Full ecosystem integration; mutual exchange                        ║ (approach-║
+    Building + Ecosystem = Inseparable coupled system                   ║  ing L5)  ║
+    Cost premium: +20-35% | Net positive contribution                  ╚═══════════╝
+              │
+              │  ← Transition requires: Full lifecycle ecosystem coupling,
+              │     demonstrated net positive contribution, mutual benefit
+              │
+    LEVEL 4 ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ╔══════════════════════════════╗
+    BIO-STRUCTURAL                                  ║  ★ COSTA RICA (Mycelium)    ║
+    Living organisms as structural/envelope          ║  ★ MALDIVES (Reef Pavilion) ║
+    elements; biological viability = function        ║  ★ AUSTRALIA (Living Skin)  ║
+    Cost premium: +15-25% | ≥7 ecosystem services   ╚══════════════════════════════╝
+              │
+              │  ← Transition requires: Biological viability essential for
+              │     building function; ≥7 quantified ecosystem services
+              │
+    LEVEL 3 ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+    BIO-FUNCTIONAL
+    Living systems perform specific functions (air purification,
+    water treatment, food production); managed closed systems
+    Cost premium: +10-18% | ≥5 ecosystem services
+    Examples: Algae bioreactor facades, bio-filtration, microbial fuel cells
+              │
+              │  ← Transition requires: Biological function integrated into
+              │     building services; ≥5 quantified ecosystem services
+              │
+    LEVEL 2 ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+    BIO-INCLUSIVE
+    Living systems as adjunct/separable additions; removable
+    without structural impact
+    Cost premium: +5-12% | ≥3 ecosystem services
+    Examples: Green roofs, living walls, constructed wetlands
+              │
+              │  ← Transition requires: Living biological elements present;
+              │     ≥3 quantified ecosystem services documented
+              │
+    LEVEL 1 ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─
+    BIO-INFORMED
+    No living elements; design inspired by biological principles
+    Cost premium: +0-5% | Indirect ecosystem benefits only
+    Examples: Termite-mound ventilation, bone-topology optimization
+
+    ═══════════════════════════════════════════════════════════════════════════
+    DESIGN        │  COMPLEXITY   │  BIOLOGICAL   │  MANAGEMENT    │ PAYBACK
+    INTELLIGENCE  │  & COST       │  INTEGRATION  │  REQUIREMENT   │ PERIOD
+    ──────────────┼───────────────┼───────────────┼────────────────┼─────────
+    Increasing ▲  │ Increasing ▲  │ Increasing ▲  │ Increasing ▲   │ 3.7-5.2
+                  │               │               │  (then         │ years
+                  │               │               │   decreasing   │ (at L4)
+                  │               │               │   as system    │
+                  │               │               │   self-manages)│
+    ═══════════════════════════════════════════════════════════════════════════
+```
+
+*Figure 4 illustrates the five-level Bio-Integration Maturity Model (BIMM) as a progression pathway, showing the transition requirements between each level and the positioning of the three case studies at Level 4 (Bio-Structural), with the Maldives project approaching Level 5 (Bio-Reciprocal). The figure highlights a key finding: while design complexity and cost increase with maturity level, management requirements initially increase but then decrease at higher levels as biological systems become self-sustaining and self-managing. The economic payback periods of 3.7–5.2 years demonstrated at Level 4 confirm commercial viability despite the 15–25% cost premium.*
+
+---
 
 
 ### 5.5 Limitations and Caveats
