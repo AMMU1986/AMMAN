@@ -10,12 +10,12 @@ This chapter introduces a transdisciplinary strategy for the design of bio-integ
 
 ---
 
+
 ## 1. Introduction
 
 There is a paradox that the destination landscapes and tourism systems that draw the visitors are slowly being claimed by the very systems which are built for the purposes of tourism and are degrading the landscapes themselves [2,3]. Conventional methods within the tourism sector have mostly been focused on impact mitigation, by cutting energy use, minimizing waste and keeping the ecological footprint to a minimum, but these efforts, however good in intent, have largely been extractive in nature when applied to living systems. They do not reverse the rate of degradation, but instead allow it to run at a slower speed, creating so-called "less bad" rather than true "restorative" results [4].
 
 Tourist infrastructure in this chapter is not destiny placed on a landscape, but an actor engaged in landscape processes – the shift of paradigm from sustainability-as-mitigation to regenerative bio-integration is advocated. Building on recent advances in living systems engineering [5], computational morphogenesis [6] and indigenous ecological knowledge systems [7], the research proposes a transdisciplinary approach to the concept of the tourism architecture and landscape design as adaptive and metabolically active materials that are continuously confronted with hosts' systems and exchange their material and energetic outputs.
-
 
 ### 1.1 Research Aims and Questions
 
@@ -33,12 +33,12 @@ But what makes this question so relevant is not just for tourism, but also to th
 
 The chapter adds to the growing body of work on the subject of bio-integrated design [9] by describing some of the projects that are working in the field, creating the computational tools for optimising design, and introducing a scalable assessment framework. This research represents a bridge between speculative bio-design and the pragmatic aspects of the development of tourism infrastructure that features economic considerations, regulatory issues and visitor expectations, which have so far been largely a subject of laboratory-scale demonstrations or made-up theories.
 
-
 ### 1.3 Chapter Organization
 
 Overall the chapter assumes the following structure of six sections. Section 2 explores theoretical and empirical context by investigating the state of the art in regenerative design theory, living systems architecture as well as computational ecology. Section 3 describes the mixed-methods research methodology utilized, computational modeling protocols, and the criteria used for case studies and the assessment metrics. In Section 4 the findings from the three geographically and typologically diverse case studies are reported. The implications, limitations and the proposed Bio-Integration Maturity Model are discussed in Section 5, alongside the economic performance analysis. The book brings knowledge gained and future research and practice to a close in section 6.
 
 ---
+
 
 ## 2. Context: Theoretical Foundations and Current State of Knowledge
 
@@ -51,8 +51,6 @@ Second generation methods emerged to take the approach of lifecycle thinking, cr
 The regenerative design paradigm, set out by Lyle [13], Mang and Reed [8] and du Plessis [14] is a qualitative shift from this way of thinking. Rather than simply minimising negative effects of design, regenerative design creates positive ecological outcomes such as the restoration of degraded ecosystems, growing biodiversity, increasing soil carbon and improving hydrological integrity. As a part of the tourism context, regenerative practice reconfigures tourist infrastructure as an enabling mechanism for ecological restoration and not a compromise between economic "must" and environmental protection [15].
 
 Realizing the principles for regeneration, however, has been difficult. The critics have criticized that despite of the intention towards regeneration, there has not been a strong framework for quantifying the ecological contribution, meaning that it is merely a marketing term for the achievement of "conventional sustainability" but with a more colorful of nuanced title [16]. Bio-integrated design developed in this chapter, however, will help to fill this void by detailing specific ways that built infrastructure can engage in ecological processes and offering metrics to measure how much and how well it does so.
-
----
 
 **Figure 1: Conceptual Framework — Evolution from Sustainable to Regenerative Bio-Integrated Tourism Design**
 
@@ -105,9 +103,6 @@ Realizing the principles for regeneration, however, has been difficult. The crit
 
 *Figure 1 illustrates the paradigm shift from conventional degenerative tourism infrastructure through sustainable (mitigating) design to the regenerative bio-integrated approach advocated in this chapter. The net ecological contribution ranges from strongly negative (conventional) through near-zero (sustainable) to demonstrably positive (+23% to +247%, as quantified in the case studies). The fundamental reconceptualization is of the building itself: from inert object to efficient machine to living organism [8, 14, 15].*
 
----
-
-
 ### 2.2 Living Systems Architecture: Biological Materials and Adaptive Organisms
 
 Twenty years ago, living organisms were still in the conceptual stage when it came to integrating with architectural systems, but in the past decade they have become a reality. Early theories, such as Frazer's theory of evolutionary architecture [17] and Steadman's theory of architectural use of biological analogy [18] that came before these, set the stage for theoretical paradigms, and the new so many material innovations since then made it possible to realise those ideas at ever larger scales.
@@ -117,7 +112,6 @@ Mycelium-based composites may be one of the largest state-of-the-art categories 
 Photosynthetic building systems utilize algae and cyanobacteria components active on the facades. A bioreactor facade using microalgae was successfully demonstrated at the BIQ House in Hamburg (2013), where the constructive shading of the façade by the growing algae biomass and the CO₂ uptake from the ambient air succeeded side by side in the panels that allow daylight to pass through [22]. Since then, developments by the group of Arup in SolarLeaf technology and research groups at academia have greatly refined the integration of algae with facades to get energy yields of 30-50 kWh/m²/year with preserving the biological viability of the algae across all seasons and various climates [23].
 
 The Living Root Bridges of Khasi and Jaintia are examples of biological structuring of construction that have been created by the native people of Meghalaya, India over many centuries, but which defies western theory of the separation of biological and built systems [24]. Built using the aerial roots of Ficus elastica grown from bank to bank across the river gorge, they become stronger over time, a trait opposite that of traditional building techniques, which erode as soon as they are erected. These traditional systems of knowledge also prove that bio-integration is more of a cultural practice than just a technology and that it is still being practised after many years and is a long term sustainability practice.
-
 
 ### 2.3 Computational Frameworks for Ecological Design
 
@@ -135,8 +129,8 @@ Buschir et al. [7] and Barbara [31] have questioned bio-integrated tourism and i
 
 Given this, biocultural approaches for the design and methodological frameworks which support working with IEK without extractive appropriation. They highlight partnership and co-design, benefit sharing, and appreciation of indigenous intellectual sovereignty – recognizing that these ideas share pro-decolonizing themes with other advances in decolonizing design practice [34]. In the tourism context, the results of the integration of IEK in bio-integrated design do not only show ecological performance improvement, culturally authentic experiences for visitors, but also culturally empowering economic religious autonomy for native modes of living—a synergy between ecological, cultural and social regeneration and continuity that is characteristic of the holistic goals of bio-restoration design.
 
-
 ---
+
 
 ## 3. Methods: A Mixed-Methods Transdisciplinary Approach
 
@@ -165,8 +159,7 @@ The computational modeling aspect uses a three nested spatial scales hierarchica
 | **Key Design Objectives (simultaneous)** | 4 (connectivity, imperviousness, solar, privacy) | 3 (structural safety, coral settlement, cost) | 3 (cooling performance, water use, biological viability) |
 | **Validation Data Source** | 5-year field monitoring + quarterly bird surveys | 4-year reef monitoring + settlement tiles | 6-year thermal + biodiversity monitoring |
 
-As shown in the table above, the computational approaches vary significantly across the three projects, reflecting the distinct ecological contexts and design challenges of each site. However, all three share a common methodological architecture of multi-objective optimization coupled with biological growth/behavior models and validated against field monitoring data.
-
+The computational approaches vary significantly across the three projects, reflecting the distinct ecological contexts and design challenges of each site. However, all three share a common methodological architecture of multi-objective optimization coupled with biological growth/behavior models and validated against field monitoring data.
 
 *Micro-scale (material level):* Behaviour of biological material on finite element and agent based modeling at component level in the building. This encompasses modelling of mycelia growth patterns in composite panels (developed from growth algorithms from Dikec et al. [36]), the productivity of photosynthetic system for algae under different irradiances and temperatures, and moisture dynamics in Living-Skin assemblies. Simulations are performed on platform Grasshopper/Rhino parametric modelling and a personal Python code including the biological growth algorithms.
 
@@ -174,7 +167,6 @@ As shown in the table above, the computational approaches vary significantly acr
 
 *Macro-scale (landscape level):* Agent-based ecological models that simulate fauna movement, habitat utilisation and population dynamics in response to bio-integrated infrastructure. Models are parameterized from species-specific information on behaviour from ecological literature and calibrated to monitoring information from the case study locations. Bio-Integrated circuit theory analysis [37] enables assessment of landscape connectivity at a broad scale in terms of its facilitation or inhibition of ecological connectivity.
 
----
 
 **Figure 2: Hierarchical Computational Modeling Framework for Bio-Integrated Design**
 
@@ -190,21 +182,16 @@ As shown in the table above, the computational approaches vary significantly acr
 │  │  │ Ecological Model │──│ Connectivity     │──│ Dynamics Model │  │  │
 │  │  │ (fauna movement) │  │ Analysis         │  │ (succession)   │  │  │
 │  │  └────────┬─────────┘  └────────┬─────────┘  └───────┬────────┘  │  │
-│  │           │                      │                     │           │  │
 │  │           └──────────────────────┼─────────────────────┘           │  │
-│  │                                  │                                 │  │
 │  │                          ┌───────▼───────┐                        │  │
 │  │                          │  LANDSCAPE    │                        │  │
 │  │                          │  PERFORMANCE  │                        │  │
-│  │                          │  OUTPUTS      │                        │  │
 │  │                          └───────┬───────┘                        │  │
 │  └──────────────────────────────────┼────────────────────────────────┘  │
-│                                     │                                    │
 │                              ┌──────▼──────┐                            │
 │                              │  FEEDBACK   │                            │
 │                              │  COUPLING   │                            │
 │                              └──────┬──────┘                            │
-│                                     │                                    │
 │  ┌──────────────────────────────────┼────────────────────────────────┐  │
 │  │  MESO-SCALE: BUILDING LEVEL (Seasons - Years)                     │  │
 │  │  ┌─────────────────┐  ┌──────────────────┐  ┌────────────────┐  │  │
@@ -212,21 +199,16 @@ As shown in the table above, the computational approaches vary significantly acr
 │  │  │ Thermal Model    │──│ Conditions       │──│ Accumulation   │  │  │
 │  │  │ (energy flows)   │  │ (CO₂, O₂, H₂O)  │  │ Model          │  │  │
 │  │  └────────┬─────────┘  └────────┬─────────┘  └───────┬────────┘  │  │
-│  │           │                      │                     │           │  │
 │  │           └──────────────────────┼─────────────────────┘           │  │
-│  │                                  │                                 │  │
 │  │                          ┌───────▼───────┐                        │  │
 │  │                          │  BUILDING     │                        │  │
 │  │                          │  PERFORMANCE  │                        │  │
-│  │                          │  OUTPUTS      │                        │  │
 │  │                          └───────┬───────┘                        │  │
 │  └──────────────────────────────────┼────────────────────────────────┘  │
-│                                     │                                    │
 │                              ┌──────▼──────┐                            │
 │                              │  FEEDBACK   │                            │
 │                              │  COUPLING   │                            │
 │                              └──────┬──────┘                            │
-│                                     │                                    │
 │  ┌──────────────────────────────────┼────────────────────────────────┐  │
 │  │  MICRO-SCALE: MATERIAL LEVEL (Hours - Weeks)                      │  │
 │  │  ┌─────────────────┐  ┌──────────────────┐  ┌────────────────┐  │  │
@@ -234,39 +216,31 @@ As shown in the table above, the computational approaches vary significantly acr
 │  │  │ (structural      │──│ (DLA, biological │──│ Dynamics Model │  │  │
 │  │  │  behavior)       │  │  growth kinetics)│  │ (hygrothermal) │  │  │
 │  │  └────────┬─────────┘  └────────┬─────────┘  └───────┬────────┘  │  │
-│  │           │                      │                     │           │  │
 │  │           └──────────────────────┼─────────────────────┘           │  │
-│  │                                  │                                 │  │
 │  │                          ┌───────▼───────┐                        │  │
 │  │                          │  MATERIAL     │                        │  │
 │  │                          │  PERFORMANCE  │                        │  │
-│  │                          │  OUTPUTS      │                        │  │
 │  │                          └───────────────┘                        │  │
 │  └───────────────────────────────────────────────────────────────────┘  │
 │                                                                          │
-│  ════════════════════════ OPTIMIZATION LAYER ════════════════════════    │
-│                                                                          │
+│  ═══════════════════════ OPTIMIZATION LAYER ═════════════════════════    │
 │  ┌───────────────┐    ┌───────────────┐    ┌───────────────────────┐   │
 │  │ NSGA-II       │    │ Pareto Multi- │    │ Parametric Sweep      │   │
 │  │ (Costa Rica)  │    │ Domain (Mald.)│    │ (Australia)           │   │
 │  │ 12,000 configs│    │ 15,750 configs│    │ 5,040 combinations    │   │
 │  └───────────────┘    └───────────────┘    └───────────────────────┘   │
 │                                                                          │
-│  ════════════════════════ VALIDATION LAYER ══════════════════════════    │
-│                                                                          │
+│  ═══════════════════════ VALIDATION LAYER ═══════════════════════════    │
 │  ┌───────────────┐    ┌───────────────┐    ┌───────────────────────┐   │
-│  │ Field Monitoring   │ Settlement    │    │ Thermal + Biodiversity│   │
+│  │ Field Monitor │    │ Settlement    │    │ Thermal + Biodiversity│   │
 │  │ + Bird Surveys│    │ Tiles + Reef  │    │ Monitoring (6 yr)     │   │
 │  │ (5 years)     │    │ Surveys (4 yr)│    │ Agreement: 91-95%     │   │
-│  │ Agreement:    │    │ Agreement:    │    │                       │   │
-│  │ 85-92%        │    │ 88-94%        │    │                       │   │
+│  │ Agree: 85-92% │    │ Agree: 88-94% │    │                       │   │
 │  └───────────────┘    └───────────────┘    └───────────────────────┘   │
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-*Figure 2 presents the hierarchical computational modeling architecture employed across the three case studies. Three nested spatial scales (micro, meso, macro) are coupled through feedback mechanisms, with each scale informing boundary conditions for adjacent scales. The optimization layer applies case-specific algorithms to explore design solution spaces, while the validation layer compares predictions against multi-year field monitoring data. The 85–95% prediction-observation agreement across all three sites validates this multi-scale approach [25, 26, 36, 37].*
-
----
+*Figure 2 presents the hierarchical computational modeling architecture employed across the three case studies. Three nested spatial scales (micro, meso, macro) are coupled through feedback mechanisms, with each scale informing boundary conditions for adjacent scales. The optimization layer applies case-specific algorithms to explore design solution spaces, while the validation layer compares predictions against multi-year field monitoring data [25, 26, 36, 37].*
 
 ### 3.3 Case Study Selection and Analysis
 
@@ -281,7 +255,6 @@ Treatment of the Reef-Integrated Visitor Pavilion in Maldives with an architectu
 Western Australia - Living Envelope Visitor Centre, a bio-responsive facade system with native cryptogamic organisms (mosses, lichens, cyanobacterial crusts) in operation since 2018.
 
 Each case study involved data collection on the following fronts: (a) design information and process interviews with design teams; (b) notes of construction and material performance; (c) data on biodiversity surveys, carbon flux measurements, and water quality; (d) data on visitor satisfaction surveys and behaviour; and (e) economic performance data in terms of construction costs, maintenance expenditure and revenue generation.
-
 
 ### 3.4 Ecosystem Service Assessment Protocol
 
@@ -305,6 +278,7 @@ Performance comparison is conducted on five aspects: (a) ecological performance 
 
 ---
 
+
 ## 4. Results: Case Studies in Bio-Integrated Tourism Design
 
 ### 4.1 Case Study 1: Mycelium-Composite Eco-Resort, Osa Peninsula, Costa Rica
@@ -314,7 +288,6 @@ Performance comparison is conducted on five aspects: (a) ecological performance 
 There are twelve wooden guest cabins and communal facilities built mainly out of mycelium-composite panels harvested from surrounding farming of cacao and bananas. The project was born in a situation of productive symbiosis, not only in contributing to corridor connectivity and tropical forest regeneration but for the ability to generate tourism income within the biological corridor between Corcovado National Park and the Golfo Dulce mangrove systems.
 
 The structural system is a mix between the two, with primary load-bearing elements made of bamboo (Guadua angustifolia) harvested from plantable forests and envelope systems (walls, roof insulation and interior partitions) produced from the Ganoderma lucidum mycelium grown on a matrix of cacao beans' pod husks and banana pseudostems. In contrast, typical industry practice in the production of inert composites involves kiln drying the mycelium panels to termination, whereas in the current process, the mycelium panels are left in a metabolically semi-dormant state, while being managed by a humidifier. The mycelium panels would not be kiln-dried to termination, as is the standard practice in the production of inert composites, but instead would be placed in a metabolically semi-dormant state and controlled by a humidifier within the building envelope. CO₂ metabolization, absorption of volatile organic compounds (VOC) and humidity regulation can take place through the metabolism carried out by fungi, giving users the ability to live in this type of construct [21].
-
 
 #### 4.1.2 Computational Design Process
 
@@ -327,7 +300,6 @@ In a laboratory experiment, the growth of mycelium panels was observed and a mod
 The results after 5 years of ecological monitoring indicate major outcomes from application of the bio-integrated design approach in terms of biodiversity. Point count bird surveys taken quarterly show 147 species using the resort property whereas a similar size, conventionally developed ecotourism property 4-km away found 89 species (accounting for habitat and altitude). Specifically, 23 forest-interior specialist species which characteristically avoid developed lands have been documented within the resort as strong evidence of an emergent network of forest interior patches, or habitat functional connectivity.
 
 Carbon accounting shows the operational emissions as being negative. The living mycelium panels capture an estimated of 3.2 kg CO₂/m²/year due to continual metabolic activity over the lifetime of the product, while 847 tonnes CO₂e are stored within the above ground biomass of the bamboo structural system. This offset is net: For each tonne of CO₂e taken, one hectare of pasture land that would not have reached a point of net loss is now under reforestation (2.4 hectares returns to secondary forest), meaning the project removes 127 tonnes CO₂e, which is equivalent to the (saving) flight emissions for around 62% of turning up visitors. The total ecosystem service value (TEV) is estimated to be USD 892,000 per year for this restoration project, including carbon sequestration, water purification, pollination support and biodiversity maintenance, and USD 340,000 per year for the conventional site, showing a 162% increase in value.
-
 
 ### 4.2 Case Study 2: Reef-Integrated Visitor Pavilion, South Ari Atoll, Maldives
 
@@ -348,7 +320,6 @@ The three simulation domains were integrated with each other in a Pareto optimiz
 Four year monitoring shows significant reef growth on the structure. After 48 months, coral cover was 34% on the ASS compared to 12% on the conventional concrete control structures deployed at the same depth (more than 180% higher due to the optimized geometry and surface chemistry). The species diversity of fish inside 10 m of the structure was 42 pre-construction and 78 four years after construction; with 3 of these fish species being locally rare (Cheilinus undulatus, Rhincodon typus juveniles, Mobula alfredi) showing the reef structure function as a high quality habitat.
 
 Ecosystem services provided by the structure are estimated at USD 1.24 million per year (USD 380,000 for reef fisheries enhancement, USD 290,000 for coast protection through wave attenuation, USD 85,000 for carbon sequestration through coral calcification, and USD 485,000 for tourism revenue premium due to improved reef quality). The tourism revenue premium alone outweighs additional construction costs for bio-integration (USD 1.8 million more than conventional) in 3.7 years, clearly demonstrating economic sense in designing for reef benefit.
-
 
 ### 4.3 Case Study 3: Living Envelope Visitor Center, Pilbara Region, Western Australia
 
@@ -394,8 +365,6 @@ These air quality monitoring results provide estimates of the amount of air born
 
 The data presented in Table 3 demonstrate that each bio-integrated system achieves its ecological functionality through fundamentally different biological mechanisms, yet all share the characteristic of active biological metabolism contributing to building performance. The compressive strength data confirm that mycelium composites are suitable only for envelope/insulation applications (0.28–0.34 MPa), while the bio-calcite concrete achieves structural-grade performance (38.5 MPa), validating the hybrid structural approach used in Costa Rica (bamboo primary structure with mycelium envelope).
 
-The following table synthesizes ecological performance across the three case studies relative to their respective conventional baselines.
-
 **Table 1: Comparative Ecosystem Service Enhancement of Bio-Integrated versus Conventional Tourism Infrastructure**
 
 | Performance Metric | Costa Rica (Mycelium) | Maldives (Reef) | Australia (Living Envelope) | Mean Enhancement |
@@ -409,7 +378,6 @@ The following table synthesizes ecological performance across the three case stu
 
 The results of the cross-case comparison (Table 1) show that the adoption of a bio-integrated approach leads to consistently higher increases in assessed dimensions when compared to conventional sustainable construction, from 23% (lowest, Australian thermal performance) to 247% (highest, once again a dimension for carbon sequestration in Costa Rica). Remarkably, the benefits lie not only in ecological outcomes, but also in economic outcomes (the average payback period for further bio-integration of reduced investment costs is 4.6 years) and in the visitor experience (satisfaction premium for the visitors is in the 18-31% range).
 
----
 
 **Figure 3: Comparative Ecological Performance — Bio-Integrated vs. Conventional Sustainable Construction**
 
@@ -471,8 +439,6 @@ The results of the cross-case comparison (Table 1) show that the adoption of a b
 ---
 
 
----
-
 ## 5. Discussion
 
 ### 5.1 Synthesis of Findings: Toward Ecological Reciprocity
@@ -503,7 +469,6 @@ As shown in Table 5, the economic analysis reveals that bio-integration investme
 What's important here is that these enhancements don't only rely on technological sophistication and complexity, but also on a reimagined relationship of the building and the ecosystem. In the case studies, the infrastructure serves as habitat, metabolic participant and ecological connector, engages with, and is open to, biological processes, which conventional buildings, no matter how efficient, cannot play such roles due to their conventional design intact from new construction to demolition—functions as a sealed, inert object that excludes, rather than embraces, bioprocesses [5]. The collected CO₂ from the atmosphere is metabolized by the mycelium panels (3.2 kg CO₂/m²/year), the reef structure invites the coral larvae and the cryptogamic envelope photosynthesizes and transpires. Building one is alive; a meaningful biological life and reciprocal ecology that distinguishes regenerative building from merely sustainable building.
 
 The results respond to the "regenerative-as-rhetoric" criticism of Craft et al. [16]. The research quantifies regenerative design in both biophysical and monetary terms, in terms of overall ecosystem service provision, as well as compared to an already bold and ambitious standards-based conventional benchmark (highest-level green building certification), thereby demonstrating that a measurable, impactful benefit is obtained by the use of regenerative design. The 4.6 years economic payback period of investing in bio-integration is attractive on average, thereby establishing ecological reciprocity as not excessively costly at the economic level, important for the scalability of these approaches.
-
 
 ### 5.2 The Role of Computational Design in Enabling Bio-Integration
 
@@ -537,8 +502,6 @@ Based on the results of the case studies and computational modelling, this secti
 As presented above, each level represents increasing complexity in the design and management, increasing contribution to ecological function, and deeper integration of biological processes into architectural performance. The three case studies presented in this chapter all operate at Level 4 (Bio-Structural), with the Maldives project approaching Level 5 (Bio-Reciprocal) due to the full integration of the structure with the surrounding reef ecosystem.
 
 The BIMM provides benchmarking and opportunities to establishing an aspiration target and pinpointing specific interventions needed to progress in improving the maturity continuum. Practitioners can identify their current level of bio-integration, understand what capabilities and investments are needed to advance to the next level, and set realistic timelines for progression. The assessment criteria are designed to be measurable and auditable, addressing the criticism that regenerative design lacks quantifiable metrics [16].
-
----
 
 **Figure 4: Bio-Integration Maturity Model (BIMM) — Progression Pathway and Case Study Positioning**
 
@@ -610,9 +573,6 @@ The BIMM provides benchmarking and opportunities to establishing an aspiration t
 
 *Figure 4 illustrates the five-level Bio-Integration Maturity Model (BIMM) as a progression pathway, showing the transition requirements between each level and the positioning of the three case studies at Level 4 (Bio-Structural), with the Maldives project approaching Level 5 (Bio-Reciprocal). The figure highlights a key finding: while design complexity and cost increase with maturity level, management requirements initially increase but then decrease at higher levels as biological systems become self-sustaining and self-managing. The economic payback periods of 3.7–5.2 years demonstrated at Level 4 confirm commercial viability despite the 15–25% cost premium.*
 
----
-
-
 ### 5.5 Limitations and Caveats
 
 There are a number of limitations which reduce the applicability of findings. First, the case studies are all outstanding projects, which were designed at an above-average level, whose owners were enthusiastic about the project, and which have benefited from the right regulators. The issue of transferability to mainstream tourism development with an economy driven by cost pressure, compression of development timelines and risk aversion is not yet clear and should be investigated into with more extensive sample size quantitative studies.
@@ -623,6 +583,7 @@ Moreover the economic assessment is not able to address any risks that may be pa
 
 ---
 
+
 ## 6. Conclusion
 
 ### 6.1 Knowledge Gained
@@ -630,7 +591,6 @@ Moreover the economic assessment is not able to address any risks that may be pa
 This chapter has presented theoretical arguments, mathematical modeling and empirical evidence for tourism that integrates the biosphere as components of the tourism design, thus providing the scientific basis for the decision that this approach is not only possible but also measurably better than the environmentally costlier sustainable tourism infrastructure design. Three different ecologically distinct tourist infrastructure projects across the tropical, marine and arid biomes substantiate the central thesis: tourism infrastructure can be adaptive and potentially regenerative and can participate in ecological reciprocity with its host environment.
 
 Learning transcends several subject areas. The study indicates that biological systems such as biological networks and communities of mycelia, corals and cryptogamic organisms can indeed be deployed at architecture scale in a way that ensures their continued biological viability and functional efficacy over a number of years. However, on a computational level, the study shows that multi-objective optimization algorithms, agent-based ecological models and coupled simulation of hygrothermal-biological models are all reliable predictive tools for bio-integrated design, and the level of correspondence between measures and computation varies at 5–15% for most performance metrics. From an ecological perspective, the research delivers quantitative evidence on the benefits of bio-integrated infrastructure, confirming that the ecosystem service obtained by it is an ecological enhancement equivalent to 23-247% compared with the reference of the best practice conventional construction, with averages of 164% increases for carbon sequestration, 64% increases for supporting biodiversity and 43% increases for energy performance. On an economic basis the research shows (Table 5) that combination of benefits derived from ecosystem service values, energy saving and visitor satisfaction premiums for bio-integration investments will be realised within time frames of 3.7–5.2 years, which is in line with planning horizons of commercial investment in tourism developments.
-
 
 ### 6.2 Implications for the Field
 
@@ -652,12 +612,12 @@ Fourthly, there is a need to develop the economic and governance systems require
 
 Last, bio-integrated design has ethical implications: the ethical nature of the "building-organisms" themselves, the rights of those who hold indigenous knowledge, the politics of ecological stewardship in commercial tourism, among others, warrant ongoing attention in both philosophy and social science. Bio-integrated design undermines the identities of basic design distinctions between built and living systems, between natural and artificial systems, between organism and artifact, which have historically defined Western paradigm thinking on environments.
 
-
 ### 6.4 Closing Reflection
 
 Tourism is facing one of its highs and lows. It can keep building up these roads on environments that are being degraded just as much as they are used for these facilities, and do so in a conducive way to using the resources efficiently and to offset harm to the systems. Or it may adopt a radically new paradigm: tourism engineering that is living architecture, affectively responsive, ecologically responsive, and regeneratively responsive. The experiences outlined in this chapter are not esoteric or impractical but practical, not costlier than it ought to be but just costlier than it is one would expect, and not theoretical but proven. It is not whether it is possible or not to design bio-integrated tourism, but rather the will of the designers, the developers, the policy makers and travelers.
 
 ---
+
 
 ## References
 
