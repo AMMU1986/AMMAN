@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="580" viewBox="0 0 800 580">
+<rect width="800" height="580" fill="white"/>
+<text x="400" y="25" font-family="Times New Roman, serif" font-size="14" fill="#003366" text-anchor="middle" font-weight="bold">Enhanced TD3 Algorithm Architecture</text>
+<rect x="30" y="50" width="220" height="300" fill="#e8e8ff" stroke="#1f77b4" stroke-width="2" opacity="1" rx="5"/>
+<text x="140" y="70" font-family="Times New Roman, serif" font-size="10" fill="#1f77b4" text-anchor="middle" font-weight="bold">ACTOR NETWORK</text>
+<rect x="50" y="85" width="180" height="35" fill="white" stroke="#1f77b4" stroke-width="1" opacity="1" rx="2"/>
+<text x="140" y="107" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">Input (47)</text>
+<line x1="140" y1="120" x2="140" y2="135" stroke="#1f77b4" stroke-width="1"/>
+<rect x="50" y="135" width="180" height="35" fill="white" stroke="#1f77b4" stroke-width="1" opacity="1" rx="2"/>
+<text x="140" y="157" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(256)+ReLU</text>
+<line x1="140" y1="170" x2="140" y2="185" stroke="#1f77b4" stroke-width="1"/>
+<rect x="50" y="185" width="180" height="35" fill="white" stroke="#1f77b4" stroke-width="1" opacity="1" rx="2"/>
+<text x="140" y="207" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(256)+ReLU</text>
+<line x1="140" y1="220" x2="140" y2="235" stroke="#1f77b4" stroke-width="1"/>
+<rect x="50" y="235" width="180" height="35" fill="white" stroke="#1f77b4" stroke-width="1" opacity="1" rx="2"/>
+<text x="140" y="257" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(128)+ReLU</text>
+<line x1="140" y1="270" x2="140" y2="285" stroke="#1f77b4" stroke-width="1"/>
+<rect x="50" y="285" width="180" height="35" fill="white" stroke="#1f77b4" stroke-width="1" opacity="1" rx="2"/>
+<text x="140" y="307" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(5)+Tanh</text>
+<rect x="290" y="50" width="220" height="300" fill="#ffe8e8" stroke="#d62728" stroke-width="2" opacity="1" rx="5"/>
+<text x="400" y="70" font-family="Times New Roman, serif" font-size="10" fill="#d62728" text-anchor="middle" font-weight="bold">CRITIC Q1</text>
+<rect x="310" y="85" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="400" y="107" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">Input (52)</text>
+<line x1="400" y1="120" x2="400" y2="135" stroke="#d62728" stroke-width="1"/>
+<rect x="310" y="135" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="400" y="157" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(256)+ReLU</text>
+<line x1="400" y1="170" x2="400" y2="185" stroke="#d62728" stroke-width="1"/>
+<rect x="310" y="185" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="400" y="207" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(256)+ReLU</text>
+<line x1="400" y1="220" x2="400" y2="235" stroke="#d62728" stroke-width="1"/>
+<rect x="310" y="235" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="400" y="257" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(128)+ReLU</text>
+<line x1="400" y1="270" x2="400" y2="285" stroke="#d62728" stroke-width="1"/>
+<rect x="310" y="285" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="400" y="307" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(1)</text>
+<rect x="550" y="50" width="220" height="300" fill="#ffe8e8" stroke="#d62728" stroke-width="2" opacity="1" rx="5"/>
+<text x="660" y="70" font-family="Times New Roman, serif" font-size="10" fill="#d62728" text-anchor="middle" font-weight="bold">CRITIC Q2</text>
+<rect x="570" y="85" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="660" y="107" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">Input (52)</text>
+<line x1="660" y1="120" x2="660" y2="135" stroke="#d62728" stroke-width="1"/>
+<rect x="570" y="135" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="660" y="157" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(256)+ReLU</text>
+<line x1="660" y1="170" x2="660" y2="185" stroke="#d62728" stroke-width="1"/>
+<rect x="570" y="185" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="660" y="207" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(256)+ReLU</text>
+<line x1="660" y1="220" x2="660" y2="235" stroke="#d62728" stroke-width="1"/>
+<rect x="570" y="235" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="660" y="257" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(128)+ReLU</text>
+<line x1="660" y1="270" x2="660" y2="285" stroke="#d62728" stroke-width="1"/>
+<rect x="570" y="285" width="180" height="35" fill="white" stroke="#d62728" stroke-width="1" opacity="1" rx="2"/>
+<text x="660" y="307" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="middle" font-weight="normal">FC(1)</text>
+<rect x="30" y="380" width="350" height="70" fill="#e8ffe8" stroke="#2ca02c" stroke-width="2" opacity="1" rx="5"/>
+<text x="205" y="400" font-family="Times New Roman, serif" font-size="10" fill="#2ca02c" text-anchor="middle" font-weight="bold">PRIORITIZED EXPERIENCE REPLAY</text>
+<text x="205" y="420" font-family="Times New Roman, serif" font-size="9" fill="#555" text-anchor="middle" font-weight="normal">Buffer: 1M transitions | Priority: p = |TD error| + eps</text>
+<text x="205" y="438" font-family="Times New Roman, serif" font-size="9" fill="#555" text-anchor="middle" font-weight="normal">Alpha=0.6 | Beta: 0.4 to 1.0 (annealed)</text>
+<rect x="420" y="380" width="350" height="70" fill="#fff8e0" stroke="#8c564b" stroke-width="2" opacity="1" rx="5"/>
+<text x="595" y="400" font-family="Times New Roman, serif" font-size="10" fill="#8c564b" text-anchor="middle" font-weight="bold">TARGET NETWORKS</text>
+<text x="595" y="420" font-family="Times New Roman, serif" font-size="9" fill="#555" text-anchor="middle" font-weight="normal">Soft update: tau=0.005 | Policy delay: 2</text>
+<text x="595" y="438" font-family="Times New Roman, serif" font-size="9" fill="#555" text-anchor="middle" font-weight="normal">Target noise: sigma=0.2, clip=0.5</text>
+<rect x="30" y="475" width="740" height="90" fill="#f8f8f8" stroke="#333" stroke-width="1.5" opacity="1" rx="5"/>
+<text x="400" y="495" font-family="Times New Roman, serif" font-size="10" fill="#003366" text-anchor="middle" font-weight="bold">KEY ENHANCEMENTS</text>
+<text x="400" y="515" font-family="Times New Roman, serif" font-size="9" fill="#444" text-anchor="middle" font-weight="normal">1. Prioritized Experience Replay    2. Domain-Constrained OU Noise    3. Behavioral Cloning Pre-training</text>
+<text x="400" y="533" font-family="Times New Roman, serif" font-size="9" fill="#444" text-anchor="middle" font-weight="normal">4. Multi-phase Training Schedule    5. Layer Normalization + Dropout (p=0.1)    6. Adaptive LR</text>
+<line x1="140" y1="350" x2="140" y2="378" stroke="#555" stroke-width="1.5"/>
+<polygon points="140,378 134.1,369.9 145.9,369.9" fill="#555"/>
+<line x1="400" y1="350" x2="400" y2="378" stroke="#555" stroke-width="1.5"/>
+<polygon points="400,378 394.1,369.9 405.9,369.9" fill="#555"/>
+<line x1="660" y1="350" x2="595" y2="378" stroke="#555" stroke-width="1.5"/>
+<polygon points="595,378 600.1,369.4 604.8,380.2" fill="#555"/>
+</svg>
