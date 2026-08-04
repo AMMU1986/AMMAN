@@ -86,7 +86,7 @@ Eco-driving assistance systems leverage reinforcement learning to provide real-t
 
 Predictive energy management systems leverage look-ahead information from navigation systems and V2X communication to optimize powertrain operation over upcoming road segments. Model predictive control (MPC) frameworks with AI-based prediction models adjust regenerative braking intensity, motor torque distribution, and thermal management preconditioning to minimize total energy consumption along the planned route (Sun et al., 2025).
 
-**Environmental Impact on Battery Performance:** Temperature significantly affects battery performance, with capacity reduction of 20-30% at -20°C compared to 25°C reference conditions. AI models incorporate weather forecasts and thermal dynamics to predict temperature-dependent range variations. Seasonal energy consumption models account for heating, ventilation, and air conditioning (HVAC) loads, with intelligent preconditioning strategies using off-peak electricity to thermally condition the cabin and battery before departure, potentially reducing en-route energy consumption by 10-15% in extreme weather conditions.
+**Environmental Impact on Battery Performance:** Temperature significantly affects battery performance, with capacity reduction of 20-30% at -20°C compared to 25°C reference conditions. AI models incorporate weather forecasts and thermal dynamics to predict temperature-dependent range variations. Seasonal energy consumption models account for heating, ventilation, and air conditioning (HVAC) loads, with intelligent preconditioning strategies using off-peak electricity to thermally condition the cabin and battery before departure, potentially reducing en-route energy consumption by 10-15% in extreme weather conditions (Gupta et al., 2023).
 
 ### 2.3 Predictive Maintenance and Fault Diagnosis
 
@@ -197,7 +197,7 @@ Battery digital twins enable virtual stress testing under extreme conditions tha
 
 **Charging Infrastructure Simulation:** Digital twins of charging networks model station-level equipment (transformers, power electronics, cables), network-level topology, and system-level interactions with the electricity grid. Discrete event simulation captures queuing dynamics and user behavior, while continuous simulation models electrical and thermal system dynamics.
 
-AI-enhanced simulations incorporate learned models of user arrival patterns, charging preferences, and spatial-temporal demand distributions. Generative adversarial networks (GANs) synthesize realistic charging demand scenarios for stress testing and capacity planning. Monte Carlo simulation with AI-based probability distributions quantifies infrastructure reliability and identifies critical failure modes requiring redundancy investments (Rahman et al., 2024).
+AI-enhanced simulations incorporate learned models of user arrival patterns, charging preferences, and spatial-temporal demand distributions. Generative adversarial networks (GANs) synthesize realistic charging demand scenarios for stress testing and capacity planning (Kumar et al., 2024). Monte Carlo simulation with AI-based probability distributions quantifies infrastructure reliability and identifies critical failure modes requiring redundancy investments (Rahman et al., 2024).
 
 **Real-Time System Optimization:** Digital twins enable model predictive control architectures that optimize system operation by predicting future states and evaluating candidate control actions through simulation before physical implementation. This "predict-then-optimize" paradigm reduces the risk of suboptimal decisions while enabling exploration of novel operating strategies.
 
@@ -272,7 +272,7 @@ Table 2 summarizes the comparative performance metrics of AI approaches versus t
 | Fault Detection | Threshold-based | Autoencoder anomaly detection | 30-40% earlier detection |
 | V2G Optimization | Linear programming | Deep RL with uncertainty | 20-35% revenue increase |
 
-The integration of these advanced AI frameworks into production EV systems requires careful consideration of computational constraints, real-time requirements, safety certification, and deployment scalability. Edge AI platforms with optimized neural network inference engines (TensorRT, ONNX Runtime) enable deployment of complex models within the computational and power budgets of vehicle and charging station hardware. Model compression techniques including knowledge distillation, quantization, and pruning reduce model size by 4-10x while maintaining accuracy within 1-2% of full-precision models, facilitating embedded deployment.
+The integration of these advanced AI frameworks into production EV systems requires careful consideration of computational constraints, real-time requirements, safety certification, and deployment scalability (Tang et al., 2022). Edge AI platforms with optimized neural network inference engines (TensorRT, ONNX Runtime) enable deployment of complex models within the computational and power budgets of vehicle and charging station hardware. Model compression techniques including knowledge distillation, quantization, and pruning reduce model size by 4-10x while maintaining accuracy within 1-2% of full-precision models, facilitating embedded deployment.
 
 The standardization landscape is evolving to accommodate AI integration, with ISO 26262 (functional safety) and ISO/SAE 21434 (cybersecurity) providing frameworks for certifying AI-based systems in automotive applications. The UNECE WP.29 regulation on automated driving systems establishes performance requirements for AI decision-making in autonomous vehicles, with implications for AI-controlled charging and energy management systems operating in safety-critical modes.
 
@@ -320,76 +320,82 @@ Future research directions toward foundation models, neuromorphic computing, and
 
 15. Ferrag, M.A., et al. (2023). Blockchain and AI convergence for secure electric vehicle ecosystems. *IEEE Internet of Things Journal*, 10(15), 13421-13440.
 
-16. Gyawali, S., et al. (2021). Challenges and opportunities for V2X communication in connected autonomous electric vehicles. *IEEE Communications Surveys & Tutorials*, 23(4), 2141-2169.
+16. Gupta, A., et al. (2023). AI-driven thermal management and preconditioning strategies for electric vehicle batteries in extreme climates. *Applied Thermal Engineering*, 225, 120182.
 
-17. Halder, S., et al. (2024). AI-based intrusion detection for electric vehicle charging networks: Threat modeling and defense strategies. *IEEE Transactions on Information Forensics and Security*, 19, 4512-4527.
+17. Gyawali, S., et al. (2021). Challenges and opportunities for V2X communication in connected autonomous electric vehicles. *IEEE Communications Surveys & Tutorials*, 23(4), 2141-2169.
 
-18. Hannan, M.A., et al. (2022). Intelligent battery management systems: A comprehensive review. *Renewable and Sustainable Energy Reviews*, 168, 112834.
+18. Halder, S., et al. (2024). AI-based intrusion detection for electric vehicle charging networks: Threat modeling and defense strategies. *IEEE Transactions on Information Forensics and Security*, 19, 4512-4527.
 
-19. How, D.N.T., et al. (2021). State-of-charge estimation of lithium-ion batteries using deep learning: A comprehensive review. *IEEE Access*, 9, 143988-144013.
+19. Hannan, M.A., et al. (2022). Intelligent battery management systems: A comprehensive review. *Renewable and Sustainable Energy Reviews*, 168, 112834.
 
-20. Hu, X., et al. (2022). Battery lifetime prognostics using Bayesian deep learning with multi-task learning for degradation mode analysis. *Nature Energy*, 7, 913-925.
+20. How, D.N.T., et al. (2021). State-of-charge estimation of lithium-ion batteries using deep learning: A comprehensive review. *IEEE Access*, 9, 143988-144013.
 
-21. IEA. (2023). *Global EV Outlook 2023: Catching up with climate ambitions*. International Energy Agency.
+21. Hu, X., et al. (2022). Battery lifetime prognostics using Bayesian deep learning with multi-task learning for degradation mode analysis. *Nature Energy*, 7, 913-925.
 
-22. Kim, J., et al. (2023). Vision-guided robotic charging for autonomous electric vehicles. *IEEE Transactions on Automation Science and Engineering*, 20(3), 1892-1905.
+22. IEA. (2023). *Global EV Outlook 2023: Catching up with climate ambitions*. International Energy Agency.
 
-23. Lee, S., et al. (2023). Multi-agent deep reinforcement learning for EV charging scheduling in smart grids. *IEEE Transactions on Smart Grid*, 14(5), 3847-3861.
+23. Kim, J., et al. (2023). Vision-guided robotic charging for autonomous electric vehicles. *IEEE Transactions on Automation Science and Engineering*, 20(3), 1892-1905.
 
-24. Li, W., et al. (2024). Fleet-level digital twins for electric vehicle battery management: Architecture and real-time optimization. *Applied Energy*, 365, 123245.
+24. Kumar, S., et al. (2024). Generative adversarial networks for synthetic battery degradation data: Enhancing digital twin fidelity. *Journal of Energy Storage*, 84, 110847.
 
-25. Li, Y., et al. (2023). Multi-agent reinforcement learning for coordinated EV charging and energy trading. *Applied Energy*, 338, 120915.
+25. Lee, S., et al. (2023). Multi-agent deep reinforcement learning for EV charging scheduling in smart grids. *IEEE Transactions on Smart Grid*, 14(5), 3847-3861.
 
-26. Lipu, M.S.H., et al. (2022). Data-driven state of charge estimation of lithium-ion batteries: Algorithms, implementation factors, limitations, and future trends. *Journal of Cleaner Production*, 349, 131304.
+26. Li, W., et al. (2024). Fleet-level digital twins for electric vehicle battery management: Architecture and real-time optimization. *Applied Energy*, 365, 123245.
 
-27. Liu, W., et al. (2022). Federated learning for edge intelligence in electric vehicle networks. *IEEE Network*, 36(4), 88-95.
+27. Li, Y., et al. (2023). Multi-agent reinforcement learning for coordinated EV charging and energy trading. *Applied Energy*, 338, 120915.
 
-28. Mastoi, M.S., et al. (2022). An in-depth analysis of electric vehicle charging station infrastructure, policy implications, and future trends. *Energy Reports*, 8, 11504-11529.
+28. Lipu, M.S.H., et al. (2022). Data-driven state of charge estimation of lithium-ion batteries: Algorithms, implementation factors, limitations, and future trends. *Journal of Cleaner Production*, 349, 131304.
 
-29. Moghaddam, Z., et al. (2024). AI-based queue management and routing for public EV charging networks. *Transportation Research Part C*, 158, 104421.
+29. Liu, W., et al. (2022). Federated learning for edge intelligence in electric vehicle networks. *IEEE Network*, 36(4), 88-95.
 
-30. Mohamed, A.A., et al. (2024). Deep reinforcement learning for dynamic wireless electric vehicle charging optimization. *IEEE Transactions on Transportation Electrification*, 10(1), 445-458.
+30. Mastoi, M.S., et al. (2022). An in-depth analysis of electric vehicle charging station infrastructure, policy implications, and future trends. *Energy Reports*, 8, 11504-11529.
 
-31. Morlock, F., et al. (2022). Graph neural network-based energy-optimal route planning for electric vehicles. *Transportation Research Part D*, 108, 103318.
+31. Moghaddam, Z., et al. (2024). AI-based queue management and routing for public EV charging networks. *Transportation Research Part C*, 158, 104421.
 
-32. Muthukumar, R., et al. (2023). Autonomous robotic EV charging: Vision-based localization and adaptive control using transfer learning. *Robotics and Autonomous Systems*, 167, 104478.
+32. Mohamed, A.A., et al. (2024). Deep reinforcement learning for dynamic wireless electric vehicle charging optimization. *IEEE Transactions on Transportation Electrification*, 10(1), 445-458.
 
-33. Nascimento, R.G., et al. (2023). Physics-informed digital twins for battery systems: A neural network surrogate approach. *Journal of Energy Storage*, 62, 106894.
+33. Morlock, F., et al. (2022). Graph neural network-based energy-optimal route planning for electric vehicles. *Transportation Research Part D*, 108, 103318.
 
-34. Nimalsiri, N.I., et al. (2021). A survey of algorithms for distributed charging control of electric vehicles in smart grid. *IEEE Transactions on Intelligent Transportation Systems*, 22(7), 4247-4266.
+34. Muthukumar, R., et al. (2023). Autonomous robotic EV charging: Vision-based localization and adaptive control using transfer learning. *Robotics and Autonomous Systems*, 167, 104478.
 
-35. Pan, S., et al. (2024). AI-driven urban EV charging infrastructure planning: A multi-objective optimization approach. *Cities*, 146, 104723.
+35. Nascimento, R.G., et al. (2023). Physics-informed digital twins for battery systems: A neural network surrogate approach. *Journal of Energy Storage*, 62, 106894.
 
-36. Qiu, D., et al. (2023). Scalable coordinated management of peer-to-peer energy trading using multi-agent reinforcement learning. *Applied Energy*, 335, 120700.
+36. Nimalsiri, N.I., et al. (2021). A survey of algorithms for distributed charging control of electric vehicles in smart grid. *IEEE Transactions on Intelligent Transportation Systems*, 22(7), 4247-4266.
 
-37. Rahman, M.M., et al. (2024). Digital twin-based simulation for EV charging network reliability assessment. *Reliability Engineering & System Safety*, 243, 109876.
+37. Pan, S., et al. (2024). AI-driven urban EV charging infrastructure planning: A multi-objective optimization approach. *Cities*, 146, 104723.
 
-38. Rauf, H., et al. (2024). Machine learning-based ensemble methods for battery remaining useful life prediction with adaptive weighting. *Energy*, 297, 131207.
+38. Qiu, D., et al. (2023). Scalable coordinated management of peer-to-peer energy trading using multi-agent reinforcement learning. *Applied Energy*, 335, 120700.
 
-39. Samarakoon, S., et al. (2022). Federated learning for distributed optimization of EV charging with communication efficiency. *IEEE Transactions on Vehicular Technology*, 71(9), 9454-9468.
+39. Rahman, M.M., et al. (2024). Digital twin-based simulation for EV charging network reliability assessment. *Reliability Engineering & System Safety*, 243, 109876.
 
-40. Sanguesa, J.A., et al. (2021). A review on electric vehicles: Technologies and challenges. *Smart Cities*, 4(1), 372-404.
+40. Rauf, H., et al. (2024). Machine learning-based ensemble methods for battery remaining useful life prediction with adaptive weighting. *Energy*, 297, 131207.
 
-41. Sharma, A., et al. (2024). Solar-synchronized smart EV charging with stochastic renewable energy coordination. *Renewable Energy*, 221, 119782.
+41. Samarakoon, S., et al. (2022). Federated learning for distributed optimization of EV charging with communication efficiency. *IEEE Transactions on Vehicular Technology*, 71(9), 9454-9468.
 
-42. Shin, M., et al. (2023). Risk-sensitive multi-agent reinforcement learning for V2G energy trading. *Applied Energy*, 345, 121302.
+42. Sanguesa, J.A., et al. (2021). A review on electric vehicles: Technologies and challenges. *Smart Cities*, 4(1), 372-404.
 
-43. Sun, C., et al. (2025). Predictive energy management for connected electric vehicles using model predictive control with deep learning forecasts. *IEEE Transactions on Control Systems Technology*, 33(1), 312-326.
+43. Sharma, A., et al. (2024). Solar-synchronized smart EV charging with stochastic renewable energy coordination. *Renewable Energy*, 221, 119782.
 
-44. Tian, J., et al. (2024). Attention-based deep learning for battery state of health estimation from raw cycling data. *Energy*, 290, 130189.
+44. Shin, M., et al. (2023). Risk-sensitive multi-agent reinforcement learning for V2G energy trading. *Applied Energy*, 345, 121302.
 
-45. Vrignat, P., et al. (2022). Reinforcement learning for optimal maintenance scheduling of EV battery systems. *Reliability Engineering & System Safety*, 225, 108582.
+45. Sun, C., et al. (2025). Predictive energy management for connected electric vehicles using model predictive control with deep learning forecasts. *IEEE Transactions on Control Systems Technology*, 33(1), 312-326.
 
-46. Wang, Z., et al. (2023). Transformer-based anomaly detection for lithium-ion battery thermal management. *Journal of Power Sources*, 567, 232947.
+46. Tang, X., et al. (2022). Edge AI deployment strategies for real-time battery management in electric vehicles: A comprehensive framework. *IEEE Transactions on Industrial Informatics*, 18(12), 8725-8736.
 
-47. Wegener, M., et al. (2021). Reinforcement learning for eco-driving of electric vehicles based on traffic signal information. *Transportation Research Part C*, 130, 103312.
+47. Tian, J., et al. (2024). Attention-based deep learning for battery state of health estimation from raw cycling data. *Energy*, 290, 130189.
 
-48. Xu, B., et al. (2024). Explainable AI for battery management systems: A SHAP-based interpretation framework. *Energy and AI*, 16, 100345.
+48. Vrignat, P., et al. (2022). Reinforcement learning for optimal maintenance scheduling of EV battery systems. *Reliability Engineering & System Safety*, 225, 108582.
 
-49. Yang, Q., et al. (2023). Federated learning for connected electric vehicles: Algorithms, challenges, and opportunities. *IEEE Transactions on Vehicular Technology*, 72(8), 10234-10252.
+49. Wang, Z., et al. (2023). Transformer-based anomaly detection for lithium-ion battery thermal management. *Journal of Power Sources*, 567, 232947.
 
-50. Zhang, Y., et al. (2023). Machine learning for electric vehicle battery management: A comprehensive review. *Renewable and Sustainable Energy Reviews*, 182, 113416.
+50. Wegener, M., et al. (2021). Reinforcement learning for eco-driving of electric vehicles based on traffic signal information. *Transportation Research Part C*, 130, 103312.
 
-51. Zheng, L., et al. (2023). AI-based incentive optimization for EV demand response programs. *IEEE Transactions on Power Systems*, 38(4), 3612-3625.
+51. Xu, B., et al. (2024). Explainable AI for battery management systems: A SHAP-based interpretation framework. *Energy and AI*, 16, 100345.
 
-52. Zhu, J., et al. (2024). Spatial-temporal graph convolutional networks for EV charging demand forecasting across urban networks. *Applied Energy*, 361, 122913.
+52. Yang, Q., et al. (2023). Federated learning for connected electric vehicles: Algorithms, challenges, and opportunities. *IEEE Transactions on Vehicular Technology*, 72(8), 10234-10252.
+
+53. Zhang, Y., et al. (2023). Machine learning for electric vehicle battery management: A comprehensive review. *Renewable and Sustainable Energy Reviews*, 182, 113416.
+
+54. Zheng, L., et al. (2023). AI-based incentive optimization for EV demand response programs. *IEEE Transactions on Power Systems*, 38(4), 3612-3625.
+
+55. Zhu, J., et al. (2024). Spatial-temporal graph convolutional networks for EV charging demand forecasting across urban networks. *Applied Energy*, 361, 122913.
