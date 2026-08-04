@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="480" viewBox="0 0 800 480">
+<rect width="800" height="480" fill="white"/>
+<text x="400" y="22" font-family="Times New Roman, serif" font-size="13" fill="#003366" text-anchor="middle" font-weight="bold">Monthly Energy Consumption: DRL Agent vs Baseline Controller</text>
+<line x1="80" y1="55" x2="80" y2="360" stroke="black" stroke-width="1.5"/>
+<line x1="80" y1="360" x2="720" y2="360" stroke="black" stroke-width="1.5"/>
+<line x1="75" y1="360.0" x2="80" y2="360.0" stroke="black" stroke-width="1"/>
+<text x="70" y="364.0" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="end" font-weight="normal">0</text>
+<line x1="75" y1="299.0" x2="80" y2="299.0" stroke="black" stroke-width="1"/>
+<text x="70" y="303.0" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="end" font-weight="normal">5</text>
+<line x1="80" y1="299.0" x2="720" y2="299.0" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="75" y1="238.0" x2="80" y2="238.0" stroke="black" stroke-width="1"/>
+<text x="70" y="242.0" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="end" font-weight="normal">10</text>
+<line x1="80" y1="238.0" x2="720" y2="238.0" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="75" y1="177.0" x2="80" y2="177.0" stroke="black" stroke-width="1"/>
+<text x="70" y="181.0" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="end" font-weight="normal">15</text>
+<line x1="80" y1="177.0" x2="720" y2="177.0" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="75" y1="116.0" x2="80" y2="116.0" stroke="black" stroke-width="1"/>
+<text x="70" y="120.0" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="end" font-weight="normal">20</text>
+<line x1="80" y1="116.0" x2="720" y2="116.0" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3,3"/>
+<line x1="75" y1="55.0" x2="80" y2="55.0" stroke="black" stroke-width="1"/>
+<text x="70" y="59.0" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="end" font-weight="normal">25</text>
+<line x1="80" y1="55.0" x2="720" y2="55.0" stroke="#ddd" stroke-width="0.5" stroke-dasharray="3,3"/>
+<text x="400.0" y="405" font-family="Times New Roman, serif" font-size="11" fill="black" text-anchor="middle" font-weight="normal">Month</text>
+<text x="30" y="207.5" font-family="Times New Roman, serif" font-size="11" fill="black" text-anchor="middle" font-weight="normal" transform="rotate(-90,30,207.5)">Energy (kWh/m²)</text>
+<rect x="96.33333333333334" y="135.52" width="32.0" height="224.48" fill="#1f77b4" stroke="#0d4f8a" stroke-width="1" opacity="1" rx="0"/>
+<text x="112.33333333333334" y="127.52000000000001" font-family="Times New Roman, serif" font-size="8" fill="#0d4f8a" text-anchor="middle" font-weight="normal">18.4</text>
+<rect x="138.33333333333334" y="186.76000000000002" width="32.0" height="173.23999999999998" fill="#2ca02c" stroke="#1a6b1a" stroke-width="1" opacity="1" rx="0"/>
+<text x="154.33333333333334" y="178.76000000000002" font-family="Times New Roman, serif" font-size="8" fill="#1a6b1a" text-anchor="middle" font-weight="normal">14.2</text>
+<text x="133.33333333333334" y="110.52000000000001" font-family="Times New Roman, serif" font-size="9" fill="#d62728" text-anchor="middle" font-weight="bold">-22.8%</text>
+<text x="133.33333333333334" y="378" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-weight="normal">Jan</text>
+<rect x="203.0" y="141.62" width="32.0" height="218.38" fill="#1f77b4" stroke="#0d4f8a" stroke-width="1" opacity="1" rx="0"/>
+<text x="219.0" y="133.62" font-family="Times New Roman, serif" font-size="8" fill="#0d4f8a" text-anchor="middle" font-weight="normal">17.9</text>
+<rect x="245.0" y="191.64" width="32.0" height="168.36" fill="#2ca02c" stroke="#1a6b1a" stroke-width="1" opacity="1" rx="0"/>
+<text x="261.0" y="183.64" font-family="Times New Roman, serif" font-size="8" fill="#1a6b1a" text-anchor="middle" font-weight="normal">13.8</text>
+<text x="240.0" y="116.62" font-family="Times New Roman, serif" font-size="9" fill="#d62728" text-anchor="middle" font-weight="bold">-22.9%</text>
+<text x="240.0" y="378" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-weight="normal">Feb</text>
+<rect x="309.6666666666667" y="125.75999999999999" width="32.0" height="234.24" fill="#1f77b4" stroke="#0d4f8a" stroke-width="1" opacity="1" rx="0"/>
+<text x="325.6666666666667" y="117.75999999999999" font-family="Times New Roman, serif" font-size="8" fill="#0d4f8a" text-anchor="middle" font-weight="normal">19.2</text>
+<rect x="351.6666666666667" y="183.10000000000002" width="32.0" height="176.89999999999998" fill="#2ca02c" stroke="#1a6b1a" stroke-width="1" opacity="1" rx="0"/>
+<text x="367.6666666666667" y="175.10000000000002" font-family="Times New Roman, serif" font-size="8" fill="#1a6b1a" text-anchor="middle" font-weight="normal">14.5</text>
+<text x="346.6666666666667" y="100.75999999999999" font-family="Times New Roman, serif" font-size="9" fill="#d62728" text-anchor="middle" font-weight="bold">-24.5%</text>
+<text x="346.6666666666667" y="378" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-weight="normal">Mar</text>
+<rect x="416.33333333333337" y="114.77999999999997" width="32.0" height="245.22000000000003" fill="#1f77b4" stroke="#0d4f8a" stroke-width="1" opacity="1" rx="0"/>
+<text x="432.33333333333337" y="106.77999999999997" font-family="Times New Roman, serif" font-size="8" fill="#0d4f8a" text-anchor="middle" font-weight="normal">20.1</text>
+<rect x="458.33333333333337" y="175.78" width="32.0" height="184.22" fill="#2ca02c" stroke="#1a6b1a" stroke-width="1" opacity="1" rx="0"/>
+<text x="474.33333333333337" y="167.78" font-family="Times New Roman, serif" font-size="8" fill="#1a6b1a" text-anchor="middle" font-weight="normal">15.1</text>
+<text x="453.33333333333337" y="89.77999999999997" font-family="Times New Roman, serif" font-size="9" fill="#d62728" text-anchor="middle" font-weight="bold">-24.9%</text>
+<text x="453.33333333333337" y="378" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-weight="normal">Apr</text>
+<rect x="523.0" y="106.23999999999998" width="32.0" height="253.76000000000002" fill="#1f77b4" stroke="#0d4f8a" stroke-width="1" opacity="1" rx="0"/>
+<text x="539.0" y="98.23999999999998" font-family="Times New Roman, serif" font-size="8" fill="#0d4f8a" text-anchor="middle" font-weight="normal">20.8</text>
+<rect x="565.0" y="163.57999999999998" width="32.0" height="196.42000000000002" fill="#2ca02c" stroke="#1a6b1a" stroke-width="1" opacity="1" rx="0"/>
+<text x="581.0" y="155.57999999999998" font-family="Times New Roman, serif" font-size="8" fill="#1a6b1a" text-anchor="middle" font-weight="normal">16.1</text>
+<text x="560.0" y="81.23999999999998" font-family="Times New Roman, serif" font-size="9" fill="#d62728" text-anchor="middle" font-weight="bold">-22.6%</text>
+<text x="560.0" y="378" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-weight="normal">May</text>
+<rect x="629.6666666666667" y="100.13999999999999" width="32.0" height="259.86" fill="#1f77b4" stroke="#0d4f8a" stroke-width="1" opacity="1" rx="0"/>
+<text x="645.6666666666667" y="92.13999999999999" font-family="Times New Roman, serif" font-size="8" fill="#0d4f8a" text-anchor="middle" font-weight="normal">21.3</text>
+<rect x="671.6666666666667" y="162.35999999999999" width="32.0" height="197.64000000000001" fill="#2ca02c" stroke="#1a6b1a" stroke-width="1" opacity="1" rx="0"/>
+<text x="687.6666666666667" y="154.35999999999999" font-family="Times New Roman, serif" font-size="8" fill="#1a6b1a" text-anchor="middle" font-weight="normal">16.2</text>
+<text x="666.6666666666667" y="75.13999999999999" font-family="Times New Roman, serif" font-size="9" fill="#d62728" text-anchor="middle" font-weight="bold">-23.9%</text>
+<text x="666.6666666666667" y="378" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="middle" font-weight="normal">Jun</text>
+<rect x="110" y="395" width="15" height="12" fill="#1f77b4" stroke="none" stroke-width="1" opacity="1" rx="0"/>
+<text x="130" y="406" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="start" font-weight="normal">Baseline (Rule-based)</text>
+<rect x="310" y="395" width="15" height="12" fill="#2ca02c" stroke="none" stroke-width="1" opacity="1" rx="0"/>
+<text x="330" y="406" font-family="Times New Roman, serif" font-size="10" fill="#333" text-anchor="start" font-weight="normal">DRL Agent (Proposed)</text>
+<rect x="520" y="390" width="200" height="50" fill="#fff8f8" stroke="#d62728" stroke-width="1" opacity="1" rx="3"/>
+<text x="530" y="410" font-family="Times New Roman, serif" font-size="10" fill="#d62728" text-anchor="start" font-weight="bold">Average Savings: 23.7%</text>
+<text x="530" y="428" font-family="Times New Roman, serif" font-size="9" fill="#333" text-anchor="start" font-weight="normal">Annual Cost Reduction: $113,760</text>
+</svg>
