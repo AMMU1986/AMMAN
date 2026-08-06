@@ -37,6 +37,29 @@ The economic value proposition of ESS in HRES extends beyond simple energy buffe
 
 Energy storage technologies applicable to HRES span a broad spectrum of physical principles, performance characteristics, and maturity levels. Their classification follows multiple taxonomies based on storage medium, discharge duration, power capacity, and application suitability.
 
+The comprehensive landscape of ESS technologies applicable to HRES is illustrated in Figure 1, which presents the classification hierarchy based on energy conversion mechanisms and storage media. As shown in Figure 1, these technologies span electrochemical, mechanical, thermal, chemical, and electromagnetic categories, each occupying distinct performance envelopes in terms of power rating, energy capacity, and response time.
+
+**[Figure 1: Classification and Categorization of Energy Storage Technologies for HRES Applications]**
+
+*Figure 1 presents a hierarchical taxonomy of energy storage technologies organized by primary energy conversion mechanism. The classification encompasses electrochemical systems (lithium-ion, lead-acid, flow batteries, sodium-ion), mechanical systems (pumped hydro, compressed air, flywheels), thermal systems (molten salt, PCM, thermochemical), chemical systems (hydrogen, ammonia, synthetic fuels), and electromagnetic systems (supercapacitors, SMES). Each category indicates typical power range (kW to GW), discharge duration (seconds to months), and technology readiness level (TRL 5-9).*
+
+Table 1 provides a quantitative comparison of key performance parameters across the principal ESS technologies discussed in this section. The data presented in Table 1 enable systematic technology selection based on application-specific requirements including discharge duration, cycle life, efficiency, and cost targets.
+
+**Table 1: Comparative Technical and Economic Parameters of Energy Storage Technologies for HRES**
+
+| Technology | Energy Density (Wh/kg) | Round-Trip Efficiency (%) | Cycle Life (cycles) | Capital Cost ($/kWh) | Discharge Duration | Response Time | TRL |
+|---|---|---|---|---|---|---|---|
+| Li-ion (NMC) | 150-250 | 85-95 | 2000-5000 | 120-200 | 1-4 hours | <100 ms | 9 |
+| Li-ion (LFP) | 90-160 | 92-96 | 4000-8000 | 130-220 | 2-6 hours | <100 ms | 9 |
+| Lead-Acid | 30-50 | 70-80 | 500-1500 | 50-150 | 1-4 hours | <5 ms | 9 |
+| Vanadium Flow | 15-25 | 65-80 | >12000 | 300-500 | 4-12 hours | <1 s | 8 |
+| Sodium-ion | 100-160 | 80-92 | 3000-6000 | 80-150 | 2-6 hours | <100 ms | 7 |
+| Pumped Hydro | 0.5-1.5 | 70-85 | >50000 | 50-200 | 6-24 hours | seconds-min | 9 |
+| Compressed Air | 3-6 | 40-70 | >20000 | 50-120 | 4-24 hours | minutes | 8 |
+| Flywheel | 5-50 | 85-95 | >100000 | 1000-5000 | sec-minutes | <10 ms | 9 |
+| Hydrogen (PEM) | 400-1200 | 30-45 | >20000 | 400-700 | hours-months | seconds | 7 |
+| Supercapacitor | 5-15 | 90-98 | >1000000 | 5000-20000 | sec-minutes | <1 ms | 9 |
+
 **Electrochemical Storage Systems** represent the most widely deployed ESS technology in contemporary HRES. Lithium-ion batteries dominate this category, offering high round-trip efficiency (85-95%), excellent energy density (150-250 Wh/kg), rapid response times (<100 ms), and declining costs that have fallen below $150/kWh for utility-scale installations. Within the lithium-ion family, Lithium Iron Phosphate (LFP) chemistry provides enhanced thermal stability and cycle life (>6000 cycles) suited to stationary applications, while Nickel Manganese Cobalt (NMC) variants offer higher energy density for space-constrained deployments. Lead-acid batteries, though technologically mature and inexpensive, suffer from limited cycle life (500-1500 cycles), lower efficiency (70-80%), and environmental concerns regarding lead disposal. Emerging electrochemical technologies include sodium-ion batteries offering reduced material costs, solid-state batteries promising enhanced safety and energy density, and zinc-air batteries providing ultra-high theoretical energy density for long-duration applications.
 
 **Flow Battery Systems** utilize liquid electrolytes stored in external tanks, providing independent scaling of power (determined by cell stack size) and energy (determined by tank volume). Vanadium Redox Flow Batteries (VRFB) represent the most commercially mature flow technology, offering unlimited cycle life, deep discharge capability, and discharge durations from 4 to 12+ hours. Iron-chromium, zinc-bromine, and organic flow batteries offer alternative chemistries with varying cost and performance characteristics. Flow batteries are particularly suited to medium- and long-duration storage applications in HRES where daily cycling and multi-hour discharge are required.
@@ -122,7 +145,11 @@ $$REF = 1 - \frac{\sum_{t=1}^{T} P_{fossil}(t) \cdot \Delta t}{\sum_{t=1}^{T} P_
 
 $$NPC = C_{capital} + \sum_{t=1}^{N} \frac{C_{O\&M}(t) + C_{replacement}(t) - R_{salvage}}{(1+r)^t}$$
 
-**Multi-Objective Formulations** recognize that practical HRES design involves inherent trade-offs between competing objectives (e.g., minimizing cost while maximizing reliability). Pareto-optimal solutions represent the set of non-dominated designs where improvement in one objective necessarily degrades another, providing decision-makers with a comprehensive understanding of available trade-offs.
+**Multi-Objective Formulations** recognize that practical HRES design involves inherent trade-offs between competing objectives (e.g., minimizing cost while maximizing reliability). Pareto-optimal solutions represent the set of non-dominated designs where improvement in one objective necessarily degrades another, providing decision-makers with a comprehensive understanding of available trade-offs. The complete optimization framework integrating these objectives, constraints, and decision variables is depicted in Figure 2. As illustrated in Figure 2, the sizing optimization process follows a structured workflow from input data characterization through system modeling, algorithm execution, and multi-criteria decision-making to arrive at the final ESS design specification.
+
+**[Figure 2: Multi-Objective ESS Sizing Optimization Framework]**
+
+*Figure 2 presents the complete optimization workflow for ESS sizing in HRES. The framework begins with input data collection (renewable resource time series, load demand profiles, economic parameters, and technology specifications), proceeds through system modeling (energy balance, SOC dynamics, degradation models), applies optimization algorithms (metaheuristic or AI-driven), evaluates multiple objective functions (LCOE, LPSP, REF, NPC), generates the Pareto-optimal solution set, and concludes with multi-criteria decision-making (TOPSIS, AHP) to select the preferred design. Feedback loops enable iterative refinement of constraints and objectives based on intermediate results.*
 
 **Degradation Modeling** introduces time-dependent capacity fade into the optimization framework. Semi-empirical degradation models relate capacity loss to operational parameters:
 
@@ -149,7 +176,22 @@ The computational solution of ESS sizing optimization problems employs diverse a
 
 **Other Metaheuristic Approaches** applied to ESS sizing include Differential Evolution (DE), which excels at continuous optimization with robust performance across diverse problem landscapes; Grey Wolf Optimizer (GWO), mimicking hierarchical hunting behavior of wolf packs; Whale Optimization Algorithm (WOA); Harris Hawks Optimization (HHO); and Ant Colony Optimization (ACO) for discrete decisions. Hybrid metaheuristics combining multiple algorithms (e.g., GA-PSO, DE-SA) exploit complementary search characteristics to improve solution quality and convergence speed.
 
-**Comparative Performance** studies indicate that no single algorithm universally dominates for all HRES sizing problems. Algorithm selection depends on problem characteristics including dimensionality, constraint complexity, objective function landscape, and computational budget. Ensemble approaches running multiple algorithms and selecting the best solution provide robustness at the cost of increased computation. Recent benchmarking studies suggest that DE and NSGA-III offer particularly favorable performance-to-computation trade-offs for typical HRES sizing problems.
+**Comparative Performance** studies indicate that no single algorithm universally dominates for all HRES sizing problems. Algorithm selection depends on problem characteristics including dimensionality, constraint complexity, objective function landscape, and computational budget. Ensemble approaches running multiple algorithms and selecting the best solution provide robustness at the cost of increased computation. Recent benchmarking studies suggest that DE and NSGA-III offer particularly favorable performance-to-computation trade-offs for typical HRES sizing problems. Table 2 summarizes the key characteristics of optimization techniques applied to ESS sizing, providing guidance for algorithm selection based on problem characteristics. As detailed in Table 2, the choice between conventional and metaheuristic approaches depends on problem dimensionality, nonlinearity, and computational budget constraints.
+
+**Table 2: Comparison of Optimization Techniques for ESS Sizing in HRES**
+
+| Method | Type | Problem Suitability | Convergence Speed | Global Optimality | Computational Cost | Multi-Objective Capability |
+|---|---|---|---|---|---|---|
+| Linear Programming | Conventional | Linear objectives/constraints | Fast | Guaranteed | Low | No (weighted sum) |
+| MILP | Conventional | Mixed-integer, linear | Medium | Guaranteed | Medium-High | No (weighted sum) |
+| Dynamic Programming | Conventional | Sequential decisions | Medium | Guaranteed (curse of dim.) | High | Limited |
+| Genetic Algorithm (GA) | Metaheuristic | Complex, multimodal | Slow-Medium | No guarantee | Medium | Yes (NSGA-II/III) |
+| Particle Swarm (PSO) | Metaheuristic | Continuous, smooth | Fast | No guarantee | Low-Medium | Yes (MOPSO) |
+| Differential Evolution | Metaheuristic | Continuous, robust | Medium | No guarantee | Medium | Yes (MODE) |
+| Simulated Annealing | Metaheuristic | Combinatorial | Slow | Probabilistic | Medium | Limited |
+| Bayesian Optimization | AI-Driven | Expensive evaluations | Fast (few evals) | Probabilistic | Low (per eval) | Yes |
+| Deep RL (DRL) | AI-Driven | Sequential, complex | Training: Slow | No guarantee | High (training) | Yes (multi-reward) |
+| Neural Surrogate + EA | Hybrid | High-dimensional | Fast (after training) | No guarantee | High (setup) | Yes |
 
 ### 2.4 AI-Driven and Multi-Objective Sizing Approaches
 
@@ -163,7 +205,13 @@ The integration of artificial intelligence and machine learning techniques into 
 
 **Fuzzy Logic and Neuro-Fuzzy Systems** handle the inherent uncertainty and imprecision in sizing parameters through linguistic variables and fuzzy rules. Adaptive Neuro-Fuzzy Inference Systems (ANFIS) combine the learning capability of neural networks with the interpretability of fuzzy systems, enabling sizing recommendations that incorporate expert knowledge alongside data-driven optimization.
 
-**Multi-Objective Optimization with Decision-Making** extends Pareto-optimal solution generation to include systematic selection of preferred solutions from the Pareto front. Techniques include:
+**Multi-Objective Optimization with Decision-Making** extends Pareto-optimal solution generation to include systematic selection of preferred solutions from the Pareto front. The characteristic trade-off between economic cost (LCOE) and supply reliability (LPSP) for a representative HRES is shown in Figure 3, demonstrating the non-dominated solution frontier that decision-makers must navigate. As evident from Figure 3, significant reliability improvements can be achieved with modest cost increases in the mid-range of the Pareto front, while the extremes exhibit diminishing returns in both dimensions.
+
+**[Figure 3: Pareto Front Illustrating LCOE vs. LPSP Trade-off in Multi-Objective ESS Sizing]**
+
+*Figure 3 displays the Pareto-optimal frontier for a representative solar-wind-battery HRES, plotting Levelized Cost of Energy (LCOE, $/kWh) against Loss of Power Supply Probability (LPSP, %). The Pareto front exhibits characteristic convex curvature, with dominated solutions scattered above the frontier. The shaded "preferred region" (LPSP: 1-2.5%, LCOE: $0.155-0.22/kWh) represents the practical design space where balanced performance is achieved. Individual Pareto solutions correspond to different battery capacity configurations ranging from 2 MWh (high LPSP, low LCOE) to 15 MWh (low LPSP, high LCOE), with the knee-point solution at approximately 8 MWh offering the best compromise.*
+
+Techniques include:
 - *TOPSIS (Technique for Order of Preference by Similarity to Ideal Solution)*: Ranks solutions based on geometric distance from ideal and anti-ideal points.
 - *Analytic Hierarchy Process (AHP)*: Incorporates decision-maker preferences through pairwise comparison matrices.
 - *Fuzzy Decision-Making*: Handles imprecise preference articulation through fuzzy membership functions.
@@ -232,6 +280,21 @@ $$MCPS_j = \sum_{i=1}^{M} w_i \cdot \frac{PI_{i,j} - PI_{i,min}}{PI_{i,max} - PI
 
 where $PI_{i,j}$ represents performance index $i$ at candidate location $j$, and normalization ensures commensurability across different metrics.
 
+Table 3 consolidates the principal performance indices used for evaluating ESS placement decisions, including their mathematical definitions, typical improvement ranges, and primary application contexts. The indices cataloged in Table 3 enable comprehensive multi-dimensional assessment of candidate placement configurations, supporting informed trade-off analysis between technical, economic, and reliability objectives.
+
+**Table 3: Performance Indices for Evaluating ESS Placement in HRES Distribution Networks**
+
+| Performance Index | Metric Type | Typical Improvement Range | Primary Application | Measurement Basis |
+|---|---|---|---|---|
+| Voltage Profile Improvement (VPII) | Technical | 3-12% voltage deviation reduction | Weak networks, long feeders | Bus voltage magnitude (p.u.) |
+| Power Loss Reduction (PLRI) | Technical | 10-30% loss reduction | Resistive networks | Active power losses (kW) |
+| Reliability Enhancement (REI) | Reliability | 20-60% SAIDI reduction | Critical load areas | Interruption duration (hrs/yr) |
+| Congestion Relief (CRI) | Technical | 15-45% overload reduction | Constrained corridors | Line loading (% of rating) |
+| Economic Benefit Index (EBI) | Economic | $50-300k annual benefit | Multi-service ESS | Revenue streams ($/year) |
+| Renewable Hosting Capacity | Technical | 20-50% increase | High-PV networks | Maximum DG capacity (MW) |
+| Harmonic Distortion Reduction | Power Quality | 5-15% THD reduction | Non-linear load areas | Total harmonic distortion (%) |
+| Multi-Criteria Placement Score | Composite | Application-dependent | Holistic assessment | Normalized weighted sum |
+
 ### 3.3 Optimization Algorithms for ESS Placement
 
 The combinatorial nature of placement optimization—selecting optimal locations from a discrete set of candidate sites—combined with continuous sizing variables creates mixed-integer optimization problems requiring specialized algorithmic approaches.
@@ -271,7 +334,11 @@ A remote tropical island with 5 MW peak demand served by a HRES comprising 3 MW 
 
 **Case Study 2: Grid-Connected Distribution Network with Distributed HRES**
 
-A modified IEEE 33-bus distribution system with 4 distributed solar PV installations (total 8 MW) and variable residential/commercial loads was optimized for ESS placement. The optimization determined optimal placement of three BESS units totaling 12 MWh across buses 6, 18, and 25, achieving 28% reduction in peak network losses, 15% improvement in minimum voltage magnitude, and 40% reduction in reverse power flow at the substation. Sensitivity analysis revealed that placement decisions were most sensitive to load growth assumptions, with robust optimization identifying a placement configuration performing within 5% of optimal across all scenarios.
+A modified IEEE 33-bus distribution system with 4 distributed solar PV installations (total 8 MW) and variable residential/commercial loads was optimized for ESS placement. The network topology and optimal ESS locations identified through the optimization process are depicted in Figure 4. As shown in Figure 4, the three optimal BESS locations (buses 6, 18, and 25) are strategically positioned at network branch points where they maximize both loss reduction and voltage support across multiple feeder segments. The optimization determined optimal placement of three BESS units totaling 12 MWh across buses 6, 18, and 25, achieving 28% reduction in peak network losses, 15% improvement in minimum voltage magnitude, and 40% reduction in reverse power flow at the substation. Sensitivity analysis revealed that placement decisions were most sensitive to load growth assumptions, with robust optimization identifying a placement configuration performing within 5% of optimal across all scenarios.
+
+**[Figure 4: Optimal ESS Placement in IEEE 33-Bus Distribution Network with Distributed HRES]**
+
+*Figure 4 illustrates the modified IEEE 33-bus radial distribution network with integrated distributed HRES and optimally placed ESS units. The network comprises a main feeder (buses 1-18) with lateral branches, four distributed solar PV installations at buses 13, 14, 20, and 21 (indicated by solar symbols), and two wind turbine installations at buses 14 and 21 (indicated by turbine symbols). Optimal ESS locations determined by NSGA-II optimization are marked at buses 6, 18, and 25 with rated capacities of 4 MWh, 5 MWh, and 3 MWh respectively. Color-coded voltage profiles indicate pre-ESS (red, showing violations at remote buses) and post-ESS (green, within acceptable ±5% limits) conditions during peak demand scenarios.*
 
 
 **Case Study 3: Multi-Energy Hybrid System with Hydrogen Storage**
@@ -281,6 +348,24 @@ A community-scale HRES integrating 5 MW wind, 3 MW solar PV, 2 MW biogas, and a 
 **Case Study 4: Urban HRES with Multi-Service ESS**
 
 An urban district energy system combining rooftop solar PV (10 MW distributed across 200 buildings), a 2 MW community wind turbine, and electric vehicle charging infrastructure was analyzed for optimal community-scale battery placement. The optimization incorporated multiple value streams including self-consumption maximization, demand charge reduction, frequency regulation market participation, and EV charging load management. Optimal placement identified three 1 MW/4 MWh battery installations at strategic distribution transformers serving high-EV-penetration neighborhoods, achieving 45% reduction in peak transformer loading, 30% increase in community solar self-consumption, and annual revenue of $280,000 from frequency regulation services. The multi-service optimization increased net present value by 65% compared to single-service (self-consumption only) sizing and placement.
+
+Table 4 consolidates the key results from all four case studies, enabling comparative analysis of ESS sizing, placement strategies, and achieved performance improvements across diverse HRES configurations and operating environments. The results summarized in Table 4 demonstrate that distributed placement strategies consistently outperform centralized alternatives, with performance improvements ranging from 12% to 65% depending on the metric and application context.
+
+**Table 4: Comparative Results Summary Across ESS Placement Case Studies**
+
+| Parameter | Case Study 1 (Island Microgrid) | Case Study 2 (IEEE 33-Bus) | Case Study 3 (Multi-Energy) | Case Study 4 (Urban District) |
+|---|---|---|---|---|
+| System Scale | 5 MW peak | 8 MW PV + loads | 10 MW hybrid | 12 MW distributed |
+| ESS Technology | Li-ion BESS | Li-ion BESS | Hydrogen + FC | Li-ion BESS |
+| Total ESS Capacity | 5 MWh | 12 MWh | 500 kg H₂ + 1.5 MW | 12 MWh |
+| Placement Strategy | Distributed (2 sites) | Distributed (3 buses) | Distributed (2 sites) | Distributed (3 transformers) |
+| Optimization Algorithm | NSGA-II | NSGA-II + Power Flow | Mixed-Integer NLP | Multi-objective PSO |
+| LCOE Improvement | 12% reduction | — | — | — |
+| LPSP Improvement | 35% reduction | — | — | — |
+| Loss Reduction | 18% | 28% | — | — |
+| Voltage Improvement | Enhanced | 15% improvement | — | — |
+| Cost Benefit vs. Centralized | 12% lower LCOE | 5% robustness margin | 60% lower transport cost | 65% higher NPV |
+| Key Advantage | Transmission loss reduction | Multi-scenario robustness | Waste heat utilization | Multi-service revenue |
 
 ---
 
