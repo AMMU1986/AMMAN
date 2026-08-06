@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="550" viewBox="0 0 900 550">
+<title>Digital Twin Architecture</title>
+<defs>
+  <style>
+    .title { font: bold 16px Arial, sans-serif; fill: #1a1a2e; }
+    .label { font: 12px Arial, sans-serif; fill: #333; }
+    .axis-label { font: bold 13px Arial, sans-serif; fill: #333; }
+    .legend { font: 12px Arial, sans-serif; fill: #333; }
+    .small { font: 10px Arial, sans-serif; fill: #555; }
+  </style>
+</defs>
+<rect width="900" height="550" fill="white"/>
+<text x="450" y="30" class="title" text-anchor="middle">Figure 6: Digital Twin and IoT Architecture for Intelligent ESS Management</text>
+<rect x="30" y="60" width="840" height="120" rx="10" fill="#e8f4f8" stroke="#457b9d" stroke-width="1.5"/>
+<text x="60" y="82" class="axis-label" fill="#264653">Physical Layer</text>
+<rect x="75" y="108" width="90" height="44" rx="6" fill="#457b9d" fill-opacity="0.2" stroke="#457b9d"/>
+<text x="120" y="126.5" class="small" text-anchor="middle">Solar PV</text>
+<text x="120" y="139.5" class="small" text-anchor="middle">Array</text>
+<rect x="215" y="108" width="90" height="44" rx="6" fill="#457b9d" fill-opacity="0.2" stroke="#457b9d"/>
+<text x="260" y="126.5" class="small" text-anchor="middle">Wind</text>
+<text x="260" y="139.5" class="small" text-anchor="middle">Turbines</text>
+<rect x="355" y="108" width="90" height="44" rx="6" fill="#457b9d" fill-opacity="0.2" stroke="#457b9d"/>
+<text x="400" y="126.5" class="small" text-anchor="middle">Battery</text>
+<text x="400" y="139.5" class="small" text-anchor="middle">ESS</text>
+<rect x="495" y="108" width="90" height="44" rx="6" fill="#457b9d" fill-opacity="0.2" stroke="#457b9d"/>
+<text x="540" y="126.5" class="small" text-anchor="middle">Power</text>
+<text x="540" y="139.5" class="small" text-anchor="middle">Electronics</text>
+<rect x="635" y="108" width="90" height="44" rx="6" fill="#457b9d" fill-opacity="0.2" stroke="#457b9d"/>
+<text x="680" y="126.5" class="small" text-anchor="middle">Load</text>
+<text x="680" y="139.5" class="small" text-anchor="middle">Centers</text>
+<rect x="755" y="108" width="90" height="44" rx="6" fill="#457b9d" fill-opacity="0.2" stroke="#457b9d"/>
+<text x="800" y="126.5" class="small" text-anchor="middle">Grid</text>
+<text x="800" y="139.5" class="small" text-anchor="middle">Connection</text>
+<rect x="30" y="200" width="840" height="80" rx="10" fill="#fff3e0" stroke="#e9c46a" stroke-width="1.5"/>
+<text x="60" y="222" class="axis-label" fill="#e76f51">IoT & Communication Layer</text>
+<text x="150" y="247" class="small" text-anchor="middle">Sensors &</text>
+<text x="150" y="260" class="small" text-anchor="middle">Meters</text>
+<text x="310" y="247" class="small" text-anchor="middle">Edge</text>
+<text x="310" y="260" class="small" text-anchor="middle">Computing</text>
+<text x="470" y="247" class="small" text-anchor="middle">MQTT/OPC-UA</text>
+<text x="470" y="260" class="small" text-anchor="middle">Protocols</text>
+<text x="630" y="247" class="small" text-anchor="middle">5G/WiFi</text>
+<text x="630" y="260" class="small" text-anchor="middle">Network</text>
+<text x="790" y="247" class="small" text-anchor="middle">Data</text>
+<text x="790" y="260" class="small" text-anchor="middle">Aggregation</text>
+<rect x="30" y="300" width="840" height="120" rx="10" fill="#e8f8e8" stroke="#2a9d8f" stroke-width="1.5"/>
+<text x="60" y="322" class="axis-label" fill="#264653">Digital Twin Layer</text>
+<rect x="95" y="343" width="110" height="44" rx="6" fill="#2a9d8f" fill-opacity="0.2" stroke="#2a9d8f"/>
+<text x="150" y="361.5" class="small" text-anchor="middle">Electrochemical</text>
+<text x="150" y="374.5" class="small" text-anchor="middle">Model</text>
+<rect x="255" y="343" width="110" height="44" rx="6" fill="#2a9d8f" fill-opacity="0.2" stroke="#2a9d8f"/>
+<text x="310" y="361.5" class="small" text-anchor="middle">Thermal</text>
+<text x="310" y="374.5" class="small" text-anchor="middle">Model</text>
+<rect x="415" y="343" width="110" height="44" rx="6" fill="#2a9d8f" fill-opacity="0.2" stroke="#2a9d8f"/>
+<text x="470" y="361.5" class="small" text-anchor="middle">Degradation</text>
+<text x="470" y="374.5" class="small" text-anchor="middle">Model</text>
+<rect x="575" y="343" width="110" height="44" rx="6" fill="#2a9d8f" fill-opacity="0.2" stroke="#2a9d8f"/>
+<text x="630" y="361.5" class="small" text-anchor="middle">Power Flow</text>
+<text x="630" y="374.5" class="small" text-anchor="middle">Simulation</text>
+<rect x="735" y="343" width="110" height="44" rx="6" fill="#2a9d8f" fill-opacity="0.2" stroke="#2a9d8f"/>
+<text x="790" y="361.5" class="small" text-anchor="middle">State</text>
+<text x="790" y="374.5" class="small" text-anchor="middle">Estimation</text>
+<rect x="30" y="440" width="840" height="90" rx="10" fill="#f3e8ff" stroke="#8338ec" stroke-width="1.5"/>
+<text x="60" y="462" class="axis-label" fill="#8338ec">Intelligence & Decision Layer</text>
+<rect x="95" y="475" width="110" height="40" rx="6" fill="#8338ec" fill-opacity="0.15" stroke="#8338ec"/>
+<text x="150" y="490.5" class="small" text-anchor="middle">Predictive</text>
+<text x="150" y="503.5" class="small" text-anchor="middle">Maintenance</text>
+<rect x="265" y="475" width="110" height="40" rx="6" fill="#8338ec" fill-opacity="0.15" stroke="#8338ec"/>
+<text x="320" y="490.5" class="small" text-anchor="middle">Optimal</text>
+<text x="320" y="503.5" class="small" text-anchor="middle">Dispatch (MPC)</text>
+<rect x="435" y="475" width="110" height="40" rx="6" fill="#8338ec" fill-opacity="0.15" stroke="#8338ec"/>
+<text x="490" y="490.5" class="small" text-anchor="middle">SOH/RUL</text>
+<text x="490" y="503.5" class="small" text-anchor="middle">Prediction</text>
+<rect x="595" y="475" width="110" height="40" rx="6" fill="#8338ec" fill-opacity="0.15" stroke="#8338ec"/>
+<text x="650" y="490.5" class="small" text-anchor="middle">Anomaly</text>
+<text x="650" y="503.5" class="small" text-anchor="middle">Detection</text>
+<rect x="745" y="475" width="110" height="40" rx="6" fill="#8338ec" fill-opacity="0.15" stroke="#8338ec"/>
+<text x="800" y="490.5" class="small" text-anchor="middle">Fleet</text>
+<text x="800" y="503.5" class="small" text-anchor="middle">Management</text>
+<line x1="200" y1="180" x2="200" y2="200" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="200" y1="280" x2="200" y2="300" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="200" y1="420" x2="200" y2="440" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="400" y1="180" x2="400" y2="200" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="400" y1="280" x2="400" y2="300" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="400" y1="420" x2="400" y2="440" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="600" y1="180" x2="600" y2="200" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="600" y1="280" x2="600" y2="300" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="600" y1="420" x2="600" y2="440" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="750" y1="180" x2="750" y2="200" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="750" y1="280" x2="750" y2="300" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<line x1="750" y1="420" x2="750" y2="440" stroke="#888" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+<defs><marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#888"/></marker></defs>
+</svg>
