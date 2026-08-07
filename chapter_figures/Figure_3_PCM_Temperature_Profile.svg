@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" font-family="Arial, sans-serif">
+  <!-- Title -->
+  <text x="350" y="28" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Figure 3: Temperature Profile During PCM Charging and Discharging</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="50" x2="80" y2="360" stroke="#333" stroke-width="2"/>
+  <line x1="80" y1="360" x2="660" y2="360" stroke="#333" stroke-width="2"/>
+
+  <!-- Y-axis label -->
+  <text x="25" y="205" text-anchor="middle" font-size="12" fill="#333" transform="rotate(-90, 25, 205)">Temperature (°C)</text>
+
+  <!-- X-axis label -->
+  <text x="370" y="395" text-anchor="middle" font-size="12" fill="#333">Time</text>
+
+  <!-- Y-axis tick labels -->
+  <text x="70" y="345" text-anchor="end" font-size="10" fill="#555">T₁</text>
+  <text x="70" y="210" text-anchor="end" font-size="10" fill="#555">T_m</text>
+  <text x="70" y="80" text-anchor="end" font-size="10" fill="#555">T₂</text>
+
+  <!-- Melting temperature line (dashed) -->
+  <line x1="80" y1="205" x2="660" y2="205" stroke="#E74C3C" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="670" y="209" font-size="10" fill="#E74C3C">Melting Point</text>
+
+  <!-- CHARGING CURVE -->
+  <!-- Sensible heating (solid) -->
+  <path d="M 100,340 C 130,320 150,280 170,240" fill="none" stroke="#2980B9" stroke-width="3"/>
+  <!-- Latent heat (plateau) -->
+  <path d="M 170,240 C 190,220 240,210 310,208" fill="none" stroke="#2980B9" stroke-width="3"/>
+  <!-- Sensible heating (liquid) -->
+  <path d="M 310,208 C 330,180 350,130 380,90" fill="none" stroke="#2980B9" stroke-width="3"/>
+
+  <!-- DISCHARGING CURVE -->
+  <!-- Sensible cooling (liquid) -->
+  <path d="M 400,90 C 420,130 440,170 460,200" fill="none" stroke="#E74C3C" stroke-width="3"/>
+  <!-- Latent heat release (plateau) -->
+  <path d="M 460,200 C 490,208 540,210 580,215" fill="none" stroke="#E74C3C" stroke-width="3"/>
+  <!-- Sensible cooling (solid) -->
+  <path d="M 580,215 C 600,260 620,310 640,340" fill="none" stroke="#E74C3C" stroke-width="3"/>
+
+  <!-- Phase labels -->
+  <!-- Charging -->
+  <text x="135" y="310" text-anchor="middle" font-size="10" fill="#2980B9" font-weight="bold">Sensible</text>
+  <text x="135" y="322" text-anchor="middle" font-size="10" fill="#2980B9" font-weight="bold">(Solid)</text>
+
+  <text x="240" y="240" text-anchor="middle" font-size="10" fill="#2980B9" font-weight="bold">Latent Heat</text>
+  <text x="240" y="253" text-anchor="middle" font-size="10" fill="#2980B9" font-weight="bold">Absorption</text>
+
+  <text x="350" y="130" text-anchor="middle" font-size="10" fill="#2980B9" font-weight="bold">Sensible</text>
+  <text x="350" y="142" text-anchor="middle" font-size="10" fill="#2980B9" font-weight="bold">(Liquid)</text>
+
+  <!-- Discharging -->
+  <text x="430" y="130" text-anchor="middle" font-size="10" fill="#E74C3C" font-weight="bold">Sensible</text>
+  <text x="430" y="142" text-anchor="middle" font-size="10" fill="#E74C3C" font-weight="bold">(Liquid)</text>
+
+  <text x="520" y="240" text-anchor="middle" font-size="10" fill="#E74C3C" font-weight="bold">Latent Heat</text>
+  <text x="520" y="253" text-anchor="middle" font-size="10" fill="#E74C3C" font-weight="bold">Release</text>
+
+  <text x="620" y="310" text-anchor="middle" font-size="10" fill="#E74C3C" font-weight="bold">Sensible</text>
+  <text x="620" y="322" text-anchor="middle" font-size="10" fill="#E74C3C" font-weight="bold">(Solid)</text>
+
+  <!-- Legend -->
+  <rect x="250" y="403" width="200" height="16" fill="none"/>
+  <line x1="260" y1="411" x2="290" y2="411" stroke="#2980B9" stroke-width="3"/>
+  <text x="295" y="415" font-size="11" fill="#333">Charging (Melting)</text>
+  <line x1="410" y1="411" x2="440" y2="411" stroke="#E74C3C" stroke-width="3"/>
+  <text x="445" y="415" font-size="11" fill="#333">Discharging (Solidification)</text>
+
+  <!-- Arrows indicating energy storage -->
+  <path d="M 240,180 L 240,170 L 248,175 Z" fill="#2980B9"/>
+  <text x="260" y="175" font-size="9" fill="#2980B9">Energy Stored</text>
+
+  <path d="M 520,180 L 520,170 L 512,175 Z" fill="#E74C3C"/>
+  <text x="530" y="175" font-size="9" fill="#E74C3C">Energy Released</text>
+</svg>

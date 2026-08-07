@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 750 350" font-family="Arial, sans-serif">
+  <!-- Title -->
+  <text x="375" y="25" text-anchor="middle" font-size="16" font-weight="bold" fill="#333">Figure 6: Schematic of Thermal Energy Storage System – Operating Principle</text>
+
+  <!-- CHARGING Phase -->
+  <rect x="30" y="50" width="210" height="260" rx="8" fill="#EBF5FB" stroke="#2980B9" stroke-width="2"/>
+  <text x="135" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#2980B9">CHARGING</text>
+
+  <!-- Heat source (sun) -->
+  <circle cx="80" cy="120" r="22" fill="#F4D03F" stroke="#F39C12" stroke-width="2"/>
+  <line x1="80" y1="93" x2="80" y2="85" stroke="#F39C12" stroke-width="2"/>
+  <line x1="80" y1="147" x2="80" y2="155" stroke="#F39C12" stroke-width="2"/>
+  <line x1="53" y1="120" x2="45" y2="120" stroke="#F39C12" stroke-width="2"/>
+  <line x1="107" y1="120" x2="115" y2="120" stroke="#F39C12" stroke-width="2"/>
+  <text x="80" y="170" text-anchor="middle" font-size="9" fill="#333">Heat Source</text>
+
+  <!-- Arrow to PCM -->
+  <path d="M 115,120 L 150,120" fill="none" stroke="#E74C3C" stroke-width="2" marker-end="url(#arrowRed)"/>
+  <defs>
+    <marker id="arrowRed" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#E74C3C"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2980B9"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#27AE60"/>
+    </marker>
+  </defs>
+
+  <!-- PCM Storage (charging) -->
+  <rect x="155" y="100" width="70" height="45" rx="4" fill="#E74C3C" stroke="#B03A2E" stroke-width="2"/>
+  <text x="190" y="118" text-anchor="middle" font-size="9" fill="white" font-weight="bold">PCM</text>
+  <text x="190" y="132" text-anchor="middle" font-size="8" fill="white">Solid→Liquid</text>
+
+  <!-- Charging description -->
+  <text x="135" y="195" text-anchor="middle" font-size="10" fill="#333">Heat absorbed by PCM</text>
+  <text x="135" y="210" text-anchor="middle" font-size="10" fill="#333">at constant temperature</text>
+  <text x="135" y="230" text-anchor="middle" font-size="10" fill="#333">PCM melts (solid→liquid)</text>
+  <text x="135" y="250" text-anchor="middle" font-size="10" fill="#E74C3C" font-weight="bold">Energy IN = Latent Heat</text>
+
+  <!-- Energy stored indicator -->
+  <rect x="65" y="270" width="140" height="25" rx="4" fill="#FADBD8" stroke="#E74C3C" stroke-width="1"/>
+  <text x="135" y="287" text-anchor="middle" font-size="10" fill="#922B21">Q = m × ΔH_fusion</text>
+
+  <!-- STORING Phase -->
+  <rect x="270" y="50" width="210" height="260" rx="8" fill="#FEF9E7" stroke="#F39C12" stroke-width="2"/>
+  <text x="375" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#F39C12">STORING</text>
+
+  <!-- Insulated container -->
+  <rect x="320" y="100" width="110" height="70" rx="6" fill="#FDEBD0" stroke="#F39C12" stroke-width="2"/>
+  <rect x="335" y="110" width="80" height="50" rx="3" fill="#F5B041" stroke="#D68910" stroke-width="1.5"/>
+  <text x="375" y="132" text-anchor="middle" font-size="9" fill="white" font-weight="bold">PCM</text>
+  <text x="375" y="148" text-anchor="middle" font-size="8" fill="white">(Liquid)</text>
+
+  <!-- Insulation label -->
+  <text x="375" y="185" text-anchor="middle" font-size="9" fill="#333">Insulated Container</text>
+
+  <!-- Storing description -->
+  <text x="375" y="210" text-anchor="middle" font-size="10" fill="#333">Energy maintained with</text>
+  <text x="375" y="225" text-anchor="middle" font-size="10" fill="#333">minimal thermal losses</text>
+  <text x="375" y="245" text-anchor="middle" font-size="10" fill="#333">PCM remains in liquid</text>
+  <text x="375" y="260" text-anchor="middle" font-size="10" fill="#333">state (above T_m)</text>
+
+  <rect x="305" y="270" width="140" height="25" rx="4" fill="#FEF9E7" stroke="#F39C12" stroke-width="1"/>
+  <text x="375" y="287" text-anchor="middle" font-size="10" fill="#7D6608">Minimal loss over time</text>
+
+  <!-- DISCHARGING Phase -->
+  <rect x="510" y="50" width="210" height="260" rx="8" fill="#EAFAF1" stroke="#27AE60" stroke-width="2"/>
+  <text x="615" y="75" text-anchor="middle" font-size="13" font-weight="bold" fill="#27AE60">DISCHARGING</text>
+
+  <!-- PCM Storage (discharging) -->
+  <rect x="555" y="100" width="70" height="45" rx="4" fill="#27AE60" stroke="#1E8449" stroke-width="2"/>
+  <text x="590" y="118" text-anchor="middle" font-size="9" fill="white" font-weight="bold">PCM</text>
+  <text x="590" y="132" text-anchor="middle" font-size="8" fill="white">Liquid→Solid</text>
+
+  <!-- Arrow from PCM -->
+  <path d="M 625,120 L 660,120" fill="none" stroke="#27AE60" stroke-width="2" marker-end="url(#arrowGreen)"/>
+
+  <!-- Load (building) -->
+  <rect x="665" y="105" width="40" height="35" rx="2" fill="#A9DFBF" stroke="#27AE60" stroke-width="2"/>
+  <rect x="672" y="112" width="10" height="12" fill="#D5F5E3"/>
+  <rect x="688" y="112" width="10" height="12" fill="#D5F5E3"/>
+  <rect x="679" y="127" width="12" height="13" fill="#D5F5E3"/>
+  <text x="685" y="155" text-anchor="middle" font-size="9" fill="#333">Load</text>
+
+  <!-- Discharging description -->
+  <text x="615" y="195" text-anchor="middle" font-size="10" fill="#333">Heat released to load</text>
+  <text x="615" y="210" text-anchor="middle" font-size="10" fill="#333">at constant temperature</text>
+  <text x="615" y="230" text-anchor="middle" font-size="10" fill="#333">PCM solidifies</text>
+  <text x="615" y="250" text-anchor="middle" font-size="10" fill="#27AE60" font-weight="bold">Energy OUT = Latent Heat</text>
+
+  <rect x="545" y="270" width="140" height="25" rx="4" fill="#D5F5E3" stroke="#27AE60" stroke-width="1"/>
+  <text x="615" y="287" text-anchor="middle" font-size="10" fill="#1E8449">Q = m × ΔH_fusion</text>
+
+  <!-- Phase arrows -->
+  <path d="M 245,160 L 270,160" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+  <path d="M 485,160 L 510,160" fill="none" stroke="#555" stroke-width="1.5" marker-end="url(#arrowBlue)"/>
+
+  <!-- Bottom note -->
+  <text x="375" y="335" text-anchor="middle" font-size="11" fill="#555" font-style="italic">The isothermal phase transition provides high energy density storage at constant temperature</text>
+</svg>
