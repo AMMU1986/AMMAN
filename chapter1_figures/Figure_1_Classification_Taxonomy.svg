@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <style>
+
+      .title { font: bold 24px 'Arial', sans-serif; fill: #1a1a2e; }
+      .subtitle { font: 16px 'Arial', sans-serif; fill: #4a4a6a; }
+      .category-title { font: bold 16px 'Arial', sans-serif; fill: #ffffff; }
+      .item-text { font: 13px 'Arial', sans-serif; fill: #2d2d44; }
+      .item-text-sm { font: 11px 'Arial', sans-serif; fill: #4a4a6a; }
+      .connector { stroke: #6c63ff; stroke-width: 2; fill: none; }
+      .box-shadow { filter: drop-shadow(2px 3px 4px rgba(0,0,0,0.15)); }
+    </style>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#43e97b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#38f9d7;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fa709a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fee140;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#fafbff" rx="8"/>
+  <rect x="20" y="20" width="1160" height="760" fill="white" rx="6" stroke="#e8e8f0" stroke-width="1"/>
+  
+  <!-- Title -->
+  <text x="600" y="60" class="title" text-anchor="middle">Classification and Taxonomy of Rehabilitation Robots</text>
+  <text x="600" y="85" class="subtitle" text-anchor="middle">Hierarchical organization by function, structure, and deployment setting</text>
+  
+  <!-- Central Node -->
+  <rect x="450" y="110" width="300" height="50" rx="25" fill="url(#grad1)" class="box-shadow"/>
+  <text x="600" y="141" class="category-title" text-anchor="middle">REHABILITATION ROBOTS</text>
+  
+
+  <!-- Connectors from center -->
+  <line x1="500" y1="160" x2="200" y2="210" class="connector"/>
+  <line x1="600" y1="160" x2="600" y2="210" class="connector"/>
+  <line x1="700" y1="160" x2="1000" y2="210" class="connector"/>
+  
+  <!-- Category 1: By Function -->
+  <rect x="60" y="210" width="280" height="40" rx="20" fill="url(#grad2)" class="box-shadow"/>
+  <text x="200" y="236" class="category-title" text-anchor="middle">BY FUNCTION</text>
+  
+  <!-- Therapeutic Robots -->
+  <rect x="30" y="270" width="150" height="180" rx="8" fill="#fff5f7" stroke="#f5576c" stroke-width="1.5"/>
+  <text x="105" y="295" font-size="13" font-weight="bold" fill="#f5576c" text-anchor="middle">Therapeutic</text>
+  <line x1="50" y1="305" x2="160" y2="305" stroke="#f5576c" stroke-width="0.5"/>
+  <text x="105" y="325" class="item-text-sm" text-anchor="middle">Motor recovery</text>
+  <text x="105" y="345" class="item-text-sm" text-anchor="middle">Neuroplasticity</text>
+  <text x="105" y="365" class="item-text-sm" text-anchor="middle">Task-specific training</text>
+  <text x="105" y="385" class="item-text-sm" text-anchor="middle">Assist-as-needed</text>
+  <text x="105" y="405" class="item-text-sm" text-anchor="middle">Intensive repetition</text>
+  <text x="105" y="430" class="item-text-sm" text-anchor="middle" font-style="italic">e.g., MIT-Manus</text>
+  
+  <!-- Assistive Robots -->
+  <rect x="200" y="270" width="150" height="180" rx="8" fill="#fff5f7" stroke="#f5576c" stroke-width="1.5"/>
+  <text x="275" y="295" font-size="13" font-weight="bold" fill="#f5576c" text-anchor="middle">Assistive</text>
+  <line x1="220" y1="305" x2="330" y2="305" stroke="#f5576c" stroke-width="0.5"/>
+  <text x="275" y="325" class="item-text-sm" text-anchor="middle">Compensate function</text>
+  <text x="275" y="345" class="item-text-sm" text-anchor="middle">Daily living support</text>
+  <text x="275" y="365" class="item-text-sm" text-anchor="middle">Long-term use</text>
+  <text x="275" y="385" class="item-text-sm" text-anchor="middle">Independence</text>
+  <text x="275" y="405" class="item-text-sm" text-anchor="middle">Mobility aid</text>
+  <text x="275" y="430" class="item-text-sm" text-anchor="middle" font-style="italic">e.g., Smart wheelchair</text>
+  
+  <!-- Category 2: By Structure -->
+  <rect x="460" y="210" width="280" height="40" rx="20" fill="url(#grad3)" class="box-shadow"/>
+  <text x="600" y="236" class="category-title" text-anchor="middle">BY STRUCTURE</text>
+  
+
+  <!-- End-Effector -->
+  <rect x="430" y="270" width="160" height="180" rx="8" fill="#f0f9ff" stroke="#4facfe" stroke-width="1.5"/>
+  <text x="510" y="295" font-size="13" font-weight="bold" fill="#4facfe" text-anchor="middle">End-Effector</text>
+  <line x1="450" y1="305" x2="570" y2="305" stroke="#4facfe" stroke-width="0.5"/>
+  <text x="510" y="325" class="item-text-sm" text-anchor="middle">Single contact point</text>
+  <text x="510" y="345" class="item-text-sm" text-anchor="middle">Simple design</text>
+  <text x="510" y="365" class="item-text-sm" text-anchor="middle">Easy setup</text>
+  <text x="510" y="385" class="item-text-sm" text-anchor="middle">Limited joint control</text>
+  <text x="510" y="405" class="item-text-sm" text-anchor="middle">Planar movements</text>
+  <text x="510" y="430" class="item-text-sm" text-anchor="middle" font-style="italic">e.g., InMotion ARM</text>
+  
+  <!-- Exoskeleton -->
+  <rect x="610" y="270" width="160" height="180" rx="8" fill="#f0f9ff" stroke="#4facfe" stroke-width="1.5"/>
+  <text x="690" y="295" font-size="13" font-weight="bold" fill="#4facfe" text-anchor="middle">Exoskeleton</text>
+  <line x1="630" y1="305" x2="750" y2="305" stroke="#4facfe" stroke-width="0.5"/>
+  <text x="690" y="325" class="item-text-sm" text-anchor="middle">Joint alignment</text>
+  <text x="690" y="345" class="item-text-sm" text-anchor="middle">Full kinematic chain</text>
+  <text x="690" y="365" class="item-text-sm" text-anchor="middle">Precise joint control</text>
+  <text x="690" y="385" class="item-text-sm" text-anchor="middle">Complex design</text>
+  <text x="690" y="405" class="item-text-sm" text-anchor="middle">Multi-DOF support</text>
+  <text x="690" y="430" class="item-text-sm" text-anchor="middle" font-style="italic">e.g., Lokomat, HAL</text>
+  
+  <!-- Category 3: By Setting -->
+  <rect x="860" y="210" width="280" height="40" rx="20" fill="url(#grad4)" class="box-shadow"/>
+  <text x="1000" y="236" class="category-title" text-anchor="middle">BY SETTING</text>
+  
+  <!-- Clinic-Based -->
+  <rect x="840" y="270" width="150" height="180" rx="8" fill="#f0fff4" stroke="#43e97b" stroke-width="1.5"/>
+  <text x="915" y="295" font-size="13" font-weight="bold" fill="#2d8a4e" text-anchor="middle">Clinic-Based</text>
+  <line x1="860" y1="305" x2="970" y2="305" stroke="#43e97b" stroke-width="0.5"/>
+  <text x="915" y="325" class="item-text-sm" text-anchor="middle">Stationary systems</text>
+  <text x="915" y="345" class="item-text-sm" text-anchor="middle">Therapist supervised</text>
+  <text x="915" y="365" class="item-text-sm" text-anchor="middle">High precision</text>
+  <text x="915" y="385" class="item-text-sm" text-anchor="middle">Complex setups</text>
+  <text x="915" y="405" class="item-text-sm" text-anchor="middle">Controlled environ.</text>
+  <text x="915" y="430" class="item-text-sm" text-anchor="middle" font-style="italic">e.g., ARMEO Power</text>
+  
+  <!-- Home/Wearable -->
+  <rect x="1010" y="270" width="150" height="180" rx="8" fill="#f0fff4" stroke="#43e97b" stroke-width="1.5"/>
+  <text x="1085" y="295" font-size="13" font-weight="bold" fill="#2d8a4e" text-anchor="middle">Home/Wearable</text>
+  <line x1="1030" y1="305" x2="1140" y2="305" stroke="#43e97b" stroke-width="0.5"/>
+  <text x="1085" y="325" class="item-text-sm" text-anchor="middle">Portable systems</text>
+  <text x="1085" y="345" class="item-text-sm" text-anchor="middle">Self-directed use</text>
+  <text x="1085" y="365" class="item-text-sm" text-anchor="middle">Soft robotics</text>
+  <text x="1085" y="385" class="item-text-sm" text-anchor="middle">Daily integration</text>
+  <text x="1085" y="405" class="item-text-sm" text-anchor="middle">Tele-monitored</text>
+  <text x="1085" y="430" class="item-text-sm" text-anchor="middle" font-style="italic">e.g., Soft exosuit</text>
+  
+
+  <!-- Bottom section: Target Applications -->
+  <rect x="60" y="490" width="1080" height="40" rx="20" fill="url(#grad5)" class="box-shadow"/>
+  <text x="600" y="516" class="category-title" text-anchor="middle">TARGET APPLICATIONS</text>
+  
+  <!-- Application boxes -->
+  <rect x="60" y="550" width="210" height="120" rx="8" fill="#fffbf0" stroke="#fa709a" stroke-width="1.5"/>
+  <text x="165" y="575" font-size="13" font-weight="bold" fill="#d63384" text-anchor="middle">Upper Limb</text>
+  <line x1="80" y1="585" x2="250" y2="585" stroke="#fa709a" stroke-width="0.5"/>
+  <text x="165" y="605" class="item-text-sm" text-anchor="middle">Shoulder/Elbow/Wrist</text>
+  <text x="165" y="625" class="item-text-sm" text-anchor="middle">Hand/Finger dexterity</text>
+  <text x="165" y="645" class="item-text-sm" text-anchor="middle">Reaching &amp; grasping</text>
+  
+  <rect x="290" y="550" width="210" height="120" rx="8" fill="#fffbf0" stroke="#fa709a" stroke-width="1.5"/>
+  <text x="395" y="575" font-size="13" font-weight="bold" fill="#d63384" text-anchor="middle">Lower Limb</text>
+  <line x1="310" y1="585" x2="480" y2="585" stroke="#fa709a" stroke-width="0.5"/>
+  <text x="395" y="605" class="item-text-sm" text-anchor="middle">Gait training</text>
+  <text x="395" y="625" class="item-text-sm" text-anchor="middle">Balance &amp; posture</text>
+  <text x="395" y="645" class="item-text-sm" text-anchor="middle">Sit-to-stand transfer</text>
+  
+  <rect x="520" y="550" width="210" height="120" rx="8" fill="#fffbf0" stroke="#fa709a" stroke-width="1.5"/>
+  <text x="625" y="575" font-size="13" font-weight="bold" fill="#d63384" text-anchor="middle">Cognitive</text>
+  <line x1="540" y1="585" x2="710" y2="585" stroke="#fa709a" stroke-width="0.5"/>
+  <text x="625" y="605" class="item-text-sm" text-anchor="middle">Memory training</text>
+  <text x="625" y="625" class="item-text-sm" text-anchor="middle">Social interaction</text>
+  <text x="625" y="645" class="item-text-sm" text-anchor="middle">Attention &amp; exec. function</text>
+  
+  <rect x="750" y="550" width="210" height="120" rx="8" fill="#fffbf0" stroke="#fa709a" stroke-width="1.5"/>
+  <text x="855" y="575" font-size="13" font-weight="bold" fill="#d63384" text-anchor="middle">Neurological</text>
+  <line x1="770" y1="585" x2="940" y2="585" stroke="#fa709a" stroke-width="0.5"/>
+  <text x="855" y="605" class="item-text-sm" text-anchor="middle">Stroke recovery</text>
+  <text x="855" y="625" class="item-text-sm" text-anchor="middle">Spinal cord injury</text>
+  <text x="855" y="645" class="item-text-sm" text-anchor="middle">TBI &amp; Parkinson's</text>
+  
+  <!-- Connectors to applications -->
+  <line x1="200" y1="450" x2="165" y2="550" class="connector" stroke-dasharray="4,3"/>
+  <line x1="600" y1="450" x2="395" y2="550" class="connector" stroke-dasharray="4,3"/>
+  <line x1="600" y1="450" x2="625" y2="550" class="connector" stroke-dasharray="4,3"/>
+  <line x1="1000" y1="450" x2="855" y2="550" class="connector" stroke-dasharray="4,3"/>
+  
+  <!-- Legend/Note -->
+  <text x="600" y="720" font-size="11" fill="#6a6a8a" text-anchor="middle" font-style="italic">
+    Note: Many systems span multiple categories (e.g., wearable therapeutic exoskeletons for gait training)
+  </text>
+  <text x="600" y="755" font-size="12" fill="#4a4a6a" text-anchor="middle">
+    Figure 1. Classification and taxonomy of rehabilitation robots organized by function, structure, and deployment setting.
+  </text>
+</svg>

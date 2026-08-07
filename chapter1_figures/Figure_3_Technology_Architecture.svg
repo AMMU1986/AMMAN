@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 850" width="1200" height="850">
+  <defs>
+    <style>
+      .title { font: bold 22px 'Arial', sans-serif; fill: #1a1a2e; }
+      .subtitle { font: 14px 'Arial', sans-serif; fill: #4a4a6a; }
+      .layer-title { font: bold 15px 'Arial', sans-serif; fill: #ffffff; }
+      .comp-title { font: bold 12px 'Arial', sans-serif; fill: #1a1a2e; }
+      .comp-text { font: 11px 'Arial', sans-serif; fill: #4a4a6a; }
+      .arrow-text { font: italic 10px 'Arial', sans-serif; fill: #6a6a8a; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="850" fill="#fafbff" rx="8"/>
+  <rect x="20" y="20" width="1160" height="810" fill="white" rx="6" stroke="#e8e8f0" stroke-width="1"/>
+  
+  <!-- Title -->
+  <text x="600" y="55" class="title" text-anchor="middle">Technology Architecture of Modern Rehabilitation Robot Systems</text>
+  <text x="600" y="78" class="subtitle" text-anchor="middle">Multi-layered system architecture integrating hardware, software, AI, and clinical components</text>
+  
+  <!-- Layer 1: Physical/Hardware Layer -->
+  <rect x="60" y="100" width="1080" height="140" rx="8" fill="#fff0f0" stroke="#e74c3c" stroke-width="2"/>
+  <rect x="60" y="100" width="1080" height="32" rx="8" fill="#e74c3c"/>
+  <rect x="60" y="120" width="1080" height="12" fill="#e74c3c"/>
+  <text x="600" y="120" class="layer-title" text-anchor="middle">LAYER 1: PHYSICAL HARDWARE &amp; ACTUATION</text>
+  
+  <!-- Hardware components -->
+  <rect x="85" y="145" width="165" height="80" rx="6" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="168" y="165" class="comp-title" text-anchor="middle">Actuators</text>
+  <text x="168" y="182" class="comp-text" text-anchor="middle">Electric motors (DC/BLDC)</text>
+  <text x="168" y="197" class="comp-text" text-anchor="middle">Series elastic actuators</text>
+  <text x="168" y="212" class="comp-text" text-anchor="middle">Pneumatic/hydraulic</text>
+  
+  <rect x="270" y="145" width="165" height="80" rx="6" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="353" y="165" class="comp-title" text-anchor="middle">Sensors</text>
+  <text x="353" y="182" class="comp-text" text-anchor="middle">Force/torque sensors</text>
+  <text x="353" y="197" class="comp-text" text-anchor="middle">IMUs, encoders</text>
+  <text x="353" y="212" class="comp-text" text-anchor="middle">EMG/EEG electrodes</text>
+  
+  <rect x="455" y="145" width="165" height="80" rx="6" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="538" y="165" class="comp-title" text-anchor="middle">Mechanical Structure</text>
+  <text x="538" y="182" class="comp-text" text-anchor="middle">Rigid/soft exoskeleton</text>
+  <text x="538" y="197" class="comp-text" text-anchor="middle">End-effector linkage</text>
+  <text x="538" y="212" class="comp-text" text-anchor="middle">Body weight support</text>
+  
+  <rect x="640" y="145" width="165" height="80" rx="6" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="723" y="165" class="comp-title" text-anchor="middle">Safety Systems</text>
+  <text x="723" y="182" class="comp-text" text-anchor="middle">Emergency stops</text>
+  <text x="723" y="197" class="comp-text" text-anchor="middle">Force limiters</text>
+  <text x="723" y="212" class="comp-text" text-anchor="middle">Mechanical compliance</text>
+  
+  <rect x="825" y="145" width="165" height="80" rx="6" fill="white" stroke="#e74c3c" stroke-width="1"/>
+  <text x="908" y="165" class="comp-title" text-anchor="middle">Power &amp; Electronics</text>
+  <text x="908" y="182" class="comp-text" text-anchor="middle">Motor drivers</text>
+  <text x="908" y="197" class="comp-text" text-anchor="middle">Signal conditioning</text>
+  <text x="908" y="212" class="comp-text" text-anchor="middle">Battery/power supply</text>
+  
+  <!-- Arrow between layers -->
+  <polygon points="580,245 600,260 620,245" fill="#aaa"/>
+  <polygon points="580,260 600,245 620,260" fill="#aaa"/>
+  <text x="650" y="255" class="arrow-text">Bidirectional data flow</text>
+  
+
+  <!-- Layer 2: Control & Signal Processing -->
+  <rect x="60" y="270" width="1080" height="140" rx="8" fill="#f0f5ff" stroke="#3498db" stroke-width="2"/>
+  <rect x="60" y="270" width="1080" height="32" rx="8" fill="#3498db"/>
+  <rect x="60" y="290" width="1080" height="12" fill="#3498db"/>
+  <text x="600" y="290" class="layer-title" text-anchor="middle">LAYER 2: CONTROL &amp; SIGNAL PROCESSING</text>
+  
+  <rect x="85" y="315" width="200" height="80" rx="6" fill="white" stroke="#3498db" stroke-width="1"/>
+  <text x="185" y="335" class="comp-title" text-anchor="middle">Motion Control</text>
+  <text x="185" y="352" class="comp-text" text-anchor="middle">Impedance/admittance control</text>
+  <text x="185" y="367" class="comp-text" text-anchor="middle">Position/force control</text>
+  <text x="185" y="382" class="comp-text" text-anchor="middle">Assist-as-needed algorithms</text>
+  
+  <rect x="310" y="315" width="200" height="80" rx="6" fill="white" stroke="#3498db" stroke-width="1"/>
+  <text x="410" y="335" class="comp-title" text-anchor="middle">Signal Processing</text>
+  <text x="410" y="352" class="comp-text" text-anchor="middle">EMG/EEG decoding</text>
+  <text x="410" y="367" class="comp-text" text-anchor="middle">Motion intention detection</text>
+  <text x="410" y="382" class="comp-text" text-anchor="middle">Real-time filtering</text>
+  
+  <rect x="535" y="315" width="200" height="80" rx="6" fill="white" stroke="#3498db" stroke-width="1"/>
+  <text x="635" y="335" class="comp-title" text-anchor="middle">Adaptive Algorithms</text>
+  <text x="635" y="352" class="comp-text" text-anchor="middle">Model-predictive control</text>
+  <text x="635" y="367" class="comp-text" text-anchor="middle">Variable impedance</text>
+  <text x="635" y="382" class="comp-text" text-anchor="middle">Performance-based tuning</text>
+  
+  <rect x="760" y="315" width="200" height="80" rx="6" fill="white" stroke="#3498db" stroke-width="1"/>
+  <text x="860" y="335" class="comp-title" text-anchor="middle">Safety Monitoring</text>
+  <text x="860" y="352" class="comp-text" text-anchor="middle">Real-time limit checking</text>
+  <text x="860" y="367" class="comp-text" text-anchor="middle">Collision detection</text>
+  <text x="860" y="382" class="comp-text" text-anchor="middle">Patient state estimation</text>
+  
+  <!-- Arrow between layers -->
+  <polygon points="580,415 600,430 620,415" fill="#aaa"/>
+  <polygon points="580,430 600,415 620,430" fill="#aaa"/>
+  <text x="650" y="425" class="arrow-text">Intelligence integration</text>
+  
+  <!-- Layer 3: AI & Intelligence -->
+  <rect x="60" y="440" width="1080" height="140" rx="8" fill="#f5f0ff" stroke="#9b59b6" stroke-width="2"/>
+  <rect x="60" y="440" width="1080" height="32" rx="8" fill="#9b59b6"/>
+  <rect x="60" y="460" width="1080" height="12" fill="#9b59b6"/>
+  <text x="600" y="460" class="layer-title" text-anchor="middle">LAYER 3: ARTIFICIAL INTELLIGENCE &amp; MACHINE LEARNING</text>
+  
+  <rect x="85" y="485" width="200" height="80" rx="6" fill="white" stroke="#9b59b6" stroke-width="1"/>
+  <text x="185" y="505" class="comp-title" text-anchor="middle">Patient Modeling</text>
+  <text x="185" y="522" class="comp-text" text-anchor="middle">Recovery trajectory prediction</text>
+  <text x="185" y="537" class="comp-text" text-anchor="middle">Impairment classification</text>
+  <text x="185" y="552" class="comp-text" text-anchor="middle">Outcome prediction</text>
+  
+  <rect x="310" y="485" width="200" height="80" rx="6" fill="white" stroke="#9b59b6" stroke-width="1"/>
+  <text x="410" y="505" class="comp-title" text-anchor="middle">Therapy Optimization</text>
+  <text x="410" y="522" class="comp-text" text-anchor="middle">Reinforcement learning</text>
+  <text x="410" y="537" class="comp-text" text-anchor="middle">Parameter adaptation</text>
+  <text x="410" y="552" class="comp-text" text-anchor="middle">Personalized protocols</text>
+  
+  <rect x="535" y="485" width="200" height="80" rx="6" fill="white" stroke="#9b59b6" stroke-width="1"/>
+  <text x="635" y="505" class="comp-title" text-anchor="middle">Natural Interaction</text>
+  <text x="635" y="522" class="comp-text" text-anchor="middle">Speech/language processing</text>
+  <text x="635" y="537" class="comp-text" text-anchor="middle">Emotion recognition</text>
+  <text x="635" y="552" class="comp-text" text-anchor="middle">Motivation strategies</text>
+  
+  <rect x="760" y="485" width="200" height="80" rx="6" fill="white" stroke="#9b59b6" stroke-width="1"/>
+  <text x="860" y="505" class="comp-title" text-anchor="middle">Data Analytics</text>
+  <text x="860" y="522" class="comp-text" text-anchor="middle">Progress visualization</text>
+  <text x="860" y="537" class="comp-text" text-anchor="middle">Pattern recognition</text>
+  <text x="860" y="552" class="comp-text" text-anchor="middle">Clinical decision support</text>
+  
+
+  <!-- Arrow between layers -->
+  <polygon points="580,585 600,600 620,585" fill="#aaa"/>
+  <polygon points="580,600 600,585 620,600" fill="#aaa"/>
+  <text x="650" y="595" class="arrow-text">Clinical workflow</text>
+  
+  <!-- Layer 4: Clinical Interface & Connectivity -->
+  <rect x="60" y="610" width="1080" height="140" rx="8" fill="#f0fff5" stroke="#27ae60" stroke-width="2"/>
+  <rect x="60" y="610" width="1080" height="32" rx="8" fill="#27ae60"/>
+  <rect x="60" y="630" width="1080" height="12" fill="#27ae60"/>
+  <text x="600" y="630" class="layer-title" text-anchor="middle">LAYER 4: CLINICAL INTERFACE &amp; CONNECTIVITY</text>
+  
+  <rect x="85" y="655" width="200" height="80" rx="6" fill="white" stroke="#27ae60" stroke-width="1"/>
+  <text x="185" y="675" class="comp-title" text-anchor="middle">Therapist Interface</text>
+  <text x="185" y="692" class="comp-text" text-anchor="middle">Therapy configuration</text>
+  <text x="185" y="707" class="comp-text" text-anchor="middle">Progress dashboards</text>
+  <text x="185" y="722" class="comp-text" text-anchor="middle">Remote monitoring</text>
+  
+  <rect x="310" y="655" width="200" height="80" rx="6" fill="white" stroke="#27ae60" stroke-width="1"/>
+  <text x="410" y="675" class="comp-title" text-anchor="middle">Patient Experience</text>
+  <text x="410" y="692" class="comp-text" text-anchor="middle">VR/AR environments</text>
+  <text x="410" y="707" class="comp-text" text-anchor="middle">Gamification &amp; feedback</text>
+  <text x="410" y="722" class="comp-text" text-anchor="middle">Goal tracking</text>
+  
+  <rect x="535" y="655" width="200" height="80" rx="6" fill="white" stroke="#27ae60" stroke-width="1"/>
+  <text x="635" y="675" class="comp-title" text-anchor="middle">Cloud &amp; IoT</text>
+  <text x="635" y="692" class="comp-text" text-anchor="middle">Data aggregation</text>
+  <text x="635" y="707" class="comp-text" text-anchor="middle">Tele-rehabilitation</text>
+  <text x="635" y="722" class="comp-text" text-anchor="middle">Multi-site analytics</text>
+  
+  <rect x="760" y="655" width="200" height="80" rx="6" fill="white" stroke="#27ae60" stroke-width="1"/>
+  <text x="860" y="675" class="comp-title" text-anchor="middle">Integration</text>
+  <text x="860" y="692" class="comp-text" text-anchor="middle">EHR connectivity</text>
+  <text x="860" y="707" class="comp-text" text-anchor="middle">Outcome reporting</text>
+  <text x="860" y="722" class="comp-text" text-anchor="middle">Regulatory compliance</text>
+  
+  <!-- Right side: Cross-cutting concerns -->
+  <rect x="1000" y="115" width="125" height="620" rx="6" fill="#fff8e0" stroke="#f39c12" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="1063" y="390" font-size="13" font-weight="bold" fill="#d68910" text-anchor="middle" transform="rotate(-90, 1063, 390)">CROSS-CUTTING: Safety • Ethics • Standards • Regulation</text>
+
+  <!-- Caption -->
+  <text x="600" y="790" font-size="12" fill="#4a4a6a" text-anchor="middle">
+    Figure 3. Multi-layered technology architecture of modern rehabilitation robot systems showing the integration
+  </text>
+  <text x="600" y="808" font-size="12" fill="#4a4a6a" text-anchor="middle">
+    of physical hardware, control systems, artificial intelligence, and clinical interface layers.
+  </text>
+</svg>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <style>
+      .title { font: bold 22px 'Arial', sans-serif; fill: #1a1a2e; }
+      .subtitle { font: 14px 'Arial', sans-serif; fill: #4a4a6a; }
+      .center-title { font: bold 16px 'Arial', sans-serif; fill: #ffffff; }
+      .spoke-title { font: bold 14px 'Arial', sans-serif; fill: #1a1a2e; }
+      .spoke-text { font: 11px 'Arial', sans-serif; fill: #4a4a6a; }
+      .impact-text { font: bold 11px 'Arial', sans-serif; fill: #2d8a4e; }
+    </style>
+    <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#fafbff" rx="8"/>
+  <rect x="20" y="20" width="1160" height="760" fill="white" rx="6" stroke="#e8e8f0" stroke-width="1"/>
+  
+  <!-- Title -->
+  <text x="600" y="55" class="title" text-anchor="middle">Future Directions and Convergent Technologies</text>
+  <text x="600" y="78" class="subtitle" text-anchor="middle">Emerging technologies converging toward next-generation rehabilitation robotics</text>
+  
+  <!-- Central hub -->
+  <circle cx="600" cy="380" r="75" fill="url(#rg1)" stroke="#4a3f9f" stroke-width="2"/>
+  <text x="600" y="370" class="center-title" text-anchor="middle">NEXT-GEN</text>
+  <text x="600" y="392" class="center-title" text-anchor="middle">REHABILITATION</text>
+  <text x="600" y="414" font-size="12" fill="#ddd" text-anchor="middle">ROBOTICS</text>
+  
+  <!-- Spoke connectors -->
+  <line x1="535" y1="340" x2="340" y2="200" stroke="#667eea" stroke-width="2" opacity="0.6"/>
+  <line x1="665" y1="340" x2="860" y2="200" stroke="#e74c3c" stroke-width="2" opacity="0.6"/>
+  <line x1="525" y1="380" x2="220" y2="400" stroke="#3498db" stroke-width="2" opacity="0.6"/>
+  <line x1="675" y1="380" x2="980" y2="400" stroke="#27ae60" stroke-width="2" opacity="0.6"/>
+  <line x1="535" y1="430" x2="320" y2="590" stroke="#f39c12" stroke-width="2" opacity="0.6"/>
+  <line x1="665" y1="430" x2="880" y2="590" stroke="#9b59b6" stroke-width="2" opacity="0.6"/>
+  
+
+  <!-- Spoke 1: Brain-Computer Interfaces (top-left) -->
+  <rect x="180" y="130" width="240" height="130" rx="10" fill="#f5f3ff" stroke="#667eea" stroke-width="2"/>
+  <circle cx="210" cy="155" r="15" fill="#667eea"/>
+  <text x="210" y="160" font-size="14" fill="white" text-anchor="middle">1</text>
+  <text x="320" y="158" class="spoke-title" text-anchor="middle">Brain-Computer Interfaces</text>
+  <line x1="200" y1="170" x2="400" y2="170" stroke="#667eea" stroke-width="0.5"/>
+  <text x="300" y="190" class="spoke-text" text-anchor="middle">• EEG-based motor imagery decoding</text>
+  <text x="300" y="207" class="spoke-text" text-anchor="middle">• Invasive neural interfaces</text>
+  <text x="300" y="224" class="spoke-text" text-anchor="middle">• Closed-loop neuromodulation</text>
+  <text x="300" y="245" class="impact-text" text-anchor="middle">→ Direct neural control of robots</text>
+  
+  <!-- Spoke 2: Artificial Intelligence (top-right) -->
+  <rect x="780" y="130" width="240" height="130" rx="10" fill="#fff0f0" stroke="#e74c3c" stroke-width="2"/>
+  <circle cx="810" cy="155" r="15" fill="#e74c3c"/>
+  <text x="810" y="160" font-size="14" fill="white" text-anchor="middle">2</text>
+  <text x="920" y="158" class="spoke-title" text-anchor="middle">Artificial Intelligence</text>
+  <line x1="800" y1="170" x2="1000" y2="170" stroke="#e74c3c" stroke-width="0.5"/>
+  <text x="900" y="190" class="spoke-text" text-anchor="middle">• Deep reinforcement learning</text>
+  <text x="900" y="207" class="spoke-text" text-anchor="middle">• Foundation models for rehab</text>
+  <text x="900" y="224" class="spoke-text" text-anchor="middle">• Predictive outcome modeling</text>
+  <text x="900" y="245" class="impact-text" text-anchor="middle">→ Autonomous therapy delivery</text>
+  
+  <!-- Spoke 3: Soft Robotics (middle-left) -->
+  <rect x="60" y="340" width="240" height="130" rx="10" fill="#f0f5ff" stroke="#3498db" stroke-width="2"/>
+  <circle cx="90" cy="365" r="15" fill="#3498db"/>
+  <text x="90" y="370" font-size="14" fill="white" text-anchor="middle">3</text>
+  <text x="200" y="368" class="spoke-title" text-anchor="middle">Soft Robotics</text>
+  <line x1="80" y1="380" x2="280" y2="380" stroke="#3498db" stroke-width="0.5"/>
+  <text x="180" y="400" class="spoke-text" text-anchor="middle">• Pneumatic soft actuators</text>
+  <text x="180" y="417" class="spoke-text" text-anchor="middle">• Cable-driven exosuits</text>
+  <text x="180" y="434" class="spoke-text" text-anchor="middle">• Bio-inspired compliance</text>
+  <text x="180" y="455" class="impact-text" text-anchor="middle">→ Wearable daily-use therapy</text>
+  
+  <!-- Spoke 4: Digital Twins & VR/AR (middle-right) -->
+  <rect x="900" y="340" width="240" height="130" rx="10" fill="#f0fff5" stroke="#27ae60" stroke-width="2"/>
+  <circle cx="930" cy="365" r="15" fill="#27ae60"/>
+  <text x="930" y="370" font-size="14" fill="white" text-anchor="middle">4</text>
+  <text x="1040" y="368" class="spoke-title" text-anchor="middle">Digital Twins &amp; VR/AR</text>
+  <line x1="920" y1="380" x2="1120" y2="380" stroke="#27ae60" stroke-width="0.5"/>
+  <text x="1020" y="400" class="spoke-text" text-anchor="middle">• Patient digital models</text>
+  <text x="1020" y="417" class="spoke-text" text-anchor="middle">• Immersive therapy environments</text>
+  <text x="1020" y="434" class="spoke-text" text-anchor="middle">• Augmented reality guidance</text>
+  <text x="1020" y="455" class="impact-text" text-anchor="middle">→ Simulation-optimized therapy</text>
+  
+
+  <!-- Spoke 5: Cloud & Tele-Rehabilitation (bottom-left) -->
+  <rect x="160" y="540" width="240" height="130" rx="10" fill="#fffaf0" stroke="#f39c12" stroke-width="2"/>
+  <circle cx="190" cy="565" r="15" fill="#f39c12"/>
+  <text x="190" y="570" font-size="14" fill="white" text-anchor="middle">5</text>
+  <text x="300" y="568" class="spoke-title" text-anchor="middle">Cloud &amp; Tele-Rehabilitation</text>
+  <line x1="180" y1="580" x2="380" y2="580" stroke="#f39c12" stroke-width="0.5"/>
+  <text x="280" y="600" class="spoke-text" text-anchor="middle">• Remote therapy supervision</text>
+  <text x="280" y="617" class="spoke-text" text-anchor="middle">• IoT health monitoring</text>
+  <text x="280" y="634" class="spoke-text" text-anchor="middle">• Federated data platforms</text>
+  <text x="280" y="655" class="impact-text" text-anchor="middle">→ Global access &amp; equity</text>
+  
+  <!-- Spoke 6: Precision Rehabilitation (bottom-right) -->
+  <rect x="760" y="540" width="240" height="130" rx="10" fill="#fef5ff" stroke="#9b59b6" stroke-width="2"/>
+  <circle cx="790" cy="565" r="15" fill="#9b59b6"/>
+  <text x="790" y="570" font-size="14" fill="white" text-anchor="middle">6</text>
+  <text x="900" y="568" class="spoke-title" text-anchor="middle">Precision Rehabilitation</text>
+  <line x1="780" y1="580" x2="980" y2="580" stroke="#9b59b6" stroke-width="0.5"/>
+  <text x="880" y="600" class="spoke-text" text-anchor="middle">• Biomarker-driven therapy</text>
+  <text x="880" y="617" class="spoke-text" text-anchor="middle">• Genomic/neuroimaging data</text>
+  <text x="880" y="634" class="spoke-text" text-anchor="middle">• Adaptive trajectories</text>
+  <text x="880" y="655" class="impact-text" text-anchor="middle">→ Right therapy, right patient</text>
+  
+  <!-- Vision statement at bottom -->
+  <rect x="250" y="700" width="700" height="40" rx="20" fill="#f0f0ff" stroke="#667eea" stroke-width="1"/>
+  <text x="600" y="725" font-size="13" font-weight="bold" fill="#4a3f9f" text-anchor="middle">
+    VISION: Ambient, personalized, AI-driven rehabilitation integrated into daily life
+  </text>
+  
+  <!-- Caption -->
+  <text x="600" y="770" font-size="12" fill="#4a4a6a" text-anchor="middle">
+    Figure 4. Future directions showing six convergent technologies driving next-generation rehabilitation robotics.
+  </text>
+</svg>
