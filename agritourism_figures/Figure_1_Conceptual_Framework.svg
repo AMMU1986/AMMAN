@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 650" width="900" height="650">
+  <defs>
+    <style>
+      .title { font: bold 20px 'Segoe UI', Arial, sans-serif; fill: #1a1a1a; }
+      .subtitle { font: 14px 'Segoe UI', Arial, sans-serif; fill: #444; }
+      .label { font: bold 14px 'Segoe UI', Arial, sans-serif; fill: #1a1a1a; }
+      .item { font: 12px 'Segoe UI', Arial, sans-serif; fill: #333; }
+      .overlap-item { font: bold 12px 'Segoe UI', Arial, sans-serif; fill: #1a1a1a; }
+      .note { font: italic 11px 'Segoe UI', Arial, sans-serif; fill: #666; }
+    </style>
+  </defs>
+  <!-- Background -->
+  <rect width="900" height="650" fill="#fafbfc" rx="8"/>
+  <!-- Title -->
+  <text x="450" y="35" text-anchor="middle" class="title">Figure 1. Conceptual Framework: Integration of Agricultural Tourism</text>
+  <text x="450" y="57" text-anchor="middle" class="title">and Regenerative Farming Landscapes</text>
+  <!-- Left circle - Agricultural Tourism -->
+  <circle cx="320" cy="320" r="190" fill="#4a90d9" fill-opacity="0.2" stroke="#4a90d9" stroke-width="2.5"/>
+  <!-- Right circle - Regenerative Farming -->
+  <circle cx="580" cy="320" r="190" fill="#27ae60" fill-opacity="0.2" stroke="#27ae60" stroke-width="2.5"/>
+  <!-- Labels -->
+  <text x="220" y="160" text-anchor="middle" class="label" fill="#2c5f9e">AGRICULTURAL</text>
+  <text x="220" y="180" text-anchor="middle" class="label" fill="#2c5f9e">TOURISM</text>
+  <text x="680" y="160" text-anchor="middle" class="label" fill="#1e7a42">REGENERATIVE</text>
+  <text x="680" y="180" text-anchor="middle" class="label" fill="#1e7a42">FARMING</text>
+  <!-- Left items -->
+  <text x="210" y="230" text-anchor="middle" class="item">• Visitor experiences</text>
+  <text x="210" y="255" text-anchor="middle" class="item">• Farm stays &amp; eco-lodges</text>
+  <text x="210" y="280" text-anchor="middle" class="item">• Culinary tourism</text>
+  <text x="210" y="305" text-anchor="middle" class="item">• Educational programmes</text>
+  <text x="210" y="330" text-anchor="middle" class="item">• Cultural heritage</text>
+  <text x="210" y="355" text-anchor="middle" class="item">• Income diversification</text>
+  <text x="210" y="380" text-anchor="middle" class="item">• Rural employment</text>
+  <text x="210" y="405" text-anchor="middle" class="item">• Community engagement</text>
+  <!-- Right items -->
+  <text x="690" y="230" text-anchor="middle" class="item">• Soil health restoration</text>
+  <text x="690" y="255" text-anchor="middle" class="item">• Carbon sequestration</text>
+  <text x="690" y="280" text-anchor="middle" class="item">• Biodiversity conservation</text>
+  <text x="690" y="305" text-anchor="middle" class="item">• Water cycle improvement</text>
+  <text x="690" y="330" text-anchor="middle" class="item">• Minimal tillage</text>
+  <text x="690" y="355" text-anchor="middle" class="item">• Cover cropping</text>
+  <text x="690" y="380" text-anchor="middle" class="item">• Integrated livestock</text>
+  <text x="690" y="405" text-anchor="middle" class="item">• Ecosystem services</text>
+  <!-- Overlap items -->
+  <text x="450" y="260" text-anchor="middle" class="overlap-item">Sustainability</text>
+  <text x="450" y="285" text-anchor="middle" class="overlap-item">Multifunctionality</text>
+  <text x="450" y="310" text-anchor="middle" class="overlap-item">Rural resilience</text>
+  <text x="450" y="335" text-anchor="middle" class="overlap-item">Landscape aesthetics</text>
+  <text x="450" y="360" text-anchor="middle" class="overlap-item">Knowledge transfer</text>
+  <text x="450" y="385" text-anchor="middle" class="overlap-item">Climate mitigation</text>
+  <!-- Bottom outcome box -->
+  <rect x="200" y="530" width="500" height="70" fill="#f39c12" fill-opacity="0.15" stroke="#f39c12" stroke-width="2" rx="8"/>
+  <text x="450" y="555" text-anchor="middle" class="label" fill="#d68910">INTEGRATED OUTCOMES</text>
+  <text x="450" y="578" text-anchor="middle" class="item">Resilient rural landscapes | Carbon-neutral tourism | Thriving communities</text>
+  <text x="450" y="593" text-anchor="middle" class="item">Enhanced ecosystem services | Sustainable livelihoods | Food security</text>
+  <!-- Arrows to outcome -->
+  <path d="M350 480 L380 530" stroke="#4a90d9" stroke-width="2" fill="none" marker-end="url(#arrow-blue)"/>
+  <path d="M550 480 L520 530" stroke="#27ae60" stroke-width="2" fill="none" marker-end="url(#arrow-green)"/>
+  <defs>
+    <marker id="arrow-blue" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#4a90d9"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#27ae60"/>
+    </marker>
+  </defs>
+  <!-- Source note -->
+  <text x="450" y="635" text-anchor="middle" class="note">Source: Author's compilation based on literature review (2024)</text>
+</svg>

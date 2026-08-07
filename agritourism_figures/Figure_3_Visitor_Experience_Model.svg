@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" width="900" height="700">
+  <defs>
+    <style>
+      .title { font: bold 18px 'Segoe UI', Arial, sans-serif; fill: #1a1a1a; }
+      .box-title { font: bold 13px 'Segoe UI', Arial, sans-serif; fill: #fff; }
+      .box-item { font: 11.5px 'Segoe UI', Arial, sans-serif; fill: #333; }
+      .phase { font: bold 15px 'Segoe UI', Arial, sans-serif; fill: #555; }
+      .note { font: italic 11px 'Segoe UI', Arial, sans-serif; fill: #666; }
+      .outcome { font: bold 12px 'Segoe UI', Arial, sans-serif; fill: #1a1a1a; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#666"/>
+    </marker>
+  </defs>
+  <rect width="900" height="700" fill="#fafbfc" rx="8"/>
+  <text x="450" y="35" text-anchor="middle" class="title">Figure 3. Visitor Experience Design Model for Regenerative Farm Tourism</text>
+
+  <!-- Phase 1: Pre-Visit -->
+  <text x="450" y="75" text-anchor="middle" class="phase">PHASE 1: PRE-VISIT ENGAGEMENT</text>
+  <rect x="60" y="90" width="180" height="80" rx="6" fill="#fff" stroke="#3498db" stroke-width="2"/>
+  <rect x="60" y="90" width="180" height="25" rx="6" fill="#3498db"/>
+  <text x="150" y="107" text-anchor="middle" class="box-title">Digital Discovery</text>
+  <text x="70" y="130" class="box-item">• Social media storytelling</text>
+  <text x="70" y="147" class="box-item">• Virtual farm tours</text>
+  <text x="70" y="164" class="box-item">• Online booking</text>
+
+  <rect x="280" y="90" width="180" height="80" rx="6" fill="#fff" stroke="#3498db" stroke-width="2"/>
+  <rect x="280" y="90" width="180" height="25" rx="6" fill="#3498db"/>
+  <text x="370" y="107" text-anchor="middle" class="box-title">Expectation Setting</text>
+  <text x="290" y="130" class="box-item">• Seasonal calendar</text>
+  <text x="290" y="147" class="box-item">• Activity options</text>
+  <text x="290" y="164" class="box-item">• Sustainability ethos</text>
+
+  <rect x="500" y="90" width="180" height="80" rx="6" fill="#fff" stroke="#3498db" stroke-width="2"/>
+  <rect x="500" y="90" width="180" height="25" rx="6" fill="#3498db"/>
+  <text x="590" y="107" text-anchor="middle" class="box-title">Preparation</text>
+  <text x="510" y="130" class="box-item">• Travel planning</text>
+  <text x="510" y="147" class="box-item">• Skill matching</text>
+  <text x="510" y="164" class="box-item">• Pre-visit learning</text>
+
+  <!-- Arrow Phase 1 to 2 -->
+  <line x1="450" y1="175" x2="450" y2="205" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Phase 2: On-Farm Experience -->
+  <text x="450" y="225" text-anchor="middle" class="phase">PHASE 2: ON-FARM EXPERIENCE</text>
+  <rect x="60" y="240" width="180" height="110" rx="6" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <rect x="60" y="240" width="180" height="25" rx="6" fill="#27ae60"/>
+  <text x="150" y="257" text-anchor="middle" class="box-title">Immersive Stay</text>
+  <text x="70" y="280" class="box-item">• Eco-lodge accommodation</text>
+  <text x="70" y="297" class="box-item">• Farm rhythms integration</text>
+  <text x="70" y="314" class="box-item">• Nature observation</text>
+  <text x="70" y="331" class="box-item">• Quiet reflection spaces</text>
+
+  <rect x="280" y="240" width="180" height="110" rx="6" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <rect x="280" y="240" width="180" height="25" rx="6" fill="#27ae60"/>
+  <text x="370" y="257" text-anchor="middle" class="box-title">Active Participation</text>
+  <text x="290" y="280" class="box-item">• Hands-on farming</text>
+  <text x="290" y="297" class="box-item">• Soil health workshops</text>
+  <text x="290" y="314" class="box-item">• Harvest activities</text>
+  <text x="290" y="331" class="box-item">• Conservation tasks</text>
+
+  <rect x="500" y="240" width="180" height="110" rx="6" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <rect x="500" y="240" width="180" height="25" rx="6" fill="#27ae60"/>
+  <text x="590" y="257" text-anchor="middle" class="box-title">Culinary Experience</text>
+  <text x="510" y="280" class="box-item">• Farm-to-table dining</text>
+  <text x="510" y="297" class="box-item">• Cooking classes</text>
+  <text x="510" y="314" class="box-item">• Food preservation</text>
+  <text x="510" y="331" class="box-item">• Foraging walks</text>
+
+  <rect x="720" y="240" width="160" height="110" rx="6" fill="#fff" stroke="#27ae60" stroke-width="2"/>
+  <rect x="720" y="240" width="160" height="25" rx="6" fill="#27ae60"/>
+  <text x="800" y="257" text-anchor="middle" class="box-title">Interpretation</text>
+  <text x="730" y="280" class="box-item">• Guided walks</text>
+  <text x="730" y="297" class="box-item">• Soil microscopy</text>
+  <text x="730" y="314" class="box-item">• Wildlife ID</text>
+  <text x="730" y="331" class="box-item">• Signage trails</text>
+
+  <!-- Arrow Phase 2 to 3 -->
+  <line x1="450" y1="355" x2="450" y2="385" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Phase 3: Post-Visit -->
+  <text x="450" y="405" text-anchor="middle" class="phase">PHASE 3: POST-VISIT CONNECTION</text>
+  <rect x="120" y="420" width="200" height="80" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2"/>
+  <rect x="120" y="420" width="200" height="25" rx="6" fill="#8e44ad"/>
+  <text x="220" y="437" text-anchor="middle" class="box-title">Continued Engagement</text>
+  <text x="130" y="460" class="box-item">• Product subscriptions (CSA)</text>
+  <text x="130" y="477" class="box-item">• Social media community</text>
+  <text x="130" y="494" class="box-item">• Return visit incentives</text>
+
+  <rect x="380" y="420" width="200" height="80" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2"/>
+  <rect x="380" y="420" width="200" height="25" rx="6" fill="#8e44ad"/>
+  <text x="480" y="437" text-anchor="middle" class="box-title">Behavioural Change</text>
+  <text x="390" y="460" class="box-item">• Sustainable food choices</text>
+  <text x="390" y="477" class="box-item">• Environmental advocacy</text>
+  <text x="390" y="494" class="box-item">• Knowledge sharing</text>
+
+  <rect x="640" y="420" width="200" height="80" rx="6" fill="#fff" stroke="#8e44ad" stroke-width="2"/>
+  <rect x="640" y="420" width="200" height="25" rx="6" fill="#8e44ad"/>
+  <text x="740" y="437" text-anchor="middle" class="box-title">Impact Measurement</text>
+  <text x="650" y="460" class="box-item">• Visitor satisfaction surveys</text>
+  <text x="650" y="477" class="box-item">• Carbon offset tracking</text>
+  <text x="650" y="494" class="box-item">• Repeat visit rates</text>
+
+  <!-- Arrow to Outcomes -->
+  <line x1="450" y1="505" x2="450" y2="535" stroke="#666" stroke-width="2" marker-end="url(#arrowhead)"/>
+
+  <!-- Outcomes Box -->
+  <rect x="150" y="540" width="600" height="90" rx="8" fill="#f39c12" fill-opacity="0.12" stroke="#f39c12" stroke-width="2"/>
+  <text x="450" y="565" text-anchor="middle" class="phase" fill="#d68910">INTEGRATED OUTCOMES</text>
+  <text x="200" y="590" class="outcome">• Enhanced visitor satisfaction</text>
+  <text x="200" y="610" class="outcome">• Increased farm revenue</text>
+  <text x="500" y="590" class="outcome">• Environmental education impact</text>
+  <text x="500" y="610" class="outcome">• Community empowerment</text>
+
+  <!-- Feedback loop arrow -->
+  <path d="M760 580 Q 830 580, 830 400 Q 830 100, 750 90" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrowhead)"/>
+  <text x="850" y="340" class="box-item" fill="#999" transform="rotate(90, 850, 340)">Feedback Loop</text>
+
+  <text x="450" y="685" text-anchor="middle" class="note">Source: Author's design based on Tew and Barbieri (2012) and Ham (2013)</text>
+</svg>
