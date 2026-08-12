@@ -30,6 +30,10 @@ Industry 4.0 prioritized automation, cyber-physical systems, and data exchange a
 
 The critical distinction between Industry 4.0 and 5.0 lies not in the technologies deployed—many remain the same (AI, IoT, robotics, digital twins)—but in the *design logic* governing their deployment. Under Industry 4.0, collaborative robots (cobots) were justified primarily through efficiency gains; under Industry 5.0, the same cobots are evaluated through additional criteria of worker well-being, ergonomic enhancement, and job enrichment [4]. This shift from optimization logic to augmentation logic has profound implications for how economies at different developmental stages adopt and adapt these technologies.
 
+### 1.1.1 Key Enabling Technologies in the Industry 5.0 Context
+
+The technological enablers of Industry 5.0 are not new inventions but rather existing Industry 4.0 technologies redeployed under a human-centric design philosophy. Artificial Intelligence (AI) enables predictive maintenance, adaptive scheduling, and real-time quality control, but under Industry 5.0 principles, AI systems are designed to maintain human oversight and augment rather than replace operator judgment [5]. Collaborative robots (cobots) represent a second critical enabler—unlike traditional industrial robots operating behind safety cages, cobots work alongside humans without physical barriers, performing repetitive, physically demanding, or hazardous tasks while leaving cognitive and creative work to human operators. Digital twins—virtual replicas of physical manufacturing systems—provide a third enabler by allowing real-time monitoring, simulation, and optimization without disrupting actual production processes. The Internet of Things (IoT) connects machines, sensors, and human operators into integrated data ecosystems, while 5G connectivity provides the low-latency communication backbone necessary for real-time human-robot coordination. Crucially, the deployment of these technologies under Industry 5.0 requires consideration of ergonomic impact, worker autonomy, environmental footprint, and system resilience—dimensions largely absent from Industry 4.0 implementation frameworks [6].
+
 ### 1.2 Research Gap and Contribution
 
 Despite growing scholarly attention to Industry 5.0, three critical gaps persist in the literature:
@@ -197,7 +201,7 @@ Germany exemplifies the full five-condition configuration. Its Industry 4.0 lega
 - Net employment effect: +2.3% (job redefinition rather than displacement)
 - Energy consumption per unit: reduced 14.8% through AI-optimized scheduling
 
-**Policy mechanism:** The High-Tech Strategy 2025 allocates €6.5 billion for climate-neutral manufacturing, specifically incentivizing cobot retrofitting and AI-based energy management. However, a critical limitation is the strategy's implicit bias toward large firms; Mittelstand SMEs (employing 60% of the manufacturing workforce) report adoption barriers related to integration complexity and upfront costs [19].
+**Policy mechanism:** The High-Tech Strategy 2025 allocates €6.5 billion for climate-neutral manufacturing, specifically incentivizing cobot retrofitting and AI-based energy management. However, a critical limitation is the strategy's implicit bias toward large firms; Mittelstand SMEs (employing 60% of the manufacturing workforce) report adoption barriers related to integration complexity and upfront costs [19]. Furthermore, the German model demonstrates the importance of mass personalization as a production paradigm enabled by Industry 5.0. Smart factories leverage digital twins and intelligent scheduling to adjust production parameters in real-time, allowing customers to configure product specifications online without cost penalties. German electronics firms now produce custom printed circuit boards in small batches while maintaining energy efficiency levels previously achievable only through mass production. The principles of circular economy are also embedded: products designed for disassembly, components tracked through IoT for reuse, and digital twins simulating end-of-life recovery pathways to maximize material recovery rates.
 
 ### 3.3 Japan: Demographic Necessity as Innovation Driver
 
@@ -211,6 +215,8 @@ Japan's configuration is distinctive in that demographic pressure—a rapidly ag
 - Workforce participation of 60+ age group: increased 8.7% in surveyed firms
 - However, training costs per worker are 2.3x higher than for under-40 cohorts
 
+**Sectoral applications in Japan:** In the automotive sector, firms like Toyota have deployed cobots specifically for final assembly tasks requiring human dexterity—wiring harness installation, interior trim fitting, and quality verification—while using digital twins to simulate complete production lines for waste reduction. The electronics sector employs AI-driven visual inspection systems that learn from experienced human operators, achieving defect detection rates superior to either fully automated or fully manual inspection alone. The concept of "monozukuri" (the art of making things) is being reinterpreted through Industry 5.0 as a fusion of traditional craftsmanship values with collaborative robotics, preserving Japan's manufacturing culture while addressing demographic imperatives.
+
 ### 3.4 United States: Innovation-Led, Policy-Lagging
 
 The United States presents an analytically interesting case where exceptionally high innovation capacity (INNOV = 0.95) compensates for a comparatively weaker policy environment (POL = 0.70) and lower sustainability orientation (SUST = 0.60). The configuration works because Silicon Valley's AI ecosystem and the aerospace-defense industrial base generate technological spillovers that drive Industry 5.0 adoption even without comprehensive policy coordination [22].
@@ -222,6 +228,8 @@ The United States presents an analytically interesting case where exceptionally 
 - Productivity gains from HRC: 15-35% (high variance reflecting uneven adoption)
 - Worker training investment: $2,400/employee/year in adopting firms vs. $680 in non-adopting firms
 - Inequality dimension: top-quartile firms capture 72% of total sector productivity gains
+
+**Sectoral dynamics:** In aerospace manufacturing, collaborative robots perform drilling and fastening operations inside confined aircraft structures where fully autonomous operation remains technically infeasible due to geometric complexity and safety requirements. Human-robot teams achieve 20-35% fewer defects while maintaining production flexibility that pure automation cannot provide. The defense-industrial base provides a unique pathway for Industry 5.0 adoption where national security imperatives drive supply chain resilience investments that simultaneously advance human-centric manufacturing practices. The creation of regional Manufacturing Innovation Institutes represents an emerging policy mechanism, though coverage remains geographically uneven and funding levels are insufficient relative to the scale of transformation required.
 
 ### 3.5 Challenges and Limitations in Advanced Economies
 
@@ -288,6 +296,8 @@ Southeast Asian economies (Vietnam, Thailand, Indonesia) follow Path 3, where a 
 - Workforce training: mobile micro-learning modules delivered via smartphone reach 3.2x more workers than classroom training
 - Scalability: pay-as-you-go models enable 42% of surveyed SMEs to participate (vs. <8% under capital purchase models)
 
+**Sectoral spotlight in Southeast Asia:** Three sectors reflect the distinctive Industry 5.0 opportunities in this region. In the globally competitive textile industry, cobots assist with sewing operations while AI performs fabric inspection, enhancing quality for export markets while maintaining employment levels. In agro-industries, IoT sensors and digital twins control post-harvest activities, minimizing spoilage and achieving traceability requirements for international export certification. Distributed manufacturing—small-scale, localized production near consumption points—decreases logistics costs and increases resilience to supply chain disruptions. Across all three sectors, the human-centric approach ensures that automation complements rather than displaces workers, aligning with national development objectives and sustainable development goals. The role of women workers is particularly significant in Southeast Asian manufacturing; inclusive Industry 5.0 implementations that provide AR-based training and ergonomic cobots have shown 28% higher female workforce participation in adopting firms compared to traditional manufacturing settings.
+
 ### 4.4 Brazil: The Negative Case—Why Partial Configurations Underperform
 
 Brazil presents an analytically valuable negative case. Despite possessing moderate sustainability orientation (SUST = 0.50, highest among emerging cases due to bio-economy expertise), Brazil lacks the coherent policy-innovation or workforce-policy configuration that characterizes successful emerging-economy pathways [34].
@@ -299,6 +309,8 @@ Brazil presents an analytically valuable negative case. Despite possessing moder
 - Infrastructure gaps: only 2 of 5 firms had reliable broadband connectivity for IoT applications
 - Positive outlier: agricultural cooperatives achieve 12% waste reduction through shared digital twin platforms for post-harvest management
 - Investment challenge: average payback period for Industry 5.0 investments estimated at 4.7 years vs. 2.1 years in India and 1.8 years in advanced economies
+
+The Brazilian case offers critical lessons for other emerging economies facing similar configurational challenges. Macroeconomic volatility (currency fluctuations, interest rate uncertainty) directly undermines the investment case for Industry 5.0 technologies by extending payback periods beyond acceptable thresholds for risk-averse SMEs. Furthermore, Brazil's federal structure creates policy fragmentation: state-level industrial policies may conflict with or duplicate national initiatives, preventing the coherent policy environment that characterizes successful pathways. The implication is that configurational alignment requires not only the presence of individual conditions but also institutional coherence across governance levels—a factor that may warrant inclusion as a sixth condition in future expanded QCA studies.
 
 ### 4.5 Frugal Innovation: Reverse Knowledge Flows
 
@@ -332,7 +344,7 @@ This reverse flow challenges the linear diffusion model (innovation flows from a
 
 Despite divergent configurations, three themes emerge consistently across all successful cases:
 
-**Supply chain resilience as shared priority:** The COVID-19 pandemic exposed vulnerabilities in both advanced and emerging economies' supply chains. Post-pandemic, all six economies increased investment in supply chain visibility through IoT and digital twins—though the scale and sophistication differ (enterprise-grade platforms in advanced economies; mobile-first monitoring in emerging ones) [38].
+**Supply chain resilience as shared priority:** The COVID-19 pandemic exposed vulnerabilities in both advanced and emerging economies' supply chains. Post-pandemic, all six economies increased investment in supply chain visibility through IoT and digital twins—though the scale and sophistication differ (enterprise-grade platforms in advanced economies; mobile-first monitoring in emerging ones) [38]. India's electronics manufacturers are building redundant logistics networks, German automakers are reshoring production of critical components to Europe, and Southeast Asian textile exporters are diversifying supplier bases. Resilience also involves workforce flexibility—the capacity to quickly reorient production lines during disruptions through cross-trained workers who can collaborate with reconfigurable cobot systems.
 
 **Digital transformation as enablement, not replacement:** Across all successful configurations, digital transformation is deployed to augment human capabilities rather than substitute them. Firms scoring highest on Industry 5.0 outcomes are those where automation handles hazardous, repetitive, or precision tasks while humans retain cognitive, creative, and supervisory roles. The empirical data show that firms framing automation as "worker augmentation" experience 40% lower resistance to adoption [39].
 
@@ -361,7 +373,13 @@ This chapter makes three theoretical contributions to the Industry 5.0 literatur
 
 **Third,** it provides empirical grounding for the "flexibility" claim commonly made about Industry 5.0. Previous literature asserts that Industry 5.0 is adaptable to different contexts but rarely demonstrates this systematically. The QCA evidence provides a rigorous basis for this claim by identifying the specific conditions and configurations through which adaptation occurs [44].
 
-### 6.2 Policy Implications
+### 6.2 Implications for the Role of SMEs
+
+A cross-cutting finding deserving specific attention is the role of Small and Medium Enterprises (SMEs) in Industry 5.0 transitions. In emerging economies, more than 90% of manufacturing firms are SMEs, and their digital transformation faces fundamentally different constraints than large multinationals. SMEs cannot afford custom cobot integrations, dedicated AI teams, or enterprise-grade digital twin licenses. The configurational analysis reveals that successful SME participation depends on collective infrastructure models—shared platforms, cooperative consortia, and pay-as-you-go subscriptions—rather than individual firm investment. In advanced economies, SMEs face different but equally significant challenges: integration complexity with legacy systems, limited IT staff capacity, and difficulty accessing government support programs designed primarily for large enterprises. The policy implication is clear: Industry 5.0 frameworks must explicitly address the SME dimension through shared infrastructure investment, cooperative support mechanisms, and scaled incentive programs that reduce individual firm adoption barriers while maintaining human-centric design requirements.
+
+### 6.3 Policy Implications
+
+### 6.3 Policy Implications
 
 From the configurational evidence, five evidence-based policy recommendations emerge:
 
@@ -375,7 +393,7 @@ From the configurational evidence, five evidence-based policy recommendations em
 
 **Recommendation 5: Link Industry 5.0 investment to climate commitments.** Sustainability is the weakest pillar across most cases (except Germany). Tying industrial policy incentives to measurable sustainability targets (circular production metrics, energy efficiency thresholds) can strengthen this pillar without requiring separate policy instruments [49].
 
-### 6.3 Limitations and Future Research Directions
+### 6.4 Limitations and Future Research Directions
 
 This study has several limitations that define future research priorities:
 
@@ -385,13 +403,17 @@ This study has several limitations that define future research priorities:
 
 **Limitation 3: Composite case limitation.** Treating Southeast Asia as a composite case obscures within-region variation. Vietnam, Thailand, and Indonesia may follow distinct sub-pathways warranting individual analysis.
 
+**Limitation 4: Sector specificity.** The analysis aggregates findings across automotive, electronics, aerospace, textiles, and agro-industries. Sector-specific QCA studies may reveal that configurational pathways vary by industry vertical—what works in automotive manufacturing may not apply to textile production or food processing. Future research should consider sector as a scope condition that moderates configurational effects.
+
 **Three priority research directions emerge:**
 
 *Cross-regional collaboration studies:* How can German cobot manufacturers partner with Indian frugal engineering firms to develop globally scalable solutions? What institutional mechanisms facilitate productive knowledge exchange between Path 1 and Path 2 economies? [52]
 
 *Ethical AI in human-robot teams:* Algorithmic bias, worker surveillance through cobot sensors, and liability allocation in collaborative decision-making remain underexplored in Industry 5.0 contexts. These issues are particularly acute in emerging economies with weaker regulatory frameworks [53].
 
-*Circular economy integration:* How can digital twins, IoT traceability, and AI-driven disassembly planning be designed as *integral* features of Industry 5.0 systems rather than add-on sustainability modules? The configurational analysis suggests that sustainability-as-design-principle outperforms sustainability-as-compliance [54].
+*Circular economy integration:* How can digital twins, IoT traceability, and AI-driven disassembly planning be designed as *integral* features of Industry 5.0 systems rather than add-on sustainability modules? The configurational analysis suggests that sustainability-as-design-principle outperforms sustainability-as-compliance [54]. Additionally, future work should examine how circular economy principles can be embedded at the product design stage through generative AI systems that optimize simultaneously for functionality, manufacturability, and end-of-life recyclability—creating a closed-loop integration between Industry 5.0's human-centric and sustainability pillars.
+
+**Methodological extensions:** Beyond expanding the case population, researchers should explore temporal QCA to examine how configurations evolve over multi-year horizons, two-step QCA to separate remote from proximate conditions, and multi-value QCA to capture conditions that operate on more than binary (present/absent) scales. These methodological refinements would strengthen the causal claims derivable from configurational analysis of industrial transitions.
 
 ---
 
@@ -401,7 +423,11 @@ Industry 5.0 represents a fundamental opportunity to redefine industrial progres
 
 The key insight is not that advanced economies are "ahead" and emerging ones "behind" on a single trajectory, but rather that different starting conditions enable different—yet equally valid—pathways to the same human-centric, sustainable, and resilient industrial outcomes. The critical requirement is configurational coherence: conditions must combine in mutually reinforcing ways. Brazil's underperformance illustrates that moderate levels of individual conditions, without configurational alignment, produce weaker outcomes than coherent combinations of even limited conditions.
 
-The future of industry is neither automation nor humans—it is human-automation collaboration, shaped by local realities and governed by shared principles of sustainability and resilience. The evidence presented here provides both the analytical framework and the empirical foundation for economies worldwide to identify and pursue their contextually appropriate Industry 5.0 pathways.
+The implications for global industrial policy are significant. International organizations promoting Industry 5.0 adoption should resist prescribing uniform implementation models and instead facilitate pathway identification—helping economies understand which configurational pathway aligns with their existing institutional, technological, and workforce conditions. Technology transfer programs should be redesigned to recognize bidirectional innovation flows, particularly the phenomenon of frugal innovation backflow from emerging to advanced economies. Furthermore, the sustainability pillar—the weakest across most cases—requires dedicated attention through mandatory linkage between industrial policy incentives and measurable environmental targets.
+
+From a theoretical perspective, this chapter establishes configurational theory and QCA as valuable methodological approaches for understanding complex industrial transitions where multiple interacting conditions produce outcomes that no single variable can explain. The demonstration of equifinality in Industry 5.0 contexts provides a rigorous counter-argument to technological determinism and linear development models that continue to dominate much of the policy discourse.
+
+The future of industry is neither automation nor humans—it is human-automation collaboration, shaped by local realities and governed by shared principles of sustainability and resilience. Industry 5.0's promise lies precisely in this adaptive capacity—the ability to honor universal principles while respecting local contexts. The evidence presented here provides both the analytical framework and the empirical foundation for economies worldwide to identify and pursue their contextually appropriate Industry 5.0 pathways. As the global manufacturing landscape continues to evolve, the configurational lens offered by this analysis will remain relevant for understanding how different economies navigate the transition toward truly human-centric, sustainable, and resilient industrial systems that serve people, planet, and prosperity simultaneously.
 
 ---
 
