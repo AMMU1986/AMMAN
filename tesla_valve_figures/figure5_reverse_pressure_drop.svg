@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="550" viewBox="0 0 900 550">
+<rect width="900" height="550" fill="white"/>
+<text x="450" y="35" font-family="Arial, sans-serif" font-size="15" font-weight="bold" text-anchor="middle" fill="#333">
+Pressure Drop vs. Inlet Velocity (Reverse Flow)</text>
+<rect x="120" y="60" width="650" height="380" fill="#FAFAFA" stroke="#333" stroke-width="1.5"/>
+<line x1="120" y1="440.0" x2="770" y2="440.0" stroke="#DDD" stroke-width="0.5"/>
+<text x="110" y="444.0" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#333">0</text>
+<line x1="120" y1="385.7" x2="770" y2="385.7" stroke="#DDD" stroke-width="0.5"/>
+<text x="110" y="389.7" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#333">1000</text>
+<line x1="120" y1="331.4" x2="770" y2="331.4" stroke="#DDD" stroke-width="0.5"/>
+<text x="110" y="335.4" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#333">2000</text>
+<line x1="120" y1="277.1" x2="770" y2="277.1" stroke="#DDD" stroke-width="0.5"/>
+<text x="110" y="281.1" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#333">3000</text>
+<line x1="120" y1="222.9" x2="770" y2="222.9" stroke="#DDD" stroke-width="0.5"/>
+<text x="110" y="226.9" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#333">4000</text>
+<line x1="120" y1="168.6" x2="770" y2="168.6" stroke="#DDD" stroke-width="0.5"/>
+<text x="110" y="172.6" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#333">5000</text>
+<line x1="120" y1="114.3" x2="770" y2="114.3" stroke="#DDD" stroke-width="0.5"/>
+<text x="110" y="118.3" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#333">6000</text>
+<line x1="120" y1="60.0" x2="770" y2="60.0" stroke="#DDD" stroke-width="0.5"/>
+<text x="110" y="64.0" font-family="Arial, sans-serif" font-size="11" text-anchor="end" fill="#333">7000</text>
+<line x1="120.0" y1="440" x2="120.0" y2="445" stroke="#333" stroke-width="1"/>
+<text x="120.0" y="460" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">0</text>
+<line x1="221.6" y1="440" x2="221.6" y2="445" stroke="#333" stroke-width="1"/>
+<text x="221.6" y="460" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">0.25</text>
+<line x1="323.1" y1="440" x2="323.1" y2="445" stroke="#333" stroke-width="1"/>
+<text x="323.1" y="460" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">0.5</text>
+<line x1="424.7" y1="440" x2="424.7" y2="445" stroke="#333" stroke-width="1"/>
+<text x="424.7" y="460" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">0.75</text>
+<line x1="526.2" y1="440" x2="526.2" y2="445" stroke="#333" stroke-width="1"/>
+<text x="526.2" y="460" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">1.0</text>
+<line x1="627.8" y1="440" x2="627.8" y2="445" stroke="#333" stroke-width="1"/>
+<text x="627.8" y="460" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">1.25</text>
+<line x1="729.4" y1="440" x2="729.4" y2="445" stroke="#333" stroke-width="1"/>
+<text x="729.4" y="460" font-family="Arial, sans-serif" font-size="11" text-anchor="middle" fill="#333">1.5</text>
+<text x="445.0" y="485" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#333">Inlet Velocity (m/s)</text>
+<text x="30" y="250.0" font-family="Arial, sans-serif" font-size="13" text-anchor="middle" fill="#333" transform="rotate(-90, 30, 250.0)">Pressure Drop (Pa)</text>
+<polyline points="160.6,430.2 221.6,411.8 323.1,361.3 424.7,288.0 526.2,212.0 627.8,146.9 729.4,87.1" fill="none" stroke="#D32F2F" stroke-width="2.5"/>
+<circle cx="160.6" cy="430.2" r="5" fill="#D32F2F" stroke="white" stroke-width="1.5"/>
+<circle cx="221.6" cy="411.8" r="5" fill="#D32F2F" stroke="white" stroke-width="1.5"/>
+<circle cx="323.1" cy="361.3" r="5" fill="#D32F2F" stroke="white" stroke-width="1.5"/>
+<circle cx="424.7" cy="288.0" r="5" fill="#D32F2F" stroke="white" stroke-width="1.5"/>
+<circle cx="526.2" cy="212.0" r="5" fill="#D32F2F" stroke="white" stroke-width="1.5"/>
+<circle cx="627.8" cy="146.9" r="5" fill="#D32F2F" stroke="white" stroke-width="1.5"/>
+<circle cx="729.4" cy="87.1" r="5" fill="#D32F2F" stroke="white" stroke-width="1.5"/>
+<polyline points="160.6,434.0 221.6,423.7 323.1,395.5 424.7,358.6 526.2,326.0 627.8,296.1 729.4,266.3" fill="none" stroke="#1976D2" stroke-width="2.5"/>
+<circle cx="160.6" cy="434.0" r="5" fill="#1976D2" stroke="white" stroke-width="1.5"/>
+<circle cx="221.6" cy="423.7" r="5" fill="#1976D2" stroke="white" stroke-width="1.5"/>
+<circle cx="323.1" cy="395.5" r="5" fill="#1976D2" stroke="white" stroke-width="1.5"/>
+<circle cx="424.7" cy="358.6" r="5" fill="#1976D2" stroke="white" stroke-width="1.5"/>
+<circle cx="526.2" cy="326.0" r="5" fill="#1976D2" stroke="white" stroke-width="1.5"/>
+<circle cx="627.8" cy="296.1" r="5" fill="#1976D2" stroke="white" stroke-width="1.5"/>
+<circle cx="729.4" cy="266.3" r="5" fill="#1976D2" stroke="white" stroke-width="1.5"/>
+<polyline points="160.6,432.4 221.6,418.8 323.1,383.0 424.7,331.4 526.2,277.1 627.8,228.3 729.4,179.4" fill="none" stroke="#388E3C" stroke-width="2.5"/>
+<circle cx="160.6" cy="432.4" r="5" fill="#388E3C" stroke="white" stroke-width="1.5"/>
+<circle cx="221.6" cy="418.8" r="5" fill="#388E3C" stroke="white" stroke-width="1.5"/>
+<circle cx="323.1" cy="383.0" r="5" fill="#388E3C" stroke="white" stroke-width="1.5"/>
+<circle cx="424.7" cy="331.4" r="5" fill="#388E3C" stroke="white" stroke-width="1.5"/>
+<circle cx="526.2" cy="277.1" r="5" fill="#388E3C" stroke="white" stroke-width="1.5"/>
+<circle cx="627.8" cy="228.3" r="5" fill="#388E3C" stroke="white" stroke-width="1.5"/>
+<circle cx="729.4" cy="179.4" r="5" fill="#388E3C" stroke="white" stroke-width="1.5"/>
+<rect x="150" y="80" width="170" height="95" fill="white" stroke="#CCC" stroke-width="1" rx="3"/>
+<line x1="160" y1="105" x2="190" y2="105" stroke="#D32F2F" stroke-width="2.5"/>
+<circle cx="175" cy="105" r="4" fill="#D32F2F"/>
+<text x="200" y="109" font-family="Arial, sans-serif" font-size="12" fill="#333">Geometry 1</text>
+<line x1="160" y1="133" x2="190" y2="133" stroke="#1976D2" stroke-width="2.5"/>
+<circle cx="175" cy="133" r="4" fill="#1976D2"/>
+<text x="200" y="137" font-family="Arial, sans-serif" font-size="12" fill="#333">Geometry 2</text>
+<line x1="160" y1="161" x2="190" y2="161" stroke="#388E3C" stroke-width="2.5"/>
+<circle cx="175" cy="161" r="4" fill="#388E3C"/>
+<text x="200" y="165" font-family="Arial, sans-serif" font-size="12" fill="#333">Geometry 3</text>
+</svg>
