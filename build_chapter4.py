@@ -312,9 +312,82 @@ d.bullet("(ii) Sulfur and phosphorus removal: basic fluxes with high CaF\u2082 a
 d.bullet("(iii) Inclusion morphology and distribution: the oxide-inclusion size, type and distribution in the weld metal are related to the oxygen potential controlled by the flux basicity. Fine, small, spherical inclusions (typical of high-basicity fluxes) are less detrimental to corrosion resistance than the large, angular inclusions or large clusters (typical of low-basicity fluxes), which can dissolve preferentially, forming micro-pits that serve as crack sources.")
 d.bullet("(iv) Microstructural uniformity: acicular-ferrite-dominated microstructures (formed by basic fluxes such as F6B) are fine-grained with random grain orientation, which minimizes the galvanic potential difference between neighbouring grains and gives more uniform corrosion behaviour. Microstructures with extensive regions of grain-boundary ferrite or Widmanst\u00e4tten ferrite, on the other hand, tend to corrode along grain-boundary ferrite/pearlite or grain-boundary ferrite/bainite interfaces.")
 
+# ============================ REFERENCES ============================
+d.page_break()
+d.heading("References", 2)
+_refs = [
+    "Kumar, A., & Chhibber, R. (2022). Investigation of the wetting behavior of formulated SMAW electrode coating fluxes with regression and ANN model. Metallurgical and Materials Transactions B.",
+    "Kumar, A., Sharma, L., & Chhibber, R. (2023). Wettability studies of formulated SMAW electrode coating fluxes with regression analysis and neural network approach. Ceramics International, 49(7), 10224\u201310237.",
+    "Kumar, A., & Chhibber, R. (2024). Thermal property characterization and modeling of SMAW electrode coating flux using ANN and regression analysis. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture.",
+    "Kumar, A., Sharma, L., & Chhibber, R. (2023). Investigation and modeling of the SMAW coating flux thermal properties using neural network and regression analysis. Ceramics International, 49(11), 17753\u201317765.",
+    "Kumar, A., & Chhibber, R. (2024). Element transfer, microhardness and metallurgical analysis of weld-bead using CaF\u2082\u2013CaO\u2013Al\u2082O\u2083\u2013BaO fluxes. Materials Science and Technology, 40(18), 1377\u20131391.",
+    "Sharma, L., & Chhibber, R. (2019). Investigating the physicochemical and thermophysical properties of submerged arc welding fluxes designed using TiO\u2082\u2013SiO\u2082\u2013MgO and SiO\u2082\u2013MgO\u2013Al\u2082O\u2083 flux systems for linepipe steels. Ceramics International, 45(2), 1569\u20131587.",
+    "Sharma, L., & Chhibber, R. (2019). Design and development of submerged arc welding fluxes using TiO\u2082\u2013SiO\u2082\u2013CaO and SiO\u2082\u2013CaO\u2013Al\u2082O\u2083 flux systems. Proceedings of the Institution of Mechanical Engineers, Part E: Journal of Process Mechanical Engineering, 233(4), 739\u2013762.",
+    "Sharma, L., & Chhibber, R. (2019). Design of CaO\u2013SiO\u2082\u2013CaF\u2082 and CaO\u2013SiO\u2082\u2013Al\u2082O\u2083 based submerged arc fluxes for series of bead-on-plate pipeline steel welds: Effect on carbon and manganese content, grain size and microhardness. Journal of Pressure Vessel Technology, 141(1), 011404.",
+    "Sharma, L., Kumar, J., & Chhibber, R. (2019). Experimental investigation on high-temperature wettability and structural behaviour of SAW fluxes using MgO\u2013TiO\u2082\u2013SiO\u2082 and Al\u2082O\u2083\u2013MgO\u2013SiO\u2082 flux systems. Ceramics International, 45(17), 22142\u201322155.",
+    "Sharma, L., & Chhibber, R. (2019). Design and development of submerged arc welding slags using CaO\u2013SiO\u2082\u2013CaF\u2082 and CaO\u2013SiO\u2082\u2013Al\u2082O\u2083 systems. Silicon, 12(9), 2179\u20132190.",
+    "Sharma, L., & Chhibber, R. (2019). Effect of heat treatment on mechanical properties and corrosion behaviour of API X70 linepipe steel in different environments. Transactions of the Indian Institute of Metals, 72(1), 93\u2013110.",
+    "Sharma, L., & Chhibber, R. (2018). Mechanical properties and hydrogen induced cracking behaviour of API X70 SAW weldments. International Journal of Pressure Vessels and Piping, 165, 193\u2013207.",
+    "Arya, H. K., Singh, K., & Saxena, R. K. (2018). Effect of weld cooling rates on mechanical and metallurgical properties of submerged arc welded pressure vessel steel. Journal of Pressure Vessel Technology, 140(4), 041406.",
+    "Arora, K. S., Pandu, R. S., Shajan, N., Pathak, P., & Shome, M. (2018). Microstructure and impact toughness of reheated coarse-grain heat-affected zones of API X65 and API X80 linepipe steels. International Journal of Pressure Vessels and Piping, 167, 37\u201347.",
+    "Beidokhti, B., Koukabi, A. H., & Dolati, A. (2009). Effect of titanium addition on the microstructure and inclusion formation in submerged arc welded HSLA pipeline steel. Journal of Materials Processing Technology, 209(8), 4027\u20134035.",
+    "Houldcroft, P. T. (1989). Submerged-arc welding. Abington Publishing, Cambridge, England.",
+    "Kou, S. (2003). Welding metallurgy (2nd ed.). John Wiley & Sons.",
+    "Davis, M. L. E., & Coe, F. R. (1977). The chemistry of submerged arc welding fluxes. The Welding Institute Research Report, 39/1977/M.",
+    "Kanjilal, P., Pal, T. K., & Majumdar, S. K. (2006). Combined effect of flux and welding parameters on chemical composition and mechanical properties of submerged arc weld metal. Journal of Materials Processing Technology, 171(2), 223\u2013231.",
+    "Bang, K., Park, C., Jung, H., & Lee, J. (2009). Effects of flux composition on the element transfer and mechanical properties of weld metal in submerged arc welding. Metals and Materials International, 15(3), 471\u2013477.",
+    "Kanjilal, P., Majumdar, S. K., & Pal, T. K. (2005). Prediction of acicular ferrite in C\u2013Mn steel weld metals. ISIJ International, 45(6), 876\u2013885.",
+    "Davis, M. L. E., & Bailey, N. (1991). Evidence of inclusion chemistry for element transfer in submerged arc welding. Welding Journal Research Supplement, 70(2), 58\u201365.",
+    "North, T. H., Bell, H. B., Nowicki, A., & Craig, I. (1978). Slag/metal interaction, oxygen and toughness in submerged arc welding. Welding Journal Research Supplement, 57(3), 63s\u201375s.",
+    "Datta, S., Bandyopadhyay, A., & Pal, P. K. (2008). Application of Taguchi philosophy for parametric optimization of bead geometry and HAZ width in submerged arc welding using a mixture of fresh flux and fused flux. International Journal of Advanced Manufacturing Technology, 36(7\u20138), 689\u2013698.",
+    "Palm, J. H. (1972). How fluxes determine the metallurgical properties of submerged arc welds. Welding Journal, 358S\u2013360S.",
+    "Crespo, A. C., Puchol, R. Q., Gonzalez, L. P., Sanchez, L. G., Gomez Perez, C. R., Cedre, E. D., Mendez, T. O., & Pozol, J. A. (2007). Obtaining a submerged arc welding flux of the MnO\u2013SiO\u2082\u2013CaO\u2013Al\u2082O\u2083\u2013CaF\u2082 system by fusion. Welding International, 21(7), 502\u2013511.",
+    "Campbell, H. C., & Johnson, W. C. (1957). Bonded fluxes for submerged arc welding of alloy steels. Welding Journal.",
+    "Golovko, V. V., & Potapov, N. N. (2011). Special features of agglomerated (ceramic) fluxes in welding. Welding International, 25(11), 889\u2013893.",
+    "Singh, B., Khan, Z. A., & Siddiquee, A. N. (2013). Review on effect of flux composition on its behavior and bead geometry in submerged arc welding. Journal of Mechanical Engineering Research, 5(7), 123\u2013127.",
+    "Paniagua-Mercado, A. M., Lopez-Hirata, V. M., & Saucedo-Munoz, M. L. (2005). Influence of chemical composition of flux on the microstructure and tensile properties of submerged arc welds. Journal of Materials Processing Technology, 169(3), 346\u2013351.",
+    "Adeyeye, A. D., & Oyawale, F. A. (2008). Mixture experiments and their applications in welding flux design. Journal of the Brazilian Society of Mechanical Sciences and Engineering, 30(4), 319\u2013326.",
+    "Jackson, C. E. (1973). Fluxes and slags in welding. Welding Research Council Bulletin, 190.",
+    "Chai, C. S., & Eagar, T. W. (1982). Slag-metal reactions in binary CaF\u2082\u2013metal oxide welding fluxes. Welding Journal, 61(7), 229\u2013232.",
+    "Kanjilal, P., Pal, T. K., & Majumdar, S. K. (2007). Prediction of element transfer in submerged arc welding. Welding Journal, 86(4), 135S\u2013146S.",
+    "Schwemer, D. D., Olson, D. L., & Williamson, D. L. (1979). Relationship of weld penetration to the welding flux. Welding Research Supplement, 153S\u2013160S.",
+    "Dallam, C. B., Liu, S., & Olson, D. L. (1985). Flux composition dependence of microstructure and toughness of submerged arc HSLA weldments. Welding Research Supplement, 140S\u2013152S.",
+    "Fox, A. G., Eakes, M. W., & Franke, G. I. (1996). The effect of small changes in flux basicity on the acicular ferrite content and mechanical properties of submerged arc weld metal. Welding Research Supplement, 330S\u2013342S.",
+    "Plessis, J. D., Toit, M. D., & Pistorius, P. C. (2007). Control of diffusible weld metal hydrogen through flux chemistry modification. Welding Journal, 86, 273\u2013280.",
+    "Houldcroft, P. T. (1977). Welding Process Technology. Cambridge University Press.",
+    "Jung, E. J., & Min, D. J. (2012). Effect of Al\u2082O\u2083 and MgO on interfacial tension between calcium silicate-based melts and a solid steel substrate. Steel Research International, 83(7), 705\u2013711.",
+    "Jung, E. J., Kim, W., Sohn, I., & Min, D. J. (2010). A study on the interfacial tension between solid iron and CaO\u2013SiO\u2082\u2013MO system. Journal of Materials Science, 45, 2023\u20132029.",
+    "Sharma, L., & Chhibber, R. (2019). Design of TiO\u2082\u2013SiO\u2082\u2013MgO and SiO\u2082\u2013MgO\u2013Al\u2082O\u2083 based submerged arc fluxes for multi-pass bead-on-plate linepipe steel welds. Journal of Pressure Vessel Technology, 141(1), 011403.",
+    "Kim, J. B., Choi, J. K., Han, I. W., & Sohn, I. (2015). High-temperature wettability and structure of the TiO\u2082\u2013MnO\u2013SiO\u2082\u2013Al\u2082O\u2083 welding flux system. Journal of Non-Crystalline Solids.",
+    "Quintana, R., Cruz, A., Perdomo, L., Castellanos, G., Garc\u00eda, L. L., Formoso, A., & Cores, A. (2003). Study of the transfer efficiency of alloyed elements in fluxes during the submerged arc welding process. Welding International, 17(12), 958\u2013965.",
+    "Jindal, S., Chhibber, R., & Mehta, N. P. (2013). Investigation on flux design for submerged arc welding of high-strength low-alloy steel. Proceedings of the Institution of Mechanical Engineers, Part B: Journal of Engineering Manufacture, 227(3), 383\u2013395.",
+    "Baune, E., Bonnet, C., & Liu, S. (2000). Reconsidering the basicity of a FCAW consumable\u2014Part 1: Solidified slag composition of a FCAW consumable as a basicity indicator. Welding Journal, 79(3), 57S\u201365S.",
+    "Jindal, S., Chhibber, R., & Mehta, N. P. (2013). Effect of flux constituents and basicity index on mechanical properties and microstructural evolution of submerged arc welded high-strength low-alloy steel. Materials Science Forum, 738\u2013739, 242\u2013246.",
+    "Zhang, J., Wang, X., Zhao, Y., & Liu, C. (2022). A review on parallel development of flux design and welding metallurgy in submerged arc welding. Processes, 10(11), 2305.",
+    "ASTM International. (2023). ASTM E8/E8M: Standard test methods for tension testing of metallic materials. ASTM International.",
+    "Adeyeye, A. D., & Oyawale, F. A. (2009). Weld-metal property optimization from flux ingredients through mixture experiments and mathematical programming approach. Materials Research, 12(3), 339\u2013343.",
+    "ASTM International. (2023). ASTM E23: Standard test methods for notched bar impact testing of metallic materials. ASTM International.",
+    "Callister, W. D., & Rethwisch, D. G. (2020). Materials science and engineering: An introduction (10th ed.). John Wiley & Sons.",
+    "Zhang, J., Wang, X., Zhao, Y., & Liu, C. (2022). A review on parallel development of flux design and welding metallurgy in submerged arc welding. Processes, 10(11), 2305. https://doi.org/10.3390/pr10112305",
+    "Kumar, A., & Chhibber, R. (2024). Microhardness and element transfer investigation of weld bead using formulated SiO\u2082\u2013CaO\u2013CaF\u2082\u2013BaO SMAW electrode coatings. Proceedings of the Institution of Mechanical Engineers, Part C: Journal of Mechanical Engineering Science.",
+    "Bhadeshia, H. K. D. H. (2001). Bainite in steels: Transformations, microstructure and properties (2nd ed.). Institute of Materials.",
+    "Lancaster, J. F. (1999). The metallurgy of welding (6th ed.). Woodhead Publishing.",
+    "Easterling, K. (1992). Introduction to the physical metallurgy of welding. Butterworth-Heinemann.",
+    "Svensson, L. E. (1994). Control of microstructures and properties in steel arc welds. CRC Press.",
+    "Thewlis, G. (1994). Classification and quantification of microstructures in steels. Materials Science and Technology, 10(2), 110\u2013125.",
+    "Olson, D. L. (1986). Prediction of acicular ferrite formation in C\u2013Mn steel weld metal. Welding Journal Research Supplement, 97S\u2013106S.",
+    "Montgomery, D. C. (2019). Design and analysis of experiments (10th ed.). John Wiley & Sons.",
+    "Cornell, J. A. (2011). Experiments with mixtures: Designs, models, and the analysis of mixture data (3rd ed.). Wiley.",
+    "Myers, R. H., Montgomery, D. C., & Anderson-Cook, C. M. (2016). Response surface methodology (4th ed.). Wiley.",
+    "Fisher, R. A. (1935). The design of experiments. Oliver & Boyd.",
+    "Piepel, G. F. (1988). Programs for generating extreme vertices and centroid designs for mixture experiments. Journal of Quality Technology, 20(2), 125\u2013139.",
+]
+for i, r in enumerate(_refs, start=1):
+    d.reference(i, r)
+
 # ============================ SAVE ============================
 d.save(OUT)
 print("Document created: %s" % OUT)
 print("File size: %d bytes" % os.path.getsize(OUT))
 print("Images embedded: %d" % len(d.images))
-print("All in-text reference citations removed; no bibliography included.")
+print("References added: %d" % len(_refs))

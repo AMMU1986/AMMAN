@@ -122,6 +122,13 @@ class DocxBuilder:
             f'<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="80" w:after="80"/></w:pPr>'
             f'{self._run(text, italic=True, size=24)}</w:p>')
 
+    def reference(self, num, text, size=22):
+        ref_text = f"[{num}]  " + text
+        self.body.append(
+            f'<w:p><w:pPr><w:ind w:left="600" w:hanging="600"/><w:jc w:val="both"/>'
+            f'<w:spacing w:after="60" w:line="276" w:lineRule="auto"/></w:pPr>'
+            f'{self._run(ref_text, size=size)}</w:p>')
+
     def bullet(self, text):
         bullet_text = "\u2022  " + text
         self.body.append(
