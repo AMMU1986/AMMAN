@@ -324,6 +324,12 @@ def md_to_body(md_text):
             i += 1
             continue
 
+        # Numbered reference entry: "[12] Surname, X. ... (Year)."
+        if re.match(r'^\[\d+\]\s', stripped):
+            elements.append(make_paragraph(stripped, 'References'))
+            i += 1
+            continue
+
         # APA reference entry: "Surname, X. ... (Year)."  -> hanging indent
         if re.match(r'^[A-ZÀ-Þ][A-Za-zÀ-ÿ.\-\']+,\s', stripped) and re.search(r'\((?:19|20)\d{2}[a-z]?\)', stripped):
             elements.append(make_paragraph(stripped, 'References'))
