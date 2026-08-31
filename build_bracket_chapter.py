@@ -288,47 +288,70 @@ def convert_citations(body):
 # 5.  Insert the 26 new citations at their anchor sentences.
 # ---------------------------------------------------------------------------
 def insert_new_citations(body):
+    """Insert each new ref at its anchor using a temporary placeholder token
+    @@ORIGID@@ so we can later renumber strictly by reading order."""
     inserted = []
-    for num, _apa, anchor, *_ in NEWREFS:
+    for origid, _apa, anchor, *_ in NEWREFS:
         rx = re.compile(anchor)
         mm = rx.search(body)
         if not mm:
-            inserted.append((num, False))
+            inserted.append((origid, False))
             continue
-        # find the end of the sentence containing the match (next '. ' or '.\n')
         tail = body[mm.end():]
-        # locate the period that terminates this sentence
         pm = re.search(r'\.(?=\s|$|\))', tail)
         if not pm:
-            inserted.append((num, False))
+            inserted.append((origid, False))
             continue
         pos = mm.end() + pm.start()
-        # If there's already a [..] right before the period, merge into it.
+        token = f'@@{origid}@@'
+        # Merge into an existing bracket group if one ends right before the period.
         pre = body[:pos]
-        mnums = re.search(r'\[([\d,\s]+)\]\s*$', pre)
+        mnums = re.search(r'(\[[\d,\s@]+\])\s*$', pre)
         if mnums:
-            nums = [int(x) for x in re.findall(r'\d+', mnums.group(1))]
-            nums.append(num)
-            nums = sorted(set(nums))
-            newtag = '[' + ', '.join(map(str, nums)) + ']'
+            inside = mnums.group(1)[1:-1].strip()
+            newtag = '[' + inside + ', ' + token + ']'
             body = pre[:mnums.start()] + newtag + body[pos:]
         else:
-            body = body[:pos] + f' [{num}]' + body[pos:]
-        inserted.append((num, True))
+            body = body[:pos] + f' [{token}]' + body[pos:]
+        inserted.append((origid, True))
     return body, inserted
+
+
+def renumber_serial(body):
+    """Assign final numbers 66.. to placeholders in strict reading order.
+    Returns (body_with_final_numbers, origid->finalnum map)."""
+    order = []
+    for m in re.finditer(r'@@(\d+)@@', body):
+        oid = int(m.group(1))
+        if oid not in order:
+            order.append(oid)
+    mapping = {oid: 66 + i for i, oid in enumerate(order)}
+    # Replace placeholders with their final numbers.
+    def repl(m):
+        return str(mapping[int(m.group(1))])
+    body = re.sub(r'@@(\d+)@@', repl, body)
+    # Normalise every bracket group: sort numbers ascending, dedupe.
+    def fix_group(m):
+        nums = sorted({int(x) for x in re.findall(r'\d+', m.group(0))})
+        return '[' + ', '.join(map(str, nums)) + ']'
+    body = re.sub(r'\[[\d,\s]+\]', fix_group, body)
+    return body, mapping
 
 
 # ---------------------------------------------------------------------------
 # 6.  Build reference list [1]-[91]
 # ---------------------------------------------------------------------------
-def build_refs():
+def build_refs(mapping):
+    """mapping: origid -> final number. New refs listed in final-number order."""
     lines = ['## References', '']
     for (n, _k, t) in MASTER:
         lines.append(f'[{n}] {t}')
         lines.append('')
-    for entry in NEWREFS:
-        n, t = entry[0], entry[1]
-        lines.append(f'[{n}] {t}')
+    # order new refs by their assigned final number
+    text_by_origid = {origid: t for (origid, t, *_rest) in NEWREFS}
+    for origid in sorted(mapping, key=lambda o: mapping[o]):
+        n = mapping[origid]
+        lines.append(f'[{n}] {text_by_origid[origid]}')
         lines.append('')
     return '\n'.join(lines).rstrip() + '\n'
 
@@ -340,18 +363,21 @@ def main():
 
     body, unmatched = convert_citations(body)
     body, inserted = insert_new_citations(body)
+    body, mapping = renumber_serial(body)
 
-    final = body.rstrip() + '\n\n' + build_refs()
+    final = body.rstrip() + '\n\n' + build_refs(mapping)
     with open(OUT, 'w', encoding='utf-8') as f:
         f.write(final)
 
     print('Unmatched in-text citations:', len(unmatched))
     for u in sorted(set(unmatched)):
         print('   MISS:', u)
-    missing_anchor = [n for (n, ok) in inserted if not ok]
+    missing_anchor = [origid for (origid, ok) in inserted if not ok]
     print('New refs successfully placed:', sum(1 for _, ok in inserted if ok), '/', len(inserted))
     if missing_anchor:
-        print('   Anchor NOT found for refs:', missing_anchor)
+        print('   Anchor NOT found for orig-ids:', missing_anchor)
+    print('Serial mapping (orig->final):',
+          {o: mapping[o] for o in sorted(mapping, key=lambda o: mapping[o])})
 
 
 if __name__ == '__main__':
