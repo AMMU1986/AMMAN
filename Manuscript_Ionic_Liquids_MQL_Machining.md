@@ -18,19 +18,11 @@ Minimum quantity lubrication (MQL) machining has emerged as a viable sustainable
 
 ## 1. Introduction
 
-Manufacturing activity is a major consumer of energy and natural resources, and the need for sustainability in manufacturing cannot be over-emphasized [1]. Machining is a key manufacturing process for many critical components since it has direct influence on the surface integrity and thus the life of parts being machined [2]. The process involves severe plastic deformation of the material being cut and, according to estimates, almost all the energy supplied for machining gets converted into heat [3,4]. Traditionally, large volumes of liquid coolants, also called cutting fluids or metalworking fluids (MWFs), are employed in flood mode (10–100 L/min) to remove the heat produced during machining, reduce friction at the tool-chip interface, and facilitate chip evacuation [5].
+Manufacturing is a major consumer of energy and natural resources, making sustainability a pressing concern [1], and machining in particular governs the surface integrity and service life of critical components [2]. Because machining involves severe plastic deformation in which nearly all the supplied energy is converted to heat [3,4], large volumes of cutting fluids, or metalworking fluids (MWFs), are traditionally applied in flood mode (10–100 L/min) to cool the cutting zone, reduce tool-chip friction, and evacuate chips [5]. However, this practice carries heavy economic and ecological burdens: worldwide consumption of emulsions and neat oils exceeds two billion liters [6], fluid management can reach 17% of machined-part cost [7], and contact with contaminated fluids is a leading cause of occupational disease [8], prompting regulation-driven efforts to reduce or eliminate hazardous MWFs [9].
 
-However, the use of cutting fluids is fraught with significant economic and ecological burdens. The total worldwide consumption of water-based emulsions and neat cutting oils exceeds two billion liters [6]. The cost of cutting fluids and their management systems can account for up to 17% of the total cost of the machined part [7]. From a health perspective, skin contact and inhalation of cutting fluids loaded with microorganisms, biocides, and toxic metal particles is a major cause of occupational diseases among industrial workers [8]. Stringent environmental regulations have necessitated research into reduction or elimination of hazardous cutting fluids from machining processes [9].
+Alternatives such as dry machining [7,10], cryogenic machining [11,12], and minimum quantity lubrication (MQL) [13–15] have been explored. MQL is especially promising for industry because it delivers very small lubricant volumes (typically 10–100 ml/h) as an atomized mist in a compressed-air jet, so the lubricant is consumed in the cut and disposal concerns are eliminated [14]. The MWFs studied for MQL include mineral oils, synthetic esters, and vegetable oils [16–18]; vegetable oils are biodegradable and non-toxic but suffer from oxidative instability and rancidity [19], so the search for more sustainable and effective MQL lubricants continues [15].
 
-To address these concerns, researchers have explored several alternatives including dry machining [7,10], cryogenic machining with liquid nitrogen [11,12], and minimum quantity lubrication (MQL) machining [13–15]. Among these, MQL machining has shown considerable promise for industrial implementation as it employs very low volumes of lubricant (typically 10–100 ml/h) delivered in atomized form via a compressed air jet to the cutting zone [14]. The lubricating property of the oil and cooling capacity of the carrier medium replaces the traditional flood coolant functions, while the small volumes ensure that the lubricant is consumed in the cutting process itself, eliminating disposal concerns [15].
-
-The lubricants explored for MQL machining include mineral oils, synthetic esters, and vegetable oils [16–18]. While mineral oils and synthetic chemicals present environmental and health risks through aerosol formation, vegetable oils offer a biodegradable and non-toxic alternative but suffer from stability issues and tendency to turn rancid [19]. Thus, the quest for more sustainable and effective lubricants for MQL machining continues.
-
-Ionic liquids represent a relatively new family of environment-friendly chemicals that have attracted significant research attention for tribological applications [20,21]. These are essentially salts with melting points below 100°C, composed of bulky asymmetric organic cations (typically containing nitrogen or phosphorus) paired with smaller organic or inorganic anions. The large size difference between anion and cation, combined with asymmetric charge distribution, results in low crystal lattice energy and consequently low melting point [22]. Critically, the properties of ionic liquids can be tailored by selecting suitable cation-anion combinations, earning them the designation of "task-specific designer chemicals" [23].
-
-Several researchers have explored ionic liquids in tribological applications involving relatively high contact stresses and temperatures [24–27]. However, the tribological conditions prevailing in conventional machining are much more severe than those in pin-on-disk tribometer testing, with tool-chip interface temperatures potentially exceeding 1000°C, strains in the range of 1–2, strain rates above 10⁴, and peak contact stresses above 800 MPa [28]. To the best of the authors' knowledge, limited published work exists exploring ionic liquids as lubricants in conventional machining under such severe tribological conditions.
-
-Furthermore, while the influence of ionic liquids on cutting forces and surface roughness has been demonstrated, the fundamental mechanism through which they act under the extreme conditions of metal cutting requires deeper investigation. The tool-chip interfacial temperature distribution is arguably the most important criterion influencing cutting fluid action, as it determines whether the fluid exists in liquid or gaseous state and whether thermal degradation occurs [29]. Knowledge of these temperatures is essential for understanding and optimizing the lubricating action of ionic liquids in MQL machining.
+Ionic liquids are an environment-friendly class of chemicals attracting attention for tribological use [20,21]. They are salts melting below 100°C, formed from bulky asymmetric cations and smaller anions whose size mismatch and asymmetric charge distribution give low lattice energy and low melting point [22]; their properties can be tuned via cation-anion selection, making them "task-specific designer chemicals" [23]. Although ionic liquids have been evaluated under high contact stress and temperature [24–27], conventional machining imposes far more severe conditions than pin-on-disk testing—interface temperatures exceeding 1000°C, strains of 1–2, strain rates above 10⁴, and contact stresses above 800 MPa [28]—and little published work addresses ionic liquids as lubricants under such conditions. Moreover, the mechanism by which they act, and the tool-chip interfacial temperature that governs whether a fluid remains liquid, vaporizes, or thermally degrades [29], both require deeper investigation.
 
 This paper presents a comprehensive investigation combining experimental machining studies with thermal modelling to evaluate the performance and elucidate the action mechanisms of ionic liquids as lubricant additives in MQL machining of plain medium carbon steel. The study bridges the gap between fundamental tribological understanding and practical application of ionic liquids in industrially relevant machining conditions. The specific objectives are: (1) to evaluate the cutting performance of fluorine-containing and phosphonium-based ionic liquids under different cutting conditions; (2) to develop a thermal model for estimating tool-chip interfacial temperatures under different MQL conditions; and (3) to establish correlations between estimated temperatures, lubricant properties, and machining outcomes to provide design guidelines for ionic liquid-based MWFs.
 
@@ -77,35 +69,86 @@ In machining, most of the work done is converted into heat. Three principal heat
 
 Accurate estimation of heat generation in metal cutting is extremely arduous due to the complexity and non-linearity inherent in the process. Machining involves high strain and strain rate coupled with high temperature, which significantly alters local material properties of the workpiece and tool [4]. Analytical models based on the classic heat partition model by Blok [31] and friction slider model by Jaeger [32] assume steady-state conditions and uniform heat sources, making them inapplicable to intermittent cutting (milling) due to the inherent transient nature of the process [30]. Numerical models, while offering superior capabilities, require extensive computing resources and still demand specification of friction coefficients and heat partition ratios as input parameters [33,34].
 
-### 3.2 Finite Difference Model Formulation
+### 3.2 Governing Equations
+
+**Heat generation from cutting mechanics.** Under the orthogonal cutting assumption, the total cutting power is dissipated almost entirely as heat in the three zones of Fig. 2. For a chip of width w and undeformed thickness t₁ removed at cutting speed Vc, the total rate of heat generation equals the cutting power:
+
+Q̇_total = Fc · Vc     (1)
+
+where Fc is the measured cutting (tangential) force. The plastic work in the primary shear zone accounts for the dominant fraction of this power. With the shear plane inclined at the shear angle φ, the shear force Fs, shear velocity Vs, and shear strain γ are obtained from the force components and cutting geometry as:
+
+Fs = Fc cos φ − Ft sin φ     (2)
+
+Vs = Vc cos α / cos(φ − α)     (3)
+
+γ = cos α / [sin φ cos(φ − α)]     (4)
+
+where Ft is the thrust (feed) force and α is the tool rake angle. The rate of heat liberated in the primary shear zone is therefore:
+
+Q̇_s = Fs · Vs     (5)
+
+A fraction R₁ of this heat is conducted into the workpiece while the remainder is convected away by the chip; R₁ is the shear-zone heat-partition coefficient. The secondary (rake-face) heat source arises from friction as the chip slides over the tool over contact length lc, with heat rate:
+
+Q̇_f = Ff · Vch     (6)
+
+where Ff is the friction force on the rake face and Vch = Vc sin φ / cos(φ − α) is the chip velocity. The apparent coefficient of friction at the tool-chip interface, μ = Ff / N (with N the normal force on the rake face), is left as an outcome of MWF action rather than a prescribed input.
+
+**Heat conduction in the workpiece.** Temperature evolution in the workpiece domain is governed by the two-dimensional transient heat-conduction equation with temperature-dependent properties:
+
+ρ cp(T) ∂T/∂t = ∂/∂x[K(T) ∂T/∂x] + ∂/∂y[K(T) ∂T/∂y] + q̇_v     (7)
+
+where ρ is density, cp(T) is the temperature-dependent specific heat, K(T) is the temperature-dependent thermal conductivity, and q̇_v is the volumetric heat generation. The temperature dependence is represented linearly over the range of interest, K(T) = K₀ + K_T(T − T₀) and cp(T) = cp₀ + cp_T(T − T₀), and the thermal diffusivity is α = K/(ρcp). Equation (7) is subject to the following boundary and initial conditions:
+
+- Convective loss on the exposed top surface: −K ∂T/∂n = h(T − T∞)     (8)
+- Prescribed heat flux over the tool-workpiece contact zone: −K ∂T/∂n = q̇     (9)
+- Ambient (Dirichlet) condition on the remaining boundaries: T = T∞     (10)
+- Uniform initial temperature: T(x, y, 0) = T∞     (11)
+
+where h is the convection coefficient, n is the outward normal, and q̇ is the surface heat flux entering through the tool-workpiece contact, treated as the unknown to be recovered by the inverse procedure (Section 3.4).
+
+**Interface temperature.** Once the shear-zone heat rate and partition are known, the average temperature rise in the primary shear zone above the workpiece bulk temperature follows the Loewen and Shaw formulation [36]:
+
+θ_s = R₁ Q̇_s / (ρ cp Vc t₁ w)     (12)
+
+and the average tool-chip interface temperature is obtained by superposing the shear-zone temperature and the frictional temperature rise θ_f of the secondary heat source distributed over the contact area lc·w [36,37]:
+
+T_int = T∞ + θ_s + θ_f     (13)
+
+These relations connect the measured forces and the inversely estimated heat flux to the tool-chip interface temperatures that are compared against lubricant decomposition thresholds in Section 4.
+
+### 3.3 Finite Difference Model Formulation
 
 A two-dimensional finite difference model was developed for inversely estimating transient temperatures on the cutting tool rake face based on temperatures measured by thermocouples embedded in the workpiece during interrupted orthogonal machining. The key advantage of this approach is that no a priori assumptions are made about the friction coefficient at the tool-chip interface (since this is itself a variable outcome of different applied MWFs' effectiveness) or about heat partition ratios at the various interfaces (since these can be analytically predicted only under steady-state conditions in dry continuous cutting) [29].
 
 The 2D finite difference discretization of the workpiece domain (30 mm × 8 mm) with applied boundary conditions is shown in Fig. 2. The thermocouple was located at a depth of 3 mm from the top surface and 11 mm from the left boundary. For an interior node (i, j) with no internal heat generation, the explicit finite difference equation for transient heat conduction is:
 
-T(i,j)^(p+1) = Fo[T(i+1,j)^p + T(i-1,j)^p + T(i,j+1)^p + T(i,j-1)^p] + (1 - 4Fo)T(i,j)^p     (1)
+T(i,j)^(p+1) = Fo[T(i+1,j)^p + T(i-1,j)^p + T(i,j+1)^p + T(i,j-1)^p] + (1 - 4Fo)T(i,j)^p     (14)
 
-where Fo = α∆t/(∆x)² is the Fourier number, α = K/(ρcp) is thermal diffusivity, K is thermal conductivity, ρ is density, cp is specific heat capacity, and ∆t is the time step.
+where Fo = α∆t/(∆x)² is the Fourier number, α = K/(ρcp) is thermal diffusivity, K is thermal conductivity, ρ is density, cp is specific heat capacity, and ∆t is the time step. Equation (14) is the explicit discretization of the governing conduction equation (7) for an interior node with q̇_v = 0.
 
-For stability, the time step is restricted to: ∆t ≤ ∆x²/(4α)     (2)
+For stability of the explicit scheme, the time step is restricted to: ∆t ≤ ∆x²/(4α)     (15)
 
-For exposed nodes at the top face losing heat through convection:
+For exposed nodes at the top face losing heat through convection [boundary condition (8)]:
 
-T(i,j)^(p+1) = Fo[T(i+1,j)^p + T(i-1,j)^p + 2T(i,j-1)^p] + (1 - 2BiFo - 4Fo)T(i,j)^p + 2BiFoT∞     (3)
+T(i,j)^(p+1) = Fo[T(i+1,j)^p + T(i-1,j)^p + 2T(i,j-1)^p] + (1 - 2BiFo - 4Fo)T(i,j)^p + 2BiFoT∞     (16)
 
 where Bi = h∆x/K is the Biot number and h is the convection coefficient.
 
-For nodes in contact with the cutting tool receiving heat flux q̇:
+For nodes in contact with the cutting tool receiving heat flux q̇ [boundary condition (9)]:
 
-T(i,j)^(p+1) = Fo[T(i+1,j)^p + T(i-1,j)^p + 2T(i,j-1)^p] + (1 - 4Fo)T(i,j)^p + 2q̇∆t/(ρcp∆x)     (4)
+T(i,j)^(p+1) = Fo[T(i+1,j)^p + T(i-1,j)^p + 2T(i,j-1)^p] + (1 - 4Fo)T(i,j)^p + 2q̇∆t/(ρcp∆x)     (17)
 
 The thermal properties of the workpiece material (medium carbon steel) used in the model were: thermal conductivity K = 54 W/mK, rate of change of thermal conductivity = 0.003 W/mK², specific heat capacity cp = 425 J/kgK, rate of change of specific heat with temperature = 0.733 J/kgK², and density ρ = 7850 kg/m³.
 
-### 3.3 Inverse Heat Transfer Solution Procedure
+### 3.4 Inverse Heat Transfer Solution Procedure
 
-The value of heat flux entering the workpiece via the tool-workpiece contact zone was left as unknown, to be determined by the inverse solution procedure. A simple genetic algorithm was employed to minimize the squared error between measured temperature history (from embedded thermocouples) and predicted temperature history at the same location from the finite difference model [35]. The genetic algorithm varied the heat generation and input terms as unknown variables, calling the finite difference forward solver thousands of times during optimization.
+The surface heat flux q̇ entering the workpiece via the tool-workpiece contact zone [boundary condition (9)] was left as unknown, to be determined by the inverse solution procedure. A simple genetic algorithm was employed to minimize the sum of squared errors between the measured temperature history (from the embedded thermocouple) and the predicted temperature history at the same location from the finite difference model [35]. The objective function to be minimized is:
 
-Once optimal heat flux values were determined, they were input to the finite difference model along with the estimated shear plane angle to compute the full temperature field. The heat flux in the shear zone was then used with the Loewen and Shaw [36] model to estimate average temperatures at the tool-chip contact zone on the tool rake face under various experimental conditions.
+S(q̇) = Σ_{p=1}^{M} [T_meas^p − T_pred^p(q̇)]²     (18)
+
+where T_meas^p and T_pred^p are the measured and predicted temperatures at the thermocouple node at time step p, and M is the number of time steps in the recorded history. The genetic algorithm varied the heat flux and heat-generation terms as unknown variables, calling the finite difference forward solver [Eqs. (14)–(17)] thousands of times during optimization until Eq. (18) was minimized.
+
+Once optimal heat flux values were determined, they were input to the finite difference model along with the estimated shear plane angle to compute the full temperature field. The recovered shear-zone heat rate was then combined with the heat-partition coefficient R₁ in the Loewen and Shaw model [Eqs. (12)–(13)] [36] to estimate average temperatures at the tool-chip contact zone on the tool rake face under the various experimental conditions.
 
 ---
 
