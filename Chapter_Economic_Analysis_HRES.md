@@ -16,13 +16,11 @@ The global energy landscape is undergoing a fundamental transformation driven by
 
 ### 1.1 Introduction and Context
 
-The transition toward sustainable energy systems represents one of the most significant techno-economic challenges of the twenty-first century [5]. As nations pursue aggressive decarbonization targets aligned with the Paris Agreement and subsequent climate commitments, the deployment of renewable energy technologies has accelerated dramatically [6]. However, the inherent variability and intermittency of individual renewable energy sources—particularly solar photovoltaic (PV) and wind energy—present fundamental challenges to grid stability, reliability, and economic dispatch optimization [7]. Hybrid Renewable Energy Systems address these limitations by synergistically combining multiple generation technologies, energy storage systems, and intelligent management platforms within unified architectures [8].
+The transition toward sustainable energy systems is among the defining techno-economic challenges of the twenty-first century [5]. As nations pursue aggressive decarbonization targets aligned with the Paris Agreement [6], the variability and intermittency of individual renewable sources—particularly solar photovoltaic (PV) and wind—challenge grid stability, reliability, and economic dispatch [7]. Hybrid Renewable Energy Systems address these limitations by combining multiple generation technologies, energy storage, and intelligent management within unified architectures [8], typically integrating solar PV, wind turbines, battery energy storage systems (BESS), hydrogen electrolyzers and fuel cells, and conventional backup [9]. The complementary temporal profiles of these resources yield more consistent output and higher reliability [10].
 
-A typical HRES configuration may integrate solar PV arrays, wind turbines, battery energy storage systems (BESS), hydrogen electrolyzers and fuel cells, and potentially conventional backup generators within a unified control architecture [9]. The complementary nature of these resources—where solar generation peaks during daytime hours and wind resources often exhibit stronger profiles during evening and nighttime periods—enables more consistent power output and enhanced system reliability [10]. The economic dimension of HRES has evolved considerably over the past decade. According to recent analyses, solar PV technology maintains its position as the world's most cost-competitive power generation source, with single-axis tracker systems achieving levelized costs as low as USD 37/MWh in optimal regions [11]. When combined with storage technologies, firm power delivery from hybrid solar-plus-storage systems ranges from approximately USD 54–82/MWh, representing a dramatic reduction from over USD 100/MWh in 2020 [12]. These cost trajectories fundamentally alter the economic calculus for energy system planning and investment decisions worldwide [13].
+The economics of HRES have improved dramatically over the past decade. Solar PV remains the most cost-competitive generation source, reaching levelized costs as low as USD 37/MWh in optimal regions [11], while hybrid solar-plus-storage delivers firm power at roughly USD 54–82/MWh—down from over USD 100/MWh in 2020 [12]—fundamentally reshaping investment decisions worldwide [13]. The "smart" dimension adds artificial intelligence, machine learning, and advanced control that enable real-time forecasting, dynamic resource allocation, predictive maintenance, and optimal market participation [14][15], with metaheuristic–ML integration providing the adaptability required for real-time energy management that maximizes both technical performance and economic returns [16].
 
-The "smart" dimension of modern HRES introduces sophisticated optimization capabilities through artificial intelligence, machine learning, and advanced control systems [14]. These intelligent management layers enable real-time energy forecasting, dynamic resource allocation, predictive maintenance scheduling, and optimal market participation strategies [15]. The integration of metaheuristic algorithms with machine learning has enabled dynamic adaptability and predictive optimization, paving the way for real-time energy management that maximizes both technical performance and economic returns [16]. The market integration framework that enables these multi-dimensional revenue streams involves connecting generation sources, storage assets, and intelligence layers to multiple market products simultaneously.
-
-This chapter examines the economic analysis and market integration of smart HRES across four comprehensive sections covering economic evaluation frameworks, market structures and intelligent optimization, emerging business models and risk assessment, and future perspectives with case studies.
+This chapter examines the economic analysis and market integration of smart HRES across four sections covering economic evaluation frameworks, market structures and intelligent optimization, emerging business models and risk assessment, and future perspectives with case studies.
 
 
 
@@ -69,6 +67,72 @@ The Total Cost of Ownership framework extends beyond traditional financial metri
 $$TCO = NPC + \sum_{t=1}^{N} \frac{E_{carbon,t} \times P_{carbon,t} + C_{env,t} + C_{social,t}}{(1+r)^t}$$
 
 This comprehensive approach is increasingly relevant as carbon pricing mechanisms, environmental regulations, and circular economy requirements impose additional cost and value considerations on energy system investments [37]. The integration of environmental costs through carbon pricing (ranging from USD 20–100/tCO₂ across different jurisdictions) significantly improves the relative economic position of HRES compared to fossil fuel alternatives. The World Bank's State and Trends of Carbon Pricing report documents the expanding coverage and rising ambition of carbon pricing instruments globally, with direct implications for HRES investment economics [37].
+
+
+
+### 1.6 Modelling and Governing Equations
+
+The economic assessment and optimization of smart HRES rest on a coherent set of governing equations that link the system's physical energy balance to its financial performance. This section consolidates the modelling framework, defining the governing relationships for energy dispatch, reliability, cost metrics, investment returns, and probabilistic risk that underpin the analyses reported throughout this chapter. Consistent notation is used: subscript *t* denotes the time step (year for financial metrics, hour or sub-hourly interval for dispatch), *r* is the discount rate, and *N* is the economic lifetime.
+
+**Energy balance and dispatch.** At every dispatch interval, the instantaneous power balance of an HRES coupling PV, wind, storage, backup generation, and load must be satisfied [9]:
+
+$$P_{PV,t} + P_{W,t} + P_{dis,t} + P_{gen,t} = P_{load,t} + P_{ch,t} + P_{curt,t}$$
+
+where *P_{PV,t}* and *P_{W,t}* are solar and wind generation, *P_{dis,t}* and *P_{ch,t}* are storage discharging and charging power, *P_{gen,t}* is dispatchable backup, *P_{load,t}* is served load, and *P_{curt,t}* is curtailed generation. The battery state of charge evolves according to [34]:
+
+$$SOC_{t+1} = SOC_t + \left( \eta_{ch} P_{ch,t} - \frac{P_{dis,t}}{\eta_{dis}} \right) \frac{\Delta t}{E_{cap}}$$
+
+subject to $SOC_{min} \le SOC_t \le SOC_{max}$, where *η_{ch}* and *η_{dis}* are charge/discharge efficiencies, *E_{cap}* is usable capacity, and Δ*t* is the interval length. The round-trip efficiency is $\eta_{rt} = \eta_{ch}\,\eta_{dis}$.
+
+**Reliability.** System adequacy is quantified by the Loss of Power Supply Probability (LPSP), the ratio of unmet energy to total demand over the horizon, which constrains the sizing optimization [7][10]:
+
+$$LPSP = \frac{\sum_{t=1}^{T} \max\!\left(P_{load,t} - P_{supply,t},\, 0\right)}{\sum_{t=1}^{T} P_{load,t}}$$
+
+where *P_{supply,t}* is the total power available from generation and storage. The renewable energy fraction reported in **Table 1** follows as $f_{RE} = 1 - \left(\sum_t E_{gen,t}\big/\sum_t E_{load,t}\right)$, the share of demand met by non-fossil sources.
+
+**Levelized cost of energy.** The lifecycle cost per unit of delivered energy, introduced in Section 1.2, is the primary comparative metric [23][24][25]:
+
+$$LCOE = \frac{\sum_{t=1}^{N} \dfrac{I_t + M_t + F_t + S_t}{(1+r)^t}}{\sum_{t=1}^{N} \dfrac{E_t}{(1+r)^t}}$$
+
+with investment *I_t*, operations and maintenance *M_t*, fuel *F_t*, storage cost *S_t*, and generation *E_t* in year *t*.
+
+**Levelized cost of storage.** The analogous metric for the storage subsystem captures charging cost, efficiency losses, and degradation over the delivered discharge energy [34][35]:
+
+$$LCOS = \frac{CAPEX_{stor} + \sum_{t=1}^{N} \dfrac{M_{stor,t} + C_{ch,t}}{(1+r)^t}}{\sum_{t=1}^{N} \dfrac{E_{dis,t}}{(1+r)^t}}$$
+
+where *CAPEX_{stor}* is the storage capital cost, *M_{stor,t}* is annual O&M, *C_{ch,t}* is the cost of charging energy, and *E_{dis,t}* is the annual energy discharged after efficiency and degradation losses.
+
+**Net present cost and net present value.** The absolute lifecycle cost (NPC) and the value-inclusive investment criterion (NPV) are, respectively [28][29]:
+
+$$NPC = \sum_{t=0}^{N} \frac{I_t + M_t + F_t + S_t - V_{salv,t}}{(1+r)^t}, \qquad NPV = \sum_{t=0}^{N} \frac{R_t - C_t}{(1+r)^t}$$
+
+where *V_{salv,t}* is the salvage value, *R_t* aggregates revenues from energy sales, ancillary services, and capacity payments, and *C_t* aggregates all costs in year *t*.
+
+**Internal rate of return and payback period.** The IRR is the discount rate *r\** that nulls the NPV, and the discounted payback period *N_{pb}* is the earliest year at which cumulative discounted cash flow turns positive [32][33]:
+
+$$\sum_{t=0}^{N} \frac{R_t - C_t}{(1+r^{*})^t} = 0, \qquad N_{pb} = \min\left\{ n : \sum_{t=0}^{n} \frac{R_t - C_t}{(1+r)^t} \ge 0 \right\}$$
+
+The applicable discount rate is itself the weighted average cost of capital, reflecting the project financing structure [66][67]:
+
+$$WACC = \frac{E}{E+D}\,k_e + \frac{D}{E+D}\,k_d\,(1 - \tau)$$
+
+where *E* and *D* are equity and debt, *k_e* and *k_d* their respective costs, and *τ* the corporate tax rate.
+
+**Total cost of ownership.** Extending NPC to internalize environmental and social externalities gives the comprehensive metric of Section 1.5 [36][37]:
+
+$$TCO = NPC + \sum_{t=1}^{N} \frac{E_{carbon,t} \times P_{carbon,t} + C_{env,t} + C_{social,t}}{(1+r)^t}$$
+
+with carbon emissions *E_{carbon,t}*, carbon price *P_{carbon,t}*, and residual environmental and social costs *C_{env,t}* and *C_{social,t}*.
+
+**Optimization and probabilistic risk.** System design is posed as the minimization of a lifecycle cost metric subject to the balance and reliability constraints above [16][31]:
+
+$$\min_{\mathbf{x}} \; LCOE(\mathbf{x}) \quad \text{s.t.} \quad LPSP(\mathbf{x}) \le LPSP_{max}, \; \mathbf{x}_{min} \le \mathbf{x} \le \mathbf{x}_{max}$$
+
+where the decision vector **x** comprises component capacities and dispatch set-points. Because deterministic inputs cannot capture resource and market uncertainty, Monte Carlo simulation propagates stochastic parameters *ξ* to produce distributions of the key outputs [32][33]:
+
+$$\mathbb{E}[NPV] = \frac{1}{K} \sum_{k=1}^{K} NPV(\xi_k)$$
+
+evaluated over *K* sampled scenarios, from which risk measures such as the probability of negative NPV and value-at-risk are derived. Together, these governing equations form the quantitative backbone for the market-integration, business-model, and case-study analyses that follow.
 
 
 
