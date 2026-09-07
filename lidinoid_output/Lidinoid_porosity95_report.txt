@@ -1,0 +1,8 @@
+Lidinoid TPMS porous solid
+==========================
+Grid resolution      : 48^3 cells per unit cell
+Unit cell size       : 10.0 mm
+Target porosity      : 95.00%
+Achieved porosity    : 95.00%
+Half-wall thickness t : 0.030513 (iso-value units)
+Triangles            : 257352
