@@ -1,0 +1,7 @@
+{
+  "task_id": "task-laser-melting-fortran",
+  "task_description": "Reassemble the provided legacy Fortran laser-melting CFD solver into a single gfortran-portable, clean-compiling fixed-form file at AMMAN/laser_melting/laser_melt.f. Inline PARAM.FOR (PARAMETER line) before the inlined COMMON.FOR block in every routine that used INCLUDE; port Compaq GETDAT/GETTIM to DATE_AND_TIME; convert diagnostic PAUSE to non-halting WRITE; fix fixed-form column/continuation issues. Preserve all physics and numerical constants exactly. Acceptance = clean gfortran compile.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001"],
+  "blocked_reason": null
+}
