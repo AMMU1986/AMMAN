@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-001",
+  "type": "chore",
+  "description": "Set up the revision working set on a new branch: import the base Tesla-valve manuscript and reusable figure assets from origin/tesla-valve-cfd-paper-2026 into the working tree so the revised documents can reference real, committed images. This establishes a green baseline (all referenced assets present) before content work. Depends on nothing; must run first.",
+  "status": "completed",
+  "steps": [
+    "Confirm current branch is off main and clean (git status). Do NOT create/switch branches yourself unless already on a feature branch; if still on main, create and switch to branch 'tesla-valve-response-and-revision' (git checkout -b tesla-valve-response-and-revision).",
+    "Create directory tesla_valve_figures/ at repo root.",
+    "Copy the 6 committed PNG figures from the prior branch into the working tree using git checkout: run `git checkout origin/tesla-valve-cfd-paper-2026 -- tesla_valve_figures/figure1_geometry_schematic.png tesla_valve_figures/figure2_geometry1_contours.png tesla_valve_figures/figure3_geometry2_contours.png tesla_valve_figures/figure4_pressure_drop.png tesla_valve_figures/figure5_diodicity_vs_re.png tesla_valve_figures/figure6_performance_comparison.png` (each file is 200-280 KB; verify with ls -la).",
+    "Copy the figure-generation script for provenance: `git checkout origin/tesla-valve-cfd-paper-2026 -- generate_tesla_valve_figures.py`.",
+    "Save a local reference copy of the BASE manuscript for editing convenience: `git show origin/tesla-valve-cfd-paper-2026:Tesla_Valve_CFD_Study.md > /tmp/base_manuscript.md` (this /tmp copy is scratch, do not commit it). The revised manuscript will be authored in FEAT-002.",
+    "Stage the copied figures and script but DO NOT commit yet if you prefer one commit at the end; if committing per-feature, commit with message 'chore: import Tesla-valve figures and figure script from prior branch for revision'."
+  ],
+  "acceptance_criteria": [
+    "Working tree contains tesla_valve_figures/ with all 6 PNGs, each > 100 KB.",
+    "generate_tesla_valve_figures.py exists at repo root.",
+    "/tmp/base_manuscript.md exists and contains the full base manuscript text (starts with the paper title).",
+    "On a feature branch (not main)."
+  ],
+  "verification": [
+    "Run `ls -la tesla_valve_figures/` and confirm 6 PNG files present with non-trivial sizes.",
+    "Run `git branch --show-current` and confirm it is not 'main'.",
+    "Run `head -3 /tmp/base_manuscript.md` and confirm the manuscript title appears."
+  ],
+  "blocked_reason": null,
+  "findings": "Started on main (clean tree; only untracked .agents/). Created and switched to branch 'tesla-valve-response-and-revision'. Copied 6 PNGs into tesla_valve_figures/ via `git checkout origin/tesla-valve-cfd-paper-2026 -- ...` (sizes 206-277 KB each, all > 100 KB) and generate_tesla_valve_figures.py (17446 bytes) to repo root. Committed as 535cc83 (chore message), staging only the 7 assets; .agents/ left untracked/uncommitted. Verification passed: `ls -la tesla_valve_figures/` shows all 6 PNGs; `git branch --show-current` = tesla-valve-response-and-revision (not main); base manuscript title present. IMPORTANT ENV NOTE for later features: bash commands run in ISOLATED shells so /tmp does NOT persist between separate execute_bash invocations. `/tmp/base_manuscript.md` was written but is scratch and not committed; FEAT-002 should regenerate it in the SAME command it reads it, e.g. `git show origin/tesla-valve-cfd-paper-2026:Tesla_Valve_CFD_Study.md`, rather than relying on the /tmp copy persisting. No build/test system exists (documents only); verification is the manual consistency pass in context.json."
+}

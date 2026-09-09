@@ -1,0 +1,43 @@
+{
+  "id": "FEAT-003",
+  "type": "docs",
+  "description": "Author the point-by-point Response_to_Reviewers.md covering all 18 reviewer comments individually, each cross-referencing the exact section/table/figure in Revised_Tesla_Valve_CFD_Manuscript.md (produced in FEAT-002) where the change was made. Depends on FEAT-002 because it must cite the revised manuscript's final structure. Also do the final global consistency pass across BOTH documents here.",
+  "status": "pending",
+  "steps": [
+    "Create Response_to_Reviewers.md at repo root with a short header (manuscript title, authors: Amman Jakhar, Sachin Kalsi, Karan Mankotia; a thank-you paragraph; note that changes are described with section/table/figure locations in the revised manuscript).",
+    "Reproduce EACH of the 18 reviewer comments verbatim (or near-verbatim) as 'Comment N:' followed by 'Response:' and 'Changes made:' with the specific location in the revised manuscript. The 18 comments are exactly the numbered list in the user instruction (1..18). Do not merge, split, or renumber them.",
+    "Comment 1 (abstract): describe the rewritten abstract; cite the Abstract section.",
+    "Comment 2 (introduction reorganization + explicit novelty): cite Section 1, especially the new 'Research gap and novelty' paragraph.",
+    "Comment 3 (Geometry 1/2 defined unambiguously; Fig 1a/1b mapping; Tesla-valve NOT twisted-tape): cite Section 2 and Table 1 and Fig. 1.",
+    "Comment 4 (complete dimensions incl. hydraulic diameter, extensions): cite the corrected Table 1 (square 2.0mm cross-section, Dh=2.0mm, wb=1.2/1.5mm, added inlet/outlet extension rows) and Fig. 1 dimensioned schematic.",
+    "Comment 5 (explicit Re values, characteristic velocity & Dh, per-case inlet velocity, simulation summary table): cite Section 3.2/3.3 and Table 3.",
+    "Comment 6 (BC justification: inlet development length, outlet pressure, turbulence quantities, reverse-flow treatment, reference pressure): cite Section 3.3.",
+    "Comment 7 (deltaP definition & sign convention; sampling planes; diodicity at equal Re): cite Section 3.2 Eq (5), Section 4.1.",
+    "Comment 8 (mesh study: per-grid cell counts, refinement, min/max size, near-wall, quality metrics, monitored dP/diodicity, % change between meshes, GCI): cite Section 3.1 and Table 2.",
+    "Comment 9 (representative mesh images + y+ range compatible with near-wall treatment): cite Section 3.1 mesh-description/figures and the reported y+ range; if only textual mesh description was possible offline, say so honestly.",
+    "Comment 10 (laminar vs turbulent cases; justify k-epsilon over Re range; model-sensitivity): cite Section 3.4 laminar/k-epsilon split and the k-epsilon-vs-SST k-omega sensitivity paragraph.",
+    "Comment 11 (software+version, coupling algorithm, discretization, residual thresholds, initialization, iterations, convergence histories): cite Section 3.4 with the explicit numbers.",
+    "Comment 12 (quantitative validation with % errors vs benchmark): cite Section 3.5 and Table 4.",
+    "Comment 13 (Figure 2/4 clarification: how inlet velocity varied, Re per velocity, params constant; fix 'three forward-biased geometries' caption; plot diodicity vs Re): cite corrected Fig. 4 caption, Table 3, and Fig. 5 (diodicity vs Re). Explicitly note that the revised captions reference only the two geometries and both flow directions.",
+    "Comment 14 (reverse-flow pressure verification: identify inlet/outlet, area-averaged static & total pressures, correct sign): cite the reverse-flow verification paragraph in Section 4.1 and Fig. 2/3 contours.",
+    "Comment 15 (outlet velocity vs mass conservation; local vs area-averaged; mass-flow imbalance): cite the clarification in Section 4.1 (local vs bulk, imbalance < 0.1%).",
+    "Comment 16 (diodicity vs Re per geometry reported directly; define optimality criterion/performance index): cite Table 5, Fig. 5, and the defined performance index in Section 4.2/Conclusion.",
+    "Comment 17 (justify steady-state; representative transient comparison): cite Section 4.3 steady-state justification and transient check.",
+    "Comment 18 (streamlines/vectors/vorticity to demonstrate separation/recirculation/vortices): cite Section 4.3 mechanism discussion and Figures 2/3; if a dedicated streamline figure was not added offline, state that the existing velocity/pressure contour figures plus quantitative description are provided.",
+    "FINAL CONSISTENCY PASS across BOTH documents: (a) verify all 18 comments are present and individually numbered; (b) verify every manuscript location cited in the response actually exists with that section/table/figure number; (c) re-run the grep checks from FEAT-002 on the revised manuscript; (d) verify all figure image paths referenced by the manuscript exist in tesla_valve_figures/.",
+    "Optionally add a brief note at the top of the Response doc stating the deliverables were produced as Markdown because python-docx/matplotlib and network access were unavailable in the environment, and figures were reused from prior committed assets."
+  ],
+  "acceptance_criteria": [
+    "Response_to_Reviewers.md exists and contains exactly 18 individually numbered comment/response pairs (Comment 1 .. Comment 18), none merged or skipped.",
+    "Each response names a concrete location (section number, table number, or figure number) in Revised_Tesla_Valve_CFD_Manuscript.md.",
+    "Every location cited in the response resolves to a real section/table/figure in the revised manuscript.",
+    "The revised manuscript passes all FEAT-002 grep/cross-reference checks."
+  ],
+  "verification": [
+    "Run `grep -c '^\\*\\*Comment ' Response_to_Reviewers.md` (or the actual heading pattern used) and confirm 18 matches.",
+    "Spot-check 5 responses (e.g. 3,10,13,14,15) and confirm the cited section/table/figure exists in the revised manuscript.",
+    "Re-run the manuscript consistency greps and confirm no residual contradictions."
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

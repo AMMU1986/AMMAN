@@ -1,0 +1,7 @@
+{
+  "task_id": "task-tesla-valve-revision",
+  "task_description": "Produce an academic revision package for the CFD manuscript 'CFD Study on Passive Flow Rectification in Tesla Valve: Role of Geometry and Reynolds Number': (1) a point-by-point Response-to-Reviewers document answering all 18 reviewer comments individually, and (2) a fully revised manuscript that implements those responses and resolves the internal inconsistencies (2D-vs-3D, hydraulic-diameter/Table-1 mismatch, k-epsilon/coupling conflation, laminar-vs-transitional turbulence-model justification, figure cross-references and captions, mass-conservation/outlet-velocity clarification, reverse-flow pressure sign). Deliverables are Markdown (python-docx/matplotlib and network are unavailable), reusing committed PNG figures from origin/tesla-valve-cfd-paper-2026.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}
