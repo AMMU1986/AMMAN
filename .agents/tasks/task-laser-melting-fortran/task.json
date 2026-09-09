@@ -1,0 +1,24 @@
+{
+  "task_id": "task-laser-melting-fortran",
+  "task_description": "Reassemble the provided legacy Fortran laser-melting CFD solver into a single gfortran-portable, clean-compiling fixed-form file at AMMAN/laser_melting/laser_melt.f. Inline PARAM.FOR (PARAMETER line) before the inlined COMMON.FOR block in every routine that used INCLUDE; port Compaq GETDAT/GETTIM to DATE_AND_TIME; convert diagnostic PAUSE to non-halting WRITE; fix fixed-form column/continuation issues. Preserve all physics and numerical constants exactly. Acceptance = clean gfortran compile.",
+  "status": "completed",
+  "feature_order": ["FEAT-001"],
+  "blocked_reason": null,
+  "verification": {
+    "build": "pass",
+    "tests": "pass",
+    "test_quality": "pass",
+    "docker_build": "skipped",
+    "summary": "gfortran -std=legacy -ffixed-line-length-132 -o laser_melt laser_melt.f exits 0 with no error/warning diagnostics and produces the laser_melt executable (independently re-run after removing artifacts). Acceptance greps: 0 INCLUDE, 0 PAUSE, 0 GETDAT, 0 GETTIM, 1 DATE_AND_TIME, 19 inlined PARAMETER(NI=242...) blocks (one per COMMON-using routine), exactly 1 PROGRAM MAIN. All 20 subprograms and every specified ENTRY present. For this task acceptance == clean compile; there is no runtime test harness (no input data files in-repo), so 'tests' maps to the compile-based acceptance. Verified ported GETIME (DATE_AND_TIME, FORMAT 10/20/30, cross-day elapsed arithmetic, units 6+7), PAUSE->WRITE conversions in ENTRY OUTPUT, and the documented DENSE ENTRY self-call -> inline equivalent density loop. No Dockerfile; docker_build skipped."
+  },
+  "review": {
+    "verdict": "APPROVED",
+    "passes": 1,
+    "artifact": ".agents/tasks/task-laser-melting-fortran/2026-09-08-191856-review.md",
+    "non_blocking_notes": [
+      "Inline DENSE recompute in ENTRY OUTPUT runs over interior 2..M2/2..L2 and omits the TPI=T update vs the full-range ENTRY DENSE; reviewer verified inert (skipped boundary RHO and TPI are never consumed downstream).",
+      "Coder introduced COMMON/USRCOM/ for physical constants (not in the original COMMON.FOR) to guarantee persistence across USER's many separate ENTRY invocations; reviewer assessed numerically safe/necessary. Intentional deviation from strict 'inline only PARAM/COMMON', recorded here for a later fidelity audit.",
+      "Pre-existing RHO(*,NFMAX) vs RHO(*,1..5) indexing carried from the spec (not introduced by the port); reviewer flags only for source-fidelity confirmation against the authoritative paste."
+    ]
+  }
+}
