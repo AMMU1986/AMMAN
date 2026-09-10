@@ -132,6 +132,149 @@ def table(headers, rows):
     return t
 
 
+# ===== OMML (native editable Word equation) helpers =====
+# These emit Office Math Markup Language (the m: namespace) so the equations
+# render as native, editable equations inside Microsoft Word (not images or
+# plain text).
+
+def m_run(text, italic=True):
+    """A run of math text. Variables are italic per Word math convention."""
+    rpr = ""
+    if not italic:
+        # Force upright (non-italic) style, used for operators/multi-letter names.
+        rpr = '<m:rPr><m:sty m:val="p"/></m:rPr>'
+    return f'<m:r>{rpr}<m:t xml:space="preserve">{esc(text)}</m:t></m:r>'
+
+
+def m_sub(base, sub):
+    """Subscript: base_sub."""
+    return (f'<m:sSub><m:e>{base}</m:e>'
+            f'<m:sub>{sub}</m:sub></m:sSub>')
+
+
+def m_frac(num, den):
+    """Fraction num/den."""
+    return (f'<m:f><m:fPr><m:type m:val="bar"/></m:fPr>'
+            f'<m:num>{num}</m:num><m:den>{den}</m:den></m:f>')
+
+
+def m_delim(inner, beg="(", end=")"):
+    """Delimiter (brackets/parentheses) around inner content."""
+    return (f'<m:d><m:dPr><m:begChr m:val="{esc(beg)}"/>'
+            f'<m:endChr m:val="{esc(end)}"/></m:dPr>'
+            f'<m:e>{inner}</m:e></m:d>')
+
+
+def m_partial(numerator_inner):
+    """Partial-derivative fraction of the form d(...)/d x_i style.
+    numerator_inner is the OMML placed after the partial symbol in the numerator.
+    Returns just the numerator content (caller wraps in m_frac)."""
+    return m_run("\u2202", italic=False) + numerator_inner
+
+
+def equation_paragraph(omml_body, number):
+    """Display a native OMML equation centered with a right-aligned number.
+
+    Uses a 3-cell borderless table so the equation is centered while its
+    number sits flush right, matching the source document's numbering
+    convention, e.g. (6), (7), (8).
+    """
+    math_block = (
+        '<m:oMathPara><m:oMath>' + omml_body + '</m:oMath></m:oMathPara>'
+    )
+    eq_cell = (
+        '<w:tc><w:tcPr><w:tcW w:w="4500" w:type="pct"/>'
+        '<w:vAlign w:val="center"/></w:tcPr>'
+        '<w:p><w:pPr><w:jc w:val="center"/></w:pPr>'
+        + math_block +
+        '</w:p></w:tc>'
+    )
+    num_cell = (
+        '<w:tc><w:tcPr><w:tcW w:w="500" w:type="pct"/>'
+        '<w:vAlign w:val="center"/></w:tcPr>'
+        '<w:p><w:pPr><w:jc w:val="right"/></w:pPr>'
+        '<w:r><w:rPr><w:sz w:val="24"/><w:szCs w:val="24"/>'
+        '<w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/></w:rPr>'
+        f'<w:t xml:space="preserve">({number})</w:t></w:r>'
+        '</w:p></w:tc>'
+    )
+    return (
+        '<w:tbl><w:tblPr><w:tblW w:w="5000" w:type="pct"/>'
+        '<w:tblBorders>'
+        '<w:top w:val="none"/><w:bottom w:val="none"/>'
+        '<w:left w:val="none"/><w:right w:val="none"/>'
+        '<w:insideH w:val="none"/><w:insideV w:val="none"/>'
+        '</w:tblBorders></w:tblPr>'
+        '<w:tr>' + eq_cell + num_cell + '</w:tr>'
+        '</w:tbl>'
+    )
+
+
+def build_cfd_equations():
+    """Return XML for the three CFD governing equations (6), (7), (8) as
+    native OMML display equations, each with its equation number."""
+
+    xi = m_sub(m_run("x"), m_run("i"))
+    xj = m_sub(m_run("x"), m_run("j"))
+    ui = m_sub(m_run("u"), m_run("i"))
+    uj = m_sub(m_run("u"), m_run("j"))
+    rho = m_run("\u03c1")
+    mu = m_run("\u03bc")
+    mut = m_sub(m_run("\u03bc"), m_run("t"))
+    T = m_run("T")
+    p = m_run("p")
+    k = m_run("k")
+    Cp = m_sub(m_run("C"), m_run("p"))
+    Prt = m_sub(m_run("Pr", italic=False), m_run("t"))
+
+    # --- Equation (6): continuity ---
+    eq6 = m_frac(m_partial(m_delim(rho + ui)),
+                 m_run("\u2202", italic=False) + xi)
+    eq6 += m_run("=", italic=False) + m_run("0")
+
+    # --- Equation (7): momentum ---
+    # LHS
+    lhs7 = m_frac(m_partial(m_delim(rho + ui + uj)),
+                  m_run("\u2202", italic=False) + xj)
+    # -dp/dx_i
+    term1 = m_run("\u2212", italic=False) + m_frac(
+        m_run("\u2202", italic=False) + p,
+        m_run("\u2202", italic=False) + xi)
+    # inner: du_i/dx_j + du_j/dx_i
+    dui_dxj = m_frac(m_run("\u2202", italic=False) + ui,
+                     m_run("\u2202", italic=False) + xj)
+    duj_dxi = m_frac(m_run("\u2202", italic=False) + uj,
+                     m_run("\u2202", italic=False) + xi)
+    inner_sum = m_delim(dui_dxj + m_run("+", italic=False) + duj_dxi)
+    mu_group = m_delim(mu + m_run("+", italic=False) + mut)
+    bracket = m_delim(mu_group + inner_sum, beg="[", end="]")
+    term2 = m_run("+", italic=False) + m_frac(
+        m_run("\u2202", italic=False),
+        m_run("\u2202", italic=False) + xj) + bracket
+    eq7 = lhs7 + m_run("=", italic=False) + term1 + term2
+
+    # --- Equation (8): energy ---
+    lhs8 = m_frac(m_partial(m_delim(rho + Cp + uj + T)),
+                  m_run("\u2202", italic=False) + xj)
+    # (k + Cp*mu_t/Pr_t)
+    frac_cp = m_frac(Cp + mut, Prt)
+    paren8 = m_delim(k + m_run("+", italic=False) + frac_cp)
+    dT_dxj = m_frac(m_run("\u2202", italic=False) + T,
+                    m_run("\u2202", italic=False) + xj)
+    bracket8 = m_delim(paren8 + dT_dxj, beg="[", end="]")
+    rhs8 = m_frac(m_run("\u2202", italic=False),
+                  m_run("\u2202", italic=False) + xj) + bracket8
+    eq8 = lhs8 + m_run("=", italic=False) + rhs8
+
+    out = []
+    out.append(equation_paragraph(eq6, 6))
+    out.append(para(""))
+    out.append(equation_paragraph(eq7, 7))
+    out.append(para(""))
+    out.append(equation_paragraph(eq8, 8))
+    return out
+
+
 # ===== DOCUMENT BODY WITH PROPER LITERATURE CITATIONS =====
 body = []
 
@@ -268,6 +411,19 @@ body.append(para(""))
 
 # Figure 4.2
 body.append(img("rId8", 5400000, 4050000, "Figure 4.2: Twenty five multi-pass SAW beads deposited on API X70 pipeline steel plate"))
+body.append(para(""))
+
+# ===== 4.2.1 Governing Equations of Weld Pool Fluid Flow and Heat Transfer =====
+body.append(heading("4.2.1. Governing Equations of Weld Pool Fluid Flow and Heat Transfer", 3))
+
+body.append(para("The transport of momentum and thermal energy within the molten weld pool during submerged arc welding is described by the Reynolds-averaged conservation equations for an incompressible, turbulent flow. The continuity equation (6) enforces conservation of mass, the momentum equation (7) balances the inertial, pressure and viscous stresses including the turbulent eddy viscosity, and the energy equation (8) governs the convective and conductive transport of heat within the weld pool:"))
+body.append(para(""))
+
+for eq_block in build_cfd_equations():
+    body.append(eq_block)
+body.append(para(""))
+
+body.append(para("Here \u03c1 is the fluid density, u_i and u_j are the velocity components, x_i and x_j are the spatial coordinates, p is the pressure, \u03bc is the dynamic viscosity, \u03bc_t is the turbulent (eddy) viscosity, C_p is the specific heat capacity at constant pressure, T is the temperature, k is the thermal conductivity, and Pr_t is the turbulent Prandtl number."))
 body.append(para(""))
 
 # ===== 4.3 =====
@@ -497,7 +653,8 @@ document_xml = f'''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
             xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"
             xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing"
             xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"
-            xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">
+            xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"
+            xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">
   <w:body>
     {body_xml}
     <w:sectPr>
