@@ -51,3 +51,52 @@ TARGET_POROSITY  Method 2: desired void fraction
 
 The RNG is seeded with a fixed value (`seed_rng(12345)`) for reproducible
 geometries; pass a value `<= 0` for a time-based random seed.
+
+
+---
+
+## Ellipsoidal geometries
+
+`ellipsoid_geometry.f90` is the ellipsoidal counterpart of the sphere
+generator. Each pore is a **randomly-oriented ellipsoid** with three
+independent semi-axes `(a, b, c)` and an orientation given by ZXZ Euler angles
+`(phi, theta, psi)`.
+
+| Method | Description |
+|--------|-------------|
+| **Method 1** | **Constant ellipsoid shape/size.** Fixed semi-axes `(A1,B1,C1)`, random orientation; random-sequential placement with a conservative bounding-sphere rejection test; voxelize + coarse-average. |
+| **Method 2** | **Specified porosity + variable ellipsoid size.** Semi-axes each random in `[AXMIN,AXMAX]`, random orientation, allowed overlap `o ∈ [OMIN,OMAX]`; keep adding until the solid volume reaches the required fraction (target porosity); voxelize + coarse-average. |
+
+**Inside/outside test.** For an ellipsoid centred at `p0` with rotation matrix
+`R` (columns = principal axes) and semi-axes `(a,b,c)`, rotate the offset into
+the body frame `u = Rᵀ(p − p0)` and test
+`(u_x/a)² + (u_y/b)² + (u_z/c)² ≤ 1`.
+
+### Build & run
+
+```sh
+gfortran -O2 -o ellipsoid_geometry ellipsoid_geometry.f90
+./ellipsoid_geometry
+```
+
+### Output
+
+| File | Contents |
+|------|----------|
+| `ell_method1_geometry.vtk`, `ell_method2_geometry.vtk` | Legacy VTK `STRUCTURED_POINTS` volume (`0`=solid, `1`=pore) for ParaView/VisIt. |
+| `ell_method1_ellipsoids.dat`, `ell_method2_ellipsoids.dat` | One line per ellipsoid: `x y z  a b c  phi theta psi`. |
+
+### Rendering
+
+`render_ellipsoids.py` (pure stdlib, no numpy/matplotlib/PIL) ray-traces the
+oriented ellipsoids to a PNG, coloured by height:
+
+```sh
+python3 render_ellipsoids.py ell_method1_ellipsoids.dat ell_method1_render.png
+python3 render_ellipsoids.py ell_method2_ellipsoids.dat ell_method2_render.png
+```
+
+> Note: Method 1's non-overlap test uses each ellipsoid's *bounding sphere*, so
+> for elongated axes it saturates at a modest count — lower `NELL1` (or the
+> semi-axes) if the target count is not reached. Method 2 allows controlled
+> overlap and packs the domain to the requested porosity.
