@@ -54,17 +54,13 @@ The foregoing review identifies a clear gap at the intersection of three well-es
 
 ## 2. Materials and methods
 
-### 2.1 Flat-tube geometry and design variables
-
 The test article is a horizontally mounted flat (rectangular-profile) tube of total length *L* = 500 mm fabricated from aluminium alloy. The channel width *W* and height *H* are varied systematically to yield three hydraulic diameters, *D*ₕ = 2, 3, and 4 mm, and four aspect ratios, *AR* = *W/H* = 2, 4, 6, and 8, producing twelve distinct cross-sections at a constant wall thickness *t* = 1 mm. Each test section comprises an inlet calming length *L*ᵢ = 100 mm, a heated length *L*ₕ = 300 mm, and an outlet length *L*ₒ = 100 mm, as shown in Figure 1. The geometric design vector is thus **x**_g = [*AR*, *D*ₕ] and the flow/fluid design vector is **x**_f = [*Re*, φ, *MR*], where *Re* is the Reynolds number, φ the total nanoparticle volume fraction, and *MR* the hybrid mixing ratio.
 
 *Figure 1. Flat-tube test-section geometry, showing the calming, heated, and outlet lengths and the definition of the width–height cross-section.*
 
-### 2.2 Hybrid-nanofluid preparation and thermophysical properties
-
 The working fluid is a water-based binary hybrid nanofluid of ZnO and TiO₂ nanoparticles (nominal diameter 30–50 nm, purity > 99 %), selected for their complementary conductivity and the flat-tube evidence base established above. The total volume fraction is varied from 0 to 1.0 % in steps of 0.25 %, and the mixing ratio *MR* = φ_ZnO : φ_TiO₂ takes the values 25:75, 50:50, and 75:25. Nanofluids are produced by the two-step technique: weighed nanopowders are dispersed in deionized water with 0.2 wt.% sodium dodecylbenzene sulphonate as surfactant, and agglomerates are broken up by probe ultrasonication (20 kHz, 3 h). Suspension stability is verified after 72 h by zeta-potential measurement (|ζ| > 30 mV), sedimentation photography, and UV–vis absorbance reproducibility.
 
-The effective density and heat-capacity product of the hybrid suspension follow the standard mixing rules:
+Consistent thermophysical properties are prerequisite for both the experiments and the numerical model. The effective density and heat-capacity product of the hybrid suspension follow the standard mixing rules:
 
 $$\rho_{hnf} = (1-\varphi)\,\rho_{bf} + \varphi_{ZnO}\,\rho_{ZnO} + \varphi_{TiO_2}\,\rho_{TiO_2} \tag{1}$$
 
@@ -84,17 +80,13 @@ $$\frac{\mu_{hnf}}{\mu_{bf}} = \frac{1}{1 - 34.87\,(d_{np}/d_{bf})^{-0.3}\,\varp
 
 in which *d*_bf is the equivalent diameter of a base-fluid molecule. Equations (4) and (5) are validated against transient-hot-wire conductivity measurements (±2 %) and rotational-rheometer viscosity measurements (±1 %); a maximum deviation of 4 % is accepted, failing which an experimentally fitted correlation is substituted in the downstream models.
 
-### 2.3 Experimental facility and procedure
-
-The closed-loop facility is shown in Figure 2. It comprises a stainless-steel reservoir fitted with a cooling coil and stirrer (temperature control ±0.2 °C), a centrifugal pump, a bypass line with a fine control valve, a calibrated rotameter (±1 % of reading), the instrumented flat-tube test section, and a differential-pressure transducer (±0.25 % of full scale) connected to wall pressure taps P1 and P2 at the start and end of the heated section. The heated zone is supplied by an adjustable DC power source through a clamped heater plate providing uniform heat flux, and the test section is wrapped in 25 mm of mineral-wool insulation. Four T-type thermocouples (±0.1 °C) measure the bulk fluid temperature at inlet and outlet (T1, T4) and the wall temperature at two axial stations (T2, T3); all signals are logged by a PC-based data-acquisition system.
+Thermo-hydraulic measurements are carried out on a purpose-built closed-loop facility, shown in Figure 2. It comprises a stainless-steel reservoir fitted with a cooling coil and stirrer (temperature control ±0.2 °C), a centrifugal pump, a bypass line with a fine control valve, a calibrated rotameter (±1 % of reading), the instrumented flat-tube test section, and a differential-pressure transducer (±0.25 % of full scale) connected to wall pressure taps P1 and P2 at the start and end of the heated section. The heated zone is supplied by an adjustable DC power source through a clamped heater plate providing uniform heat flux, and the test section is wrapped in 25 mm of mineral-wool insulation. Four T-type thermocouples (±0.1 °C) measure the bulk fluid temperature at inlet and outlet (T1, T4) and the wall temperature at two axial stations (T2, T3); all signals are logged by a PC-based data-acquisition system.
 
 For each operating point the loop is charged, degassed, and set to the target Reynolds number (*Re* = 3,000–20,000). After 30 min of steady-state operation—confirmed by an outlet-temperature drift below ±0.1 °C over 5 min—the temperatures, pressure drop, volume flow rate, and heater voltage and current are recorded at 1 Hz for 3 min and averaged. The experimental core of the database is the full-factorial matrix over *AR* (4 levels), φ (4 levels), *MR* (3 levels), and *Re* (4 levels), restricted to the geometries that can be physically machined.
 
 *Figure 2. Schematic of the closed-loop experimental facility for flat-tube thermo-hydraulic testing.*
 
-### 2.4 Numerical modelling
-
-CFD simulations extend the database to the complete geometric matrix. Assuming a homogeneous single phase—justified for φ ≤ 1 %—the three-dimensional Reynolds-averaged Navier–Stokes (RANS) equations for continuity, momentum, and energy are solved with the shear-stress-transport (SST) *k*–ω turbulence model of Menter [20], which resolves the near-wall physics for *y*⁺ < 1:
+Because only the machinable geometries can be tested experimentally, complementary CFD simulations extend the database to the complete geometric matrix. Assuming a homogeneous single phase—justified for φ ≤ 1 %—the three-dimensional Reynolds-averaged Navier–Stokes (RANS) equations for continuity, momentum, and energy are solved with the shear-stress-transport (SST) *k*–ω turbulence model of Menter [20], which resolves the near-wall physics for *y*⁺ < 1:
 
 $$\nabla \cdot (\rho \mathbf{u}) = 0, \tag{6}$$
 
@@ -104,9 +96,7 @@ $$\nabla \cdot (\rho c_p \mathbf{u} T) = \nabla \cdot \left[(k + k_t)\,\nabla T\
 
 The nanofluid properties are introduced through Equations (1)–(5). Boundary conditions are a mass-flow inlet, a pressure outlet, a uniform wall heat flux on the heated length, and adiabatic walls elsewhere, with conjugate conduction through the 1 mm wall. Pressure–velocity coupling and convective terms use second-order upwind discretization, and convergence is declared when all residuals fall below 10⁻⁶. Grid independence is established on three hexahedral meshes (0.6, 1.2, and 2.4 × 10⁶ cells), the grid-convergence index for both Nusselt number and friction factor remaining below 2 %. The solver is verified against the present water experiments and classical tube correlations, with deviations below 5 %.
 
-### 2.5 Data reduction
-
-The electrical heat input and the fluid-side absorbed heat are
+Both the experimental and numerical records are reduced to a common set of thermo-hydraulic quantities. The electrical heat input and the fluid-side absorbed heat are
 
 $$Q_{elec} = VI, \tag{9}$$
 
@@ -130,9 +120,7 @@ with pump efficiency η_p = 0.7. As a single-point diagnostic, the thermal perfo
 
 $$\eta = \frac{Nu/Nu_0}{(f/f_0)^{1/3}}. \tag{16}$$
 
-### 2.6 Machine-learning surrogate models
-
-After min–max normalization, the merged experimental–numerical database, mapping **x** = [*AR*, *D*ₕ, φ, *MR*, *Re*] to **y** = [*Nu*, *f*], is split randomly into 80 % training and 20 % testing subsets. Three candidate surrogates are trained and compared: a multilayer-perceptron ANN (up to 1,000 epochs with early stopping, two hidden layers of log-sigmoid neurons, Levenberg–Marquardt training), a GMDH-type network, and a GEP model. Model accuracy is quantified by the coefficient of determination, root-mean-square error, and mean absolute percentage error:
+The reduced records form the training corpus for the surrogate models. After min–max normalization, the merged experimental–numerical database, mapping **x** = [*AR*, *D*ₕ, φ, *MR*, *Re*] to **y** = [*Nu*, *f*], is split randomly into 80 % training and 20 % testing subsets. Three candidate surrogates are trained and compared: a multilayer-perceptron ANN (up to 1,000 epochs with early stopping, two hidden layers of log-sigmoid neurons, Levenberg–Marquardt training), a GMDH-type network, and a GEP model. Model accuracy is quantified by the coefficient of determination, root-mean-square error, and mean absolute percentage error:
 
 $$R^{2} = 1 - \frac{\sum_{i}(y_i - \hat{y}_i)^2}{\sum_{i}(y_i - \bar{y})^2}, \tag{17}$$
 
@@ -144,9 +132,7 @@ The surrogate attaining R² > 0.99 on both outputs with the lowest RMSE is embed
 
 *Figure 3. Workflow of the predict–optimize–decide methodology, from database generation through surrogate training to NSGA-II optimization and TOPSIS decision-making.*
 
-### 2.7 Multi-objective optimization and decision-making
-
-The coupled geometry–fluid design is cast as a bi-objective problem,
+With the validated surrogate serving as the objective evaluator, the coupled geometry–fluid design is cast as a bi-objective problem,
 
 $$\text{maximize } Nu(\mathbf{x}) \quad \text{and} \quad \text{minimize } P_{pump}(\mathbf{x}), \tag{20}$$
 
@@ -156,9 +142,7 @@ $$2 \le AR \le 8,\;\; 2\,\text{mm} \le D_h \le 4\,\text{mm},\;\; 0 \le \varphi \
 
 The problem is solved with NSGA-II [21] using a population of 100 over 500 generations, simulated-binary crossover (*p_c* = 0.9, distribution index = 20), and polynomial mutation (*p_m* = 1/*n*, index = 20). Because each objective evaluation requires only a surrogate forward pass, the entire Pareto front of heat-transfer-enhancement versus pumping-power trade-offs is obtained at negligible computational cost. The TOPSIS method [22], applied with equal objective weights, selects the technically best compromise on the front; an unequal-weighting sensitivity study (0.3/0.7 and 0.7/0.3) then examines the energy-priority and heat-transfer-priority cases.
 
-### 2.8 Validation and uncertainty analysis
-
-The framework is validated in two stages: (i) surrogate predictions at 20 held-out database points, and (ii) comparison of the NSGA-II optimal design against a purpose-built confirmation experiment and CFD run, requiring agreement within 5 % for *Nu* and 7 % for Δ*p*. Measurement uncertainty is propagated by the root-sum-square method,
+Finally, the framework is validated in two stages: (i) surrogate predictions at 20 held-out database points, and (ii) comparison of the NSGA-II optimal design against a purpose-built confirmation experiment and CFD run, requiring agreement within 5 % for *Nu* and 7 % for Δ*p*. Measurement uncertainty is propagated by the root-sum-square method,
 
 $$\frac{\delta \mathcal{Y}}{\mathcal{Y}} = \sqrt{\sum_{i}\left(\frac{\partial \mathcal{Y}}{\partial x_i}\frac{\delta x_i}{\mathcal{Y}}\right)^2}, \tag{22}$$
 
