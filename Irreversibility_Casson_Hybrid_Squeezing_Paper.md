@@ -530,7 +530,7 @@ The model recovers [1], [2] and [3] as limiting cases and extends them into a ge
 
 [4] N. Murshid, H. Mulki, M. Abu-Samha, W. Owhaib, S. S. K. Raju, C. S. K. Raju, et al., Entropy generation and statistical analysis of MHD hybrid nanofluid unsteady squeezing flow between two parallel rotating plates with activation energy, *Nanomaterials* **12**(14), 2381 (2022).
 
-[5] N. A. Shah, et al., Entropy generation of Cu–Al₂O₃/water flow with convective boundary conditions through a porous stretching sheet with slip effect, Joule heating and chemical reaction, *Mathematical and Computational Applications* **28**(1), 18 (2023).
+[5] M. I. Joyce, J. Kandasamy, S. Sivanandam, Entropy generation of Cu–Al₂O₃/water flow with convective boundary conditions through a porous stretching sheet with slip effect, Joule heating and chemical reaction, *Mathematical and Computational Applications* **28**(1), 18 (2023).
 
 [6] I. Chabani, F. Mebarek-Oudina, A. A. I. Ismail, MHD flow of a hybrid nano-fluid in a triangular enclosure with zigzags and an elliptic obstacle, *Micromachines* **13**(2), 224 (2022).
 
@@ -540,7 +540,7 @@ The model recovers [1], [2] and [3] as limiting cases and extends them into a ge
 
 [9] W. Al-Kouz, et al., Computational analysis of entropy generation optimization for Cu–Al₂O₃ water-based chemically reactive magnetized radiative hybrid nanofluid flow, *AIP Advances* **14**(7), 075111 (2024).
 
-[10] A. Alsaedi, et al., Heat and mass transfer analysis of chemically reacted Cu/Al₂O₃ Casson hybrid nanofluid flow via porous medium under MHD and slip conditions, *Nanotechnology Reviews* **15**(1), 20250283 (2026).
+[10] N. O. Al-Atawi, Heat and mass transfer analysis of chemically reacted Cu/Al₂O₃ Casson hybrid nanofluid flow via porous medium under MHD and slip conditions, *Nanotechnology Reviews* **15**(1), 20250283 (2026).
 
 [11] S. Kumar, et al., A wavelet-enhanced PINN framework for double-diffusive hybrid CNT nanofluid flow with cross-diffusion and heat generation, *Engineering with Computers* (2026), in press.
 
@@ -584,7 +584,7 @@ The model recovers [1], [2] and [3] as limiting cases and extends them into a ge
 
 [31] A. Abbasi, et al., Thermal enhancement of ternary hybrid Casson nanofluid in porous media: a sensitivity analysis study, *Scientific Reports* **15**, 21154 (2025).
 
-[32] P. B. A. Reddy, et al., Unsteady radiative-convective Casson hybrid nanofluid flow over an inclined disk with Cattaneo–Christov heat flux and entropy estimation, *Pramana – Journal of Physics* **98**, 96 (2024).
+[32] A. K. Kar, P. Kumar, R. Singh, R. Nandkeolyar, Unsteady radiative-convective Casson hybrid nanofluid flow over an inclined disk with Cattaneo–Christov heat flux and entropy estimation, *Pramana – Journal of Physics* **98**, 109 (2024).
 
 [33] A. Alatawi, E. Alshaban, M. S. Aldhabani, H. Alrihieli, Dynamic behavior of Casson-type hybrid nanofluids due to a stretching sheet under the coupled impacts of boundary slip and reaction-diffusion processes, *Nanotechnology Reviews* **14**(1), 20250244 (2025).
 
