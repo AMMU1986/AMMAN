@@ -35,6 +35,8 @@ def convline(s):
     for d in DROP: s = s.replace(d, '')
     s = s.replace('\\ ', ' ')                    # LaTeX control space
     for k, v in SPACE.items(): s = s.replace(k, v)
+    # font commands (\mathcal{L} -> L) rendered transparent
+    s = _iter(r'\\(?:mathcal|mathbf|mathrm|mathbb|mathsf|mathit|boldsymbol|operatorname|text|mathfrak)\{([^{}]*)\}', r'\1', s)
     # subscripts/superscripts braces -> parentheses (innermost first)
     s = _iter(r'\^\{([^{}]*)\}', r'^(\1)', s)
     s = _iter(r'_\{([^{}]*)\}', r'_(\1)', s)

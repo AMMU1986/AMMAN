@@ -72,9 +72,16 @@ def nary(ch, sub, sup, limloc):
             '<m:sub>%s</m:sub><m:sup>%s</m:sup><m:e></m:e></m:nary>'
             % (ch, limloc, subhide, suphide, sub or '', sup or ''))
 
+FONTCMD = {r'\mathcal', r'\mathbf', r'\mathrm', r'\mathbb', r'\mathsf',
+           r'\mathit', r'\boldsymbol', r'\operatorname', r'\text', r'\mathfrak'}
+
 def parse_atom(p):
     """Return OMML for a single argument/atom."""
+    while p.peek() == ' ':      # skip spaces before an argument (e.g. \hat f)
+        p.nxt()
     tok = p.peek()
+    if tok in FONTCMD:
+        p.nxt(); return parse_atom(p)
     if tok == '{':
         p.nxt(); inner = parse_seq(p, stop='}')
         if p.peek() == '}': p.nxt()
@@ -126,6 +133,8 @@ def parse_seq(p, stop=None):
             p.nxt(); flush(); elems.append(bar(parse_atom(p))); continue
         if tok == r'\hat':
             p.nxt(); flush(); elems.append(acc(parse_atom(p))); continue
+        if tok in FONTCMD:
+            p.nxt(); flush(); elems.append(parse_atom(p)); continue
         if tok == r'\left':
             p.nxt(); dopen = p.nxt(); inner = parse_seq(p, stop=r'\right')
             if p.peek() == r'\right': p.nxt(); dclose = p.nxt()
