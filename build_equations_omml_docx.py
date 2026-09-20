@@ -161,6 +161,7 @@ def cases_omml(body):
     rows = re.split(r'\\\\', body)
     row_xml = []
     for r in rows:
+        r = re.sub(r'^\s*\[[^\]]*\]', '', r)   # strip LaTeX spacing e.g. \\[2mm]
         if r.strip() == '': continue
         cells = r.split('&')
         cell_xml = conv(cells[0])

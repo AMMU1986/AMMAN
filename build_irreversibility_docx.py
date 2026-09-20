@@ -12,9 +12,24 @@ LaTeX-ish math ($...$ and $$...$$) is converted to readable Unicode
 and pipe-tables are rendered as native Word constructs.
 """
 import re, zipfile, html, os, struct
+from build_equations_omml_docx import latex_to_omml   # LaTeX -> native Word OMML
 
 SRC = "Irreversibility_Casson_Hybrid_Squeezing_Paper.md"
 OUT = "Irreversibility_Casson_Hybrid_Squeezing_Paper.docx"
+
+def omml_eq_para(latex):
+    """Render a display equation as a native Word equation (OMML), number at right."""
+    m = re.search(r'\\tag\{(\d+)\}', latex)
+    num = m.group(1) if m else None
+    tex = re.sub(r'\\tag\{\d+\}', '', latex)
+    omml = latex_to_omml(tex)
+    if num:
+        ppr = '<w:pPr><w:tabs><w:tab w:val="right" w:pos="9360"/></w:tabs><w:spacing w:before="60" w:after="60"/></w:pPr>'
+        numrun = '<w:r><w:tab/><w:t>(%s)</w:t></w:r>' % num
+    else:
+        ppr = '<w:pPr><w:jc w:val="center"/><w:spacing w:before="60" w:after="60"/></w:pPr>'
+        numrun = ''
+    return '<w:p>%s<m:oMath>%s</m:oMath>%s</w:p>' % (ppr, omml, numrun)
 
 # registry of embedded images: list of (rId, arcname, filepath, w_px, h_px)
 IMAGES = []
@@ -209,7 +224,7 @@ def parse(md):
             content = line.strip()[2:]
             if content.strip().endswith('$$') and len(content.strip()) > 2:
                 inner = content.strip()[:-2]
-                body.append(eq_para(latex_to_unicode(inner)))
+                body.append(omml_eq_para(inner))
                 i += 1; continue
             in_math = True; math_buf = []
             rest = content
@@ -222,7 +237,7 @@ def parse(md):
                 if last.strip(): math_buf.append(last)
                 i += 1
             joined = ' '.join(x.strip() for x in math_buf if x.strip())
-            body.append(eq_para(latex_to_unicode(joined)))
+            body.append(omml_eq_para(joined))
             continue
 
         # headings
@@ -329,6 +344,7 @@ def main():
                 '<w:document '
                 'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
                 'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" '
+                'xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" '
                 'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">'
                 f'<w:body>{body}'
                 '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>'
