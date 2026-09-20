@@ -11,10 +11,48 @@ LaTeX-ish math ($...$ and $$...$$) is converted to readable Unicode
 (best-effort; not a full TeX engine). Markdown headings, bold (**..**),
 and pipe-tables are rendered as native Word constructs.
 """
-import re, zipfile, html, os
+import re, zipfile, html, os, struct
 
 SRC = "Irreversibility_Casson_Hybrid_Squeezing_Paper.md"
 OUT = "Irreversibility_Casson_Hybrid_Squeezing_Paper.docx"
+
+# registry of embedded images: list of (rId, arcname, filepath, w_px, h_px)
+IMAGES = []
+def _png_size(path):
+    with open(path, 'rb') as f:
+        head = f.read(24)
+    return struct.unpack('>II', head[16:24])
+def register_image(path):
+    idx = len(IMAGES) + 1
+    rid = 'rIdImg%d' % idx
+    arc = 'word/media/image%d.png' % idx
+    w, h = _png_size(path)
+    IMAGES.append((rid, arc, path, w, h))
+    return rid, w, h
+def image_paragraph(path):
+    rid, w, h = register_image(path)
+    target_w = 5486400  # 6.0 in in EMU
+    target_h = int(target_w * h / w)
+    return (f'<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:drawing>'
+            f'<wp:inline distT="0" distB="0" distL="0" distR="0">'
+            f'<wp:extent cx="{target_w}" cy="{target_h}"/>'
+            f'<wp:effectExtent l="0" t="0" r="0" b="0"/>'
+            f'<wp:docPr id="{len(IMAGES)}" name="Picture{len(IMAGES)}"/>'
+            f'<wp:cNvGraphicFramePr><a:graphicFrameLocks '
+            f'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>'
+            f'</wp:cNvGraphicFramePr>'
+            f'<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">'
+            f'<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+            f'<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+            f'<pic:nvPicPr><pic:cNvPr id="{len(IMAGES)}" name="Picture{len(IMAGES)}"/>'
+            f'<pic:cNvPicPr/></pic:nvPicPr>'
+            f'<pic:blipFill><a:blip r:embed="{rid}"/>'
+            f'<a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
+            f'<pic:spPr><a:xfrm><a:off x="0" y="0"/>'
+            f'<a:ext cx="{target_w}" cy="{target_h}"/></a:xfrm>'
+            f'<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>'
+            f'</pic:pic></a:graphicData></a:graphic></wp:inline>'
+            f'</w:drawing></w:r></w:p>')
 
 # ---------------------------------------------------------------- LaTeX -> Unicode
 GREEK = {
@@ -198,6 +236,16 @@ def parse(md):
                 body.append(para(runs_from_bold(txt), style=style))
             i += 1; continue
 
+        # image line ![alt](path)
+        mimg = re.match(r'^!\[[^\]]*\]\(([^)]+)\)\s*$', line)
+        if mimg:
+            ipath = mimg.group(1)
+            if os.path.exists(ipath):
+                body.append(image_paragraph(ipath))
+            else:
+                body.append(para(run('[missing image: %s]' % ipath, italic=True), align='center'))
+            i += 1; continue
+
         # horizontal rule
         if re.match(r'^-{3,}\s*$', line):
             body.append(para(run('')))
@@ -231,6 +279,7 @@ def parse(md):
         i += 1
         while i < n and lines[i].strip() != '' and not lines[i].startswith('#') \
               and '|' not in lines[i] and not lines[i].strip().startswith('$$') \
+              and not lines[i].startswith('![') \
               and not re.match(r'^\s*([-*]|\d+\.)\s+', lines[i]) \
               and not re.match(r'^-{3,}\s*$', lines[i]):
             buf.append(lines[i]); i += 1
@@ -257,6 +306,7 @@ CONTENT_TYPES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
 <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
 <Default Extension="xml" ContentType="application/xml"/>
+<Default Extension="png" ContentType="image/png"/>
 <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
 <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
 </Types>'''
@@ -274,20 +324,38 @@ DOC_RELS = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 def main():
     with open(SRC, encoding='utf-8') as f:
         md = f.read()
-    body = parse(md)
+    body = parse(md)   # populates IMAGES
     document = ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
-                '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">'
+                '<w:document '
+                'xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
+                'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" '
+                'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">'
                 f'<w:body>{body}'
                 '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>'
                 '<w:pgMar w:top="1440" w:bottom="1440" w:left="1440" w:right="1440"/></w:sectPr>'
                 '</w:body></w:document>')
+    # build document relationships including images
+    rel_items = ['<Relationship Id="rId1" '
+                 'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" '
+                 'Target="styles.xml"/>']
+    for rid, arc, path, w, h in IMAGES:
+        target = arc.split('word/', 1)[1]  # relative to word/
+        rel_items.append(f'<Relationship Id="{rid}" '
+                         f'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" '
+                         f'Target="{target}"/>')
+    doc_rels = ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+                '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+                + ''.join(rel_items) + '</Relationships>')
     with zipfile.ZipFile(OUT, 'w', zipfile.ZIP_DEFLATED) as z:
         z.writestr('[Content_Types].xml', CONTENT_TYPES)
         z.writestr('_rels/.rels', RELS)
         z.writestr('word/document.xml', document)
         z.writestr('word/styles.xml', STYLES)
-        z.writestr('word/_rels/document.xml.rels', DOC_RELS)
-    print('Wrote', OUT, os.path.getsize(OUT), 'bytes')
+        for rid, arc, path, w, h in IMAGES:
+            with open(path, 'rb') as imgf:
+                z.writestr(arc, imgf.read())
+        z.writestr('word/_rels/document.xml.rels', doc_rels)
+    print('Wrote', OUT, os.path.getsize(OUT), 'bytes;', len(IMAGES), 'images embedded')
 
 if __name__ == '__main__':
     main()
