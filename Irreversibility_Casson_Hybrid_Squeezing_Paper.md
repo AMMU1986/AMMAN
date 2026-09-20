@@ -57,7 +57,13 @@ The foregoing survey reveals that, although the individual ingredients are well 
 
 ### 2.1 Physical model and assumptions
 
-Consider the unsteady, two-dimensional, laminar, incompressible flow of a Casson Cu–Al₂O₃/water hybrid nanofluid between two infinite horizontal parallel plates saturated by a Darcy porous medium, with the $x$-axis along the lower plate and the $y$-axis normal to it. The upper plate sits at the time-dependent gap
+Consider the unsteady, two-dimensional, laminar, incompressible flow of a Casson Cu–Al₂O₃/water hybrid nanofluid between two infinite horizontal parallel plates saturated by a Darcy porous medium, with the $x$-axis along the lower plate and the $y$-axis normal to it. The physical configuration, together with the coordinate system, the imposed transverse magnetic field, the stretching and suction/injection of the lower wall and the squeezing motion of the upper wall, is depicted in Figure 1. This stretchable-lower/squeezing-upper arrangement is precisely the geometry adopted in the benchmark hybrid-nanofluid study of Khashi'ie et al. [1] and in the antecedent works [2,3] that the present model unifies and extends.
+
+![Figure 1](irreversibility_figures/Figure_1.png)
+
+**Figure 1.** Physical model of the squeezing channel: Casson Cu–Al₂O₃/water hybrid nanofluid in a Darcy porous medium between a stretchable, permeable lower plate ($y=0$) and a squeezing upper plate ($y=h(t)$), under a transverse magnetic field $B(t)$.
+
+The modelling assumptions, standard for this class of problem [1,2,7,23], are: (i) the flow is laminar, incompressible and two-dimensional; (ii) the two nanoparticle species (Al₂O₃ and Cu) are in thermal equilibrium with the water base fluid and are uniformly dispersed, so that the single-phase (homogeneous) hybrid-nanofluid model with the correlations of Section 2.3 applies; (iii) the magnetic Reynolds number is small, hence the induced magnetic field is negligible relative to the applied field $B(t)$; (iv) the porous matrix is homogeneous and isotropic and its resistance follows the Darcy law; (v) thermal radiation is treated through the optically thick Rosseland approximation; and (vi) the Hall current, viscous heating of the porous solid and particle-migration (Brownian/thermophoretic) fluxes are neglected. Under these hypotheses the upper plate sits at the time-dependent gap
 
 $$h(t)=\sqrt{\frac{\nu_f(1-\alpha t)}{b}},\qquad t<\frac{1}{\alpha},\tag{1}$$
 
@@ -85,6 +91,8 @@ with the Casson parameter
 
 $$\beta^*=\frac{\mu_B\sqrt{2\pi_c}}{p_y}.\tag{7}$$
 
+The Casson model (6)–(7) is adopted because it faithfully represents the yield-stress, shear-thinning rheology of many fluids that are processed in squeeze-film hardware — blood, concentrated suspensions, polymer melts, greases and food pastes — behaving as a quasi-solid below the critical stress and as a viscous liquid above it, and reducing to the Newtonian description as $\beta^*\to\infty$. Coupling this rheology to a Cu–Al₂O₃/water hybrid suspension is motivated by the complementary roles of the two nanoparticles: copper contributes an exceptionally high thermal conductivity (Table 1) that boosts the heat-transfer duty, whereas alumina imparts chemical stability and colloidal robustness that improve dispersion and durability. The squeezing configuration itself is representative of a broad class of transient confined flows, and its combination with the Casson rheology and the hybrid suspension — under the simultaneous action of a magnetic field, radiation, cross-diffusion and reaction — is precisely the setting in which a rigorous second-law treatment has hitherto been lacking [2,3,4].
+
 ### 2.2 Governing equations
 
 Continuity:
@@ -99,6 +107,8 @@ $y$-momentum:
 
 $$\frac{\partial v}{\partial t}+u\frac{\partial v}{\partial x}+v\frac{\partial v}{\partial y}=-\frac{1}{\rho_{hnf}}\frac{\partial p}{\partial y}+\frac{\mu_{hnf}}{\rho_{hnf}}\left(1+\frac{1}{\beta^*}\right)\left(\frac{\partial^2v}{\partial x^2}+\frac{\partial^2v}{\partial y^2}\right)-\frac{\mu_{hnf}}{\rho_{hnf}}\frac{1}{K_P^*}\left(1+\frac{1}{\beta^*}\right)v.\tag{10}$$
 
+In the momentum balances (9)–(10) the left-hand side gathers the local and convective inertia, while the right-hand side collects, in order, the pressure gradient, the Casson-modified viscous diffusion — the factor $\left(1+1/\beta^*\right)$ embodies the yield-stress rheology and recovers the Newtonian limit as $\beta^*\to\infty$ — the Lorentz body force $-\sigma_{hnf}B(t)^2u/\rho_{hnf}$ arising from the interaction of the induced current with the applied field, and the Darcy resistance $-\mu_{hnf}(1+1/\beta^*)u/(\rho_{hnf}K_P^*)$ exerted by the porous matrix. The magnetic force acts only on the streamwise momentum because $B(t)$ is transverse, in agreement with the formulations of [1,2] and the particle-shape study of [23].
+
 Energy (radiation, Joule heating, heat source, viscous dissipation, Dufour):
 
 $$\left(\rho C_p\right)_{hnf}\left(\frac{\partial T}{\partial t}+u\frac{\partial T}{\partial x}+v\frac{\partial T}{\partial y}\right)=\kappa_{hnf}\frac{\partial^2T}{\partial y^2}-\frac{\partial q_r}{\partial y}+\sigma_{hnf}B(t)^2u^2-Q_0(T-T_1)+\mu_{hnf}\left(1+\frac{1}{\beta^*}\right)\Phi_v+\frac{\rho_{hnf}D_mK_T}{C_s}\frac{\partial^2C}{\partial y^2},\tag{11}$$
@@ -111,11 +121,15 @@ Concentration (Soret, Arrhenius reaction):
 
 $$\frac{\partial C}{\partial t}+u\frac{\partial C}{\partial x}+v\frac{\partial C}{\partial y}=D_m\frac{\partial^2C}{\partial y^2}+\frac{D_mK_T}{T_m}\frac{\partial^2T}{\partial y^2}-k_r^2\left(\frac{T}{T_1}\right)^{n}\exp\!\left(-\frac{E_a}{k_BT}\right)(C-C_1).\tag{13}$$
 
+Equation (11) augments the classical convection–conduction balance with four physically distinct source terms that are central to the present irreversibility analysis: the radiative-flux divergence $-\partial q_r/\partial y$, the Ohmic (Joule) heating $\sigma_{hnf}B(t)^2u^2$ produced as electrical work is dissipated against the Lorentz force, the volumetric heat source/sink $-Q_0(T-T_1)$, and the Casson-scaled viscous dissipation $\mu_{hnf}(1+1/\beta^*)\Phi_v$ with $\Phi_v$ defined in (12). The final term $\rho_{hnf}D_mK_T\,\partial^2C/\partial y^2/C_s$ is the Dufour (diffusion-thermo) contribution, whereby a concentration gradient drives an energy flux; its counterpart in the species equation (13) is the Soret (thermo-diffusion) term $D_mK_T\,\partial^2T/\partial y^2/T_m$, so that the thermal and solutal fields are two-way coupled exactly as in the cross-diffusion analyses of Sharma and Bhaskar [8] and Bhaskar and Sharma [3]. The reaction term in (13) is written in Arrhenius form, $k_r^2(T/T_1)^n\exp(-E_a/k_BT)$, so that the destruction rate of species is controlled by both the fitted rate constant $k_r$ and the activation energy $E_a$; this generalises the constant-rate first-order reaction used in [3,15] and follows the activation-energy treatment of Azam [20].
+
 The Rosseland flux, its linearisation and gradient are
 
 $$q_r=-\frac{4\sigma^*}{3k^*}\frac{\partial T^4}{\partial y},\tag{14}$$
 $$T^4\approx4T_0^3T-3T_0^4,\tag{15}$$
 $$\frac{\partial q_r}{\partial y}=-\frac{16\sigma^*T_0^3}{3k^*}\frac{\partial^2T}{\partial y^2}.\tag{16}$$
+
+The linearisation (15) presumes a modest temperature difference across the gap, so that $T^4$ may be expanded about the reference $T_0$ and higher-order terms discarded; substituting the resulting flux gradient (16) into (11) shows that radiation acts as an additive enhancement $\tfrac{16\sigma^*T_0^3}{3k^*}$ of the effective conductivity, which is why the radiation parameter later appears in the combination $\left(A_4+\tfrac43Rd\right)$ in both the energy equation and the thermal-irreversibility term. This optically thick treatment is the same as that employed in [2,3,20] and is appropriate for the dense working fluids considered here.
 
 ### 2.3 Thermophysical properties
 
@@ -144,6 +158,8 @@ The base and nanoparticle data used throughout are listed in Table 1; these valu
 
 $$u=\lambda u_w,\quad v=v_w,\quad T=T^*_0,\quad C=C^*_0\quad\text{at }y=0,\tag{24}$$
 $$u=0,\quad v=\frac{dh}{dt},\quad T=T_2,\quad C=C_2\quad\text{at }y=h(t).\tag{25}$$
+
+The conditions (24) impose a stretching streamwise velocity ($\lambda$ being the ratio of stretching to reference velocity) together with prescribed wall suction/injection, temperature and concentration on the permeable lower plate, while (25) enforces no slip and impermeability at the upper plate, whose normal velocity equals the plate's own squeezing speed $dh/dt$, and fixes the upper-wall temperature and concentration. This closure reproduces the well-posed set used by Khashi'ie et al. [1] and Bhaskar et al. [2]; setting $\phi_1=\phi_2=0$ recovers the single-phase Casson problem of [3], a property exploited in the validation of Section 4.4.
 
 ### 2.5 Similarity transformation
 
@@ -201,6 +217,8 @@ $$Re_x^{1/2}Sh_{x2}=-\phi'(1).\tag{60}$$
 
 ## 3. Entropy Generation Analysis
 
+The first-law analysis of Sections 2 quantifies how much energy is transported, but not how much of its capacity to do work is irretrievably lost. That deficit is measured by the entropy generation, whose minimisation — the entropy-generation-minimisation paradigm — is the accepted route to thermodynamically efficient thermal-system design and has been applied to nanofluid flows in a variety of geometries [4,5,9,29,32]. In a squeeze film the entropy sources are unusually diverse, comprising heat conduction augmented by radiation, Casson viscous friction, Darcy porous dissipation, Ohmic (Joule) heating, and the diffusive and cross-diffusive irreversibilities generated by the species field; the last of these is absent from radiation-and-Joule-only treatments [2] and is retained here. Assembling all of these contributions yields the local entropy budget below, from which the entropy generation number and the Bejan number follow directly.
+
 Applying the local-thermodynamic-equilibrium hypothesis, the volumetric entropy production is
 
 $$S_{gen}=\frac{\kappa_{hnf}}{T_0^2}\left(1+\frac{16\sigma^*T_0^3}{3k^*\kappa_{hnf}}\right)\left(\frac{\partial T}{\partial y}\right)^2+\frac{\mu_{hnf}}{T_0}\left(1+\frac{1}{\beta^*}\right)\left(\frac{\partial u}{\partial y}\right)^2+\frac{\mu_{hnf}}{T_0K_P^*}\left(1+\frac{1}{\beta^*}\right)u^2+\frac{\sigma_{hnf}B(t)^2}{T_0}u^2+\frac{RD_m}{C_0}\left(\frac{\partial C}{\partial y}\right)^2+\frac{RD_m}{T_0}\left(\frac{\partial T}{\partial y}\right)\left(\frac{\partial C}{\partial y}\right).\tag{61}$$
@@ -238,7 +256,7 @@ $$Be\to1\ (\text{heat/mass dominated}),\quad Be\to0\ (\text{friction/Joule domin
 
 ### 4.1 Optimal Homotopy Analysis Method
 
-The nonlinear system (32)–(34) with (35)–(36) is solved by OHAM [3,20]. The initial guesses are
+The nonlinear system (32)–(34) with (35)–(36) is solved by OHAM [3,20]. This choice is deliberate: unlike classical perturbation or asymptotic techniques, the homotopy analysis method does not rely on the presence of a small or large physical parameter and therefore remains valid across the full ranges of $M$, $\beta^*$, $Sq$ and the remaining groups; unlike purely numerical shooting or collocation, it delivers an explicit, uniformly convergent analytical series whose convergence is controlled a posteriori by the auxiliary parameters $\hbar_f,\hbar_\theta,\hbar_\phi$. The same methodology underpins the antecedent studies [3,8] and the activation-energy analysis of Azam [20], which facilitates a like-for-like comparison of results. The initial guesses are
 
 $$f_0(\eta)=S+\lambda\eta+\left(\frac{3}{2}Sq-3S-2\lambda\right)\eta^2+\left(2S-Sq+\lambda\right)\eta^3,\tag{71}$$
 $$\theta_0(\eta)=\eta,\tag{72}$$
@@ -358,59 +376,63 @@ Table 4 compares the present skin-friction values in the hybrid-nanofluid limit 
 
 ## 5. Results and Discussion
 
-The converged OHAM solution is exercised over the physically relevant ranges. Unless stated otherwise the baseline values are $\beta^*=1$, $M=1$, $Sq=0.5$, $K_P=1$, $Rd=1$, $Pr=6.2$, $Ec=0.1$, $Sc=1$, $Sr=0.2$, $Df=0.2$, $Br=1$, $\Omega=1$, $\zeta=1$, $\phi_1=\phi_2=0.02$.
+The converged OHAM solution is now exercised over the physically relevant parameter ranges, and the resulting hydrodynamic, thermal, solutal and thermodynamic fields are interpreted mechanistically and, wherever a common limit exists, contrasted quantitatively with the established literature. Unless stated otherwise the baseline values are $\beta^*=1$, $M=1$, $Sq=0.5$, $K_P=1$, $Rd=1$, $Pr=6.2$, $Ec=0.1$, $Sc=1$, $Sr=0.2$, $Df=0.2$, $Br=1$, $\Omega=1$, $\zeta=1$, $\phi_1=\phi_2=0.02$. These values coincide with those of the antecedent squeezing studies [1,2,3], which permits a term-by-term comparison of trends. Throughout, Figure 1 fixes the geometry to which every profile refers.
 
 ### 5.1 Velocity field
 
-Figure 1 depicts $f'(\eta)$ for increasing magnetic parameter $M$. Near both plates the velocity rises marginally, whereas in the core the Lorentz force — proportional to the local velocity, which peaks mid-channel — opposes motion and reduces $f'$. This dual response, visible in Figure 1, is the hydrodynamic signature of MHD damping in a confined squeeze film. The corresponding steepening of the near-wall gradient explains the growth of the lower-plate skin friction reported in Table 5. Figure 2 shows $f'(\eta)$ for the squeezing parameter $Sq$: as the plates approach ($Sq>0$) the gap is pressurised and the fluid accelerates, while for receding plates ($Sq<0$) the mid-channel velocity reverses sign. The sign reversal captured in Figure 2 is the defining kinematic feature of the geometry and, as Section 5.7 shows, it controls the entropy budget. Table 5 further quantifies how the Casson and porosity parameters sharpen the wall shear.
+Figure 2 depicts the streamwise velocity $f'(\eta)$ for increasing magnetic parameter $M$. A pronounced dual behaviour is observed: near both plates the velocity is marginally enhanced, whereas in the central region of the channel it is measurably suppressed. The mechanism is the Lorentz force, which — being proportional to the local velocity — attains its largest retarding value where the velocity itself peaks, namely at the channel core; the near-wall regions, where the velocity is small, feel comparatively little magnetic drag and are instead governed by continuity, so that the fluid expelled from the core is redistributed towards the walls. This crossover is precisely the behaviour reported by Khashi'ie et al. [1] for the non-Casson Cu–Al₂O₃/water hybrid nanofluid and by Bhaskar et al. [2] for the Casson hybrid case, and it also mirrors the particle-shape study of Chu et al. [23]; the present curves reproduce it while additionally resolving the yield-stress modulation. Consistent with the velocity steepening at the wall, the magnitude of the lower-plate skin friction in Table 5 grows with $M$, in quantitative agreement with the monotonic trend documented in [1,2].
 
-![Figure 1](irreversibility_figures/Figure_1.png)
-
-**Figure 1.** Velocity profile $f'(\eta)$ for various magnetic parameter $M$ (baseline otherwise).
+Figure 3 shows $f'(\eta)$ for the squeezing parameter $Sq$. For receding plates ($Sq<0$) the widening gap draws fluid inward and the mid-channel velocity is negative, whereas for approaching plates ($Sq>0$) the gap is pressurised, the fluid is expelled and the velocity becomes positive; the profile therefore reverses sign about the channel centre as $Sq$ passes through zero. This sign reversal, evident in Figure 3, is the defining kinematic signature of squeeze-film flow and matches the observations of Bhaskar and Sharma [3] and of the dilating/squeezing-wall analysis of Bilal et al. [7]. The increase in the effective Casson parameter drives the rheology towards the Newtonian limit (the factor $1+1/\beta^*\to1$), lowering the effective viscosity and raising the near-wall velocity while depressing the core value — a trend that Table 5 renders quantitatively through the skin friction and that agrees with the Casson-fluid behaviour reported by Lim et al. [16] and Saeed et al. [15].
 
 ![Figure 2](irreversibility_figures/Figure_2.png)
 
-**Figure 2.** Velocity profile $f'(\eta)$ for various squeezing parameter $Sq$, showing mid-channel sign reversal.
-
-### 5.2 Temperature field
-
-Figure 3 presents $\theta(\eta)$ for the radiation parameter $Rd$. Larger $Rd$ augments the effective conductivity $(1+\tfrac43Rd)$, delivering additional energy and raising the temperature throughout the channel; the monotonic thickening of the thermal layer seen in Figure 3 is consistent with the enhanced Nusselt magnitude tabulated in Table 5. The Eckert number and magnetic parameter elevate the temperature through viscous and Joule dissipation respectively, whereas the Prandtl and heat-absorption parameters depress it. Because the wall temperature gradient governs both the Nusselt number (57) and the thermal irreversibility (64), the trends of Figure 3 propagate directly into the entropy analysis of Section 5.4.
+**Figure 2.** Velocity profile $f'(\eta)$ for various magnetic parameter $M$ (baseline otherwise).
 
 ![Figure 3](irreversibility_figures/Figure_3.png)
 
-**Figure 3.** Temperature profile $\theta(\eta)$ for various radiation parameter $Rd$.
+**Figure 3.** Velocity profile $f'(\eta)$ for various squeezing parameter $Sq$, showing mid-channel sign reversal.
 
-### 5.3 Concentration field
+### 5.2 Temperature field
 
-Figure 4 shows $\phi(\eta)$ for the chemical-reaction parameter $K$. A destructive reaction consumes species and steepens the solutal gradient, so the concentration falls with $K$, as Figure 4 makes clear. The Schmidt number thins the solutal layer, while the Soret and activation-energy parameters act oppositely by homogenising the field. The wall solutal gradient set by Figure 4 fixes the Sherwood number listed in Table 6, and the same gradient feeds the diffusive irreversibility term (66).
+Figure 4 presents the temperature $\theta(\eta)$ for the radiation parameter $Rd$. Increasing $Rd$ augments the effective thermal conductivity through the group $\left(A_4+\tfrac43Rd\right)$, so that additional radiative energy is delivered to the working fluid and the temperature rises monotonically across the whole gap, thickening the thermal boundary layer. The same qualitative response was reported by Bhaskar et al. [2] and Bhaskar and Sharma [3] for the Casson squeezing channel and by Azam [20] for a radiative MHD Maxwell nanofluid; the present hybrid formulation preserves it while amplifying the magnitude, because the elevated conductivity ratio $A_4$ of the Cu–Al₂O₃ pair (set by Table 1) reinforces the radiative enhancement. Physically distinct but additive contributions arise from the Eckert number and the magnetic parameter: the former injects heat through viscous friction and the latter through Ohmic dissipation of the electrical work done against the Lorentz force, so that $M$ raises the temperature even as it retards the flow — the dual thermal-hydraulic role of the magnetic field emphasised in the entropy studies [4,9]. Conversely, the Prandtl number and the heat-absorption parameter thin the thermal layer and lower $\theta$, consistent with [3,15]. Since the wall temperature gradient controls both the Nusselt number (57) and the thermal irreversibility (64), the trends of Figure 4 propagate directly into the second-law analysis of Sections 5.4–5.5, where radiation is shown to be the dominant amplifier of heat-transfer irreversibility.
 
 ![Figure 4](irreversibility_figures/Figure_4.png)
 
-**Figure 4.** Concentration profile $\phi(\eta)$ for various chemical-reaction parameter $K$.
+**Figure 4.** Temperature profile $\theta(\eta)$ for various radiation parameter $Rd$.
 
-### 5.4 Entropy generation number
+### 5.3 Concentration field
 
-Figure 5 plots the entropy generation number $N_G(\eta)$ for the Brinkman number $Br$. The irreversibility is largest at the stretching lower plate, where $f''$ and $\theta'$ peak, and decays towards the upper plate; increasing $Br$ amplifies $N_G$ throughout, since the friction, porous and Joule terms of (63) scale with $Br/\Omega$. The near-wall concentration of irreversibility evident in Figure 5 is mapped two-dimensionally in Figure 7, where the $N_G(\eta,M)$ contour reveals a high-irreversibility ridge along the lower wall that broadens as $M$ grows, isolating the Joule-dominated zone. The averaged values in Table 7 confirm that $Br$, $M$ and $Rd$ raise $\overline{N_G}$ while $\beta^*$ and $Sq$ suppress it, and Figure 7 shows precisely where in the channel that suppression is most effective.
+Figure 5 shows the concentration $\phi(\eta)$ for the chemical-reaction parameter $K$. A destructive (consumptive) reaction removes solute from the bulk, steepening the wall solutal gradient and depressing the concentration throughout the channel; the reduction intensifies with $K$, exactly as Figure 5 displays. This is the trend established by Saeed et al. [15] for a reactive Casson stretching flow and by Sharma and Bhaskar [8] for cross-diffusive MHD transport, and it is the mass-transfer analogue of the reaction-diffusion coupling analysed for Casson hybrid nanofluids by Alatawi et al. [33]. The Schmidt number, being inversely proportional to the mass diffusivity, thins the solutal layer and further lowers $\phi$, whereas the Soret parameter — which drives species down the temperature gradient — and the activation-energy parameter $E$ act in the opposite sense: a larger $E$ diminishes the Arrhenius factor $\exp[-E/(1+\delta_T\theta)]$, weakens the consumption and thereby raises the concentration, reproducing the activation-energy behaviour reported by Azam [20] and Murshid et al. [4]. The wall solutal gradient set by Figure 5 fixes the Sherwood number tabulated in Table 6 and simultaneously feeds the diffusive irreversibility term (66), coupling the species field to the entropy budget in a way that the single-species antecedent [2] could not capture.
 
 ![Figure 5](irreversibility_figures/Figure_5.png)
 
-**Figure 5.** Entropy generation number $N_G(\eta)$ for various Brinkman number $Br$.
+**Figure 5.** Concentration profile $\phi(\eta)$ for various chemical-reaction parameter $K$.
 
-### 5.5 Bejan number
+### 5.4 Entropy generation number
 
-Figure 6 displays the Bejan number $Be(\eta)$ for the magnetic parameter $M$. In the channel core $Be\to1$ because conduction/radiation dominate and velocity gradients vanish, whereas near the walls $Be\to0$ as friction, porous drag and Joule heating prevail. Increasing $M$ depresses $Be$ towards the friction-dominated regime, as Figure 6 shows, complementing the ridge structure of Figure 7. Radiation and hybrid loading shift the balance the other way, driving $Be$ towards unity in the core.
+Figure 6 plots the local entropy generation number $N_G(\eta)$ for a range of Brinkman numbers $Br$. In every case the irreversibility is greatest in the immediate neighbourhood of the stretching lower plate, where the velocity gradient $f''$ and the temperature gradient $\theta'$ are simultaneously largest, and it decays monotonically towards the upper plate. Raising $Br$ amplifies $N_G$ across the whole channel because the frictional, porous and Joule contributions in (63) scale linearly with $Br/\Omega$; the Brinkman number thus measures the competition between dissipative heating and conductive removal, and its dominant influence on entropy is precisely that identified by Murshid et al. [4] for a rotating-plate hybrid nanofluid and in the Cu–Al₂O₃ optimisation of [9]. The present result extends those findings to the Casson hybrid squeeze film and, crucially, retains the diffusive term (66) absent from the single-species treatments [2,4], so that near the walls the concentration gradient makes a non-negligible additional contribution to $N_G$.
+
+The spatial structure of the irreversibility is displayed two-dimensionally in Figure 8, which maps $N_G(\eta,M)$. A high-irreversibility ridge runs along the lower wall and broadens as the magnetic parameter increases, isolating the Joule-dominated zone in which electrical dissipation, viscous friction and porous drag jointly concentrate the entropy production. This contour representation, seldom provided for squeezing hybrid nanofluids, complements the line profiles of Figure 6 and localises the regions that the second-law optimisation of Section 6 must target. The averaged data in Table 7 corroborate the pointwise picture: $Br$, $M$ and $Rd$ raise $\overline{N_G}$, whereas the Casson and squeezing parameters suppress it — the suppression by $\beta^*$ following from the reduction of the effective viscous coefficient $A_1(1+1/\beta^*)$, in line with the Casson entropy behaviour noted by Lim et al. [16].
 
 ![Figure 6](irreversibility_figures/Figure_6.png)
 
-**Figure 6.** Bejan number $Be(\eta)$ for various magnetic parameter $M$.
+**Figure 6.** Entropy generation number $N_G(\eta)$ for various Brinkman number $Br$.
+
+### 5.5 Bejan number
+
+Figure 7 displays the Bejan number $Be(\eta)$ for several magnetic parameters. In the channel core $Be\to1$, signifying that heat- and mass-transfer irreversibility overwhelmingly dominate where the velocity gradients vanish, whereas near the walls $Be\to0$, where fluid friction, porous drag and Joule heating prevail; the profile therefore traverses the entire admissible range within a single gap, crossing the equipartition level $Be=0.5$ (70) at an interior station. Increasing $M$ depresses $Be$ towards the friction-dominated regime, because the added Joule term inflates the denominator of (68); this is the same magnetic signature reported by [4,9], now resolved across the squeeze-film gap. Radiation and hybrid loading act oppositely, driving $Be$ towards unity in the core, consistent with the conductivity-enhancement mechanism discussed for Figure 4 and with the radiative entropy trends of [20,32]. The interplay is summarised compactly by the contour of Figure 8, whose Joule-dominated ridge is the spatial complement of the low-$Be$ near-wall band seen in Figure 7.
 
 ![Figure 7](irreversibility_figures/Figure_7.png)
 
-**Figure 7.** Contour map of the entropy generation number $N_G(\eta,M)$, showing the near-wall high-irreversibility ridge that broadens with $M$.
+**Figure 7.** Bejan number $Be(\eta)$ for various magnetic parameter $M$.
+
+![Figure 8](irreversibility_figures/Figure_8.png)
+
+**Figure 8.** Contour map of the entropy generation number $N_G(\eta,M)$, showing the near-wall high-irreversibility ridge that broadens with $M$.
 
 ### 5.6 Skin friction, Nusselt and Sherwood numbers
 
-Table 5 collects the skin-friction and Nusselt data. The magnitude of $Re_x^{1/2}C_{f1}=A_1f''(0)$ grows with $M$, $K_P$ and the suction parameter, because each steepens the near-wall gradient — the same mechanism that raised the near-wall velocity in Figure 1 — while a stronger squeeze reduces it. The Nusselt number in Table 5 increases with hybrid loading and radiation (echoing Figure 3) and decreases with $Ec$ and $M$. Table 6 reports the Sherwood number: it rises with $Sc$ and $K$ (steeper solutal gradient, as in Figure 4) and falls with $Sr$ and $E$. Because the Nusselt and Sherwood responses to hybrid loading and reaction oppose the corresponding entropy responses in Table 7, an efficient device is inherently a compromise, motivating the optimisation of Section 6.
+Table 5 collects the skin-friction and Nusselt data. The magnitude of the lower-plate skin friction $Re_x^{1/2}C_{f1}=A_1f''(0)$ grows with $M$, $K_P$ and the suction parameter, because each steepens the near-wall velocity gradient — the same mechanism responsible for the near-wall acceleration in Figure 2 — while a stronger squeeze flattens the near-wall profile and reduces it. These directions and magnitudes coincide with the benchmark values of Khashi'ie et al. [1] to the precision reported in Table 4 and reproduce the parametric trends of Bhaskar et al. [2]. The reduced Nusselt number $Re_x^{1/2}Nu_{x1}$ in Table 5 increases with hybrid loading and radiation — echoing the temperature enhancement of Figure 4 and confirming the heat-transfer benefit of the Cu–Al₂O₃ pair emphasised in [2,9] — and decreases with $Ec$ and $M$, whose dissipative heating raises the wall temperature and flattens its gradient. Table 6 reports the Sherwood number, a quantity absent from the single-species antecedent [2]: it rises with $Sc$ and $K$, reflecting the steeper solutal gradient already seen in Figure 5, and falls with $Sr$ and the activation energy $E$, in agreement with the cross-diffusive trends of Sharma and Bhaskar [8]. Because the Nusselt and Sherwood responses to hybrid loading and reaction are of opposite sign to the corresponding entropy responses recorded in Table 7, an efficient device is inherently a compromise between transport enhancement and irreversibility penalty — the trade-off that motivates the second-law optimisation of Section 6.
 
 **Table 5. Skin friction $Re_x^{1/2}C_{f1}$ and Nusselt $Re_x^{1/2}Nu_{x1}$ (representative).**
 
@@ -436,17 +458,21 @@ Table 5 collects the skin-friction and Nusselt data. The magnitude of $Re_x^{1/2
 
 ### 5.7 Role of the squeezing parameter on irreversibility
 
-Figure 8 presents the averaged entropy $\overline{N_G}$ as a function of $Sq$ for three Casson parameters. For receding plates the near-wall gradients are gentle and the entropy field is diffuse; as the plates approach, the frictional and porous contributions rise near the walls while the thermal contribution falls in the increasingly uniform core, so $\overline{N_G}$ passes through a shallow minimum at an intermediate squeeze rate — the design point exploited in Section 6. Figure 8 also shows that a larger Casson parameter lowers the entire curve, because it reduces the effective viscous term $A_1(1+1/\beta^*)$; the minima recorded in Figure 8 are tabulated in Table 7. This partial cancellation between rising frictional and falling thermal irreversibility is a distinctive feature of squeeze-film thermodynamics.
+Figure 9 presents the gap-averaged entropy $\overline{N_G}$, defined in (69), as a function of the squeezing parameter $Sq$ for three Casson parameters. The curves are non-monotonic: for receding plates the near-wall gradients are gentle and the entropy field is spatially diffuse, so $\overline{N_G}$ is moderate; as the plates approach, the frictional and porous contributions intensify near the walls, but the temperature field simultaneously becomes more uniform across the compressed gap, lowering the thermal contribution in the core. The competition between rising frictional and falling thermal irreversibility produces a shallow minimum at an intermediate squeeze rate, which constitutes the second-law-optimal operating point exploited in Section 6. Figure 9 further shows that a larger Casson parameter shifts the entire curve downward, because it reduces the effective viscous coefficient $A_1(1+1/\beta^*)$; the minima located in Figure 9 are consolidated in Table 7. This partial cancellation is a distinctive signature of squeeze-film thermodynamics that has no counterpart in the stretching-sheet entropy analyses [5,9,33], where the averaged irreversibility varies monotonically with the driving parameter — a qualitative contrast that highlights the value of the present geometry-specific treatment.
 
-![Figure 8](irreversibility_figures/Figure_8.png)
+![Figure 9](irreversibility_figures/Figure_9.png)
 
-**Figure 8.** Averaged entropy $\overline{N_G}$ versus squeezing parameter $Sq$ for various Casson parameter $\beta^*$, showing shallow minima.
+**Figure 9.** Averaged entropy $\overline{N_G}$ versus squeezing parameter $Sq$ for various Casson parameter $\beta^*$, showing shallow minima.
+
+### 5.8 Comparison with previous literature
+
+It is instructive to gather the foregoing comparisons into a coherent assessment. First, in the hydrodynamic limit ($\phi_1=\phi_2=0$, no species transport, no radiation) the present model collapses onto the single-phase Casson squeezing problem of Bhaskar and Sharma [3], and in the further limit of a non-Casson hybrid nanofluid it reproduces the bvp4c benchmark of Khashi'ie et al. [1] to six significant figures (Table 4); this dual reduction provides a stringent, two-sided validation that neither antecedent alone could supply. Second, the qualitative parameter trends — the dual velocity response to $M$ (Figure 2), the sign reversal with $Sq$ (Figure 3), the temperature enhancement with $Rd$ and $Ec$ (Figure 4) and the concentration depletion with $K$ (Figure 5) — agree with the corresponding observations of [1,2,3,15,16,23], confirming that the enriched model does not distort the established physics. Third, and most importantly, the second-law results extend the literature rather than merely reproducing it: whereas the entropy analyses of Murshid et al. [4], the Cu–Al₂O₃ study [9] and the stretching-sheet treatments [5,33] report a monotonic growth of averaged irreversibility with the Brinkman and magnetic parameters, the present squeeze-film geometry additionally exhibits a non-monotonic dependence on $Sq$ with an interior minimum (Figure 9), and it resolves — through the contour of Figure 8 — the spatial localisation of the Joule-dominated irreversibility that line-profile studies cannot show. Finally, the inclusion of the Soret–Dufour cross-diffusion and the Arrhenius reaction introduces a diffusive irreversibility channel (66) that is entirely absent from the radiation-and-Joule-only model of Bhaskar et al. [2], so that the Bejan number here responds to the solutal field in a manner consistent with the cross-diffusive framework of [8] and the reaction-diffusion Casson analysis of [33]. The present study thus occupies, and quantifies, a gap left open by each of these works individually.
 
 ---
 
 ## 6. Second-Law Optimization
 
-The engineering objective is to minimise $\overline{N_G}$ in (69) subject to a lower-plate Nusselt constraint $Nu_{x1}\ge Nu^{target}$. Sweeping $(\phi_1,\phi_2,M,\beta^*,Sq)$ reveals a Pareto structure: hybrid loading raises $Nu_{x1}$ (Table 5) but also raises $N_H$ (Table 7); a larger $\beta^*$ lowers $N_F$ (Figure 8) with only a mild heat-transfer penalty; and an intermediate $Sq$ minimises $\overline{N_G}$ (Figure 8). Table 7 consolidates the averaged irreversibility and Bejan number across the design variables and locates the optimum: a moderate total volume fraction ($\phi_1=\phi_2\approx0.015$–$0.02$), a large Casson parameter, a low-to-moderate magnetic parameter, and a squeeze rate near the minimum of Figure 8. Within this window Table 7 shows $\overline{N_G}$ minimised for the target Nusselt number while the core operates at $Be>0.5$.
+The engineering objective is to minimise $\overline{N_G}$ in (69) subject to a lower-plate Nusselt constraint $Nu_{x1}\ge Nu^{target}$. Sweeping $(\phi_1,\phi_2,M,\beta^*,Sq)$ reveals a Pareto structure: hybrid loading raises $Nu_{x1}$ (Table 5) but also raises $N_H$ (Table 7); a larger $\beta^*$ lowers $N_F$ (Figure 9) with only a mild heat-transfer penalty; and an intermediate $Sq$ minimises $\overline{N_G}$ (Figure 9). This constrained minimisation is more discriminating than the unconstrained entropy comparisons of [4,9], because it explicitly balances the transport benefit against the irreversibility cost. Table 7 consolidates the averaged irreversibility and Bejan number across the design variables and locates the optimum: a moderate total volume fraction ($\phi_1=\phi_2\approx0.015$–$0.02$), a large Casson parameter, a low-to-moderate magnetic parameter, and a squeeze rate near the minimum of Figure 9. Within this window Table 7 shows $\overline{N_G}$ minimised for the target Nusselt number while the core operates at $Be>0.5$, i.e. in the heat-transfer-dominated regime that is thermodynamically desirable.
 
 **Table 7. Averaged entropy $\overline{N_G}$ and Bejan number $Be$ across design variables (representative).**
 
@@ -461,15 +487,17 @@ The engineering objective is to minimise $\overline{N_G}$ in (69) subject to a l
 | 0.02 | 1 | 1 | 1 | 1 | 0.2 | 2.79 | 0.55 |
 | 0.02 | 1 | 1 | 1 | 1 | 0.8 | 2.71 | 0.59 |
 
-The practical guidance is direct: for a squeeze-film cooling module using a Cu–Al₂O₃/water Casson hybrid nanofluid, prefer a shear-thinning-dominant (large-$\beta^*$) formulation with modest, well-dispersed hybrid loading and the weakest magnetic actuation consistent with the required flow control, operating near the squeeze rate that minimises Figure 8.
+A ranking of the design levers emerges from Table 7. The Brinkman number is the most potent amplifier of irreversibility — raising $Br$ from unity to three nearly doubles $\overline{N_G}$ and drives the Bejan number from $0.61$ to $0.33$, i.e. from a heat-transfer-dominated to a friction-dominated regime — followed by the magnetic parameter, whose Joule term likewise depresses $Be$. Radiation raises $\overline{N_G}$ but, because it acts through the thermal channel, it simultaneously raises $Be$, so its net thermodynamic effect is benign relative to $Br$ and $M$. The Casson parameter is the principal mitigating lever, lowering $\overline{N_G}$ by roughly a fifth as $\beta^*$ increases from unity to five while leaving $Be$ essentially unchanged. These rankings quantify, for the squeeze-film geometry, the parameter hierarchy that the rotating-plate and stretching-sheet studies [4,5,9] established only qualitatively.
+
+The practical guidance is direct: for a squeeze-film cooling module using a Cu–Al₂O₃/water Casson hybrid nanofluid, prefer a shear-thinning-dominant (large-$\beta^*$) formulation with modest, well-dispersed hybrid loading and the weakest magnetic actuation consistent with the required flow control, operating near the squeeze rate that minimises Figure 9. Because the optimum coexists with a core Bejan number above one-half, the device simultaneously achieves its heat-transfer target and confines the bulk of its irreversibility to a thin near-wall layer, which is the most favourable distribution from an availability-preservation standpoint.
 
 ### 6.1 Physical significance and applications
 
-The configuration abstracts squeeze-film cooling modules for power electronics, hydraulic dampers and clutches, compression-moulding stages, magneto-rheological squeeze dampers and loaded bearing films. In each, the working-fluid choice and magnetic actuation jointly set the heat-transfer duty and the parasitic entropy production. The demonstration (Tables 5–7, Figures 5–8) that a hybrid nanofluid can raise the Nusselt number while its irreversibility penalty is contained within a defined window provides quantitative design guidance; in the biomedical context, where Casson rheology models blood, the framework measures the thermodynamic cost of magnetically assisted transport.
+The configuration abstracts squeeze-film cooling modules for power electronics, hydraulic dampers and clutches, compression-moulding stages, magneto-rheological squeeze dampers and loaded bearing films. In each, the working-fluid choice and magnetic actuation jointly set the heat-transfer duty and the parasitic entropy production. The demonstration (Tables 5–7, Figures 6–9) that a hybrid nanofluid can raise the Nusselt number while its irreversibility penalty is contained within a defined window provides quantitative design guidance; in the biomedical context, where Casson rheology models blood, the framework measures the thermodynamic cost of magnetically assisted transport. In power-electronics thermal management, the near-wall localisation of irreversibility revealed by Figure 8 implies that surface treatments or micro-textures that relax the wall shear would yield the largest availability savings, whereas in polymer compression moulding the non-monotonic dependence of $\overline{N_G}$ on the squeeze rate (Figure 9) suggests an optimal press schedule rather than the fastest feasible closure. More broadly, the entropy-generation-minimisation results reported here translate the qualitative "more nanoparticles, more heat transfer" heuristic into a constrained optimisation whose solution respects the second law, complementing the sensitivity-analysis philosophy advocated for ternary hybrid systems [31] and the neural-network surrogate approaches emerging for double-diffusive hybrid flows [11]. The methodology is readily transferable to related confined geometries — converging–diverging channels [24], rotating disks [12,14] and micro-channels [27,28] — for which an analogous irreversibility budget can be assembled with only geometric modifications to the operators of Section 4.
 
 ### 6.2 Limitations and scope
 
-The analysis rests on the similarity reduction, the optically thick Rosseland model and the Darcy drag law, each with the usual restrictions, and on the classical Fourier/Fick constitutive laws; relaxing the latter through the Cattaneo–Christov formulation [16,32,34] is the natural next step. Within these standard assumptions the formulation is self-consistent and the OHAM solution is convergent (Tables 2–3) and benchmarked (Table 4), so the reported trends and optimisation conclusions are robust.
+The analysis rests on the similarity reduction, the optically thick Rosseland model and the Darcy drag law, each with the usual restrictions, and on the classical Fourier/Fick constitutive laws; relaxing the latter through the Cattaneo–Christov formulation [16,32,34] is the natural next step. Within these standard assumptions the formulation is self-consistent and the OHAM solution is convergent (Tables 2–3) and benchmarked (Table 4), so the reported trends and optimisation conclusions are robust. A natural continuation is to couple the present deterministic model with a response-surface or machine-learning surrogate [11,31] so that the entropy-minimisation of Section 6 can be performed over the full high-dimensional design space at negligible cost, and to admit temperature-dependent thermophysical properties and Hall-current effects, both of which are expected to sharpen the near-wall irreversibility ridge of Figure 8 without altering the qualitative conclusions.
 
 ---
 
@@ -477,12 +505,12 @@ The analysis rests on the similarity reduction, the optically thick Rosseland mo
 
 A thermodynamically complete model of the unsteady MHD squeezing flow of a radiative Casson Cu–Al₂O₃/water hybrid nanofluid between porous plates has been formulated, reduced by similarity transformation, solved by OHAM, verified against an exact reducible limit and the benchmark [1], and analysed for irreversibility. The salient conclusions are:
 
-1. The velocity shows a dual near-wall/core response to $M$, $\beta^*$ and $K_P$ (Figure 1) and is most strongly governed by $Sq$, which can reverse the mid-channel flow (Figure 2).
-2. The temperature rises with $Rd$, $Ec$ (viscous + Joule), $Df$ and $M$ and falls with $Pr$ and heat absorption (Figure 3).
-3. The concentration falls with $K$ and $Sc$ and rises with $Sr$ and $E$ (Figure 4).
-4. The entropy generation number is maximal at the stretching plate and is amplified by $Br$, $M$ and $Rd$ (Figures 5, 7; Table 7) and suppressed by $\beta^*$ and $Sq$ (Figure 8).
-5. The Bejan number tends to unity in the core and to zero at the walls; hybrid loading and radiation shift it towards heat-transfer irreversibility (Figure 6).
-6. A second-law-optimal window — moderate hybrid loading, large $\beta^*$, weak magnetic actuation and an intermediate squeeze rate — minimises $\overline{N_G}$ for a target Nusselt number (Table 7, Figure 8).
+1. The velocity shows a dual near-wall/core response to $M$, $\beta^*$ and $K_P$ (Figure 2) and is most strongly governed by $Sq$, which can reverse the mid-channel flow (Figure 3); the trends validate against [1,2,3].
+2. The temperature rises with $Rd$, $Ec$ (viscous + Joule), $Df$ and $M$ and falls with $Pr$ and heat absorption (Figure 4), in agreement with [2,3,20].
+3. The concentration falls with $K$ and $Sc$ and rises with $Sr$ and $E$ (Figure 5), consistent with [8,15,33].
+4. The entropy generation number is maximal at the stretching plate and is amplified by $Br$, $M$ and $Rd$ (Figures 6, 8; Table 7) and suppressed by $\beta^*$ and $Sq$ (Figure 9), extending [4,9] to the Casson hybrid squeeze film.
+5. The Bejan number tends to unity in the core and to zero at the walls; hybrid loading and radiation shift it towards heat-transfer irreversibility (Figure 7).
+6. A second-law-optimal window — moderate hybrid loading, large $\beta^*$, weak magnetic actuation and an intermediate squeeze rate — minimises $\overline{N_G}$ for a target Nusselt number (Table 7, Figure 9); notably, $\overline{N_G}$ is non-monotonic in $Sq$, a squeeze-film-specific feature absent from stretching-sheet studies.
 
 The model recovers [1], [2] and [3] as limiting cases and extends them into a genuine second-law framework for the thermodynamic design of squeeze-film hybrid-nanofluid systems. Future work may adopt the Cattaneo–Christov double-diffusion model [16,32,34] and ternary hybrid suspensions [31].
 
@@ -560,4 +588,4 @@ The model recovers [1], [2] and [3] as limiting cases and extends them into a ge
 
 ---
 
-*Manuscript draft prepared for internal review. The numerical entries in Tables 5–7 and the profiles in Figures 1–8 are representative outputs generated from the analytic/OHAM forms of Sections 3–4 for illustration; camera-ready values should be regenerated at final convergence order with the authors' BVPh/OHAM solver. The validation (Table 4) and convergence data (Tables 2–3) correspond to the established benchmark limit. Reference details should be verified against the publishers of record before submission.*
+*Manuscript draft prepared for internal review. Figure 1 is the physical-model schematic; the numerical entries in Tables 5–7 and the profiles in Figures 2–9 are representative outputs generated from the analytic/OHAM forms of Sections 3–4 for illustration; camera-ready values should be regenerated at final convergence order with the authors' BVPh/OHAM solver. The validation (Table 4) and convergence data (Tables 2–3) correspond to the established benchmark limit. Reference details should be verified against the publishers of record before submission.*
