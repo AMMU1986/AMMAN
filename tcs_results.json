@@ -1,0 +1,124 @@
+{
+  "meta": {
+    "seed": 20260921,
+    "N": 1200,
+    "n_self_medicated": 746,
+    "n_prescribed": 454,
+    "pct_self_medicated": 62.2
+  },
+  "primary_ae": {
+    "self_med_ae_n": 581,
+    "self_med_ae_pct": 77.9,
+    "prescribed_ae_n": 88,
+    "prescribed_ae_pct": 19.4,
+    "chi2": 389.15,
+    "p": 1.268893177633886e-86,
+    "OR": 14.65,
+    "OR_lo": 10.96,
+    "OR_hi": 19.57
+  },
+  "duration": {
+    "self_med_mean": 17.3,
+    "self_med_sd": 12.2,
+    "prescribed_mean": 5.8,
+    "prescribed_sd": 4.0,
+    "t": 23.54,
+    "df": 979.0,
+    "p": 0.0
+  },
+  "cost": {
+    "self_med_mean": 87.0,
+    "self_med_sd": 31.3,
+    "prescribed_mean": 35.4,
+    "prescribed_sd": 24.5,
+    "t": 31.8,
+    "p": 0.0,
+    "cost_ratio": 2.46
+  },
+  "entities": {
+    "tinea": {
+      "label": "Tinea incognito",
+      "self_med_pct": 29.0,
+      "prescribed_pct": 2.6,
+      "chi2": 125.25,
+      "p": 4.47918833101094e-29,
+      "OR": 15.01,
+      "OR_lo": 8.28,
+      "OR_hi": 27.21
+    },
+    "tsdf": {
+      "label": "Steroid-dependent/damaged face",
+      "self_med_pct": 36.5,
+      "prescribed_pct": 7.9,
+      "chi2": 118.93,
+      "p": 1.0831887469544336e-27,
+      "OR": 6.66,
+      "OR_lo": 4.59,
+      "OR_hi": 9.66
+    }
+  },
+  "logit": [
+    {
+      "var": "Intercept",
+      "beta": -1.641,
+      "aOR": 0.19,
+      "aOR_lo": 0.14,
+      "aOR_hi": 0.27,
+      "z": -9.83,
+      "p": 0.0
+    },
+    {
+      "var": "Self-medication",
+      "beta": 1.472,
+      "aOR": 4.36,
+      "aOR_lo": 3.0,
+      "aOR_hi": 6.33,
+      "z": 7.7,
+      "p": 1.3322676295501878e-14
+    },
+    {
+      "var": "Duration (per SD)",
+      "beta": 0.706,
+      "aOR": 2.03,
+      "aOR_lo": 1.61,
+      "aOR_hi": 2.56,
+      "z": 5.96,
+      "p": 2.5229489608591393e-09
+    },
+    {
+      "var": "Facial application",
+      "beta": 0.901,
+      "aOR": 2.46,
+      "aOR_lo": 1.82,
+      "aOR_hi": 3.33,
+      "z": 5.84,
+      "p": 5.29686361439019e-09
+    },
+    {
+      "var": "Super-potent molecule",
+      "beta": 0.696,
+      "aOR": 2.01,
+      "aOR_lo": 1.47,
+      "aOR_hi": 2.75,
+      "z": 4.35,
+      "p": 1.3673872379271756e-05
+    },
+    {
+      "var": "FDC cream",
+      "beta": 0.583,
+      "aOR": 1.79,
+      "aOR_lo": 1.29,
+      "aOR_hi": 2.49,
+      "z": 3.48,
+      "p": 0.0005092918628837317
+    }
+  ],
+  "exposures": {
+    "facial_self": 73.1,
+    "facial_presc": 41.0,
+    "superpot_self": 49.9,
+    "superpot_presc": 17.4,
+    "fdc_self": 65.5,
+    "fdc_presc": 9.9
+  }
+}
