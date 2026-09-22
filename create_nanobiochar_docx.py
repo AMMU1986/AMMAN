@@ -1,14 +1,12 @@
 #!/usr/bin/env python3
 """
-Create a Word .docx file for Chapter 1
-"Next-Generation Nanobiochar: Emerging Trends, Smart Technologies and Future
-Innovations".
+Create a Word .docx file for the chapter
+"Next-Generation Nanobiochar: Emerging Trends, Smart Technologies and
+Future Innovations".
 
-Builds on the raw-OOXML approach used in create_agentic_docx.py (python-docx is
-not available in this sandbox) and embeds the generated figures inline where the
-"[Insert Figure N here]" placeholders appear. Unlike the agentic builder, this
-chapter uses APA-style references (no leading "[n]"), so every non-empty line in
-the References section is rendered with a hanging indent.
+Uses the raw-OOXML approach (python-docx is not available in this sandbox)
+and EMBEDS the generated figures inline where the "[Insert Figure N here]"
+placeholders appear, mirroring create_agentic_docx.py.
 
 Usage:
     python3 create_nanobiochar_docx.py
@@ -23,15 +21,18 @@ MD_FILE = '/projects/sandbox/AMMAN/Chapter_NextGen_Nanobiochar.md'
 DOCX_FILE = '/projects/sandbox/AMMAN/Chapter_NextGen_Nanobiochar.docx'
 FIG_DIR = '/projects/sandbox/AMMAN/nanobiochar_figures'
 
+# Map figure number -> image filename
 FIGURE_FILES = {
-    1: 'Figure_1_Synthesis_Pathways.png',
-    2: 'Figure_2_Agriculture_Roles.png',
-    3: 'Figure_3_Digital_Integration.png',
-    4: 'Figure_4_Circular_Bioeconomy.png',
+    1: 'Figure_1_Biomass_to_Nanobiochar.png',
+    2: 'Figure_2_Multifunctional_Roles.png',
+    3: 'Figure_3_Smart_Integration.png',
+    4: 'Figure_4_Circular_Framework.png',
 }
 
 EMU_PER_INCH = 914400
-TARGET_WIDTH_INCHES = 6.0
+TARGET_WIDTH_INCHES = 6.0  # fit within 1-inch margins on Letter page
+
+# ─── OOXML boilerplate templates ───
 
 CONTENT_TYPES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
@@ -104,7 +105,7 @@ STYLES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
   <w:style w:type="paragraph" w:styleId="References">
     <w:name w:val="References"/>
     <w:basedOn w:val="Normal"/>
-    <w:pPr><w:ind w:left="480" w:hanging="480"/><w:spacing w:after="120"/></w:pPr>
+    <w:pPr><w:ind w:left="480" w:hanging="480"/><w:spacing w:after="60"/></w:pPr>
     <w:rPr><w:sz w:val="22"/><w:szCs w:val="22"/></w:rPr>
   </w:style>
   <w:style w:type="paragraph" w:styleId="FigureCaption">
@@ -141,6 +142,7 @@ STYLES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 
 def png_dimensions(path):
+    """Read width/height (pixels) from a PNG file's IHDR chunk."""
     with open(path, 'rb') as f:
         header = f.read(24)
     if header[:8] != b'\x89PNG\r\n\x1a\n':
@@ -192,6 +194,7 @@ def make_paragraph(text, style='Normal'):
 
 
 def make_image_paragraph(rel_id, img_index, cx_emu, cy_emu, name):
+    """Create a centered paragraph containing an inline image (a:blip)."""
     doc_pr_id = 1000 + img_index
     drawing = (
         '<w:r><w:drawing>'
@@ -270,6 +273,7 @@ def make_table(headers, rows):
 
 
 def md_to_body(md_text, image_rels):
+    """Convert markdown to OOXML body; embed figures at placeholder lines."""
     elements = []
     lines = md_text.split('\n')
     i = 0
@@ -294,7 +298,8 @@ def md_to_body(md_text, image_rels):
 
         if line.startswith('## '):
             heading_text = line[3:].strip()
-            in_references = (heading_text == 'References')
+            if heading_text == 'References':
+                in_references = True
             elements.append(make_paragraph(heading_text, 'Heading1'))
             i += 1
             continue
@@ -356,14 +361,12 @@ def md_to_body(md_text, image_rels):
             i += 1
             continue
 
-        # APA references: every non-empty line in the section gets hanging indent
-        if in_references:
+        if in_references and re.match(r'^\[\d+\]', line.strip()):
             elements.append(make_paragraph(line.strip(), 'References'))
             i += 1
             continue
 
-        if line.strip().startswith('**Book:**') or line.strip().startswith('**Keywords:**') \
-                or line.strip().startswith('**Chapter'):
+        if line.strip().startswith('**Note:**'):
             elements.append(make_paragraph(line.strip(), 'Normal'))
             i += 1
             continue
