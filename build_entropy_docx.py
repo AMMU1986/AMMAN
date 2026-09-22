@@ -12,6 +12,8 @@ import re
 import struct
 import zipfile
 
+import latex_to_omml  # LaTeX -> OMML (native Word equations)
+
 BASE = '/projects/sandbox/AMMAN'
 MD_PATH = f'{BASE}/Entropy_EMHD_Squeezing_Carreau_HNF.md'
 OUT_PATH = f'{BASE}/Entropy_EMHD_Squeezing_Carreau_HNF.docx'
@@ -208,7 +210,12 @@ def convert(md, rel_map):
                 raw = ' '.join(eq_buf)
                 m = re.search(r'\\tag\{([0-9]+)\}', raw)
                 tag = m.group(1) if m else ''
-                body.append(eq_para(clean_math(raw), tag))
+                try:
+                    # Native, editable Word equation (OMML)
+                    body.append(latex_to_omml.equation_paragraph(raw, tag))
+                except Exception:
+                    # Robust fallback: plain-text equation
+                    body.append(eq_para(clean_math(raw), tag))
             i += 1
             continue
         if in_eq:
@@ -364,6 +371,7 @@ def main():
         'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" '
         'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" '
         'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" '
+        'xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" '
         'xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
         '<w:body>' + body +
         '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>'
