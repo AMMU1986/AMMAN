@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="440" viewBox="0 0 720 440" font-family="Helvetica,Arial,sans-serif">
+<rect width="720" height="440" fill="white"/>
+<text x="20" y="28" font-size="16" font-weight="bold" fill="#222">Figure 3. Early clinical outcomes by sex</text>
+<line x1="70" y1="350.0" x2="690" y2="350.0" stroke="#dddddd"/>
+<text x="62" y="354.0" font-size="11" fill="#666" text-anchor="end">0%</text>
+<line x1="70" y1="294.0" x2="690" y2="294.0" stroke="#dddddd"/>
+<text x="62" y="298.0" font-size="11" fill="#666" text-anchor="end">14%</text>
+<line x1="70" y1="238.0" x2="690" y2="238.0" stroke="#dddddd"/>
+<text x="62" y="242.0" font-size="11" fill="#666" text-anchor="end">28%</text>
+<line x1="70" y1="182.0" x2="690" y2="182.0" stroke="#dddddd"/>
+<text x="62" y="186.0" font-size="11" fill="#666" text-anchor="end">42%</text>
+<line x1="70" y1="126.0" x2="690" y2="126.0" stroke="#dddddd"/>
+<text x="62" y="130.0" font-size="11" fill="#666" text-anchor="end">56%</text>
+<line x1="70" y1="70.0" x2="690" y2="70.0" stroke="#dddddd"/>
+<text x="62" y="74.0" font-size="11" fill="#666" text-anchor="end">70%</text>
+<rect x="101.0" y="166.4" width="68.3" height="183.6" fill="#c0504d" rx="2"/>
+<text x="135.2" y="160.4" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">45.9</text>
+<rect x="173.3" y="104.0" width="68.3" height="246.0" fill="#4f81bd" rx="2"/>
+<text x="207.5" y="98.0" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">61.5</text>
+<text x="173.3" y="370.0" font-size="12" fill="#222" text-anchor="middle">Good outcome</text>
+<text x="173.3" y="385.0" font-size="12" fill="#222" text-anchor="middle">(mRS 0-2)</text>
+<rect x="307.7" y="286.8" width="68.3" height="63.2" fill="#c0504d" rx="2"/>
+<text x="341.8" y="280.8" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">15.8</text>
+<rect x="380.0" y="300.4" width="68.3" height="49.6" fill="#4f81bd" rx="2"/>
+<text x="414.2" y="294.4" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">12.4</text>
+<text x="380.0" y="370.0" font-size="12" fill="#222" text-anchor="middle">In-hospital</text>
+<text x="380.0" y="385.0" font-size="12" fill="#222" text-anchor="middle">mortality</text>
+<rect x="514.3" y="155.2" width="68.3" height="194.8" fill="#c0504d" rx="2"/>
+<text x="548.5" y="149.2" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">48.7</text>
+<rect x="586.7" y="115.6" width="68.3" height="234.4" fill="#4f81bd" rx="2"/>
+<text x="620.8" y="109.6" font-size="12" font-weight="bold" fill="#222" text-anchor="middle">58.6</text>
+<text x="586.7" y="370.0" font-size="12" fill="#222" text-anchor="middle">Discharge</text>
+<text x="586.7" y="385.0" font-size="12" fill="#222" text-anchor="middle">to home</text>
+<line x1="70" y1="350" x2="690" y2="350" stroke="#333"/>
+<line x1="70" y1="70" x2="70" y2="350" stroke="#333"/>
+<rect x="70" y="405" width="14" height="14" fill="#c0504d"/>
+<text x="89" y="416" font-size="12" fill="#222">Women</text>
+<rect x="140" y="405" width="14" height="14" fill="#4f81bd"/>
+<text x="159" y="416" font-size="12" fill="#222">Men</text>
+</svg>

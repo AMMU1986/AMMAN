@@ -1,0 +1,224 @@
+{
+  "meta": {
+    "seed": 20260923,
+    "N": 2000,
+    "n_women": 1086,
+    "n_men": 914,
+    "pct_women": 54.3
+  },
+  "table1": {
+    "age": {
+      "women_mean": 75.1,
+      "women_sd": 12.5,
+      "men_mean": 69.1,
+      "men_sd": 12.5,
+      "t": 10.63,
+      "p": 0.0
+    },
+    "nihss": {
+      "women_mean": 8.9,
+      "women_sd": 5.7,
+      "men_mean": 8.0,
+      "men_sd": 5.6,
+      "t": 3.22,
+      "p": 0.0012642955570387748
+    },
+    "los": {
+      "women_mean": 9.6,
+      "women_sd": 5.5,
+      "men_mean": 9.0,
+      "men_sd": 4.9,
+      "t": 2.47,
+      "p": 0.013562135295830835
+    },
+    "af": {
+      "women_pct": 25.0,
+      "men_pct": 16.1,
+      "chi2": 23.54,
+      "p": 1.2258057906092623e-06,
+      "OR": 1.74,
+      "OR_lo": 1.39,
+      "OR_hi": 2.18
+    },
+    "htn": {
+      "women_pct": 71.2,
+      "men_pct": 64.7,
+      "chi2": 9.42,
+      "p": 0.002142360090026129,
+      "OR": 1.35,
+      "OR_lo": 1.12,
+      "OR_hi": 1.63
+    },
+    "dm": {
+      "women_pct": 20.5,
+      "men_pct": 25.2,
+      "chi2": 5.81,
+      "p": 0.015922776277254035,
+      "OR": 0.77,
+      "OR_lo": 0.62,
+      "OR_hi": 0.95
+    },
+    "smoke": {
+      "women_pct": 14.1,
+      "men_pct": 25.2,
+      "chi2": 38.61,
+      "p": 5.174324362962241e-10,
+      "OR": 0.49,
+      "OR_lo": 0.39,
+      "OR_hi": 0.61
+    },
+    "cad": {
+      "women_pct": 15.6,
+      "men_pct": 23.1,
+      "chi2": 17.77,
+      "p": 2.4945913381903866e-05,
+      "OR": 0.61,
+      "OR_lo": 0.49,
+      "OR_hi": 0.77
+    },
+    "prestroke_dis": {
+      "women_pct": 30.2,
+      "men_pct": 20.9,
+      "chi2": 21.88,
+      "p": 2.898360774367106e-06,
+      "OR": 1.64,
+      "OR_lo": 1.33,
+      "OR_hi": 2.01
+    },
+    "tpa": {
+      "women_pct": 11.6,
+      "men_pct": 13.9,
+      "chi2": 2.16,
+      "p": 0.1418167792833922,
+      "OR": 0.81,
+      "OR_lo": 0.62,
+      "OR_hi": 1.06
+    }
+  },
+  "primary_good": {
+    "women_pct": 45.9,
+    "men_pct": 61.5,
+    "chi2": 47.5,
+    "p": 5.513395531501824e-12,
+    "OR_good_women": 0.53,
+    "OR_lo": 0.45,
+    "OR_hi": 0.64
+  },
+  "primary_poor": {
+    "women_pct": 54.1,
+    "men_pct": 38.5,
+    "OR_poor_women": 1.88,
+    "OR_lo": 1.57,
+    "OR_hi": 2.25
+  },
+  "secondary": {
+    "death": {
+      "label": "In-hospital mortality",
+      "women_pct": 15.8,
+      "men_pct": 12.4,
+      "chi2": 4.62,
+      "p": 0.03153595927424096,
+      "OR": 1.33,
+      "OR_lo": 1.03,
+      "OR_hi": 1.72
+    },
+    "home": {
+      "label": "Discharge to home",
+      "women_pct": 48.7,
+      "men_pct": 58.6,
+      "chi2": 19.27,
+      "p": 1.1341825127168431e-05,
+      "OR": 0.67,
+      "OR_lo": 0.56,
+      "OR_hi": 0.8
+    }
+  },
+  "mrs_dist": {
+    "women": [
+      24.7,
+      17.9,
+      24.0,
+      17.6,
+      15.8
+    ],
+    "men": [
+      32.8,
+      25.7,
+      15.3,
+      13.8,
+      12.4
+    ],
+    "labels": [
+      "mRS 0-1",
+      "mRS 2",
+      "mRS 3-4",
+      "mRS 5",
+      "mRS 6 (death)"
+    ]
+  },
+  "logit": [
+    {
+      "var": "Intercept",
+      "beta": -0.575,
+      "aOR": 0.56,
+      "aOR_lo": 0.48,
+      "aOR_hi": 0.66,
+      "z": -6.8,
+      "p": 1.014122119613603e-11
+    },
+    {
+      "var": "Female sex",
+      "beta": 0.266,
+      "aOR": 1.3,
+      "aOR_lo": 1.06,
+      "aOR_hi": 1.6,
+      "z": 2.56,
+      "p": 0.010373291254383021
+    },
+    {
+      "var": "Age (per SD)",
+      "beta": 0.522,
+      "aOR": 1.69,
+      "aOR_lo": 1.52,
+      "aOR_hi": 1.88,
+      "z": 9.58,
+      "p": 0.0
+    },
+    {
+      "var": "Baseline NIHSS (per SD)",
+      "beta": 0.834,
+      "aOR": 2.3,
+      "aOR_lo": 2.06,
+      "aOR_hi": 2.57,
+      "z": 14.66,
+      "p": 0.0
+    },
+    {
+      "var": "Prestroke disability",
+      "beta": 0.811,
+      "aOR": 2.25,
+      "aOR_lo": 1.79,
+      "aOR_hi": 2.83,
+      "z": 6.92,
+      "p": 4.362732397567015e-12
+    },
+    {
+      "var": "Atrial fibrillation",
+      "beta": 0.616,
+      "aOR": 1.85,
+      "aOR_lo": 1.45,
+      "aOR_hi": 2.36,
+      "z": 4.93,
+      "p": 8.162194897742836e-07
+    },
+    {
+      "var": "Thrombolysis (IV tPA)",
+      "beta": -0.402,
+      "aOR": 0.67,
+      "aOR_lo": 0.5,
+      "aOR_hi": 0.9,
+      "z": -2.62,
+      "p": 0.008671764844369267
+    }
+  ]
+}

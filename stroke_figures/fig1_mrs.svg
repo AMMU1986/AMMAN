@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="340" viewBox="0 0 760 340" font-family="Helvetica,Arial,sans-serif">
+<rect width="760" height="340" fill="white"/>
+<text x="20" y="28" font-size="16" font-weight="bold" fill="#222">Figure 1. Distribution of modified Rankin Scale at discharge, by sex</text>
+<text x="78" y="102" font-size="14" fill="#222" text-anchor="end">Women</text>
+<rect x="90.0" y="70" width="158.1" height="54" fill="#2e7d32"/>
+<text x="169.0" y="102" font-size="12" fill="white" text-anchor="middle">25%</text>
+<rect x="248.1" y="70" width="114.6" height="54" fill="#9bbb59"/>
+<text x="305.4" y="102" font-size="12" fill="white" text-anchor="middle">18%</text>
+<rect x="362.6" y="70" width="153.6" height="54" fill="#f0ad4e"/>
+<text x="439.4" y="102" font-size="12" fill="white" text-anchor="middle">24%</text>
+<rect x="516.2" y="70" width="112.6" height="54" fill="#e07b39"/>
+<text x="572.6" y="102" font-size="12" fill="white" text-anchor="middle">18%</text>
+<rect x="628.9" y="70" width="101.1" height="54" fill="#b0413e"/>
+<text x="679.4" y="102" font-size="12" fill="white" text-anchor="middle">16%</text>
+<text x="78" y="202" font-size="14" fill="#222" text-anchor="end">Men</text>
+<rect x="90.0" y="170" width="209.9" height="54" fill="#2e7d32"/>
+<text x="195.0" y="202" font-size="12" fill="white" text-anchor="middle">33%</text>
+<rect x="299.9" y="170" width="164.5" height="54" fill="#9bbb59"/>
+<text x="382.2" y="202" font-size="12" fill="white" text-anchor="middle">26%</text>
+<rect x="464.4" y="170" width="97.9" height="54" fill="#f0ad4e"/>
+<text x="513.4" y="202" font-size="12" fill="white" text-anchor="middle">15%</text>
+<rect x="562.3" y="170" width="88.3" height="54" fill="#e07b39"/>
+<text x="606.5" y="202" font-size="12" fill="white" text-anchor="middle">14%</text>
+<rect x="650.6" y="170" width="79.4" height="54" fill="#b0413e"/>
+<text x="690.3" y="202" font-size="12" fill="white" text-anchor="middle">12%</text>
+<rect x="90" y="295" width="14" height="14" fill="#2e7d32"/>
+<text x="109" y="306" font-size="12" fill="#222">mRS 0-1</text>
+<rect x="171.2" y="295" width="14" height="14" fill="#9bbb59"/>
+<text x="190.2" y="306" font-size="12" fill="#222">mRS 2</text>
+<rect x="237.2" y="295" width="14" height="14" fill="#f0ad4e"/>
+<text x="256.2" y="306" font-size="12" fill="#222">mRS 3-4</text>
+<rect x="318.4" y="295" width="14" height="14" fill="#e07b39"/>
+<text x="337.4" y="306" font-size="12" fill="#222">mRS 5</text>
+<rect x="384.4" y="295" width="14" height="14" fill="#b0413e"/>
+<text x="403.4" y="306" font-size="12" fill="#222">mRS 6 (death)</text>
+<text x="410" y="238" font-size="12" fill="#666" text-anchor="middle">Ordinal shift toward worse outcomes in women (good outcome mRS 0–2: 45.9% vs 61.5%, p &lt; 0.001)</text>
+</svg>
