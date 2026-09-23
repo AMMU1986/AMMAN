@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="850" height="550" viewBox="0 0 850 550">
+<title>ESS Technology Comparison</title>
+<defs>
+  <style>
+    .title { font: bold 16px Arial, sans-serif; fill: #1a1a2e; }
+    .label { font: 12px Arial, sans-serif; fill: #333; }
+    .axis-label { font: bold 13px Arial, sans-serif; fill: #333; }
+    .legend { font: 12px Arial, sans-serif; fill: #333; }
+    .small { font: 10px Arial, sans-serif; fill: #555; }
+  </style>
+</defs>
+<rect width="850" height="550" fill="white"/>
+<text x="425" y="30" class="title" text-anchor="middle">Figure 1: Energy Storage Technology Comparison (Power Density vs Energy Density)</text>
+<rect x="100" y="60" width="650" height="420" fill="#f8f9fa" stroke="#ccc"/>
+<text x="425" y="525" class="axis-label" text-anchor="middle">Specific Energy (Wh/kg)</text>
+<text x="45" y="270" class="axis-label" text-anchor="middle" transform="rotate(-90,45,270)">Specific Power (W/kg)</text>
+<line x1="194.10891789907276" y1="60" x2="194.10891789907276" y2="480" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="194.10891789907276" y="495" class="small" text-anchor="middle">10</text>
+<line x1="412.62305834837804" y1="60" x2="412.62305834837804" y2="480" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="412.62305834837804" y="495" class="small" text-anchor="middle">50</text>
+<line x1="506.7319762474509" y1="60" x2="506.7319762474509" y2="480" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="506.7319762474509" y="495" class="small" text-anchor="middle">100</text>
+<line x1="600.8408941465237" y1="60" x2="600.8408941465237" y2="480" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="600.8408941465237" y="495" class="small" text-anchor="middle">200</text>
+<line x1="725.2461166967562" y1="60" x2="725.2461166967562" y2="480" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="725.2461166967562" y="495" class="small" text-anchor="middle">500</text>
+<line x1="100" y1="480.0" x2="750" y2="480.0" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="90" y="484.0" class="small" text-anchor="end">10</text>
+<line x1="100" y1="347.76198611973297" x2="750" y2="347.76198611973297" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="90" y="351.76198611973297" class="small" text-anchor="end">100</text>
+<line x1="100" y1="215.52397223946593" x2="750" y2="215.52397223946593" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="90" y="219.52397223946593" class="small" text-anchor="end">1000</text>
+<line x1="100" y1="83.2859583591989" x2="750" y2="83.2859583591989" stroke="#ddd" stroke-dasharray="3,3"/>
+<text x="90" y="87.2859583591989" class="small" text-anchor="end">10000</text>
+<circle cx="600.8408941465237" cy="192.23801388026703" r="22" fill="#e63946" fill-opacity="0.7" stroke="#e63946" stroke-width="2"/>
+<text x="600.8408941465237" y="228.23801388026703" class="small" text-anchor="middle">Li-ion (NMC)</text>
+<circle cx="552.4149696716227" cy="205.05320152556328" r="20" fill="#f4845f" fill-opacity="0.7" stroke="#f4845f" stroke-width="2"/>
+<text x="552.4149696716227" y="239.05320152556328" class="small" text-anchor="middle">Li-ion (LFP)</text>
+<circle cx="382.3267536972184" cy="284.6684190155438" r="18" fill="#6c757d" fill-opacity="0.7" stroke="#6c757d" stroke-width="2"/>
+<text x="382.3267536972184" y="316.6684190155438" class="small" text-anchor="middle">Lead-Acid</text>
+<circle cx="318.5141404493053" cy="347.76198611973297" r="20" fill="#457b9d" fill-opacity="0.7" stroke="#457b9d" stroke-width="2"/>
+<text x="318.5141404493053" y="381.76198611973297" class="small" text-anchor="middle">Flow Battery</text>
+<text x="318.5141404493053" y="394.76198611973297" class="small" text-anchor="middle">(VRFB)</text>
+<circle cx="163.81261324791308" cy="83.2859583591989" r="18" fill="#2a9d8f" fill-opacity="0.7" stroke="#2a9d8f" stroke-width="2"/>
+<text x="163.81261324791308" y="115.2859583591989" class="small" text-anchor="middle">Supercapacitor</text>
+<circle cx="531.4858595506947" cy="307.9543773747427" r="17" fill="#e9c46a" fill-opacity="0.7" stroke="#e9c46a" stroke-width="2"/>
+<text x="531.4858595506947" y="338.9543773747427" class="small" text-anchor="middle">NaS Battery</text>
+<circle cx="194.10891789907276" cy="123.09356710418916" r="16" fill="#264653" fill-opacity="0.7" stroke="#264653" stroke-width="2"/>
+<text x="194.10891789907276" y="153.09356710418916" class="small" text-anchor="middle">Flywheel</text>
+<circle cx="725.2461166967562" cy="387.56959486472323" r="19" fill="#8338ec" fill-opacity="0.7" stroke="#8338ec" stroke-width="2"/>
+<text x="725.2461166967562" y="420.56959486472323" class="small" text-anchor="middle">Hydrogen</text>
+<text x="725.2461166967562" y="433.56959486472323" class="small" text-anchor="middle">Fuel Cell</text>
+<circle cx="249.1591058534764" cy="440.19239125500974" r="16" fill="#06d6a0" fill-opacity="0.7" stroke="#06d6a0" stroke-width="2"/>
+<text x="249.1591058534764" y="470.19239125500974" class="small" text-anchor="middle">Compressed</text>
+<text x="249.1591058534764" y="483.19239125500974" class="small" text-anchor="middle">Air (CAES)</text>
+</svg>

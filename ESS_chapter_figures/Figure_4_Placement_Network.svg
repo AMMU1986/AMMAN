@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="600" viewBox="0 0 900 600">
+<title>ESS Placement in Distribution Network</title>
+<defs>
+  <style>
+    .title { font: bold 16px Arial, sans-serif; fill: #1a1a2e; }
+    .label { font: 12px Arial, sans-serif; fill: #333; }
+    .axis-label { font: bold 13px Arial, sans-serif; fill: #333; }
+    .legend { font: 12px Arial, sans-serif; fill: #333; }
+    .small { font: 10px Arial, sans-serif; fill: #555; }
+  </style>
+</defs>
+<rect width="900" height="600" fill="white"/>
+<text x="450" y="30" class="title" text-anchor="middle">Figure 4: Optimal ESS Placement in IEEE 33-Bus Distribution Network with HRES</text>
+<line x1="100" y1="300" x2="180" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="180" y1="300" x2="240" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="240" y1="300" x2="300" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="300" y1="300" x2="360" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="360" y1="300" x2="420" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="420" y1="300" x2="480" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="480" y1="300" x2="540" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="540" y1="300" x2="600" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="600" y1="300" x2="660" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="660" y1="300" x2="720" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="720" y1="300" x2="780" y2="300" stroke="#888" stroke-width="2"/>
+<line x1="300" y1="300" x2="300" y2="220" stroke="#888" stroke-width="2"/>
+<line x1="300" y1="220" x2="300" y2="150" stroke="#888" stroke-width="2"/>
+<line x1="300" y1="150" x2="360" y2="150" stroke="#888" stroke-width="2"/>
+<line x1="480" y1="300" x2="480" y2="380" stroke="#888" stroke-width="2"/>
+<line x1="480" y1="380" x2="480" y2="440" stroke="#888" stroke-width="2"/>
+<line x1="480" y1="440" x2="540" y2="440" stroke="#888" stroke-width="2"/>
+<line x1="540" y1="440" x2="540" y2="500" stroke="#888" stroke-width="2"/>
+<line x1="660" y1="300" x2="660" y2="220" stroke="#888" stroke-width="2"/>
+<line x1="660" y1="220" x2="660" y2="150" stroke="#888" stroke-width="2"/>
+<line x1="660" y1="150" x2="720" y2="150" stroke="#888" stroke-width="2"/>
+<line x1="720" y1="300" x2="720" y2="380" stroke="#888" stroke-width="2"/>
+<line x1="720" y1="380" x2="720" y2="440" stroke="#888" stroke-width="2"/>
+<line x1="720" y1="440" x2="780" y2="440" stroke="#888" stroke-width="2"/>
+<line x1="780" y1="440" x2="780" y2="500" stroke="#888" stroke-width="2"/>
+<circle cx="100" cy="300" r="14" fill="#264653" stroke="white" stroke-width="1.5"/>
+<text x="100" y="304" class="small" text-anchor="middle" fill="white" font-weight="bold">Sub</text>
+<circle cx="180" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="240" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="300" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="360" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="420" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="480" cy="300" r="12" fill="#e63946" stroke="white" stroke-width="1.5"/>
+<text x="480" y="304" class="small" text-anchor="middle" fill="white" font-weight="bold">6</text>
+<circle cx="540" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="600" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="660" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="720" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="780" cy="300" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="300" cy="220" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="300" cy="150" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="360" cy="150" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="480" cy="380" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="480" cy="440" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="540" cy="440" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="540" cy="500" r="12" fill="#e63946" stroke="white" stroke-width="1.5"/>
+<text x="540" y="504" class="small" text-anchor="middle" fill="white" font-weight="bold">18</text>
+<circle cx="660" cy="220" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="660" cy="150" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="720" cy="150" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="720" cy="380" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="720" cy="440" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="780" cy="440" r="8" fill="#457b9d" stroke="white" stroke-width="1.5"/>
+<circle cx="780" cy="500" r="12" fill="#e63946" stroke="white" stroke-width="1.5"/>
+<text x="780" y="504" class="small" text-anchor="middle" fill="white" font-weight="bold">25</text>
+<circle cx="325" cy="135" r="12" fill="#f4a261" stroke="#e76f51" stroke-width="1.5"/>
+<text x="325" y="139" class="small" text-anchor="middle" fill="white" font-weight="bold">PV</text>
+<circle cx="685" cy="135" r="12" fill="#f4a261" stroke="#e76f51" stroke-width="1.5"/>
+<text x="685" y="139" class="small" text-anchor="middle" fill="white" font-weight="bold">PV</text>
+<rect x="375" y="122" width="24" height="18" rx="4" fill="#2a9d8f" stroke="#264653"/>
+<text x="387" y="134" class="small" text-anchor="middle" fill="white" font-weight="bold">W</text>
+<rect x="735" y="122" width="24" height="18" rx="4" fill="#2a9d8f" stroke="#264653"/>
+<text x="747" y="134" class="small" text-anchor="middle" fill="white" font-weight="bold">W</text>
+<rect x="462" y="316" width="36" height="16" rx="3" fill="#e63946" stroke="#c1121f"/>
+<text x="480" y="327" class="small" text-anchor="middle" fill="white" font-weight="bold">ESS</text>
+<rect x="522" y="516" width="36" height="16" rx="3" fill="#e63946" stroke="#c1121f"/>
+<text x="540" y="527" class="small" text-anchor="middle" fill="white" font-weight="bold">ESS</text>
+<rect x="762" y="516" width="36" height="16" rx="3" fill="#e63946" stroke="#c1121f"/>
+<text x="780" y="527" class="small" text-anchor="middle" fill="white" font-weight="bold">ESS</text>
+<circle cx="150" cy="560" r="8" fill="#457b9d"/>
+<text x="165" y="564" class="legend">Load Bus</text>
+<circle cx="280" cy="560" r="10" fill="#e63946"/>
+<text x="297" y="564" class="legend">Optimal ESS Location</text>
+<circle cx="450" cy="560" r="10" fill="#f4a261"/>
+<text x="467" y="564" class="legend">Solar PV</text>
+<rect x="560" y="551" width="20" height="18" rx="3" fill="#2a9d8f"/>
+<text x="587" y="564" class="legend">Wind Turbine</text>
+<rect x="700" y="553" width="14" height="14" fill="#264653"/>
+<text x="720" y="564" class="legend">Substation</text>
+</svg>

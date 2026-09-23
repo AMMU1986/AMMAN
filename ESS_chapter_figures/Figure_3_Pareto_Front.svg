@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="520" viewBox="0 0 800 520">
+<title>Pareto Front LCOE vs LPSP</title>
+<defs>
+  <style>
+    .title { font: bold 16px Arial, sans-serif; fill: #1a1a2e; }
+    .label { font: 12px Arial, sans-serif; fill: #333; }
+    .axis-label { font: bold 13px Arial, sans-serif; fill: #333; }
+    .legend { font: 12px Arial, sans-serif; fill: #333; }
+    .small { font: 10px Arial, sans-serif; fill: #555; }
+  </style>
+</defs>
+<rect width="800" height="520" fill="white"/>
+<text x="400" y="30" class="title" text-anchor="middle">Figure 3: Pareto Front - LCOE vs Reliability (LPSP) Trade-off</text>
+<rect x="100" y="55" width="600" height="380" fill="#f8f9fa" stroke="#aaa"/>
+<text x="400" y="480" class="axis-label" text-anchor="middle">Loss of Power Supply Probability (LPSP) [%]</text>
+<text x="45" y="245" class="axis-label" text-anchor="middle" transform="rotate(-90,45,245)">LCOE ($/kWh)</text>
+<line x1="100.0" y1="55" x2="100.0" y2="435" stroke="#e0e0e0"/>
+<text x="100.0" y="450" class="small" text-anchor="middle">0</text>
+<line x1="220.0" y1="55" x2="220.0" y2="435" stroke="#e0e0e0"/>
+<text x="220.0" y="450" class="small" text-anchor="middle">1</text>
+<line x1="340.0" y1="55" x2="340.0" y2="435" stroke="#e0e0e0"/>
+<text x="340.0" y="450" class="small" text-anchor="middle">2</text>
+<line x1="460.0" y1="55" x2="460.0" y2="435" stroke="#e0e0e0"/>
+<text x="460.0" y="450" class="small" text-anchor="middle">3</text>
+<line x1="580.0" y1="55" x2="580.0" y2="435" stroke="#e0e0e0"/>
+<text x="580.0" y="450" class="small" text-anchor="middle">4</text>
+<line x1="700.0" y1="55" x2="700.0" y2="435" stroke="#e0e0e0"/>
+<text x="700.0" y="450" class="small" text-anchor="middle">5</text>
+<line x1="100" y1="435.0" x2="700" y2="435.0" stroke="#e0e0e0"/>
+<text x="92" y="439.0" class="small" text-anchor="end">0.10</text>
+<line x1="100" y1="359.0" x2="700" y2="359.0" stroke="#e0e0e0"/>
+<text x="92" y="363.0" class="small" text-anchor="end">0.15</text>
+<line x1="100" y1="283.0" x2="700" y2="283.0" stroke="#e0e0e0"/>
+<text x="92" y="287.0" class="small" text-anchor="end">0.20</text>
+<line x1="100" y1="206.99999999999997" x2="700" y2="206.99999999999997" stroke="#e0e0e0"/>
+<text x="92" y="210.99999999999997" class="small" text-anchor="end">0.25</text>
+<line x1="100" y1="131.0" x2="700" y2="131.0" stroke="#e0e0e0"/>
+<text x="92" y="135.0" class="small" text-anchor="end">0.30</text>
+<line x1="100" y1="55.0" x2="700" y2="55.0" stroke="#e0e0e0"/>
+<text x="92" y="59.0" class="small" text-anchor="end">0.35</text>
+<polyline points="124.0,100.59999999999997 160.0,161.39999999999992 196.0,222.2 244.0,267.8 280.0,298.2 340.0,328.59999999999997 400.0,351.4 460.0,366.6 520.0,377.24 580.0,386.36 640.0,392.44" fill="none" stroke="#e63946" stroke-width="2.5"/>
+<circle cx="124.0" cy="100.59999999999997" r="5" fill="#e63946"/>
+<circle cx="160.0" cy="161.39999999999992" r="5" fill="#e63946"/>
+<circle cx="196.0" cy="222.2" r="5" fill="#e63946"/>
+<circle cx="244.0" cy="267.8" r="5" fill="#e63946"/>
+<circle cx="280.0" cy="298.2" r="5" fill="#e63946"/>
+<circle cx="340.0" cy="328.59999999999997" r="5" fill="#e63946"/>
+<circle cx="400.0" cy="351.4" r="5" fill="#e63946"/>
+<circle cx="460.0" cy="366.6" r="5" fill="#e63946"/>
+<circle cx="520.0" cy="377.24" r="5" fill="#e63946"/>
+<circle cx="580.0" cy="386.36" r="5" fill="#e63946"/>
+<circle cx="640.0" cy="392.44" r="5" fill="#e63946"/>
+<circle cx="533.6944556485666" cy="158.6550202410914" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="486.9375964009425" cy="194.7040109069599" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="571.1423959897163" cy="152.78906153122108" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="652.8950589916618" cy="251.7077324571853" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="593.6469578276283" cy="178.62055781801854" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="571.8492675681653" cy="144.14538316057144" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="425.5631693855384" cy="77.55552697524416" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="340.4085636925108" cy="192.76168328364506" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="583.8785186966172" cy="174.5729957531422" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="601.3217261678196" cy="185.83645305774985" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="479.26959990277606" cy="243.98191583378488" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="280.1680239065212" cy="87.53130480186161" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="485.93910803316055" cy="177.14175684951192" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<circle cx="228.41487002697238" cy="144.31090808078437" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<rect x="220.0" y="252.6" width="180.0" height="98.79999999999998" fill="#2a9d8f" fill-opacity="0.15" stroke="#2a9d8f" stroke-dasharray="5,3" stroke-width="1.5"/>
+<text x="310.0" y="237.39999999999995" class="label" text-anchor="middle" fill="#2a9d8f">Preferred Region</text>
+<circle cx="570" cy="75" r="5" fill="#e63946"/>
+<text x="582" y="79" class="legend">Pareto Front</text>
+<circle cx="570" cy="95" r="4" fill="#457b9d" fill-opacity="0.5"/>
+<text x="582" y="99" class="legend">Dominated Solutions</text>
+</svg>
