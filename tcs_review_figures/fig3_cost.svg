@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="460" viewBox="0 0 720 460" font-family="Helvetica,Arial,sans-serif">
+<rect width="720" height="460" fill="white"/>
+<text x="20" y="30" font-size="17" font-weight="bold" fill="#222222">Figure 3. Relative cost drivers: steroid-modified vs. steroid-naive tinea</text>
+<line x1="70" y1="370.0" x2="690" y2="370.0" stroke="#dddddd"/>
+<text x="62" y="374.0" font-size="11" fill="#666666" text-anchor="end">0</text>
+<line x1="70" y1="310.0" x2="690" y2="310.0" stroke="#dddddd"/>
+<text x="62" y="314.0" font-size="11" fill="#666666" text-anchor="end">55</text>
+<line x1="70" y1="250.0" x2="690" y2="250.0" stroke="#dddddd"/>
+<text x="62" y="254.0" font-size="11" fill="#666666" text-anchor="end">110</text>
+<line x1="70" y1="190.0" x2="690" y2="190.0" stroke="#dddddd"/>
+<text x="62" y="194.0" font-size="11" fill="#666666" text-anchor="end">166</text>
+<line x1="70" y1="130.0" x2="690" y2="130.0" stroke="#dddddd"/>
+<text x="62" y="134.0" font-size="11" fill="#666666" text-anchor="end">221</text>
+<line x1="70" y1="70.0" x2="690" y2="70.0" stroke="#dddddd"/>
+<text x="62" y="74.0" font-size="11" fill="#666666" text-anchor="end">276</text>
+<rect x="93.2" y="368.3" width="51.2" height="1.7" fill="#9bbb59" rx="2"/>
+<text x="118.9" y="363.3" font-size="11" fill="#222222" text-anchor="middle">1.6</text>
+<rect x="147.5" y="366.3" width="51.2" height="3.7" fill="#c0504d" rx="2"/>
+<text x="173.1" y="361.3" font-size="11" fill="#222222" text-anchor="middle">3.4</text>
+<text x="147.5" y="392.0" font-size="12.5" fill="#222222" text-anchor="middle">Consultations</text>
+<rect x="248.2" y="369.7" width="51.2" height="0.3" fill="#9bbb59" rx="2"/>
+<text x="273.9" y="364.7" font-size="11" fill="#222222" text-anchor="middle">0.3</text>
+<rect x="302.5" y="368.5" width="51.2" height="1.5" fill="#c0504d" rx="2"/>
+<text x="328.1" y="363.5" font-size="11" fill="#222222" text-anchor="middle">1.4</text>
+<text x="302.5" y="392.0" font-size="12.5" fill="#222222" text-anchor="middle">Investigations</text>
+<rect x="403.2" y="366.6" width="51.2" height="3.4" fill="#9bbb59" rx="2"/>
+<text x="428.9" y="361.6" font-size="11" fill="#222222" text-anchor="middle">3.1</text>
+<rect x="457.5" y="360.5" width="51.2" height="9.5" fill="#c0504d" rx="2"/>
+<text x="483.1" y="355.5" font-size="11" fill="#222222" text-anchor="middle">8.7</text>
+<text x="457.5" y="392.0" font-size="12.5" fill="#222222" text-anchor="middle">Treatment
+duration (wk)</text>
+<rect x="558.2" y="261.3" width="51.2" height="108.7" fill="#9bbb59" rx="2"/>
+<text x="583.9" y="256.3" font-size="11" fill="#222222" text-anchor="middle">100</text>
+<rect x="612.5" y="109.1" width="51.2" height="260.9" fill="#c0504d" rx="2"/>
+<text x="638.1" y="104.1" font-size="11" fill="#222222" text-anchor="middle">240</text>
+<text x="612.5" y="392.0" font-size="12.5" fill="#222222" text-anchor="middle">Total direct
+cost (index)</text>
+<line x1="70" y1="370" x2="690" y2="370" stroke="#333333"/>
+<line x1="70" y1="70" x2="70" y2="370" stroke="#333333"/>
+<text x="18" y="220.0" font-size="12" fill="#666666" transform="rotate(-90 18 220.0)" text-anchor="middle">Relative value</text>
+<rect x="70" y="420" width="14" height="14" fill="#9bbb59"/>
+<text x="90" y="431" font-size="12" fill="#222222">Steroid-naive</text>
+<rect x="201" y="420" width="14" height="14" fill="#c0504d"/>
+<text x="221" y="431" font-size="12" fill="#222222">Steroid-modified</text>
+</svg>
