@@ -44,11 +44,19 @@ A synthesis of this body of work reveals three convergent findings that inform t
 
 ### 3.1 Overview of the Proposed Framework
 
-The proposed framework is structured as a sequential pipeline comprising six principal stages: data acquisition, preprocessing and imputation, feature selection, model training and optimisation, model evaluation, and interpretability with deployment. Each stage was designed to address a specific limitation identified in the preceding review of the literature. The data preprocessing and imputation stage is hardened against missing values through the comparative evaluation of multiple imputation strategies. The model training stage employs a suite of six classifiers and subjects the ensemble learners to Bayesian hyperparameter optimisation. The interpretability stage integrates three distinct explanatory methodologies and augments them with a quantitative fidelity assessment. The final stage operationalises the optimal model within an explanation-first clinical decision support interface. The complete pipeline was implemented in the Python programming language, drawing upon the scikit-learn ecosystem for the conventional classifiers and evaluation utilities (Pedregosa et al., 2011).
+The proposed framework is structured as a sequential pipeline comprising six principal stages: data acquisition, preprocessing and imputation, feature selection, model training and optimisation, model evaluation, and interpretability with deployment. Each stage was designed to address a specific limitation identified in the preceding review of the literature. The data preprocessing and imputation stage is hardened against missing values through the comparative evaluation of multiple imputation strategies. The model training stage employs a suite of six classifiers and subjects the ensemble learners to Bayesian hyperparameter optimisation. The interpretability stage integrates three distinct explanatory methodologies and augments them with a quantitative fidelity assessment. The final stage operationalises the optimal model within an explanation-first clinical decision support interface. The complete pipeline was implemented in the Python programming language, drawing upon the scikit-learn ecosystem for the conventional classifiers and evaluation utilities (Pedregosa et al., 2011). The overall architecture of the framework is depicted in Figure 1.
+
+![Figure 1](figures/fig1_workflow.png)
+
+**Figure 1.** Workflow of the proposed unified explainable-AI framework, comprising six sequential stages from data preprocessing through to the deployment of an explanation-first clinical decision support interface.
 
 ### 3.2 Dataset
 
-The primary data source for this investigation was the Chronic Kidney Disease dataset maintained within the University of California, Irvine (UCI) Machine Learning Repository (Asuncion & Newman, 2007). This dataset has become the de facto benchmark for CKD classification research and has been employed extensively throughout the literature reviewed in Section 2, thereby facilitating direct and meaningful comparison with prior work. The dataset comprises records for four hundred individuals, each characterised by twenty-five attributes encompassing a combination of demographic, haematological, biochemical, and urinary measurements, together with a binary class label indicating the presence or absence of CKD. The dataset is nevertheless modest in size, a characteristic that raises legitimate concerns regarding feature redundancy, class balance, and the representativeness of the full spectrum of clinical presentations—concerns that are explicitly addressed in the preprocessing protocol and revisited in the discussion of limitations.
+The primary data source for this investigation was the Chronic Kidney Disease dataset maintained within the University of California, Irvine (UCI) Machine Learning Repository (Asuncion & Newman, 2007). This dataset has become the de facto benchmark for CKD classification research and has been employed extensively throughout the literature reviewed in Section 2, thereby facilitating direct and meaningful comparison with prior work. The dataset comprises records for four hundred individuals, each characterised by twenty-five attributes encompassing a combination of demographic, haematological, biochemical, and urinary measurements, together with a binary class label indicating the presence or absence of CKD. The dataset is nevertheless modest in size, a characteristic that raises legitimate concerns regarding feature redundancy, class balance, and the representativeness of the full spectrum of clinical presentations—concerns that are explicitly addressed in the preprocessing protocol and revisited in the discussion of limitations. An exploratory analysis of the pairwise Pearson correlations among the selected features and the target variable, presented in Figure 2, informed the interpretation of the subsequent modelling; it revealed a strong negative correlation between the CKD label and both urinary specific gravity and haemoglobin, and a moderate positive correlation with urinary albumin and hypertension.
+
+![Figure 2](figures/fig2_correlation.png)
+
+**Figure 2.** Pairwise correlation matrix of the ten selected input features and the CKD target variable. Warm hues denote positive correlations and cool hues denote negative correlations.
 
 ### 3.3 Data Preprocessing and Imputation
 
@@ -116,6 +124,12 @@ The optimised XGBoost model emerged as the single strongest performer. During tr
 
 In contrast, the k-Nearest Neighbours classifier exhibited the weakest overall performance, with a testing accuracy of 0.808 and a precision of 0.711, despite achieving a high recall of 0.982. This pattern indicates a pronounced tendency towards false positive classifications, a behaviour that is clinically undesirable insofar as it would subject healthy individuals to unnecessary anxiety and follow-up investigation. The Support Vector Machine displayed a similar profile, combining perfect recall with comparatively low precision. The Decision Tree classifier, notwithstanding its structural simplicity, achieved a commendable testing accuracy of 0.975, reaffirming that interpretable models need not be sacrificed entirely in the pursuit of accuracy.
 
+A visual comparison of the testing accuracy achieved by each of the six classifiers is presented in Figure 3, which underscores the clear separation between the high-performing ensemble tier and the weaker instance-based and margin-based classifiers.
+
+![Figure 3](figures/fig3_accuracy.png)
+
+**Figure 3.** Comparative testing accuracy of the six evaluated classifiers. The optimised XGBoost model (highlighted) attained the highest accuracy.
+
 **Table 2.** Comparative performance of the six classifiers on the training and testing partitions.
 
 | Model | Phase | Precision | Recall | F1 Score | Accuracy | FPR |
@@ -135,9 +149,17 @@ In contrast, the k-Nearest Neighbours classifier exhibited the weakest overall p
 
 ### 4.2 Confusion Matrix and Discrimination Analysis
 
-The confusion matrices computed for the testing partition provide a granular characterisation of the classification behaviour of each model. For the optimised XGBoost model, the confusion matrix revealed a high count of true positives and true negatives, with only a solitary false positive and a solitary false negative among the one hundred and twenty testing instances. From a clinical standpoint, the minimisation of false negatives is of paramount importance, since a false negative corresponds to a patient with CKD who is erroneously classified as healthy and thereby denied timely intervention. The high sensitivity of the XGBoost model, reflected in its recall of 0.983, indicates that it correctly identified the overwhelming majority of true CKD cases. Concurrently, its high precision indicates that the burden of false alarms was minimal.
+The confusion matrices computed for the testing partition provide a granular characterisation of the classification behaviour of each model. For the optimised XGBoost model, the confusion matrix revealed a high count of true positives and true negatives, with only a solitary false positive and a solitary false negative among the one hundred and twenty testing instances. From a clinical standpoint, the minimisation of false negatives is of paramount importance, since a false negative corresponds to a patient with CKD who is erroneously classified as healthy and thereby denied timely intervention. The high sensitivity of the XGBoost model, reflected in its recall of 0.983, indicates that it correctly identified the overwhelming majority of true CKD cases. Concurrently, its high precision indicates that the burden of false alarms was minimal. The confusion matrix for the optimised XGBoost model is presented in Figure 4.
 
-The receiver operating characteristic analysis reinforced these findings. The optimised XGBoost model attained an AUC of 0.997 on the testing partition, approaching the theoretical maximum and indicating near-perfect discrimination between the positive and negative classes across all decision thresholds. The CatBoost and Random Forest models attained comparably high AUC values in the range of 0.990 to 0.996, while the Decision Tree and k-Nearest Neighbours models attained AUC values of approximately 0.971. The consistently high discriminative capacity of the ensemble models substantiates their selection as the primary candidates for deployment.
+![Figure 4](figures/fig5_confusion.png)
+
+**Figure 4.** Confusion matrix of the optimised XGBoost model on the testing partition, reporting counts of true positives, false negatives, false positives, and true negatives.
+
+The receiver operating characteristic analysis reinforced these findings. The optimised XGBoost model attained an AUC of 0.997 on the testing partition, approaching the theoretical maximum and indicating near-perfect discrimination between the positive and negative classes across all decision thresholds. The CatBoost and Random Forest models attained comparably high AUC values in the range of 0.990 to 0.996, while the Decision Tree and k-Nearest Neighbours models attained AUC values of approximately 0.971. The consistently high discriminative capacity of the ensemble models substantiates their selection as the primary candidates for deployment. The receiver operating characteristic curves for the principal models are presented in Figure 5.
+
+![Figure 5](figures/fig4_roc.png)
+
+**Figure 5.** Receiver operating characteristic (ROC) curves for the principal classifiers on the testing partition, together with their associated area-under-the-curve (AUC) values. The diagonal denotes the performance of a random classifier.
 
 ### 4.3 Computational Efficiency
 
@@ -156,13 +178,21 @@ The computational efficiency of the models is summarised in Table 3, which repor
 
 ### 4.4 Global Interpretability
 
-The global SHAP analysis, conducted upon the optimised XGBoost model, yielded a coherent and clinically plausible ranking of feature importance. Urinary specific gravity emerged as the single most influential determinant of the model's predictions. This finding accords with established renal physiology, insofar as a diminished specific gravity reflects the impaired concentrating capacity of a compromised kidney; the analysis indicated that lower values of specific gravity were associated with an elevated predicted probability of CKD. Haemoglobin was identified as the second most influential feature, with lower concentrations—characteristic of the anaemia that frequently accompanies chronic renal insufficiency owing to reduced erythropoietin production—positively associated with a CKD prediction.
+The global SHAP analysis, conducted upon the optimised XGBoost model, yielded a coherent and clinically plausible ranking of feature importance, summarised in Figure 6. Urinary specific gravity emerged as the single most influential determinant of the model's predictions. This finding accords with established renal physiology, insofar as a diminished specific gravity reflects the impaired concentrating capacity of a compromised kidney; the analysis indicated that lower values of specific gravity were associated with an elevated predicted probability of CKD. Haemoglobin was identified as the second most influential feature, with lower concentrations—characteristic of the anaemia that frequently accompanies chronic renal insufficiency owing to reduced erythropoietin production—positively associated with a CKD prediction.
 
 Albumin constituted the third dominant feature; the presence of albumin in the urine, or albuminuria, is a well-established marker of glomerular damage, and the model appropriately attributed elevated urinary albumin to an increased likelihood of CKD. Serum creatinine, a waste product whose accumulation signals impaired glomerular filtration, occupied the fourth position in the importance ranking, with elevated concentrations associated with a positive prediction. Blood urea, blood glucose, and age contributed more modestly, while the binary comorbidity indicators of hypertension and diabetes mellitus exerted a comparatively minor direct influence within the model, likely because their pathophysiological effects are already partially captured by the biochemical and urinary markers. The concordance of this feature ranking with independent findings reported throughout the literature furnishes strong external validation of the model's reasoning.
 
+![Figure 6](figures/fig6_shap_global.png)
+
+**Figure 6.** Global feature importance derived from the mean absolute SHAP values of the optimised XGBoost model. The four dominant features—specific gravity, haemoglobin, albumin, and serum creatinine—are highlighted.
+
 ### 4.5 Local Interpretability and Fidelity
 
-The local interpretability analysis was conducted upon four representative individuals selected from the dataset, whose biomarker profiles are presented in Table 4. The SHAP and LIME analyses were applied to each individual, and the concordance between the two methods was assessed.
+The local interpretability analysis was conducted upon four representative individuals selected from the dataset, whose biomarker profiles are presented in Table 4. The SHAP and LIME analyses were applied to each individual, and the concordance between the two methods was assessed. A representative local explanation, for the first individual, is presented in Figure 7.
+
+![Figure 7](figures/fig7_shap_local.png)
+
+**Figure 7.** Local SHAP explanation for Individual 1 (an actual CKD case). Features rendered in red increase the predicted likelihood of CKD, whereas those in blue decrease it; the magnitude of each bar denotes the strength of the feature's contribution.
 
 For the first individual, who was affected by CKD, the SHAP analysis identified a low specific gravity, an elevated urinary albumin, and a reduced haemoglobin concentration as the principal drivers of the positive prediction, with a markedly elevated serum creatinine of 9.6 mg/dL providing further corroborating evidence. The LIME analysis of the same individual produced a closely concordant ranking, independently identifying the same quartet of features as the dominant local determinants. For the third individual, who was unaffected by CKD, both methods concurred that a high specific gravity of 1.025 exerted the strongest negative influence upon the prediction, followed by a normal urinary albumin, thereby correctly steering the prediction towards the negative class.
 
