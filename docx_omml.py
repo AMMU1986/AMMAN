@@ -86,6 +86,19 @@ def group(*parts):
     return "".join(parts)
 
 
+def matrix(rows, left="[", right="]"):
+    """A bracketed matrix (m:m) with the given rows (list of lists of OMML)."""
+    ncols = max(len(r) for r in rows)
+    mcpr = '<m:mPr><m:mcs><m:mc><m:mcPr><m:count m:val="%d"/>' \
+           '<m:mcJc m:val="center"/></m:mcPr></m:mc></m:mcs></m:mPr>' % ncols
+    body = ""
+    for row in rows:
+        cells = "".join('<m:e>%s</m:e>' % c for c in row)
+        body += '<m:mr>%s</m:mr>' % cells
+    m = '<m:m>%s%s</m:m>' % (mcpr, body)
+    return delim(m, left, right)
+
+
 # Greek / symbol convenience (Unicode) -------------------------------------
 G = {
     'eta': '\u03b7', 'theta': '\u03b8', 'phi': '\u03c6', 'psi': '\u03c8',
@@ -137,7 +150,18 @@ class Document:
     # -- equations -----------------------------------------------------------
     def equation(self, omml, number=None):
         """Insert a display equation (centered) with an optional right-aligned
-        equation number in parentheses, using a tab-stop layout."""
+        equation number in parentheses, using a tab-stop layout.
+
+        number="auto"  -> next main integer (1, 2, 3, ...), strict serial order.
+        number="autoA" -> next appendix label (A1, A2, ...).
+        number=<value> -> literal label. number=None -> no label.
+        """
+        if number == "auto":
+            self._main_no = getattr(self, "_main_no", 0) + 1
+            number = self._main_no
+        elif number == "autoA":
+            self._appx_no = getattr(self, "_appx_no", 0) + 1
+            number = "A%d" % self._appx_no
         self._eq_counter += 1
         math_block = '<m:oMathPara><m:oMathParaPr><m:jc m:val="center"/></m:oMathParaPr>' \
                      '<m:oMath>%s</m:oMath></m:oMathPara>' % omml

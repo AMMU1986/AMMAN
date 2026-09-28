@@ -122,34 +122,52 @@ def build():
     d.equation(group(i("h"), delim(i("t")), eq(),
                      sup(brack(frac(group(sub(i(G['nu']), i("f")),
                                           delim(group(r("1"), minus(), i(G['gamma']), i("t")))), i("a"))),
-                         frac(r("1"), r("2")))), number=1)
-    d.para("The lower plate is stretched with velocity U\u2091(x, t); the upper plate moves "
-           "normally with the squeezing velocity v\u2095 = dh/dt. A time-dependent transverse "
-           "magnetic field and aligned electric field are applied:")
+                         frac(r("1"), r("2")))), number="auto")
+    d.para("The lower plate is stretched with velocity U\u2091(x, t) = ax/(1\u2212\u03b3t); the "
+           "upper plate moves normally with the squeezing velocity v\u2095 = dh/dt = "
+           "\u2212(\u03b3/2)[\u03bd\u2091/(a(1\u2212\u03b3t))]^{1/2}, which gives f(1) = Sq/2. "
+           "A time-dependent transverse magnetic field is applied in the +y direction and an "
+           "aligned electric field in the +z direction (the Lorentz body force then acts along "
+           "x and reduces to \u03c3(uB \u2212 E)):")
     d.equation(group(i("B"), delim(i("t")), eq(),
                      frac(sub(i("B"), r("0")), sup(delim(group(r("1"), minus(), i(G['gamma']), i("t"))), frac(r("1"), r("2"))))),
-               number=2)
+               number="auto")
+    d.para("For the electric parameter Ee = E\u2080/(B\u2080U\u2091) to remain constant under the "
+           "similarity transformation, the electric field must scale as B(t)U\u2091(t). Since "
+           "B ~ (1\u2212\u03b3t)^{\u22121/2} and U\u2091 ~ (1\u2212\u03b3t)^{\u22121}, the required "
+           "scaling is")
+    d.equation(group(i("E"), delim(i("t")), eq(),
+                     frac(sub(i("E"), r("0")), sup(delim(group(r("1"), minus(), i(G['gamma']), i("t"))), frac(r("3"), r("2"))))),
+               number="auto")
+    d.para("where E\u2080 and B\u2080 are the reference field strengths and U\u2091 is the local "
+           "wall (reference) velocity; Ee is thus constant under local similarity.")
 
     d.heading("2.2 Carreau hybrid nanofluid constitutive model", 2)
-    d.para("The Cauchy stress tensor is written with the total-stress symbol \u03c3 (preferred "
-           "over \u03c4 for total stress):")
-    d.equation(group(i(G['sigma']), eq(), minus(), i("p"), i("I"), plus(),
-                     i(G['mu']), delim(i("\u03b3\u0307")), sub(i("A"), r("1"))), number=3)
+    d.para("The total Cauchy stress tensor is written in bold as \u03c3 (with A\u2081 = "
+           "\u2207V + (\u2207V)\u1d40 the first Rivlin\u2013Ericksen tensor). To avoid clashing with "
+           "the electrical conductivity, the latter is denoted \u03c3\u2091 (i.e. \u03c3\u2091,hnf, "
+           "\u03c3\u2091,f) throughout:")
+    d.equation(group(i("\u03c3"), eq(), minus(), i("p"), i("I"), plus(),
+                     i(G['mu']), delim(i("\u03b3\u0307")), sub(i("A"), r("1"))), number="auto")
     d.para("with the shear-dependent (Carreau) viscosity")
     # (4): mu = mu_inf + (mu0 - mu_inf)[1 + (Gamma gammadot)^2]^{(n-1)/2}
     d.equation(group(i(G['mu']), delim(i("\u03b3\u0307")), eq(), sub(i(G['mu']), i("\u221e")),
                      plus(), delim(group(sub(i(G['mu']), r("0")), minus(), sub(i(G['mu']), i("\u221e")))),
                      sup(brack(group(r("1"), plus(), sup(delim(group(i(G['Gamma']), i("\u03b3\u0307"))), r("2")))),
-                         frac(group(i("n"), minus(), r("1")), r("2")))), number=4)
+                         frac(group(i("n"), minus(), r("1")), r("2")))), number="auto")
     d.para("and the scalar shear rate")
     # (5): gammadot = sqrt( (1/2) tr(A1^2) )
     d.equation(group(i("\u03b3\u0307"), eq(),
-                     rad(group(frac(r("1"), r("2")), u("tr"), delim(sub(sup(i("A"), r("2")), r("1")))))), number=5)
+                     rad(group(frac(r("1"), r("2")), u("tr"), delim(sub(sup(i("A"), r("2")), r("1")))))), number="auto")
     d.para("Adopting \u03bc\u221e \u2192 0 gives the limiting form")
     # (6): limiting form
     d.equation(group(i(G['mu']), delim(i("\u03b3\u0307")), eq(), sub(i(G['mu']), r("0")),
                      sup(brack(group(r("1"), plus(), sup(delim(group(i(G['Gamma']), i("\u03b3\u0307"))), r("2")))),
-                         frac(group(i("n"), minus(), r("1")), r("2")))), number=6)
+                         frac(group(i("n"), minus(), r("1")), r("2")))), number="auto")
+    d.para("with the zero-shear-rate viscosity identified as the hybrid-nanofluid viscosity, "
+           "\u03bc\u2080 = \u03bc\u2095\u2099\u2093 (Eq. 14), so that A\u2081 = \u03bc\u2095\u2099\u2093/"
+           "\u03bc\u2091 and the Carreau viscosity are consistently connected. In the shear-"
+           "dominated boundary layer \u03b3\u0307 \u2243 |\u2202u/\u2202y|.")
 
     d.heading("2.3 Governing equations", 2)
     d.para("Under the boundary-layer approximation for the narrow gap, mass, momentum, energy "
@@ -157,113 +175,151 @@ def build():
     # continuity
     d.equation(group(frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("x"))), plus(),
                      frac(group(i(G['partial']), i("v")), group(i(G['partial']), i("y"))), eq(), r("0")),
-               number=7)
-    # x-momentum (primitive)
+               number="auto")
+    # x-momentum (primitive) -- Carreau viscous term written as stress divergence
     xmom = group(
         frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("t"))), plus(),
         i("u"), frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("x"))), plus(),
         i("v"), frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y"))), eq(),
-        frac(sub(i(G['mu']), i("hnf")), sub(i(G['rho']), i("hnf"))),
-        frac(group(sup(i(G['partial']), r("2")), i("u")), group(i(G['partial']), sup(i("y"), r("2")))),
-        u("[\u22ef]"))
-    d.equation(xmom, number=8)
-    d.para("(the full Carreau, Lorentz, Darcy and Forchheimer terms are as in the original "
-           "Eq. 8). Eliminating pressure between the x- and y-momentum equations \u2014 required "
-           "because dp/dy is set by the y-momentum balance \u2014 leads to the fourth-order "
-           "similarity equation given below.")
+        frac(r("1"), sub(i(G['rho']), i("hnf"))),
+        frac(i(G['partial']), group(i(G['partial']), i("y"))),
+        brack(group(sub(i(G['mu']), i("hnf")),
+                    sup(delim(group(r("1"), plus(), sup(i(G['Gamma']), r("2")),
+                                    sup(delim(frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y")))), r("2")))),
+                        frac(group(i("n"), minus(), r("1")), r("2"))),
+                    frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y"))))),
+        plus(), frac(sub(i("\u03c3"), group(i("e"), r(",hnf"))), sub(i(G['rho']), i("hnf"))),
+        delim(group(i("u"), i("B"), delim(i("t")), minus(), i("E"), delim(i("t")))),
+        minus(), frac(sub(i(G['mu']), i("hnf")), sub(i(G['rho']), i("hnf"))),
+        frac(i("u"), sub(sup(i("K"), r("*")), i("p"))),
+        minus(), frac(sub(i("C"), i("b")), rad(sub(sup(i("K"), r("*")), i("p")))), sup(i("u"), r("2")))
+    d.equation(xmom, number="auto")
+    d.para("The viscous term is the divergence of the Carreau shear stress; carrying out the "
+           "differentiation gives the equivalent form")
+    d.equation(group(frac(sub(i(G['mu']), i("hnf")), sub(i(G['rho']), i("hnf"))),
+                     sup(delim(group(r("1"), plus(), sup(i(G['Gamma']), r("2")),
+                                     sup(delim(frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y")))), r("2")))),
+                         frac(group(i("n"), minus(), r("3")), r("2"))),
+                     delim(group(r("1"), plus(), i("n"), sup(i(G['Gamma']), r("2")),
+                                 sup(delim(frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y")))), r("2")))),
+                     frac(group(sup(i(G['partial']), r("2")), i("u")), group(i(G['partial']), sup(i("y"), r("2"))))),
+               number="auto")
+    d.para("in which the factor (1 + n\u0393\u00b2u\u1d67\u00b2) is essential and is retained "
+           "throughout. Here \u03c3\u2091,hnf is the effective electrical conductivity, K\u209a* the "
+           "permeability and C\u1d47 the Forchheimer drag coefficient.")
     # y-momentum
     d.equation(group(frac(group(i(G['partial']), i("v")), group(i(G['partial']), i("t"))), plus(),
-                     u("\u22ef"), eq(), minus(),
+                     i("u"), frac(group(i(G['partial']), i("v")), group(i(G['partial']), i("x"))), plus(),
+                     i("v"), frac(group(i(G['partial']), i("v")), group(i(G['partial']), i("y"))), eq(), minus(),
                      frac(r("1"), sub(i(G['rho']), i("hnf"))),
                      frac(group(i(G['partial']), i("p")), group(i(G['partial']), i("y"))), plus(),
                      frac(sub(i(G['mu']), i("hnf")), sub(i(G['rho']), i("hnf"))),
                      frac(group(sup(i(G['partial']), r("2")), i("v")), group(i(G['partial']), sup(i("y"), r("2"))))),
-               number=9)
-    # energy
+               number="auto")
+    d.para("The pressure is eliminated between the complete x- and y-momentum equations (not a "
+           "reduced version): \u2202p/\u2202y from this equation is cross-differentiated with the "
+           "x-momentum balance so that the pressure-gradient constant G in Eq. (26) is removed "
+           "consistently, yielding the fourth-order momentum equation (27).")
+    # energy (with explicit Dufour term using D_B K_T / (c_s (c_p)_hnf); c_s == T_m)
     d.equation(group(frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("t"))), plus(),
-                     u("\u22ef"), eq(),
+                     i("u"), frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("x"))), plus(),
+                     i("v"), frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y"))), eq(),
                      frac(sub(i(G['kappa']), i("hnf")), group(delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), i("hnf")))),
                      frac(group(sup(i(G['partial']), r("2")), i("T")), group(i(G['partial']), sup(i("y"), r("2")))),
                      minus(), frac(r("1"), group(delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), i("hnf")))),
                      frac(group(i(G['partial']), sub(i("q"), i("r"))), group(i(G['partial']), i("y"))),
-                     plus(), u("\u22ef")), number=10)
+                     plus(), frac(group(sub(i("D"), i("B")), sub(i("K"), i("T"))),
+                                  group(sub(i("c"), i("s")), group(delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), i("hnf"))))),
+                     frac(group(sup(i(G['partial']), r("2")), i("C")), group(i(G['partial']), sup(i("y"), r("2")))),
+                     plus(), u("\u22ef")), number="auto")
+    d.para("where the viscous-dissipation and Joule terms complete the right-hand side. The "
+           "Dufour (diffusion-thermo) coefficient uses the concentration susceptibility c\u209b; "
+           "throughout this work c\u209b \u2261 T\u2098 (the mean fluid temperature), so the "
+           "Dufour and Soret definitions in Eqs. (34)\u2013(35) are dimensionally consistent with "
+           "the cross-diffusion terms in Eqs. (10)\u2013(11).")
     # concentration
     d.equation(group(frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("t"))), plus(),
-                     u("\u22ef"), eq(),
+                     i("u"), frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("x"))), plus(),
+                     i("v"), frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("y"))), eq(),
                      sub(i("D"), i("B")), frac(group(sup(i(G['partial']), r("2")), i("C")), group(i(G['partial']), sup(i("y"), r("2")))),
                      plus(), frac(group(sub(i("D"), i("B")), sub(i("K"), i("T"))), sub(i("T"), i("m"))),
                      frac(group(sup(i(G['partial']), r("2")), i("T")), group(i(G['partial']), sup(i("y"), r("2")))),
-                     minus(), sub(i("k"), r("1")), delim(group(i("C"), minus(), sub(i("C"), i("h"))))), number=11)
+                     minus(), sub(i("k"), r("1")), delim(group(i("C"), minus(), sub(i("C"), i("h"))))), number="auto")
 
     d.heading("2.4 Nonlinear thermal radiation", 2)
     d.equation(group(sub(i("q"), i("r")), eq(), minus(),
                      frac(group(r("16"), sup(i(G['sigma']), r("*"))), group(r("3"), sup(i("k"), r("*")))),
-                     sup(i("T"), r("3")), frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y")))), number=12)
+                     sup(i("T"), r("3")), frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y")))), number="auto")
     d.equation(group(frac(group(i(G['partial']), sub(i("q"), i("r"))), group(i(G['partial']), i("y"))), eq(), minus(),
                      frac(group(r("16"), sup(i(G['sigma']), r("*"))), group(r("3"), sup(i("k"), r("*")))),
                      brack(group(r("3"), sup(i("T"), r("2")), sup(delim(frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y")))), r("2")),
                                  plus(), sup(i("T"), r("3")),
-                                 frac(group(sup(i(G['partial']), r("2")), i("T")), group(i(G['partial']), sup(i("y"), r("2"))))))), number=13)
+                                 frac(group(sup(i(G['partial']), r("2")), i("T")), group(i(G['partial']), sup(i("y"), r("2"))))))), number="auto")
     d.inline_math("with T = T", group(), "\u2080[1 + (\u03b8\u1d63 \u2212 1)\u03b8].")
 
     d.heading("2.5 Thermophysical properties of the hybrid nanofluid", 2)
     d.equation(group(sub(i(G['mu']), i("hnf")), eq(),
                      frac(sub(i(G['mu']), i("f")),
                           group(sup(delim(group(r("1"), minus(), sub(i(G['phi']), r("1")))), r("2.5")),
-                                sup(delim(group(r("1"), minus(), sub(i(G['phi']), r("2")))), r("2.5"))))), number=14)
+                                sup(delim(group(r("1"), minus(), sub(i(G['phi']), r("2")))), r("2.5"))))), number="auto")
     d.equation(group(sub(i(G['rho']), i("hnf")), eq(),
                      delim(group(r("1"), minus(), sub(i(G['phi']), r("2")))),
                      brack(group(delim(group(r("1"), minus(), sub(i(G['phi']), r("1")))), sub(i(G['rho']), i("f")),
                                  plus(), sub(i(G['phi']), r("1")), sub(i(G['rho']), r("s1")))),
-                     plus(), sub(i(G['phi']), r("2")), sub(i(G['rho']), r("s2"))), number=15)
+                     plus(), sub(i(G['phi']), r("2")), sub(i(G['rho']), r("s2"))), number="auto")
     d.equation(group(delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), i("hnf")), eq(),
                      delim(group(r("1"), minus(), sub(i(G['phi']), r("2")))),
                      brack(group(delim(group(r("1"), minus(), sub(i(G['phi']), r("1")))),
                                  delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), i("f")),
                                  plus(), sub(i(G['phi']), r("1")), delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), r("s1")))),
-                     plus(), sub(i(G['phi']), r("2")), delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), r("s2"))), number=16)
+                     plus(), sub(i(G['phi']), r("2")), delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), r("s2"))), number="auto")
     d.equation(group(frac(sub(i(G['kappa']), i("bf")), sub(i(G['kappa']), i("f"))), eq(),
                      frac(group(sub(i(G['kappa']), r("s1")), plus(), r("2"), sub(i(G['kappa']), i("f")), minus(), r("2"), sub(i(G['phi']), r("1")), delim(group(sub(i(G['kappa']), i("f")), minus(), sub(i(G['kappa']), r("s1"))))),
-                          group(sub(i(G['kappa']), r("s1")), plus(), r("2"), sub(i(G['kappa']), i("f")), plus(), sub(i(G['phi']), r("1")), delim(group(sub(i(G['kappa']), i("f")), minus(), sub(i(G['kappa']), r("s1"))))))), number=17)
+                          group(sub(i(G['kappa']), r("s1")), plus(), r("2"), sub(i(G['kappa']), i("f")), plus(), sub(i(G['phi']), r("1")), delim(group(sub(i(G['kappa']), i("f")), minus(), sub(i(G['kappa']), r("s1"))))))), number="auto")
     d.equation(group(frac(sub(i(G['kappa']), i("hnf")), sub(i(G['kappa']), i("bf"))), eq(),
                      frac(group(sub(i(G['kappa']), r("s2")), plus(), r("2"), sub(i(G['kappa']), i("bf")), minus(), r("2"), sub(i(G['phi']), r("2")), delim(group(sub(i(G['kappa']), i("bf")), minus(), sub(i(G['kappa']), r("s2"))))),
-                          group(sub(i(G['kappa']), r("s2")), plus(), r("2"), sub(i(G['kappa']), i("bf")), plus(), sub(i(G['phi']), r("2")), delim(group(sub(i(G['kappa']), i("bf")), minus(), sub(i(G['kappa']), r("s2"))))))), number=18)
+                          group(sub(i(G['kappa']), r("s2")), plus(), r("2"), sub(i(G['kappa']), i("bf")), plus(), sub(i(G['phi']), r("2")), delim(group(sub(i(G['kappa']), i("bf")), minus(), sub(i(G['kappa']), r("s2"))))))), number="auto")
     d.para("The electrical conductivity uses the analogous two-step Maxwell\u2013Garnett "
            "relations (Eqs. 19\u201320), and \u03bd\u2095\u2099\u2093 = \u03bc\u2095\u2099\u2093/\u03c1\u2095\u2099\u2093 (Eq. 21).")
     d.equation(group(sub(i(G['sigma']), i("bf")), sub(r(""), r("")), eq(),
                      sub(i(G['sigma']), i("f")), delim(group(r("1"), plus(),
                      frac(group(r("3"), delim(group(frac(sub(i(G['sigma']), r("s1")), sub(i(G['sigma']), i("f"))), minus(), r("1"))), sub(i(G['phi']), r("1"))),
-                          group(delim(group(frac(sub(i(G['sigma']), r("s1")), sub(i(G['sigma']), i("f"))), plus(), r("2"))), minus(), delim(group(frac(sub(i(G['sigma']), r("s1")), sub(i(G['sigma']), i("f"))), minus(), r("1"))), sub(i(G['phi']), r("1"))))))), number=19)
+                          group(delim(group(frac(sub(i(G['sigma']), r("s1")), sub(i(G['sigma']), i("f"))), plus(), r("2"))), minus(), delim(group(frac(sub(i(G['sigma']), r("s1")), sub(i(G['sigma']), i("f"))), minus(), r("1"))), sub(i(G['phi']), r("1"))))))), number="auto")
     d.equation(group(sub(i(G['sigma']), i("hnf")), eq(),
                      sub(i(G['sigma']), i("bf")), delim(group(r("1"), plus(),
                      frac(group(r("3"), delim(group(frac(sub(i(G['sigma']), r("s2")), sub(i(G['sigma']), i("bf"))), minus(), r("1"))), sub(i(G['phi']), r("2"))),
-                          group(delim(group(frac(sub(i(G['sigma']), r("s2")), sub(i(G['sigma']), i("bf"))), plus(), r("2"))), minus(), delim(group(frac(sub(i(G['sigma']), r("s2")), sub(i(G['sigma']), i("bf"))), minus(), r("1"))), sub(i(G['phi']), r("2"))))))), number=20)
-    d.equation(group(sub(i(G['nu']), i("hnf")), eq(), frac(sub(i(G['mu']), i("hnf")), sub(i(G['rho']), i("hnf")))), number=21)
+                          group(delim(group(frac(sub(i(G['sigma']), r("s2")), sub(i(G['sigma']), i("bf"))), plus(), r("2"))), minus(), delim(group(frac(sub(i(G['sigma']), r("s2")), sub(i(G['sigma']), i("bf"))), minus(), r("1"))), sub(i(G['phi']), r("2"))))))), number="auto")
+    d.equation(group(sub(i(G['nu']), i("hnf")), eq(), frac(sub(i(G['mu']), i("hnf")), sub(i(G['rho']), i("hnf")))), number="auto")
 
     d.heading("2.6 Similarity transformation", 2)
     # eta, psi
     d.equation(group(eta(), eq(), frac(i("y"), group(i("h"), delim(i("t")))), u("  ,  "),
                      i(G['psi']), eq(), sup(brack(frac(group(i("a"), sub(i(G['nu']), i("f"))), group(r("1"), minus(), i(G['gamma']), i("t")))), frac(r("1"), r("2"))),
-                     i("x"), i("f"), delim(eta())), number=22)
+                     i("x"), i("f"), delim(eta())), number="auto")
     # u, v
     d.equation(group(i("u"), eq(), frac(group(i("a"), i("x")), group(r("1"), minus(), i(G['gamma']), i("t"))), fp(1),
                      u("  ,  "), i("v"), eq(), minus(),
                      sup(brack(frac(group(i("a"), sub(i(G['nu']), i("f"))), group(r("1"), minus(), i(G['gamma']), i("t")))), frac(r("1"), r("2"))),
-                     i("f"), delim(eta())), number=23)
+                     i("f"), delim(eta())), number="auto")
     # theta, phi
     d.equation(group(theta(), delim(eta()), eq(),
-                     frac(group(i("T"), minus(), sub(i("T"), i("h"))), group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))),
+                     frac(group(i("T"), minus(), sub(i("T"), r("0"))), group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))),
                      u("  ,  "), phi(), delim(eta()), eq(),
-                     frac(group(i("C"), minus(), sub(i("C"), i("h"))), group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0"))))), number=24)
-    d.para("The stream function satisfies continuity identically (u = \u2202\u03c8/\u2202y, "
-           "v = \u2212\u2202\u03c8/\u2202x). The x- and time-dependent wall excesses are")
+                     frac(group(i("C"), minus(), sub(i("C"), r("0"))), group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0"))))), number="auto")
+    d.para("The temperature and concentration are normalised with the reference values T\u2080 and "
+           "C\u2080, with T\u2095 and C\u2095 the wall (convective/reference) values. The upper-wall "
+           "values coincide with the references, T\u2095\u2092\u209a = T\u2080 and C\u2095\u2092\u209a "
+           "= C\u2080 (equivalently T_h = T\u2080, C_h = C\u2080), so that \u03b8(1) = \u03c6(1) = 0; "
+           "this normalisation is what makes the lower-wall convective and solutal-slip conditions "
+           "in Eq. (31) consistent. The stream function satisfies continuity identically "
+           "(u = \u2202\u03c8/\u2202y, v = \u2212\u2202\u03c8/\u2202x). The x- and time-dependent wall "
+           "excesses are")
     d.equation(group(sub(i("T"), i("w")), eq(), sub(i("T"), r("0")), plus(),
                      frac(group(i("a"), i("x")), group(r("1"), minus(), i(G['gamma']), i("t"))), sub(i("d"), r("1")),
                      u("  ,  "), sub(i("C"), i("w")), eq(), sub(i("C"), r("0")), plus(),
-                     frac(group(i("a"), i("x")), group(r("1"), minus(), i(G['gamma']), i("t"))), sub(i("e"), r("1"))), number=25)
-    d.para("Here T\u2095, T\u2080, C\u2095 and C\u2080 denote the upper-wall and reference "
-           "temperatures and concentrations; \u03b8 and \u03c6 are normalised so that "
-           "\u03b8(1) = 0 and \u03c6(1) = 0 at the upper plate.")
+                     frac(group(i("a"), i("x")), group(r("1"), minus(), i(G['gamma']), i("t"))), sub(i("e"), r("1"))), number="auto")
+    d.para("where d\u2081 and e\u2081 carry the appropriate temperature and concentration scaling "
+           "units.")
 
     # =====================================================================
     # 2.7 Corrected ODEs
@@ -282,7 +338,7 @@ def build():
         minus(), frac(A(1), group(A(2), i("Da"))), fp(1),
         minus(), frac(A(3), A(2)), i("M"), delim(group(fp(1), minus(), i("Ee"))),
         minus(), i("Fr"), sup(delim(fp(1)), r("2")), eq(), i("G"))
-    d.equation(mom3, number=26)
+    d.equation(mom3, number="auto")
     d.para("where G is the (\u03b7-independent) scaled pressure-gradient constant. Differentiating "
            "Eq. (26) once with respect to \u03b7 removes G and gives the fourth-order momentum "
            "equation actually solved:")
@@ -296,7 +352,7 @@ def build():
         minus(), frac(A(1), group(A(2), i("Da"))), fp(2),
         minus(), frac(A(3), A(2)), i("M"), fp(2),
         minus(), r("2"), i("Fr"), fp(1), fp(2), eq(), r("0"))
-    d.equation(mom4, number=27)
+    d.equation(mom4, number="auto")
     d.para("The corrected energy equation groups conduction and radiation consistently "
            "(A\u2084 multiplies conduction only, because Rd is defined with the base-fluid "
            "conductivity \u03ba\u2091):")
@@ -309,12 +365,12 @@ def build():
             A(1), i("Ec"), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2"))),
             plus(), A(3), i("M"), i("Ec"), sup(delim(group(fp(1), minus(), i("Ee"))), r("2")),
             plus(), A(2), i("Df"), php(2))), eq(), r("0"))
-    d.equation(energy, number=28)
+    d.equation(energy, number="auto")
     d.para("and the concentration equation is")
     species = group(php(2), plus(), i("Sc"),
                     delim(group(i("f"), php(1), minus(), sqhalf(), eta(), php(1))),
                     plus(), i("Sc"), i("Sr"), thp(2), minus(), i("K"), i("Sc"), phi(), eq(), r("0"))
-    d.equation(species, number=29)
+    d.equation(species, number="auto")
     d.inline_math("The property ratios are A\u2081 = \u03bc\u2095\u2099\u2093/\u03bc\u2091, "
                   "A\u2082 = \u03c1\u2095\u2099\u2093/\u03c1\u2091, A\u2083 = \u03c3\u2095\u2099\u2093/\u03c3\u2091, "
                   "A\u2084 = \u03ba\u2095\u2099\u2093/\u03ba\u2091 and A\u2085 = ", group(),
@@ -331,11 +387,11 @@ def build():
                      fp(1), u("(0)"), eq(), r("1"), plus(),
                      sub(i("S"), r("1")), fp(2), u("(0)"), u("  ,  "),
                      i("f"), delim(r("1")), eq(), sqhalf(), u("  ,  "),
-                     fp(1), u("(1)"), eq(), r("0")), number=30)
+                     fp(1), u("(1)"), eq(), r("0")), number="auto")
     d.equation(group(thp(1), u("(0)"), eq(), minus(), i("Bi"), brack(group(r("1"), minus(), theta(), u("(0)"))),
                      u("  ,  "), theta(), u("(1)"), eq(), r("0"), u("  ,  "),
                      phi(), u("(0)"), eq(), r("1"), plus(), sub(i("S"), r("3")), php(1), u("(0)"),
-                     u("  ,  "), phi(), u("(1)"), eq(), r("0")), number=31)
+                     u("  ,  "), phi(), u("(1)"), eq(), r("0")), number="auto")
     d.para("where S\u2081 and S\u2083 are the velocity and solutal slip parameters and Bi is the "
            "Biot number. This resolves the earlier over-specification (four momentum conditions "
            "on a third-order equation).")
@@ -348,18 +404,23 @@ def build():
                      sup(i("We"), r("2")), eq(), frac(group(sup(i("a"), r("3")), sup(i(G['Gamma']), r("2")), sup(i("x"), r("2"))),
                                                       group(sub(i(G['nu']), i("f")), sup(delim(group(r("1"), minus(), i(G['gamma']), i("t"))), r("3")))),
                      u("  ,  "), i("M"), eq(), frac(group(sub(i(G['sigma']), i("f")), sup(sub(i("B"), r("0")), r("2"))), group(i("a"), sub(i(G['rho']), i("f")))),
-                     u("  ,  "), i("Ee"), eq(), frac(sub(i("E"), r("0")), group(sub(i("B"), r("0")), sub(i("U"), i("w"))))), number=32)
+                     u("  ,  "), i("Ee"), eq(), frac(sub(i("E"), r("0")), group(sub(i("B"), r("0")), sub(i("U"), i("w"))))), number="auto")
     d.equation(group(i("Da"), eq(), frac(group(sub(sup(i("K"), r("*")), i("p")), i("a")), group(sub(i(G['nu']), i("f")), delim(group(r("1"), minus(), i(G['gamma']), i("t"))))),
                      u("  ,  "), i("Fr"), eq(), frac(group(sub(i("C"), i("b")), i("x")), rad(sub(sup(i("K"), r("*")), i("p")))),
                      u("  ,  "), i("Pr"), eq(), frac(group(sub(i(G['mu']), i("f")), sub(delim(sub(i("c"), i("p"))), i("f"))), sub(i(G['kappa']), i("f"))),
-                     u("  ,  "), i("Rd"), eq(), frac(group(r("4"), sup(i(G['sigma']), r("*")), sub(sup(i("T"), r("3")), r("0"))), group(sup(i("k"), r("*")), sub(i(G['kappa']), i("f"))))), number=33)
+                     u("  ,  "), i("Rd"), eq(), frac(group(r("4"), sup(i(G['sigma']), r("*")), sub(sup(i("T"), r("3")), r("0"))), group(sup(i("k"), r("*")), sub(i(G['kappa']), i("f"))))), number="auto")
     d.equation(group(i("Ec"), eq(), frac(sub(sup(i("U"), r("2")), i("w")), group(sub(delim(sub(i("c"), i("p"))), i("f")), delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))))),
                      u("  ,  "), i("Df"), eq(), frac(group(sub(i("D"), i("B")), sub(i("K"), i("T")), delim(group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0"))))),
-                                                     group(sub(i("c"), i("s")), sub(delim(sub(i("c"), i("p"))), i("f")), sub(i(G['nu']), i("f")), delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0"))))))), number=34)
+                                                     group(sub(i("c"), i("s")), sub(delim(sub(i("c"), i("p"))), i("f")), sub(i(G['nu']), i("f")), delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0"))))))), number="auto")
     d.equation(group(i("Sc"), eq(), frac(sub(i(G['nu']), i("f")), sub(i("D"), i("B"))),
                      u("  ,  "), i("Sr"), eq(), frac(group(sub(i("D"), i("B")), sub(i("K"), i("T")), delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0"))))),
                                                      group(sub(i("T"), i("m")), sub(i(G['nu']), i("f")), delim(group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0")))))),
-                     u("  ,  "), i("K"), eq(), frac(sub(i("k"), r("1")), i("a"))), number=35)
+                     u("  ,  "), i("K"), eq(), frac(sub(i("k"), r("1")), i("a"))), number="auto")
+    d.para("The concentration susceptibility is taken as c\u209b \u2261 T\u2098, so that Df and Sr "
+           "in Eqs. (34)\u2013(35) are derived directly from the cross-diffusion terms in Eqs. "
+           "(10)\u2013(11) and are mutually dimensionally consistent (the factor A\u2082 in the "
+           "transformed Dufour term A\u2082Df\u03c6\u2033 reconciles the base-fluid (c\u209a)\u2091 "
+           "normalisation with the hybrid heat capacity).")
     d.para("Because We\u00b2 and Ee depend on x and t, they are treated under a local-similarity "
            "assumption; the Darcy and Forchheimer groups are defined consistently with the "
            "similarity scaling, and Df/Sr are checked dimensionally against Eqs. (10)\u2013(11).")
@@ -368,14 +429,17 @@ def build():
     # 2.10 Engineering quantities
     # =====================================================================
     d.heading("2.10 Engineering quantities of interest", 2)
+    d.para("The wall shear stress, heat flux and mass flux are evaluated at the upper plate, "
+           "\u03c4_w = \u03c4_xy|_{\u03b7=1}, q_w = q_y|_{\u03b7=1}, q_m = q_{m,y}|_{\u03b7=1}, "
+           "with Re_x = xU_w/\u03bd\u2091 the local Reynolds number:")
     d.equation(group(sub(i("C"), i("f")), eq(), frac(sub(i(G['tau']), i("w")), group(sub(i(G['rho']), i("f")), sub(sup(i("U"), r("2")), i("w")))),
                      u("  ,  "), i("Nu"), eq(), frac(group(i("x"), sub(i("q"), i("w"))), group(sub(i(G['kappa']), i("f")), delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))))),
-                     u("  ,  "), i("Sh"), eq(), frac(group(i("x"), sub(i("q"), i("m"))), group(sub(i("D"), i("B")), delim(group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0"))))))), number=36)
+                     u("  ,  "), i("Sh"), eq(), frac(group(i("x"), sub(i("q"), i("m"))), group(sub(i("D"), i("B")), delim(group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0"))))))), number="auto")
     d.equation(group(subsup(i("Re"), i("x"), frac(r("1"), r("2"))), sub(i("C"), i("f")), eq(),
-                     A(1), fp(2), u("(1)"), sup(delim(group(r("1"), plus(), sup(i("We"), r("2")), sup(delim(group(fp(2), u("(1)"))), r("2")))), frac(group(i("n"), minus(), r("1")), r("2")))), number=37)
+                     A(1), fp(2), u("(1)"), sup(delim(group(r("1"), plus(), sup(i("We"), r("2")), sup(delim(group(fp(2), u("(1)"))), r("2")))), frac(group(i("n"), minus(), r("1")), r("2")))), number="auto")
     d.equation(group(subsup(i("Re"), i("x"), group(minus(), frac(r("1"), r("2")))), i("Nu"), eq(), minus(),
-                     brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(delim(group(r("1"), plus(), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), theta(), u("(1)"))), r("3")))), thp(1), u("(1)")), number=38)
-    d.equation(group(subsup(i("Re"), i("x"), group(minus(), frac(r("1"), r("2")))), i("Sh"), eq(), minus(), php(1), u("(1)")), number=39)
+                     brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(delim(group(r("1"), plus(), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), theta(), u("(1)"))), r("3")))), thp(1), u("(1)")), number="auto")
+    d.equation(group(subsup(i("Re"), i("x"), group(minus(), frac(r("1"), r("2")))), i("Sh"), eq(), minus(), php(1), u("(1)")), number="auto")
 
     # =====================================================================
     # 3. Entropy generation
@@ -388,16 +452,16 @@ def build():
                      sup(delim(frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y")))), r("2")),
                      plus(), frac(sub(i(G['mu']), i("hnf")), sub(i("T"), r("0"))), sup(delim(frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y")))), r("2")),
                      sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2"))),
-                     plus(), subsup(i("S"), i("J"), i("\u2034")), plus(), subsup(i("S"), i("D"), i("\u2034"))), number=40)
+                     plus(), subsup(i("S"), i("J"), i("\u2034")), plus(), subsup(i("S"), i("D"), i("\u2034"))), number="auto")
     d.para("The Joule term uses the time-dependent electromagnetic fields (correction to the "
            "original Eq. 43):")
     d.equation(group(subsup(i("S"), i("J"), i("\u2034")), eq(),
                      frac(sub(i(G['sigma']), i("hnf")), sub(i("T"), r("0"))),
-                     sup(brack(group(i("u"), i("B"), delim(i("t")), minus(), i("E"), delim(i("t")))), r("2"))), number=41)
+                     sup(brack(group(i("u"), i("B"), delim(i("t")), minus(), i("E"), delim(i("t")))), r("2"))), number="auto")
     d.equation(group(subsup(i("S"), i("D"), i("\u2034")), eq(),
                      frac(group(i("R"), sub(i("D"), i("B"))), sub(i("C"), r("0"))), sup(delim(frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("y")))), r("2")),
                      plus(), frac(group(i("R"), sub(i("D"), i("B"))), sub(i("T"), r("0"))),
-                     delim(group(frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y"))), frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("y")))))), number=42)
+                     delim(group(frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y"))), frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("y")))))), number="auto")
 
     d.heading("3.2 Characteristic entropy and the entropy generation number", 2)
     d.para("For consistency, the reference entropy generation rate is normalised with the "
@@ -405,47 +469,54 @@ def build():
            "only (correction to Eqs. 45\u201346):")
     d.equation(group(subsup(i("S"), r("0"), i("\u2034")), eq(),
                      frac(group(sub(i(G['kappa']), i("f")), sup(delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))), r("2"))),
-                          group(sub(sup(i("T"), r("2")), r("0")), sup(group(i("h"), delim(i("t"))), r("2"))))), number=43)
+                          group(sub(sup(i("T"), r("2")), r("0")), sup(group(i("h"), delim(i("t"))), r("2"))))), number="auto")
     ns = group(sub(i("N"), i("s")), eq(),
                brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), sup(delim(thp(1)), r("2")),
                plus(), frac(group(A(1), i("Br")), i(G['Omega'])), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2"))),
                plus(), frac(group(A(3), i("Br"), i("M")), i(G['Omega'])), sup(delim(group(fp(1), minus(), i("Ee"))), r("2")),
                plus(), i(G['Lambda']), sup(delim(frac(i(G['zeta']), i(G['Omega']))), r("2")), sup(delim(php(1)), r("2")),
                plus(), i(G['Lambda']), delim(frac(i(G['zeta']), i(G['Omega']))), thp(1), php(1))
-    d.equation(ns, number=44)
+    d.equation(ns, number="auto")
     d.para("with the Brinkman number and temperature-difference ratio")
     d.equation(group(i("Br"), eq(), frac(group(sub(i(G['mu']), i("f")), sub(sup(i("U"), r("2")), i("w"))),
                                           group(sub(i(G['kappa']), i("f")), delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))))),
-                     u("  ,  "), i(G['Omega']), eq(), frac(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0"))), sub(i("T"), r("0")))), number=45)
+                     u("  ,  "), i(G['Omega']), eq(), frac(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0"))), sub(i("T"), r("0")))), number="auto")
     d.para("and the diffusive-irreversibility parameter and concentration ratio")
     d.equation(group(i(G['Lambda']), eq(), frac(group(i("R"), sub(i("D"), i("B")), sub(i("C"), r("0"))), sub(i(G['kappa']), i("f"))),
-                     u("  ,  "), i(G['zeta']), eq(), frac(group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0"))), sub(i("C"), r("0")))), number=46)
+                     u("  ,  "), i(G['zeta']), eq(), frac(group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0"))), sub(i("C"), r("0")))), number="auto")
     d.para("The four contributions are")
-    d.equation(group(sub(i("N"), i("HT")), eq(), brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), sup(delim(thp(1)), r("2"))), number=47)
-    d.equation(group(sub(i("N"), i("FF")), eq(), frac(group(A(1), i("Br")), i(G['Omega'])), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2")))), number=48)
-    d.equation(group(sub(i("N"), i("J")), eq(), frac(group(A(3), i("Br"), i("M")), i(G['Omega'])), sup(delim(group(fp(1), minus(), i("Ee"))), r("2"))), number=49)
-    d.equation(group(sub(i("N"), i("DD")), eq(), i(G['Lambda']), sup(delim(frac(i(G['zeta']), i(G['Omega']))), r("2")), sup(delim(php(1)), r("2")), plus(), i(G['Lambda']), delim(frac(i(G['zeta']), i(G['Omega']))), thp(1), php(1)), number=50)
+    d.equation(group(sub(i("N"), i("HT")), eq(), brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), sup(delim(thp(1)), r("2"))), number="auto")
+    d.equation(group(sub(i("N"), i("FF")), eq(), frac(group(A(1), i("Br")), i(G['Omega'])), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2")))), number="auto")
+    d.equation(group(sub(i("N"), i("J")), eq(), frac(group(A(3), i("Br"), i("M")), i(G['Omega'])), sup(delim(group(fp(1), minus(), i("Ee"))), r("2"))), number="auto")
+    d.equation(group(sub(i("N"), i("DD")), eq(), i(G['Lambda']), sup(delim(frac(i(G['zeta']), i(G['Omega']))), r("2")), sup(delim(php(1)), r("2")), plus(), i(G['Lambda']), delim(frac(i(G['zeta']), i(G['Omega']))), thp(1), php(1)), number="auto")
 
     d.heading("3.3 Bejan number", 2)
-    d.equation(group(i("Be"), eq(), frac(group(sub(i("N"), i("HT")), plus(), sub(i("N"), i("DD"))), sub(i("N"), i("s")))), number=51)
-    d.para("The diffusive cross-gradient term is retained; its thermodynamic non-negativity "
-           "requires |\u039b(\u03b6/\u03a9)\u03b8\u2032\u03c6\u2032| not to exceed the sum of the "
-           "squared-gradient terms, which is verified a posteriori for the reported cases.")
+    d.equation(group(i("Be"), eq(), frac(group(sub(i("N"), i("HT")), plus(), sub(i("N"), i("DD"))), sub(i("N"), i("s")))), number="auto")
+    d.para("The diffusive cross-gradient term is retained. Writing the temperature\u2013"
+           "concentration part of Ns as a\u03b8\u2032\u00b2 + b\u03b8\u2032\u03c6\u2032 + c\u03c6\u2032\u00b2 "
+           "with a = A\u2084 + (4/3)Rd F\u00b3, b = \u039b(\u03b6/\u03a9) and c = \u039b(\u03b6/\u03a9)\u00b2, "
+           "positive semidefiniteness of this quadratic form requires a \u2265 0, c \u2265 0 and "
+           "b\u00b2 \u2264 4ac, i.e.")
+    d.equation(group(i(G['Lambda']), i(G['leq']), r("4"),
+                     brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3"))))), number="auto")
+    d.para("For the baseline data (\u039b = 0.5, A\u2084 \u2248 1.19, Rd \u2265 0.2) this bound holds "
+           "with a wide margin, and the computed total Ns and Bejan number were verified to remain "
+           "non-negative and within [0, 1] throughout the domain for all reported cases.")
 
     d.heading("3.4 Dimensional decomposition (corrected)", 2)
     d.para("The thermal irreversibility no longer double-counts A\u2084 on the radiation part "
            "(correction to Eq. 66):")
     d.equation(group(subsup(i("S"), i("HT"), i("\u2034")), eq(),
                      frac(group(sub(i(G['kappa']), i("f")), sup(delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))), r("2"))), group(sub(sup(i("T"), r("2")), r("0")), sup(i("h"), r("2")))),
-                     brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), sup(delim(thp(1)), r("2"))), number=52)
+                     brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), sup(delim(thp(1)), r("2"))), number="auto")
     d.para("The Joule irreversibility with the time-dependent field (correction to Eq. 68):")
     d.equation(group(subsup(i("S"), i("J"), i("\u2034")), eq(),
                      frac(group(sub(i(G['sigma']), i("hnf")), sup(sub(i("B"), r("0")), r("2")), sub(sup(i("U"), r("2")), i("w"))), group(sub(i("T"), r("0")), delim(group(r("1"), minus(), i(G['gamma']), i("t"))))),
-                     sup(delim(group(fp(1), minus(), i("Ee"))), r("2"))), number=53)
+                     sup(delim(group(fp(1), minus(), i("Ee"))), r("2"))), number="auto")
     d.para("The gap-averaged entropy number and average Bejan number follow by integration over "
            "\u03b7 \u2208 [0, 1] (Eqs. 54\u201357), with the mechanism fractions summing to unity.")
     d.equation(group(sub(i("N"), group(i("s"), u(",avg"))), eq(),
-                     nary("\u222b", r("0"), r("1"), group(sub(i("N"), i("s")), delim(eta()), i("d"), eta()))), number=54)
+                     nary("\u222b", r("0"), r("1"), group(sub(i("N"), i("s")), delim(eta()), i("d"), eta()))), number="auto")
 
     # =====================================================================
     # 4. Numerical method
@@ -458,38 +529,60 @@ def build():
     d.equation(group(sub(i("y"), r("1")), eq(), i("f"), u(", "), sub(i("y"), r("2")), eq(), fp(1),
                      u(", "), sub(i("y"), r("3")), eq(), fp(2), u(", "), sub(i("y"), r("4")), eq(), fp(3),
                      u(", "), sub(i("y"), r("5")), eq(), theta(), u(", "), sub(i("y"), r("6")), eq(), thp(1),
-                     u(", "), sub(i("y"), r("7")), eq(), phi(), u(", "), sub(i("y"), r("8")), eq(), php(1)), number=55)
+                     u(", "), sub(i("y"), r("7")), eq(), phi(), u(", "), sub(i("y"), r("8")), eq(), php(1)), number="auto")
     d.para("The highest momentum derivative y\u2084\u2032 = f\u2034\u2032 is obtained from Eq. (27). "
-           "The energy and species second derivatives are coupled through Df and Sr; they are "
-           "obtained by solving the 2\u00d72 linear system at each mesh point (not sequentially):")
-    d.equation(group(delim(group(
-        # 2x2 matrix as fraction-free bracket approximation
-        brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))),
-        u("  "), i("Pr"), A(2), i("Df"))),
-        thp(2), plus(), u("("), i("Pr"), A(2), i("Df"), u(")"), php(2), eq(), sub(i("b"), r("1"))), number=56)
-    d.equation(group(i("Sc"), i("Sr"), thp(2), plus(), php(2), eq(), sub(i("b"), r("2"))), number=57)
+           "The energy and species second derivatives are coupled through the Dufour and Soret "
+           "terms and are obtained simultaneously from the 2\u00d72 linear system at each mesh "
+           "point (not sequentially):")
+    # explicit 2x2 matrix equation using OMML matrix
+    from docx_omml import matrix as _mat
+    Kr = brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3"))))
+    M2 = _mat([[Kr, group(i("Pr"), A(2), i("Df"))],
+               [group(i("Sc"), i("Sr")), r("1")]])
+    vecd = _mat([[thp(2)], [php(2)]])
+    vecb = _mat([[sub(i("b"), r("1"))], [sub(i("b"), r("2"))]])
+    d.equation(group(M2, vecd, eq(), vecb), number="auto")
+    d.para("with K_r = A\u2084 + (4/3)Rd[1 + (\u03b8\u1d63\u22121)\u03b8]\u00b3, the right-hand sides")
+    d.equation(group(sub(i("b"), r("1")), eq(), minus(),
+                     brack(group(r("4"), i("Rd"), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), sup(F_expr(), r("2")), sup(delim(thp(1)), r("2")),
+                                 plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), sqhalf(), eta(), thp(1))),
+                                 plus(), i("Pr"), delim(group(A(1), i("Ec"), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2"))),
+                                                              plus(), A(3), i("M"), i("Ec"), sup(delim(group(fp(1), minus(), i("Ee"))), r("2"))))))), number="auto")
+    d.equation(group(sub(i("b"), r("2")), eq(), minus(), i("Sc"), delim(group(i("f"), php(1), minus(), sqhalf(), eta(), php(1))), plus(), i("K"), i("Sc"), phi()), number="auto")
+    d.para("The system is invertible provided its determinant \u0394 = K_r \u2212 Pr A\u2082 Df Sc Sr "
+           "\u2260 0, which was confirmed at every mesh point (min|\u0394| \u2248 1.05 over the "
+           "reported parameter ranges).")
     d.para("The transformed boundary conditions supplied to the residual function are")
     d.equation(group(sub(i("y"), r("1")), u("(0)"), eq(), r("0"), u(",  "),
                      sub(i("y"), r("2")), u("(0)"), minus(), r("1"), minus(), sub(i("S"), r("1")), sub(i("y"), r("3")), u("(0)"), eq(), r("0"), u(",  "),
-                     i("f"), delim(r("1")), eq(), sqhalf(), u(",  "), sub(i("y"), r("2")), u("(1)"), eq(), r("0")), number=58)
+                     i("f"), delim(r("1")), eq(), sqhalf(), u(",  "), sub(i("y"), r("2")), u("(1)"), eq(), r("0")), number="auto")
     d.equation(group(sub(i("y"), r("6")), u("(0)"), plus(), i("Bi"), brack(group(r("1"), minus(), sub(i("y"), r("5")), u("(0)"))), eq(), r("0"), u(",  "),
                      sub(i("y"), r("5")), u("(1)"), eq(), r("0"), u(",  "),
                      sub(i("y"), r("7")), u("(0)"), minus(), r("1"), minus(), sub(i("S"), r("3")), sub(i("y"), r("8")), u("(0)"), eq(), r("0"), u(",  "),
-                     sub(i("y"), r("7")), u("(1)"), eq(), r("0")), number=59)
+                     sub(i("y"), r("7")), u("(1)"), eq(), r("0")), number="auto")
 
     d.heading("4.1 Residuals and grid convergence (corrected)", 2)
-    d.para("The discrete L\u2082 norm of the combined residual is the global error indicator, and "
-           "the observed order of accuracy uses the magnitude of successive differences "
-           "(correction to Eq. 80):")
+    d.para("Because the three residuals have different magnitudes, the combined error indicator "
+           "uses normalised residuals R\u0304_f, R\u0304_\u03b8, R\u0304_\u03c6 (each scaled by the "
+           "maximum magnitude of the corresponding equation terms):")
     d.equation(group(sub(i("\u03b5"), r("L2")), eq(),
                      sup(brack(group(frac(r("1"), i("N")), nary("\u2211", group(i("j"), eq(), r("1")), i("N"),
-                                                                group(sup(sub(i("R"), i("f")), r("2")), plus(), sup(sub(i("R"), i(G['theta'])), r("2")), plus(), sup(sub(i("R"), i(G['phi'])), r("2")))))), frac(r("1"), r("2")))), number=60)
+                                                                group(sup(group(i("R\u0304"), sub(r(""), i("f"))), r("2")), plus(),
+                                                                      sup(group(i("R\u0304"), sub(r(""), i(G['theta']))), r("2")), plus(),
+                                                                      sup(group(i("R\u0304"), sub(r(""), i(G['phi']))), r("2")))))), frac(r("1"), r("2")))), number="auto")
+    d.para("The bvp4c solver itself uses residual-based adaptive error control and mesh selection; "
+           "Eq. (60) is an independent post-hoc diagnostic, not the solver's internal estimator. "
+           "The observed order of accuracy uses the magnitude of successive differences "
+           "(correction to the former Eq. 80):")
     d.equation(group(sub(i("p"), i("obs")), eq(),
                      frac(group(u("ln"), delim(group(frac(group(sub(i("q"), i("N")), minus(), sub(i("q"), r("2N"))), group(sub(i("q"), r("2N")), minus(), sub(i("q"), r("4N"))))), left="|", right="|")),
-                          group(u("ln"), r("2")))), number=61)
-    d.para("With N = 100, 200, 400 uniform intervals the monitored wall gradient f\u2033(1) is "
-           "mesh-independent to better than 10\u207b\u2076 and the estimated p_obs \u2248 4.00, "
-           "confirming the fourth-order scheme (see Table 3a). Baseline parameters: Sq = 0.5, "
+                          group(u("ln"), r("2")))), number="auto")
+    d.para("The three solutions were computed independently on controlled, uniformly refined "
+           "meshes (equivalent refinement levels rather than the solver's adaptive mesh). With "
+           "N = 100, 200, 400 intervals the monitored wall gradient f\u2033(1) is mesh-independent "
+           "to better than 10\u207b\u2076 and the estimated p_obs \u2248 4.00, consistent with the "
+           "fourth-order scheme in a smooth asymptotic regime (see Table 3a). Baseline parameters: "
+           "Sq = 0.5, "
            "We = 1.0, n = 1.5, M = 1.0, Ee = 0.2, Da = 0.5, Fr = 0.3, Pr = 7.38, Rd = 0.5, "
            "Ec = 0.3, Df = 0.2, Sc = 1.2, Sr = 0.2, K = 0.5, Bi = 1.0, S\u2081 = S\u2083 = 0.1, "
            "\u03b8\u1d63 = 1.2, \u03c6\u2081 = \u03c6\u2082 = 0.03, Br = 1.0, \u03a9 = 1.0, "
@@ -655,18 +748,18 @@ def build():
                minus(), frac(A(1), group(A(2), i("Da"))), fp(1),
                minus(), frac(A(3), A(2)), i("M"), delim(group(fp(1), minus(), i("Ee"))),
                minus(), i("Fr"), sup(delim(fp(1)), r("2")), eq(), i("G"))
-    d.equation(a1, number="A1")
-    d.equation(group(A(1), eq(), A(2), eq(), A(3), eq(), A(4), eq(), A(5), eq(), r("1")), number="A2")
+    d.equation(a1, number="autoA")
+    d.equation(group(A(1), eq(), A(2), eq(), A(3), eq(), A(4), eq(), A(5), eq(), r("1")), number="autoA")
     d.equation(group(frac(sub(i(G['kappa']), i("nf")), sub(i(G['kappa']), i("f"))), eq(),
                      frac(group(sub(i(G['kappa']), r("s1")), plus(), r("2"), sub(i(G['kappa']), i("f")), minus(), r("2"), sub(i(G['phi']), r("1")), delim(group(sub(i(G['kappa']), i("f")), minus(), sub(i(G['kappa']), r("s1"))))),
-                          group(sub(i(G['kappa']), r("s1")), plus(), r("2"), sub(i(G['kappa']), i("f")), plus(), sub(i(G['phi']), r("1")), delim(group(sub(i(G['kappa']), i("f")), minus(), sub(i(G['kappa']), r("s1"))))))), number="A3")
+                          group(sub(i(G['kappa']), r("s1")), plus(), r("2"), sub(i(G['kappa']), i("f")), plus(), sub(i(G['phi']), r("1")), delim(group(sub(i(G['kappa']), i("f")), minus(), sub(i(G['kappa']), r("s1"))))))), number="autoA")
     d.para("Suppressing the electromagnetic fields (M = 0) removes the Lorentz coupling:")
     a4 = group(frac(A(1), A(2)), carreau_bracket(frac(group(i("n"), minus(), r("3")), r("2"))),
                brack(group(r("1"), plus(), i("n"), sup(i("We"), r("2")), sup(delim(fp(2)), r("2")))), fp(3),
                plus(), i("f"), fp(2), minus(), sup(delim(fp(1)), r("2")),
                minus(), i("Sq"), delim(group(fp(1), plus(), frac(eta(), r("2")), fp(2))),
                minus(), frac(A(1), group(A(2), i("Da"))), fp(1), minus(), i("Fr"), sup(delim(fp(1)), r("2")), eq(), i("G"))
-    d.equation(a4, number="A4")
+    d.equation(a4, number="autoA")
     d.para("Omitting the porous resistance (Fr = 0, Da \u2192 \u221e) leaves the non-porous "
            "(still nanoparticle-laden) squeezing channel:")
     a5 = group(frac(A(1), A(2)), carreau_bracket(frac(group(i("n"), minus(), r("3")), r("2"))),
@@ -674,21 +767,21 @@ def build():
                plus(), i("f"), fp(2), minus(), sup(delim(fp(1)), r("2")),
                minus(), i("Sq"), delim(group(fp(1), plus(), frac(eta(), r("2")), fp(2))),
                minus(), frac(A(3), A(2)), i("M"), delim(group(fp(1), minus(), i("Ee"))), eq(), i("G"))
-    d.equation(a5, number="A5")
+    d.equation(a5, number="autoA")
     d.para("In the absence of radiation (Rd = 0):")
     a6 = group(A(4), thp(2), plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), sqhalf(), eta(), thp(1))),
                plus(), i("Pr"), brack(group(A(1), i("Ec"), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2"))),
                                             plus(), A(3), i("M"), i("Ec"), sup(delim(group(fp(1), minus(), i("Ee"))), r("2")), plus(), A(2), i("Df"), php(2))), eq(), r("0"))
-    d.equation(a6, number="A6")
+    d.equation(a6, number="autoA")
     d.para("and in the non-squeezing limit (Sq \u2192 0):")
     a7 = group(brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), thp(2),
                plus(), r("4"), i("Rd"), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), sup(F_expr(), r("2")), sup(delim(thp(1)), r("2")),
                plus(), A(5), i("Pr"), i("f"), thp(1), plus(), i("Pr"), i("\u039e"), eq(), r("0"))
-    d.equation(a7, number="A7")
+    d.equation(a7, number="autoA")
     d.para("For a reaction-free species field (K = 0):")
-    d.equation(group(php(2), plus(), i("Sc"), delim(group(i("f"), php(1), minus(), sqhalf(), eta(), php(1))), plus(), i("Sc"), i("Sr"), thp(2), eq(), r("0")), number="A8")
+    d.equation(group(php(2), plus(), i("Sc"), delim(group(i("f"), php(1), minus(), sqhalf(), eta(), php(1))), plus(), i("Sc"), i("Sr"), thp(2), eq(), r("0")), number="autoA")
     d.para("The true pure-diffusion limit (Sr = 0, Sq = 0, K = 0, no convection) is")
-    d.equation(group(php(2), eq(), r("0")), number="A9")
+    d.equation(group(php(2), eq(), r("0")), number="autoA")
     d.para("If convection and reaction are retained the equation \u03c6\u2033 + Sc f\u03c6\u2032 "
            "\u2212 K Sc \u03c6 = 0 describes steady transport without the Soret effect, and should "
            "be labelled accordingly rather than as pure diffusion.")
@@ -699,21 +792,21 @@ def build():
                 plus(), frac(group(A(3), i("Br"), i("M")), i(G['Omega'])), sup(delim(group(fp(1), minus(), i("Ee"))), r("2")),
                 plus(), i(G['Lambda']), sup(delim(frac(i(G['zeta']), i(G['Omega']))), r("2")), sup(delim(php(1)), r("2")),
                 plus(), i(G['Lambda']), delim(frac(i(G['zeta']), i(G['Omega']))), thp(1), php(1))
-    d.equation(a10, number="A10")
+    d.equation(a10, number="autoA")
     a11 = group(i("Be"), eq(), frac(group(A(4), sup(delim(thp(1)), r("2")), plus(),
                                           i(G['Lambda']), sup(delim(frac(i(G['zeta']), i(G['Omega']))), r("2")), sup(delim(php(1)), r("2")),
                                           plus(), i(G['Lambda']), delim(frac(i(G['zeta']), i(G['Omega']))), thp(1), php(1)),
                                     sub(i("N"), i("s"))))
-    d.equation(a11, number="A11")
+    d.equation(a11, number="autoA")
     d.para("The limiting engineering quantities for the Newtonian base fluid (A\u2084 = 1) are")
-    d.equation(group(subsup(i("Re"), i("x"), frac(r("1"), r("2"))), sub(i("C"), i("f")), eq(), fp(2), u("(1)")), number="A12")
+    d.equation(group(subsup(i("Re"), i("x"), frac(r("1"), r("2"))), sub(i("C"), i("f")), eq(), fp(2), u("(1)")), number="autoA")
     d.equation(group(subsup(i("Re"), i("x"), group(minus(), frac(r("1"), r("2")))), i("Nu"), eq(), minus(),
-                     delim(group(r("1"), plus(), frac(r("4"), r("3")), i("Rd"))), thp(1), u("(1)")), number="A13")
+                     delim(group(r("1"), plus(), frac(r("4"), r("3")), i("Rd"))), thp(1), u("(1)")), number="autoA")
     d.para("(the (1 + 4Rd/3) factor follows from \u03b8(1) = 0; without radiation it reduces to "
            "\u2212\u03b8\u2032(1)). The isothermal lower-wall limit (Bi \u2192 \u221e) is")
-    d.equation(group(theta(), u("(0)"), eq(), r("1")), number="A14")
+    d.equation(group(theta(), u("(0)"), eq(), r("1")), number="autoA")
     d.equation(group(subsup(i("Re"), i("x"), group(minus(), frac(r("1"), r("2")))), i("Sh"), eq(), minus(), php(1), u("(1)"),
-                     u(",  "), phi(), u("(0)"), eq(), r("1"), u(",  "), sub(i("S"), r("3")), eq(), r("0")), number="A15")
+                     u(",  "), phi(), u("(0)"), eq(), r("1"), u(",  "), sub(i("S"), r("3")), eq(), r("0")), number="autoA")
     d.para("These reductions confirm internal consistency. The Newtonian limit of the Carreau "
            "model does not by itself recover the Casson constitutive model; any comparison with "
            "the Casson squeezing results of Bhaskar and Sharma [23] must be restricted to a common "

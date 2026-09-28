@@ -174,3 +174,34 @@ as a 2x2 linear system at each eta (not sequentially):
  - A15: Re^{-1/2} Sh = -phi'(1), phi(0)=1, with S3=0 (no solutal slip); no-slip requires S1=0.
  - Concluding paragraph: Carreau Newtonian limit does NOT reproduce Casson; compare only at a
    common Newtonian limit.
+
+
+## 12. Round-2 reviewer refinements (applied)
+
+ - Electric field made explicit: E(t) = E0 / (1 - gamma t)^{3/2}, so that
+   Ee = E0/(B0 U_w) is constant under local similarity (B ~ (1-gamma t)^{-1/2},
+   U_w ~ (1-gamma t)^{-1}). Orientations stated: B in +y, E in +z, Lorentz force
+   along x reducing to sigma(uB - E).
+ - Cauchy stress written bold; electrical conductivity renamed sigma_e (sigma_e,hnf,
+   sigma_e,f) to avoid clashing with total stress sigma. Stated mu0 = mu_hnf so A1 and
+   the Carreau viscosity are consistently connected; gammadot ~ |du/dy| in the layer.
+ - x-momentum (Eq. 9 in the revised serial numbering) written as the Carreau stress
+   DIVERGENCE (1/rho) d/dy[ mu (1+Gamma^2 u_y^2)^{(n-1)/2} u_y ], with its expansion
+   showing the essential (1 + n Gamma^2 u_y^2) factor. y-momentum kept complete for
+   consistent pressure elimination.
+ - Temperature/concentration normalisation corrected to theta = (T-T0)/(Tw-T0),
+   phi = (C-C0)/(Cw-C0), with T_h = T0, C_h = C0 stated explicitly => theta(1)=phi(1)=0.
+ - Dufour/Soret reconciled: energy PDE carries D_B K_T/(c_s (rho c_p)_hnf) C_yy;
+   concentration PDE carries D_B K_T/T_m T_yy; set c_s == T_m; A2 in A2 Df phi'' bridges
+   the base-fluid (c_p)_f normalisation of Df with the hybrid heat capacity.
+ - Wall location for tau_w, q_w, q_m specified at eta = 1.
+ - Entropy positive-semidefiniteness stated correctly for a theta'^2 + b theta' phi'
+   + c phi'^2 with a>=0, c>=0, b^2 <= 4ac => Lambda <= 4[A4 + (4/3) Rd F^3]. Verified
+   numerically: Lambda=0.5 << 4 A4 ~ 4.77; Be in [0.039, 0.999] and min|Delta| ~ 1.05
+   over 54 parameter combinations.
+ - Numerical coupling written as an explicit 2x2 matrix equation with determinant
+   Delta = K_r - Pr A2 Df Sc Sr != 0; residual norm uses normalised residuals;
+   bvp4c's own adaptive residual control noted; p_obs computed on controlled uniform
+   meshes (N=100,200,400).
+ - Equation numbering made continuous/auto (docx_omml Document auto-numbering); no
+   duplicated numbers. Serial order 1..65 then A1..A15.
