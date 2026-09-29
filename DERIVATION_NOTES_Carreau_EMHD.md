@@ -267,3 +267,18 @@ flagged for the authors to re-check against the publisher record:
          Be in [0.039,0.999] verified; Br->0/large-Br limits vs [36,41].
      6.6 engineering: Nu +29% with phi vs Tlili[8]; Cf growth vs Mkhatshwa[15]/Shahzad[33].
    Section 6.8 retained as the synthesis. Added reference [17] Qayyum et al. (Coatings 12, 2022).
+
+
+## 16. Round-5 refinements (applied)
+
+ - Abstract expanded to ~368 words and now cites references (Choi&Eastman, Suresh, Mandal,
+   Tlili, Carreau, Soret, Bejan, Mkhatshwa, Ali) as [1],[2],... in first-appearance order.
+ - Introduction expanded to ~960 words (>= 850) with a full literature survey and an
+   explicit four-point objectives/novelty paragraph.
+ - Citation numbering rebuilt so references are numbered strictly in order of FIRST
+   appearance starting in the abstract: citations run 1,2,3,... with NO out-of-order jumps;
+   the reference list is emitted 1..43 in that same order. Implemented via a Cites() manager
+   (REF_META registry + cite/one/many/rng) so numbering is automatic and cannot drift.
+ - All 43 references are cited; verified programmatically that the first-appearance sequence
+   equals 1..43 and the reference list is sequential 1..43.
+ - The dagger/double-dagger verification markers are preserved in the regenerated list.

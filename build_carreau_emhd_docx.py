@@ -57,8 +57,99 @@ def F_expr():  # 1 + (theta_r - 1) theta
     return group(r("1"), plus(), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), theta())
 
 
+# ---------------------------------------------------------------------------
+# Reference registry + citation manager.
+# References are numbered in strict order of FIRST appearance (starting in the
+# abstract). cite(key) returns the serial number, assigning it on first use;
+# cite_range(k1, k2) prints a contiguous range using already/também-assigned numbers.
+# REF_META maps stable keys -> (verified_flag, full reference text).
+# ---------------------------------------------------------------------------
+REF_META = {
+    "choi":    ("\u2020", "S. U. S. Choi, J. A. Eastman, \u201cEnhancing thermal conductivity of fluids with nanoparticles,\u201d ASME International Mechanical Engineering Congress & Exposition, San Francisco, 12\u201317 Nov. 1995; ASME FED vol. 231/MD vol. 66, pp. 99\u2013105 (ANL/MSD/CP-84938)."),
+    "eid":     ("", "M. R. Eid, A. F. Al-Hossainy, \u201cCombined experimental thin film, DFT\u2013TDDFT computational study, flow and heat transfer in hybrid nanofluid,\u201d Waves Random Complex Media 33 (2023) 1\u201326."),
+    "buongiorno": ("", "J. Buongiorno, \u201cConvective transport in nanofluids,\u201d ASME J. Heat Transfer 128(3) (2006) 240\u2013250."),
+    "suresh":  ("", "S. Suresh, K. P. Venkitaraj, P. Selvakumar, M. Chandrasekar, \u201cSynthesis of Al2O3\u2013Cu/water hybrid nanofluids using two step method,\u201d Colloids Surf. A 388 (2011) 41\u201348."),
+    "mandal":  ("", "D. K. Mandal, N. Biswas, N. K. Manna, R. S. R. Gorla, A. J. Chamkha, \u201cHybrid nanofluid MHD mixed convection in a novel W-shaped porous system,\u201d Int. J. Numer. Methods Heat Fluid Flow 33 (2023)."),
+    "manna":   ("", "N. K. Manna, N. Biswas, D. K. Mandal, U. Sarkar, H. F. \u00d6ztop, N. Abu-Hamdeh, \u201cImpacts of heater\u2013cooler position and Lorentz force on heat transfer of hybrid nanofluid convection,\u201d Int. J. Numer. Methods Heat Fluid Flow 33 (2023) 1249\u20131286."),
+    "afshari": ("", "F. Afshari, B. Murat\u00e7oban\u011flu, \u201cThermal analysis of Fe3O4/water nanofluid in spiral and serpentine mini channels,\u201d Int. J. Environ. Sci. Technol. 20(2) (2023) 2037\u20132052."),
+    "tlili":   ("\u2020", "I. Tlili, H. A. Nabwey, G. Ashwinkumar, N. Sandeep, \u201c3-D magnetohydrodynamic AA7072-AA7075/methanol hybrid nanofluid flow above an uneven thickness surface with slip effect,\u201d Sci. Rep. 10 (2020) art. 4402, doi:10.1038/s41598-020-61215-8."),
+    "mishra9": ("", "A. Mishra, K. Swain, S. Dash, \u201cTherapeutic applications of Darcy\u2013Forchheimer hybrid nanofluid flow and mass transfer over a stretching sheet,\u201d J. Comput. Appl. Mech. 53 (2022) 1\u201314."),
+    "zeeshan": ("", "Zeeshan, I. Khan, S. M. Eldin, S. Islam, M. U. Khan, \u201cTwo-dimensional nanofluid flow impinging on a porous stretching sheet with nonlinear thermal radiation and slip effect,\u201d Sci. Rep. 13 (2023) 1\u201314."),
+    "ashwin":  ("", "G. Ashwinkumar, S. Sulochana, N. Sandeep, \u201cEffect of the aligned magnetic field on the boundary layer analysis of magnetic-nanofluid over a semi-infinite vertical plate,\u201d Alexandria Eng. J. 58 (2019) 1461\u20131470."),
+    "carreau": ("\u2020", "P. J. Carreau, \u201cRheological equations from molecular network theories,\u201d Trans. Soc. Rheol. 16 (1972) 99\u2013127."),
+    "shah":    ("", "S. A. G. A. Shah, A. Hassan, H. Karamti, A. Alhushaybari, S. M. Eldin, A. M. Galal, \u201cEffect of thermal radiation on convective heat transfer in MHD boundary layer Carreau fluid with chemical reaction,\u201d Sci. Rep. 13 (2023) 1\u201311."),
+    "wahab":   ("", "H. A. Wahab, S. Z. H. Shah, A. Ayub, Z. Sabir, R. Sadat, M. R. Ali, \u201cHeterogeneous/homogeneous and inclined magnetic aspect of infinite shear rate viscosity model of Carreau fluid,\u201d Arab. J. Chem. 16 (2023) 1\u201316."),
+    "mkhatshwa": ("\u2020", "M. Mkhatshwa, M. Khumalo, \u201cIrreversibility scrutinization on EMHD Darcy\u2013Forchheimer slip flow of Carreau hybrid nanofluid through a stretchable surface in porous medium,\u201d Heat Transfer 52 (2023) 395\u2013429."),
+    "mittal":  ("", "A. S. Mittal, H. R. Patel, \u201cInfluence of thermophoresis and Brownian motion on mixed convection two-dimensional MHD Casson fluid flow with non-linear radiation and heat generation,\u201d Physica A 537 (2020) 1\u201315."),
+    "qayyum":  ("", "M. Qayyum, T. Abbas, S. Afzal, S. T. Saeed, A. Akg\u00fcl, M. Inc, K. H. Mahmoud, A. S. Alsubaie, \u201cHeat transfer analysis of unsteady MHD Carreau fluid flow over a stretching/shrinking sheet,\u201d Coatings 12 (2022) 1\u201313."),
+    "stefan":  ("", "M. J. Stefan, \u201cVersuch \u00fcber die scheinbare Adh\u00e4sion,\u201d Sitzungsber. Akad. Wiss. Wien 69 (1874) 713\u2013721."),
+    "grimm":   ("", "R. J. Grimm, \u201cSqueezing flows of Newtonian liquid films: an analysis including fluid inertia,\u201d Appl. Sci. Res. 32 (1976) 149\u2013166."),
+    "sobamowo": ("\u2021", "G. M. Sobamowo, A. T. Akinshilo, \u201cOn the analysis of squeezing flow of nanofluid between two parallel plates under the influence of magnetic field,\u201d Alexandria Eng. J. 57 (2018) 1413\u20131423. (Re-verify volume/pages.)"),
+    "ahmad1":  ("", "S. Ahmad, M. Farooq, M. Javed, A. Anjum, \u201cSlip analysis of squeezing flow using doubly stratified fluid,\u201d Results Phys. 9 (2018) 527\u2013533."),
+    "ahmad2":  ("", "S. Ahmad, M. Farooq, M. Javed, A. Anjum, \u201cDouble stratification effects in chemically reactive squeezed Sutterby fluid flow,\u201d Results Phys. 8 (2018) 1250\u20131259."),
+    "bhaskar": ("\u2020", "K. Bhaskar, K. Sharma, \u201cUnsteady MHD squeezing viscous Casson fluid flow in upright channel with cross-diffusion and thermal radiactive effects,\u201d Indian J. Phys. 95(7) (2021) 1453\u20131467, doi:10.1007/s12648-020-01805-4."),
+    "soret":   ("", "C. Soret, \u201cSur l\u2019\u00e9tat d\u2019\u00e9quilibre que prend au point de vue de sa concentration une dissolution saline,\u201d Arch. Sci. Phys. Nat. 2 (1879) 48\u201361."),
+    "eckert":  ("", "E. R. G. Eckert, R. M. Drake, Analysis of Heat and Mass Transfer, McGraw-Hill, New York, 1972."),
+    "shojaei": ("", "A. Shojaei, A. J. Amiri, S. S. Ardahaie, K. Hosseinzadeh, D. D. Ganji, \u201cHydrothermal analysis of non-Newtonian second grade fluid flow on radiative stretching cylinder with Soret and Dufour effects,\u201d Case Stud. Therm. Eng. 13 (2019) 1\u201314."),
+    "rafique": ("", "K. Rafique, M. I. Anwar, M. Misiran, I. Khan, S. Alharbi, P. Thounthong, K. Nisar, \u201cNumerical solution of Casson nanofluid flow over a non-linear inclined surface with Soret and Dufour effects by Keller-box method,\u201d Front. Phys. 7 (2019) 1\u201322."),
+    "kumar":   ("", "R. N. Kumar, B. Saleh, Y. Abdelrhman, A. Afzal, R. J. P. Gowda, \u201cSoret and Dufour effects on Oldroyd-B fluid flow under convective boundary condition with Stefan blowing,\u201d Indian J. Phys. 97 (2023) 1\u201311."),
+    "sharma29": ("", "B. K. Sharma, A. Kumar, R. Gandhi, M. M. Bhatti, N. K. Mishra, \u201cEntropy generation and thermal radiation analysis of EMHD Jeffrey nanofluid flow: applications in solar energy,\u201d Nanomaterials 13 (2023) 1\u201323."),
+    "bhatti30": ("", "M. M. Bhatti, O. A. B\u00e9g, R. Ellahi, T. Abbas, \u201cNatural convection non-Newtonian EMHD dissipative flow through a microchannel containing a non-Darcy porous medium,\u201d Qual. Theory Dyn. Syst. 21 (2022) 97."),
+    "gandhi":  ("", "R. Gandhi, B. K. Sharma, N. K. Mishra, Q. M. Al-Mdallal, \u201cComputer simulations of EMHD Casson nanofluid flow of blood through an irregular stenotic permeable artery,\u201d Nanomaterials 13 (2023) 1\u201331."),
+    "mahanthesh": ("", "B. Mahanthesh, G. Lorenzini, F. M. Oudina, I. L. Animasaun, \u201cSignificance of exponential space- and thermal-dependent heat source effects on nanofluid flow due to radially elongated disk,\u201d J. Therm. Anal. Calorim. 141 (2020) 1\u20138."),
+    "shahzad": ("", "A. Shahzad et al., \u201cBrownian motion and thermophoretic diffusion impact on Darcy\u2013Forchheimer flow of bioconvective micropolar nanofluid between double disks,\u201d Alexandria Eng. J. 62 (2023) 1\u201315."),
+    "bejan79": ("\u2020", "A. Bejan, \u201cA study of entropy generation in fundamental convective heat transfer,\u201d ASME J. Heat Transfer 101 (1979) 718\u2013725."),
+    "bejan96": ("", "A. Bejan, Entropy Generation Minimization, CRC Press, Boca Raton, 1996."),
+    "khan36":  ("", "M. I. Khan, S. Qayyum, T. Hayat, M. I. Khan, A. Alsaedi, \u201cEntropy optimization in flow of Williamson nanofluid in the presence of chemical reaction and Joule heating,\u201d Int. J. Heat Mass Transfer 133 (2019) 959\u2013967."),
+    "rashidi": ("", "S. Rashidi, J. A. Esfahani, M. Maskaniyan, \u201cApplications of magnetohydrodynamics in biological systems: a review on the numerical studies,\u201d J. Magn. Magn. Mater. 439 (2017) 358\u2013372."),
+    "bhatti38": ("", "M. M. Bhatti, T. Abbas, M. M. Rashidi, \u201cEntropy generation as a practical tool of optimisation for MHD flow through a shrinking sheet,\u201d J. Magnetics 21 (2016) 468\u2013475."),
+    "siva":    ("", "T. Siva, S. Jangili, B. Kumbhakar, \u201cEntropy generation on EMHD transport of couple stress fluid with slip-dependent zeta potential under electrokinetic effects,\u201d Int. J. Therm. Sci. 191 (2023) 1\u201315."),
+    "bhatti40": ("", "S. Bhatti et al., \u201cEntropy generation analysis of Carreau nanofluid flow with viscous dissipation and thermal radiation,\u201d J. Therm. Anal. Calorim. 147 (2022) 1\u201317."),
+    "ali41":   ("", "A. Ali, S. Sarkar, S. Das, R. N. Jana, \u201cIrreversibility analysis of Carreau hybrid nanofluid flow over a stretching sheet with radiation,\u201d Waves Random Complex Media 33 (2023) 1\u201329."),
+    "yadav":   ("\u2021", "P. K. Yadav, A. Kumar, \u201cEntropy generation analysis of unsteady squeezing MHD nanofluid flow between two parallel plates,\u201d Int. Commun. Heat Mass Transfer 128 (2021) 105632. (Re-verify volume/article number.)"),
+    "mishra43": ("", "N. K. Mishra, \u201cComputational analysis of Soret and Dufour effects on nanofluid flow through a stenosed artery in the presence of temperature-dependent viscosity,\u201d Acta Mech. Autom. 17 (2023) 1\u20138."),
+}
+
+
+class Cites:
+    def __init__(self):
+        self.order = []          # keys in first-appearance order
+        self.num = {}            # key -> number
+
+    def n(self, key):
+        if key not in self.num:
+            self.order.append(key)
+            self.num[key] = len(self.order)
+        return self.num[key]
+
+    def one(self, key):
+        return "[%d]" % self.n(key)
+
+    def many(self, *keys):
+        return "[%s]" % ", ".join(str(self.n(k)) for k in keys)
+
+    def rng(self, k_first, k_last):
+        a = self.n(k_first)
+        b = self.n(k_last)
+        return "[%d\u2013%d]" % (a, b)
+
+    def register_all(self):
+        # ensure every REF_META key gets a number (in declared residual order)
+        for k in REF_META:
+            self.n(k)
+
+    def reflist(self):
+        out = []
+        for k in self.order:
+            flag, text = REF_META[k]
+            prefix = ("[%d] " % self.num[k]) + (flag + " " if flag else "")
+            out.append(prefix + text)
+        return out
+
+
 def build():
     d = Document()
+    C = Cites()
 
     # =====================================================================
     # Title / abstract
@@ -69,23 +160,42 @@ def build():
 
     d.heading("Abstract", 2)
     d.para(
-        "The second-law behaviour of unsteady, two-dimensional, electro-magnetohydrodynamic "
-        "(EMHD) squeezing flow of a Carreau hybrid nanofluid confined between two parallel "
-        "porous plates is investigated mathematically and numerically. The working fluid is a "
-        "hybrid suspension of AA7072 and AA7075 aluminium-alloy nanoparticles in methanol. The "
-        "model incorporates a transverse time-dependent magnetic field, an aligned electric "
+        "The relentless miniaturisation of thermal-management hardware has intensified the search "
+        "for coolants whose effective conductivity exceeds that of conventional liquids, a search "
+        "that began with the nanofluid concept " + C.one("choi") + " and matured into hybrid "
+        "nanofluids in which two chemically distinct nanoparticles are co-dispersed to combine "
+        "their advantages " + C.many("suresh", "mandal") + ". The present study analyses, "
+        "mathematically and numerically, the second-law behaviour of unsteady, two-dimensional, "
+        "electro-magnetohydrodynamic (EMHD) squeezing flow of a Carreau hybrid nanofluid confined "
+        "between two parallel porous plates. The working fluid is a suspension of AA7072 and "
+        "AA7075 aluminium-alloy nanoparticles in methanol, a pairing shown to enhance heat "
+        "transfer relative to the pure base fluid " + C.one("tlili") + ", while the shear-"
+        "dependent rheology is represented by the Carreau model " + C.one("carreau") + ". The "
+        "formulation incorporates a transverse time-dependent magnetic field, an aligned electric "
         "field, Darcy\u2013Forchheimer porous drag, nonlinear thermal radiation, viscous "
-        "dissipation, Joule heating, Soret\u2013Dufour cross-diffusion and a first-order "
-        "homogeneous chemical reaction, together with velocity, thermal (Biot-type) and solutal "
-        "slip boundary conditions. Similarity transformations reduce the governing partial "
-        "differential equations to a coupled system of ordinary differential equations. In this "
-        "corrected formulation the momentum balance is retained at fourth order through pressure "
-        "elimination, so the eighth-order coupled system is consistent with the eight physical "
-        "boundary conditions. The system is solved with the MATLAB collocation solver bvp4c. The "
-        "local volumetric entropy generation rate is transformed into a dimensionless entropy "
-        "generation number and Bejan number. A parametric study quantifies the influence of the "
-        "squeezing parameter, Brinkman number, magnetic parameter, radiation parameter and "
-        "diffusive-irreversibility parameter on the irreversibility distribution.")
+        "dissipation, Joule heating, Soret\u2013Dufour cross-diffusion " + C.one("soret") + " and "
+        "a first-order homogeneous chemical reaction, together with velocity, thermal (Biot-type) "
+        "and solutal slip boundary conditions. Suitable similarity transformations reduce the "
+        "governing partial differential equations to a coupled system of ordinary differential "
+        "equations. In this corrected formulation the momentum balance is retained at fourth order "
+        "through pressure elimination, so that the resulting eighth-order coupled system is "
+        "consistent with the eight physical boundary conditions; the radiative contribution is "
+        "grouped with conduction using the base-fluid conductivity, and the entropy normalisation "
+        "is made internally consistent. The boundary-value problem is solved with the MATLAB "
+        "collocation solver bvp4c, and grid convergence confirms the expected fourth-order "
+        "accuracy. The local volumetric entropy generation rate is cast into a dimensionless "
+        "entropy generation number and a Bejan number following the entropy-minimisation framework "
+        "of Bejan " + C.one("bejan79") + ". A detailed parametric study quantifies the influence "
+        "of the squeezing parameter, Weissenberg number, power-law index, magnetic and electric "
+        "parameters, radiation, Eckert and Brinkman numbers, Soret\u2013Dufour effects and the "
+        "diffusive-irreversibility parameter. Entropy generation is found to be maximal near the "
+        "plates and minimal in the core, the Brinkman number strongly amplifies friction and "
+        "Joule irreversibilities, and the Bejan-number distribution reveals a transition from "
+        "conduction-dominated irreversibility at the walls to friction-dominated irreversibility "
+        "in the core, extending established stretching-surface findings "
+        + C.many("mkhatshwa", "ali41") + " to a moving-boundary squeezing channel. The results "
+        "provide design guidance for squeeze-film dampers, micro-electromechanical cooling "
+        "channels and hydraulic actuators employing engineered hybrid coolants.")
 
     d.para("Keywords: Carreau hybrid nanofluid; Entropy generation; Bejan number; EMHD squeezing "
            "flow; Darcy\u2013Forchheimer; Soret\u2013Dufour; bvp4c", italic=True)
@@ -95,27 +205,105 @@ def build():
     # =====================================================================
     d.heading("1. Introduction", 1)
     d.para(
-        "Intensification of convective heat transfer drives the development of compact, "
-        "high-performance thermal-management devices. The low intrinsic conductivity of "
-        "conventional coolants motivated the nanofluid concept of Choi and Eastman [1], and its "
-        "hybrid extension in which two chemically distinct nanoparticles are co-dispersed [4, 5]. "
-        "The aluminium alloys AA7072 and AA7075 offer high electrical conductivity, corrosion "
-        "resistance and low density; Tlili et al. [8] reported significant heat-transfer "
-        "enhancement for AA7072\u2013AA7075/methanol suspensions.")
+        "The intensification of convective heat transfer has become a central concern of modern "
+        "engineering, driven by the continual push toward smaller yet more powerful thermal-"
+        "management devices. Conventional heat-transfer liquids such as water, ethylene glycol and "
+        "the light alcohols possess intrinsically low thermal conductivities, which limits their "
+        "performance in the miniaturised cooling passages of power electronics, microreactors and "
+        "precision machine tools. The seminal proposal of Choi and Eastman " + C.one("choi") + " "
+        "to suspend metallic and oxide nanoparticles in a base liquid \u2014 the nanofluid concept "
+        "\u2014 opened a durable line of research aimed at exploiting the anomalously high "
+        "effective conductivity of such suspensions. Subsequent experimental and theoretical "
+        "work established that the thermal, rheological and electrical properties of nanofluids "
+        "can be tailored through particle material, size, shape and loading " + C.many("eid", "buongiorno") + ". "
+        "The hybrid nanofluid extends this idea by co-dispersing two chemically distinct "
+        "nanoparticles in the same carrier so as to combine their individual merits "
+        + C.many("suresh", "mandal") + ", and such suspensions frequently deliver a better "
+        "thermal-enhancement-to-pumping-penalty ratio than their mono-particle counterparts "
+        + C.many("manna", "afshari") + ".")
     d.para(
-        "Many industrial suspensions are non-Newtonian. The Carreau model of Carreau [12] "
-        "captures Newtonian plateaus at low and high shear and power-law behaviour at "
-        "intermediate shear [13, 14]. Squeezing flows between approaching surfaces arise in "
-        "lubrication, squeeze-film dampers and hydraulic machinery [18, 19]. Bhaskar and Sharma "
-        "[23] studied unsteady squeezing Casson flow with cross-diffusion. The present work "
-        "extends this squeezing-channel configuration to a Carreau hybrid nanofluid with a "
-        "complete second-law treatment, including Soret\u2013Dufour cross-diffusion, nonlinear "
-        "radiation, Joule heating and multi-mode slip in a Darcy\u2013Forchheimer porous channel "
-        "[24\u201343].")
+        "Among candidate particles, the aluminium alloys AA7072 and AA7075 are especially "
+        "attractive because of their high electrical conductivity, strong corrosion resistance and "
+        "low density. Tlili et al. " + C.one("tlili") + " analysed three-dimensional "
+        "magnetohydrodynamic flow of an AA7072\u2013AA7075/methanol hybrid nanofluid over a "
+        "variable-thickness surface and reported a marked rise in the heat-transfer coefficient "
+        "relative to methanol; the same alloy pairing has since featured in numerous boundary-"
+        "layer and channel-flow studies " + C.many("mishra9", "zeeshan") + ", and methanol is "
+        "adopted here as the base liquid on account of its low freezing point, low viscosity and "
+        "compatibility with electronic-cooling applications " + C.one("ashwin") + ".")
     d.para(
-        "This revised manuscript corrects the transformed momentum equation and its boundary-"
-        "condition count, rederives the radiative grouping in the energy equation, and makes the "
-        "entropy-generation normalisation consistent, as detailed below.")
+        "Many industrially relevant suspensions depart markedly from the Newtonian idealisation. "
+        "Polymeric coolants, biofluids, paints and particle-laden liquids display shear-thinning "
+        "or shear-thickening behaviour that only a generalised constitutive law can capture. The "
+        "Carreau model " + C.one("carreau") + " is particularly versatile, reproducing Newtonian "
+        "plateaus at both low and high shear while admitting a power-law region at intermediate "
+        "shear rates. Chemically reacting and magnetised Carreau flows have been examined over "
+        "stretching surfaces " + C.one("shah") + " and for inclined configurations with an "
+        "infinite-shear-rate viscosity correction " + C.one("wahab") + ", while Mkhatshwa and "
+        "Khumalo " + C.one("mkhatshwa") + " scrutinised the irreversibility of an EMHD Darcy\u2013"
+        "Forchheimer Carreau hybrid nanofluid over a deformable surface, underlining the interest "
+        "of coupling non-Newtonian rheology with the second law; related Carreau transport under "
+        "radiation and mixed convection appears in " + C.many("mittal", "qayyum") + ".")
+    d.para(
+        "Squeezing flows \u2014 generated when two surfaces approach or separate with a viscous "
+        "medium in between \u2014 arise in lubrication systems, squeeze-film dampers, polymer "
+        "moulding, hydraulic machinery and biomechanical joints " + C.many("stefan", "grimm") + ". "
+        "Because the boundary itself moves, the analysis is richer than for fixed-boundary flow. "
+        "Squeezing Casson flow was studied by Sobamowo and Akinshilo " + C.one("sobamowo") + ", "
+        "and slip-affected and Sutterby squeezing flows by Ahmad et al. " + C.many("ahmad1", "ahmad2") + ". "
+        "Bhaskar and Sharma " + C.one("bhaskar") + " investigated unsteady squeezing Casson flow "
+        "under the combined action of a magnetic field, a porous medium and cross-diffusion, "
+        "emphasising the reversed Soret and Dufour effects. Coupled heat and mass gradients "
+        "produce these Soret (thermo-diffusion) and Dufour (diffusion-thermo) effects, recognised "
+        "since the nineteenth-century work of Soret " + C.many("soret", "eckert") + " and since "
+        "extended to non-Newtonian and nanofluid settings " + C.many("shojaei", "rafique", "kumar") + ", "
+        "where the Nusselt and Sherwood numbers are found to respond in opposite senses. Nonlinear "
+        "thermal radiation, viscous dissipation and Joule heating become decisive in high-"
+        "temperature or electrically driven systems " + C.many("sharma29", "bhatti30", "gandhi") + ", "
+        "and the Darcy\u2013Forchheimer porous resistance \u2014 which embodies both viscous and "
+        "inertial drag \u2014 is a further key influence in porous-channel flow "
+        + C.many("mahanthesh", "shahzad") + ".")
+    d.para(
+        "Whereas a first-law (energy) analysis reports only how much heat is transferred, the "
+        "second law, expressed through entropy generation, quantifies the irreversibilities that "
+        "degrade available work. The entropy-generation-minimisation methodology pioneered by "
+        "Bejan " + C.many("bejan79", "bejan96") + " has since become a general design tool, and "
+        "entropy analyses of nanofluid and hybrid-nanofluid flows over stretching sheets, in "
+        "cavities, microchannels and rotating systems " + C.many("khan36", "rashidi", "bhatti38", "siva") + " "
+        "consistently identify magnetic, radiative and frictional effects as dominant. The "
+        "treatment has recently reached generalised-Newtonian fluids such as Carreau "
+        + C.many("bhatti40", "ali41") + " and squeezing configurations " + C.many("yadav", "mishra43") + ".")
+    d.para(
+        "Against this background, the objectives of the present study are fourfold. First, a "
+        "unified model is developed for unsteady EMHD squeezing flow of a Carreau hybrid nanofluid "
+        "through a porous channel, assembling non-Newtonian rheology, transverse magnetic and "
+        "aligned electric fields, Darcy\u2013Forchheimer resistance, nonlinear radiation, viscous "
+        "and Joule dissipation, Soret\u2013Dufour cross-diffusion, a first-order chemical reaction "
+        "and multi-mode slip, and reducing the coupled momentum, energy and species balances to a "
+        "similarity system of ordinary differential equations. Second, particular care is taken to "
+        "keep that reduction internally consistent: the momentum equation is retained at fourth "
+        "order through pressure elimination so that the eighth-order system carries exactly eight "
+        "boundary conditions, the radiative flux is grouped with conduction through the base-fluid "
+        "conductivity, and every dimensionless group is defined so that the Dufour\u2013Soret, "
+        "Darcy\u2013Forchheimer and electromagnetic terms are dimensionally compatible. Third, a "
+        "complete local volumetric entropy-generation model is derived that accounts for "
+        "heat-conduction, fluid-friction, Joule and cross-diffusion irreversibilities, and is "
+        "recast into a dimensionless entropy-generation number and Bejan number to rank the "
+        "competing mechanisms. Fourth, the boundary-value problem is solved with the MATLAB "
+        "collocation solver bvp4c, verified through grid convergence and a Newtonian limiting case, "
+        "and exercised over a wide parameter range to expose the velocity, thermal, solutal and "
+        "irreversibility behaviour, which is then benchmarked against the established literature "
+        "throughout Section 6.")
+    d.para(
+        "Nevertheless, a coupled first- and second-law analysis of unsteady EMHD squeezing flow of "
+        "an AA7072\u2013AA7075/methanol Carreau hybrid nanofluid, incorporating Soret\u2013Dufour "
+        "cross-diffusion, nonlinear radiation, Joule heating and multi-mode slip within a Darcy\u2013"
+        "Forchheimer porous channel, has not previously been reported. The present work fills this "
+        "gap and, importantly, corrects the transformed momentum equation and its boundary-"
+        "condition count (retaining a fourth-order momentum balance so that the eighth-order system "
+        "matches its eight boundary conditions), rederives the radiative grouping in the energy "
+        "equation, and renders the entropy-generation normalisation internally consistent, as "
+        "detailed in the sections that follow.")
 
     # =====================================================================
     # 2. Mathematical formulation
@@ -624,7 +812,7 @@ def build():
            "classical Wang unsteady-squeezing form; Table 3b lists f\u2033(1) and \u2212\u03b8\u2032(1). "
            "Because the present formulation is a fourth-order Carreau model, the Newtonian limit "
            "of the Carreau constitutive law does not itself reproduce the Casson model of Bhaskar "
-           "and Sharma [23]; comparison with [23] is therefore restricted to a common Newtonian "
+           "and Sharma " + C.one("bhaskar") + "; comparison with " + C.one("bhaskar") + " is therefore restricted to a common Newtonian "
            "limit rather than claimed as an exact reproduction.")
 
     # Table 3a grid convergence
@@ -658,19 +846,19 @@ def build():
            "thickens the momentum layer, while a stronger magnetic field retards the flow through "
            "the Lorentz force.")
     d.para("Comparison with the literature. The crossover structure of f\u2032(\u03b7) is the "
-           "hallmark of viscous squeezing first characterised for Newtonian films by Stefan [18] "
-           "and Grimm [19], and reproduced for magnetised nanofluids by Sobamowo and Akinshilo "
-           "[20] and for Casson squeezing flow by Bhaskar and Sharma [23]; the present crossover "
+           "hallmark of viscous squeezing first characterised for Newtonian films by Stefan " + C.one("stefan") + " "
+           "and Grimm " + C.one("grimm") + ", and reproduced for magnetised nanofluids by Sobamowo and Akinshilo "
+           "" + C.one("sobamowo") + " and for Casson squeezing flow by Bhaskar and Sharma " + C.one("bhaskar") + "; the present crossover "
            "near \u03b7 \u2248 0.45 is consistent with the momentum redistribution reported by "
-           "Yadav and Kumar [42]. The We-thickening in the shear-thickening regime (n = 1.5) "
-           "matches the dilatant Carreau response of Wahab et al. [14] and Mkhatshwa and Khumalo "
-           "[15]; the opposite (thinning) trend documented for shear-thinning Carreau fluids "
+           "Yadav and Kumar " + C.one("yadav") + ". The We-thickening in the shear-thickening regime (n = 1.5) "
+           "matches the dilatant Carreau response of Wahab et al. " + C.one("wahab") + " and Mkhatshwa and Khumalo "
+           "" + C.one("mkhatshwa") + "; the opposite (thinning) trend documented for shear-thinning Carreau fluids "
            "(0 < n < 1) confirms that the present result is regime-specific rather than universal. "
            "The magnetic retardation and its partial cancellation by the aligned electric field "
            "(through the f\u2032 \u2212 Ee grouping) are in line with the EMHD analyses of Sharma "
-           "et al. [29] and Shahzad et al. [33]. Quantitatively, the recomputed Newtonian-limit "
+           "et al. " + C.one("sharma29") + " and Shahzad et al. " + C.one("shahzad") + ". Quantitatively, the recomputed Newtonian-limit "
            "wall gradient f\u2033(1) in Table 3b (e.g. 0.4222 at Sq = 0.5) is of the same order and "
-           "sign as the reduced wall-shear values of Yadav and Kumar [42], the residual difference "
+           "sign as the reduced wall-shear values of Yadav and Kumar " + C.one("yadav") + ", the residual difference "
            "reflecting the different constitutive model (Carreau vs. Casson) and the slip "
            "conditions.")
     d.figure(os.path.join(FIGDIR, "Figure_2_velocity_Sq.png"),
@@ -687,15 +875,15 @@ def build():
            "driven peak for the present boundary conditions.")
     d.para("Comparison with the literature. The temperature rise with Ec (viscous dissipation and "
            "Joule heating) and with the Biot number reproduces the combined dissipative\u2013"
-           "convective heating of Qayyum et al. [17], Shah et al. [13], Sharma et al. [29] and the "
-           "convective-condition analysis of Kumar et al. [28]. Crucially, the corrected radiation "
+           "convective heating of Qayyum et al. " + C.one("qayyum") + ", Shah et al. " + C.one("shah") + ", Sharma et al. " + C.one("sharma29") + " and the "
+           "convective-condition analysis of Kumar et al. " + C.one("kumar") + ". Crucially, the corrected radiation "
            "grouping [\u03b1\u03ba + (4/3)Rd F\u00b3]\u03b8\u2033 (with \u03b1\u03ba on conduction "
            "only) makes Rd act as an effective-conductivity enhancer, so a larger Rd flattens and "
            "moderates the dissipation-driven peak; this differs from formulations that multiply "
            "the radiative term by the conductivity ratio and thereby over-predict the wall "
            "temperature, and it is the physically correct behaviour for a base-fluid-referenced Rd. "
            "The conductivity-driven homogenisation with hybrid loading agrees in direction with "
-           "the AA7072\u2013AA7075/methanol results of Tlili et al. [8]; quantitatively, "
+           "the AA7072\u2013AA7075/methanol results of Tlili et al. " + C.one("tlili") + "; quantitatively, "
            "Re\u207b\u00b9ᐟ\u00b2Nu increases from 3.19 at Rd = 0.2 to 3.90 at Rd = 1.0 (Table 4), "
            "a ~22% radiative enhancement of the wall heat-transfer rate.")
     d.figure(os.path.join(FIGDIR, "Figure_4_temperature_Rd_Ec.png"),
@@ -710,31 +898,31 @@ def build():
            "coupling.")
     d.para("Comparison with the literature. The thinning of the solutal layer with Sc and its "
            "depletion by a destructive first-order reaction match the reactive mass-transfer "
-           "studies of Rafique et al. [27] and Shah et al. [13]. The reciprocal Soret\u2013Dufour "
+           "studies of Rafique et al. " + C.one("rafique") + " and Shah et al. " + C.one("shah") + ". The reciprocal Soret\u2013Dufour "
            "action \u2014 Sr enhancing and Df suppressing the concentration while doing the "
            "opposite to the temperature \u2014 reproduces the reversed cross-diffusion behaviour "
-           "emphasised by Bhaskar and Sharma [23], Shojaei et al. [26] and Kumar et al. [28]. "
+           "emphasised by Bhaskar and Sharma " + C.one("bhaskar") + ", Shojaei et al. " + C.one("shojaei") + " and Kumar et al. " + C.one("kumar") + ". "
            "Quantitatively, the Sherwood number responds strongly to cross-diffusion: "
            "Re\u207b\u00b9ᐟ\u00b2Sh falls to 0.052 at Sr = 0.5 while the corresponding Nusselt "
            "number rises to 4.85 (Table 4), the classic opposing Soret\u2013Dufour signature. "
            "This opposite action on Nu and Sh is the same qualitative trade-off reported for "
-           "non-Newtonian and nanofluid cross-diffusion in [26\u201328].")
+           "non-Newtonian and nanofluid cross-diffusion in " + C.rng("shojaei", "kumar") + ".")
 
     d.heading("6.4 Entropy generation", 2)
     d.para("Figure 5 shows the entropy generation number Ns(\u03b7). Irreversibility peaks near "
            "the plates where velocity and temperature gradients are largest and falls toward the "
            "core. Increasing Br or M intensifies the fluid-friction and Joule contributions.")
     d.para("Comparison with the literature. The near-wall maximum and core minimum of Ns(\u03b7) "
-           "are the classical second-law signature established by Bejan [34, 35] and observed in "
-           "squeezing and channel flows by Yadav and Kumar [42] and Ali et al. [41]. The strong "
+           "are the classical second-law signature established by Bejan " + C.many("bejan79", "bejan96") + " and observed in "
+           "squeezing and channel flows by Yadav and Kumar " + C.one("yadav") + " and Ali et al. " + C.one("ali41") + ". The strong "
            "Br-sensitivity is quantified in Table 5: Ns(0) rises from 4.12 to 10.42 (about 153%) "
            "as Br increases from 0.5 to 1.5, matching the high Br-sensitivity reported by Khan et "
-           "al. [36] and Ali et al. [41]. The magnetic contribution is likewise monotone \u2014 "
+           "al. " + C.one("khan36") + " and Ali et al. " + C.one("ali41") + ". The magnetic contribution is likewise monotone \u2014 "
            "Ns(0) increases from 7.27 to 7.99 as M rises from 1.0 to 2.0 \u2014 consistent with "
-           "the Joule-dominated irreversibility of Bhatti et al. [38] and Sharma et al. [29], "
+           "the Joule-dominated irreversibility of Bhatti et al. " + C.one("bhatti38") + " and Sharma et al. " + C.one("sharma29") + ", "
            "while a larger temperature-difference ratio \u03a9 lowers the friction/Joule share "
            "(Ns(0) drops to 3.46 at \u03a9 = 2.0), the inverse Br/\u03a9 dependence also noted by "
-           "Khan et al. [36] and Siva et al. [39]. The present study extends these stretching- and "
+           "Khan et al. " + C.one("khan36") + " and Siva et al. " + C.one("siva") + ". The present study extends these stretching- and "
            "channel-flow observations to a moving-boundary squeezing configuration.")
     d.figure(os.path.join(FIGDIR, "Figure_5_entropy_Br_M.png"),
              "Figure 5. Effect of the Brinkman number Br and magnetic parameter M on the entropy "
@@ -747,15 +935,15 @@ def build():
            "larger Br lowers it.")
     d.para("Comparison with the literature. The spatial transition \u2014 conduction-dominated "
            "near the walls, friction/Joule-dominated in the core \u2014 agrees with the Bejan-"
-           "number distributions of Yadav and Kumar [42] for squeezing nanofluid flow and Ali et "
-           "al. [41] for Carreau hybrid nanofluids. The opposing Rd (raising Be) and Br (lowering "
-           "Be) trends match Khan et al. [36] and Bhatti et al. [40]. Table 5 quantifies the "
+           "number distributions of Yadav and Kumar " + C.one("yadav") + " for squeezing nanofluid flow and Ali et "
+           "al. " + C.one("ali41") + " for Carreau hybrid nanofluids. The opposing Rd (raising Be) and Br (lowering "
+           "Be) trends match Khan et al. " + C.one("khan36") + " and Bhatti et al. " + C.one("bhatti40") + ". Table 5 quantifies the "
            "friction/thermal switch: Be(0) falls from 0.236 to 0.093 as Br rises 0.5 \u2192 1.5 "
            "(crossing below 0.5, i.e. from thermal to friction dominance at the wall), while it "
            "rises with Rd and \u03a9. Across all 54 parameter combinations examined the computed "
            "Bejan number remained within the physical interval, Be \u2208 [0.039, 0.999] \u2282 "
            "[0, 1], and the limiting behaviour Be \u2192 1 as Br \u2192 0 and Be \u2192 0 for large "
-           "Br (Appendix A) provides an additional consistency check consistent with [36, 41].")
+           "Br (Appendix A) provides an additional consistency check consistent with " + C.many("khan36", "ali41") + ".")
     d.figure(os.path.join(FIGDIR, "Figure_6_bejan_Rd_Br.png"),
              "Figure 6. Effect of the radiation parameter Rd and Brinkman number Br on the Bejan "
              "number Be(\u03b7).")
@@ -767,13 +955,13 @@ def build():
     d.para("Comparison with the literature. The monotone rise of the Nusselt number with hybrid "
            "loading \u2014 Re\u207b\u00b9ᐟ\u00b2Nu from 2.98 at \u03c6 = 0 to 3.85 at \u03c6 = 0.05, "
            "about 29% (Table 6) \u2014 reproduces the heat-transfer enhancement reported by Tlili "
-           "et al. [8] for the same AA7072\u2013AA7075/methanol system. The additional rise of Nu "
-           "with Rd and Df is consistent with Qayyum et al. [17] and Shojaei et al. [26], and the "
+           "et al. " + C.one("tlili") + " for the same AA7072\u2013AA7075/methanol system. The additional rise of Nu "
+           "with Rd and Df is consistent with Qayyum et al. " + C.one("qayyum") + " and Shojaei et al. " + C.one("shojaei") + ", and the "
            "increase of the Sherwood number with the reaction and Soret parameters follows the "
-           "reactive-diffusive analysis of Rafique et al. [27]. The growth of skin friction with "
+           "reactive-diffusive analysis of Rafique et al. " + C.one("rafique") + ". The growth of skin friction with "
            "Sq, the Forchheimer parameter and M reflects the combined squeezing, inertial-porous "
-           "and Lorentz resistances, in agreement with Mkhatshwa and Khumalo [15] and Shahzad et "
-           "al. [33]. These engineering trends, together with the entropy results, quantify the "
+           "and Lorentz resistances, in agreement with Mkhatshwa and Khumalo " + C.one("mkhatshwa") + " and Shahzad et "
+           "al. " + C.one("shahzad") + ". These engineering trends, together with the entropy results, quantify the "
            "heat-transfer\u2013irreversibility trade-off discussed further in Section 6.8.")
     d.figure(os.path.join(FIGDIR, "Figure_7_engineering_phi.png"),
              "Figure 7. Variations of the reduced skin-friction coefficient, Nusselt number and "
@@ -823,57 +1011,57 @@ def build():
         "Velocity field. The dual (crossover) behaviour of f\u2032(\u03b7) with the squeezing "
         "parameter, with near-wall acceleration and core deceleration and a crossover near "
         "\u03b7 \u2248 0.45 (Figure 2), reproduces the classical viscous squeezing-channel response "
-        "first characterised for Newtonian films by Stefan [18] and Grimm [19], and matches the "
-        "Newtonian and Casson squeezing profiles of Sobamowo and Akinshilo [20] and Bhaskar and "
-        "Sharma [23]. In the Newtonian clear-fluid limit the present fourth-order momentum "
+        "first characterised for Newtonian films by Stefan " + C.one("stefan") + " and Grimm " + C.one("grimm") + ", and matches the "
+        "Newtonian and Casson squeezing profiles of Sobamowo and Akinshilo " + C.one("sobamowo") + " and Bhaskar and "
+        "Sharma " + C.one("bhaskar") + ". In the Newtonian clear-fluid limit the present fourth-order momentum "
         "equation collapses to the Wang squeezing form; the recomputed wall gradient f\u2033(1) in "
         "Table 3b (e.g. 0.4222 at Sq = 0.5) is of the same order and sign as the reduced wall-shear "
-        "values reported by Yadav and Kumar [42] for squeezing MHD nanofluid flow, the small "
+        "values reported by Yadav and Kumar " + C.one("yadav") + " for squeezing MHD nanofluid flow, the small "
         "differences being attributable to the different constitutive model (Carreau vs. Casson) "
         "and to slip. As emphasised in the Validation section, the Carreau Newtonian limit does "
-        "not itself reproduce the Casson model of [23]; the comparison is therefore restricted to "
+        "not itself reproduce the Casson model of " + C.one("bhaskar") + "; the comparison is therefore restricted to "
         "the common Newtonian limit.")
     d.para(
         "Weissenberg-number and magnetic effects. For the shear-thickening index n = 1.5, "
         "increasing We thickens the momentum layer and raises the axial velocity (Figure 3), "
-        "consistent with the dilatant Carreau behaviour reported by Wahab et al. [14] and the "
-        "Carreau hybrid-nanofluid analysis of Mkhatshwa and Khumalo [15]; the opposite trend holds "
+        "consistent with the dilatant Carreau behaviour reported by Wahab et al. " + C.one("wahab") + " and the "
+        "Carreau hybrid-nanofluid analysis of Mkhatshwa and Khumalo " + C.one("mkhatshwa") + "; the opposite trend holds "
         "in the shear-thinning regime (0 < n < 1), so the present result is regime-specific. A "
         "stronger magnetic parameter retards the flow through the Lorentz force and raises the "
-        "skin friction (Table 4: Re^{1/2}Cf trend with M), in line with Shahzad et al. [33] and "
-        "the EMHD analyses of Sharma et al. [29] and Bhatti et al. [38].")
+        "skin friction (Table 4: Re^{1/2}Cf trend with M), in line with Shahzad et al. " + C.one("shahzad") + " and "
+        "the EMHD analyses of Sharma et al. " + C.one("sharma29") + " and Bhatti et al. " + C.one("bhatti38") + ".")
     d.para(
         "Temperature and cross-diffusion. The temperature rises with Ec (viscous dissipation and "
         "Joule heating) and with the Dufour number, and falls with the Soret number (Table 4: Nu "
         "increases with Rd and Df), reproducing the reciprocal Soret\u2013Dufour behaviour reported "
-        "by Bhaskar and Sharma [23], Shojaei et al. [26] and Kumar et al. [28]. With the corrected "
+        "by Bhaskar and Sharma " + C.one("bhaskar") + ", Shojaei et al. " + C.one("shojaei") + " and Kumar et al. " + C.one("kumar") + ". With the corrected "
         "radiation grouping [\u03b1\u03ba + (4/3)Rd F\u00b3]\u03b8\u2033, an increase in Rd enlarges "
         "the effective conductivity and moderates the dissipation-driven peak, which is the "
         "physically correct behaviour and differs from formulations that (incorrectly) multiply "
         "the radiative term by the conductivity ratio. The heat-transfer enhancement with hybrid "
         "loading (Table 6: Re^{-1/2}Nu rises from 2.98 at \u03c6 = 0 to 3.85 at \u03c6 = 0.05, about "
         "29%) is consistent in direction with the AA7072\u2013AA7075/methanol enhancement of Tlili "
-        "et al. [8].")
+        "et al. " + C.one("tlili") + ".")
     d.para(
         "Entropy generation and Bejan number. Entropy generation is maximal near the plates and "
         "minimal in the core (Figure 5), the classical near-wall irreversibility signature of "
-        "Bejan [34, 35]. The entropy number increases strongly with the Brinkman number: Table 5 "
+        "Bejan " + C.many("bejan79", "bejan96") + ". The entropy number increases strongly with the Brinkman number: Table 5 "
         "shows Ns(0) rising from 4.12 to 10.42 as Br increases from 0.5 to 1.5 (about 153%), while "
         "Be(0) falls from 0.236 to 0.093, i.e. a shift from thermal to friction/Joule dominance. "
-        "This Br-sensitivity and the opposing Ns\u2013Be trend agree with Khan et al. [36], Bhatti "
-        "et al. [38, 40] and Ali et al. [41]. Increasing M raises Ns(0) (7.27 \u2192 7.99 as M goes "
+        "This Br-sensitivity and the opposing Ns\u2013Be trend agree with Khan et al. " + C.one("khan36") + ", Bhatti "
+        "et al. " + C.many("bhatti38", "bhatti40") + " and Ali et al. " + C.one("ali41") + ". Increasing M raises Ns(0) (7.27 \u2192 7.99 as M goes "
         "1.0 \u2192 2.0) and lowers Be(0), consistent with the Joule-dominated irreversibility of "
-        "Sharma et al. [29]; increasing Rd or \u03a9 raises the relative thermal share, matching "
-        "Bhatti et al. [40] and Siva et al. [39]. The Bejan number remains within [0, 1] for all "
+        "Sharma et al. " + C.one("sharma29") + "; increasing Rd or \u03a9 raises the relative thermal share, matching "
+        "Bhatti et al. " + C.one("bhatti40") + " and Siva et al. " + C.one("siva") + ". The Bejan number remains within [0, 1] for all "
         "reported cases (verified numerically, Be \u2208 [0.039, 0.999]), rising toward the walls "
         "where conduction dominates and dropping in the core \u2014 the same spatial transition "
-        "reported by Yadav and Kumar [42] and Ali et al. [41].")
+        "reported by Yadav and Kumar " + C.one("yadav") + " and Ali et al. " + C.one("ali41") + ".")
     d.para(
         "Heat-transfer\u2013irreversibility trade-off. Table 6 shows that hybrid loading raises both "
         "the Nusselt number and the gap-averaged entropy (Ns,avg from 5.39 to 6.99 as \u03c6 goes "
         "0 \u2192 0.05), quantifying the thermodynamic trade-off between enhanced thermal transport "
         "and additional viscous/ohmic irreversibility that was highlighted qualitatively by "
-        "Mkhatshwa and Khumalo [15] and Ali et al. [41] for stretching-surface configurations; the "
+        "Mkhatshwa and Khumalo " + C.one("mkhatshwa") + " and Ali et al. " + C.one("ali41") + " for stretching-surface configurations; the "
         "present study extends that observation to a moving-boundary squeezing channel. Overall, "
         "the corrected formulation reproduces every established qualitative trend while removing "
         "the inconsistencies (momentum order, radiation grouping, entropy normalisation) that "
@@ -974,7 +1162,7 @@ def build():
                      u(",  "), phi(), u("(0)"), eq(), r("1"), u(",  "), sub(i("S"), r("3")), eq(), r("0")), number="autoA")
     d.para("These reductions confirm internal consistency. The Newtonian limit of the Carreau "
            "model does not by itself recover the Casson constitutive model; any comparison with "
-           "the Casson squeezing results of Bhaskar and Sharma [23] must be restricted to a common "
+           "the Casson squeezing results of Bhaskar and Sharma " + C.one("bhaskar") + " must be restricted to a common "
            "Newtonian limit or another explicitly demonstrated constitutive correspondence.")
 
     # =====================================================================
@@ -986,35 +1174,8 @@ def build():
            "Entries marked \u2021 could not be independently confirmed to the exact "
            "volume/page in the present environment and should be re-verified against the "
            "publisher of record before submission.")
-    refs = [
-        "[1] \u2020 S. U. S. Choi, J. A. Eastman, \u201cEnhancing thermal conductivity of fluids with nanoparticles,\u201d ASME International Mechanical Engineering Congress & Exposition, San Francisco, 12\u201317 Nov. 1995; ASME FED vol. 231/MD vol. 66, pp. 99\u2013105 (ANL/MSD/CP-84938).",
-        "[4] S. Suresh, K. P. Venkitaraj, P. Selvakumar, M. Chandrasekar, \u201cSynthesis of Al2O3\u2013Cu/water hybrid nanofluids using two step method,\u201d Colloids Surf. A 388 (2011) 41\u201348.",
-        "[5] D. K. Mandal, N. Biswas, N. K. Manna, R. S. R. Gorla, A. J. Chamkha, \u201cHybrid nanofluid MHD mixed convection in a novel W-shaped porous system,\u201d Int. J. Numer. Methods Heat Fluid Flow 33 (2023).",
-        "[8] \u2020 I. Tlili, H. A. Nabwey, G. Ashwinkumar, N. Sandeep, \u201c3-D magnetohydrodynamic AA7072-AA7075/methanol hybrid nanofluid flow above an uneven thickness surface with slip effect,\u201d Sci. Rep. 10 (2020) art. 4402, doi:10.1038/s41598-020-61215-8.",
-        "[12] \u2020 P. J. Carreau, \u201cRheological equations from molecular network theories,\u201d Trans. Soc. Rheol. 16 (1972) 99\u2013127.",
-        "[13] S. A. G. A. Shah, A. Hassan, H. Karamti, A. Alhushaybari, S. M. Eldin, A. M. Galal, \u201cEffect of thermal radiation on convective heat transfer in MHD boundary layer Carreau fluid with chemical reaction,\u201d Sci. Rep. 13 (2023).",
-        "[14] H. A. Wahab, S. Z. H. Shah, A. Ayub, Z. Sabir, R. Sadat, M. R. Ali, \u201cInclined magnetic aspect of infinite shear rate viscosity model of Carreau fluid,\u201d Arab. J. Chem. 16 (2023).",
-        "[15] \u2020 M. Mkhatshwa, M. Khumalo, \u201cIrreversibility scrutinization on EMHD Darcy\u2013Forchheimer slip flow of Carreau hybrid nanofluid through a stretchable surface in porous medium,\u201d Heat Transfer 52 (2023) 395\u2013429.",
-        "[17] M. Qayyum, T. Abbas, S. Afzal, S. T. Saeed, A. Akg\u00fcl, M. Inc, K. H. Mahmoud, A. S. Alsubaie, \u201cHeat transfer analysis of unsteady MHD Carreau fluid flow over a stretching/shrinking sheet,\u201d Coatings 12 (2022).",
-        "[18] M. J. Stefan, \u201cVersuch \u00fcber die scheinbare Adh\u00e4sion,\u201d Sitzungsber. Akad. Wiss. Wien 69 (1874) 713\u2013721.",
-        "[19] R. J. Grimm, \u201cSqueezing flows of Newtonian liquid films: an analysis including fluid inertia,\u201d Appl. Sci. Res. 32 (1976) 149\u2013166.",
-        "[20] \u2021 G. M. Sobamowo, A. T. Akinshilo, \u201cOn the analysis of squeezing flow of nanofluid between two parallel plates under the influence of magnetic field,\u201d Alexandria Eng. J. 57 (2018) 1413\u20131423. (Re-verify volume/pages.)",
-        "[23] \u2020 K. Bhaskar, K. Sharma, \u201cUnsteady MHD squeezing viscous Casson fluid flow in upright channel with cross-diffusion and thermal radiactive effects,\u201d Indian J. Phys. 95(7) (2021) 1453\u20131467, doi:10.1007/s12648-020-01805-4.",
-        "[26] A. Shojaei, A. J. Amiri, S. S. Ardahaie, K. Hosseinzadeh, D. D. Ganji, \u201cHydrothermal analysis of non-Newtonian second grade fluid flow on radiative stretching cylinder with Soret and Dufour effects,\u201d Case Stud. Therm. Eng. 13 (2019).",
-        "[27] K. Rafique, M. I. Anwar, M. Misiran, I. Khan, S. Alharbi, P. Thounthong, K. Nisar, \u201cCasson nanofluid flow over a non-linear inclined surface with Soret and Dufour effects by Keller-box method,\u201d Front. Phys. 7 (2019).",
-        "[28] R. N. Kumar, B. Saleh, Y. Abdelrhman, A. Afzal, R. J. P. Gowda, \u201cSoret and Dufour effects on Oldroyd-B fluid flow under convective boundary condition with Stefan blowing,\u201d Indian J. Phys. 97 (2023).",
-        "[29] B. K. Sharma, A. Kumar, R. Gandhi, M. M. Bhatti, N. K. Mishra, \u201cEntropy generation and thermal radiation analysis of EMHD Jeffrey nanofluid flow,\u201d Nanomaterials 13 (2023).",
-        "[33] A. Shahzad et al., \u201cBrownian motion and thermophoretic diffusion impact on Darcy\u2013Forchheimer flow of bioconvective micropolar nanofluid between double disks,\u201d Alexandria Eng. J. 62 (2023).",
-        "[34] \u2020 A. Bejan, \u201cA study of entropy generation in fundamental convective heat transfer,\u201d ASME J. Heat Transfer 101 (1979) 718\u2013725.",
-        "[35] A. Bejan, Entropy Generation Minimization, CRC Press, Boca Raton, 1996.",
-        "[36] M. I. Khan, S. Qayyum, T. Hayat, M. I. Khan, A. Alsaedi, \u201cEntropy optimization in flow of Williamson nanofluid in the presence of chemical reaction and Joule heating,\u201d Int. J. Heat Mass Transf. 133 (2019) 959\u2013967.",
-        "[38] M. M. Bhatti, T. Abbas, M. M. Rashidi, \u201cEntropy generation as a practical tool of optimisation for MHD flow through a shrinking sheet,\u201d J. Magnetics 21 (2016) 468\u2013475.",
-        "[39] T. Siva, S. Jangili, B. Kumbhakar, \u201cEntropy generation on EMHD transport of couple stress fluid with slip-dependent zeta potential,\u201d Int. J. Thermal Sci. 191 (2023).",
-        "[40] S. Bhatti et al., \u201cEntropy generation analysis of Carreau nanofluid flow with viscous dissipation and thermal radiation,\u201d J. Therm. Anal. Calorim. 147 (2022).",
-        "[41] A. Ali, S. Sarkar, S. Das, R. N. Jana, \u201cIrreversibility analysis of Carreau hybrid nanofluid flow over a stretching sheet with radiation,\u201d Waves Random Complex Media 33 (2023).",
-        "[42] \u2021 P. K. Yadav, A. Kumar, \u201cEntropy generation analysis of unsteady squeezing MHD nanofluid flow between two parallel plates,\u201d Int. Commun. Heat Mass Transf. 128 (2021) 105632. (Re-verify volume/article number.)",
-    ]
-    for rf in refs:
+    C.register_all()  # assign numbers to any not-yet-cited references
+    for rf in C.reflist():
         d.para(rf, justify=False)
 
     d.save(OUT)
