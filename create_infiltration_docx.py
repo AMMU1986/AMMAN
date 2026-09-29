@@ -225,10 +225,204 @@ def build_table(tdef):
     return ''.join(out)
 
 
+# =========================================================================
+# Minimal LaTeX -> OMML (Word equation) converter
+# Handles the constructs used in this manuscript:
+#   \frac, \tfrac, subscripts _, superscripts ^, \sqrt, \int, \sum,
+#   \left \right delimiters, Greek letters, \text{}, \overline, spacing.
+# =========================================================================
+M_NS = 'http://schemas.openxmlformats.org/officeDocument/2006/math'
+
+GREEK = {
+    'alpha': '\u03b1', 'beta': '\u03b2', 'gamma': '\u03b3', 'delta': '\u03b4',
+    'Delta': '\u0394', 'theta': '\u03b8', 'Theta': '\u0398', 'lambda': '\u03bb',
+    'mu': '\u03bc', 'nu': '\u03bd', 'pi': '\u03c0', 'rho': '\u03c1',
+    'sigma': '\u03c3', 'tau': '\u03c4', 'phi': '\u03c6', 'Phi': '\u03a6',
+    'psi': '\u03c8', 'Psi': '\u03a8', 'omega': '\u03c9',
+}
+SYMS = {
+    'times': '\u00d7', 'cdot': '\u00b7', 'approx': '\u2248', 'partial': '\u2202',
+    'infty': '\u221e', 'le': '\u2264', 'ge': '\u2265', 'pm': '\u00b1',
+    'qquad': '\u2003\u2003', 'quad': '\u2003',
+}
+
+
+def _mtxt(s):
+    return '<m:r><m:t xml:space="preserve">%s</m:t></m:r>' % esc(s)
+
+
+def _tokenize(s):
+    """Split a LaTeX string into tokens (commands, braces, chars)."""
+    toks = []
+    i = 0
+    n = len(s)
+    while i < n:
+        c = s[i]
+        if c == '\\':
+            j = i + 1
+            if j < n and not s[j].isalpha():
+                toks.append(('cmd', s[j])); i = j + 1; continue
+            k = j
+            while k < n and s[k].isalpha():
+                k += 1
+            toks.append(('cmd', s[j:k])); i = k; continue
+        elif c in '{}^_&':
+            toks.append((c, c)); i += 1; continue
+        elif c.isspace():
+            i += 1; continue
+        else:
+            toks.append(('chr', c)); i += 1; continue
+    return toks
+
+
+def _parse_group(toks, i):
+    """Parse a { ... } group starting at token i (which is '{'); return (nodes, next_i)."""
+    assert toks[i][0] == '{'
+    i += 1
+    nodes, i = _parse_seq(toks, i, stop='}')
+    return nodes, i + 1  # skip closing brace
+
+
+def _parse_atom(toks, i):
+    """Parse a single atom -> (omml_string, next_i)."""
+    typ, val = toks[i]
+    if typ == '{':
+        nodes, ni = _parse_group(toks, i)
+        return ''.join(nodes), ni
+    if typ == 'cmd':
+        if val in ('frac', 'tfrac'):
+            num, i2 = _parse_atom(toks, i + 1)
+            den, i3 = _parse_atom(toks, i2)
+            frac = ('<m:f><m:fPr><m:type m:val="bar"/></m:fPr>'
+                    '<m:num>%s</m:num><m:den>%s</m:den></m:f>' % (num, den))
+            return frac, i3
+        if val == 'sqrt':
+            rad, i2 = _parse_atom(toks, i + 1)
+            return '<m:rad><m:radPr><m:degHide m:val="1"/></m:radPr><m:deg/><m:e>%s</m:e></m:rad>' % rad, i2
+        if val == 'overline':
+            arg, i2 = _parse_atom(toks, i + 1)
+            return '<m:bar><m:barPr><m:pos m:val="top"/></m:barPr><m:e>%s</m:e></m:bar>' % arg, i2
+        if val == 'text':
+            arg_nodes, i2 = _parse_group(toks, i + 1)
+            # flatten text group into plain string
+            return arg_nodes if isinstance(arg_nodes, str) else ''.join(arg_nodes), i2
+        if val in ('left', 'right'):
+            # delimiter marker handled in sequence; emit the following char literally
+            return '', i + 1
+        if val == 'int':
+            return '<m:nary><m:naryPr><m:chr m:val="\u222b"/><m:limLoc m:val="subSup"/></m:naryPr>%s</m:nary>', i + 1
+        if val == 'sum':
+            return '<m:nary><m:naryPr><m:chr m:val="\u2211"/><m:limLoc m:val="undOvr"/></m:naryPr>%s</m:nary>', i + 1
+        if val in GREEK:
+            return _mtxt(GREEK[val]), i + 1
+        if val in SYMS:
+            return _mtxt(SYMS[val]), i + 1
+        # unknown command: emit its name
+        return _mtxt(val), i + 1
+    if typ == 'chr':
+        return _mtxt(val), i + 1
+    # stray brace or operator
+    return _mtxt(val), i + 1
+
+
+def _parse_seq(toks, i, stop=None):
+    """Parse a sequence, honoring _ and ^; return (list_of_omml, next_i)."""
+    out = []
+    n = len(toks)
+    while i < n:
+        typ, val = toks[i]
+        if stop is not None and typ == stop:
+            return out, i
+        if typ == '^' or typ == '_':
+            base = out.pop() if out else _mtxt('')
+            script, i2 = _parse_atom(toks, i + 1)
+            # check for the other script immediately following (sub+sup)
+            if i2 < n and toks[i2][0] in ('^', '_') and toks[i2][0] != typ:
+                other, i3 = _parse_atom(toks, i2 + 1)
+                if typ == '_':
+                    sub, sup = script, other
+                else:
+                    sub, sup = other, script
+                node = ('<m:sSubSup><m:e>%s</m:e><m:sub>%s</m:sub><m:sup>%s</m:sup></m:sSubSup>'
+                        % (base, sub, sup))
+                out.append(node); i = i3; continue
+            if typ == '_':
+                node = '<m:sSub><m:e>%s</m:e><m:sub>%s</m:sub></m:sSub>' % (base, script)
+            else:
+                node = '<m:sSup><m:e>%s</m:e><m:sup>%s</m:sup></m:sSup>' % (base, script)
+            out.append(node); i = i2; continue
+        if typ == 'cmd' and val in ('int', 'sum'):
+            nary, i2 = _parse_atom(toks, i)
+            # optional _ and ^ for limits
+            sub = sup = ''
+            if i2 < n and toks[i2][0] == '_':
+                sub, i2 = _parse_atom(toks, i2 + 1)
+            if i2 < n and toks[i2][0] == '^':
+                sup, i2 = _parse_atom(toks, i2 + 1)
+            # the integrand: next atom
+            integ, i3 = _parse_atom(toks, i2) if i2 < n else ('', i2)
+            sub_xml = '<m:sub>%s</m:sub>' % sub if sub else '<m:sub/>'
+            sup_xml = '<m:sup>%s</m:sup>' % sup if sup else '<m:sup/>'
+            filled = nary.replace('</m:naryPr>', '</m:naryPr>%s%s<m:e>%s</m:e>' % (sub_xml, sup_xml, integ))
+            out.append(filled); i = i3; continue
+        atom, i2 = _parse_atom(toks, i)
+        if atom:
+            out.append(atom)
+        i = i2
+    return out, i
+
+
+def latex_to_omml(latex):
+    """Convert a (single) LaTeX expression to an OMML oMath fragment."""
+    # strip \tag and \! (negative thin space) and \, \; spacing to visible spaces
+    latex = re.sub(r'\\tag\{[^}]*\}', '', latex)
+    latex = latex.replace('\\!', '').replace('\\,', ' ').replace('\\;', ' ')
+    latex = latex.replace('\\big', '').replace('\\Big', '')
+    toks = _tokenize(latex)
+    nodes, _ = _parse_seq(toks, 0)
+    return ''.join(nodes)
+
+
+def equation_para(latex, tag):
+    """Return a paragraph containing a centered OMML equation with a right-aligned tag."""
+    omml_body = latex_to_omml(latex)
+    tag_run = _mtxt('     (%s)' % tag) if tag else ''
+    return (
+        '<w:p><w:pPr><w:jc w:val="center"/></w:pPr>'
+        '<m:oMathPara xmlns:m="%s"><m:oMath>%s%s</m:oMath></m:oMathPara>'
+        '</w:p>' % (M_NS, omml_body, tag_run)
+    )
+
+
 def parse_markdown(md):
-    """Yield ('h1'|'h2'|'h3'|'title'|'p'|'blank', text) tuples."""
-    for raw in md.split('\n'):
-        line = raw.rstrip()
+    """Yield content tuples, grouping $$...$$ blocks into ('eq', latex)."""
+    lines = md.split('\n')
+    i = 0
+    n = len(lines)
+    while i < n:
+        raw = lines[i].rstrip()
+        line = raw
+        stripped = line.strip()
+        # equation block: starts with $$ (possibly whole eq on one line)
+        if stripped.startswith('$$'):
+            # collect until closing $$
+            buf = [stripped]
+            # single-line $$ ... $$
+            if stripped.count('$$') >= 2:
+                content = stripped.strip('$').strip()
+                yield ('eq', content)
+                i += 1
+                continue
+            i += 1
+            while i < n and '$$' not in lines[i]:
+                buf.append(lines[i].strip())
+                i += 1
+            if i < n:
+                buf.append(lines[i].strip())
+                i += 1
+            joined = ' '.join(buf).replace('$$', ' ').strip()
+            yield ('eq', joined)
+            continue
         if not line:
             yield ('blank', '')
         elif line.startswith('### '):
@@ -241,6 +435,7 @@ def parse_markdown(md):
             clean = re.sub(r'\*\*([^*]+)\*\*', r'\1', line)
             clean = re.sub(r'\*([^*]+)\*', r'\1', clean)
             yield ('p', clean)
+        i += 1
 
 
 def main():
@@ -284,6 +479,10 @@ def main():
             body.append(para(text, style='Heading2', bold=True, size=24))
         elif kind == 'blank':
             pass  # spacing handled by styles
+        elif kind == 'eq':
+            m = re.search(r'\\tag\{(\d+)\}', text)
+            tag = m.group(1) if m else ''
+            body.append(equation_para(text, tag))
         else:
             body.append(para(text))
             # after adding a paragraph, check for first figure/table citations
