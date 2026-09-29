@@ -19,92 +19,95 @@ import re
 
 BASE = '/projects/sandbox/AMMAN'
 MD = os.path.join(BASE, 'Vegetated_Permeable_Channel_Infiltration.md')
-FIGDIR = os.path.join(BASE, 'infiltration_figures')
+FIGDIR = os.path.join(BASE, 'infiltration_figures_jpg')  # embed JPEG figures
 OUT = os.path.join(BASE, 'Vegetated_Permeable_Channel_Infiltration.docx')
 
 EMU_PER_PX = 9525  # 1 px @ 96 dpi
 MAX_W_PX = 600     # target on-page width in px (~6.25 in)
 
 FIGURES = {
-    1: ('Figure_1_Conceptual_Framework.png',
-        'Figure 1. Coupled conceptual framework and recirculating flume with cell-resolved infiltration collection.'),
-    2: ('Figure_2_Vegetation_Configurations.png',
-        'Figure 2. Tested vegetation configurations at fixed stem geometry; frontal-area density increases from bare to high.'),
-    3: ('Figure_3_Infiltration_Rate_Density.png',
+    1: ('Figure_1_Conceptual_Framework.jpg',
+        'Figure 1. Coupled conceptual framework and recirculating flume with cell-resolved infiltration collection, configured for a deep-water-table alluvial bed.'),
+    2: ('Figure_2_Vegetation_Configurations.jpg',
+        'Figure 2. Tested vegetation configurations at fixed stem geometry; frontal-area density increases from bare to high (rigid cylinders and flexible bundles).'),
+    3: ('Figure_3_Infiltration_Rate_Density.jpg',
         'Figure 3. Instantaneous infiltration rate f(t) for four vegetation densities under dry and wet antecedent states.'),
-    4: ('Figure_4_Cumulative_Soil_Discharge.png',
-        'Figure 4. Cumulative infiltration F(t) for three bed materials across four discharges.'),
-    5: ('Figure_5_Spatial_Distribution.png',
-        'Figure 5. Along-channel infiltration profile f_x(x) for three vegetation densities, showing a localized hotspot.'),
-    6: ('Figure_6_Dimensionless_Collapse.png',
-        'Figure 6. Dimensionless collapse of normalized infiltration I* = f/K_s across three bed materials.'),
-    7: ('Figure_7_Observed_vs_Predicted.png',
+    4: ('Figure_4_Cumulative_Soil_Discharge.jpg',
+        'Figure 4. Cumulative infiltration F(t) for the locally representative bed materials across four monsoon-scaled discharges.'),
+    5: ('Figure_5_Spatial_Distribution.jpg',
+        'Figure 5. Along-channel infiltration profile f_x(x) for three vegetation densities, showing a localized recharge hotspot.'),
+    6: ('Figure_6_Dimensionless_Collapse.jpg',
+        'Figure 6. Dimensionless collapse of normalized infiltration I* = f/K_s across the bed materials in the low-Froude channel range.'),
+    7: ('Figure_7_Observed_vs_Predicted.jpg',
         'Figure 7. Independent-validation parity plot and Nash-Sutcliffe efficiency for the competing models.'),
 }
 
 # ---- Table data ----------------------------------------------------------
 TABLES = {
     1: {
-        'caption': 'Table 1. Physical properties of the three bed materials and geometric characteristics of the vegetation elements.',
-        'headers': ['Property', 'Coarse sand', 'Medium sand', 'Sand-gravel'],
+        'caption': 'Table 1. Physical properties of the locally representative (Indo-Gangetic alluvium) bed materials and geometric characteristics of the vegetation elements. A discontinuous silty/clayey lens variant represents the lenticular heterogeneity of the Ludhiana vadose zone.',
+        'headers': ['Property', 'Fine sand', 'Medium sand', 'Sandy loam', 'Silty-clay lens'],
         'rows': [
-            ['Saturated conductivity Ks (mm/min)', '18.5', '6.2', '24.1'],
-            ['Porosity n (-)', '0.41', '0.38', '0.36'],
-            ['Bulk density (g/cm3)', '1.56', '1.63', '1.71'],
-            ['d10 (mm)', '0.42', '0.18', '0.55'],
-            ['d50 (mm)', '0.95', '0.42', '2.35'],
-            ['d60 (mm)', '1.15', '0.52', '3.10'],
-            ['Uniformity coefficient Cu (-)', '2.74', '2.89', '5.64'],
-            ['Saturated water content th_s (-)', '0.41', '0.38', '0.36'],
-            ['Residual water content th_r (-)', '0.045', '0.061', '0.038'],
-            ['--- Vegetation (rigid cylinders) ---', '', '', ''],
-            ['Stem diameter d_v (mm)', '6.0', '6.0', '6.0'],
-            ['Stem height H_v (mm)', '120', '120', '120'],
-            ['Arrangement', 'Staggered', 'Staggered', 'Staggered'],
+            ['Saturated conductivity Ks (mm/min)', '3.8', '11.5', '1.6', '0.15'],
+            ['Porosity n (-)', '0.39', '0.40', '0.43', '0.47'],
+            ['Bulk density (g/cm3)', '1.61', '1.57', '1.49', '1.42'],
+            ['Sand fraction (%)', '88', '80', '62', '18'],
+            ['d10 (mm)', '0.09', '0.16', '0.03', '0.004'],
+            ['d50 (mm)', '0.19', '0.38', '0.11', '0.02'],
+            ['d60 (mm)', '0.23', '0.46', '0.15', '0.03'],
+            ['Uniformity coefficient Cu (-)', '2.6', '2.9', '5.0', '7.5'],
+            ['Saturated water content th_s (-)', '0.39', '0.40', '0.43', '0.47'],
+            ['Residual water content th_r (-)', '0.052', '0.045', '0.078', '0.11'],
+            ['--- Vegetation elements ---', '', '', '', ''],
+            ['Type', 'Rigid cyl.', 'Rigid cyl.', 'Flexible', 'Flexible'],
+            ['Stem diameter d_v (mm)', '6.0', '6.0', '4.0', '4.0'],
+            ['Stem height H_v (mm)', '120', '120', '120', '120'],
+            ['Arrangement', 'Staggered', 'Staggered', 'Staggered', 'Staggered'],
         ],
     },
     2: {
-        'caption': 'Table 2. Experimental parameters, factor levels, and ranges (Stage I factorial design).',
+        'caption': 'Table 2. Experimental parameters, factor levels, and monsoon-scaled ranges representative of the Buddha Nullah (dry-season shallow flow to monsoon pulse flow).',
         'headers': ['Factor', 'Symbol', 'Levels', 'Range / values'],
         'rows': [
             ['Vegetation density', 'lambda', '4', '0, 0.6, 1.3, 2.4 % (bare/low/med/high)'],
-            ['Discharge', 'Q', '4', '3.0 - 12.0 L/s'],
-            ['Bed material', 'Ks', '3', 'coarse / medium / sand-gravel'],
-            ['Antecedent saturation', 'S_i', '3', '0.2, 0.5, 0.8'],
-            ['Bed slope (primary)', 'S', '1', '0.0025 (supplementary: 0.001-0.005)'],
-            ['Flow depth', 'h', 'derived', '35 - 145 mm'],
-            ['Depth-averaged velocity', 'U', 'derived', '0.12 - 0.48 m/s'],
+            ['Vegetation type', '-', '2', 'rigid cylinders; flexible bundles'],
+            ['Discharge (monsoon-scaled)', 'Q', '4', '0.3 - 6.0 L/s (dry-season to pulse)'],
+            ['Bed material', 'Ks', '3', 'fine sand / medium sand / sandy loam (+ silt lens)'],
+            ['Antecedent saturation', 'S_i', '4', '0.12, 0.30, 0.55, 0.80 (incl. very dry)'],
+            ['Bed slope (primary)', 'S', '1', '0.0015 (supplementary: 0.0008-0.003)'],
+            ['Flow depth', 'h', 'derived', '15 - 90 mm'],
+            ['Depth-averaged velocity', 'U', 'derived', '0.04 - 0.22 m/s'],
+            ['Froude number', 'Fr', 'derived', '0.06 - 0.32 (subcritical)'],
             ['Stem diameter (secondary expt.)', 'd_v', '3', '4, 6, 8 mm'],
-            ['Nominal Stage I conditions', '-', '-', '4x4x3x3 = 144'],
             ['Run duration', 't', '-', '60 min'],
         ],
     },
     3: {
-        'caption': 'Table 3. Dimensionless variables and their physical interpretation.',
-        'headers': ['Group', 'Definition', 'Physical interpretation'],
+        'caption': 'Table 3. Dimensionless variables, their physical interpretation, and the channel-representative ranges spanned in this study (low-Froude, low-Reynolds Buddha Nullah conditions).',
+        'headers': ['Group', 'Definition', 'Physical interpretation', 'Range'],
         'rows': [
-            ['Reynolds number Re', 'U h / nu', 'Bulk flow regime / turbulence level'],
-            ['Froude number Fr', 'U / sqrt(g h)', 'Sub- vs super-critical; depth response to drag'],
-            ['Permeability Reynolds Re_k', 'U k / (nu h)', 'Bed permeability relative to the flow'],
-            ['Vegetation density lambda', 'N d_v H_v / A_b', 'Canopy frontal-area forcing'],
-            ['Relative submergence', 'H_v / h', 'Emergent vs submerged canopy condition'],
-            ['Initial saturation ratio S_i', '(th_i - th_r)/(th_s - th_r)', 'Antecedent moisture state / initial gradient'],
-            ['Normalized infiltration I*', 'f / K_s', 'Infiltration scaled by bed conductivity (response)'],
+            ['Reynolds number Re', 'U h / nu', 'Bulk flow regime / turbulence level', '600 - 20000'],
+            ['Froude number Fr', 'U / sqrt(g h)', 'Sub- vs super-critical; depth response to drag', '0.06 - 0.32'],
+            ['Permeability Reynolds Re_k', 'U k / (nu h)', 'Bed permeability relative to the flow', '0.02 - 1.8'],
+            ['Vegetation density lambda', 'N d_v H_v / A_b', 'Canopy frontal-area forcing', '0 - 0.024'],
+            ['Relative submergence', 'H_v / h', 'Emergent vs submerged canopy condition', '1.3 - 8.0'],
+            ['Initial saturation ratio S_i', '(th_i - th_r)/(th_s - th_r)', 'Antecedent moisture / initial gradient', '0.12 - 0.80'],
+            ['Normalized infiltration I*', 'f / K_s', 'Infiltration scaled by bed conductivity (response)', '0.05 - 0.36'],
         ],
     },
     4: {
-        'caption': 'Table 4. Model performance on the reserved independent validation conditions (best value per column in each metric).',
+        'caption': 'Table 4. Model performance on the reserved independent validation conditions (40 Buddha Nullah-scaled runs withheld from calibration; best value per column in each metric).',
         'headers': ['Model', 'R2', 'RMSE', 'MAE', 'NSE', 'MAPE (%)', 'd'],
         'rows': [
-            ['Green-Ampt benchmark', '0.61', '0.041', '0.033', '0.48', '19.4', '0.79'],
-            ['Horton empirical', '0.66', '0.038', '0.030', '0.55', '17.1', '0.83'],
-            ['Multiple nonlinear regression', '0.80', '0.026', '0.020', '0.74', '11.8', '0.91'],
-            ['Random forest', '0.85', '0.023', '0.018', '0.81', '9.6', '0.94'],
-            ['Physical power law', '0.90', '0.019', '0.015', '0.88', '7.9', '0.96'],
-            ['Hybrid (physical + ML residual)', '0.97', '0.011', '0.008', '0.96', '4.7', '0.99'],
+            ['Green-Ampt benchmark', '0.60', '0.043', '0.034', '0.47', '20.1', '0.78'],
+            ['Horton empirical', '0.65', '0.039', '0.031', '0.54', '17.6', '0.82'],
+            ['Multiple nonlinear regression', '0.79', '0.027', '0.021', '0.73', '12.2', '0.90'],
+            ['Random forest', '0.84', '0.024', '0.019', '0.80', '9.9', '0.93'],
+            ['Physical power law', '0.90', '0.019', '0.015', '0.88', '8.1', '0.96'],
+            ['Hybrid (physical + ML residual)', '0.97', '0.011', '0.008', '0.96', '4.8', '0.99'],
             ['--- Reserved validation set ---', '', '', '', '', '', ''],
-            ['No. of reserved conditions', '32', '(~22% of Stage I)', '', '', '', ''],
-            ['Coverage', 'independent lambda x Q x Ks x S_i combinations withheld from calibration', '', '', '', '', ''],
+            ['No. of reserved conditions', '40', '(~19% of 216 runs)', '', '', '', ''],
+            ['Coverage', 'independent lambda x Q x Ks x S_i combinations (rigid + flexible) withheld from calibration', '', '', '', '', ''],
         ],
     },
 }
@@ -116,12 +119,32 @@ def esc(t):
 
 
 def png_size(path):
+    """Return (width, height) for a PNG or JPEG file."""
     with open(path, 'rb') as f:
-        head = f.read(26)
-    if head[:8] != b'\x89PNG\r\n\x1a\n':
-        raise ValueError('not a png: ' + path)
-    w, h = struct.unpack('>II', head[16:24])
-    return w, h
+        data = f.read()
+    if data[:8] == b'\x89PNG\r\n\x1a\n':
+        w, h = struct.unpack('>II', data[16:24])
+        return w, h
+    if data[:2] == b'\xff\xd8':  # JPEG
+        i = 2
+        n = len(data)
+        while i < n:
+            if data[i] != 0xff:
+                i += 1
+                continue
+            marker = data[i+1]
+            # SOF markers carry dimensions
+            if marker in (0xc0, 0xc1, 0xc2, 0xc3, 0xc5, 0xc6, 0xc7,
+                          0xc9, 0xca, 0xcb, 0xcd, 0xce, 0xcf):
+                h, w = struct.unpack('>HH', data[i+5:i+9])
+                return w, h
+            if marker in (0xd8, 0xd9) or 0xd0 <= marker <= 0xd7:
+                i += 2
+                continue
+            (seglen,) = struct.unpack('>H', data[i+2:i+4])
+            i += 2 + seglen
+        raise ValueError('no SOF marker in JPEG: ' + path)
+    raise ValueError('unknown image type: ' + path)
 
 
 def para(text, style=None, bold=False, italic=False, size=None, align=None):
@@ -525,6 +548,8 @@ def main():
         '<Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>'
         '<Default Extension="xml" ContentType="application/xml"/>'
         '<Default Extension="png" ContentType="image/png"/>'
+        '<Default Extension="jpg" ContentType="image/jpeg"/>'
+        '<Default Extension="jpeg" ContentType="image/jpeg"/>'
         '<Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>'
         '<Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>'
         '</Types>'
