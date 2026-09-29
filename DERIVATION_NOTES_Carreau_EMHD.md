@@ -205,3 +205,42 @@ as a 2x2 linear system at each eta (not sequentially):
    meshes (N=100,200,400).
  - Equation numbering made continuous/auto (docx_omml Document auto-numbering); no
    duplicated numbers. Serial order 1..65 then A1..A15.
+
+
+## 13. Round-3 reviewer refinements (applied)
+
+ - Property-ratio notation changed A1..A5 -> alpha_mu, alpha_rho, alpha_sigma, alpha_kappa,
+   alpha_c everywhere (resolves the collision with the Rivlin-Ericksen tensor A_1). The
+   tensor A_1 and stress sigma / identity I are set in bold; electrical conductivity is
+   sigma_e (sigma_e,hnf, sigma_e,f).
+ - Engineering quantities: added explicit tau_w (Carreau), q_w (total conductive+radiative)
+   and q_m definitions at eta=1; stated the upper-wall reporting convention and that
+   f''(0) is used if the stretching lower-plate friction is wanted; Re_x = xU_w/nu_f.
+ - Numbering fully continuous via auto-numbering: 1..66 then A1..A15 (no duplicates).
+
+## 14. Reference verification (round-3 request)
+
+Verified via literature search (bibliographic facts, not verbatim text):
+ - [1] Choi & Eastman, ASME IMECE, San Francisco, Nov 12-17 1995; ASME FED 231/MD 66,
+   pp. 99-105 (ANL/MSD/CP-84938). CONFIRMED.
+ - [8] Tlili, Nabwey, Ashwinkumar, Sandeep, "3-D MHD AA7072-AA7075/methanol hybrid
+   nanofluid flow above an uneven thickness surface with slip effect," Scientific Reports
+   10, art. 4402 (2020), DOI 10.1038/s41598-020-61215-8. CONFIRMED (use article number,
+   not "pp. 1-13").
+ - [12] P. J. Carreau, "Rheological equations from molecular network theories," Trans.
+   Soc. Rheol. 16, 99-127 (1972); ADS 1972JRheo..16...99C. CONFIRMED.
+ - [15] Mkhatshwa & Khumalo, "Irreversibility ... EMHD Darcy-Forchheimer slip flow of
+   Carreau hybrid nanofluid ... porous medium," Heat Transfer 52 (2023) 395-429. CONFIRMED
+   (authors Musawenkhosi Mkhatshwa, Melusi Khumalo, Univ. of South Africa).
+ - [23] Bhaskar & Sharma, "Unsteady MHD squeezing viscous Casson fluid flow in upright
+   channel with cross-diffusion and thermal radiactive effects," Indian J. Phys. 95(7)
+   (2021) 1453-1467, DOI 10.1007/s12648-020-01805-4. CONFIRMED (title's "radiactive" is the
+   original spelling; first author Khushbu Bhaskar).
+ - [34] A. Bejan, "A study of entropy generation in fundamental convective heat transfer,"
+   ASME J. Heat Transfer 101 (1979) 718-725. CONFIRMED (classic).
+COULD NOT be independently confirmed to the exact volume/page in this environment and are
+flagged for the authors to re-check against the publisher record:
+ - [20] Sobamowo & Akinshilo, squeezing flow of nanofluid between parallel plates under
+   magnetic field, Alexandria Eng. J. 57 (2018) 1413-1423.
+ - [42] Yadav & Kumar, entropy generation of unsteady squeezing MHD nanofluid flow between
+   two parallel plates, Int. Commun. Heat Mass Transfer 128 (2021) 105632.

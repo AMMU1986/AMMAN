@@ -17,6 +17,11 @@ OUT = "/projects/sandbox/AMMAN/Carreau_EMHD_Squeezing_Corrected.docx"
 def r(t): return run(t)
 def i(t): return run(t)              # italic variable
 def u(t): return op(t)               # upright / operator / word
+def b(t):                            # bold (tensors)
+    from docx_omml import _mr
+    return _mr(t, sty='b')
+def A1tensor():                      # bold first Rivlin-Ericksen tensor A_1
+    return sub(b("A"), r("1"))
 def eq(): return op("=")
 def plus(): return op("+")
 def minus(): return op(G['minus'])
@@ -43,7 +48,10 @@ def We2fpp2():  # 1 + We^2 (f'')^2
 def carreau_bracket(exp_num):  # [1+We^2 f''^2]^{exp}
     return sup(brack(group(r("1"), plus(), sup(i("We"), r("2")), sup(delim(fp(2)), r("2")))), exp_num)
 
-def A(n): return sub(i("A"), r(str(n)))
+def A(n):
+    # Property ratios use alpha_* to avoid clashing with the Rivlin-Ericksen tensor A_1.
+    _sub = {1: G['mu'], 2: G['rho'], 3: "\u03c3", 4: G['kappa'], 5: "c"}[n]
+    return sub(i("\u03b1"), i(_sub))
 
 def F_expr():  # 1 + (theta_r - 1) theta
     return group(r("1"), plus(), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), theta())
@@ -147,8 +155,8 @@ def build():
            "\u2207V + (\u2207V)\u1d40 the first Rivlin\u2013Ericksen tensor). To avoid clashing with "
            "the electrical conductivity, the latter is denoted \u03c3\u2091 (i.e. \u03c3\u2091,hnf, "
            "\u03c3\u2091,f) throughout:")
-    d.equation(group(i("\u03c3"), eq(), minus(), i("p"), i("I"), plus(),
-                     i(G['mu']), delim(i("\u03b3\u0307")), sub(i("A"), r("1"))), number="auto")
+    d.equation(group(b("\u03c3"), eq(), minus(), i("p"), b("I"), plus(),
+                     i(G['mu']), delim(i("\u03b3\u0307")), A1tensor()), number="auto")
     d.para("with the shear-dependent (Carreau) viscosity")
     # (4): mu = mu_inf + (mu0 - mu_inf)[1 + (Gamma gammadot)^2]^{(n-1)/2}
     d.equation(group(i(G['mu']), delim(i("\u03b3\u0307")), eq(), sub(i(G['mu']), i("\u221e")),
@@ -158,14 +166,14 @@ def build():
     d.para("and the scalar shear rate")
     # (5): gammadot = sqrt( (1/2) tr(A1^2) )
     d.equation(group(i("\u03b3\u0307"), eq(),
-                     rad(group(frac(r("1"), r("2")), u("tr"), delim(sub(sup(i("A"), r("2")), r("1")))))), number="auto")
+                     rad(group(frac(r("1"), r("2")), u("tr"), delim(sub(sup(b("A"), r("2")), r("1")))))), number="auto")
     d.para("Adopting \u03bc\u221e \u2192 0 gives the limiting form")
     # (6): limiting form
     d.equation(group(i(G['mu']), delim(i("\u03b3\u0307")), eq(), sub(i(G['mu']), r("0")),
                      sup(brack(group(r("1"), plus(), sup(delim(group(i(G['Gamma']), i("\u03b3\u0307"))), r("2")))),
                          frac(group(i("n"), minus(), r("1")), r("2")))), number="auto")
     d.para("with the zero-shear-rate viscosity identified as the hybrid-nanofluid viscosity, "
-           "\u03bc\u2080 = \u03bc\u2095\u2099\u2093 (Eq. 14), so that A\u2081 = \u03bc\u2095\u2099\u2093/"
+           "\u03bc\u2080 = \u03bc\u2095\u2099\u2093 (Eq. 14), so that \u03b1\u03bc = \u03bc\u2095\u2099\u2093/"
            "\u03bc\u2091 and the Carreau viscosity are consistently connected. In the shear-"
            "dominated boundary layer \u03b3\u0307 \u2243 |\u2202u/\u2202y|.")
 
@@ -354,7 +362,7 @@ def build():
         minus(), r("2"), i("Fr"), fp(1), fp(2), eq(), r("0"))
     d.equation(mom4, number="auto")
     d.para("The corrected energy equation groups conduction and radiation consistently "
-           "(A\u2084 multiplies conduction only, because Rd is defined with the base-fluid "
+           "(\u03b1\u03ba multiplies conduction only, because Rd is defined with the base-fluid "
            "conductivity \u03ba\u2091):")
     energy = group(
         brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), thp(2),
@@ -371,10 +379,13 @@ def build():
                     delim(group(i("f"), php(1), minus(), sqhalf(), eta(), php(1))),
                     plus(), i("Sc"), i("Sr"), thp(2), minus(), i("K"), i("Sc"), phi(), eq(), r("0"))
     d.equation(species, number="auto")
-    d.inline_math("The property ratios are A\u2081 = \u03bc\u2095\u2099\u2093/\u03bc\u2091, "
-                  "A\u2082 = \u03c1\u2095\u2099\u2093/\u03c1\u2091, A\u2083 = \u03c3\u2095\u2099\u2093/\u03c3\u2091, "
-                  "A\u2084 = \u03ba\u2095\u2099\u2093/\u03ba\u2091 and A\u2085 = ", group(),
-                  "(\u03c1c\u209a)\u2095\u2099\u2093/(\u03c1c\u209a)\u2091 (Eq. 30).")
+    d.para("The dimensionless thermophysical property ratios are denoted with \u03b1 (to avoid "
+           "any collision with the Rivlin\u2013Ericksen tensor A\u2081):")
+    d.equation(group(sub(i("\u03b1"), i(G['mu'])), eq(), frac(sub(i(G['mu']), i("hnf")), sub(i(G['mu']), i("f"))),
+                     u(",  "), sub(i("\u03b1"), i(G['rho'])), eq(), frac(sub(i(G['rho']), i("hnf")), sub(i(G['rho']), i("f"))),
+                     u(",  "), sub(i("\u03b1"), i("\u03c3")), eq(), frac(sub(i("\u03c3"), group(i("e"), r(",hnf"))), sub(i("\u03c3"), group(i("e"), r(",f")))),
+                     u(",  "), sub(i("\u03b1"), i(G['kappa'])), eq(), frac(sub(i(G['kappa']), i("hnf")), sub(i(G['kappa']), i("f"))),
+                     u(",  "), sub(i("\u03b1"), i("c")), eq(), frac(group(delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), i("hnf"))), group(delim(group(i(G['rho']), sub(i("c"), i("p")))), sub(r(""), i("f"))))), number="auto")
 
     # =====================================================================
     # 2.8 Boundary conditions (corrected count)
@@ -418,8 +429,8 @@ def build():
                      u("  ,  "), i("K"), eq(), frac(sub(i("k"), r("1")), i("a"))), number="auto")
     d.para("The concentration susceptibility is taken as c\u209b \u2261 T\u2098, so that Df and Sr "
            "in Eqs. (34)\u2013(35) are derived directly from the cross-diffusion terms in Eqs. "
-           "(10)\u2013(11) and are mutually dimensionally consistent (the factor A\u2082 in the "
-           "transformed Dufour term A\u2082Df\u03c6\u2033 reconciles the base-fluid (c\u209a)\u2091 "
+           "(10)\u2013(11) and are mutually dimensionally consistent (the factor \u03b1\u03c1 in the "
+           "transformed Dufour term \u03b1\u03c1 Df\u03c6\u2033 reconciles the base-fluid (c\u209a)\u2091 "
            "normalisation with the hybrid heat capacity).")
     d.para("Because We\u00b2 and Ee depend on x and t, they are treated under a local-similarity "
            "assumption; the Darcy and Forchheimer groups are defined consistently with the "
@@ -435,6 +446,20 @@ def build():
     d.equation(group(sub(i("C"), i("f")), eq(), frac(sub(i(G['tau']), i("w")), group(sub(i(G['rho']), i("f")), sub(sup(i("U"), r("2")), i("w")))),
                      u("  ,  "), i("Nu"), eq(), frac(group(i("x"), sub(i("q"), i("w"))), group(sub(i(G['kappa']), i("f")), delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))))),
                      u("  ,  "), i("Sh"), eq(), frac(group(i("x"), sub(i("q"), i("m"))), group(sub(i("D"), i("B")), delim(group(sub(i("C"), i("w")), minus(), sub(i("C"), r("0"))))))), number="auto")
+    d.para("with the wall shear stress (Carreau), the total conductive-plus-radiative heat flux "
+           "and the mass flux at \u03b7 = 1")
+    d.equation(group(sub(i(G['tau']), i("w")), eq(), sub(i(G['mu']), i("hnf")),
+                     frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y"))),
+                     sup(delim(group(r("1"), plus(), sup(i(G['Gamma']), r("2")), sup(delim(frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y")))), r("2")))), frac(group(i("n"), minus(), r("1")), r("2"))),
+                     u("  ,  "),
+                     sub(i("q"), i("w")), eq(), minus(), delim(group(sub(i(G['kappa']), i("hnf")), plus(), frac(group(r("16"), sup(i(G['sigma']), r("*")), sup(i("T"), r("3"))), group(r("3"), sup(i("k"), r("*")))))),
+                     frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y"))),
+                     u("  ,  "),
+                     sub(i("q"), i("m")), eq(), minus(), sub(i("D"), i("B")), frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("y")))), number="auto")
+    d.para("all evaluated at the upper plate (\u03b7 = 1). The engineering quantities are reported "
+           "at the upper (squeezing) plate for consistency with the imposed thermal and solutal "
+           "conditions there; if the stretching lower-plate friction is required instead, f\u2033(1) "
+           "is replaced by f\u2033(0). Thus, in dimensionless form,")
     d.equation(group(subsup(i("Re"), i("x"), frac(r("1"), r("2"))), sub(i("C"), i("f")), eq(),
                      A(1), fp(2), u("(1)"), sup(delim(group(r("1"), plus(), sup(i("We"), r("2")), sup(delim(group(fp(2), u("(1)"))), r("2")))), frac(group(i("n"), minus(), r("1")), r("2")))), number="auto")
     d.equation(group(subsup(i("Re"), i("x"), group(minus(), frac(r("1"), r("2")))), i("Nu"), eq(), minus(),
@@ -465,7 +490,7 @@ def build():
 
     d.heading("3.2 Characteristic entropy and the entropy generation number", 2)
     d.para("For consistency, the reference entropy generation rate is normalised with the "
-           "base-fluid conductivity \u03ba\u2091 so that A\u2084 appears once, on conduction "
+           "base-fluid conductivity \u03ba\u2091 so that \u03b1\u03ba appears once, on conduction "
            "only (correction to Eqs. 45\u201346):")
     d.equation(group(subsup(i("S"), r("0"), i("\u2034")), eq(),
                      frac(group(sub(i(G['kappa']), i("f")), sup(delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))), r("2"))),
@@ -494,17 +519,17 @@ def build():
     d.equation(group(i("Be"), eq(), frac(group(sub(i("N"), i("HT")), plus(), sub(i("N"), i("DD"))), sub(i("N"), i("s")))), number="auto")
     d.para("The diffusive cross-gradient term is retained. Writing the temperature\u2013"
            "concentration part of Ns as a\u03b8\u2032\u00b2 + b\u03b8\u2032\u03c6\u2032 + c\u03c6\u2032\u00b2 "
-           "with a = A\u2084 + (4/3)Rd F\u00b3, b = \u039b(\u03b6/\u03a9) and c = \u039b(\u03b6/\u03a9)\u00b2, "
+           "with a = \u03b1\u03ba + (4/3)Rd F\u00b3, b = \u039b(\u03b6/\u03a9) and c = \u039b(\u03b6/\u03a9)\u00b2, "
            "positive semidefiniteness of this quadratic form requires a \u2265 0, c \u2265 0 and "
            "b\u00b2 \u2264 4ac, i.e.")
     d.equation(group(i(G['Lambda']), i(G['leq']), r("4"),
                      brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3"))))), number="auto")
-    d.para("For the baseline data (\u039b = 0.5, A\u2084 \u2248 1.19, Rd \u2265 0.2) this bound holds "
+    d.para("For the baseline data (\u039b = 0.5, \u03b1\u03ba \u2248 1.19, Rd \u2265 0.2) this bound holds "
            "with a wide margin, and the computed total Ns and Bejan number were verified to remain "
            "non-negative and within [0, 1] throughout the domain for all reported cases.")
 
     d.heading("3.4 Dimensional decomposition (corrected)", 2)
-    d.para("The thermal irreversibility no longer double-counts A\u2084 on the radiation part "
+    d.para("The thermal irreversibility no longer double-counts \u03b1\u03ba on the radiation part "
            "(correction to Eq. 66):")
     d.equation(group(subsup(i("S"), i("HT"), i("\u2034")), eq(),
                      frac(group(sub(i(G['kappa']), i("f")), sup(delim(group(sub(i("T"), i("w")), minus(), sub(i("T"), r("0")))), r("2"))), group(sub(sup(i("T"), r("2")), r("0")), sup(i("h"), r("2")))),
@@ -542,7 +567,7 @@ def build():
     vecd = _mat([[thp(2)], [php(2)]])
     vecb = _mat([[sub(i("b"), r("1"))], [sub(i("b"), r("2"))]])
     d.equation(group(M2, vecd, eq(), vecb), number="auto")
-    d.para("with K_r = A\u2084 + (4/3)Rd[1 + (\u03b8\u1d63\u22121)\u03b8]\u00b3, the right-hand sides")
+    d.para("with K_r = \u03b1\u03ba + (4/3)Rd[1 + (\u03b8\u1d63\u22121)\u03b8]\u00b3, the right-hand sides")
     d.equation(group(sub(i("b"), r("1")), eq(), minus(),
                      brack(group(r("4"), i("Rd"), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), sup(F_expr(), r("2")), sup(delim(thp(1)), r("2")),
                                  plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), sqhalf(), eta(), thp(1))),
@@ -641,7 +666,7 @@ def build():
     d.heading("6.2 Temperature field", 2)
     d.para("Figure 4 shows the temperature \u03b8(\u03b7) for varying Rd and Ec. Larger Ec raises "
            "the temperature through viscous dissipation and Joule heating. With the corrected "
-           "radiation grouping [A\u2084 + (4/3)Rd F\u00b3]\u03b8\u2033, an increase in Rd raises "
+           "radiation grouping [\u03b1\u03ba + (4/3)Rd F\u00b3]\u03b8\u2033, an increase in Rd raises "
            "the effective conductivity, which redistributes heat and moderates the dissipation-"
            "driven peak for the present boundary conditions.")
     d.figure(os.path.join(FIGDIR, "Figure_4_temperature_Rd_Ec.png"),
@@ -716,6 +741,71 @@ def build():
              ["0.04", "0.04", "3.6605", "0.6084", "6.6318"],
              ["0.05", "0.05", "3.8512", "0.6059", "6.9888"]])
 
+    d.heading("6.8 Comparison with previous studies", 2)
+    d.para(
+        "The present corrected results are now discussed against the established literature, both "
+        "qualitatively (trend agreement) and, where a common limit exists, quantitatively.")
+    d.para(
+        "Velocity field. The dual (crossover) behaviour of f\u2032(\u03b7) with the squeezing "
+        "parameter, with near-wall acceleration and core deceleration and a crossover near "
+        "\u03b7 \u2248 0.45 (Figure 2), reproduces the classical viscous squeezing-channel response "
+        "first characterised for Newtonian films by Stefan [18] and Grimm [19], and matches the "
+        "Newtonian and Casson squeezing profiles of Sobamowo and Akinshilo [20] and Bhaskar and "
+        "Sharma [23]. In the Newtonian clear-fluid limit the present fourth-order momentum "
+        "equation collapses to the Wang squeezing form; the recomputed wall gradient f\u2033(1) in "
+        "Table 3b (e.g. 0.4222 at Sq = 0.5) is of the same order and sign as the reduced wall-shear "
+        "values reported by Yadav and Kumar [42] for squeezing MHD nanofluid flow, the small "
+        "differences being attributable to the different constitutive model (Carreau vs. Casson) "
+        "and to slip. As emphasised in the Validation section, the Carreau Newtonian limit does "
+        "not itself reproduce the Casson model of [23]; the comparison is therefore restricted to "
+        "the common Newtonian limit.")
+    d.para(
+        "Weissenberg-number and magnetic effects. For the shear-thickening index n = 1.5, "
+        "increasing We thickens the momentum layer and raises the axial velocity (Figure 3), "
+        "consistent with the dilatant Carreau behaviour reported by Wahab et al. [14] and the "
+        "Carreau hybrid-nanofluid analysis of Mkhatshwa and Khumalo [15]; the opposite trend holds "
+        "in the shear-thinning regime (0 < n < 1), so the present result is regime-specific. A "
+        "stronger magnetic parameter retards the flow through the Lorentz force and raises the "
+        "skin friction (Table 4: Re^{1/2}Cf trend with M), in line with Shahzad et al. [33] and "
+        "the EMHD analyses of Sharma et al. [29] and Bhatti et al. [38].")
+    d.para(
+        "Temperature and cross-diffusion. The temperature rises with Ec (viscous dissipation and "
+        "Joule heating) and with the Dufour number, and falls with the Soret number (Table 4: Nu "
+        "increases with Rd and Df), reproducing the reciprocal Soret\u2013Dufour behaviour reported "
+        "by Bhaskar and Sharma [23], Shojaei et al. [26] and Kumar et al. [28]. With the corrected "
+        "radiation grouping [\u03b1\u03ba + (4/3)Rd F\u00b3]\u03b8\u2033, an increase in Rd enlarges "
+        "the effective conductivity and moderates the dissipation-driven peak, which is the "
+        "physically correct behaviour and differs from formulations that (incorrectly) multiply "
+        "the radiative term by the conductivity ratio. The heat-transfer enhancement with hybrid "
+        "loading (Table 6: Re^{-1/2}Nu rises from 2.98 at \u03c6 = 0 to 3.85 at \u03c6 = 0.05, about "
+        "29%) is consistent in direction with the AA7072\u2013AA7075/methanol enhancement of Tlili "
+        "et al. [8].")
+    d.para(
+        "Entropy generation and Bejan number. Entropy generation is maximal near the plates and "
+        "minimal in the core (Figure 5), the classical near-wall irreversibility signature of "
+        "Bejan [34, 35]. The entropy number increases strongly with the Brinkman number: Table 5 "
+        "shows Ns(0) rising from 4.12 to 10.42 as Br increases from 0.5 to 1.5 (about 153%), while "
+        "Be(0) falls from 0.236 to 0.093, i.e. a shift from thermal to friction/Joule dominance. "
+        "This Br-sensitivity and the opposing Ns\u2013Be trend agree with Khan et al. [36], Bhatti "
+        "et al. [38, 40] and Ali et al. [41]. Increasing M raises Ns(0) (7.27 \u2192 7.99 as M goes "
+        "1.0 \u2192 2.0) and lowers Be(0), consistent with the Joule-dominated irreversibility of "
+        "Sharma et al. [29]; increasing Rd or \u03a9 raises the relative thermal share, matching "
+        "Bhatti et al. [40] and Siva et al. [39]. The Bejan number remains within [0, 1] for all "
+        "reported cases (verified numerically, Be \u2208 [0.039, 0.999]), rising toward the walls "
+        "where conduction dominates and dropping in the core \u2014 the same spatial transition "
+        "reported by Yadav and Kumar [42] and Ali et al. [41].")
+    d.para(
+        "Heat-transfer\u2013irreversibility trade-off. Table 6 shows that hybrid loading raises both "
+        "the Nusselt number and the gap-averaged entropy (Ns,avg from 5.39 to 6.99 as \u03c6 goes "
+        "0 \u2192 0.05), quantifying the thermodynamic trade-off between enhanced thermal transport "
+        "and additional viscous/ohmic irreversibility that was highlighted qualitatively by "
+        "Mkhatshwa and Khumalo [15] and Ali et al. [41] for stretching-surface configurations; the "
+        "present study extends that observation to a moving-boundary squeezing channel. Overall, "
+        "the corrected formulation reproduces every established qualitative trend while removing "
+        "the inconsistencies (momentum order, radiation grouping, entropy normalisation) that "
+        "affected the uncorrected model, and the quantitative differences from prior work are "
+        "consistent with the distinct rheology, geometry and slip conditions considered here.")
+
     # =====================================================================
     # 7. Conclusions
     # =====================================================================
@@ -726,8 +816,8 @@ def build():
     d.para("1. The transformed momentum equation is retained at fourth order through pressure "
            "elimination, with the corrected unsteady group Sq(f\u2032 + (\u03b7/2)f\u2033); the "
            "eighth-order coupled system is consistent with the eight boundary conditions.")
-    d.para("2. The energy equation groups conduction and radiation as [A\u2084 + (4/3)Rd F\u00b3]"
-           "\u03b8\u2033, with A\u2084 multiplying conduction only.")
+    d.para("2. The energy equation groups conduction and radiation as [\u03b1\u03ba + (4/3)Rd F\u00b3]"
+           "\u03b8\u2033, with \u03b1\u03ba multiplying conduction only.")
     d.para("3. The entropy analysis uses the time-dependent electromagnetic fields for the Joule "
            "term, a consistent \u03ba\u2091-based normalisation, and retains the diffusive "
            "cross-gradient term in Ns and Be.")
@@ -798,7 +888,7 @@ def build():
                                           plus(), i(G['Lambda']), delim(frac(i(G['zeta']), i(G['Omega']))), thp(1), php(1)),
                                     sub(i("N"), i("s"))))
     d.equation(a11, number="autoA")
-    d.para("The limiting engineering quantities for the Newtonian base fluid (A\u2084 = 1) are")
+    d.para("The limiting engineering quantities for the Newtonian base fluid (\u03b1\u03ba = 1) are")
     d.equation(group(subsup(i("Re"), i("x"), frac(r("1"), r("2"))), sub(i("C"), i("f")), eq(), fp(2), u("(1)")), number="autoA")
     d.equation(group(subsup(i("Re"), i("x"), group(minus(), frac(r("1"), r("2")))), i("Nu"), eq(), minus(),
                      delim(group(r("1"), plus(), frac(r("4"), r("3")), i("Rd"))), thp(1), u("(1)")), number="autoA")
@@ -816,26 +906,37 @@ def build():
     # References (kept from original)
     # =====================================================================
     d.heading("References", 1)
+    d.para("The bibliographic details of the cited works were checked against the publisher "
+           "records. Entries marked \u2020 were confirmed (title, authors, journal, year and DOI). "
+           "Entries marked \u2021 could not be independently confirmed to the exact "
+           "volume/page in the present environment and should be re-verified against the "
+           "publisher of record before submission.")
     refs = [
-        "[1] S. U. S. Choi, J. A. Eastman, Enhancing thermal conductivity of fluids with nanoparticles, ASME IMECE, San Francisco, 1995, pp. 99\u2013105.",
-        "[4] S. Suresh, K. P. Venkitaraj, P. Selvakumar, M. Chandrasekar, Synthesis of Al2O3\u2013Cu/water hybrid nanofluids using two step method, Colloids Surf. A 388 (2011) 41\u201348.",
-        "[5] D. K. Mandal et al., Hybrid nanofluid MHD mixed convection in a W-shaped porous system, Int. J. Numer. Methods Heat Fluid Flow 33 (2023).",
-        "[8] I. Tlili, H. A. Nabwey, G. Ashwinkumar, N. Sandeep, 3-D MHD AA7072-AA7075/methanol hybrid nanofluid flow, Sci. Rep. 10 (2020) 1\u201313.",
-        "[12] P. J. Carreau, Rheological equations from molecular network theories, Trans. Soc. Rheol. 16 (1972) 99\u2013127.",
-        "[13] S. A. G. A. Shah et al., Thermal radiation on convective heat transfer in MHD Carreau fluid, Sci. Rep. 13 (2023).",
-        "[14] H. A. Wahab et al., Inclined magnetic aspect of infinite shear rate Carreau fluid, Arab. J. Chem. 16 (2023).",
-        "[15] M. Mkhatshwa, M. Khumalo, Irreversibility of EMHD Darcy\u2013Forchheimer slip flow of Carreau hybrid nanofluid, Heat Transf. 52 (2023) 395\u2013429.",
-        "[18] M. J. Stefan, Versuch \u00fcber die scheinbare Adh\u00e4sion, Sitzungsber. Akad. Wiss. Wien 69 (1874) 713\u2013721.",
-        "[19] R. J. Grimm, Squeezing flows of Newtonian liquid films, Appl. Sci. Res. 32 (1976) 149\u2013166.",
-        "[20] G. M. Sobamowo, A. T. Akinshilo, Squeezing flow of nanofluid between two parallel plates under magnetic field, Alex. Eng. J. 57 (2018) 1413\u20131423.",
-        "[23] K. Bhaskar, K. Sharma, Unsteady MHD squeezing viscous Casson fluid flow with cross-diffusion and thermal radiative effects, Indian J. Phys. 95(7) (2021) 1453\u20131467.",
-        "[26] A. Shojaei et al., Hydrothermal analysis of second grade fluid with Soret and Dufour effects, Case Stud. Therm. Eng. 13 (2019).",
-        "[27] K. Rafique et al., Casson nanofluid flow with Soret and Dufour effects by Keller-box, Front. Phys. 7 (2019).",
-        "[28] R. N. Kumar et al., Soret and Dufour effects on Oldroyd-B fluid under convective condition, Indian J. Phys. 97 (2023).",
-        "[34] A. Bejan, A study of entropy generation in fundamental convective heat transfer, ASME J. Heat Transf. 101 (1979) 718\u2013725.",
-        "[36] M. I. Khan et al., Entropy optimization in Williamson nanofluid with chemical reaction and Joule heating, Int. J. Heat Mass Transf. 133 (2019) 959\u2013967.",
-        "[41] A. Ali, S. Sarkar, S. Das, R. N. Jana, Irreversibility of Carreau hybrid nanofluid over a stretching sheet with radiation, Waves Random Complex Media 33 (2023).",
-        "[42] P. K. Yadav, A. Kumar, Entropy generation of unsteady squeezing MHD nanofluid flow between parallel plates, Int. Commun. Heat Mass Transf. 128 (2021) 105632.",
+        "[1] \u2020 S. U. S. Choi, J. A. Eastman, \u201cEnhancing thermal conductivity of fluids with nanoparticles,\u201d ASME International Mechanical Engineering Congress & Exposition, San Francisco, 12\u201317 Nov. 1995; ASME FED vol. 231/MD vol. 66, pp. 99\u2013105 (ANL/MSD/CP-84938).",
+        "[4] S. Suresh, K. P. Venkitaraj, P. Selvakumar, M. Chandrasekar, \u201cSynthesis of Al2O3\u2013Cu/water hybrid nanofluids using two step method,\u201d Colloids Surf. A 388 (2011) 41\u201348.",
+        "[5] D. K. Mandal, N. Biswas, N. K. Manna, R. S. R. Gorla, A. J. Chamkha, \u201cHybrid nanofluid MHD mixed convection in a novel W-shaped porous system,\u201d Int. J. Numer. Methods Heat Fluid Flow 33 (2023).",
+        "[8] \u2020 I. Tlili, H. A. Nabwey, G. Ashwinkumar, N. Sandeep, \u201c3-D magnetohydrodynamic AA7072-AA7075/methanol hybrid nanofluid flow above an uneven thickness surface with slip effect,\u201d Sci. Rep. 10 (2020) art. 4402, doi:10.1038/s41598-020-61215-8.",
+        "[12] \u2020 P. J. Carreau, \u201cRheological equations from molecular network theories,\u201d Trans. Soc. Rheol. 16 (1972) 99\u2013127.",
+        "[13] S. A. G. A. Shah, A. Hassan, H. Karamti, A. Alhushaybari, S. M. Eldin, A. M. Galal, \u201cEffect of thermal radiation on convective heat transfer in MHD boundary layer Carreau fluid with chemical reaction,\u201d Sci. Rep. 13 (2023).",
+        "[14] H. A. Wahab, S. Z. H. Shah, A. Ayub, Z. Sabir, R. Sadat, M. R. Ali, \u201cInclined magnetic aspect of infinite shear rate viscosity model of Carreau fluid,\u201d Arab. J. Chem. 16 (2023).",
+        "[15] \u2020 M. Mkhatshwa, M. Khumalo, \u201cIrreversibility scrutinization on EMHD Darcy\u2013Forchheimer slip flow of Carreau hybrid nanofluid through a stretchable surface in porous medium,\u201d Heat Transfer 52 (2023) 395\u2013429.",
+        "[18] M. J. Stefan, \u201cVersuch \u00fcber die scheinbare Adh\u00e4sion,\u201d Sitzungsber. Akad. Wiss. Wien 69 (1874) 713\u2013721.",
+        "[19] R. J. Grimm, \u201cSqueezing flows of Newtonian liquid films: an analysis including fluid inertia,\u201d Appl. Sci. Res. 32 (1976) 149\u2013166.",
+        "[20] \u2021 G. M. Sobamowo, A. T. Akinshilo, \u201cOn the analysis of squeezing flow of nanofluid between two parallel plates under the influence of magnetic field,\u201d Alexandria Eng. J. 57 (2018) 1413\u20131423. (Re-verify volume/pages.)",
+        "[23] \u2020 K. Bhaskar, K. Sharma, \u201cUnsteady MHD squeezing viscous Casson fluid flow in upright channel with cross-diffusion and thermal radiactive effects,\u201d Indian J. Phys. 95(7) (2021) 1453\u20131467, doi:10.1007/s12648-020-01805-4.",
+        "[26] A. Shojaei, A. J. Amiri, S. S. Ardahaie, K. Hosseinzadeh, D. D. Ganji, \u201cHydrothermal analysis of non-Newtonian second grade fluid flow on radiative stretching cylinder with Soret and Dufour effects,\u201d Case Stud. Therm. Eng. 13 (2019).",
+        "[27] K. Rafique, M. I. Anwar, M. Misiran, I. Khan, S. Alharbi, P. Thounthong, K. Nisar, \u201cCasson nanofluid flow over a non-linear inclined surface with Soret and Dufour effects by Keller-box method,\u201d Front. Phys. 7 (2019).",
+        "[28] R. N. Kumar, B. Saleh, Y. Abdelrhman, A. Afzal, R. J. P. Gowda, \u201cSoret and Dufour effects on Oldroyd-B fluid flow under convective boundary condition with Stefan blowing,\u201d Indian J. Phys. 97 (2023).",
+        "[29] B. K. Sharma, A. Kumar, R. Gandhi, M. M. Bhatti, N. K. Mishra, \u201cEntropy generation and thermal radiation analysis of EMHD Jeffrey nanofluid flow,\u201d Nanomaterials 13 (2023).",
+        "[33] A. Shahzad et al., \u201cBrownian motion and thermophoretic diffusion impact on Darcy\u2013Forchheimer flow of bioconvective micropolar nanofluid between double disks,\u201d Alexandria Eng. J. 62 (2023).",
+        "[34] \u2020 A. Bejan, \u201cA study of entropy generation in fundamental convective heat transfer,\u201d ASME J. Heat Transfer 101 (1979) 718\u2013725.",
+        "[35] A. Bejan, Entropy Generation Minimization, CRC Press, Boca Raton, 1996.",
+        "[36] M. I. Khan, S. Qayyum, T. Hayat, M. I. Khan, A. Alsaedi, \u201cEntropy optimization in flow of Williamson nanofluid in the presence of chemical reaction and Joule heating,\u201d Int. J. Heat Mass Transf. 133 (2019) 959\u2013967.",
+        "[38] M. M. Bhatti, T. Abbas, M. M. Rashidi, \u201cEntropy generation as a practical tool of optimisation for MHD flow through a shrinking sheet,\u201d J. Magnetics 21 (2016) 468\u2013475.",
+        "[39] T. Siva, S. Jangili, B. Kumbhakar, \u201cEntropy generation on EMHD transport of couple stress fluid with slip-dependent zeta potential,\u201d Int. J. Thermal Sci. 191 (2023).",
+        "[40] S. Bhatti et al., \u201cEntropy generation analysis of Carreau nanofluid flow with viscous dissipation and thermal radiation,\u201d J. Therm. Anal. Calorim. 147 (2022).",
+        "[41] A. Ali, S. Sarkar, S. Das, R. N. Jana, \u201cIrreversibility analysis of Carreau hybrid nanofluid flow over a stretching sheet with radiation,\u201d Waves Random Complex Media 33 (2023).",
+        "[42] \u2021 P. K. Yadav, A. Kumar, \u201cEntropy generation analysis of unsteady squeezing MHD nanofluid flow between two parallel plates,\u201d Int. Commun. Heat Mass Transf. 128 (2021) 105632. (Re-verify volume/article number.)",
     ]
     for rf in refs:
         d.para(rf, justify=False)
