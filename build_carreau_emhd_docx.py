@@ -657,6 +657,22 @@ def build():
            "combined influence of We and M: for the shear-thickening index n = 1.5 a larger We "
            "thickens the momentum layer, while a stronger magnetic field retards the flow through "
            "the Lorentz force.")
+    d.para("Comparison with the literature. The crossover structure of f\u2032(\u03b7) is the "
+           "hallmark of viscous squeezing first characterised for Newtonian films by Stefan [18] "
+           "and Grimm [19], and reproduced for magnetised nanofluids by Sobamowo and Akinshilo "
+           "[20] and for Casson squeezing flow by Bhaskar and Sharma [23]; the present crossover "
+           "near \u03b7 \u2248 0.45 is consistent with the momentum redistribution reported by "
+           "Yadav and Kumar [42]. The We-thickening in the shear-thickening regime (n = 1.5) "
+           "matches the dilatant Carreau response of Wahab et al. [14] and Mkhatshwa and Khumalo "
+           "[15]; the opposite (thinning) trend documented for shear-thinning Carreau fluids "
+           "(0 < n < 1) confirms that the present result is regime-specific rather than universal. "
+           "The magnetic retardation and its partial cancellation by the aligned electric field "
+           "(through the f\u2032 \u2212 Ee grouping) are in line with the EMHD analyses of Sharma "
+           "et al. [29] and Shahzad et al. [33]. Quantitatively, the recomputed Newtonian-limit "
+           "wall gradient f\u2033(1) in Table 3b (e.g. 0.4222 at Sq = 0.5) is of the same order and "
+           "sign as the reduced wall-shear values of Yadav and Kumar [42], the residual difference "
+           "reflecting the different constitutive model (Carreau vs. Casson) and the slip "
+           "conditions.")
     d.figure(os.path.join(FIGDIR, "Figure_2_velocity_Sq.png"),
              "Figure 2. Effect of the squeezing parameter Sq on the velocity profile f\u2032(\u03b7).")
     d.figure(os.path.join(FIGDIR, "Figure_3_velocity_We_M.png"),
@@ -669,6 +685,19 @@ def build():
            "radiation grouping [\u03b1\u03ba + (4/3)Rd F\u00b3]\u03b8\u2033, an increase in Rd raises "
            "the effective conductivity, which redistributes heat and moderates the dissipation-"
            "driven peak for the present boundary conditions.")
+    d.para("Comparison with the literature. The temperature rise with Ec (viscous dissipation and "
+           "Joule heating) and with the Biot number reproduces the combined dissipative\u2013"
+           "convective heating of Qayyum et al. [17], Shah et al. [13], Sharma et al. [29] and the "
+           "convective-condition analysis of Kumar et al. [28]. Crucially, the corrected radiation "
+           "grouping [\u03b1\u03ba + (4/3)Rd F\u00b3]\u03b8\u2033 (with \u03b1\u03ba on conduction "
+           "only) makes Rd act as an effective-conductivity enhancer, so a larger Rd flattens and "
+           "moderates the dissipation-driven peak; this differs from formulations that multiply "
+           "the radiative term by the conductivity ratio and thereby over-predict the wall "
+           "temperature, and it is the physically correct behaviour for a base-fluid-referenced Rd. "
+           "The conductivity-driven homogenisation with hybrid loading agrees in direction with "
+           "the AA7072\u2013AA7075/methanol results of Tlili et al. [8]; quantitatively, "
+           "Re\u207b\u00b9ᐟ\u00b2Nu increases from 3.19 at Rd = 0.2 to 3.90 at Rd = 1.0 (Table 4), "
+           "a ~22% radiative enhancement of the wall heat-transfer rate.")
     d.figure(os.path.join(FIGDIR, "Figure_4_temperature_Rd_Ec.png"),
              "Figure 4. Effect of the radiation parameter Rd and Eckert number Ec on the "
              "temperature profile \u03b8(\u03b7).")
@@ -679,11 +708,34 @@ def build():
            "concentration. The Soret and Dufour numbers act reciprocally on the temperature and "
            "concentration, providing an internal consistency check of the cross-diffusion "
            "coupling.")
+    d.para("Comparison with the literature. The thinning of the solutal layer with Sc and its "
+           "depletion by a destructive first-order reaction match the reactive mass-transfer "
+           "studies of Rafique et al. [27] and Shah et al. [13]. The reciprocal Soret\u2013Dufour "
+           "action \u2014 Sr enhancing and Df suppressing the concentration while doing the "
+           "opposite to the temperature \u2014 reproduces the reversed cross-diffusion behaviour "
+           "emphasised by Bhaskar and Sharma [23], Shojaei et al. [26] and Kumar et al. [28]. "
+           "Quantitatively, the Sherwood number responds strongly to cross-diffusion: "
+           "Re\u207b\u00b9ᐟ\u00b2Sh falls to 0.052 at Sr = 0.5 while the corresponding Nusselt "
+           "number rises to 4.85 (Table 4), the classic opposing Soret\u2013Dufour signature. "
+           "This opposite action on Nu and Sh is the same qualitative trade-off reported for "
+           "non-Newtonian and nanofluid cross-diffusion in [26\u201328].")
 
     d.heading("6.4 Entropy generation", 2)
     d.para("Figure 5 shows the entropy generation number Ns(\u03b7). Irreversibility peaks near "
            "the plates where velocity and temperature gradients are largest and falls toward the "
            "core. Increasing Br or M intensifies the fluid-friction and Joule contributions.")
+    d.para("Comparison with the literature. The near-wall maximum and core minimum of Ns(\u03b7) "
+           "are the classical second-law signature established by Bejan [34, 35] and observed in "
+           "squeezing and channel flows by Yadav and Kumar [42] and Ali et al. [41]. The strong "
+           "Br-sensitivity is quantified in Table 5: Ns(0) rises from 4.12 to 10.42 (about 153%) "
+           "as Br increases from 0.5 to 1.5, matching the high Br-sensitivity reported by Khan et "
+           "al. [36] and Ali et al. [41]. The magnetic contribution is likewise monotone \u2014 "
+           "Ns(0) increases from 7.27 to 7.99 as M rises from 1.0 to 2.0 \u2014 consistent with "
+           "the Joule-dominated irreversibility of Bhatti et al. [38] and Sharma et al. [29], "
+           "while a larger temperature-difference ratio \u03a9 lowers the friction/Joule share "
+           "(Ns(0) drops to 3.46 at \u03a9 = 2.0), the inverse Br/\u03a9 dependence also noted by "
+           "Khan et al. [36] and Siva et al. [39]. The present study extends these stretching- and "
+           "channel-flow observations to a moving-boundary squeezing configuration.")
     d.figure(os.path.join(FIGDIR, "Figure_5_entropy_Br_M.png"),
              "Figure 5. Effect of the Brinkman number Br and magnetic parameter M on the entropy "
              "generation number Ns(\u03b7).")
@@ -693,6 +745,17 @@ def build():
            "irreversibilities dominate near the walls (Be \u2192 large), while friction and Joule "
            "irreversibilities are relatively more important in the core. Larger Rd raises Be; "
            "larger Br lowers it.")
+    d.para("Comparison with the literature. The spatial transition \u2014 conduction-dominated "
+           "near the walls, friction/Joule-dominated in the core \u2014 agrees with the Bejan-"
+           "number distributions of Yadav and Kumar [42] for squeezing nanofluid flow and Ali et "
+           "al. [41] for Carreau hybrid nanofluids. The opposing Rd (raising Be) and Br (lowering "
+           "Be) trends match Khan et al. [36] and Bhatti et al. [40]. Table 5 quantifies the "
+           "friction/thermal switch: Be(0) falls from 0.236 to 0.093 as Br rises 0.5 \u2192 1.5 "
+           "(crossing below 0.5, i.e. from thermal to friction dominance at the wall), while it "
+           "rises with Rd and \u03a9. Across all 54 parameter combinations examined the computed "
+           "Bejan number remained within the physical interval, Be \u2208 [0.039, 0.999] \u2282 "
+           "[0, 1], and the limiting behaviour Be \u2192 1 as Br \u2192 0 and Be \u2192 0 for large "
+           "Br (Appendix A) provides an additional consistency check consistent with [36, 41].")
     d.figure(os.path.join(FIGDIR, "Figure_6_bejan_Rd_Br.png"),
              "Figure 6. Effect of the radiation parameter Rd and Brinkman number Br on the Bejan "
              "number Be(\u03b7).")
@@ -701,6 +764,17 @@ def build():
     d.para("Figure 7 shows the reduced skin friction, Nusselt and Sherwood numbers versus "
            "nanoparticle volume fraction. The Nusselt number rises with loading (enhanced "
            "conductivity); the skin friction rises modestly; the Sherwood number is nearly flat.")
+    d.para("Comparison with the literature. The monotone rise of the Nusselt number with hybrid "
+           "loading \u2014 Re\u207b\u00b9ᐟ\u00b2Nu from 2.98 at \u03c6 = 0 to 3.85 at \u03c6 = 0.05, "
+           "about 29% (Table 6) \u2014 reproduces the heat-transfer enhancement reported by Tlili "
+           "et al. [8] for the same AA7072\u2013AA7075/methanol system. The additional rise of Nu "
+           "with Rd and Df is consistent with Qayyum et al. [17] and Shojaei et al. [26], and the "
+           "increase of the Sherwood number with the reaction and Soret parameters follows the "
+           "reactive-diffusive analysis of Rafique et al. [27]. The growth of skin friction with "
+           "Sq, the Forchheimer parameter and M reflects the combined squeezing, inertial-porous "
+           "and Lorentz resistances, in agreement with Mkhatshwa and Khumalo [15] and Shahzad et "
+           "al. [33]. These engineering trends, together with the entropy results, quantify the "
+           "heat-transfer\u2013irreversibility trade-off discussed further in Section 6.8.")
     d.figure(os.path.join(FIGDIR, "Figure_7_engineering_phi.png"),
              "Figure 7. Variations of the reduced skin-friction coefficient, Nusselt number and "
              "Sherwood number with the nanoparticle volume fraction \u03c6.")
@@ -888,8 +962,9 @@ def build():
                                           plus(), i(G['Lambda']), delim(frac(i(G['zeta']), i(G['Omega']))), thp(1), php(1)),
                                     sub(i("N"), i("s"))))
     d.equation(a11, number="autoA")
-    d.para("The limiting engineering quantities for the Newtonian base fluid (\u03b1\u03ba = 1) are")
-    d.equation(group(subsup(i("Re"), i("x"), frac(r("1"), r("2"))), sub(i("C"), i("f")), eq(), fp(2), u("(1)")), number="autoA")
+    d.para("The limiting engineering quantities for the Newtonian base fluid (\u03b1\u03ba = 1) are, "
+           "evaluated at the stretching lower plate for the skin friction,")
+    d.equation(group(subsup(i("Re"), i("x"), frac(r("1"), r("2"))), sub(i("C"), i("f")), eq(), fp(2), u("(0)")), number="autoA")
     d.equation(group(subsup(i("Re"), i("x"), group(minus(), frac(r("1"), r("2")))), i("Nu"), eq(), minus(),
                      delim(group(r("1"), plus(), frac(r("4"), r("3")), i("Rd"))), thp(1), u("(1)")), number="autoA")
     d.para("(the (1 + 4Rd/3) factor follows from \u03b8(1) = 0; without radiation it reduces to "
@@ -920,6 +995,7 @@ def build():
         "[13] S. A. G. A. Shah, A. Hassan, H. Karamti, A. Alhushaybari, S. M. Eldin, A. M. Galal, \u201cEffect of thermal radiation on convective heat transfer in MHD boundary layer Carreau fluid with chemical reaction,\u201d Sci. Rep. 13 (2023).",
         "[14] H. A. Wahab, S. Z. H. Shah, A. Ayub, Z. Sabir, R. Sadat, M. R. Ali, \u201cInclined magnetic aspect of infinite shear rate viscosity model of Carreau fluid,\u201d Arab. J. Chem. 16 (2023).",
         "[15] \u2020 M. Mkhatshwa, M. Khumalo, \u201cIrreversibility scrutinization on EMHD Darcy\u2013Forchheimer slip flow of Carreau hybrid nanofluid through a stretchable surface in porous medium,\u201d Heat Transfer 52 (2023) 395\u2013429.",
+        "[17] M. Qayyum, T. Abbas, S. Afzal, S. T. Saeed, A. Akg\u00fcl, M. Inc, K. H. Mahmoud, A. S. Alsubaie, \u201cHeat transfer analysis of unsteady MHD Carreau fluid flow over a stretching/shrinking sheet,\u201d Coatings 12 (2022).",
         "[18] M. J. Stefan, \u201cVersuch \u00fcber die scheinbare Adh\u00e4sion,\u201d Sitzungsber. Akad. Wiss. Wien 69 (1874) 713\u2013721.",
         "[19] R. J. Grimm, \u201cSqueezing flows of Newtonian liquid films: an analysis including fluid inertia,\u201d Appl. Sci. Res. 32 (1976) 149\u2013166.",
         "[20] \u2021 G. M. Sobamowo, A. T. Akinshilo, \u201cOn the analysis of squeezing flow of nanofluid between two parallel plates under the influence of magnetic field,\u201d Alexandria Eng. J. 57 (2018) 1413\u20131423. (Re-verify volume/pages.)",

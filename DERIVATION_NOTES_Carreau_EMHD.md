@@ -244,3 +244,26 @@ flagged for the authors to re-check against the publisher record:
    magnetic field, Alexandria Eng. J. 57 (2018) 1413-1423.
  - [42] Yadav & Kumar, entropy generation of unsteady squeezing MHD nanofluid flow between
    two parallel plates, Int. Commun. Heat Mass Transfer 128 (2021) 105632.
+
+
+## 15. Round-4 refinements (applied)
+
+ - Appendix A12: Newtonian base-fluid skin friction evaluated at the STRETCHING lower plate,
+   Re_x^{1/2} C_f = f''(0) (was f''(1)), per reviewer; note added.
+ - Notation: kept the alpha_* property-ratio notation across BOTH the main text AND
+   Appendix A for internal consistency (reverting the appendix to A_1..A_5 would reintroduce
+   the collision with the Rivlin-Ericksen tensor that round-3 resolved).
+ - Results & Discussion expanded in EVERY results subsection (6.1-6.6), each now carrying a
+   dedicated "Comparison with the literature" paragraph with quantitative figures:
+     6.1 velocity: crossover eta~0.45 vs Stefan[18]/Grimm[19]/Sobamowo[20]/Bhaskar[23]/Yadav[42];
+         We-thickening regime-specific vs Wahab[14]/Mkhatshwa[15]; f''(1)=0.4222 context vs [42].
+     6.2 temperature: Ec/Bi heating vs Qayyum[17]/Shah[13]/Sharma[29]/Kumar[28]; corrected Rd
+         grouping; Nu +22% Rd 0.2->1.0.
+     6.3 concentration: Sc/K vs Rafique[27]/Shah[13]; reciprocal Soret-Dufour vs [23,26,28];
+         Sh=0.052 & Nu=4.85 at Sr=0.5.
+     6.4 entropy: near-wall max vs Bejan[34,35]; Ns(0) +153% with Br vs Khan[36]/Ali[41];
+         M and Omega trends vs Bhatti[38]/Sharma[29]/Siva[39].
+     6.5 Bejan: near-wall->core transition vs Yadav[42]/Ali[41]; Be(0) 0.236->0.093 with Br;
+         Be in [0.039,0.999] verified; Br->0/large-Br limits vs [36,41].
+     6.6 engineering: Nu +29% with phi vs Tlili[8]; Cf growth vs Mkhatshwa[15]/Shahzad[33].
+   Section 6.8 retained as the synthesis. Added reference [17] Qayyum et al. (Coatings 12, 2022).
