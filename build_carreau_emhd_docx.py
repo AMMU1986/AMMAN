@@ -139,12 +139,20 @@ class Cites:
             self.n(k)
 
     def reflist(self):
+        # Emit a clean, strictly serial list: "[n] <reference text>".
+        # Verification flags are intentionally NOT inlined here (kept separately),
+        # so the numbering reads as a plain 1, 2, 3, ... sequence.
         out = []
         for k in self.order:
-            flag, text = REF_META[k]
-            prefix = ("[%d] " % self.num[k]) + (flag + " " if flag else "")
-            out.append(prefix + text)
+            _flag, text = REF_META[k]
+            out.append("[%d] %s" % (self.num[k], text))
         return out
+
+    def verified_keys(self):
+        return [k for k in self.order if REF_META[k][0] == "\u2020"]
+
+    def flagged_keys(self):
+        return [k for k in self.order if REF_META[k][0] == "\u2021"]
 
 
 def build():
@@ -162,40 +170,37 @@ def build():
     d.para(
         "The relentless miniaturisation of thermal-management hardware has intensified the search "
         "for coolants whose effective conductivity exceeds that of conventional liquids, a search "
-        "that began with the nanofluid concept " + C.one("choi") + " and matured into hybrid "
-        "nanofluids in which two chemically distinct nanoparticles are co-dispersed to combine "
-        "their advantages " + C.many("suresh", "mandal") + ". The present study analyses, "
-        "mathematically and numerically, the second-law behaviour of unsteady, two-dimensional, "
-        "electro-magnetohydrodynamic (EMHD) squeezing flow of a Carreau hybrid nanofluid confined "
-        "between two parallel porous plates. The working fluid is a suspension of AA7072 and "
-        "AA7075 aluminium-alloy nanoparticles in methanol, a pairing shown to enhance heat "
-        "transfer relative to the pure base fluid " + C.one("tlili") + ", while the shear-"
-        "dependent rheology is represented by the Carreau model " + C.one("carreau") + ". The "
-        "formulation incorporates a transverse time-dependent magnetic field, an aligned electric "
-        "field, Darcy\u2013Forchheimer porous drag, nonlinear thermal radiation, viscous "
-        "dissipation, Joule heating, Soret\u2013Dufour cross-diffusion " + C.one("soret") + " and "
-        "a first-order homogeneous chemical reaction, together with velocity, thermal (Biot-type) "
-        "and solutal slip boundary conditions. Suitable similarity transformations reduce the "
-        "governing partial differential equations to a coupled system of ordinary differential "
-        "equations. In this corrected formulation the momentum balance is retained at fourth order "
-        "through pressure elimination, so that the resulting eighth-order coupled system is "
-        "consistent with the eight physical boundary conditions; the radiative contribution is "
-        "grouped with conduction using the base-fluid conductivity, and the entropy normalisation "
-        "is made internally consistent. The boundary-value problem is solved with the MATLAB "
-        "collocation solver bvp4c, and grid convergence confirms the expected fourth-order "
-        "accuracy. The local volumetric entropy generation rate is cast into a dimensionless "
-        "entropy generation number and a Bejan number following the entropy-minimisation framework "
-        "of Bejan " + C.one("bejan79") + ". A detailed parametric study quantifies the influence "
-        "of the squeezing parameter, Weissenberg number, power-law index, magnetic and electric "
-        "parameters, radiation, Eckert and Brinkman numbers, Soret\u2013Dufour effects and the "
-        "diffusive-irreversibility parameter. Entropy generation is found to be maximal near the "
-        "plates and minimal in the core, the Brinkman number strongly amplifies friction and "
-        "Joule irreversibilities, and the Bejan-number distribution reveals a transition from "
-        "conduction-dominated irreversibility at the walls to friction-dominated irreversibility "
-        "in the core, extending established stretching-surface findings "
-        + C.many("mkhatshwa", "ali41") + " to a moving-boundary squeezing channel. The results "
-        "provide design guidance for squeeze-film dampers, micro-electromechanical cooling "
-        "channels and hydraulic actuators employing engineered hybrid coolants.")
+        "that began with the nanofluid concept and matured into hybrid nanofluids in which two "
+        "chemically distinct nanoparticles are co-dispersed to combine their advantages. The "
+        "present study analyses, mathematically and numerically, the second-law behaviour of "
+        "unsteady, two-dimensional, electro-magnetohydrodynamic (EMHD) squeezing flow of a Carreau "
+        "hybrid nanofluid confined between two parallel porous plates. The working fluid is a "
+        "suspension of AA7072 and AA7075 aluminium-alloy nanoparticles in methanol, a pairing that "
+        "enhances heat transfer relative to the pure base fluid, while the shear-dependent "
+        "rheology is represented by the Carreau model. The formulation incorporates a transverse "
+        "time-dependent magnetic field, an aligned electric field, Darcy\u2013Forchheimer porous "
+        "drag, nonlinear thermal radiation, viscous dissipation, Joule heating, Soret\u2013Dufour "
+        "cross-diffusion and a first-order homogeneous chemical reaction, together with velocity, "
+        "thermal (Biot-type) and solutal slip boundary conditions. Suitable similarity "
+        "transformations reduce the governing partial differential equations to a coupled system "
+        "of ordinary differential equations. In this corrected formulation the momentum balance is "
+        "retained at fourth order through pressure elimination, so that the resulting eighth-order "
+        "coupled system is consistent with the eight physical boundary conditions; the radiative "
+        "contribution is grouped with conduction using the base-fluid conductivity, and the "
+        "entropy normalisation is made internally consistent. The boundary-value problem is solved "
+        "with the MATLAB collocation solver bvp4c, and grid convergence confirms the expected "
+        "fourth-order accuracy. The local volumetric entropy generation rate is cast into a "
+        "dimensionless entropy generation number and a Bejan number. A detailed parametric study "
+        "quantifies the influence of the squeezing parameter, Weissenberg number, power-law index, "
+        "magnetic and electric parameters, radiation, Eckert and Brinkman numbers, Soret\u2013"
+        "Dufour effects and the diffusive-irreversibility parameter. Entropy generation is found "
+        "to be maximal near the plates and minimal in the core, the Brinkman number strongly "
+        "amplifies friction and Joule irreversibilities, and the Bejan-number distribution reveals "
+        "a transition from conduction-dominated irreversibility at the walls to friction-dominated "
+        "irreversibility in the core, extending established stretching-surface findings to a "
+        "moving-boundary squeezing channel. The results provide design guidance for squeeze-film "
+        "dampers, micro-electromechanical cooling channels and hydraulic actuators employing "
+        "engineered hybrid coolants.")
 
     d.para("Keywords: Carreau hybrid nanofluid; Entropy generation; Bejan number; EMHD squeezing "
            "flow; Darcy\u2013Forchheimer; Soret\u2013Dufour; bvp4c", italic=True)
@@ -1169,14 +1174,17 @@ def build():
     # References (kept from original)
     # =====================================================================
     d.heading("References", 1)
-    d.para("The bibliographic details of the cited works were checked against the publisher "
-           "records. Entries marked \u2020 were confirmed (title, authors, journal, year and DOI). "
-           "Entries marked \u2021 could not be independently confirmed to the exact "
-           "volume/page in the present environment and should be re-verified against the "
-           "publisher of record before submission.")
     C.register_all()  # assign numbers to any not-yet-cited references
     for rf in C.reflist():
         d.para(rf, justify=False)
+    # Verification status kept as a separate note so the list itself stays strictly serial.
+    _v = ", ".join("[%d]" % C.num[k] for k in C.verified_keys())
+    _f = ", ".join("[%d]" % C.num[k] for k in C.flagged_keys())
+    d.para("Note on reference verification. The bibliographic details of " + _v + " were "
+           "confirmed against the publisher records (title, authors, journal, year and DOI). "
+           "References " + _f + " could not be independently confirmed to the exact volume/page "
+           "in the present environment and should be re-verified against the publisher of record "
+           "before submission.", italic=True)
 
     d.save(OUT)
     return OUT

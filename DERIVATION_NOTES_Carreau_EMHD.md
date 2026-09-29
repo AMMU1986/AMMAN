@@ -282,3 +282,16 @@ flagged for the authors to re-check against the publisher record:
  - All 43 references are cited; verified programmatically that the first-appearance sequence
    equals 1..43 and the reference list is sequential 1..43.
  - The dagger/double-dagger verification markers are preserved in the regenerated list.
+
+
+## 17. Round-6 refinements (applied)
+
+ - Removed ALL citations from the Abstract and confirmed the Conclusions carry none, per
+   reviewer. The abstract is now citation-free prose (~330 words).
+ - First citation therefore now appears in the Introduction; the citation manager
+   renumbered automatically so references remain in strict order of first appearance.
+ - Reference list emitted in strictly serial format "[1] ...", "[2] ...", ... "[43] ..."
+   with NO inline verification markers (dagger/double-dagger moved to a separate italic
+   note after the list). Verified programmatically: abstract citations = none,
+   conclusions citations = none, first-appearance sequence == 1..43, reference list
+   sequential 1..43, all 43 cited.
