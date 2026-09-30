@@ -16,7 +16,7 @@ import os
 import zipfile
 
 BASE = os.path.dirname(os.path.abspath(__file__))
-DATA_JSON = os.path.join(BASE, "publications_doi_data.json")
+DATA_JSON = os.path.join(BASE, "publications_full_data.json")
 OUT_XLSX = os.path.join(BASE, "Publications_By_Faculty_2025-2026.xlsx")
 
 # ---------------------------------------------------------------------------
@@ -206,16 +206,15 @@ def build():
     # Build the grid: header + 150 data rows
     grid = [HEADERS]
     for (sno, inst, dept, authors, title, venue, q) in ROWS:
-        rec = found.get(str(sno))
-        if rec:
-            link = rec.get("link", "")
-            doi = rec.get("doi", "")
-            conf = rec.get("confidence", "")
-            status = f"Verified ({conf})" if conf else "Verified"
+        rec = found.get(str(sno)) or {}
+        link = rec.get("link", "")
+        doi = rec.get("doi", "")
+        if doi:
+            status = "DOI provided"
+        elif link:
+            status = "Link only (no DOI)"
         else:
-            link = ""
-            doi = ""
-            status = "NOT FOUND - verify manually"
+            status = "No DOI / link"
         grid.append([sno, inst, dept, authors, title, venue, "", q, link, doi, status])
 
     # sheet1.xml rows
@@ -286,9 +285,13 @@ def build():
         z.writestr("xl/_rels/workbook.xml.rels", workbook_rels)
         z.writestr("xl/worksheets/sheet1.xml", sheet_xml)
 
-    verified = sum(1 for (sno, *_rest) in ROWS if str(sno) in found)
+    with_doi = sum(1 for (sno, *_r) in ROWS if (found.get(str(sno)) or {}).get("doi"))
+    link_only = sum(1 for (sno, *_r) in ROWS
+                    if not (found.get(str(sno)) or {}).get("doi")
+                    and (found.get(str(sno)) or {}).get("link"))
     print(f"Wrote {OUT_XLSX}")
-    print(f"Total rows: {len(ROWS)} | Verified DOIs: {verified} | Blank/flagged: {len(ROWS) - verified}")
+    print(f"Total rows: {len(ROWS)} | With DOI: {with_doi} | Link only: {link_only} | "
+          f"Neither: {len(ROWS) - with_doi - link_only}")
 
 
 if __name__ == "__main__":
