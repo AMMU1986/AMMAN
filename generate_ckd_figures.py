@@ -278,7 +278,13 @@ def fig5():
                 col = blend(WHITE, MED_BLUE, -v)
             c.fill_rect(x1 + 1, y1 + 1, x1 + cell - 1, y1 + cell - 1, col)
             tc = WHITE if abs(v) > 0.6 else BLACK
-            c.text_c(x1 + cell // 2, y1 + cell // 2 - 3, f"{v:.2f}"[1:] if v >= 0 else f"{v:.2f}"[1:], tc, 1)
+            if abs(v) >= 0.999:
+                label = "1.0"
+            elif v >= 0:
+                label = f"{v:.2f}"[1:]   # ".55"
+            else:
+                label = "-" + f"{abs(v):.2f}"[1:]  # "-.55"
+            c.text_c(x1 + cell // 2, y1 + cell // 2 - 3, label, tc, 1)
     # colorbar
     cbx = gx + n * cell + 20
     for k in range(200):
