@@ -390,6 +390,7 @@ def build():
                         frac(group(i("n"), minus(), r("1")), r("2"))),
                     frac(group(i(G['partial']), i("u")), group(i(G['partial']), i("y"))))),
         plus(), frac(sub(i("\u03c3"), group(i("e"), r(",hnf"))), sub(i(G['rho']), i("hnf"))),
+        i("B"), delim(i("t")),
         delim(group(i("u"), i("B"), delim(i("t")), minus(), i("E"), delim(i("t")))),
         minus(), frac(sub(i(G['mu']), i("hnf")), sub(i(G['rho']), i("hnf"))),
         frac(i("u"), sub(sup(i("K"), r("*")), i("p"))),
@@ -407,7 +408,14 @@ def build():
                number="auto")
     d.para("in which the factor (1 + n\u0393\u00b2u\u1d67\u00b2) is essential and is retained "
            "throughout. Here \u03c3\u2091,hnf is the effective electrical conductivity, K\u209a* the "
-           "permeability and C\u1d47 the Forchheimer drag coefficient.")
+           "permeability and C\u1d47 the Forchheimer drag coefficient. The electromagnetic body "
+           "force is the x-component of the Lorentz force J \u00d7 B with J = \u03c3\u2091(E + V "
+           "\u00d7 B), which for the present configuration carries an explicit factor B(t), "
+           "\u03c3\u2091,hnf B(t)[uB(t) \u2212 E(t)]/\u03c1\u2095\u2099\u2093; this B(t) factor is "
+           "consistent with the definition M = \u03c3\u2091,f B\u2080\u00b2/(a\u03c1\u2091) of the "
+           "magnetic parameter, and after the similarity reduction (B(t)\u00b2h\u00b2 = "
+           "B\u2080\u00b2\u03bd\u2091/a) it yields the transformed group (\u03b1\u03c3/\u03b1\u03c1)"
+           "M(f\u2032 \u2212 Ee).")
     # y-momentum
     d.equation(group(frac(group(i(G['partial']), i("v")), group(i(G['partial']), i("t"))), plus(),
                      i("u"), frac(group(i(G['partial']), i("v")), group(i(G['partial']), i("x"))), plus(),
@@ -561,15 +569,21 @@ def build():
         brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), thp(2),
         plus(), r("4"), i("Rd"), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))),
         sup(F_expr(), r("2")), sup(delim(thp(1)), r("2")),
-        plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), sqhalf(), eta(), thp(1))),
+        plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), fp(1), theta(),
+                                           minus(), i("Sq"), theta(), minus(), sqhalf(), eta(), thp(1))),
         plus(), i("Pr"), brack(group(
             A(1), i("Ec"), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2"))),
             plus(), A(3), i("M"), i("Ec"), sup(delim(group(fp(1), minus(), i("Ee"))), r("2")),
             plus(), A(2), i("Df"), php(2))), eq(), r("0"))
     d.equation(energy, number="auto")
+    d.para("Because the wall excesses T\u2095 \u2212 T\u2080 and C\u2095 \u2212 C\u2080 are linear in "
+           "x and time-dependent (Eq. 27), the material derivatives of T and C generate the extra "
+           "advection/unsteady terms \u2212f\u2032\u03b8 \u2212 Sq\u03b8 (and \u2212f\u2032\u03c6 "
+           "\u2212 Sq\u03c6 for the species), which are retained above and in Eq. (31).")
     d.para("and the concentration equation is")
     species = group(php(2), plus(), i("Sc"),
-                    delim(group(i("f"), php(1), minus(), sqhalf(), eta(), php(1))),
+                    delim(group(i("f"), php(1), minus(), fp(1), phi(),
+                                minus(), i("Sq"), phi(), minus(), sqhalf(), eta(), php(1))),
                     plus(), i("Sc"), i("Sr"), thp(2), minus(), i("K"), i("Sc"), phi(), eq(), r("0"))
     d.equation(species, number="auto")
     d.para("The dimensionless thermophysical property ratios are denoted with \u03b1 (to avoid "
@@ -607,8 +621,8 @@ def build():
     d.equation(group(i("Sq"), eq(), frac(i(G['gamma']), i("a")), u("  ,  "),
                      sup(i("We"), r("2")), eq(), frac(group(sup(i("a"), r("3")), sup(i(G['Gamma']), r("2")), sup(i("x"), r("2"))),
                                                       group(sub(i(G['nu']), i("f")), sup(delim(group(r("1"), minus(), i(G['gamma']), i("t"))), r("3")))),
-                     u("  ,  "), i("M"), eq(), frac(group(sub(i(G['sigma']), i("f")), sup(sub(i("B"), r("0")), r("2"))), group(i("a"), sub(i(G['rho']), i("f")))),
-                     u("  ,  "), i("Ee"), eq(), frac(sub(i("E"), r("0")), group(sub(i("B"), r("0")), sub(i("U"), i("w"))))), number="auto")
+                     u("  ,  "), i("M"), eq(), frac(group(sub(i("\u03c3"), group(i("e"), r(",f"))), sup(sub(i("B"), r("0")), r("2"))), group(i("a"), sub(i(G['rho']), i("f")))),
+                     u("  ,  "), i("Ee"), eq(), frac(sub(i("E"), r("0")), group(sub(i("B"), r("0")), i("a"), i("x")))), number="auto")
     d.equation(group(i("Da"), eq(), frac(group(sub(sup(i("K"), r("*")), i("p")), i("a")), group(sub(i(G['nu']), i("f")), delim(group(r("1"), minus(), i(G['gamma']), i("t"))))),
                      u("  ,  "), i("Fr"), eq(), frac(group(sub(i("C"), i("b")), i("x")), rad(sub(sup(i("K"), r("*")), i("p")))),
                      u("  ,  "), i("Pr"), eq(), frac(group(sub(i(G['mu']), i("f")), sub(delim(sub(i("c"), i("p"))), i("f"))), sub(i(G['kappa']), i("f"))),
@@ -625,8 +639,13 @@ def build():
            "(10)\u2013(11) and are mutually dimensionally consistent (the factor \u03b1\u03c1 in the "
            "transformed Dufour term \u03b1\u03c1 Df\u03c6\u2033 reconciles the base-fluid (c\u209a)\u2091 "
            "normalisation with the hybrid heat capacity).")
-    d.para("Because We\u00b2 and Ee depend on x and t, they are treated under a local-similarity "
-           "assumption; the Darcy and Forchheimer groups are defined consistently with the "
+    d.para("With the field scalings B(t) = B\u2080(1\u2212\u03b3t)^{\u22121/2} and E(t) = "
+           "E\u2080(1\u2212\u03b3t)^{\u22123/2}, the ratio E(t)/[B(t)U\u2091] = E\u2080/(B\u2080ax); "
+           "the electric parameter is therefore defined as Ee = E\u2080/(B\u2080ax) (rather than "
+           "E\u2080/(B\u2080U\u2091)) so that it is a genuine constant under the local-similarity "
+           "reduction, with E\u2080 the reference field amplitude of Eq. (3). Likewise We\u00b2 "
+           "depends on x and t and is treated under the same local-similarity assumption; the "
+           "Darcy and Forchheimer groups are defined consistently with the "
            "similarity scaling, and Df/Sr are checked dimensionally against Eqs. (10)\u2013(11).")
 
     # =====================================================================
@@ -680,6 +699,10 @@ def build():
                      frac(group(i("R"), sub(i("D"), i("B"))), sub(i("C"), r("0"))), sup(delim(frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("y")))), r("2")),
                      plus(), frac(group(i("R"), sub(i("D"), i("B"))), sub(i("T"), r("0"))),
                      delim(group(frac(group(i(G['partial']), i("T")), group(i(G['partial']), i("y"))), frac(group(i(G['partial']), i("C")), group(i(G['partial']), i("y")))))), number="auto")
+    d.para("where R is the gas constant of the diffusing species (units J mol\u207b\u00b9 K\u207b\u00b9 "
+           "with C in mol m\u207b\u00b3), D_B the Brownian diffusion coefficient, and the first and "
+           "second terms are the pure-solutal and the coupled thermo-solutal diffusive "
+           "irreversibilities, respectively.")
 
     d.heading("3.2 Characteristic entropy and the entropy generation number", 2)
     d.para("For consistency, the reference entropy generation rate is normalised with the "
@@ -763,11 +786,11 @@ def build():
     d.para("with K_r = \u03b1\u03ba + (4/3)Rd[1 + (\u03b8\u1d63\u22121)\u03b8]\u00b3, the right-hand sides")
     d.equation(group(sub(i("b"), r("1")), eq(), minus(),
                      brack(group(r("4"), i("Rd"), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), sup(F_expr(), r("2")), sup(delim(thp(1)), r("2")),
-                                 plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), sqhalf(), eta(), thp(1))),
+                                 plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), fp(1), theta(), minus(), i("Sq"), theta(), minus(), sqhalf(), eta(), thp(1))),
                                  plus(), i("Pr"), delim(group(A(1), i("Ec"), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2"))),
                                                               plus(), A(3), i("M"), i("Ec"), sup(delim(group(fp(1), minus(), i("Ee"))), r("2"))))))), number="auto")
-    d.equation(group(sub(i("b"), r("2")), eq(), minus(), i("Sc"), delim(group(i("f"), php(1), minus(), sqhalf(), eta(), php(1))), plus(), i("K"), i("Sc"), phi()), number="auto")
-    d.para("The system is invertible provided its determinant \u0394 = K_r \u2212 Pr A\u2082 Df Sc Sr "
+    d.equation(group(sub(i("b"), r("2")), eq(), minus(), i("Sc"), delim(group(i("f"), php(1), minus(), fp(1), phi(), minus(), i("Sq"), phi(), minus(), sqhalf(), eta(), php(1))), plus(), i("K"), i("Sc"), phi()), number="auto")
+    d.para("The system is invertible provided its determinant \u0394 = K_r \u2212 Pr \u03b1\u03c1 Df Sc Sr "
            "\u2260 0, which was confirmed at every mesh point (min|\u0394| \u2248 1.05 over the "
            "reported parameter ranges).")
     d.para("The transformed boundary conditions supplied to the residual function are")
@@ -829,10 +852,10 @@ def build():
     # Table 3b Newtonian limit (recomputed)
     d.table("Table 3b. Newtonian clear-fluid limit (present model, recomputed).",
             ["Sq", "f\u2033(1)", "\u2212\u03b8\u2032(1)"],
-            [["0.1", "1.650489", "0.762234"],
-             ["0.5", "0.422159", "0.746319"],
-             ["1.0", "\u22121.152174", "0.726799"],
-             ["1.5", "\u22122.768838", "0.707699"]])
+            [["0.1", "1.650489", "0.716418"],
+             ["0.5", "0.422159", "0.352009"],
+             ["1.0", "\u22121.152174", "0.176000"],
+             ["1.5", "\u22122.768838", "0.098720"]])
 
     # =====================================================================
     # 6. Results and discussion + figures
@@ -920,10 +943,10 @@ def build():
     d.para("Comparison with the literature. The near-wall maximum and core minimum of Ns(\u03b7) "
            "are the classical second-law signature established by Bejan " + C.many("bejan79", "bejan96") + " and observed in "
            "squeezing and channel flows by Yadav and Kumar " + C.one("yadav") + " and Ali et al. " + C.one("ali41") + ". The strong "
-           "Br-sensitivity is quantified in Table 5: Ns(0) rises from 4.12 to 10.42 (about 153%) "
+           "Br-sensitivity is quantified in Table 5: Ns(0) rises from 4.45 to 10.75 (about 142%) "
            "as Br increases from 0.5 to 1.5, matching the high Br-sensitivity reported by Khan et "
            "al. " + C.one("khan36") + " and Ali et al. " + C.one("ali41") + ". The magnetic contribution is likewise monotone \u2014 "
-           "Ns(0) increases from 7.27 to 7.99 as M rises from 1.0 to 2.0 \u2014 consistent with "
+           "Ns(0) increases from 7.60 to 8.27 as M rises from 1.0 to 2.0 \u2014 consistent with "
            "the Joule-dominated irreversibility of Bhatti et al. " + C.one("bhatti38") + " and Sharma et al. " + C.one("sharma29") + ", "
            "while a larger temperature-difference ratio \u03a9 lowers the friction/Joule share "
            "(Ns(0) drops to 3.46 at \u03a9 = 2.0), the inverse Br/\u03a9 dependence also noted by "
@@ -943,10 +966,10 @@ def build():
            "number distributions of Yadav and Kumar " + C.one("yadav") + " for squeezing nanofluid flow and Ali et "
            "al. " + C.one("ali41") + " for Carreau hybrid nanofluids. The opposing Rd (raising Be) and Br (lowering "
            "Be) trends match Khan et al. " + C.one("khan36") + " and Bhatti et al. " + C.one("bhatti40") + ". Table 5 quantifies the "
-           "friction/thermal switch: Be(0) falls from 0.236 to 0.093 as Br rises 0.5 \u2192 1.5 "
-           "(crossing below 0.5, i.e. from thermal to friction dominance at the wall), while it "
-           "rises with Rd and \u03a9. Across all 54 parameter combinations examined the computed "
-           "Bejan number remained within the physical interval, Be \u2208 [0.039, 0.999] \u2282 "
+           "friction/thermal switch: Be(0) falls from 0.292 to 0.121 as Br rises 0.5 \u2192 1.5 "
+           "(the near-wall irreversibility becoming increasingly friction/Joule-dominated), while "
+           "it rises with Rd and \u03a9. Across all 54 parameter combinations examined the computed "
+           "Bejan number remained within the physical interval, Be \u2208 [0.059, 0.997] \u2282 "
            "[0, 1], and the limiting behaviour Be \u2192 1 as Br \u2192 0 and Be \u2192 0 for large "
            "Br (Appendix A) provides an additional consistency check consistent with " + C.many("khan36", "ali41") + ".")
     d.figure(os.path.join(FIGDIR, "Figure_6_bejan_Rd_Br.png"),
@@ -958,8 +981,8 @@ def build():
            "nanoparticle volume fraction. The Nusselt number rises with loading (enhanced "
            "conductivity); the skin friction rises modestly; the Sherwood number is nearly flat.")
     d.para("Comparison with the literature. The monotone rise of the Nusselt number with hybrid "
-           "loading \u2014 Re\u207b\u00b9ᐟ\u00b2Nu from 2.98 at \u03c6 = 0 to 3.85 at \u03c6 = 0.05, "
-           "about 29% (Table 6) \u2014 reproduces the heat-transfer enhancement reported by Tlili "
+           "loading \u2014 Re\u207b\u00b9ᐟ\u00b2Nu from 1.43 at \u03c6 = 0 to 2.01 at \u03c6 = 0.05, "
+           "about 41% (Table 6) \u2014 reproduces the heat-transfer enhancement reported by Tlili "
            "et al. " + C.one("tlili") + " for the same AA7072\u2013AA7075/methanol system. The additional rise of Nu "
            "with Rd and Df is consistent with Qayyum et al. " + C.one("qayyum") + " and Shojaei et al. " + C.one("shojaei") + ", and the "
            "increase of the Sherwood number with the reaction and Soret parameters follows the "
@@ -978,35 +1001,35 @@ def build():
     d.table("Table 4. Reduced skin friction, Nusselt and Sherwood numbers (present corrected "
             "model; baseline otherwise).",
             ["Parameter", "Value", "Re^{1/2} Cf", "Re^{-1/2} Nu", "Re^{-1/2} Sh"],
-            [["Sq", "0.2", "1.3306", "5.1692", "0.4748"],
-             ["Sq", "0.8", "\u22121.1816", "3.2942", "0.5828"],
-             ["M", "0.5", "0.1175", "3.4359", "0.6137"],
-             ["M", "2.0", "0.0318", "3.5623", "0.6058"],
-             ["We", "0.5", "\u22120.0380", "3.1290", "0.6367"],
-             ["We", "2.0", "0.2693", "4.1585", "0.5590"],
-             ["Rd", "0.2", "0.0885", "3.1913", "0.5972"],
-             ["Rd", "1.0", "0.0885", "3.9032", "0.6423"],
-             ["Df", "0.6", "0.0885", "7.4979", "0.2145"],
-             ["Sr", "0.5", "0.0885", "4.8542", "0.0522"],
-             ["K", "1.5", "0.0885", "3.9164", "0.4497"]])
+            [["Sq", "0.2", "1.3306", "3.7960", "0.5364"],
+             ["Sq", "0.8", "\u22121.1816", "1.6004", "0.5354"],
+             ["M", "0.5", "0.1175", "1.7336", "0.6293"],
+             ["M", "2.0", "0.0318", "1.8015", "0.6268"],
+             ["We", "0.5", "\u22120.0380", "1.5919", "0.6370"],
+             ["We", "2.0", "0.2693", "2.0894", "0.6101"],
+             ["Rd", "0.2", "0.0885", "1.3509", "0.6448"],
+             ["Rd", "1.0", "0.0885", "2.3466", "0.6193"],
+             ["Df", "0.6", "0.0885", "3.2111", "0.5296"],
+             ["Sr", "0.5", "0.0885", "1.8712", "0.5805"],
+             ["K", "1.5", "0.0885", "1.9653", "0.5001"]])
     d.table("Table 5. Entropy generation number Ns and Bejan number Be at \u03b7 = 0 (present "
             "corrected model).",
             ["Br", "M", "Rd", "\u03a9", "Ns(0)", "Be(0)"],
-            [["0.5", "1.0", "0.5", "1.0", "4.1208", "0.2355"],
-             ["1.0", "1.0", "0.5", "1.0", "7.2712", "0.1335"],
-             ["1.5", "1.0", "0.5", "1.0", "10.4217", "0.0931"],
-             ["1.0", "0.5", "0.5", "1.0", "6.9090", "0.1385"],
-             ["1.0", "2.0", "0.5", "1.0", "7.9887", "0.1250"],
-             ["1.0", "1.0", "1.0", "1.0", "7.1543", "0.1193"],
-             ["1.0", "1.0", "0.5", "2.0", "3.4627", "0.0902"]])
+            [["0.5", "1.0", "0.5", "1.0", "4.4484", "0.2918"],
+             ["1.0", "1.0", "0.5", "1.0", "7.5988", "0.1708"],
+             ["1.5", "1.0", "0.5", "1.0", "10.7492", "0.1207"],
+             ["1.0", "0.5", "0.5", "1.0", "7.2590", "0.1801"],
+             ["1.0", "2.0", "0.5", "1.0", "8.2714", "0.1549"],
+             ["1.0", "1.0", "1.0", "1.0", "7.7121", "0.1830"],
+             ["1.0", "1.0", "0.5", "2.0", "3.5495", "0.1124"]])
     d.table("Table 6. Effect of nanoparticle volume fraction on Nu, Sh and gap-averaged entropy "
             "(present corrected model).",
             ["\u03c6\u2081", "\u03c6\u2082", "Re^{-1/2} Nu", "Re^{-1/2} Sh", "Ns,avg"],
-            [["0.00", "0.00", "2.9817", "0.6200", "5.3914"],
-             ["0.02", "0.02", "3.3053", "0.6138", "5.9766"],
-             ["0.03", "0.03", "3.4787", "0.6110", "6.2948"],
-             ["0.04", "0.04", "3.6605", "0.6084", "6.6318"],
-             ["0.05", "0.05", "3.8512", "0.6059", "6.9888"]])
+            [["0.00", "0.00", "1.4267", "0.6371", "3.1844"],
+             ["0.02", "0.02", "1.6394", "0.6314", "3.5458"],
+             ["0.03", "0.03", "1.7565", "0.6284", "3.7466"],
+             ["0.04", "0.04", "1.8815", "0.6255", "3.9623"],
+             ["0.05", "0.05", "2.0149", "0.6225", "4.1940"]])
 
     d.heading("6.8 Comparison with previous studies", 2)
     d.para(
@@ -1044,26 +1067,26 @@ def build():
         "the effective conductivity and moderates the dissipation-driven peak, which is the "
         "physically correct behaviour and differs from formulations that (incorrectly) multiply "
         "the radiative term by the conductivity ratio. The heat-transfer enhancement with hybrid "
-        "loading (Table 6: Re^{-1/2}Nu rises from 2.98 at \u03c6 = 0 to 3.85 at \u03c6 = 0.05, about "
-        "29%) is consistent in direction with the AA7072\u2013AA7075/methanol enhancement of Tlili "
+        "loading (Table 6: Re^{-1/2}Nu rises from 1.43 at \u03c6 = 0 to 2.01 at \u03c6 = 0.05, about "
+        "41%) is consistent in direction with the AA7072\u2013AA7075/methanol enhancement of Tlili "
         "et al. " + C.one("tlili") + ".")
     d.para(
         "Entropy generation and Bejan number. Entropy generation is maximal near the plates and "
         "minimal in the core (Figure 5), the classical near-wall irreversibility signature of "
         "Bejan " + C.many("bejan79", "bejan96") + ". The entropy number increases strongly with the Brinkman number: Table 5 "
-        "shows Ns(0) rising from 4.12 to 10.42 as Br increases from 0.5 to 1.5 (about 153%), while "
-        "Be(0) falls from 0.236 to 0.093, i.e. a shift from thermal to friction/Joule dominance. "
+        "shows Ns(0) rising from 4.45 to 10.75 as Br increases from 0.5 to 1.5 (about 142%), while "
+        "Be(0) falls from 0.292 to 0.121, i.e. a shift toward friction/Joule dominance. "
         "This Br-sensitivity and the opposing Ns\u2013Be trend agree with Khan et al. " + C.one("khan36") + ", Bhatti "
-        "et al. " + C.many("bhatti38", "bhatti40") + " and Ali et al. " + C.one("ali41") + ". Increasing M raises Ns(0) (7.27 \u2192 7.99 as M goes "
+        "et al. " + C.many("bhatti38", "bhatti40") + " and Ali et al. " + C.one("ali41") + ". Increasing M raises Ns(0) (7.60 \u2192 8.27 as M goes "
         "1.0 \u2192 2.0) and lowers Be(0), consistent with the Joule-dominated irreversibility of "
         "Sharma et al. " + C.one("sharma29") + "; increasing Rd or \u03a9 raises the relative thermal share, matching "
         "Bhatti et al. " + C.one("bhatti40") + " and Siva et al. " + C.one("siva") + ". The Bejan number remains within [0, 1] for all "
-        "reported cases (verified numerically, Be \u2208 [0.039, 0.999]), rising toward the walls "
+        "reported cases (verified numerically, Be \u2208 [0.059, 0.997]), rising toward the walls "
         "where conduction dominates and dropping in the core \u2014 the same spatial transition "
         "reported by Yadav and Kumar " + C.one("yadav") + " and Ali et al. " + C.one("ali41") + ".")
     d.para(
         "Heat-transfer\u2013irreversibility trade-off. Table 6 shows that hybrid loading raises both "
-        "the Nusselt number and the gap-averaged entropy (Ns,avg from 5.39 to 6.99 as \u03c6 goes "
+        "the Nusselt number and the gap-averaged entropy (Ns,avg from 3.18 to 4.19 as \u03c6 goes "
         "0 \u2192 0.05), quantifying the thermodynamic trade-off between enhanced thermal transport "
         "and additional viscous/ohmic irreversibility that was highlighted qualitatively by "
         "Mkhatshwa and Khumalo " + C.one("mkhatshwa") + " and Ali et al. " + C.one("ali41") + " for stretching-surface configurations; the "
@@ -1126,17 +1149,19 @@ def build():
                minus(), frac(A(3), A(2)), i("M"), delim(group(fp(1), minus(), i("Ee"))), eq(), i("G"))
     d.equation(a5, number="autoA")
     d.para("In the absence of radiation (Rd = 0):")
-    a6 = group(A(4), thp(2), plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), sqhalf(), eta(), thp(1))),
+    a6 = group(A(4), thp(2), plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), fp(1), theta(), minus(), i("Sq"), theta(), minus(), sqhalf(), eta(), thp(1))),
                plus(), i("Pr"), brack(group(A(1), i("Ec"), sup(delim(fp(2)), r("2")), sup(delim(We2fpp2()), frac(group(i("n"), minus(), r("1")), r("2"))),
                                             plus(), A(3), i("M"), i("Ec"), sup(delim(group(fp(1), minus(), i("Ee"))), r("2")), plus(), A(2), i("Df"), php(2))), eq(), r("0"))
     d.equation(a6, number="autoA")
-    d.para("and in the non-squeezing limit (Sq \u2192 0):")
+    d.para("and in the non-squeezing limit (Sq \u2192 0), where the \u2212Sq\u03b8 and \u2212(Sq/2)"
+           "\u03b7\u03b8\u2032 terms vanish and the streamwise convection leaves f\u03b8\u2032 "
+           "\u2212 f\u2032\u03b8:")
     a7 = group(brack(group(A(4), plus(), frac(r("4"), r("3")), i("Rd"), sup(F_expr(), r("3")))), thp(2),
                plus(), r("4"), i("Rd"), delim(group(sub(i(G['theta']), i("r")), minus(), r("1"))), sup(F_expr(), r("2")), sup(delim(thp(1)), r("2")),
-               plus(), A(5), i("Pr"), i("f"), thp(1), plus(), i("Pr"), i("\u039e"), eq(), r("0"))
+               plus(), A(5), i("Pr"), delim(group(i("f"), thp(1), minus(), fp(1), theta())), plus(), i("Pr"), i("\u039e"), eq(), r("0"))
     d.equation(a7, number="autoA")
     d.para("For a reaction-free species field (K = 0):")
-    d.equation(group(php(2), plus(), i("Sc"), delim(group(i("f"), php(1), minus(), sqhalf(), eta(), php(1))), plus(), i("Sc"), i("Sr"), thp(2), eq(), r("0")), number="autoA")
+    d.equation(group(php(2), plus(), i("Sc"), delim(group(i("f"), php(1), minus(), fp(1), phi(), minus(), i("Sq"), phi(), minus(), sqhalf(), eta(), php(1))), plus(), i("Sc"), i("Sr"), thp(2), eq(), r("0")), number="autoA")
     d.para("The true pure-diffusion limit (Sr = 0, Sq = 0, K = 0, no convection) is")
     d.equation(group(php(2), eq(), r("0")), number="autoA")
     d.para("If convection and reaction are retained the equation \u03c6\u2033 + Sc f\u03c6\u2032 "

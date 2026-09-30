@@ -150,14 +150,18 @@ def rhs(eta, y, pr):
     #                               + Pr( A1 Ec (f'')^2 (1+We^2 f''^2)^{(n-1)/2} + A3 M Ec (f'-Ee)^2 ) ]
     visc = pr.A1 * pr.Ec * fpp * fpp * (1.0 + pr.We ** 2 * fpp * fpp) ** ((pr.n - 1) / 2.0)
     joule = pr.A3 * pr.M * pr.Ec * (fp - pr.Ee) ** 2
+    # Convective/unsteady group from the x,t-dependent wall scale (round-7 correction):
+    #   f theta' - f' theta - Sq theta - (Sq/2) eta theta'
+    conv_th = f * thp - fp * th - pr.Sq * th - 0.5 * pr.Sq * eta * thp
     b1 = -(4.0 * pr.Rd * (pr.theta_r - 1.0) * F * F * thp * thp
-           + pr.A5 * pr.Pr * (f * thp - 0.5 * pr.Sq * eta * thp)
+           + pr.A5 * pr.Pr * conv_th
            + pr.Pr * (visc + joule))
-    # species:  phi'' + Sc(f phi' - Sq/2 eta phi') + Sc Sr theta'' - K Sc phi = 0
-    #  => Sc Sr theta'' + 1 phi'' = -( Sc(f phi' - Sq/2 eta phi') - K Sc phi )
+    # species:  phi'' + Sc(f phi' - f' phi - Sq phi - Sq/2 eta phi') + Sc Sr theta'' - K Sc phi = 0
+    #  => Sc Sr theta'' + 1 phi'' = -( Sc(...) - K Sc phi )
+    conv_ph = f * php - fp * ph - pr.Sq * ph - 0.5 * pr.Sq * eta * php
     a21 = pr.Sc * pr.Sr
     a22 = 1.0
-    b2 = -(pr.Sc * (f * php - 0.5 * pr.Sq * eta * php) - pr.K * pr.Sc * ph)
+    b2 = -(pr.Sc * conv_ph - pr.K * pr.Sc * ph)
     det = a11 * a22 - a12 * a21
     thpp = (b1 * a22 - a12 * b2) / det
     phpp = (a11 * b2 - b1 * a21) / det

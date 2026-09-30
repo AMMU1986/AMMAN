@@ -295,3 +295,50 @@ flagged for the authors to re-check against the publisher record:
    note after the list). Verified programmatically: abstract citations = none,
    conclusions citations = none, first-appearance sequence == 1..43, reference list
    sequential 1..43, all 43 cited.
+
+
+## 18. Round-7 physics corrections (derivation)
+
+### 18.1 Lorentz force (x-momentum)
+J = sigma_e (E + V x B); Lorentz force x-component = (J x B)_x carries an extra factor B(t):
+    F_x/rho_hnf = (sigma_e,hnf / rho_hnf) B(t) [ u B(t) - E(t) ].
+So the primitive x-momentum viscous+EM term is (sigma_e,hnf/rho_hnf) B(t)(uB - E), NOT
+(sigma_e,hnf/rho_hnf)(uB - E). After the similarity reduction and non-dimensionalisation this
+still gives the group (alpha_sigma/alpha_rho) M (f' - Ee) because M = sigma_f B0^2/(a rho_f)
+already carries B0^2 and B(t)^2 h^2 = B0^2 nu_f/a cancels the time factor; i.e. the transformed
+ODE (Eq. 28/29) is unchanged, but the DIMENSIONAL PDE (Eq. 9) must show the B(t) factor.
+
+### 18.2 Energy convective/unsteady group (x,t-dependent wall scale)
+With T = T0 + S d1 theta, S = a x/(1-gamma t):
+  dT/dt = d1 S (gamma/(1-gamma t)) [ theta + (eta/2) theta' ]
+  u dT/dx = d1 S (a/(1-gamma t)) f' theta
+  v dT/dy = - d1 S (a/(1-gamma t)) f theta'
+Dividing by (a/(1-gamma t)) S d1 and using Sq = gamma/a:
+  dT/dt + u T_x + v T_y  ->  Sq theta + (Sq eta/2) theta' + f' theta - f theta'
+=> the transformed energy equation convective group is
+    alpha_c Pr ( f theta' - f' theta - Sq theta - (Sq eta/2) theta' ).
+This ADDS the terms  - f' theta - Sq theta  to the previous ( f theta' - (Sq/2) eta theta' ).
+
+### 18.3 Species convective/unsteady group (same structure)
+With C = C0 + S e1 phi:
+    Sc ( f phi' - f' phi - Sq phi - (Sq eta/2) phi' ).
+Adds  - f' phi - Sq phi.
+
+### 18.4 Corrected transformed equations used henceforth
+Energy:
+  [alpha_k + (4/3)Rd F^3] theta'' + 4 Rd(theta_r-1) F^2 (theta')^2
+    + alpha_c Pr ( f theta' - f' theta - Sq theta - (Sq/2) eta theta' )
+    + Pr [ alpha_mu Ec (f'')^2 (1+We^2 f''^2)^{(n-1)/2} + alpha_sigma M Ec (f'-Ee)^2
+           + alpha_rho Df phi'' ] = 0.
+Species:
+  phi'' + Sc ( f phi' - f' phi - Sq phi - (Sq/2) eta phi' ) + Sc Sr theta'' - K Sc phi = 0.
+
+### 18.5 Ee and notation
+  Ee = E0 / (B0 a x)  (constant reference form under the present field scalings), replacing
+  E0/(B0 U_w). nu_e -> nu_f everywhere; R = universal (or species-specific) gas constant of the
+  diffusing species, made explicit where S_D''' is introduced.
+
+### 18.6 Numerical impact
+Energy/species 2x2 solve RHS b1, b2 gain the -f'theta-Sq theta and -f'phi-Sq phi contributions.
+Momentum ODE (4th order) is UNAFFECTED by these thermal/solutal additions. Tables 3b/4/5/6 and
+Figures 4-7 recomputed with the corrected energy/species equations.

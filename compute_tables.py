@@ -19,7 +19,7 @@ def warm_cont(k, v, steps):
     return pr,sol
 for k,v in rows:
     if k=="Df":
-        pr,sol = warm_cont(k,v,[0.3,0.45])
+        pr,sol = warm_cont(k,v,[0.3,0.4,0.45,0.5,0.55])
     else:
         pr,sol = warm(**{k:v})
     Cf,Nu,Sh = engineering(sol,pr)
