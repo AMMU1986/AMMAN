@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """
-Build a Word (.docx) manuscript from Manuscript_ML_Hybrid_Nanofluid_Radiator.md.
+Build a Word (.docx) manuscript from Manuscript_ML_Hybrid_Nanofluid_Radiator.md,
+with every numbered equation embedded as a LIVE, editable Word equation object
+(OMML - Office Math Markup Language).
 
 Pure Python standard library only (zipfile for the OOXML package, struct for
 reading PNG dimensions). Renders:
@@ -8,20 +10,33 @@ reading PNG dimensions). Renders:
   - Markdown pipe tables as native Word tables
   - Embedded PNG figures (scaled to page width)
   - Figure captions / bold lines
-  - Numbered display equations (lines ending in a (n) tag) centered
+  - Numbered display equations (1)-(27) as native OMML equation objects,
+    centered, with a right-hand (n) label
 """
 
 import os
 import re
 import struct
 import zipfile
+import importlib.util
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 MD_PATH = os.path.join(HERE, "Manuscript_ML_Hybrid_Nanofluid_Radiator.md")
 OUT_PATH = os.path.join(HERE, "Manuscript_ML_Hybrid_Nanofluid_Radiator.docx")
 
-EMU_PER_PX = 9525           # 1 px (96 dpi) = 9525 EMU
+EMU_PER_PX = 9525            # 1 px (96 dpi) = 9525 EMU
 MAX_IMG_WIDTH_EMU = 5486400  # ~6.0 inch usable width (letter, 1in margins)
+
+# ------------------------------------------------------------------
+# Import the OMML equation set (Eqs. 1-27) from create_equations_docx.py
+# ------------------------------------------------------------------
+_spec = importlib.util.spec_from_file_location(
+    "eqdocx", os.path.join(HERE, "create_equations_docx.py"))
+_eq = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(_eq)
+EQUATIONS = _eq.equations()   # dict {1..27: omml_body_str}
+
+MATH_NS = 'xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"'
 
 
 def escape_xml(text):
@@ -65,6 +80,19 @@ def para(text, style=None, bold=False, size=None, italic=False, center=False):
     ppr = "<w:pPr>{}</w:pPr>".format(ppr_bits) if ppr_bits else ""
     return ('<w:p>{}<w:r>{}<w:t xml:space="preserve">{}</w:t></w:r></w:p>'
             .format(ppr, rpr, text))
+
+
+def equation_para(tag):
+    """A centered paragraph with the live OMML equation + right (n) label."""
+    omml = EQUATIONS[tag]
+    return (
+        '<w:p><w:pPr><w:jc w:val="center"/>'
+        '<w:tabs><w:tab w:val="right" w:pos="9360"/></w:tabs></w:pPr>'
+        '<m:oMath>' + omml + '</m:oMath>'
+        '<w:r><w:tab/><w:rPr><w:sz w:val="22"/></w:rPr>'
+        '<w:t xml:space="preserve">(' + str(tag) + ')</w:t></w:r>'
+        '</w:p>'
+    )
 
 
 class DocxBuilder:
@@ -160,26 +188,9 @@ def is_equation_line(line):
     return line.strip().startswith("$$")
 
 
-def strip_equation(line):
-    s = line.strip().strip("$").strip()
-    m = re.search(r"\\tag\{([^}]+)\}", s)
-    tag = m.group(1) if m else ""
-    s = re.sub(r"\\tag\{[^}]+\}", "", s).strip()
-    # light LaTeX -> readable text
-    s = s.replace("\\,", " ").replace("\\;", "  ")
-    s = s.replace("\\left", "").replace("\\right", "")
-    s = re.sub(r"\\frac\{([^{}]*)\}\{([^{}]*)\}", r"(\1)/(\2)", s)
-    s = re.sub(r"\\sqrt\{([^{}]*)\}", r"sqrt(\1)", s)
-    s = re.sub(r"\\sum_\{([^{}]*)\}\^\{([^{}]*)\}", r"SUM[\1..\2]", s)
-    s = s.replace("\\rho", "rho").replace("\\phi", "phi").replace("\\mu", "mu")
-    s = s.replace("\\varepsilon", "eps").replace("\\Delta", "Delta")
-    s = s.replace("\\dot{m}", "m_dot").replace("\\approx", "~=")
-    s = s.replace("\\cdot", "*").replace("\\times", "x")
-    s = re.sub(r"_\{([^{}]*)\}", r"_\1", s)
-    s = re.sub(r"\^\{([^{}]*)\}", r"^\1", s)
-    s = re.sub(r"\\mathrm\{([^{}]*)\}", r"\1", s)
-    s = s.replace("{", "").replace("}", "").replace("\\", "")
-    return s, tag
+def equation_tag(line):
+    m = re.search(r"\\tag\{([^}]+)\}", line)
+    return int(m.group(1)) if m else None
 
 
 def convert(md_text, builder):
@@ -221,11 +232,13 @@ def convert(md_text, builder):
             i += 1
             continue
 
-        # equation
+        # equation -> live OMML object keyed by tag number
         if is_equation_line(stripped):
-            eqn, tag = strip_equation(stripped)
-            disp = eqn if not tag else "{}      ({})".format(eqn, tag)
-            builder.add(para(disp, italic=True, center=True, size=22))
+            tag = equation_tag(stripped)
+            if tag is not None and tag in EQUATIONS:
+                builder.add(equation_para(tag))
+            else:
+                builder.add(para(stripped.strip("$").strip(), italic=True, center=True))
             i += 1
             continue
 
@@ -322,7 +335,8 @@ def build():
         'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" '
         'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" '
         'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" '
-        'xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        'xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture" '
+        + MATH_NS + '>'
         '<w:body>'
         + "".join(b.body) +
         '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>'
@@ -341,6 +355,7 @@ def build():
 
     print("Created {}".format(OUT_PATH))
     print("  Embedded {} figures".format(len(b.images)))
+    print("  Embedded {} live OMML equations".format(document.count('<m:oMath>')))
 
 
 if __name__ == "__main__":
