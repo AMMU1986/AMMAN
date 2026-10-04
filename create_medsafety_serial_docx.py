@@ -458,7 +458,7 @@ body.append(para(
     "recent narrative review of paediatric medication safety also highlights the need "
     "for structured communication, standardised medication administration processes, "
     "teach-back, pictorial instructions, and family-centred education as key elements "
-    "in preventing medication errors.<<CITE:11>>"))
+    "in preventing medication errors.<<CITE:10>>"))
 body.append(para(
     "The present study is also relevant as the target population included caregivers "
     "of children with neurodevelopmental disorders. Children in this population may "
@@ -468,7 +468,7 @@ body.append(para(
     "disabilities reported that they lacked knowledge and training, had issues with "
     "medication records, had communication difficulties, and had problems with the "
     "health care system as factors that were important for medication "
-    "management.<<CITE:12>> Thus, a medication identification, dosing, ADR "
+    "management.<<CITE:11>> Thus, a medication identification, dosing, ADR "
     "recognition, adherence, and error prevention intervention specifically designed "
     "for this population might be especially useful."))
 body.append(para(
@@ -483,7 +483,7 @@ body.append(para(
     "home setting. A systematic review of medication administration at home in 2026 "
     "also identified that caregivers often experience disruptions associated with "
     "medicines, health systems and family situations and need to adjust their "
-    "practices to ensure medication safety.<<CITE:13>>"))
+    "practices to ensure medication safety.<<CITE:12>>"))
 body.append(para(
     "The findings are further supported by the increase in the confidence of the "
     "caregivers. Confidence increased from 5.6 \u00b1 1.8 at baseline to 8.1 \u00b1 1.2 "
@@ -492,11 +492,11 @@ body.append(para(
     "neurodevelopmental disorders. Structured caregiver-training programmes were shown "
     "to improve caregiver knowledge and skills in a systematic review and "
     "meta-analysis of randomized controlled trials of caregivers of individuals with "
-    "neurodevelopmental disorders.<<CITE:14>> Likewise, a recent study of online and "
+    "neurodevelopmental disorders.<<CITE:13>> Likewise, a recent study of online and "
     "digital learning programs for caregivers of children and youth with "
     "neurodevelopmental disabilities revealed that parental knowledge was one of the "
     "most commonly assessed outcomes, and that most studies reported significant "
-    "increases.<<CITE:15>> This study builds on this literature by focusing on "
+    "increases.<<CITE:14>> This study builds on this literature by focusing on "
     "medication safety, rather than on a wider range of behavioural or developmental "
     "skills."))
 body.append(para(
@@ -508,34 +508,34 @@ body.append(para(
     "for medication-safety education. A 2026 scoping review of AI-based tools for "
     "teaching safe medication administration found only a few studies and reported "
     "increases in knowledge and performance, but no evidence of a decrease in actual "
-    "medication errors or preventable adverse events.<<CITE:16>> This small number of "
+    "medication errors or preventable adverse events.<<CITE:15>> This small number of "
     "studies is further supported by a wider review that indicates while AI-powered "
     "patient support tools can enhance medication adherence, the amount of robust "
-    "research with clinically meaningful outcomes is still limited.<<CITE:17>> Large "
+    "research with clinically meaningful outcomes is still limited.<<CITE:16>> Large "
     "language models have also been recently reviewed for patient education, which "
     "indicates possible benefits in terms of accessibility, personalization, and "
     "translating medical information into patient-friendly language, but also "
-    "highlights issues of readability, accuracy, and bias.<<CITE:18>> The accuracy of "
+    "highlights issues of readability, accuracy, and bias.<<CITE:17,18>> The accuracy of "
     "generative AI and chatbots in answering drug-related questions has been found to "
     "vary from pharmacists and highlights the importance of human oversight in "
-    "drug-related applications of AI.<<CITE:19>> Moreover, the ethics of large "
+    "drug-related applications of AI.<<CITE:19,20>> Moreover, the ethics of large "
     "language models in healthcare consistently highlight the dangers of "
     "misinformation that can be convincing, privacy issues, and the need for human "
-    "oversight and governance structures.<<CITE:20>> The present intervention was "
+    "oversight and governance structures.<<CITE:21,22>> The present intervention was "
     "intentionally limited to an educational function, in line with proposals for "
     "digital-health frameworks that protect clinical safety and health literacy in the "
-    "deployment of generative AI in consumer health.<<CITE:21>> Therefore, the present "
+    "deployment of generative AI in consumer health.<<CITE:23>> Therefore, the present "
     "results offer supportive educational evidence and do not claim that AI itself can "
     "decrease clinical medication errors."))
 body.append(para(
     "It is interesting that benefit is retained at 3 months. The score decreased "
     "slightly from 78.6% at 4 weeks to 74.2% at 3 months, but was still significantly "
     "higher than the baseline score of 51.8%. 83.6% of the initial knowledge gain was "
-    "retained at 3 months.<<CITE:22>> This indicates that the intervention could have "
+    "retained at 3 months. This indicates that the intervention could have "
     "had a long-term educational impact instead of a short-term impact immediately "
     "following training. However, the loss from 4 weeks to 3 months suggests that "
     "intermittent reinforcement is needed to sustain optimal medication-safety "
-    "knowledge over time.<<CITE:23>>"))
+    "knowledge over time."))
 body.append(para(
     "Limitations: First, the pre\u2013post design without concurrent control group makes "
     "causal inferences difficult, as the improvements could be due to repeated "
@@ -576,30 +576,62 @@ body.append(para(
     "effectiveness and clinical long-term consequences of this approach."))
 
 # ── References ──
+# The list below is REARRANGED into citation order (order of first appearance in
+# the text) so that reference N matches the claim made at in-text citation [N].
+# Fixes applied vs. the original list:
+#   - [11] now = Erickson & LeRoy (ID/DD qualitative) to match the ID/DD sentence
+#   - [12] = Garfield (home disruptions)  [13] = Reichow (skills-training)
+#   - [14] = Dugas (online learning)      [15] = Douglas de Oliveira (AI nursing)
+#   - [16] = Vrdoljak (AI adherence)      [17] = Meng, [18] = Omar (LLM pt education)
+#   - [19] = Al-Ashwal, [20] = Fournier (chatbot/drug-answer accuracy)
+#   - [21] = Ong, [22] = Ahmad (LLM ethics)   [23] = Pappu (consumer-health framework)
 body.append(heading("References"))
 references = [
+    # [1]
     "Franc\u00e9s L, Quintero J, Fern\u00e1ndez A, Ruiz A, Caules J, Fillon G, et al. Current state of knowledge on the prevalence of neurodevelopmental disorders in childhood according to the DSM-5: a systematic review in accordance with the PRISMA criteria. Child Adolesc Psychiatry Ment Health. 2022;16(1):27.",
+    # [2]
     "Olusanya BO, Smythe T, Ogbo FA, Nair MKC, Scher M, Davis AC; Global Research on Developmental Disabilities Collaborators. Global prevalence of developmental disabilities in children and adolescents: a systematic umbrella review. Front Public Health. 2023;11:1122009.",
+    # [3]
     "Lamy M, Erickson CA. Recent advances in the pharmacological management of behavioral disturbances associated with autism spectrum disorder in children and adolescents. Paediatr Drugs. 2024;26(3):237\u201350.",
+    # [4]
     "Alsabri M, Carfagnini C, Amin M, Castilla F, Garcia J, Mohamed M, et al. Preventing medication errors in paediatrics: a narrative review. Eur J Pediatr. 2026;185(1):42.",
+    # [5]
     "Gonzales K. A systematic review on pediatric medication errors by parents or caregivers at home. Expert Opin Drug Saf. 2021;20(9):1053\u201363.",
+    # [6]
     "Yin HS, Mendelsohn AL, Nagin P, van Schaick L, Cerra ME, Dreyer BP. Use of a pictographic diagram to decrease parent dosing errors with infant acetaminophen: a health literacy perspective. Acad Pediatr. 2021;21(6):979\u201387.",
+    # [7]
     "Alqarni AS, Pasay-An E, Saguban R, Cabansag D, Alkubati S, Alshammari SA, et al. A systematic review and analysis of medication education for medication misuse in children. Healthcare (Basel). 2025;13(4):385.",
+    # [8]
     "Parand A, Garfield S, Vincent C, Franklin BD. Carers' medication administration errors in the domiciliary setting: a systematic review. PLoS One. 2016;11(12):e0167204.",
+    # [9]
     "Walsh KE, Mazor KM, Stille CJ, Torres I, Wagner JL, Moretti J, et al. Medication administration errors by parents and caregivers in the home: a literature review of problems and the role of health literacy. BMJ Paediatr Open. 2020;4(1):e000841.",
+    # [10]
     "Alsabri M, Carfagnini C, Amin M, Castilla F, Garcia J, Mohamed M, et al. Preventing medication errors in paediatrics: a narrative review of strategies, communication tools, and emerging technologies. Eur J Pediatr. 2025;184(1):678.",
+    # [11]  (moved up: ID/DD qualitative, matches the ID/DD sentence)
     "Erickson SR, LeRoy B. Issues in the medication management process in people who have intellectual and developmental disabilities: a qualitative study of the caregivers' perspective. Intellect Dev Disabil. 2017;55(2):81\u201392.",
+    # [12]
     "Garfield S, Furniss D, Husson F, Etkind M, Williams M, Norton J, et al. Disruptions to safety and adaptations experienced by parents and caregivers who administered prescribed medicines to children at home: a systematic review using a framework synthesis. Front Health Serv. 2026;6:1748195.",
+    # [13]
     "Reichow B, Kogan C, Barbui C, Maggin D, Salomone E, Smith IC, et al. Caregiver skills training for caregivers of individuals with neurodevelopmental disorders: a systematic review and meta-analysis. Dev Med Child Neurol. 2024;66(6):713\u201324.",
+    # [14]
     "Dugas M, Stefan T, Blouin P, L\u00e9pine J, Skidmore B, LeBlanc A. Online learning for children and youth with brain-based disabilities: a rapid overview of reviews. Disabil Rehabil. 2023;45(10):1627\u201339.",
+    # [15]
     "Douglas de Oliveira WD, Ghirotti MELP, de Sousa AFL, da Silva ALNV, de Carvalho HEF, Valim MD, et al. AI tools for teaching the safe administration of medications in nursing: a scoping review. Nurs Rep. 2026;16(4):146.",
+    # [16]
     "Vrdoljak J, Boban Z, Vilovi\u0107 M, Kumri\u0107 M, Bo\u017ei\u0107 J. Artificial intelligence-based tools for patient support to enhance medication adherence: a focused review. Front Digit Health. 2025;7:1523070.",
+    # [17]
     "Meng X, Yan X, Zhang K, Liu D, Cui X, Yang Y, et al. Large language models in patient education: a scoping review of applications in medicine. Front Med (Lausanne). 2024;11:1477898.",
+    # [18]
     "Omar M, Nassar S, Hijazi K, Glicksberg BS, Nadkarni GN, Klang E. Large language models in patient education: evidence, limitations, and future directions. NPJ Digit Med. 2024;7:280.",
+    # [19]
     "Al-Ashwal FY, Zawiah M, Gharaibeh L, Abu-Farha R, Bitar AN. Safety and quality of AI chatbots for drug-related inquiries: a real-world comparison with licensed pharmacists. Ann Pharmacother. 2024;58(10):998\u20131008.",
+    # [20]
     "Fournier A, Fallet C, Sadeghipour F, Perrottet N. Assessing accuracy of ChatGPT in response to questions from day to day pharmaceutical care in hospitals. Explor Res Clin Soc Pharm. 2024;15:100464.",
+    # [21]
     "Ong JCL, Chang SY, William W, Butte AJ, Shah NH, Chew LST, et al. The ethics of ChatGPT in medicine and healthcare: a systematic review on large language models (LLMs). NPJ Digit Med. 2024;7:143.",
+    # [22]
     "Ahmad A, Alsharif A, Abusuh A, Alghamdi M, Alharbi A, Alqahtani A, et al. A systematic review of ethical considerations of large language models in healthcare and medicine. Front Digit Health. 2025;7:1653631.",
+    # [23]
     "Pappu S, Kommineni HP. Generative AI in consumer health: leveraging large language models for health literacy and clinical safety with a digital health framework. Front Digit Health. 2025;7:1587672.",
 ]
 for idx, ref in enumerate(references, start=1):
@@ -623,7 +655,7 @@ document_xml = (
 
 def main():
     out = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                       'AI_Medication_Safety_Education_serial_citations.docx')
+                       'AI_Medication_Safety_Education_serial_citations_corrected.docx')
     with zipfile.ZipFile(out, 'w', zipfile.ZIP_DEFLATED) as zf:
         zf.writestr('[Content_Types].xml', CONTENT_TYPES)
         zf.writestr('_rels/.rels', RELS)
