@@ -6,15 +6,21 @@ Features:
   - Markdown body -> Word paragraphs/headings
   - Native Word tables (5 tables)
   - Embedded PNG figures (7 figures) with captions
-  - 18 governing equations rendered as centered, numbered, word-form statements
+  - 18 governing equations rendered as native Word equation-editor objects
+    (OMML / Office Math), numbered, each followed by a word-form statement
+  - Chemical formulas (TiO2, Al2O3, H2O, ...) with real subscripts in text
+  - Inline symbols wrapped in $...$ emitted as inline OMML equation objects
 Markers inside the markdown:
-  [[FIGUREn]] [[TABLEn]] [[EQn]]
+  [[FIGUREn]] [[TABLEn]] [[EQn]]  ;  inline math via $...$
 """
 
 import os
 import re
 import struct
 import zipfile
+
+import omml as o
+from equations_omml import EQUATIONS as OMML_EQUATIONS
 
 ROOT = '/projects/sandbox/AMMAN'
 MD = os.path.join(ROOT, 'ML_Hybrid_Nanofluid_PHE_Manuscript.md')
@@ -32,17 +38,72 @@ def esc(t):
              .replace('>', '&gt;').replace('"', '&quot;'))
 
 
-def runs_from_inline(text):
-    """Convert **bold** markup into runs; return run XML."""
+# chemical formulas that must get proper subscripts in running text.
+# order matters: longer / combined tokens first.
+CHEM_PATTERN = re.compile(
+    r'(TiO2|Al2O3|SiO2|Fe3O4|CuO|ZnO|H2O|CO2)'
+)
+
+
+def _chem_runs(token, bold=False):
+    """Render a chemical formula as Word runs with real subscripts for digits."""
+    runs = []
+    b = '<w:b/>' if bold else ''
+    for ch in token:
+        if ch.isdigit():
+            runs.append('<w:r><w:rPr>%s<w:vertAlign w:val="subscript"/></w:rPr>'
+                        '<w:t xml:space="preserve">%s</w:t></w:r>' % (b, ch))
+        else:
+            rpr = '<w:rPr>%s</w:rPr>' % b if b else ''
+            runs.append('<w:r>%s<w:t xml:space="preserve">%s</w:t></w:r>'
+                        % (rpr, esc(ch)))
+    return ''.join(runs)
+
+
+def _text_runs_with_chem(text, bold=False):
+    """Split plain text on chemical formulas; emit subscripted chem + normal runs."""
     out = []
-    for i, seg in enumerate(re.split(r'(\*\*[^*]+\*\*)', text)):
+    pos = 0
+    b = '<w:b/>' if bold else ''
+    for m in CHEM_PATTERN.finditer(text):
+        if m.start() > pos:
+            seg = text[pos:m.start()]
+            rpr = '<w:rPr>%s</w:rPr>' % b if b else ''
+            out.append('<w:r>%s<w:t xml:space="preserve">%s</w:t></w:r>'
+                       % (rpr, esc(seg)))
+        out.append(_chem_runs(m.group(0), bold=bold))
+        pos = m.end()
+    if pos < len(text):
+        rpr = '<w:rPr>%s</w:rPr>' % b if b else ''
+        out.append('<w:r>%s<w:t xml:space="preserve">%s</w:t></w:r>'
+                   % (rpr, esc(text[pos:])))
+    return ''.join(out)
+
+
+def _inline_math(expr):
+    """Return an inline <m:oMath> object for a $...$ span."""
+    return o.omml_inline(expr)
+
+
+def runs_from_inline(text):
+    """Convert markup into Word runs.
+    Handles: **bold**, $inline math$, and chemical-formula subscripts.
+    """
+    out = []
+    # split on bold first, keeping delimiters
+    for seg in re.split(r'(\*\*[^*]+\*\*)', text):
         if not seg:
             continue
-        if seg.startswith('**') and seg.endswith('**'):
-            inner = esc(seg[2:-2])
-            out.append('<w:r><w:rPr><w:b/></w:rPr><w:t xml:space="preserve">%s</w:t></w:r>' % inner)
-        else:
-            out.append('<w:r><w:t xml:space="preserve">%s</w:t></w:r>' % esc(seg))
+        bold = seg.startswith('**') and seg.endswith('**')
+        content = seg[2:-2] if bold else seg
+        # within each (bold or normal) chunk, split on $...$ math spans
+        for piece in re.split(r'(\$[^$]+\$)', content):
+            if not piece:
+                continue
+            if piece.startswith('$') and piece.endswith('$'):
+                out.append(_inline_math(piece[1:-1]))
+            else:
+                out.append(_text_runs_with_chem(piece, bold=bold))
     return ''.join(out)
 
 
@@ -61,8 +122,40 @@ def para(text, style=None, bold=False, size=None, jc=None, italic=False):
     if jc:
         ppr_parts.append('<w:jc w:val="%s"/>' % jc)
     ppr = '<w:pPr>%s</w:pPr>' % ''.join(ppr_parts) if ppr_parts else ''
-    return ('<w:p>%s<w:r>%s<w:t xml:space="preserve">%s</w:t></w:r></w:p>'
-            % (ppr, rpr, esc(text)))
+    # route text through chem-aware runs so TiO2/Al2O3 etc. get subscripts,
+    # carrying the paragraph's run properties (bold/size/italic) onto each run.
+    rbody = _runs_with_props(text, rpr)
+    return '<w:p>%s%s</w:p>' % (ppr, rbody)
+
+
+def _runs_with_props(text, rpr):
+    """Emit chem-aware runs that all share the given <w:rPr> block."""
+    runs = []
+    pos = 0
+    for m in CHEM_PATTERN.finditer(text):
+        if m.start() > pos:
+            runs.append('<w:r>%s<w:t xml:space="preserve">%s</w:t></w:r>'
+                        % (rpr, esc(text[pos:m.start()])))
+        for ch in m.group(0):
+            if ch.isdigit():
+                # merge subscript flag into existing rPr
+                sub_rpr = _merge_rpr(rpr, '<w:vertAlign w:val="subscript"/>')
+                runs.append('<w:r>%s<w:t xml:space="preserve">%s</w:t></w:r>'
+                            % (sub_rpr, ch))
+            else:
+                runs.append('<w:r>%s<w:t xml:space="preserve">%s</w:t></w:r>'
+                            % (rpr, esc(ch)))
+        pos = m.end()
+    if pos < len(text):
+        runs.append('<w:r>%s<w:t xml:space="preserve">%s</w:t></w:r>'
+                    % (rpr, esc(text[pos:])))
+    return ''.join(runs)
+
+
+def _merge_rpr(rpr, extra):
+    if not rpr:
+        return '<w:rPr>%s</w:rPr>' % extra
+    return rpr.replace('</w:rPr>', extra + '</w:rPr>')
 
 
 def para_runs(text, jc='both'):
@@ -254,75 +347,43 @@ TABLES = {
 }
 
 
-# ---------------------------------------------------------------------------
-# Equations (word form, centered + numbered)
-# ---------------------------------------------------------------------------
-EQUATIONS = {
-    'EQ1': ('rho_nf  =  (1 - phi_1 - phi_2) * rho_bf  +  phi_1 * rho_p1  +  phi_2 * rho_p2',
-            'mixture density equals base-fluid volume fraction times base-fluid density, '
-            'plus each particle volume fraction times its solid density', 1),
-    'EQ2': ('(rho * c_p)_nf  =  (1 - phi_1 - phi_2)(rho * c_p)_bf  +  phi_1 (rho * c_p)_p1  +  phi_2 (rho * c_p)_p2',
-            'the product of mixture density and specific heat equals the volume-weighted sum of '
-            'the density-specific-heat products of base fluid and particles', 2),
-    'EQ3': ('Re  =  (G * D_h) / mu_nf',
-            'Reynolds number equals channel mass flux times hydraulic diameter divided by dynamic viscosity', 3),
-    'EQ4': ('Pr  =  (mu_nf * c_p,nf) / k_nf',
-            'Prandtl number equals dynamic viscosity times specific heat divided by thermal conductivity', 4),
-    'EQ5': ('Q  =  m-dot * c_p * (T_in - T_out)',
-            'heat duty equals mass flow rate times specific heat times the inlet-to-outlet temperature difference', 5),
-    'EQ6': ('U  =  Q / (A * LMTD)',
-            'overall heat-transfer coefficient equals heat duty divided by the product of area and '
-            'log-mean temperature difference', 6),
-    'EQ7': ('LMTD  =  (dT_1 - dT_2) / ln(dT_1 / dT_2)',
-            'log-mean temperature difference equals the difference of the terminal temperature differences '
-            'divided by the natural logarithm of their ratio', 7),
-    'EQ8': ('1 / (U * A)  =  1 / (h_h * A)  +  t_w / (k_w * A)  +  1 / (h_c * A)',
-            'overall thermal resistance equals the hot-side convective resistance plus the plate-wall '
-            'conduction resistance plus the cold-side convective resistance', 8),
-    'EQ9': ('Nu  =  (h * D_h) / k_nf',
-            'Nusselt number equals the convective coefficient times hydraulic diameter divided by '
-            'nanofluid thermal conductivity', 9),
-    'EQ10': ('f  =  (dP * D_h * 2 * rho) / (L * G^2)',
-             'Darcy friction factor equals pressure drop times hydraulic diameter times twice the density, '
-             'divided by channel length times the square of the mass flux', 10),
-    'EQ11': ('eta  =  (h_nf / h_w) / (f_nf / f_w)^(1/3)',
-             'thermal performance factor equals the convective-coefficient ratio divided by the cube root '
-             'of the friction-factor ratio', 11),
-    'EQ12': ('keep x  if  Q1 - 1.5*IQR  <=  x  <=  Q3 + 1.5*IQR',
-             'an observation is retained only if it lies within 1.5 interquartile ranges of the first and '
-             'third quartiles', 12),
-    'EQ13': ('x_norm  =  (x - x_min) / (x_max - x_min)',
-             'the normalised feature equals the raw value minus its minimum divided by the span between '
-             'its maximum and minimum', 13),
-    'EQ14': ('F(w)  =  beta * sum(e_i^2)  +  alpha * sum(w_j^2)',
-             'the Bayesian-regularised objective equals a weighted sum of squared errors plus a weighted '
-             'sum of squared network weights', 14),
-    'EQ15': ('y_RF  =  (1 / B) * sum over b of  T_b(x)',
-             'the random-forest prediction equals the arithmetic mean of the outputs of the B bootstrap trees', 15),
-    'EQ16': ('F_m(x)  =  F_(m-1)(x)  +  nu * h_m(x),   h_m fit to the negative gradient of the regularised loss',
-             'each boosting stage adds a shrunk tree fitted to the negative gradient of a '
-             'complexity-penalised loss', 16),
-    'EQ17': ('minimise  (1/2)||w||^2 + C * sum(xi_i + xi_i*)   subject to the epsilon-insensitive tube',
-             'support-vector regression minimises model complexity plus a penalty on deviations that '
-             'exceed the epsilon-insensitive tube', 17),
-    'EQ18': ('R^2  =  1 - ( sum(y_i - y_hat_i)^2 / sum(y_i - y_bar)^2 )',
-             'the coefficient of determination equals one minus the residual sum of squares divided by '
-             'the total sum of squares', 18),
-}
 
 
 def equation_xml(key):
-    formula, words, num = EQUATIONS[key]
-    # centered symbolic line in italic, with right-aligned equation number via tab
-    sym = ('<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="80" w:after="20"/></w:pPr>'
-           '<w:r><w:rPr><w:i/></w:rPr><w:t xml:space="preserve">%s</w:t></w:r>'
-           '<w:r><w:tab/><w:t xml:space="preserve">(%d)</w:t></w:r></w:p>'
-           % (esc(formula), num))
-    wf = ('<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:after="140"/></w:pPr>'
-          '<w:r><w:rPr><w:sz w:val="20"/></w:rPr>'
+    """Render a display equation as a native Word equation (OMML) with a
+    right-aligned equation number, using a borderless 3-column table so the
+    equation stays centred and the number sits at the right margin."""
+    frag, words, num = OMML_EQUATIONS[key]
+    omath = o.omath(frag)
+
+    # borderless table: [spacer | centred equation | right number]
+    cell_math = (
+        '<w:tc><w:tcPr><w:tcW w:w="7800" w:type="dxa"/></w:tcPr>'
+        '<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:after="0"/></w:pPr>'
+        '%s</w:p></w:tc>' % omath)
+    cell_num = (
+        '<w:tc><w:tcPr><w:tcW w:w="1560" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr>'
+        '<w:p><w:pPr><w:jc w:val="right"/><w:spacing w:after="0"/></w:pPr>'
+        '<w:r><w:t xml:space="preserve">(%d)</w:t></w:r></w:p></w:tc>' % num)
+    nobord = ('<w:tblBorders>'
+              '<w:top w:val="none" w:sz="0" w:space="0" w:color="auto"/>'
+              '<w:left w:val="none" w:sz="0" w:space="0" w:color="auto"/>'
+              '<w:bottom w:val="none" w:sz="0" w:space="0" w:color="auto"/>'
+              '<w:right w:val="none" w:sz="0" w:space="0" w:color="auto"/>'
+              '<w:insideH w:val="none" w:sz="0" w:space="0" w:color="auto"/>'
+              '<w:insideV w:val="none" w:sz="0" w:space="0" w:color="auto"/>'
+              '</w:tblBorders>')
+    table = (
+        '<w:tbl><w:tblPr><w:tblW w:w="9360" w:type="dxa"/><w:jc w:val="center"/>'
+        '%s</w:tblPr>'
+        '<w:tblGrid><w:gridCol w:w="7800"/><w:gridCol w:w="1560"/></w:tblGrid>'
+        '<w:tr>%s%s</w:tr></w:tbl>' % (nobord, cell_math, cell_num))
+
+    wf = ('<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="40" w:after="140"/></w:pPr>'
+          '<w:r><w:rPr><w:sz w:val="20"/><w:i/></w:rPr>'
           '<w:t xml:space="preserve">In words: %s.</w:t></w:r></w:p>'
           % esc(words[0].upper() + words[1:]))
-    return sym + wf
+    return empty_para() + table + wf
 
 
 # ---------------------------------------------------------------------------
@@ -353,7 +414,7 @@ def build_body():
                 parts.append(figure_xml(key, rid))
             elif key in TABLES:
                 parts.append(TABLES[key]())
-            elif key in EQUATIONS:
+            elif key in OMML_EQUATIONS:
                 parts.append(equation_xml(key))
             i += 1
             continue
@@ -432,6 +493,7 @@ def build():
         'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" '
         'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" '
         'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" '
+        'xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" '
         'xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
         '<w:body>' + body +
         '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>'
