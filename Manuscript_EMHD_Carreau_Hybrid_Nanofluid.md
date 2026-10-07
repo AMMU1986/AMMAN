@@ -107,7 +107,9 @@ where τ is the Carreau stress tensor, k_p is the permeability, F_c the Forchhei
 
 *Dufour term (Eq. 10).* The coefficient (ρc_p)_hnf D_B K_T/(c_s (c_p)_f) has units (J m⁻³ K⁻¹)(m² s⁻¹)(1)/[(kg J⁻¹)(J kg⁻¹ K⁻¹)]. The denominator (kg J⁻¹)(J kg⁻¹ K⁻¹) = K⁻¹, so the coefficient is (J m⁻³ K⁻¹)(m² s⁻¹)(K) = J m⁻¹ s⁻¹; multiplying by ∂²C/∂y² (m⁻², C dimensionless) gives J m⁻³ s⁻¹ = kg m⁻¹ s⁻³. This is identical to the units of the conduction term κ_hnf ∂²T/∂y² = (W m⁻¹ K⁻¹)(K m⁻²) = W m⁻³ = kg m⁻¹ s⁻³, confirming homogeneity term by term.
 
-*Dufour number (Eq. 21).* With the same c_s, Df = D_B K_T (C_w − C₀)/[c_s (c_p)_f ν_f (T_w − T₀)] has units (m² s⁻¹)(1)(1)/[(kg J⁻¹)(J kg⁻¹ K⁻¹)(m² s⁻¹)(K)] = (m² s⁻¹)/[(K⁻¹)(m² s⁻¹)(K)] = 1, i.e. Df is dimensionless. The Soret number Sr is likewise dimensionless. The nonlinear (Rosseland) radiative flux is
+*Dufour number (Eq. 21).* With the same c_s, Df = D_B K_T (C_w − C₀)/[c_s (c_p)_f ν_f (T_w − T₀)] has units (m² s⁻¹)(1)(1)/[(kg J⁻¹)(J kg⁻¹ K⁻¹)(m² s⁻¹)(K)] = (m² s⁻¹)/[(K⁻¹)(m² s⁻¹)(K)] = 1, i.e. Df is dimensionless. The Soret number Sr is likewise dimensionless.
+
+*Sign convention.* The Dufour term in Eq. (10) and the Soret term in Eq. (11) are both written with a positive sign, corresponding to the convention in which a positive thermal-diffusion ratio K_T drives species down the temperature gradient (and the reciprocal energy flux down the concentration gradient); this is the convention adopted consistently throughout, and it fixes the positive sign of the Soret–Dufour cross term in the entropy expression (Eq. 35). The nonlinear (Rosseland) radiative flux is
 
 $$
 q_r = -\frac{16\sigma^*}{3 k^*}T^3\frac{\partial T}{\partial y}
@@ -340,12 +342,12 @@ The dimensionless groups are defined as
 $$
 Br = \frac{\mu_f U_e^2}{\kappa_f (T_w - T_0)}, \quad
 \Omega = \frac{T_w - T_0}{T_0}, \quad
-\Lambda = \frac{R_s\, \rho_f D_B\, (C_w - C_0)}{\kappa_f}, \quad
+\Lambda = \frac{R_s\, \rho_f D_B\, (C_w - C_0)\, C_0}{\kappa_f}, \quad
 \zeta = \frac{C_w - C_0}{C_0}
 \tag{37}
 $$
 
-where Br is the Brinkman number, Ω the dimensionless temperature difference, Λ the diffusive-irreversibility parameter, ζ the dimensionless concentration difference, and R_s is the specific (mass-basis) gas constant of the diffusing species (units J kg⁻¹ K⁻¹), consistent with the mass-fraction definition of C adopted throughout. The product R_s ρ_f D_B (C_w − C₀)/κ_f is dimensionless. The four labelled groups satisfy, by construction,
+where Br is the Brinkman number, Ω the dimensionless temperature difference, Λ the diffusive-irreversibility parameter, ζ the dimensionless concentration difference, and R_s is the specific (mass-basis) gas constant of the diffusing species (units J kg⁻¹ K⁻¹), consistent with the mass-fraction definition of C adopted throughout. The additional factor C₀ (the dimensionless ambient mass fraction) in the definition of Λ arises because the diffusive entropy-production term carries 1/C = 1/[C₀(1 + ζφ)] in its denominator: normalising (R_s ρ_f D_B/C)(∂C/∂y)² and the corresponding cross term by S‴₀ produces the common prefactor R_s ρ_f D_B (C_w − C₀) C₀/κ_f, which is collected into Λ so that N_DD takes the compact form shown in Eq. (36). Each of Br, Ω, Λ and ζ is dimensionless. The four labelled groups satisfy, by construction,
 
 $$
 N_s = N_{HT} + N_{FF} + N_J + N_{DD}

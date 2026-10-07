@@ -276,6 +276,95 @@ def render_inline(text):
     return segs
 
 
+# ----------------------------------------------------------------------------
+# Inline Unicode-math auto-detection: convert math tokens that appear in prose
+# (e.g. f″(1), α_κ, θ′, Re_x, F³, N_DD) into native OMML equation objects so
+# that symbols cited in the text render in Word equation-editor form.
+# ----------------------------------------------------------------------------
+_GREEK = 'αβγΓδΔεζηθΘκλΛμνξπΠρσΣτφΦχψΨωΩΞ'
+_PRIMES = '′″‴⁗'
+_SUP = '⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻'
+_SUB = '₀₁₂₃₄₅₆₇₈₉'
+_OPS = '≤≥≈≠∞∂∇·×±→√∗⁎'
+_MATHCHARS = _GREEK + _PRIMES + _SUP + _SUB + _OPS
+
+_SUPMAP = {'⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁺':'+','⁻':'-'}
+_SUBMAP = {'₀':'0','₁':'1','₂':'2','₃':'3','₄':'4','₅':'5','₆':'6','₇':'7','₈':'8','₉':'9'}
+
+# A math token: an identifier/greek optionally followed by subscripts (_x or ₓ),
+# primes, superscripts, and parenthetical args — e.g. f″(1), α_κ, Re_x^{1/2}, F³.
+_TOKEN_RE = re.compile(
+    r'(?<![A-Za-z])'
+    r'(?:[A-Za-z]|[' + _GREEK + r'])'
+    r'(?:_[A-Za-z0-9]+|[' + _SUB + r']+|[' + _PRIMES + r']+|[' + _SUP + r']+'
+    r'|\^[0-9]+|\([^()]{0,6}\))*'
+)
+
+def _looks_math(tok):
+    # Must contain at least one genuinely mathematical feature.
+    return any(c in tok for c in _PRIMES + _SUP + _SUB + _GREEK) or '_' in tok or '^' in tok
+
+
+def _token_to_latex(tok):
+    """Translate a Unicode math token into the LaTeX subset the OMML parser reads."""
+    out = []
+    i = 0
+    n = len(tok)
+    while i < n:
+        c = tok[i]
+        if c in _SUPMAP:  # run of unicode superscripts
+            j = i
+            s = ''
+            while j < n and tok[j] in _SUPMAP:
+                s += _SUPMAP[tok[j]]; j += 1
+            out.append('^{' + s + '}'); i = j
+        elif c in _SUBMAP:  # run of unicode subscripts
+            j = i
+            s = ''
+            while j < n and tok[j] in _SUBMAP:
+                s += _SUBMAP[tok[j]]; j += 1
+            out.append('_{' + s + '}'); i = j
+        elif c in _PRIMES:
+            out.append("'" * (_PRIMES.index(c) + 1)); i += 1
+        else:
+            out.append(c); i += 1
+    return ''.join(out)
+
+
+_UNI_GREEK_TO_LATEX = {
+    'α':r'\alpha','β':r'\beta','γ':r'\gamma','Γ':r'\Gamma','δ':r'\delta','Δ':r'\Delta',
+    'ε':r'\epsilon','ζ':r'\zeta','η':r'\eta','θ':r'\theta','Θ':r'\Theta','κ':r'\kappa',
+    'λ':r'\lambda','Λ':r'\Lambda','μ':r'\mu','ν':r'\nu','ξ':r'\xi','π':r'\pi','Π':r'\Pi',
+    'ρ':r'\rho','σ':r'\sigma','Σ':r'\Sigma','τ':r'\tau','φ':r'\phi','Φ':r'\Phi','χ':r'\chi',
+    'ψ':r'\psi','Ψ':r'\Psi','ω':r'\omega','Ω':r'\Omega','Ξ':r'\Xi',
+}
+
+def _greek_to_latex(s):
+    return ''.join(_UNI_GREEK_TO_LATEX.get(ch, ch) for ch in s)
+
+
+def _emit_math_token(tok):
+    latex = _greek_to_latex(_token_to_latex(tok))
+    return latex_to_omml(latex, display=False)
+
+
+def _render_math_in_text(segment):
+    """Scan a prose segment and emit OMML for math tokens, plain runs otherwise."""
+    out = []
+    pos = 0
+    for m in _TOKEN_RE.finditer(segment):
+        tok = m.group(0)
+        if not _looks_math(tok):
+            continue
+        if m.start() > pos:
+            out.append(f'<w:r><w:t xml:space="preserve">{esc(segment[pos:m.start()])}</w:t></w:r>')
+        out.append(_emit_math_token(tok))
+        pos = m.end()
+    if pos < len(segment):
+        out.append(f'<w:r><w:t xml:space="preserve">{esc(segment[pos:])}</w:t></w:r>')
+    return ''.join(out)
+
+
 def runs_from_inline(text):
     out = []
     for kind, payload in render_inline(text):
@@ -289,7 +378,7 @@ def runs_from_inline(text):
                     out.append(f'<w:r><w:rPr><w:b/></w:rPr>'
                                f'<w:t xml:space="preserve">{esc(p[2:-2])}</w:t></w:r>')
                 else:
-                    out.append(f'<w:r><w:t xml:space="preserve">{esc(p)}</w:t></w:r>')
+                    out.append(_render_math_in_text(p))
     return ''.join(out) if out else '<w:r><w:t xml:space="preserve"></w:t></w:r>'
 
 
