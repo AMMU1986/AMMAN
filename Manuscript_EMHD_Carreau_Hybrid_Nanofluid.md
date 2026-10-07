@@ -342,12 +342,12 @@ The dimensionless groups are defined as
 $$
 Br = \frac{\mu_f U_e^2}{\kappa_f (T_w - T_0)}, \quad
 \Omega = \frac{T_w - T_0}{T_0}, \quad
-\Lambda = \frac{R_s\, \rho_f D_B\, (C_w - C_0)\, C_0}{\kappa_f}, \quad
+\Lambda = \frac{R_s\, \rho_f D_B\, C_0}{\kappa_f}, \quad
 \zeta = \frac{C_w - C_0}{C_0}
 \tag{37}
 $$
 
-where Br is the Brinkman number, Ω the dimensionless temperature difference, Λ the diffusive-irreversibility parameter, ζ the dimensionless concentration difference, and R_s is the specific (mass-basis) gas constant of the diffusing species (units J kg⁻¹ K⁻¹), consistent with the mass-fraction definition of C adopted throughout. The additional factor C₀ (the dimensionless ambient mass fraction) in the definition of Λ arises because the diffusive entropy-production term carries 1/C = 1/[C₀(1 + ζφ)] in its denominator: normalising (R_s ρ_f D_B/C)(∂C/∂y)² and the corresponding cross term by S‴₀ produces the common prefactor R_s ρ_f D_B (C_w − C₀) C₀/κ_f, which is collected into Λ so that N_DD takes the compact form shown in Eq. (36). Each of Br, Ω, Λ and ζ is dimensionless. The four labelled groups satisfy, by construction,
+where Br is the Brinkman number, Ω the dimensionless temperature difference, Λ the diffusive-irreversibility parameter, ζ the dimensionless concentration difference, and R_s is the specific (mass-basis) gas constant of the diffusing species (units J kg⁻¹ K⁻¹), consistent with the mass-fraction definition of C adopted throughout. The factor C₀ (the dimensionless ambient mass fraction) in the definition of Λ arises because the diffusive entropy-production term carries 1/C = 1/[C₀(1 + ζφ)] in its denominator while the concentration difference contributes (C_w − C₀)² = ζ²C₀²; collecting the common factor R_s ρ_f D_B C₀/κ_f into Λ makes N_DD take the compact form shown in Eq. (36). (The cross term, carrying one factor (C_w − C₀) = ζC₀ and 1/T = 1/(T₀F), likewise reduces to Λζ/(FΩ) with the same Λ.) Each of Br, Ω, Λ and ζ is dimensionless. The four labelled groups satisfy, by construction,
 
 $$
 N_s = N_{HT} + N_{FF} + N_J + N_{DD}
@@ -397,7 +397,7 @@ $$
 \tag{43}
 $$
 
-Since F = F(η) and φ = φ(η), Eq. (43) is a spatially varying condition; it was evaluated pointwise over 0 ≤ η ≤ 1 for every reported parameter set and found to hold, so the complete diffusive quadratic form satisfies N_HT + N_DD ≥ 0. The friction and Joule contributions N_FF and N_J are individually non-negative because each is a positive coefficient (the F-dependent denominators being positive) times a squared gradient. Consequently, under the positive-semidefinite condition given by Eq. (43) together with the sign assumptions above, the whole denominator N_s is positive and the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported parameter range — note that it is the complete quadratic form N_HT + N_DD, and not the individual cross term (which may be negative locally), that is guaranteed non-negative.
+Since F = F(η) and φ = φ(η), Eq. (43) is a spatially varying condition; with Λ as corrected in Eq. (37), it is to be evaluated pointwise over 0 ≤ η ≤ 1 for every reported parameter set (this check is to be repeated when the entropy quantities are regenerated from Eq. 36, see Section 6.4). Where it holds, the complete diffusive quadratic form satisfies N_HT + N_DD ≥ 0. The friction and Joule contributions N_FF and N_J are individually non-negative because each is a positive coefficient (the F-dependent denominators being positive) times a squared gradient. Consequently, under the positive-semidefinite condition given by Eq. (43) together with the sign assumptions above, the whole denominator N_s is positive and the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported parameter range — note that it is the complete quadratic form N_HT + N_DD, and not the individual cross term (which may be negative locally), that is guaranteed non-negative.
 
 ---
 
