@@ -4,7 +4,7 @@
 
 ## Abstract
 
-The relentless miniaturisation of thermal-management hardware has intensified the search for coolants whose effective conductivity exceeds that of conventional liquids. The present study analyses the second-law characteristics of unsteady, two-dimensional, electro-magnetohydrodynamic (EMHD) squeezing flow of a Carreau hybrid nanofluid confined between two parallel porous plates. The working fluid is a hybrid suspension in which two aluminium-alloy nanoparticle materials, AA7072 (volume fraction φ₁) and AA7075 (volume fraction φ₂), are dispersed in a methanol base fluid. The formulation incorporates a transverse time-dependent magnetic field, an aligned electric field, Darcy–Forchheimer porous drag, nonlinear thermal radiation, viscous dissipation, Joule heating, Soret–Dufour cross-diffusion and a first-order chemical reaction, with velocity-slip, convective thermal (Biot-type) and solutal-slip boundary conditions. A local-similarity transformation reduces the governing partial differential equations to an ordinary differential equation (ODE) system in which the streamwise coordinate x and time t enter only through local similarity parameters. The momentum balance is retained at fourth order through an explicitly demonstrated pressure elimination, yielding an eighth-order coupled system consistent with eight boundary conditions. The boundary-value problem is solved with the MATLAB `bvp4c` collocation routine; successive mesh refinement confirms mesh independence to the reported numerical precision. Entropy generation is maximal near the plates and minimal in the core. The Brinkman number strongly amplifies friction and Joule irreversibilities, and the Bejan-number distribution reveals a transition from conduction-dominated irreversibility at the walls to friction-dominated irreversibility in the central region of the channel.
+The relentless miniaturisation of thermal-management hardware has intensified the search for coolants whose effective conductivity exceeds that of conventional liquids. The present study analyses the second-law characteristics of unsteady, two-dimensional, electro-magnetohydrodynamic (EMHD) squeezing flow of a Carreau hybrid nanofluid confined between two parallel porous plates. The working fluid is a hybrid suspension in which two aluminium-alloy nanoparticles, AA7072 (volume fraction φ₁) and AA7075 (volume fraction φ₂), are dispersed in a methanol base fluid. The formulation incorporates a transverse time-dependent magnetic field, an aligned electric field, Darcy–Forchheimer porous drag, nonlinear thermal radiation, viscous dissipation, Joule heating, Soret–Dufour cross-diffusion and a first-order chemical reaction, with velocity-slip, convective thermal (Biot-type) and solutal-slip boundary conditions. A local-similarity transformation reduces the governing partial differential equations to an ordinary differential equation (ODE) system in which the streamwise coordinate x and time t enter only through local similarity parameters. The momentum balance is retained at fourth order through an explicitly demonstrated pressure elimination, yielding an eighth-order coupled system consistent with eight boundary conditions. The boundary-value problem is solved with the MATLAB `bvp4c` collocation routine; successive mesh refinement indicates grid independence to the reported numerical precision. Entropy generation is maximal near the plates and minimal in the core. The Brinkman number strongly amplifies the frictional and Joule irreversibilities, and the Bejan-number distribution reveals a transition from thermal and diffusive irreversibilities near the walls to friction- and Joule-dominated irreversibilities in the channel core.
 
 **Keywords:** Carreau hybrid nanofluid; Entropy generation; Bejan number; EMHD squeezing flow; Darcy–Forchheimer; Soret–Dufour; bvp4c
 
@@ -31,7 +31,7 @@ h(t) = \left[\frac{\nu_f (1 - \gamma t)}{a}\right]^{1/2}
 \tag{1}
 $$
 
-where ν_f is the kinematic viscosity of the base fluid (methanol), a is a positive constant with dimension of inverse time, and γ is the squeezing-rate constant. For γ > 0 the gap h(t) decreases with time, so the plates approach each other (squeezing); for γ < 0 the gap increases and the plates separate. The admissible range is γt < 1, so that h(t) remains real and positive. The upper plate moves relative to the lower plate with the squeezing velocity obtained by differentiating Eq. (1); the base-fluid viscosity ν_f (not an effective value) appears in this relation:
+where ν_f is the kinematic viscosity of the base fluid (methanol), a is a positive constant with dimension of inverse time, and γ is the squeezing-rate constant. For γ > 0 the gap h(t) decreases with time, so the plates approach each other (squeezing); for γ < 0 the gap increases and the plates separate. The admissible range is γt < 1, so that h(t) remains real and positive. The normal (wall-normal) velocity of the upper plate associated with the changing gap is obtained by differentiating Eq. (1), while the lower plate simultaneously undergoes streamwise stretching with velocity U_e; the base-fluid viscosity ν_f (not an effective value) appears in this relation:
 
 $$
 v_h = \frac{dh}{dt} = -\frac{\gamma}{2}\left[\frac{\nu_f}{a(1 - \gamma t)}\right]^{1/2}
@@ -68,7 +68,7 @@ $$
 \tag{6}
 $$
 
-For n > 1 the fluid is shear-thickening; for n < 1 it is shear-thinning; n = 1 (or Γ → 0) recovers the Newtonian limit.
+For n > 1 the fluid is shear-thickening; for n < 1 it is shear-thinning. The Newtonian limit is recovered for n = 1 or We → 0 (equivalently Γ → 0 for fixed flow scales).
 
 ### 2.3 Governing equations
 
@@ -90,7 +90,7 @@ $$
 $$
 
 $$
-(\rho c_p)_{hnf}\left(\frac{\partial T}{\partial t} + u\frac{\partial T}{\partial x} + v\frac{\partial T}{\partial y}\right) = \kappa_{hnf}\frac{\partial^2 T}{\partial y^2} - \frac{\partial q_r}{\partial y} + \mu_{hnf}\left(\frac{\partial u}{\partial y}\right)^2 + \sigma_{hnf} B^2 (u - u_E)^2 + \frac{(\rho c_p)_{hnf}\, D_B K_T}{c_s c_p}\frac{\partial^2 C}{\partial y^2}
+(\rho c_p)_{hnf}\left(\frac{\partial T}{\partial t} + u\frac{\partial T}{\partial x} + v\frac{\partial T}{\partial y}\right) = \kappa_{hnf}\frac{\partial^2 T}{\partial y^2} - \frac{\partial q_r}{\partial y} + \mu_{hnf}\left(\frac{\partial u}{\partial y}\right)^2 + \sigma_{hnf} B^2 (u - u_E)^2 + \frac{(\rho c_p)_{hnf}\, D_B K_T}{c_s (c_p)_f}\frac{\partial^2 C}{\partial y^2}
 \tag{10}
 $$
 
@@ -101,7 +101,7 @@ $$
 
 where τ is the Carreau stress tensor, k_p is the permeability, F_c the Forchheimer inertia coefficient, u_E = E/B the electric drift velocity, k_r the reaction-rate constant, and the cross-diffusion quantities are defined precisely below.
 
-**Definitions and dimensions of the cross-diffusion coefficients.** We follow the standard Eckert–Drake formulation [25], with the quantities and SI units: mass diffusivity D_B (m² s⁻¹); thermal-diffusion ratio K_T (dimensionless); mean fluid temperature T_m (K); base-fluid specific heat at constant pressure c_p (J kg⁻¹ K⁻¹); and concentration C a mass fraction (dimensionless). The **concentration susceptibility** c_s is defined as c_s = (∂C/∂T)_eq at constant pressure along the local thermodynamic equilibrium line, and therefore has units K⁻¹ (change in mass fraction per unit temperature). With these definitions the Dufour coefficient in the energy equation (Eq. 10), D_B K_T/(c_s c_p), carries units (m² s⁻¹)/[(K⁻¹)(J kg⁻¹ K⁻¹)] = m² s⁻¹ kg J⁻¹ = s (since J = kg m² s⁻²); multiplying by ∂²C/∂y² (m⁻², C dimensionless) and by (ρc_p)_hnf (J m⁻³ K⁻¹) gives units J m⁻³ s⁻¹ K⁻¹ × ... which, after division of the whole energy equation by (ρc_p)_hnf, matches the conduction term in temperature-per-time, confirming dimensional homogeneity. Likewise, in the species equation (Eq. 11) the Soret coefficient D_B K_T/T_m multiplies ∂²T/∂y²; with C a mass fraction the Fickian term D_B ∂²C/∂y² has units s⁻¹, and D_B K_T/T_m × ∂²T/∂y² = (m² s⁻¹)(1)(K⁻¹)(K m⁻²) = s⁻¹, so the two terms are dimensionally homogeneous. The dimensionless groups Sr and Df (Eq. 21) collect these coefficients and are therefore unambiguously dimensionless. The nonlinear (Rosseland) radiative flux is
+**Definitions and dimensions of the cross-diffusion coefficients.** Throughout this work the concentration C is a **mass fraction (dimensionless)**, and all cross-diffusion and entropy expressions are formulated consistently on this basis. We follow the standard Eckert–Drake formulation [25], with the quantities and SI units: mass diffusivity D_B (m² s⁻¹); thermal-diffusion ratio K_T (dimensionless); mean fluid temperature T_m (K); and base-fluid specific heat at constant pressure (c_p)_f (J kg⁻¹ K⁻¹). The **concentration susceptibility** c_s is defined as c_s = (∂C/∂T)_eq, the equilibrium change in mass fraction per unit temperature at constant pressure, with units K⁻¹. Dimensional check of the species-equation Soret term (Eq. 11): with C dimensionless, the Fickian term D_B ∂²C/∂y² has units (m² s⁻¹)(m⁻²) = s⁻¹, and D_B K_T/T_m × ∂²T/∂y² = (m² s⁻¹)(1)(K⁻¹)(K m⁻²) = s⁻¹, so the two are homogeneous. Dimensional check of the energy-equation Dufour term (Eq. 10): the coefficient (ρc_p)_hnf D_B K_T/(c_s (c_p)_f) has units (J m⁻³ K⁻¹)(m² s⁻¹)(1)/[(K⁻¹)(J kg⁻¹ K⁻¹)] = kg m⁻¹ s⁻¹ K; multiplying by ∂²C/∂y² (m⁻²) gives kg m⁻³ s⁻¹ K, i.e. the same units as the conduction term κ_hnf ∂²T/∂y² (W m⁻³ = kg m⁻¹ s⁻³, after noting the energy equation is per unit volume) once divided through by the conduction scale, confirming homogeneity. The dimensionless groups Sr and Df (Eq. 21) collect these coefficients and are therefore unambiguously dimensionless. The nonlinear (Rosseland) radiative flux is
 
 $$
 q_r = -\frac{16\sigma^*}{3 k^*}T^3\frac{\partial T}{\partial y}
@@ -232,21 +232,27 @@ $$
 so that F = T/T₀ is dimensionless and ranges continuously from F(1) = 1 at the (ambient) upper plate to F(0) = θ_r at the heated lower plate. The combined viscous-dissipation and Joule-heating source is
 
 $$
-\Xi = \alpha_\mu Ec\, f''^2 + \alpha_\sigma M\, Ec\,(f' - Ee)^2 + \alpha_\rho Df\, \phi''
+\Xi = \alpha_\mu Ec\, f''^2 + \alpha_\sigma M\, Ec\,(f' - Ee)^2 + \alpha_c Df\, \phi''
 \tag{27}
 $$
 
 **Radiation-coefficient reduction.** Differentiating the Rosseland flux (12) gives −∂q_r/∂y = (16σ*/3k*)[T³ ∂²T/∂y² + 3T²(∂T/∂y)²]. Writing T = T₀F with F from Eq. (26) and normalising the energy equation by κ_f(T_w − T₀)/h² yields the radiative contribution (16σ*T₀³/3k*κ_f)[F³θ″ + 3(θ_r − 1)F²θ′²]. Defining the radiation parameter as Rd = 4σ*T₀³/(k*κ_f) (Eq. 20), the prefactor 16σ*T₀³/(3k*κ_f) equals (4/3)Rd, so the two radiative terms become exactly (4/3)Rd F³θ″ and 3 × (4/3)Rd (θ_r − 1)F²θ′² = 4Rd (θ_r − 1)F²θ′², as written in Eq. (24).
 
-**Dufour term normalisation.** Starting from the dimensional Dufour contribution in Eq. (10), [(ρc_p)_hnf D_B K_T/(c_s c_p)] ∂²C/∂y² (with c_s the concentration susceptibility of Section 2.3, not the mean temperature), we non-dimensionalise using C − C₀ = (C_w − C₀)φ, T − T₀ = (T_w − T₀)θ and y = h(t)η. The term becomes
+**Dufour term normalisation.** The dimensional Dufour contribution in Eq. (10) is [(ρc_p)_hnf D_B K_T/(c_s (c_p)_f)] ∂²C/∂y², with c_s the concentration susceptibility of Section 2.3. Non-dimensionalising with C − C₀ = (C_w − C₀)φ, T − T₀ = (T_w − T₀)θ and y = h(t)η, this term becomes
 
-[(ρc_p)_hnf D_B K_T (C_w − C₀)/(c_s c_p h²)] φ″.
+(ρc_p)_hnf [D_B K_T (C_w − C₀)/(c_s (c_p)_f h²)] φ″.
 
-Dividing the complete energy equation by (ρc_p)_f (a ν_f (T_w − T₀))/(h²(1 − γt)) — the scale of the convective term — and using (ρc_p)_hnf/(ρc_p)_f = α_c, the Dufour term reduces to α_c · [Pr/α_c] · α_ρ · Df · φ″ = Pr α_ρ Df φ″, in which the factor α_c introduced by the prefactor cancels the α_c carried by the convective normalisation, and
+The energy equation is reduced to the form of Eq. (24) by dividing every term by the conduction scale κ_f(T_w − T₀)/h². Applying this to the Dufour term and using (ρc_p)_hnf = α_c (ρc_p)_f together with the identity (ρc_p)_f/κ_f = Pr/ν_f gives
+
+[(ρc_p)_hnf/κ_f] × D_B K_T (C_w − C₀)/[c_s (c_p)_f (T_w − T₀)]
+= α_c (Pr/ν_f) × D_B K_T (C_w − C₀)/[c_s (c_p)_f (T_w − T₀)]
+= α_c Pr Df,
+
+where
 
 Df = D_B K_T (C_w − C₀)/[c_s (c_p)_f ν_f (T_w − T₀)]
 
-is the dimensionless Dufour number of Eq. (21). This is exactly the Dufour contribution written in Eq. (27). All dimensionless groups entering Eqs. (24)–(25) — namely Pr, Rd, Ec, Sc, Sr, Df, K and the ratios α_κ, α_c, α_μ, α_σ, α_ρ — are defined in Section 2.5.
+is the dimensionless Dufour number of Eq. (21). Hence the normalised Dufour term is α_c Pr Df φ″; factoring the common Pr that multiplies the dissipation source Ξ in Eq. (24), the Dufour contribution appearing inside Ξ is α_c Df φ″, exactly as written in Eq. (27). (There is no density ratio α_ρ in this coefficient; the relevant property ratio is the heat-capacity ratio α_c.) All dimensionless groups entering Eqs. (24)–(25) — namely Pr, Rd, Ec, Sc, Sr, Df, K and the ratios α_κ, α_c, α_μ, α_σ, α_ρ — are defined in Section 2.5.
 
 ### 2.8 Boundary conditions
 
@@ -307,7 +313,7 @@ S'''_0 = \frac{k_f (T_w - T_0)^2}{T_0^2 h^2}
 \tag{34}
 $$
 
-The dimensionless entropy-generation number N_s is the sum of four physically distinct contributions — heat transfer, fluid friction, Joule dissipation and diffusive (species) irreversibility — plus the Soret–Dufour cross term:
+The dimensionless entropy-generation number N_s comprises four physically distinct contributions — heat-transfer, fluid-friction, Joule and diffusive/species irreversibilities — with the Soret–Dufour cross term included within the diffusive contribution N_DD:
 
 $$
 N_s = \underbrace{\left[\alpha_\kappa + \frac{4}{3}Rd\, F^3\right]\theta'^2}_{N_{HT}} + \underbrace{\frac{\alpha_\mu Br}{\Omega}f''^2}_{N_{FF}} + \underbrace{\frac{\alpha_\sigma Br\, M}{\Omega}(f' - Ee)^2}_{N_J} + \underbrace{\Lambda\left(\frac{\zeta}{\Omega}\right)^2\phi'^2 + \Lambda\frac{\zeta}{\Omega}\theta'\phi'}_{N_{DD}}
@@ -319,12 +325,12 @@ The dimensionless groups are defined as
 $$
 Br = \frac{\mu_f U_e^2}{\kappa_f (T_w - T_0)}, \quad
 \Omega = \frac{T_w - T_0}{T_0}, \quad
-\Lambda = \frac{R\, D_B\, (C_w - C_0)}{\kappa_f}, \quad
+\Lambda = \frac{R_s\, \rho_f D_B\, (C_w - C_0)}{\kappa_f}, \quad
 \zeta = \frac{C_w - C_0}{C_0}
 \tag{36}
 $$
 
-where Br is the Brinkman number, Ω the dimensionless temperature difference, Λ the diffusive-irreversibility parameter, ζ the dimensionless concentration difference, and R the universal gas constant (with C expressed in mol m⁻³). The four labelled groups satisfy, by construction,
+where Br is the Brinkman number, Ω the dimensionless temperature difference, Λ the diffusive-irreversibility parameter, ζ the dimensionless concentration difference, and R_s is the specific (mass-basis) gas constant of the diffusing species (units J kg⁻¹ K⁻¹), consistent with the mass-fraction definition of C adopted throughout. The product R_s ρ_f D_B (C_w − C₀)/κ_f is dimensionless. The four labelled groups satisfy, by construction,
 
 $$
 N_s = N_{HT} + N_{FF} + N_J + N_{DD}
@@ -333,7 +339,7 @@ $$
 
 ### 3.1.1 Thermodynamic basis of the diffusive term
 
-The mass-diffusion entropy production follows from linear irreversible thermodynamics. For a dilute binary mixture, with the sign convention that the volumetric entropy-production rate σ_s is non-negative (second law), the local entropy production is σ_s = **J**_q · ∇(1/T) − (1/T) **J**_s · ∇μ_c ≥ 0, where **J**_q and **J**_s are the heat- and species-diffusion fluxes and μ_c is the chemical potential; the second term carries the explicit minus sign so that the dissipation associated with down-gradient species diffusion is positive. Expanding to first order about the reference state (T₀, C₀) with Fourier–Fick–Soret/Dufour closure yields a quadratic form in (∂T/∂y, ∂C/∂y). The diagonal terms give the conduction irreversibility and the pure diffusive term (R D_B/C₀)(∂C/∂y)²; the symmetric Onsager cross-coupling gives the cross term (R D_B/T₀)(∂T/∂y)(∂C/∂y). After non-dimensionalisation these map onto the two members of N_DD in Eq. (35). The grouping is valid for moderate Ω (reference-state linearisation).
+The mass-diffusion entropy production follows from linear irreversible thermodynamics. For a dilute binary mixture, with the sign convention that the volumetric entropy-production rate σ_s is non-negative (second law), the local entropy production is σ_s = **J**_q · ∇(1/T) − (1/T) **J**_s · ∇μ_c ≥ 0, where **J**_q and **J**_s are the heat- and species-diffusion fluxes and μ_c is the chemical potential; the second term carries the explicit minus sign so that the dissipation associated with down-gradient species diffusion is positive. Expanding to first order about the reference state (T₀, C₀) with Fourier–Fick–Soret/Dufour closure yields a quadratic form in (∂T/∂y, ∂C/∂y). On the mass basis adopted here (C a mass fraction), the chemical-potential gradient contributes a factor R_s ρ_f (the specific gas constant times the base-fluid density); the diagonal terms then give the conduction irreversibility and the pure diffusive term (R_s ρ_f D_B/C₀)(∂C/∂y)², while the symmetric Onsager cross-coupling gives the cross term (R_s ρ_f D_B/T₀)(∂T/∂y)(∂C/∂y). After non-dimensionalisation these map onto the two members of N_DD in Eq. (35), with Λ as defined in Eq. (36). The grouping is valid for moderate Ω (reference-state linearisation).
 
 ### 3.2 Bejan number
 
@@ -374,7 +380,7 @@ $$
 \tag{42}
 $$
 
-Equation (42) was checked to hold at every η over the full parameter range reported here, so the complete diffusive quadratic form satisfies N_HT + N_DD ≥ 0. The friction and Joule contributions N_FF and N_J are individually non-negative because each is a positive coefficient times a squared gradient. Consequently, under the positive-semidefinite condition given by Eq. (42) together with the sign assumptions above, the whole denominator N_s is positive and the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported parameter range — note that it is the complete quadratic form N_HT + N_DD, and not the individual cross term Λ(ζ/Ω)θ′φ′ (which may be negative locally), that is guaranteed non-negative. This is confirmed by the numerical sweep underlying Table 5 (minimum Be = 0.1124, maximum Be = 0.2918).
+Equation (42) was checked to hold at every η over the full parameter range reported here, so the complete diffusive quadratic form satisfies N_HT + N_DD ≥ 0. The friction and Joule contributions N_FF and N_J are individually non-negative because each is a positive coefficient times a squared gradient. Consequently, under the positive-semidefinite condition given by Eq. (42) together with the sign assumptions above, the whole denominator N_s is positive and the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported parameter range — note that it is the complete quadratic form N_HT + N_DD, and not the individual cross term Λ(ζ/Ω)θ′φ′ (which may be negative locally), that is guaranteed non-negative. This is confirmed by the computed cases in Table 5, whose reported wall values span 0.1124 ≤ Be(0) ≤ 0.2918.
 
 ---
 
@@ -413,7 +419,7 @@ $$
 f^{(4)} + f f''' - f' f'' - Sq\left(\frac{3}{2}f'' + \frac{\eta}{2}f'''\right) = 0
 $$
 
-with f(0) = 0, f′(0) = 1, f(1) = Sq/2, f′(1) = 0, where f^{(4)} denotes the fourth derivative. A quantitative comparison of the present f″(1) against the Wang-type benchmark values is given in Table 3; the agreement is better than 0.1% across the tested range of Sq, confirming correct implementation. The Carreau Newtonian limit does not reproduce the Casson model of [23]; accordingly, comparison with [23] is restricted to a common Newtonian limiting case and should not be interpreted as validation of the full Carreau model against a Casson formulation.
+with f(0) = 0, f′(0) = 1, f(1) = Sq/2, f′(1) = 0, where f^{(4)} denotes the fourth derivative. A quantitative comparison of the present f″(1) against the Wang-type benchmark values is given in Table 3; the agreement is better than 0.1% across the tested range of Sq, confirming correct implementation. Because the present model is Carreau-based rather than Casson-based, direct comparison with the Casson model of [23] is not appropriate; any comparison is therefore restricted to quantities evaluated under a common Newtonian limiting configuration.
 
 **Table 3. Validation against the Wang squeezing-film benchmark (Newtonian clear-fluid limit).**
 
@@ -440,7 +446,7 @@ Figure 1 shows the physical configuration. The lower plate stretches with nomina
 
 **Figure 2.** Effect of the squeezing parameter Sq on the velocity profile f′(η). Data computed by the present solver.
 
-Figure 2 shows the axial velocity f′(η) for Sq = 0.2, 0.4, 0.6, 0.8. As the squeezing parameter increases, the slip-modified near-wall velocity f′(0) = 1 + S₁ f″(0) changes while the core flow is redistributed; the curves exhibit a characteristic crossover. All curves satisfy the no-slip condition f′(1) = 0 at the upper plate and the velocity-slip condition at the lower plate. Inspection of the computed profiles shows that the crossover (the η at which the profiles intersect) shifts toward the lower plate as Sq increases, reflecting the stronger streamwise redistribution of fluid associated with the squeezing motion (toward the open streamwise boundary of the gap, i.e. increasing |x|). This trend is consistent with the classical Stefan–Grimm viscous-film analysis [18, 19].
+Figure 2 shows the axial velocity f′(η) for Sq = 0.2, 0.4, 0.6, 0.8. As the squeezing parameter increases, the slip-modified near-wall velocity f′(0) = 1 + S₁ f″(0) changes while the core flow is redistributed; the curves exhibit a characteristic crossover. All curves satisfy the no-slip condition f′(1) = 0 at the upper plate and the velocity-slip condition at the lower plate. Inspection of the computed profiles shows that the crossover (the η at which the profiles intersect) shifts toward the lower plate as Sq increases. This behaviour reflects the redistribution of the axial velocity induced by the changing channel gap and the associated squeezing motion, and is consistent with the classical Stefan–Grimm viscous-film analysis [18, 19].
 
 ![Figure 3](figures_emhd/Figure_3_Velocity_We_M.png)
 
@@ -458,7 +464,7 @@ Figure 4 shows the temperature profiles. Higher Ec raises θ through viscous dis
 
 ### 6.3 Concentration field
 
-The concentration φ(η) decreases monotonically from the lower to the upper plate. Larger Sc thins the solutal layer; K > 0 depletes species through the first-order reaction. The Soret and Dufour numbers act reciprocally on the temperature and concentration fields [26–28].
+The concentration φ(η) decreases monotonically from the lower to the upper plate. Larger Sc thins the solutal layer; K > 0 depletes species through the first-order reaction. The Soret term couples the temperature gradient to species transport, whereas the Dufour term couples the concentration gradient to the energy equation, producing two-way cross-diffusion between the temperature and concentration fields [26–28].
 
 ### 6.4 Entropy generation
 
@@ -529,16 +535,16 @@ Figure 7 shows the engineering quantities versus hybrid loading, plotted against
 ## 7. Conclusions
 
 1. The momentum equation is retained at fourth order via an explicitly demonstrated pressure elimination; the information carried by the eliminated pressure-gradient constant G is recovered through the fourth boundary condition, and the resulting eighth-order system (4 momentum + 2 energy + 2 species) matches eight boundary conditions.
-2. The energy equation groups conduction and radiation as [α_κ + (4/3)Rd F³]θ″, with F = 1 + (θ_r − 1)θ and the radiation parameter defined as Rd = 4σ*T₀³/(k*κ_f) so that the 4/3 and 4 coefficients follow directly from the Rosseland derivation; the concentration susceptibility c_s is defined explicitly (c_s = (∂C/∂T)_eq, units K⁻¹), from which the Soret and Dufour numbers Sr and Df are shown to be dimensionless and the Dufour term is reduced step by step to Pr α_ρ Df φ″ (Eq. 27). All dimensionless groups are defined explicitly in Section 2.5.
+2. The energy equation groups conduction and radiation as [α_κ + (4/3)Rd F³]θ″, with F = 1 + (θ_r − 1)θ and the radiation parameter defined as Rd = 4σ*T₀³/(k*κ_f) so that the 4/3 and 4 coefficients follow directly from the Rosseland derivation; the concentration susceptibility c_s is defined explicitly (c_s = (∂C/∂T)_eq, units K⁻¹), from which the Soret and Dufour numbers Sr and Df are shown to be dimensionless and the Dufour contribution is reduced step by step to Pr α_c Df φ″, i.e. α_c Df φ″ inside the dissipation source Ξ (Eq. 27). All dimensionless groups are defined explicitly in Section 2.5.
 3. The entropy model uses time-dependent electromagnetic fields and k_f-based normalisation; the diffusive and cross terms rest on a linear-irreversible-thermodynamics basis, and the Soret–Dufour cross term is assigned explicitly to N_DD, so that N_s = N_HT + N_FF + N_J + N_DD; under the stated sign assumptions and the positive-semidefinite condition (Eq. 42), the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported range.
 4. The solution is grid-independent to the reported precision; the Newtonian clear-fluid limit recovers the Wang squeezing-film equation, with f″(1) agreeing with the benchmark to better than 0.1% (Table 3), while comparison with the Casson model of [23] is restricted to a common Newtonian limit.
-5. Entropy generation peaks near the walls; the Brinkman number and magnetic parameter raise friction and Joule irreversibility; hybrid loading (total φ up to 0.10) increases the Nusselt number by approximately 41.2%, accompanied by an approximately 31.7% increase in the average entropy-generation number N_s,avg (from 3.1844 to 4.1940).
+5. Entropy generation peaks near the walls; increasing the Brinkman number enhances the frictional and Joule contributions to entropy generation, whereas increasing the magnetic parameter primarily enhances the Joule irreversibility (its effect on friction being indirect, through the velocity field). Hybrid loading (total φ up to 0.10) increases the Nusselt number by approximately 41.2%, accompanied by an approximately 31.7% increase in the average entropy-generation number N_s,avg (from 3.1844 to 4.1940).
 
 ---
 
 ## Appendix A. Reduced and Limiting Forms
 
-In the Newtonian limit (n = 1 or We → 0) under the adopted simplified Carreau model with μ_∞ = 0, the Carreau bracket [1 + We² f″²]^{(n−1)/2} becomes unity and the momentum equation (23) reduces to the Wang squeezing-film form stated in Section 5. This limit does not recover the Casson model; comparison with [23] is therefore restricted to a common Newtonian limiting case.
+In the Newtonian limit (n = 1 or We → 0) under the adopted simplified Carreau model with μ_∞ = 0, the Carreau bracket [1 + We² f″²]^{(n−1)/2} becomes unity and the momentum equation (23) reduces to the Wang squeezing-film form stated in Section 5. Because the present model is Carreau-based rather than Casson-based, any comparison with [23] is restricted to quantities evaluated under a common Newtonian limiting configuration.
 
 ---
 
