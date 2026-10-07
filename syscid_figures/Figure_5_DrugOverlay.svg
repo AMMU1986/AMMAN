@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1180' height='720' viewBox='0 0 1180 720'>
+<rect width='1180' height='720' fill='#ffffff'/>
+<defs><marker id='arrow' markerWidth='10' markerHeight='10' refX='8' refY='3' orient='auto' markerUnits='strokeWidth'><path d='M0,0 L8,3 L0,6 Z' fill='#5b6b7b'/></marker><marker id='arrowdk' markerWidth='10' markerHeight='10' refX='8' refY='3' orient='auto' markerUnits='strokeWidth'><path d='M0,0 L8,3 L0,6 Z' fill='#1b2733'/></marker></defs>
+<text x='40' y='46' font-family='Helvetica, Arial, sans-serif' font-size='22' fill='#1b2733' font-weight='bold' text-anchor='start'  >Figure 5</text>
+<text x='40' y='70' font-family='Helvetica, Arial, sans-serif' font-size='15' fill='#5b6b7b' font-weight='normal' text-anchor='start'  >Drug-target overlay: licensed and investigational CID therapeutics mapped onto SYSCID modules</text>
+<rect x='150' y='130' width='300' height='40' rx='20' ry='20' fill='#ffffff' fill-opacity='1.0' stroke='#0072B2' stroke-width='2.4' />
+<text x='300' y='155' font-family='Helvetica, Arial, sans-serif' font-size='13.5' fill='#0072B2' font-weight='bold' text-anchor='middle'  >TNF</text>
+<rect x='150' y='210' width='300' height='40' rx='20' ry='20' fill='#ffffff' fill-opacity='1.0' stroke='#009E73' stroke-width='2.4' />
+<text x='300' y='235' font-family='Helvetica, Arial, sans-serif' font-size='13.5' fill='#009E73' font-weight='bold' text-anchor='middle'  >IL-6R / gp130</text>
+<rect x='150' y='290' width='300' height='40' rx='20' ry='20' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='2.4' />
+<text x='300' y='315' font-family='Helvetica, Arial, sans-serif' font-size='13.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >JAK1/2/3</text>
+<rect x='150' y='370' width='300' height='40' rx='20' ry='20' fill='#ffffff' fill-opacity='1.0' stroke='#009E73' stroke-width='2.4' />
+<text x='300' y='395' font-family='Helvetica, Arial, sans-serif' font-size='13.5' fill='#009E73' font-weight='bold' text-anchor='middle'  >IL-23 / IL-12 p40</text>
+<rect x='150' y='450' width='300' height='40' rx='20' ry='20' fill='#ffffff' fill-opacity='1.0' stroke='#0072B2' stroke-width='2.4' />
+<text x='300' y='475' font-family='Helvetica, Arial, sans-serif' font-size='13.5' fill='#0072B2' font-weight='bold' text-anchor='middle'  >IL-17A</text>
+<rect x='150' y='530' width='300' height='40' rx='20' ry='20' fill='#ffffff' fill-opacity='1.0' stroke='#D55E00' stroke-width='2.4' />
+<text x='300' y='555' font-family='Helvetica, Arial, sans-serif' font-size='13.5' fill='#D55E00' font-weight='bold' text-anchor='middle'  >type-I IFN / IFNAR</text>
+<rect x='150' y='610' width='300' height='40' rx='20' ry='20' fill='#ffffff' fill-opacity='1.0' stroke='#D55E00' stroke-width='2.4' />
+<text x='300' y='635' font-family='Helvetica, Arial, sans-serif' font-size='13.5' fill='#D55E00' font-weight='bold' text-anchor='middle'  >BAFF / BLyS</text>
+<rect x='810' y='103' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='125' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Infliximab / Adalimumab</text>
+<line x1='450' y1='150' x2='808' y2='120' stroke='#0072B2' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='159' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='181' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Etanercept</text>
+<line x1='450' y1='150' x2='808' y2='176' stroke='#0072B2' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='215' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='237' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Tocilizumab / Sarilumab</text>
+<line x1='450' y1='230' x2='808' y2='232' stroke='#009E73' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='271' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='293' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Tofacitinib / Baricitinib</text>
+<line x1='450' y1='310' x2='808' y2='288' stroke='#8E44AD' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='327' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='349' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Upadacitinib</text>
+<line x1='450' y1='310' x2='808' y2='344' stroke='#8E44AD' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='383' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='405' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Ustekinumab</text>
+<line x1='450' y1='390' x2='808' y2='400' stroke='#009E73' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='439' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='461' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Risankizumab</text>
+<line x1='450' y1='390' x2='808' y2='456' stroke='#009E73' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='495' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='517' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Secukinumab / Ixekizumab</text>
+<line x1='450' y1='470' x2='808' y2='512' stroke='#0072B2' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='551' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='573' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Anifrolumab</text>
+<line x1='450' y1='550' x2='808' y2='568' stroke='#D55E00' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<rect x='810' y='607' width='320' height='34' rx='8' ry='8' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='824' y='629' font-family='Helvetica, Arial, sans-serif' font-size='12.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >Belimumab</text>
+<line x1='450' y1='630' x2='808' y2='624' stroke='#D55E00' stroke-width='1.6'  marker-end='url(#arrow)'/>
+<text x='300' y='100' font-family='Helvetica, Arial, sans-serif' font-size='13' fill='#5b6b7b' font-weight='bold' text-anchor='middle'  >SYSCID module (target)</text>
+<text x='970' y='100' font-family='Helvetica, Arial, sans-serif' font-size='13' fill='#5b6b7b' font-weight='bold' text-anchor='middle'  >therapeutic (class example)</text>
+<text x='40' y='698' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#5b6b7b' font-weight='normal' text-anchor='start' font-style='italic' >Overlay demonstrates how approved biologics / small molecules concentrate on the shared cytokine-signalling core, rationalising drug-repurposing hypotheses across CIDs.</text>
+</svg>

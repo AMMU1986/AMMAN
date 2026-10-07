@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='1180' height='740' viewBox='0 0 1180 740'>
+<rect width='1180' height='740' fill='#ffffff'/>
+<defs><marker id='arrow' markerWidth='10' markerHeight='10' refX='8' refY='3' orient='auto' markerUnits='strokeWidth'><path d='M0,0 L8,3 L0,6 Z' fill='#5b6b7b'/></marker><marker id='arrowdk' markerWidth='10' markerHeight='10' refX='8' refY='3' orient='auto' markerUnits='strokeWidth'><path d='M0,0 L8,3 L0,6 Z' fill='#1b2733'/></marker></defs>
+<text x='40' y='46' font-family='Helvetica, Arial, sans-serif' font-size='22' fill='#1b2733' font-weight='bold' text-anchor='start'  >Figure 1</text>
+<text x='40' y='70' font-family='Helvetica, Arial, sans-serif' font-size='15' fill='#5b6b7b' font-weight='normal' text-anchor='start'  >The chronic inflammatory disease (CID) spectrum and the shared molecular core resolved by the SYSCID map</text>
+<circle cx='470' cy='370' r='190' fill='#0072B2' fill-opacity='0.22' stroke='#0072B2' stroke-width='2'/>
+<circle cx='710' cy='370' r='190' fill='#D55E00' fill-opacity='0.22' stroke='#D55E00' stroke-width='2'/>
+<circle cx='590' cy='560' r='190' fill='#009E73' fill-opacity='0.22' stroke='#009E73' stroke-width='2'/>
+<text x='340' y='260' font-family='Helvetica, Arial, sans-serif' font-size='20' fill='#0072B2' font-weight='bold' text-anchor='middle'  >RA</text>
+<text x='840' y='260' font-family='Helvetica, Arial, sans-serif' font-size='20' fill='#D55E00' font-weight='bold' text-anchor='middle'  >SLE</text>
+<text x='590' y='710' font-family='Helvetica, Arial, sans-serif' font-size='20' fill='#009E73' font-weight='bold' text-anchor='middle'  >IBD</text>
+<circle cx='590' cy='430' r='54' fill='#8E44AD' fill-opacity='0.33' stroke='#8E44AD' stroke-width='2'/>
+<text x='590' y='426' font-family='Helvetica, Arial, sans-serif' font-size='13' fill='#ffffff' font-weight='bold' text-anchor='middle'  >SHARED</text>
+<text x='590' y='444' font-family='Helvetica, Arial, sans-serif' font-size='13' fill='#ffffff' font-weight='bold' text-anchor='middle'  >CORE</text>
+<text x='290' y='340' font-family='Helvetica, Arial, sans-serif' font-size='12' fill='#1b2733' font-weight='normal' text-anchor='middle'  >ACPA / RF</text>
+<text x='290' y='358' font-family='Helvetica, Arial, sans-serif' font-size='11' fill='#5b6b7b' font-weight='normal' text-anchor='middle'  >synovial pannus</text>
+<text x='890' y='340' font-family='Helvetica, Arial, sans-serif' font-size='12' fill='#1b2733' font-weight='normal' text-anchor='middle'  >type-I IFN</text>
+<text x='890' y='358' font-family='Helvetica, Arial, sans-serif' font-size='11' fill='#5b6b7b' font-weight='normal' text-anchor='middle'  >anti-dsDNA</text>
+<text x='590' y='642' font-family='Helvetica, Arial, sans-serif' font-size='12' fill='#1b2733' font-weight='normal' text-anchor='middle'  >barrier / microbiome</text>
+<rect x='538.0' y='267.0' width='104' height='26' rx='13' ry='13' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='1.3' />
+<text x='590.0' y='284.0' font-family='Helvetica, Arial, sans-serif' font-size='10.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >JAK–STAT</text>
+<line x1='590' y1='430' x2='590.0' y2='280.0' stroke='#8E44AD' stroke-width='0.8' stroke-dasharray='3,3' />
+<rect x='644.0660171779821' y='310.93398282201787' width='104' height='26' rx='13' ry='13' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='1.3' />
+<text x='696.0660171779821' y='327.93398282201787' font-family='Helvetica, Arial, sans-serif' font-size='10.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >Type-I/II IFN</text>
+<line x1='590' y1='430' x2='696.0660171779821' y2='323.93398282201787' stroke='#8E44AD' stroke-width='0.8' stroke-dasharray='3,3' />
+<rect x='688.0' y='417.0' width='104' height='26' rx='13' ry='13' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='1.3' />
+<text x='740.0' y='434.0' font-family='Helvetica, Arial, sans-serif' font-size='10.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >NF-κB</text>
+<line x1='590' y1='430' x2='740.0' y2='430.0' stroke='#8E44AD' stroke-width='0.8' stroke-dasharray='3,3' />
+<rect x='644.0660171779821' y='523.0660171779821' width='104' height='26' rx='13' ry='13' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='1.3' />
+<text x='696.0660171779821' y='540.0660171779821' font-family='Helvetica, Arial, sans-serif' font-size='10.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >TNF signalling</text>
+<line x1='590' y1='430' x2='696.0660171779821' y2='536.0660171779821' stroke='#8E44AD' stroke-width='0.8' stroke-dasharray='3,3' />
+<rect x='538.0' y='567.0' width='104' height='26' rx='13' ry='13' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='1.3' />
+<text x='590.0' y='584.0' font-family='Helvetica, Arial, sans-serif' font-size='10.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >Th17 / IL-23</text>
+<line x1='590' y1='430' x2='590.0' y2='580.0' stroke='#8E44AD' stroke-width='0.8' stroke-dasharray='3,3' />
+<rect x='431.93398282201787' y='523.0660171779821' width='104' height='26' rx='13' ry='13' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='1.3' />
+<text x='483.93398282201787' y='540.0660171779821' font-family='Helvetica, Arial, sans-serif' font-size='10.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >Autophagy</text>
+<line x1='590' y1='430' x2='483.93398282201787' y2='536.0660171779821' stroke='#8E44AD' stroke-width='0.8' stroke-dasharray='3,3' />
+<rect x='388.0' y='417.0' width='104' height='26' rx='13' ry='13' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='1.3' />
+<text x='440.0' y='434.0' font-family='Helvetica, Arial, sans-serif' font-size='10.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >Treg balance</text>
+<line x1='590' y1='430' x2='440.0' y2='430.0' stroke='#8E44AD' stroke-width='0.8' stroke-dasharray='3,3' />
+<rect x='431.93398282201787' y='310.93398282201787' width='104' height='26' rx='13' ry='13' fill='#ffffff' fill-opacity='1.0' stroke='#8E44AD' stroke-width='1.3' />
+<text x='483.93398282201787' y='327.93398282201787' font-family='Helvetica, Arial, sans-serif' font-size='10.5' fill='#8E44AD' font-weight='bold' text-anchor='middle'  >Apoptosis</text>
+<line x1='590' y1='430' x2='483.93398282201787' y2='323.93398282201787' stroke='#8E44AD' stroke-width='0.8' stroke-dasharray='3,3' />
+<rect x='940' y='150' width='210' height='300' rx='10' ry='10' fill='#f6f8fa' fill-opacity='1.0' stroke='#d7dee5' stroke-width='1.5' />
+<text x='956' y='180' font-family='Helvetica, Arial, sans-serif' font-size='13' fill='#1b2733' font-weight='bold' text-anchor='start'  >Design principle</text>
+<text x='956' y='206' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >• One SBGN diagram, three</text>
+<text x='956' y='228' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#5b6b7b' font-weight='normal' text-anchor='start'  >  diseases colour-coded</text>
+<text x='956' y='250' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >• Shared core = pathways</text>
+<text x='956' y='272' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#5b6b7b' font-weight='normal' text-anchor='start'  >  active in ≥ 2 CIDs</text>
+<text x='956' y='294' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >• Disease layers toggle</text>
+<text x='956' y='316' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#5b6b7b' font-weight='normal' text-anchor='start'  >  on/off in MINERVA</text>
+<text x='956' y='338' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#1b2733' font-weight='normal' text-anchor='start'  >• Each node links to</text>
+<text x='956' y='360' font-family='Helvetica, Arial, sans-serif' font-size='11.5' fill='#5b6b7b' font-weight='normal' text-anchor='start'  >  literature + variants</text>
+<text x='956' y='436' font-family='Helvetica, Arial, sans-serif' font-size='10' fill='#5b6b7b' font-weight='normal' text-anchor='start'  >SBGN = Systems Biology</text>
+<text x='956' y='450' font-family='Helvetica, Arial, sans-serif' font-size='10' fill='#5b6b7b' font-weight='normal' text-anchor='start'  >Graphical Notation</text>
+</svg>
