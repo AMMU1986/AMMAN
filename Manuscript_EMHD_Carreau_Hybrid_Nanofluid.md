@@ -72,7 +72,7 @@ For n > 1 the fluid is shear-thickening; for n < 1 it is shear-thinning; n = 1 (
 
 ### 2.3 Governing equations
 
-The continuity, x-momentum, y-momentum, energy and species equations under the usual boundary-layer scaling are
+The continuity, x-momentum, y-momentum, energy and species equations under the usual boundary-layer scaling are given below. The momentum equations are written in force-per-unit-volume form (left-hand side ρ_hnf × acceleration), so every term on the right-hand side — including the Lorentz force σ_hnf B²(u − u_E), the Darcy drag μ_hnf u/k_p and the Forchheimer term ρ_hnf F_c u² — carries units of force per unit volume (no division by ρ_hnf):
 
 $$
 \frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0
@@ -80,7 +80,7 @@ $$
 $$
 
 $$
-\rho_{hnf}\left(\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y}\right) = -\frac{\partial p}{\partial x} + \frac{\partial \tau_{xy}}{\partial y} - \frac{\mu_{hnf}}{k_p}u - \frac{\sigma_{hnf}}{\rho_{hnf}} B^2 (u - u_E) - \rho_{hnf} F_c u^2
+\rho_{hnf}\left(\frac{\partial u}{\partial t} + u\frac{\partial u}{\partial x} + v\frac{\partial u}{\partial y}\right) = -\frac{\partial p}{\partial x} + \frac{\partial \tau_{xy}}{\partial y} - \frac{\mu_{hnf}}{k_p}u - \sigma_{hnf} B^2 (u - u_E) - \rho_{hnf} F_c u^2
 \tag{8}
 $$
 
@@ -90,7 +90,7 @@ $$
 $$
 
 $$
-(\rho c_p)_{hnf}\left(\frac{\partial T}{\partial t} + u\frac{\partial T}{\partial x} + v\frac{\partial T}{\partial y}\right) = \kappa_{hnf}\frac{\partial^2 T}{\partial y^2} - \frac{\partial q_r}{\partial y} + \mu_{hnf}\left(\frac{\partial u}{\partial y}\right)^2 + \sigma_{hnf} B^2 (u - u_E)^2 + \frac{D_B K_T}{c_s}\frac{\partial^2 C}{\partial y^2}
+(\rho c_p)_{hnf}\left(\frac{\partial T}{\partial t} + u\frac{\partial T}{\partial x} + v\frac{\partial T}{\partial y}\right) = \kappa_{hnf}\frac{\partial^2 T}{\partial y^2} - \frac{\partial q_r}{\partial y} + \mu_{hnf}\left(\frac{\partial u}{\partial y}\right)^2 + \sigma_{hnf} B^2 (u - u_E)^2 + \frac{(\rho c_p)_{hnf}\, D_B K_T}{c_s c_p}\frac{\partial^2 C}{\partial y^2}
 \tag{10}
 $$
 
@@ -99,7 +99,7 @@ $$
 \tag{11}
 $$
 
-where τ is the Carreau stress tensor, k_p is the permeability, F_c the Forchheimer inertia coefficient, u_E = E/B the electric drift velocity, D_B the mass diffusivity, K_T the thermal-diffusion ratio, c_s the concentration susceptibility, T_m the mean fluid temperature, and k_r the reaction-rate constant. The nonlinear (Rosseland) radiative flux is
+where τ is the Carreau stress tensor, k_p is the permeability, F_c the Forchheimer inertia coefficient, u_E = E/B the electric drift velocity, D_B the mass diffusivity, c_p the specific heat of the base fluid, c_s the concentration susceptibility (units J kg⁻¹ K⁻¹), T_m the mean fluid temperature, and k_r the reaction-rate constant. In the Dufour term of Eq. (10) the combination D_B K_T/(c_s c_p) carries units of temperature per unit concentration, so that the whole term has dimensions of temperature per unit time, consistent with the convective and conduction terms. In the Soret term of Eq. (11) the thermal-diffusion ratio K_T is defined (following Eckert and Drake [25]) as the dimensional ratio K_T = (C_w − C_0)/(T_w − T_0) × κ_T, i.e. it absorbs the characteristic concentration-to-temperature scale ratio, so that D_B K_T/T_m × ∂²T/∂y² has dimensions of concentration per unit time, consistent with the diffusion term D_B ∂²C/∂y². With these definitions both cross-diffusion terms are dimensionally homogeneous with their host equations. The nonlinear (Rosseland) radiative flux is
 
 $$
 q_r = -\frac{16\sigma^*}{3 k^*}T^3\frac{\partial T}{\partial y}
@@ -168,7 +168,7 @@ $$
 $$
 Pr = \frac{\mu_f (c_p)_f}{\kappa_f}, \quad
 Ec = \frac{U_e^2}{(c_p)_f (T_w - T_0)} = \frac{a^2 x^2}{(c_p)_f (T_w - T_0)(1 - \gamma t)^2}, \quad
-Rd = \frac{16\sigma^* T_0^3}{3 k^* \kappa_f}
+Rd = \frac{4\sigma^* T_0^3}{k^* \kappa_f}
 \tag{20}
 $$
 
@@ -206,7 +206,7 @@ d/dη[−Sq(f′ + (η/2)f″)] = −Sq(f″ + ½f″ + (η/2)f‴) = −Sq((3/2
 
 ### 2.7 Energy and species equations
 
-Applying the transformation (18) to Eqs. (10) and (11) and using the Rosseland linearisation gives
+Applying the transformation (18) to Eqs. (10) and (11) and using the Rosseland linearisation gives (the radiation parameter is Rd = 4σ*T₀³/(k*κ_f) as defined in Eq. 20, which produces the coefficients 4/3 and 4 below)
 
 $$
 \left[\alpha_\kappa + \frac{4}{3}Rd\, F^3\right]\theta'' + 4 Rd\,(\theta_r - 1)F^2\theta'^2 + \alpha_c \Pr\left(f\theta' - f'\theta - Sq\,\theta - \frac{Sq}{2}\eta\theta'\right) + \Pr\,\Xi = 0
@@ -232,7 +232,9 @@ $$
 \tag{27}
 $$
 
-**Dufour term reduction.** The dimensional Dufour contribution in Eq. (10) is (D_B K_T/[c_s (ρc_p)_hnf]) ∂²C/∂y². With c_s identified as the mean temperature T_m and the energy equation normalised by (ρc_p)_f, the factor α_c introduced by the convective terms cancels the α_c carried by the Dufour denominator, leaving the group Pr α_ρ Df exactly, with Df as defined in Eq. (21). All dimensionless groups entering Eqs. (24)–(25) — namely Pr, Rd, Ec, Sc, Sr, Df, K and the ratios α_κ, α_c, α_μ, α_σ, α_ρ — are defined in Section 2.5.
+**Radiation-coefficient reduction.** Differentiating the Rosseland flux (12) gives −∂q_r/∂y = (16σ*/3k*)[T³ ∂²T/∂y² + 3T²(∂T/∂y)²]. Writing T = T₀F with F from Eq. (26) and normalising the energy equation by κ_f(T_w − T₀)/h² yields the radiative contribution (16σ*T₀³/3k*κ_f)[F³θ″ + 3(θ_r − 1)F²θ′²]. Defining the radiation parameter as Rd = 4σ*T₀³/(k*κ_f) (Eq. 20), the prefactor 16σ*T₀³/(3k*κ_f) equals (4/3)Rd, so the two radiative terms become exactly (4/3)Rd F³θ″ and 3 × (4/3)Rd (θ_r − 1)F²θ′² = 4Rd (θ_r − 1)F²θ′², as written in Eq. (24).
+
+**Dufour term reduction.** The dimensional Dufour contribution in Eq. (10) is [(ρc_p)_hnf D_B K_T/(c_s c_p)] ∂²C/∂y², in which c_s is the concentration susceptibility (units J kg⁻¹ K⁻¹) — not the mean temperature. On normalising the energy equation by (ρc_p)_f, the prefactor (ρc_p)_hnf/(ρc_p)_f = α_c multiplies the term, while the convective terms also carry α_c; dividing the whole energy equation through, the Dufour group reduces to Pr α_ρ Df with Df = D_B K_T (C_w − C₀)/[c_s (c_p)_f ν_f (T_w − T₀)] as defined in Eq. (21), which is dimensionless. All dimensionless groups entering Eqs. (24)–(25) — namely Pr, Rd, Ec, Sc, Sr, Df, K and the ratios α_κ, α_c, α_μ, α_σ, α_ρ — are defined in Section 2.5.
 
 ### 2.8 Boundary conditions
 
@@ -252,14 +254,14 @@ where S₁ and S₃ are the velocity- and solutal-slip coefficients. The momentu
 
 ### 2.9 Engineering quantities
 
-The reduced skin-friction coefficient derived from the Carreau wall shear stress τ_w = μ_hnf (∂u/∂y)[1 + (Γ ∂u/∂y)²]^{(n−1)/2} evaluated at the upper plate, non-dimensionalised, is
+The skin-friction coefficient is defined here with the single-sided dynamic pressure, C_f = τ_w/(ρ_f U_e²), from the Carreau wall shear stress τ_w = μ_hnf (∂u/∂y)[1 + (Γ ∂u/∂y)²]^{(n−1)/2} evaluated at the upper plate. With this convention (no factor of 1/2 in the reference pressure), the reduced form is
 
 $$
 Re_x^{1/2} C_f = \alpha_\mu f''(1)\left[1 + We^2 f''(1)^2\right]^{\frac{n-1}{2}}
 \tag{30}
 $$
 
-so that the property ratio α_μ and the Carreau exponent (n − 1)/2 appear exactly as in the constitutive law (6). The reduced Nusselt and Sherwood numbers are
+so that the property ratio α_μ and the Carreau exponent (n − 1)/2 appear exactly as in the constitutive law (6). Had the half-dynamic-pressure convention C_f = τ_w/(½ρ_f U_e²) been adopted, a leading factor of 2 would appear in Eq. (30); the reported C_f values follow the convention stated above. The reduced Nusselt and Sherwood numbers are
 
 $$
 Re_x^{-1/2} Nu = -\left[\alpha_\kappa + \frac{4}{3}Rd\, F(1)^3\right]\theta'(1)
@@ -312,7 +314,7 @@ $$
 
 ### 3.1.1 Thermodynamic basis of the diffusive term
 
-The mass-diffusion entropy production follows from linear irreversible thermodynamics. For a dilute binary mixture the local entropy production is σ_s = **J**_q · ∇(1/T) − (1/T) **J**_s · ∇(μ_c/T), where **J**_q and **J**_s are the heat- and species-diffusion fluxes and μ_c is the chemical potential. Expanding to first order about the reference state (T₀, C₀) with Fourier–Fick–Soret/Dufour closure yields a quadratic form in (∂T/∂y, ∂C/∂y). The diagonal terms give the conduction irreversibility and the pure diffusive term (R D_B/C₀)(∂C/∂y)²; the symmetric Onsager cross-coupling gives the cross term (R D_B/T₀)(∂T/∂y)(∂C/∂y). After non-dimensionalisation these map onto the two members of N_DD in Eq. (34). The grouping is valid for moderate Ω (reference-state linearisation).
+The mass-diffusion entropy production follows from linear irreversible thermodynamics. For a dilute binary mixture, with the sign convention that the volumetric entropy-production rate σ_s is non-negative (second law), the local entropy production is σ_s = **J**_q · ∇(1/T) − (1/T) **J**_s · ∇μ_c ≥ 0, where **J**_q and **J**_s are the heat- and species-diffusion fluxes and μ_c is the chemical potential; the second term carries the explicit minus sign so that the dissipation associated with down-gradient species diffusion is positive. Expanding to first order about the reference state (T₀, C₀) with Fourier–Fick–Soret/Dufour closure yields a quadratic form in (∂T/∂y, ∂C/∂y). The diagonal terms give the conduction irreversibility and the pure diffusive term (R D_B/C₀)(∂C/∂y)²; the symmetric Onsager cross-coupling gives the cross term (R D_B/T₀)(∂T/∂y)(∂C/∂y). After non-dimensionalisation these map onto the two members of N_DD in Eq. (34). The grouping is valid for moderate Ω (reference-state linearisation).
 
 ### 3.2 Bejan number
 
@@ -344,13 +346,13 @@ The displayed values of f″(1) are identical to seven decimal places across N =
 
 **Table 1. Grid convergence of f″(1).**
 
-| N | f″(1) | E_grid (%) |
+| N | f″(1) | Relative change \|Δf″(1)/f″(1)\| |
 |---|---|---|
 | 100 | 0.0758781 | — |
-| 200 | 0.0758781 | < 1e-5 |
-| 400 | 0.0758781 | < 1e-5 |
+| 200 | 0.0758781 | < 1 × 10⁻⁵ |
+| 400 | 0.0758781 | < 1 × 10⁻⁵ |
 
-**Table 2. Newtonian clear-fluid limit.**
+**Table 2. Newtonian clear-fluid limit** (Pr = 6.2, Bi = 0.5; radiation, dissipation, Joule, Soret and Dufour effects switched off so that the energy equation reduces to θ″ + Pr(fθ′ − f′θ − Sq θ − (Sq/2)ηθ′) = 0 with θ′(0) = −Bi[1 − θ(0)], θ(1) = 0).**
 
 | Sq | f″(1) | −θ′(1) |
 |---|---|---|
@@ -425,7 +427,7 @@ Figure 6 shows the Bejan number, which is bounded in [0, 1] at every η over the
 
 **Figure 7.** Reduced skin friction, Nusselt number and Sherwood number versus total nanoparticle volume fraction φ = φ₁ + φ₂. Data computed by the present solver.
 
-Figure 7 shows the engineering quantities versus hybrid loading, plotted against the total nanoparticle volume fraction φ = φ₁ + φ₂ with the equal-split convention φ₁ = φ₂ = φ/2 (so the total loading ranges from φ = 0 to φ = 0.10; see Table 6). The Nusselt number rises monotonically (from 1.43 at φ = 0 to 2.01 at φ = 0.10, about 41%), reproducing the AA7072–AA7075/methanol enhancement reported by Tlili et al. [8]. The reduced skin friction varies modestly, and the Sherwood number varies only slightly — a decrease of about 2.3% across the full loading range (from 0.6371 to 0.6225 in Table 6). The identical C_f = 0.0885 across the Rd, Df, Sr and K rows of Table 3 is physical: these parameters enter only the energy and species equations and do not feed back into the momentum equation in the present one-way-coupled model.
+Figure 7 shows the engineering quantities versus hybrid loading, plotted against the total nanoparticle volume fraction φ = φ₁ + φ₂ with the equal-split convention φ₁ = φ₂ = φ/2 (so the total loading ranges from φ = 0 to φ = 0.10; see Table 5). The Nusselt number rises monotonically (from 1.43 at φ = 0 to 2.01 at φ = 0.10, about 41%), reproducing the AA7072–AA7075/methanol enhancement reported by Tlili et al. [8]. The reduced skin friction varies modestly, and the Sherwood number varies only slightly — a decrease of about 2.3% across the full loading range (from 0.6371 to 0.6225 in Table 5). The identical C_f = 0.0885 across the Rd, Df, Sr and K rows of Table 3 is physical: these parameters enter only the energy and species equations and do not feed back into the momentum equation in the present one-way-coupled model.
 
 ### 6.7 Tabulated results
 
@@ -472,7 +474,7 @@ Figure 7 shows the engineering quantities versus hybrid loading, plotted against
 ## 7. Conclusions
 
 1. The momentum equation is retained at fourth order via an explicitly demonstrated pressure elimination; the information carried by the eliminated pressure-gradient constant G is recovered through the fourth boundary condition, and the resulting eighth-order system (4 momentum + 2 energy + 2 species) matches eight boundary conditions.
-2. The energy equation groups conduction and radiation as [α_κ + (4/3)Rd F³]θ″, with F = 1 + (θ_r − 1)θ; the Dufour coefficient reduces to the group Pr α_ρ Df, verified by dimensional derivation, and all dimensionless groups are defined explicitly in Section 2.5.
+2. The energy equation groups conduction and radiation as [α_κ + (4/3)Rd F³]θ″, with F = 1 + (θ_r − 1)θ and the radiation parameter defined as Rd = 4σ*T₀³/(k*κ_f) so that the 4/3 and 4 coefficients follow directly from the Rosseland derivation; the Dufour and Soret cross-diffusion terms are written in dimensionally homogeneous form (with c_s the concentration susceptibility, not the mean temperature), and all dimensionless groups are defined explicitly in Section 2.5.
 3. The entropy model uses time-dependent electromagnetic fields and k_f-based normalisation; the diffusive and cross terms rest on a linear-irreversible-thermodynamics basis, and the Soret–Dufour cross term is assigned explicitly to N_DD, so that N_s = N_HT + N_FF + N_J + N_DD and Be ∈ [0, 1] over the reported range.
 4. The solution is mesh-independent to the reported precision; the Newtonian clear-fluid limit recovers the Wang squeezing-film equation to within 0.1%, while comparison with the Casson model of [23] is restricted to a common Newtonian limit.
 5. Entropy generation peaks near the walls; the Brinkman number and magnetic parameter raise friction and Joule irreversibility; hybrid loading (total φ up to 0.10) improves heat transfer by about 41% at modest additional entropy cost.
@@ -507,7 +509,7 @@ In the Newtonian limit (n = 1 or We → 0) under the adopted simplified Carreau 
 
 [10] Zeeshan, N. Ahmad, F. Mabood, M. Alghamdi, Entropy analysis of EMHD nanofluid flow, Scientific Reports 13 (2023) 9981. https://doi.org/10.1038/s41598-023-37100-5
 
-[11] G. K. Ramesh, J. K. Madhukesh, Hybrid nanofluid flow over a stretching sheet (G. Ashwinkumar, S. Sulochana, C. Sulochana), Alexandria Engineering Journal 58 (4) (2019) 1461–1470. https://doi.org/10.1016/j.aej.2019.11.013
+[11] G. Ashwinkumar, S. Sulochana, C. Sulochana, Effect of the aligned magnetic field on the boundary-layer analysis of the magnetic nanofluid over a stretching sheet, Alexandria Engineering Journal 58 (4) (2019) 1461–1470. https://doi.org/10.1016/j.aej.2019.11.013
 
 [12] P. J. Carreau, Rheological equations from molecular network theories, Transactions of the Society of Rheology 16 (1) (1972) 99–127. https://doi.org/10.1122/1.549276
 

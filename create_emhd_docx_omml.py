@@ -161,6 +161,18 @@ def _parse_atom(toks, pos):
             return (f'<m:limLow><m:e>{inner}</m:e><m:lim>{sub}</m:lim></m:limLow>')
         if val in ('mathrm', 'text', 'mathbf', 'operatorname'):
             return _read_group(toks, pos)
+        if val in ('dot', 'ddot', 'bar', 'hat', 'vec', 'tilde'):
+            base = _read_group(toks, pos)
+            accent = {
+                'dot': '&#775;',    # combining dot above
+                'ddot': '&#776;',   # combining diaeresis
+                'bar': '&#772;',    # combining macron
+                'hat': '&#770;',    # combining circumflex
+                'vec': '&#8407;',   # combining right arrow above
+                'tilde': '&#771;',  # combining tilde
+            }[val]
+            return (f'<m:acc><m:accPr><m:chr m:val="{accent}"/></m:accPr>'
+                    f'<m:e>{base}</m:e></m:acc>')
         # unknown command -> literal
         return run('\\' + val)
     return _read_group_single(toks, pos)
@@ -230,11 +242,11 @@ def _script(base, sup, sub):
 def latex_to_omml(latex, display=True, tag=None):
     # strip \tag{..}
     latex = re.sub(r'\\tag\{[^}]*\}', '', latex)
-    # normalise \left\{ \right\}
-    latex = latex.replace(r'\left\{', '{LBRACE}').replace(r'\right\}', '{RBRACE}')
-    # keep delimiters as literal chars: convert \left[ -> [ etc. handled by SYMBOLS(\left->'')
+    # Map \left\{ and \right\} to literal brace characters via sentinels so the
+    # tokenizer emits them as ordinary 'char' tokens (not grouping braces).
+    latex = latex.replace(r'\left\{', '\uE001').replace(r'\right\}', '\uE002')
     body = parse(tokenize(latex))
-    body = body.replace('{LBRACE}', run('{')).replace('{RBRACE}', run('}'))
+    body = body.replace('\uE001', '{').replace('\uE002', '}')
     tag_run = ''
     if tag:
         tag_run = f'<m:r><m:t xml:space="preserve">     ({tag})</m:t></m:r>'
