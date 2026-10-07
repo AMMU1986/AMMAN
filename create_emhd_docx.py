@@ -22,9 +22,38 @@ def escape_xml(text):
                 .replace('"', '&quot;'))
 
 
+# Italicise single-letter Latin variables and Greek/scripted math tokens that
+# appear in running prose, so symbols are set in italic per journal style.
+_GREEK_D = 'αβγΓδΔεζηθΘκλΛμνξπΠρσΣτφΦχψΨωΩΞ'
+_MATHSCRIPT = '′″‴⁗⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉'
+_MATH_TOKEN = re.compile(
+    r'(?<![A-Za-z])'
+    r'(?:[A-Za-z]|[' + _GREEK_D + r'])'
+    r'(?:_[A-Za-z0-9]+|[' + _MATHSCRIPT + r']+|\([^()]{0,6}\))*'
+)
+
+def _is_math_tok(tok):
+    return (any(c in tok for c in _GREEK_D + _MATHSCRIPT) or '_' in tok
+            or (len(tok) == 1 and tok.isalpha()))
+
+def _italic_runs(segment):
+    out = []
+    pos = 0
+    for m in _MATH_TOKEN.finditer(segment):
+        tok = m.group(0)
+        if not _is_math_tok(tok):
+            continue
+        if m.start() > pos:
+            out.append(f'<w:r><w:t xml:space="preserve">{escape_xml(segment[pos:m.start()])}</w:t></w:r>')
+        out.append(f'<w:r><w:rPr><w:i/></w:rPr><w:t xml:space="preserve">{escape_xml(tok)}</w:t></w:r>')
+        pos = m.end()
+    if pos < len(segment):
+        out.append(f'<w:r><w:t xml:space="preserve">{escape_xml(segment[pos:])}</w:t></w:r>')
+    return ''.join(out)
+
+
 def runs_from_inline(text):
-    """Convert a line with **bold** markers into a sequence of Word runs."""
-    # Normalise a few unicode/markdown artefacts
+    """Convert a line with **bold** markers into Word runs, italicising math symbols."""
     parts = re.split(r'(\*\*[^*]+\*\*)', text)
     runs = []
     for part in parts:
@@ -34,7 +63,7 @@ def runs_from_inline(text):
             inner = escape_xml(part[2:-2])
             runs.append(f'<w:r><w:rPr><w:b/></w:rPr><w:t xml:space="preserve">{inner}</w:t></w:r>')
         else:
-            runs.append(f'<w:r><w:t xml:space="preserve">{escape_xml(part)}</w:t></w:r>')
+            runs.append(_italic_runs(part))
     return ''.join(runs) if runs else '<w:r><w:t xml:space="preserve"></w:t></w:r>'
 
 
@@ -82,6 +111,52 @@ def table_xml(rows):
             f'<w:tblGrid>{grid}</w:tblGrid>{body}</w:tbl>')
 
 
+import os as _os
+import struct as _struct
+
+IMAGES = []  # (rId, arcname, abspath)
+
+def _png_size(path):
+    with open(path, 'rb') as f:
+        head = f.read(26)
+    if head[:8] != b'\x89PNG\r\n\x1a\n':
+        return (760, 560)
+    return _struct.unpack('>II', head[16:24])
+
+def image_para(relpath):
+    base = _os.path.dirname(_os.path.abspath(SRC))
+    abspath = _os.path.join(base, relpath)
+    if not _os.path.exists(abspath):
+        return para(f'[Figure not found: {relpath}]')
+    idx = len(IMAGES) + 1
+    rid = f'rIdImg{idx}'
+    arc = f'media/image{idx}.png'
+    IMAGES.append((rid, arc, abspath))
+    pw, ph = _png_size(abspath)
+    emu_w = 5400000
+    emu_h = int(emu_w * ph / pw)
+    did = 2000 + idx
+    return (
+        '<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:drawing>'
+        f'<wp:inline distT="0" distB="0" distL="0" distR="0" '
+        'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">'
+        f'<wp:extent cx="{emu_w}" cy="{emu_h}"/>'
+        '<wp:effectExtent l="0" t="0" r="0" b="0"/>'
+        f'<wp:docPr id="{did}" name="Figure{idx}"/>'
+        '<wp:cNvGraphicFramePr><a:graphicFrameLocks '
+        'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>'
+        '</wp:cNvGraphicFramePr>'
+        '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">'
+        '<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        f'<pic:nvPicPr><pic:cNvPr id="{did}" name="Figure{idx}"/><pic:cNvPicPr/></pic:nvPicPr>'
+        f'<pic:blipFill><a:blip r:embed="{rid}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
+        f'<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="{emu_w}" cy="{emu_h}"/></a:xfrm>'
+        '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>'
+        '</pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>'
+    )
+
+
 def split_table_row(line):
     cells = [c.strip() for c in line.strip().strip('|').split('|')]
     return cells
@@ -121,10 +196,10 @@ def convert(md):
             i += 1
             continue
 
-        # Image -> caption placeholder paragraph
+        # Image -> embedded figure
         m = re.match(r'^!\[.*?\]\((.*?)\)\s*$', line.strip())
         if m:
-            out.append(para(f'[Figure placeholder: {m.group(1)}]'))
+            out.append(image_para(m.group(1)))
             i += 1
             continue
 
@@ -146,6 +221,7 @@ CONTENT_TYPES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
   <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
   <Default Extension="xml" ContentType="application/xml"/>
+  <Default Extension="png" ContentType="image/png"/>
   <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
   <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
 </Types>'''
@@ -213,14 +289,32 @@ def main():
         '</w:body></w:document>'
     )
 
+    img_rels = ''.join(
+        f'<Relationship Id="{rid}" '
+        'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" '
+        f'Target="{arc}"/>'
+        for (rid, arc, _p) in IMAGES
+    )
+    word_rels = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        '<Relationship Id="rId1" '
+        'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" '
+        'Target="styles.xml"/>'
+        f'{img_rels}</Relationships>'
+    )
+
     with zipfile.ZipFile(OUT, 'w', zipfile.ZIP_DEFLATED) as zf:
         zf.writestr('[Content_Types].xml', CONTENT_TYPES)
         zf.writestr('_rels/.rels', RELS)
-        zf.writestr('word/_rels/document.xml.rels', WORD_RELS)
+        zf.writestr('word/_rels/document.xml.rels', word_rels)
         zf.writestr('word/document.xml', document)
         zf.writestr('word/styles.xml', STYLES)
+        for (_rid, arc, path) in IMAGES:
+            with open(path, 'rb') as im:
+                zf.writestr('word/' + arc, im.read())
 
-    print(f'Created {OUT}')
+    print(f'Created {OUT} with {len(IMAGES)} embedded figures')
 
 
 if __name__ == '__main__':

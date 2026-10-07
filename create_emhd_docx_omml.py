@@ -388,6 +388,63 @@ def para(text, style=None):
 
 
 # ----------------------------------------------------------------------------
+# Inline images (figures)
+# ----------------------------------------------------------------------------
+import os as _os
+import struct as _struct
+
+IMAGES = []  # list of (rId, arcname, abspath)
+
+def _png_size(path):
+    with open(path, 'rb') as f:
+        head = f.read(26)
+    if head[:8] != b'\x89PNG\r\n\x1a\n':
+        return (760, 560)
+    w, h = _struct.unpack('>II', head[16:24])
+    return (w, h)
+
+def image_para(relpath):
+    base = _os.path.dirname(_os.path.abspath(SRC))
+    abspath = _os.path.join(base, relpath)
+    if not _os.path.exists(abspath):
+        return para(f'[Figure not found: {relpath}]')
+    idx = len(IMAGES) + 1
+    rid = f'rIdImg{idx}'
+    arcname = f'media/image{idx}.png'
+    IMAGES.append((rid, arcname, abspath))
+    pw, ph = _png_size(abspath)
+    # EMU: 914400 per inch; target width 15 cm (~5.9 in)
+    target_w_emu = 5400000
+    emu_w = target_w_emu
+    emu_h = int(target_w_emu * ph / pw)
+    docpr_id = 1000 + idx
+    return (
+        '<w:p><w:pPr><w:jc w:val="center"/></w:pPr><w:r><w:drawing>'
+        f'<wp:inline distT="0" distB="0" distL="0" distR="0" '
+        'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">'
+        f'<wp:extent cx="{emu_w}" cy="{emu_h}"/>'
+        '<wp:effectExtent l="0" t="0" r="0" b="0"/>'
+        f'<wp:docPr id="{docpr_id}" name="Figure{idx}"/>'
+        '<wp:cNvGraphicFramePr>'
+        '<a:graphicFrameLocks xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>'
+        '</wp:cNvGraphicFramePr>'
+        '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">'
+        '<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        '<pic:nvPicPr>'
+        f'<pic:cNvPr id="{docpr_id}" name="Figure{idx}"/>'
+        '<pic:cNvPicPr/></pic:nvPicPr>'
+        f'<pic:blipFill><a:blip r:embed="{rid}"/>'
+        '<a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
+        '<pic:spPr>'
+        f'<a:xfrm><a:off x="0" y="0"/><a:ext cx="{emu_w}" cy="{emu_h}"/></a:xfrm>'
+        '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom>'
+        '</pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline>'
+        '</w:drawing></w:r></w:p>'
+    )
+
+
+# ----------------------------------------------------------------------------
 # Tables
 # ----------------------------------------------------------------------------
 def split_row(line):
@@ -460,7 +517,7 @@ def convert(md):
 
         mimg = re.match(r'^!\[.*?\]\((.*?)\)\s*$', line.strip())
         if mimg:
-            out.append(para(f'[Figure placeholder: {mimg.group(1)}]'))
+            out.append(image_para(mimg.group(1)))
             i += 1; continue
 
         if line.startswith('### '):
@@ -482,6 +539,7 @@ CONTENT_TYPES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
   <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
   <Default Extension="xml" ContentType="application/xml"/>
+  <Default Extension="png" ContentType="image/png"/>
   <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
   <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
 </Types>'''
@@ -535,7 +593,7 @@ STYLES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 def main():
     with open(SRC, 'r', encoding='utf-8') as f:
         md = f.read()
-    body = convert(md)
+    body = convert(md)  # populates IMAGES
 
     document = (
         '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
@@ -549,13 +607,32 @@ def main():
         '</w:body></w:document>'
     )
 
+    # Build document relationships: styles + one per image
+    img_rels = ''.join(
+        f'<Relationship Id="{rid}" '
+        'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" '
+        f'Target="{arc}"/>'
+        for (rid, arc, _p) in IMAGES
+    )
+    word_rels = (
+        '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+        '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+        '<Relationship Id="rId1" '
+        'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" '
+        'Target="styles.xml"/>'
+        f'{img_rels}</Relationships>'
+    )
+
     with zipfile.ZipFile(OUT, 'w', zipfile.ZIP_DEFLATED) as zf:
         zf.writestr('[Content_Types].xml', CONTENT_TYPES)
         zf.writestr('_rels/.rels', RELS)
-        zf.writestr('word/_rels/document.xml.rels', WORD_RELS)
+        zf.writestr('word/_rels/document.xml.rels', word_rels)
         zf.writestr('word/document.xml', document)
         zf.writestr('word/styles.xml', STYLES)
-    print(f'Created {OUT}')
+        for (_rid, arc, path) in IMAGES:
+            with open(path, 'rb') as im:
+                zf.writestr('word/' + arc, im.read())
+    print(f'Created {OUT} with {len(IMAGES)} embedded figures')
 
 
 if __name__ == '__main__':
