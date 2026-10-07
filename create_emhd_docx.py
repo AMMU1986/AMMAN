@@ -53,7 +53,7 @@ def _italic_runs(segment):
 
 
 def runs_from_inline(text):
-    """Convert a line with **bold** markers into Word runs, italicising math symbols."""
+    """Convert **bold** and *italic* markers into Word runs, also italicising math symbols."""
     parts = re.split(r'(\*\*[^*]+\*\*)', text)
     runs = []
     for part in parts:
@@ -63,7 +63,16 @@ def runs_from_inline(text):
             inner = escape_xml(part[2:-2])
             runs.append(f'<w:r><w:rPr><w:b/></w:rPr><w:t xml:space="preserve">{inner}</w:t></w:r>')
         else:
-            runs.append(_italic_runs(part))
+            # Handle single-asterisk *italic* emphasis spans, then auto-italicise
+            # the remaining math symbols in the plain text.
+            for seg in re.split(r'(\*[^*]+\*)', part):
+                if not seg:
+                    continue
+                if seg.startswith('*') and seg.endswith('*') and len(seg) > 2:
+                    inner = escape_xml(seg[1:-1])
+                    runs.append(f'<w:r><w:rPr><w:i/></w:rPr><w:t xml:space="preserve">{inner}</w:t></w:r>')
+                else:
+                    runs.append(_italic_runs(seg))
     return ''.join(runs) if runs else '<w:r><w:t xml:space="preserve"></w:t></w:r>'
 
 

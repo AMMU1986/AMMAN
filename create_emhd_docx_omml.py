@@ -378,6 +378,10 @@ def runs_from_inline(text):
                     out.append(f'<w:r><w:rPr><w:b/></w:rPr>'
                                f'<w:t xml:space="preserve">{esc(p[2:-2])}</w:t></w:r>')
                 else:
+                    # Single-asterisk emphasis markers around symbols are hints
+                    # for italic math; the math detector already italicises the
+                    # token, so strip the stray asterisks here.
+                    p = re.sub(r'\*([^*]+)\*', r'\1', p)
                     out.append(_render_math_in_text(p))
     return ''.join(out) if out else '<w:r><w:t xml:space="preserve"></w:t></w:r>'
 
