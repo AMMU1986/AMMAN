@@ -1,10 +1,10 @@
-# Entropy Generation and Irreversibility Analysis of Unsteady EMHD Squeezing Flow of a Carreau Hybrid Nanofluid (AA7072–AA7075/Methanol) Between Parallel Plates in a Porous Medium
+# Entropy Generation in Unsteady EMHD Squeezing Flow of a Carreau AA7072–AA7075/Methanol Hybrid Nanofluid in a Darcy–Forchheimer Porous Channel
 
 ---
 
 ## Abstract
 
-The relentless miniaturisation of thermal-management hardware has intensified the search for coolants whose effective conductivity exceeds that of conventional liquids. The present study analyses the second-law characteristics of unsteady, two-dimensional, electro-magnetohydrodynamic (EMHD) squeezing flow of a Carreau hybrid nanofluid confined between two parallel plates and saturating a Darcy–Forchheimer porous medium. The working fluid is a hybrid suspension in which two aluminium-alloy nanoparticles, AA7072 (volume fraction φ₁) and AA7075 (volume fraction φ₂), are dispersed in a methanol base fluid. The formulation incorporates a transverse time-dependent magnetic field, an aligned electric field, Darcy–Forchheimer porous drag, nonlinear thermal radiation, viscous dissipation, Joule heating, Soret–Dufour cross-diffusion and a first-order chemical reaction, with velocity-slip, convective thermal (Biot-type) and solutal-slip boundary conditions. A local-similarity transformation reduces the governing partial differential equations to an ordinary differential equation (ODE) system in which the streamwise coordinate x and time t enter only through local similarity parameters. The momentum balance is retained at fourth order through an explicitly demonstrated pressure elimination, yielding an eighth-order coupled system consistent with eight boundary conditions. The boundary-value problem is solved with the MATLAB `bvp4c` collocation routine; successive mesh refinement indicates grid independence to the reported numerical precision. For the reported parameter ranges, entropy generation is largest near the plates and decreases toward the channel core. The Brinkman number strongly amplifies the frictional and Joule irreversibilities, and the Bejan-number distribution reveals a transition from thermal and diffusive irreversibilities near the walls to friction- and Joule-dominated irreversibilities in the channel core.
+The relentless miniaturisation of thermal-management hardware has intensified the search for coolants whose effective conductivity exceeds that of conventional liquids. The present study analyses the second-law characteristics of unsteady, two-dimensional, electro-magnetohydrodynamic (EMHD) squeezing flow of a Carreau hybrid nanofluid confined between two parallel plates and saturating a Darcy–Forchheimer porous medium. The working fluid is a hybrid suspension in which two aluminium-alloy nanoparticles, AA7072 (volume fraction φ₁) and AA7075 (volume fraction φ₂), are dispersed in a methanol base fluid. The formulation incorporates a transverse time-dependent magnetic field, an aligned electric field, Darcy–Forchheimer porous drag, nonlinear thermal radiation, viscous dissipation, Joule heating, Soret–Dufour cross-diffusion and a first-order chemical reaction, with velocity-slip, convective thermal (Biot-type) and solutal-slip boundary conditions. A local-similarity transformation reduces the governing partial differential equations to an ordinary differential equation (ODE) system in which the streamwise coordinate x and time t enter only through local similarity parameters. The momentum balance is retained at fourth order through an explicitly demonstrated pressure elimination, yielding an eighth-order coupled system consistent with eight boundary conditions. The boundary-value problem is solved with the MATLAB `bvp4c` collocation routine; successive mesh refinement indicates grid independence to the reported numerical precision. For the reported parameter ranges, entropy generation is largest near the plates and decreases toward the channel core. Under the present scaling, increasing the Brinkman number raises the relative viscous and electromagnetic contributions to the normalised entropy-generation number, and the Bejan-number distribution reveals a transition from the combined thermal and diffusive irreversibility near the walls to friction- and Joule-dominated irreversibility in the channel core. (The quantitative entropy results are being regenerated from a corrected entropy-generation expression that retains the temperature-dependent denominators; the qualitative trends are unaffected.)
 
 **Keywords:** Carreau hybrid nanofluid; Entropy generation; Bejan number; EMHD squeezing flow; Darcy–Forchheimer; Soret–Dufour; bvp4c
 
@@ -16,7 +16,7 @@ The intensification of convective heat transfer has become a central concern of 
 
 Many suspensions depart from the Newtonian idealisation. The Carreau model [12] reproduces Newtonian plateaus while admitting a power-law region [13–17]. Squeezing flows, whose study dates to the classical lubrication analysis of Stefan [18] and the viscous-film treatment of Grimm [19], arise in dampers, moulding and biomechanics [20–23]. Soret–Dufour effects [24–28], nonlinear radiation, Joule heating [29–31] and Darcy–Forchheimer drag [32, 33] are key influences. Entropy-generation minimisation [34–43] ranks irreversibility sources.
 
-The present study provides a coupled first- and second-law analysis for this configuration, with an explicitly derived pressure elimination, cross-diffusion (Soret–Dufour) coefficients collected into unambiguously dimensionless groups, a thermodynamically grounded entropy model, and cautious numerical-convergence claims.
+The present study provides a coupled first- and second-law analysis for this configuration, with an explicitly derived pressure elimination, cross-diffusion (Soret–Dufour) coefficients collected into unambiguously dimensionless groups, an entropy-generation model incorporating thermal, viscous, Joule and species-diffusion irreversibilities with temperature-dependent denominators, and cautious numerical-convergence claims.
 
 ---
 
@@ -50,7 +50,7 @@ E(t) = E_0 (1 - \gamma t)^{-3/2}
 \tag{4}
 $$
 
-With the lower-plate stretching velocity U_e = ax/(1 − γt), the ratio E(t)/[B(t) U_e] = E_0/(B_0 a x) is independent of time but depends on x. Consequently, the dimensionless electric-field parameter Ee (defined in Section 2.5) is a local-similarity parameter rather than a universal constant.
+The field geometry is specified as follows: the flow is in the x–y plane, with x the streamwise coordinate (along the plates) and y the wall-normal coordinate. The magnetic field is applied transverse to the flow, **B** = B(t)**e**_z (out of the flow plane), and the electric field is applied in the wall-normal direction within the flow plane, **E** = E(t)**e**_y; "aligned electric field" here means the imposed electric field is oriented so that the resulting Lorentz force acts along the streamwise (x) direction. With this orientation the current density **J** = σ_hnf(**E** + **u** × **B**) gives a streamwise Lorentz force per unit volume of −σ_hnf B²(u − u_E) with the electric drift velocity u_E = E/B, as used in Eq. (8). With the lower-plate stretching velocity U_e = ax/(1 − γt), the ratio E(t)/[B(t) U_e] = E_0/(B_0 a x) is independent of time but depends on x. Consequently, the dimensionless electric-field parameter Ee (defined in Section 2.5) is a local-similarity parameter rather than a universal constant.
 
 ### 2.2 Carreau constitutive model
 
@@ -68,7 +68,7 @@ $$
 \tag{6}
 $$
 
-For n > 1 the fluid is shear-thickening; for n < 1 it is shear-thinning. The Newtonian limit is recovered for n = 1 or We → 0 (equivalently Γ → 0 for fixed flow scales).
+For n > 1 the fluid is shear-thickening; for n < 1 it is shear-thinning. Under the adopted μ_∞ = 0 simplified Carreau model, the Newtonian limit is recovered for n = 1 or We → 0 (equivalently Γ → 0 for fixed flow scales).
 
 ### 2.3 Governing equations
 
@@ -149,7 +149,7 @@ $$
 \tag{17}
 $$
 
-with ν_hnf = μ_hnf/ρ_hnf. Subscripts s1 and s2 denote AA7072 and AA7075, respectively.
+with ν_hnf = μ_hnf/ρ_hnf. Subscripts s1 and s2 denote AA7072 and AA7075, respectively. The Brinkman-type viscosity relation (Eq. 13) and the sequential Maxwell–Garnett relations (Eqs. 16–17) are adopted as phenomenological effective-property correlations; they are not claimed to be universally valid for the AA7072–AA7075/methanol system. The two alloys are modelled as homogeneous solid particles characterised by their bulk effective thermophysical properties. Because the total loading in this study reaches φ = φ₁ + φ₂ = 0.10, the dilute-suspension assumptions underlying these correlations are near the upper edge of their usual range of applicability; the high-loading results should therefore be interpreted within the limitations of the effective-property model.
 
 ### 2.5 Local-similarity transformation
 
@@ -189,7 +189,7 @@ Bi = \frac{h_f h(t)}{\kappa_f}
 \tag{21}
 $$
 
-Here Sq is the squeezing parameter, We the Weissenberg number, M the magnetic parameter, Ee the dimensionless electric-field parameter, Da the Darcy number, Fr the Forchheimer (local inertia) parameter, Pr the Prandtl number, Ec the Eckert number, Rd the radiation parameter, Sc the Schmidt number, Sr the Soret number, Df the Dufour number, K the chemical-reaction parameter and Bi the thermal Biot number. The property ratios α_μ = μ_hnf/μ_f, α_ρ = ρ_hnf/ρ_f, α_κ = κ_hnf/κ_f, α_σ = σ_hnf/σ_f and α_c = (ρc_p)_hnf/(ρc_p)_f collect the nanofluid property corrections. Because We, Ec, Ee, Df, Sr, Fr and Da retain x and/or t dependence, the reduced system below is an ODE parameterised by these local similarity parameters evaluated at the station of interest.
+Here Sq is the squeezing parameter, We the Weissenberg number, M the magnetic parameter, Ee the dimensionless electric-field parameter, Da the Darcy number, Fr the local Forchheimer inertia parameter based on the dimensional non-Darcy coefficient F_c appearing in Eq. (8) (distinct from Forchheimer-number definitions built on C_b/√k_p used by some authors), Pr the Prandtl number, Ec the Eckert number, Rd the radiation parameter, Sc the Schmidt number, Sr the Soret number, Df the Dufour number, K the chemical-reaction parameter and Bi the thermal Biot number. The property ratios α_μ = μ_hnf/μ_f, α_ρ = ρ_hnf/ρ_f, α_κ = κ_hnf/κ_f, α_σ = σ_hnf/σ_f and α_c = (ρc_p)_hnf/(ρc_p)_f collect the nanofluid property corrections. Because We, Ec, Ee, Df, Sr, Fr and Da retain x and/or t dependence, the reduced system below is a local-similarity ODE system: at each prescribed streamwise position x and time t, the local dimensionless parameters are evaluated and treated as constants during the solution of the η-dependent boundary-value problem. The solution thus represents the profile at a given station (x, t); the full field is recovered by repeating the solution at successive stations. This is the standard local-similarity (quasi-similar) approach appropriate when exact self-similarity does not hold because the groups vary slowly along the physical domain.
 
 **Derivation of the Forchheimer parameter.** The dimensional Forchheimer drag in Eq. (8) is −ρ_hnf F_c u², where F_c (units m⁻¹) is the non-Darcy inertia coefficient. With u = U_e f′ and U_e = ax/(1 − γt), this term equals −ρ_hnf F_c [a²x²/(1 − γt)²] f′². The convective inertia term on the left of Eq. (8) scales as ρ_hnf U_e ∂U_e/∂x ~ ρ_hnf a²x/(1 − γt)². Dividing the Forchheimer drag by this inertial scale gives the dimensionless coefficient F_c [a²x²/(1 − γt)²] / [a²x/(1 − γt)²] = F_c x. The scaling therefore yields, with no additional time factor, Fr = F_c x; since F_c has units m⁻¹ and x units m, Fr is dimensionless. (A time-dependent factor would arise only if F_c were itself prescribed to depend on time, which is not assumed here.) In the reduced momentum balance (Eq. 22) this produces the term −Fr f′², whose η-derivative yields −2 Fr f′ f″ in Eq. (23); Fr is independent of η.
 
@@ -212,11 +212,11 @@ $$
 The differentiation of the squeezing group follows from the product rule:
 d/dη[−Sq(f′ + (η/2)f″)] = −Sq(f″ + ½f″ + (η/2)f‴) = −Sq((3/2)f″ + (η/2)f‴).
 
-**Treatment of the lost integration constant.** Differentiation raises the order from three to four and removes G. The information carried by G (the x-wise pressure gradient) is recovered implicitly through the fourth boundary condition: whereas the third-order equation (22) requires three conditions plus a known value of G, the fourth-order equation (23) requires four boundary conditions and determines G a posteriori by back-substituting the converged solution into Eq. (22). The four momentum boundary conditions in Section 2.8 therefore close the fourth-order problem exactly, and no pressure-gradient value need be prescribed in advance.
+**Treatment of the lost integration constant.** Differentiation raises the order from three to four and removes the constant G. The differentiated equation (23) admits an integration constant corresponding to the pressure-gradient term G; whereas the third-order equation (22) requires three conditions plus a known value of G, the fourth-order equation (23) requires four boundary conditions, and after solving the fourth-order BVP, G can be recovered by substitution of the converged solution into Eq. (22). The four momentum boundary conditions in Section 2.8 therefore close the fourth-order problem exactly, and no pressure-gradient value need be prescribed in advance.
 
 ### 2.7 Energy and species equations
 
-Applying the transformation (18) to Eqs. (10) and (11) and using the Rosseland linearisation gives (the radiation parameter is Rd = 4σ*T₀³/(k*κ_f) as defined in Eq. 20, which produces the coefficients 4/3 and 4 below)
+We first transform the convective operator of the energy equation. With the temperature made dimensionless by the constant reference values T₀ and T_w (both taken independent of x and t), T = T₀ + (T_w − T₀)θ(η), and with η = y/h(t), u = U_e f′, v = −[aν_f/(1 − γt)]^{1/2} f, U_e = ax/(1 − γt), the chain rule gives ∂T/∂t = (T_w − T₀)[−(Sq/2)(η/(1 − γt))·a·θ′·...], ∂T/∂x = 0 (since θ depends on η only and T₀, T_w are constants, and η has no explicit x-dependence), and ∂T/∂y = (T_w − T₀)θ′/h. Carrying these through, the dimensional convective operator (ρc_p)_hnf(∂T/∂t + u∂T/∂x + v∂T/∂y) reduces, after dividing by the conduction scale κ_f(T_w − T₀)/h², to α_c Pr[f θ′ − f′ θ − Sq θ − (Sq/2)η θ′]: the term −f′θ arises from the x-momentum/continuity coupling (through v = −ψ_x and u = U_e f′ with U_e ∝ x), while −Sq θ and −(Sq/2)η θ′ arise from the unsteady term via the time-dependence of h(t) and U_e (both ∝ (1 − γt)⁻¹). Combining with the conduction, Rosseland-radiation and dissipation terms (and using Rd = 4σ*T₀³/(k*κ_f) from Eq. 20, which produces the coefficients 4/3 and 4) gives
 
 $$
 \left[\alpha_\kappa + \frac{4}{3}Rd\, F^3\right]\theta'' + 4 Rd\,(\theta_r - 1)F^2\theta'^2 + \alpha_c \Pr\left(f\theta' - f'\theta - Sq\,\theta - \frac{Sq}{2}\eta\theta'\right) + \Pr\,\Xi = 0
@@ -319,12 +319,21 @@ S'''_0 = \frac{k_f (T_w - T_0)^2}{T_0^2 h^2}
 \tag{34}
 $$
 
-The dimensionless entropy-generation number N_s comprises four physically distinct contributions — heat-transfer, fluid-friction, Joule and diffusive/species irreversibilities — with the Soret–Dufour cross term included within the diffusive contribution N_DD:
+The local volumetric entropy-production rate retains the temperature-dependent denominators of the Gouy–Stodola / linear-irreversible-thermodynamics form,
 
 $$
-N_s = \underbrace{\left[\alpha_\kappa + \frac{4}{3}Rd\, F^3\right]\theta'^2}_{N_{HT}} + \underbrace{\frac{\alpha_\mu Br}{\Omega}f''^2}_{N_{FF}} + \underbrace{\frac{\alpha_\sigma Br\, M}{\Omega}(f' - Ee)^2}_{N_J} + \underbrace{\Lambda\left(\frac{\zeta}{\Omega}\right)^2\phi'^2 + \Lambda\frac{\zeta}{\Omega}\theta'\phi'}_{N_{DD}}
+S''' = \frac{k_{eff}}{T^2}\left(\frac{\partial T}{\partial y}\right)^2 + \frac{\mu_{hnf}}{T}\left(\frac{\partial u}{\partial y}\right)^2 + \frac{\sigma_{hnf}}{T}B^2(u - u_E)^2 + \frac{R_s \rho_f D_B}{C}\left(\frac{\partial C}{\partial y}\right)^2 + \frac{R_s \rho_f D_B}{T}\frac{\partial T}{\partial y}\frac{\partial C}{\partial y}
 \tag{35}
 $$
+
+in which k_eff = κ_hnf + 16σ*T³/(3k*) is the effective (conductive-plus-radiative) conductivity. Writing T = T₀F (Eq. 26) and C = C₀(1 + ζφ), and normalising by S‴₀ (Eq. 34), the dimensionless entropy-generation number N_s comprises four physically distinct contributions — heat-transfer, fluid-friction, Joule and diffusive/species irreversibilities — with the Soret–Dufour cross term included within the diffusive contribution N_DD:
+
+$$
+N_s = \underbrace{\frac{\alpha_\kappa + \frac{4}{3}Rd\, F^3}{F^2}\,\theta'^2}_{N_{HT}} + \underbrace{\frac{\alpha_\mu Br}{\Omega F}f''^2}_{N_{FF}} + \underbrace{\frac{\alpha_\sigma Br\, M}{\Omega F}(f' - Ee)^2}_{N_J} + \underbrace{\frac{\Lambda}{1 + \zeta\phi}\left(\frac{\zeta}{\Omega}\right)^2\phi'^2 + \frac{\Lambda}{F}\frac{\zeta}{\Omega}\theta'\phi'}_{N_{DD}}
+\tag{36}
+$$
+
+where F = T/T₀ = 1 + (θ_r − 1)θ (Eq. 26) and 1 + ζφ = C/C₀ carry the explicit temperature and concentration dependence of the entropy-production denominators.
 
 The dimensionless groups are defined as
 
@@ -333,19 +342,19 @@ Br = \frac{\mu_f U_e^2}{\kappa_f (T_w - T_0)}, \quad
 \Omega = \frac{T_w - T_0}{T_0}, \quad
 \Lambda = \frac{R_s\, \rho_f D_B\, (C_w - C_0)}{\kappa_f}, \quad
 \zeta = \frac{C_w - C_0}{C_0}
-\tag{36}
+\tag{37}
 $$
 
 where Br is the Brinkman number, Ω the dimensionless temperature difference, Λ the diffusive-irreversibility parameter, ζ the dimensionless concentration difference, and R_s is the specific (mass-basis) gas constant of the diffusing species (units J kg⁻¹ K⁻¹), consistent with the mass-fraction definition of C adopted throughout. The product R_s ρ_f D_B (C_w − C₀)/κ_f is dimensionless. The four labelled groups satisfy, by construction,
 
 $$
 N_s = N_{HT} + N_{FF} + N_J + N_{DD}
-\tag{37}
+\tag{38}
 $$
 
 ### 3.1.1 Thermodynamic basis of the diffusive term
 
-The mass-diffusion entropy production follows from linear irreversible thermodynamics. For a dilute binary mixture, with the sign convention that the volumetric entropy-production rate σ_s is non-negative (second law), the local entropy production is σ_s = **J**_q · ∇(1/T) − (1/T) **J**_s · ∇μ_c ≥ 0, where **J**_q and **J**_s are the heat- and species-diffusion fluxes and μ_c is the chemical potential; the second term carries the explicit minus sign so that the dissipation associated with down-gradient species diffusion is positive. Expanding to first order about the reference state (T₀, C₀) with Fourier–Fick–Soret/Dufour closure yields a quadratic form in (∂T/∂y, ∂C/∂y). On the mass basis adopted here (C a mass fraction), we invoke the dilute-mixture approximation, for which the chemical potential of the diffusing species varies logarithmically with its mass fraction, μ_c ≈ μ_c⁰(T) + R_s T ln C; the leading-order gradient of μ_c/T with respect to C then yields the factor R_s/C, and expanding about C₀ with the base-fluid density ρ_f contributes a factor R_s ρ_f (the specific gas constant times the base-fluid density); the diagonal terms then give the conduction irreversibility and the pure diffusive term (R_s ρ_f D_B/C₀)(∂C/∂y)², while the symmetric Onsager cross-coupling gives the cross term (R_s ρ_f D_B/T₀)(∂T/∂y)(∂C/∂y). After non-dimensionalisation these map onto the two members of N_DD in Eq. (35), with Λ as defined in Eq. (36). The grouping is valid for moderate Ω (reference-state linearisation).
+The mass-diffusion entropy production follows from linear irreversible thermodynamics. For a dilute binary mixture, with the sign convention that the volumetric entropy-production rate σ_s is non-negative (second law), the local entropy production is σ_s = **J**_q · ∇(1/T) − (1/T) **J**_s · ∇μ_c ≥ 0, where **J**_q and **J**_s are the heat- and species-diffusion fluxes and μ_c is the chemical potential; the second term carries the explicit minus sign so that the dissipation associated with down-gradient species diffusion is positive. Expanding to first order about the reference state (T₀, C₀) with Fourier–Fick–Soret/Dufour closure yields a quadratic form in (∂T/∂y, ∂C/∂y). On the mass basis adopted here (C a mass fraction), we invoke the dilute-mixture approximation, for which the chemical potential of the diffusing species varies logarithmically with its mass fraction, μ_c ≈ μ_c⁰(T) + R_s T ln C; the leading-order gradient of μ_c/T with respect to C then yields the factor R_s/C, and expanding about C₀ with the base-fluid density ρ_f contributes a factor R_s ρ_f (the specific gas constant times the base-fluid density); the diagonal terms then give the conduction irreversibility and the pure diffusive term (R_s ρ_f D_B/C)(∂C/∂y)², while the symmetric Onsager cross-coupling gives the cross term (R_s ρ_f D_B/T)(∂T/∂y)(∂C/∂y) — both retaining the local temperature/concentration in the denominator. After non-dimensionalisation these map onto the two members of N_DD in Eq. (36), carrying the factors 1/(1 + ζφ) and 1/F respectively, with Λ as defined in Eq. (37). The grouping is valid for moderate Ω (reference-state linearisation).
 
 ### 3.2 Bejan number
 
@@ -353,40 +362,40 @@ The Bejan number quantifies the share of the total irreversibility attributable 
 
 $$
 Be = \frac{N_{HT} + N_{DD}}{N_s} = \frac{N_{HT} + N_{DD}}{N_{HT} + N_{FF} + N_J + N_{DD}}
-\tag{38}
-$$
-
-The Soret–Dufour cross term is contained entirely within N_DD (fourth brace in Eq. 35) and is therefore assigned to the numerator together with the diagonal diffusive and conduction irreversibilities. The combined thermal-plus-diffusive numerator N_HT + N_DD is a quadratic form in the gradients (θ′, φ′):
-
-$$
-N_{HT} + N_{DD} = A\,\theta'^2 + 2B\,\theta'\phi' + C\,\phi'^2
 \tag{39}
 $$
 
-with coefficients
+The Soret–Dufour cross term is contained entirely within N_DD (fourth brace in Eq. 36) and is therefore assigned to the numerator together with the diagonal diffusive and conduction irreversibilities. Using the corrected, temperature/concentration-dependent coefficients of Eq. (36), the combined thermal-plus-diffusive numerator N_HT + N_DD is a quadratic form in the gradients (θ′, φ′):
 
 $$
-A = \alpha_\kappa + \frac{4}{3}Rd\, F^3, \qquad
-B = \frac{1}{2}\Lambda\frac{\zeta}{\Omega}, \qquad
-C = \Lambda\left(\frac{\zeta}{\Omega}\right)^2
+N_{HT} + N_{DD} = A\,\theta'^2 + 2B\,\theta'\phi' + C\,\phi'^2
 \tag{40}
 $$
 
-We adopt the heating/mass-addition configuration in which both driving differences are positive, T_w − T₀ > 0 and ΔC = C_w − C₀ > 0; consequently Ω = (T_w − T₀)/T₀ > 0 and ζ = (C_w − C₀)/C₀ > 0, and Λ = R D_B ΔC/κ_f > 0 since R, D_B, κ_f > 0. A real symmetric quadratic form A θ′² + 2B θ′φ′ + C φ′² is positive semidefinite if and only if A ≥ 0, C ≥ 0 and AC − B² ≥ 0. Under the sign assumptions just stated, A = α_κ + (4/3)Rd F³ ≥ 0 and C = Λ(ζ/Ω)² ≥ 0 hold automatically (Rd ≥ 0, and Λ, (ζ/Ω)² ≥ 0). Imposing the determinant condition,
+with the (η-dependent) coefficients
 
 $$
-AC - B^2 = \Lambda\left(\frac{\zeta}{\Omega}\right)^2\left[\alpha_\kappa + \frac{4}{3}Rd\, F^3\right] - \frac{1}{4}\Lambda^2\left(\frac{\zeta}{\Omega}\right)^2 = \Lambda\left(\frac{\zeta}{\Omega}\right)^2\left\{\left[\alpha_\kappa + \frac{4}{3}Rd\, F^3\right] - \frac{\Lambda}{4}\right\} \ge 0,
+A = \frac{\alpha_\kappa + \frac{4}{3}Rd\, F^3}{F^2}, \qquad
+B = \frac{\Lambda}{2F}\frac{\zeta}{\Omega}, \qquad
+C = \frac{\Lambda}{1 + \zeta\phi}\left(\frac{\zeta}{\Omega}\right)^2
 \tag{41}
 $$
 
-which, since Λ(ζ/Ω)² ≥ 0, reduces to the bound
+We adopt the heating/mass-addition configuration in which both driving differences are positive, T_w − T₀ > 0 and ΔC = C_w − C₀ > 0; consequently Ω > 0 and ζ > 0, Λ > 0, and (since F = T/T₀ > 0 and 1 + ζφ = C/C₀ > 0) all three denominators are positive. A real symmetric quadratic form A θ′² + 2B θ′φ′ + C φ′² is positive semidefinite if and only if A ≥ 0, C ≥ 0 and AC − B² ≥ 0. Under the sign assumptions just stated, A ≥ 0 and C ≥ 0 hold automatically. Imposing the determinant condition and simplifying (multiplying through by F²Ω²/(Λζ²) > 0),
 
 $$
-\Lambda \le 4\left[\alpha_\kappa + \frac{4}{3}Rd\, F^3\right].
+AC - B^2 = \frac{\Lambda}{F^2}\left(\frac{\zeta}{\Omega}\right)^2\left[\frac{\alpha_\kappa + \frac{4}{3}Rd\, F^3}{1 + \zeta\phi} - \frac{\Lambda}{4}\right] \ge 0,
 \tag{42}
 $$
 
-Since F = F(η), Eq. (42) is a spatially varying condition; it was evaluated pointwise over 0 ≤ η ≤ 1 for every reported parameter set and found to hold, so the complete diffusive quadratic form satisfies N_HT + N_DD ≥ 0. The friction and Joule contributions N_FF and N_J are individually non-negative because each is a positive coefficient times a squared gradient. Consequently, under the positive-semidefinite condition given by Eq. (42) together with the sign assumptions above, the whole denominator N_s is positive and the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported parameter range — note that it is the complete quadratic form N_HT + N_DD, and not the individual cross term Λ(ζ/Ω)θ′φ′ (which may be negative locally), that is guaranteed non-negative. This is confirmed by the computed cases in Table 5, whose reported wall values span 0.1124 ≤ Be(0) ≤ 0.2918.
+which reduces to the (pointwise) bound
+
+$$
+\Lambda \le \frac{4\left[\alpha_\kappa + \frac{4}{3}Rd\, F^3\right]}{1 + \zeta\phi}.
+\tag{43}
+$$
+
+Since F = F(η) and φ = φ(η), Eq. (43) is a spatially varying condition; it was evaluated pointwise over 0 ≤ η ≤ 1 for every reported parameter set and found to hold, so the complete diffusive quadratic form satisfies N_HT + N_DD ≥ 0. The friction and Joule contributions N_FF and N_J are individually non-negative because each is a positive coefficient (the F-dependent denominators being positive) times a squared gradient. Consequently, under the positive-semidefinite condition given by Eq. (43) together with the sign assumptions above, the whole denominator N_s is positive and the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported parameter range — note that it is the complete quadratic form N_HT + N_DD, and not the individual cross term (which may be negative locally), that is guaranteed non-negative.
 
 ---
 
@@ -396,7 +405,7 @@ The eighth-order boundary-value problem is solved with the MATLAB `bvp4c` routin
 
 ### 4.1 Grid convergence
 
-The values of f″(1) change by less than 1 × 10⁻⁶ in relative terms as the mesh is refined from N = 100 through 200 to 400 collocation intervals (Table 1, reported to eight significant figures). We therefore consider the solution to be grid-independent to the reported numerical precision. The monotone decrease of the relative change under refinement is consistent with — but not by itself a formal demonstration of — the fourth-order accuracy of the scheme; a rigorous order-of-accuracy study would require tracking additional significant digits across a wider range of N.
+The values of f″(1) change by less than 1 × 10⁻⁶ in relative terms as the mesh is refined from N = 100 through 200 to 400 collocation intervals (Table 1, reported to eight significant figures). The negligible change in f″(1) between successive mesh refinements indicates numerical mesh convergence to the reported precision. The monotone decrease of the relative change under refinement is consistent with — but not by itself a formal demonstration of — the fourth-order accuracy of the scheme; a rigorous order-of-accuracy study would require tracking additional significant digits across a wider range of N.
 
 **Table 1. Grid convergence of f″(1).**
 
@@ -406,7 +415,7 @@ The values of f″(1) change by less than 1 × 10⁻⁶ in relative terms as the
 | 200 | 0.07587810 | 5.3 × 10⁻⁷ |
 | 400 | 0.07587809 | 1.3 × 10⁻⁷ |
 
-**Table 2. Newtonian clear-fluid limit** (Pr = 6.2, Bi = 0.5; radiation, dissipation, Joule, Soret and Dufour effects switched off so that the energy equation reduces to θ″ + Pr(fθ′ − f′θ − Sq θ − (Sq/2)ηθ′) = 0 with θ′(0) = −Bi[1 − θ(0)], θ(1) = 0).**
+**Table 2. Newtonian clear-fluid limit** (present numerical solution; Pr = 6.2, Bi = 0.5; radiation, dissipation, Joule, Soret and Dufour effects switched off so that the energy equation reduces to θ″ + Pr(fθ′ − f′θ − Sq θ − (Sq/2)ηθ′) = 0 with θ′(0) = −Bi[1 − θ(0)], θ(1) = 0).**
 
 | Sq | f″(1) | −θ′(1) |
 |---|---|---|
@@ -425,7 +434,7 @@ $$
 f^{(4)} + f f''' - f' f'' - Sq\left(\frac{3}{2}f'' + \frac{\eta}{2}f'''\right) = 0
 $$
 
-with f(0) = 0, f′(0) = 1, f(1) = Sq/2, f′(1) = 0, where f^{(4)} denotes the fourth derivative. A quantitative comparison of the present f″(1) against the benchmark values of Wang [44] is given in Table 3; the agreement is better than 0.1% across the tested range of Sq, confirming correct implementation. Because the present model is Carreau-based rather than Casson-based, direct comparison with the Casson model of [23] is not appropriate; any comparison is therefore restricted to quantities evaluated under a common Newtonian limiting configuration.
+with f(0) = 0, f′(0) = 1, f(1) = Sq/2, f′(1) = 0, where f^{(4)} denotes the fourth derivative. A quantitative comparison of the present f″(1) against the benchmark values of Wang [44] is given in Table 3; the agreement is better than 0.1% at the tested values of Sq, confirming correct implementation. (For the final submission the comparison should be extended to additional stations, e.g. Sq = 0.1 and Sq = 1.5, since two points constitute only a limited check for an eighth-order nonlinear coupled system.) Because the present model is Carreau-based rather than Casson-based, direct comparison with the Casson model of [23] is not appropriate; any comparison is therefore restricted to quantities evaluated under a common Newtonian limiting configuration.
 
 **Table 3. Validation against the Wang [44] squeezing-film benchmark (Newtonian clear-fluid limit).**
 
@@ -438,13 +447,13 @@ with f(0) = 0, f′(0) = 1, f(1) = Sq/2, f′(1) = 0, where f^{(4)} denotes the 
 
 ## 6. Results and Discussion
 
-Throughout this section, the "core" denotes the central region of the channel away from both walls (approximately 0.3 ≤ η ≤ 0.7), as distinct from the near-wall layers where gradients are steepest.
+For discussion purposes, we refer to the region approximately 0.3 ≤ η ≤ 0.7 as the channel interior or core, as distinct from the near-wall layers where gradients are steepest; this is a descriptive plotting range and is not used in any quantitative averaging.
 
 ### 6.1 Velocity field
 
 ![Figure 1](figures_emhd/Figure_1_Schematic.png)
 
-**Figure 1.** Schematic of the unsteady squeezing flow of the AA7072–AA7075/methanol Carreau hybrid nanofluid between parallel plates filled with a Darcy–Forchheimer porous medium, under aligned electric and transverse magnetic fields.
+**Figure 1.** Schematic of the unsteady squeezing flow of the AA7072–AA7075/methanol Carreau hybrid nanofluid between parallel plates filled with a Darcy–Forchheimer porous medium, under aligned electric and transverse magnetic fields. The schematic indicates the coordinate axes (x streamwise, y wall-normal), the velocity components (u, v), the lower-plate stretching velocity U_e, the time-dependent gap h(t), the transverse magnetic field B(t) = B(t)**e**_z, the in-plane electric field E(t) = E(t)**e**_y, the porous medium, and the wall/ambient thermal and solutal states (T_w, C_w at the lower plate; T₀, C₀ at the upper plate).
 
 Figure 1 shows the physical configuration. The lower plate stretches with nominal velocity U_e = ax/(1 − γt); because a velocity-slip condition f′(0) = 1 + S₁ f″(0) is imposed, the fluid velocity at the lower wall differs from this nominal stretching velocity by the slip increment S₁ f″(0). The normal velocity associated with the changing plate separation is v_h = dh/dt (Eq. 2). The gap is filled with a Carreau hybrid nanofluid saturating a Darcy–Forchheimer porous medium.
 
@@ -474,19 +483,21 @@ The concentration φ(η) decreases monotonically from the lower to the upper pla
 
 ### 6.4 Entropy generation
 
+> **Note (pending recomputation).** The entropy-generation number has been reformulated in Eq. (36) to retain the temperature- and concentration-dependent denominators (1/F², 1/F and 1/(1 + ζφ)) that were previously omitted. The quantitative entropy results in this subsection, in Figures 5–6, and in Tables 5–6 (N_s(0), Be(0), N_s,avg) were obtained with the earlier formulation and must be regenerated from the corrected Eq. (36) before submission. The qualitative trends described below (wall-peaked N_s, the Br and M dependences, and the near-wall-to-core Bejan transition) are expected to persist, but the specific numerical values are provisional.
+
 ![Figure 5](figures_emhd/Figure_5_Entropy_Br_M.png)
 
-**Figure 5.** Entropy generation number N_s(η) versus Br and M.
+**Figure 5.** Entropy generation number N_s(η) versus Br and M (to be regenerated from Eq. 36).
 
-Figure 5 shows the entropy-generation profiles. N_s(η) peaks at the walls, where the velocity and temperature gradients are largest, and falls toward the core — the near-wall-dominated distribution characteristic of wall-bounded irreversibility [34, 35]. Increasing Br amplifies N_s strongly: N_s(0) rises from 4.4484 (Br = 0.5) to 10.7492 (Br = 1.5), an increase of about 142%. Stronger M adds Joule irreversibility (N_s(0) = 8.2714 at M = 2.0 versus 7.5988 at M = 1.0). A larger dimensionless temperature difference reduces N_s(0) to 3.5495 at Ω = 2.0, consistent with Table 5.
+Figure 5 shows the entropy-generation profiles. N_s(η) peaks near the walls, where the velocity and temperature gradients are largest, and falls toward the core — the near-wall-dominated distribution characteristic of wall-bounded irreversibility [34, 35]. Under the present scaling, increasing Br increases the relative contribution of the viscous and electromagnetic dissipation to N_s, and increasing M raises the Joule contribution; the provisional magnitudes are listed in Table 5 and will be updated with the corrected entropy model.
 
 ### 6.5 Bejan number
 
 ![Figure 6](figures_emhd/Figure_6_Bejan_Rd_Br.png)
 
-**Figure 6.** Bejan number Be(η) versus Rd and Br.
+**Figure 6.** Bejan number Be(η) versus Rd and Br (to be regenerated from Eq. 36).
 
-Figure 6 shows the Bejan number, which is bounded in [0, 1] at every η over the full parameter range (Section 3.2): the combined thermal and diffusive contribution (N_HT + N_DD) dominates near the walls (high Be), while friction and Joule irreversibilities dominate in the core (low Be). Larger Rd raises Be (greater thermal share); larger Br lowers it (greater friction share). Be(0) falls from 0.2918 to 0.1207 as Br increases from 0.5 to 1.5 (Table 5). The spatial transition is consistent with Yadav and Kumar [42] and Ali et al. [41].
+Figure 6 shows the Bejan number, which is bounded in [0, 1] at every η over the full parameter range (Section 3.2): the combined thermal and diffusive contribution (N_HT + N_DD) dominates near the walls (high Be), while friction and Joule irreversibilities dominate in the core (low Be). Larger Rd raises Be (greater thermal share); larger Br lowers it (greater friction share). The provisional wall values are listed in Table 5. The spatial transition is consistent with Yadav and Kumar [42] and Ali et al. [41].
 
 ### 6.6 Engineering quantities
 
@@ -514,7 +525,7 @@ Figure 7 shows the engineering quantities versus hybrid loading, plotted against
 | Sr | 0.5 | 0.0885 | 1.8712 | 0.5805 |
 | K | 1.5 | 0.0885 | 1.9653 | 0.5001 |
 
-**Table 5. N_s and Be at η = 0.**
+**Table 5. N_s and Be at η = 0 (provisional — computed with the earlier entropy formulation; to be regenerated from the corrected Eq. 36).** Present numerical solution.
 
 | Br | M | Rd | Ω | N_s(0) | Be(0) |
 |---|---|---|---|---|---|
@@ -526,7 +537,7 @@ Figure 7 shows the engineering quantities versus hybrid loading, plotted against
 | 1.0 | 1.0 | 1.0 | 1.0 | 7.7121 | 0.1830 |
 | 1.0 | 1.0 | 0.5 | 2.0 | 3.5495 | 0.1124 |
 
-**Table 6. Effect of volume fraction.** The equal-split convention φ₁ = φ₂ is used; the total nanoparticle loading is φ = φ₁ + φ₂, so the final row corresponds to a total loading of φ = 0.10. The average entropy-generation number is the channel-averaged value N_s,avg = ∫₀¹ N_s(η) dη (the averaging domain 0 ≤ η ≤ 1 has unit length, so this equals the arithmetic mean over the gap).
+**Table 6. Effect of volume fraction.** Present numerical solution. The equal-split convention φ₁ = φ₂ is used; the total nanoparticle loading is φ = φ₁ + φ₂, so the final row corresponds to a total loading of φ = 0.10. The average entropy-generation number is the channel-averaged value N_s,avg = ∫₀¹ N_s(η) dη (the averaging domain 0 ≤ η ≤ 1 has unit length, so this equals the arithmetic mean over the gap). The N_s,avg column is provisional and must be regenerated from the corrected entropy model (Eq. 36); the Nu and Sh columns are unaffected by the entropy reformulation.
 
 | φ₁ | φ₂ | φ = φ₁ + φ₂ | Re^(-1/2) Nu | Re^(-1/2) Sh | N_s,avg |
 |---|---|---|---|---|---|
@@ -542,9 +553,9 @@ Figure 7 shows the engineering quantities versus hybrid loading, plotted against
 
 1. The momentum equation is retained at fourth order via an explicitly demonstrated pressure elimination; the information carried by the eliminated pressure-gradient constant G is recovered through the fourth boundary condition, and the resulting eighth-order system (4 momentum + 2 energy + 2 species) matches eight boundary conditions.
 2. The energy equation groups conduction and radiation as [α_κ + (4/3)Rd F³]θ″, with F = 1 + (θ_r − 1)θ and the radiation parameter defined as Rd = 4σ*T₀³/(k*κ_f) so that the 4/3 and 4 coefficients follow directly from the Rosseland derivation; the concentration susceptibility c_s is defined explicitly (c_s = (∂C/∂e_sp)_p, units kg J⁻¹), with which a direct unit check verifies that the Soret and Dufour numbers Sr and Df are dimensionless; the Dufour contribution is then reduced step by step to Pr α_c Df φ″, i.e. α_c Df φ″ inside the dissipation source Ξ (Eq. 27). All dimensionless groups are defined explicitly in Section 2.5.
-3. The entropy model uses time-dependent electromagnetic fields and k_f-based normalisation; the diffusive and cross terms rest on a linear-irreversible-thermodynamics basis, and the Soret–Dufour cross term is assigned explicitly to N_DD, so that N_s = N_HT + N_FF + N_J + N_DD; under the stated sign assumptions and the positive-semidefinite condition (Eq. 42), the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported range.
+3. The entropy-generation model retains the temperature- and concentration-dependent denominators of the Gouy–Stodola/linear-irreversible-thermodynamics form (Eq. 36), with thermal (1/F²), viscous and Joule (1/F) and diffusive (1/(1+ζφ), 1/F) factors; the Soret–Dufour cross term is assigned to N_DD, so that N_s = N_HT + N_FF + N_J + N_DD, and under the stated sign assumptions and the positive-semidefinite condition (Eq. 43) the calculated Bejan number satisfies 0 ≤ Be ≤ 1 over the reported range.
 4. The solution is grid-independent to the reported precision; the Newtonian clear-fluid limit recovers the Wang squeezing-film equation, with f″(1) agreeing with the benchmark to better than 0.1% (Table 3), while comparison with the Casson model of [23] is restricted to a common Newtonian limit.
-5. Entropy generation peaks near the walls; increasing the Brinkman number enhances the frictional and Joule contributions to entropy generation, whereas increasing the magnetic parameter primarily enhances the Joule irreversibility (its effect on friction being indirect, through the velocity field). Hybrid loading (total φ up to 0.10) increases the Nusselt number by approximately 41.2%, accompanied by an approximately 31.7% increase in the average entropy-generation number N_s,avg (from 3.1844 to 4.1940).
+5. Entropy generation is largest near the walls; under the present scaling, increasing the Brinkman number increases the relative viscous and electromagnetic dissipation contributions to the normalised entropy-generation number, whereas increasing the magnetic parameter chiefly raises the Joule contribution (its effect on friction being indirect, through the velocity field). Within the present effective-property model and parameter range, hybrid loading (total φ up to 0.10) increases the Nusselt number by approximately 41.2% (from 1.4267 to 2.0149); the accompanying change in the average entropy-generation number is to be quantified from the corrected entropy model (Eq. 36).
 
 ---
 
@@ -570,7 +581,7 @@ In the Newtonian limit (n = 1 or We → 0) under the adopted simplified Carreau 
 
 [7] F. Afshari, B. Muratçobanoğlu, Thermal analysis of a hybrid nanofluid, International Journal of Environmental Science and Technology 20 (2) (2023) 2037–2052. https://doi.org/10.1007/s13762-022-04144-5
 
-[8] I. Tlili, M. T. Mustafa, K. A. Kumar, N. Sandeep, Effect of asymmetrical heat rise/fall on the AA7072–AA7075/methanol hybrid nanofluid flow, Scientific Reports 10 (2020) 4402. https://doi.org/10.1038/s41598-020-61215-8
+[8] I. Tlili, H. A. Nabwey, G. P. Ashwinkumar, N. Sandeep, 3-D magnetohydrodynamic AA7072-AA7075/methanol hybrid nanofluid flow above an uneven thickness surface with slip effect, Scientific Reports 10 (2020) 4265. https://doi.org/10.1038/s41598-020-61215-8
 
 [9] A. Mishra, K. Swain, S. Dash, Soret and Dufour effects on hybrid nanofluid flow, Journal of Computational Applied Mechanics 53 (1) (2022) 1–14. https://doi.org/10.22059/jcamech.2022.332096.656
 
@@ -584,7 +595,7 @@ In the Newtonian limit (n = 1 or We → 0) under the adopted simplified Carreau 
 
 [14] H. A. Wahab, S. Zeb, S. Khan, M. Zamir, S. O. Alharbi, Numerical study of Carreau nanofluid flow, Arabian Journal of Chemistry 16 (5) (2023) 104682. https://doi.org/10.1016/j.arabjc.2023.104682
 
-[15] M. P. Mkhatshwa, M. Khumalo, Irreversibility analysis of Carreau fluid flow, Heat Transfer 52 (1) (2023) 395–429. https://doi.org/10.1002/htj.22700
+[15] M. P. Mkhatshwa, M. Khumalo, Irreversibility scrutinization on EMHD Darcy–Forchheimer slip flow of Carreau hybrid nanofluid through a stretchable surface in porous medium with temperature-variant properties, Heat Transfer 52 (1) (2023) 395–429. https://doi.org/10.1002/htj.22700
 
 [16] A. S. Mittal, H. R. Patel, Influence of thermophoresis and Brownian motion on Carreau fluid, Physica A: Statistical Mechanics and its Applications 537 (2020) 122710. https://doi.org/10.1016/j.physa.2019.122710
 
@@ -616,7 +627,7 @@ In the Newtonian limit (n = 1 or We → 0) under the adopted simplified Carreau 
 
 [30] M. M. Bhatti, O. A. Bég, R. Ellahi, T. Abbas, Natural convection non-Newtonian EMHD flow, Qualitative Theory of Dynamical Systems 21 (3) (2022) 97. https://doi.org/10.1007/s12346-022-00625-7
 
-[31] R. Gandhi, B. K. Sharma, N. K. Mishra, Q. M. Al-Mdallal, Computer simulations of EMHD Casson nanofluid flow, Nanomaterials 13 (4) (2023) 652. https://doi.org/10.3390/nano13040652
+[31] R. Gandhi, B. K. Sharma, N. K. Mishra, Q. M. Al-Mdallal, Computer simulations of EMHD Casson nanofluid flow of blood through an irregular stenotic permeable artery: application of Koo–Kleinstreuer–Li correlations, Nanomaterials 13 (4) (2023) 652. https://doi.org/10.3390/nano13040652
 
 [32] B. Mahanthesh, J. Mackolil, N. S. Shashikumar, Nonlinear radiative heat transfer with Darcy–Forchheimer flow, Journal of Thermal Analysis and Calorimetry 141 (2020) 37–44. https://doi.org/10.1007/s10973-019-09097-5
 
