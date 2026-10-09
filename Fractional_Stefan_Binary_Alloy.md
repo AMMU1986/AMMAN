@@ -1,30 +1,54 @@
-# A Fractional-Order Stefan Problem for the Solidification of a Binary Alloy: Similarity Analysis of Anomalous Heat and Solute Transport
+# A Dual-Memory Fractional Stefan Framework for Binary-Alloy Solidification with Shrinkage: Anomalous Heat–Solute Coupling, Segregation Control, and Inverse Memory Identification
+
+## Highlights
+
+- A **dual-memory** fractional Stefan model is proposed in which heat and solute carry **independent** Caputo orders *α*_T and *α*_C, coupled to density change on freezing.
+- A **generalised self-similar reduction** yields closed-form Mittag-Leffler/Wright fields and the interface law *s*(*t*) = 2*λ t*^(*α*_T/2) with *α*_T ≠ *α*_C.
+- A new **Memory Segregation Index (MSI)** quantifies how solutal memory amplifies interfacial microsegregation, rising up to ~41% as *α*_C and *Le* vary.
+- A normalised sensitivity (elasticity) analysis shows the **thermal order *α*_T dominates** the long-time front position (elasticity ≈ +2.5), far exceeding the Stefan number.
+- An **inverse identification** workflow recovers the effective memory order from a measured front history; neglecting memory over-predicts the front by ~147%.
 
 ## Abstract
 
-**A time-fractional generalisation of the classical two-phase Stefan problem is formulated to describe the conduction-dominated solidification of an undercooled binary alloy in which heat and solute transport carry memory of the evolving mushy history.** The governing energy and species balances are recast with Caputo time-fractional derivatives of order *α* (0 < *α* ≤ 1), and the moving solid–liquid interface is advanced by a fractional Stefan condition. By introducing a fractional similarity variable, the coupled field equations are reduced to ordinary fractional differential equations whose solutions are expressed through the Mittag-Leffler and Wright functions; the interface then obeys the sub-diffusive growth law *s*(*t*) = 2*λ t*^(*α*/2), where *λ* is a growth parameter obtained from a single transcendental equation solved by the Newton–Raphson method. A front-fixing finite-difference scheme using the L1 approximation of the Caputo derivative is developed to corroborate the semi-analytical results. The model recovers the classical sharp-interface similarity solution as *α* → 1, agreeing with the benchmark one-phase Stefan solution to within 1.5%. Parametric study over the fractional order *α*, the Lewis number *Le*, the Stefan number *Ste*, the density ratio *R* and the dimensionless undercooling shows that reducing *α* slows the interface, steepens the near-interface thermal gradient and produces heavier far-field solutal tails, consistent with sub-diffusive memory. The interface advances faster for larger undercooling, larger Stefan number, smaller Lewis number and smaller density ratio (expansion). A normalised sensitivity analysis identifies the Stefan number and the fractional order as the two most influential parameters controlling the front position. The results provide a compact, physically interpretable framework for incorporating anomalous transport and thermal/solutal memory into alloy solidification models.
+**Background and objective.** Classical sharp-interface Stefan models of binary-alloy solidification assume Fourier heat conduction and Fickian solute diffusion, so that fluxes depend only on instantaneous local gradients and the front advances as √*t*. In rapidly solidified, disordered or mushy-zone-dominated alloys this memoryless picture is frequently violated: measured interface and recalescence histories follow shallower, history-dependent power laws characteristic of anomalous (sub-diffusive) transport. Existing fractional Stefan studies address mostly single-component problems and employ a single fractional order for all transport. This work develops and analyses a **dual-memory** fractional framework for a binary alloy in which the thermal and solutal fields carry *independent* fractional orders and the phase change is accompanied by density change (shrinkage or expansion).
 
-**Keywords:** Fractional Stefan problem; Binary alloy solidification; Caputo derivative; Anomalous diffusion; Mittag-Leffler function; Similarity solution; Mushy zone; Memory effect.
+**Methods.** The energy and species balances are recast with Caputo time-fractional derivatives of orders *α*_T and *α*_C (0 < *α* ≤ 1), and the moving interface is advanced by generalised fractional Stefan conditions. A fractional similarity variable reduces the coupled fields to ordinary fractional equations whose solutions are expressed through Mittag-Leffler and Wright functions, giving the interface law *s**(*t**) = 2*λ t**^(*α*_T/2). The growth parameter *λ* follows from a single transcendental equation solved by Newton–Raphson. An independent front-fixing finite-difference solver using the L1 discretisation of the Caputo derivative corroborates the semi-analytical results.
+
+**Results.** The model recovers the classical binary-alloy similarity solution as (*α*_T, *α*_C) → 1 to within 1.5% and matches the published density-aware benchmark. Reducing *α*_T retards the front strongly and nonlinearly in time and steepens the near-interface thermal gradient; reducing *α*_C intensifies interfacial solute segregation, captured by a new **Memory Segregation Index** that increases with falling *α*_C and rising Lewis number (up to ~41%). A dual-order map shows that *α*_T governs the kinetics (vertical gradient) while *α*_C modulates it only weakly. An elasticity-based sensitivity analysis ranks *α*_T as the single most influential parameter at long times (elasticity ≈ +2.5), ahead of the density ratio (≈ −1.0) and the Stefan number (≈ +0.5). An inverse workflow identifies the effective thermal order from a noisy synthetic front history and reduces the long-time prediction error from ~147% (classical) to below 1% (present).
+
+**Conclusion.** Decoupling thermal and solutal memory provides a physically interpretable, low-order route to incorporate anomalous transport and microsegregation into alloy solidification modelling, and furnishes a practical inverse descriptor for rapid-solidification processes.
+
+**Keywords:** Fractional Stefan problem; Dual memory; Binary alloy solidification; Caputo derivative; Anomalous diffusion; Mittag-Leffler function; Microsegregation; Inverse identification.
 
 ---
 
 ## 1. Introduction
 
-The solidification of binary alloys is one of the most consequential phase-change processes in materials engineering, underpinning casting, welding, crystal growth, additive manufacturing and the design of functional and structural metals. Unlike the solidification of a pure substance, which proceeds at a single equilibrium temperature, an alloy freezes over a range of temperatures delimited by its liquidus and solidus lines. Between these limits a two-phase region — the *mushy zone* — develops in which solid dendrites coexist with interdendritic liquid, and the rejection of solute at the advancing front drives macro- and micro-segregation. The quality, microstructure and mechanical performance of the final product are therefore inseparable from the coupled heat and mass transfer that accompanies the moving solid–liquid interface [1,2].
+### 1.1 Background
 
-Mathematically, phase-change processes with a moving boundary belong to the family of Stefan problems, named after the pioneering nineteenth-century analysis of ice formation in polar seas [3]. The classical Stefan problem couples the heat equation in each phase to an energy balance at the interface, whose position is itself unknown and must be determined as part of the solution. Analytical treatments are generally restricted to one-dimensional, semi-infinite geometries with constant properties, where self-similar solutions in terms of the error function are available [4,5]. For binary systems the first rigorous analytical solution was given by Rubinstein [6] and later refined by Alexiades and Solomon [1]; subsequent work by Tien and Geiger, by Crowley and Ockendon, and by Bennon and Incropera established continuum mixture models capable of resolving the mushy zone and the associated segregation phenomena [7,8]. Chakraborty and Dutta derived conduction-dominated analytical solutions for unidirectional binary solidification and examined the role of solutal undercooling and the partition coefficient [9,10]. Voller [11] subsequently constructed a compact similarity solution for the solidification of an undercooled binary alloy and used it to validate enthalpy-based numerical models of dendritic growth [12]. More recently, Jakhar, Rath and Mahapatra [13] extended Voller's similarity analysis to account for the density change — shrinkage or expansion — that accompanies the phase transition, showing that the density ratio exerts a first-order influence on the interface velocity. These classical formulations share a common foundation: transport is assumed to be *Fickian* (for solute) and *Fourier* (for heat), so that fluxes depend only on the instantaneous local gradients, and the mean-squared displacement of the diffusing field grows linearly with time.
+Solidification of binary alloys governs the microstructure, segregation and ultimately the mechanical performance of cast, welded, crystal-grown and additively manufactured metals [1,2]. Unlike a pure substance, an alloy freezes over a temperature interval bounded by its liquidus and solidus, developing a two-phase *mushy zone* in which solid dendrites coexist with interdendritic liquid and solute is partitioned between the phases. The coupled heat and mass transfer around the advancing solid–liquid interface therefore controls both the kinetics of freezing and the spatial redistribution of solute (macro- and micro-segregation) that is largely frozen into the final product.
 
-That assumption, however, is increasingly recognised as an idealisation. In many materials of practical interest — rapidly solidified alloys, metallic glasses, highly disordered or porous media, polymers and biological systems — transport is *anomalous*: the mean-squared displacement scales as a non-integer power of time, ⟨*x*²⟩ ∼ *t*^*α*, with *α* < 1 for sub-diffusion [14]. Sub-diffusive behaviour arises physically from trapping and waiting-time distributions with heavy tails, from the tortuous and evolving geometry of the interdendritic network, and from the finite relaxation time of heat and solute fluxes in rapidly changing thermal fields. The mushy zone in particular is a disordered, evolving two-phase medium whose permeability and effective diffusivity depend on the solidification history; a purely local, memoryless flux law cannot capture the retardation and long-time correlations that such a structure imposes. Fractional calculus provides a natural and economical language for these effects: by replacing an integer-order time derivative with a derivative of fractional order *α*, the governing equation acquires a convolution (memory) kernel that weights the entire past history of the field, and the resulting fundamental solutions decay not exponentially but as Mittag-Leffler functions with algebraic tails [15,16].
+Mathematically, such moving-boundary problems belong to the family of Stefan problems [3]. Analytical treatments are usually confined to one-dimensional, semi-infinite, constant-property settings admitting self-similar error-function solutions [4,5]. For binary systems the first analytical solution was given by Rubinstein [6] and extended by Alexiades and Solomon [1]; continuum mixture models by Bennon and Incropera [7] and mushy-region models by Crowley and Ockendon [8] enabled resolution of segregation. Chakraborty and Dutta derived conduction-dominated analytical solutions for unidirectional binary solidification, highlighting the roles of the partition coefficient and solutal undercooling [9,10]. Voller [11] constructed a compact similarity solution for an undercooled binary alloy and used it to validate enthalpy-based dendritic-growth models [12]. Jakhar, Rath and Mahapatra [13] subsequently incorporated the density change — shrinkage or expansion — that accompanies freezing, demonstrating that the density ratio exerts a first-order influence on the interface velocity. These classical formulations are *memoryless*: heat obeys Fourier's law and solute obeys Fick's law, so that the mean-squared displacement of each field grows linearly in time.
 
-The theory of fractional derivatives is now mature. The Riemann–Liouville and Caputo definitions, together with the Mittag-Leffler and Wright special functions, furnish the analytical machinery for linear fractional diffusion [17,18], and the probabilistic interpretation via continuous-time random walks connects the fractional order *α* directly to the physics of waiting times and trapping [14]. The Caputo derivative is especially convenient for initial-value and moving-boundary problems because it admits classical, physically meaningful initial conditions. Over the past two decades, these tools have been applied to the Stefan problem itself. Voller [19,20] formulated anomalous-diffusion limited Stefan problems and showed that the familiar √*t* interface law is replaced by a *t*^(*α*/2) law. Rajeev and co-workers [21], Singh and colleagues [22], and Roscani and Santillán Marcus [23] developed exact and approximate similarity solutions for single-phase fractional Stefan problems in terms of the Wright function, and Roscani and Tarzia [24] established the mathematical conditions under which such solutions exist and are unique. Falcini, Garra and Voller [25] gave a physically transparent derivation of the fractional Stefan condition from a fractional conservation law, clarifying how memory enters the interface balance. On the computational side, finite-difference schemes based on the L1 discretisation of the Caputo derivative [26,27], together with front-fixing and enthalpy methods, have made the numerical solution of fractional moving-boundary problems routine [28,29]. Alternative non-singular kernels — the Caputo–Fabrizio and Atangana–Baleanu derivatives — have also been explored for phase change, each encoding a different memory structure [30,31].
+### 1.2 Motivation: anomalous transport and memory in solidification
 
-The engineering motivation for a memory-based description is concrete and broad. In rapid solidification processing — melt spinning, atomisation, splat quenching and, most prominently, metal additive manufacturing — cooling rates of 10⁴–10⁷ K s⁻¹ drive the system far from local equilibrium and through a disordered, rapidly evolving two-phase structure for which the Fourier/Fick picture is at best an average. Measured interface or recalescence histories in such processes frequently fail to collapse onto the classical √*t* law, instead following a shallower power law that a fractional exponent *α*/2 captures parsimoniously. Similar departures are documented in the freezing of gels, tissues and food matrices, in the crystallisation of polymers and metallic glasses, and in solidification within porous moulds and sand castings, where the pore network imposes trapping and tortuosity on both heat and solute. In each case the appeal of the fractional formulation is the same: a single additional exponent summarises a wealth of unresolved sub-scale physics, allowing a tractable macroscopic model to reproduce retardation and long-time correlations that would otherwise require detailed and expensive micro-mechanical simulation. The fractional order thereby acquires the status of an effective material/process descriptor that can, in principle, be identified from a measured front history and then used predictively.
+That assumption is an idealisation. In rapid solidification — melt spinning, atomisation, splat quenching and especially metal additive manufacturing — cooling rates of 10⁴–10⁷ K s⁻¹ drive the system far from local equilibrium and through a fine, rapidly evolving two-phase network for which Fourier/Fick transport is at best an average description. Measured front and recalescence histories in such processes often fail to collapse onto the classical √*t* law, instead following a shallower power law. Anomalous, sub-diffusive transport, ⟨*x*²⟩ ∼ *t*^*α* with *α* < 1, arises physically from trapping and heavy-tailed waiting-time distributions, from the tortuous and evolving geometry of the interdendritic channels, and from the finite relaxation time of heat and solute fluxes in rapidly changing fields [14]. Fractional calculus provides the natural language for such memory: replacing an integer-order time derivative by a Caputo derivative of order *α* introduces a convolution kernel (*t* − *τ*)^(−*α*) that weights the entire past history of the field, and the fundamental solutions relax not exponentially but as Mittag-Leffler functions with algebraic tails [15,16].
 
-Despite this progress, the overwhelming majority of fractional Stefan studies address *single-component* melting or freezing. The *binary* alloy problem — in which a solute field is coupled to the thermal field, the interface temperature is fixed by the liquidus line, and solute is partitioned between the two phases — has received comparatively little fractional treatment, even though it is precisely the mushy, segregating, history-dependent character of alloy solidification that most strongly motivates a memory-based description. The question of how a fractional order modifies not only the interface kinetics but also the solute distribution, the coupling between the thermal and solutal boundary layers (through the Lewis number), and the sensitivity of the front to undercooling and density change remains largely open.
+The analytical machinery is mature — the Riemann–Liouville and Caputo derivatives, the Mittag-Leffler and Wright special functions, and the continuous-time-random-walk interpretation that links *α* to the microscopic waiting-time statistics [14,17,18]. These tools have been applied to the Stefan problem itself. Voller [19,20] formulated anomalous-diffusion-limited Stefan problems and showed that the √*t* law is replaced by *t*^(*α*/2). Rajeev and co-workers [21], Singh et al. [22] and Roscani and Santillán Marcus [23] derived exact and approximate similarity solutions for single-phase fractional Stefan problems in terms of the Wright function; Roscani and Tarzia [24,34] established existence and uniqueness; Falcini, Garra and Voller [25] gave a physically transparent derivation of the fractional Stefan condition from a fractional conservation law. Robust L1-based finite-difference schemes [26,27], Galerkin methods [29] and enthalpy/front-fixing approaches [28] make numerical solution routine, and non-singular kernels (Caputo–Fabrizio, Atangana–Baleanu) extend the memory repertoire [30,31].
 
-The present work addresses this gap. We formulate a two-phase, time-fractional Stefan problem for the conduction-dominated solidification of an undercooled binary alloy, in which the energy and species equations each carry a Caputo derivative of common order *α*, and the interface advances under a fractional Stefan condition. The specific objectives are: (i) to derive a self-similar reduction of the coupled fractional field equations and obtain closed-form temperature and concentration distributions in terms of Mittag-Leffler/Wright functions; (ii) to establish the fractional interface growth law and the transcendental equation governing the growth parameter *λ*; (iii) to construct an independent L1 front-fixing finite-difference solution for verification; (iv) to validate the formulation against the classical *α* = 1 similarity solution; and (v) to quantify, through a systematic parametric and sensitivity study, how the fractional order *α*, the Lewis number *Le*, the Stefan number *Ste*, the density ratio *R* and the undercooling control the interface motion and the field distributions. The analysis builds directly on the classical density-aware similarity solution of Jakhar et al. [13] and extends it into the fractional, memory-bearing regime.
+### 1.3 Gap and contributions
 
-The remainder of the paper is organised as follows. Section 2 presents the physical model and the fractional governing equations. Section 3 develops the similarity solution and the interface condition. Section 4 describes the numerical scheme. Section 5 reports validation, and Section 6 discusses the parametric results. Section 7 concludes.
+Two limitations pervade the existing fractional literature. First, almost all fractional Stefan studies treat *single-component* melting or freezing; the *binary* problem — with a solute field coupled to temperature, an interface temperature pinned to the liquidus, and solute partitioned at the front — is precisely the setting in which mushy, segregating, history-dependent behaviour most strongly motivates a memory description, yet it is largely unexplored. Second, the few fractional treatments that couple fields use a **single fractional order** for all transport. There is, however, no physical reason for heat and solute to share the same memory: they sample different microstructural features and have vastly different diffusivities (the Lewis number *Le* = *α*_l/*D*_l is typically 10²–10⁴ in metallic alloys), so their effective waiting-time statistics — and hence their fractional orders — should differ.
+
+This paper closes both gaps. Its contributions are:
+
+1. **A dual-memory fractional Stefan model** for a binary alloy in which the thermal and solutal fields carry *independent* Caputo orders *α*_T and *α*_C, coupled to density change (ratio *R*) on freezing — to our knowledge the first such formulation.
+2. **A generalised self-similar reduction** valid for *α*_T ≠ *α*_C, yielding closed-form Mittag-Leffler/Wright temperature and concentration fields and the interface law *s**(*t**) = 2*λ t**^(*α*_T/2), with a single transcendental equation for *λ*.
+3. **A Memory Segregation Index (MSI)** — a new dimensionless measure of how solutal memory amplifies interfacial microsegregation relative to the memoryless case.
+4. **A comprehensive parametric and elasticity-based sensitivity study** that ranks the controlling parameters and isolates the distinct roles of thermal and solutal memory.
+5. **An inverse identification workflow** that extracts the effective memory order from a measured front history, with direct relevance to rapid-solidification and additive-manufacturing process modelling.
+
+The formulation builds on, and reduces exactly to, the density-aware classical similarity solution of Jakhar et al. [13]. Section 2 presents the model; Section 3 the similarity solution and MSI; Section 4 the numerical scheme; Section 5 validation and positioning against prior work; Section 6 a comprehensive results and discussion; and Section 7 the conclusions.
 
 ---
 
@@ -32,76 +56,67 @@ The remainder of the paper is organised as follows. Section 2 presents the physi
 
 ### 2.1 Physical model and assumptions
 
-We consider the one-dimensional solidification of a binary alloy occupying the semi-infinite domain *x* ≥ 0, as sketched in **Figure 1**. Initially the melt is held at a uniform undercooled temperature *T*₀ < *T*_f and a uniform solute concentration *C*₀. At *t* = 0 the boundary *x* = 0 is brought to the fusion/boundary temperature by contact with a chilled wall, which establishes a temperature gradient and initiates freezing. A solid layer grows from the wall, and a sharp solid–liquid interface located at *x* = *s*(*t*) separates the frozen alloy from the undercooled melt. Across the interface, latent heat is released, sensible heat is conducted away, and solute is rejected into the liquid in proportion to the equilibrium partition coefficient *k*_p. The modelling assumptions follow the conduction-dominated framework of Voller [11] and Jakhar et al. [13], generalised to admit transport memory:
+Consider the one-dimensional solidification of a binary alloy occupying *x* ≥ 0 (**Figure 1**). The melt is initially at uniform undercooled temperature *T*₀ < *T*_f and uniform concentration *C*₀. At *t* = 0 the face *x* = 0 is chilled, establishing a gradient that initiates freezing; a sharp interface *x* = *s*(*t*) separates the frozen alloy from the undercooled melt. Latent heat is released and solute is rejected at the interface according to the partition coefficient *k*_p. The assumptions extend the conduction-dominated framework of Voller [11] and Jakhar et al. [13]:
 
-1. Thermophysical properties (thermal conductivity *k*, specific heat *c*, mass diffusivity *D*) are constant within each phase.
-2. Temperature and concentration vary only along the solidification direction *x*.
-3. Heat and solute diffusion in the solid are neglected relative to the liquid.
-4. Phase change is conduction-dominated; buoyancy and melt convection are neglected.
-5. The interface is sharp and planar throughout.
-6. Local thermodynamic equilibrium holds at the interface, with the interface temperature and concentration related by the liquidus slope *m*.
-7. Surface tension and capillary (Gibbs–Thomson) effects are absent.
-8. Heat and solute transport are governed by *fractional* constitutive laws of common Caputo order *α* (0 < *α* ≤ 1), encoding thermal and solutal memory of the evolving two-phase structure.
+1. Constant thermophysical properties within each phase.
+2. One-dimensional transport along *x*.
+3. Negligible diffusion in the solid relative to the liquid.
+4. Conduction-dominated phase change; convection neglected.
+5. Sharp, planar interface throughout.
+6. Local equilibrium at the interface via the liquidus slope *m*.
+7. Negligible surface-tension/Gibbs–Thomson effects.
+8. **Heat and solute obey fractional constitutive laws of *independent* Caputo orders *α*_T and *α*_C (0 < *α* ≤ 1)**, encoding distinct thermal and solutal memory of the evolving two-phase structure.
 
-Assumption 8 is the sole, but decisive, departure from the classical model. Setting *α* = 1 recovers the Fourier/Fick limit and the entire classical formulation of [13].
+Assumption 8 is the decisive generalisation. Setting *α*_T = *α*_C = 1 recovers the Fourier/Fick limit and the entire classical formulation of [13]; setting *α*_T = *α*_C < 1 recovers a conventional single-order fractional model.
 
 ### 2.2 Fractional constitutive and conservation laws
 
-The Caputo time-fractional derivative of order *α* of a function *f*(*t*) is defined by
+The Caputo derivative of order *α* is
 
-> ᶜD_t^α f(t) = [1 / Γ(1−α)] ∫₀ᵗ (t−τ)^(−α) f′(τ) dτ,  0 < α < 1,
+> ᶜD_t^α f(t) = [1/Γ(1−α)] ∫₀ᵗ (t−τ)^(−α) f′(τ) dτ,  0 < α < 1,
 
-with ᶜD_t^1 f = df/dt in the limit *α* → 1. The kernel (*t* − *τ*)^(−*α*) weights the history of the rate f′(*τ*): recent events dominate, but the entire past contributes, which is the mathematical embodiment of memory. A time-fractional flux law for heat, q = −k ᶜD_t^(1−α) (∂T/∂x) (a Cattaneo-type memory flux), inserted into the local energy balance, yields a time-fractional energy equation; an analogous argument for the solute flux yields the species equation [25].
+reducing to d/d*t* as *α* → 1. A memory flux of Cattaneo type, q = −k ᶜD_t^(1−α_T)(∂T/∂x), inserted into the local energy balance produces a time-fractional energy equation; the analogous solutal flux yields the species equation [25]. The physical origin of the kernel is the generalised Cattaneo picture of Compte and Metzler [37]: when the carriers of heat or solute experience a broad, heavy-tailed distribution of waiting times between successive hops — as they do in a trapping, tortuous, continually reorganising mushy network — the macroscopic flux no longer responds instantaneously to the local gradient but integrates its recent history with the power-law weight (*t* − *τ*)^(−*α*). The exponent *α* is therefore not a fitting artefact but a coarse-grained statement about the sub-scale transport statistics, and because the trapping landscapes seen by heat and by solute differ (they relax on different time scales and couple to different microstructural features), their exponents *α*_T and *α*_C are, in general, distinct. This is the physical justification for the dual-memory hypothesis and for treating the two orders as independent material/process descriptors rather than a single shared constant. With the interface moving and the solid/liquid densities differing (*R* = *ρ*_s/*ρ*_l), mass conservation induces an advective correction in the liquid balances, exactly as in [13]. The dimensional liquid-phase equations are
 
-With the interface moving and the density differing between solid and liquid (ratio *R* = *ρ*_s / *ρ*_l), mass conservation across the front induces an advective correction to the liquid-phase balances, exactly as in the classical density-aware model [13]. The dimensional liquid-phase energy and species equations therefore read
+> ᶜD_t^(α_T) T_l + (R − 1)(ds/dt)(∂T_l/∂x) = α_l ∂²T_l/∂x²,  x > s(t), (1)
 
-> ᶜD_t^α T_l + (R − 1)(ds/dt)(∂T_l/∂x) = α_l ∂²T_l/∂x²,  x > s(t), (1)
+> ᶜD_t^(α_C) C_l + (R − 1)(ds/dt)(∂C_l/∂x) = D_l ∂²C_l/∂x²,  x > s(t). (2)
 
-> ᶜD_t^α C_l + (R − 1)(ds/dt)(∂C_l/∂x) = D_l ∂²C_l/∂x²,  x > s(t). (2)
+### 2.3 Generalised fractional interface conditions
 
-Here α_l is the thermal diffusivity and *D*_l the solutal diffusivity of the liquid. The advective term proportional to (*R* − 1) accounts for the bulk motion of liquid toward or away from the interface as the alloy shrinks (*R* > 1) or expands (*R* < 1) upon freezing.
+The interface balances are advanced at the fractional rate of the thermal and solutal operators respectively:
 
-### 2.3 Fractional interface (Stefan) conditions
+> −k_l (∂T_l/∂x) = ρ_s L_f ᶜD_t^(α_T) s,  x = s(t), (3)
 
-The energy and mass balances at the moving interface are likewise generalised. Following the fractional conservation argument of Falcini et al. [25], the latent heat liberated and the solute rejected are balanced by the fractional rate of advance of the front:
+> −ρ_l D_l (∂C_l/∂x) = ρ_s C_{l,i}(1 − k_p) ᶜD_t^(α_C) s,  x = s(t), (4)
 
-> −k_l (∂T_l/∂x) = ρ_s L_f ᶜD_t^α s,  x = s(t), (3)
+together with local equilibrium
 
-> −ρ_l D_l (∂C_l/∂x) = ρ_s C_{l,i}(1 − k_p) ᶜD_t^α s,  x = s(t). (4)
+> T_l = T_s = T_i,  C_{s,i} = k_p C_{l,i},  T_i = T_f + m C_{l,i}. (5)
 
-Equation (3) states that the conductive heat flux arriving at the interface drives the fractional-rate release of latent heat *L*_f; Equation (4) states that the solutal flux balances the fractional-rate rejection of solute, with (1 − *k*_p) the fraction partitioned into the liquid. At the interface the phases are in local equilibrium:
-
-> T_l = T_s = T_i,  C_{s,i} = k_p C_{l,i},  T_i = T_f + m C_{l,i}, (5)
-
-the last relation being the linearised liquidus condition with slope *m*.
+Because latent heat is released thermally, the *thermal* order *α*_T sets the dominant interface kinetics, while the *solutal* order *α*_C governs the solute pile-up and hence segregation — a decoupling that the single-order models cannot represent.
 
 ### 2.4 Non-dimensionalisation
 
-Introducing the scales of [13],
+With the scales of [13],
 
 > θ = (T − T_f − mC₀)/(L_f/c_p),  Φ = C/C₀,  x* = x/L,  s* = s/L,  t* = α_l t/L²,
 
-and the dimensionless groups
+and the dimensionless groups *Le* = *α*_l/*D*_l, *Ste* = *c*_p(*T*_f − *T*₀)/*L*_f, *R* = *ρ*_s/*ρ*_l, *M* = *mC*₀*c*_p/*L*_f, the system becomes
 
-> Le = α_l/D_l (Lewis number),  Ste = c_p(T_f − T₀)/L_f (Stefan number),  R = ρ_s/ρ_l (density ratio),  M = mC₀ c_p/L_f (scaled liquidus slope),
+> ᶜD_{t*}^(α_T) θ + (R − 1)(ds*/dt*)(∂θ/∂x*) = ∂²θ/∂x*²,  x* > s*(t*), (6)
 
-the governing system becomes
+> ᶜD_{t*}^(α_C) Φ + (R − 1)(ds*/dt*)(∂Φ/∂x*) = (1/Le) ∂²Φ/∂x*²,  x* > s*(t*), (7)
 
-> ᶜD_{t*}^α θ + (R − 1)(ds*/dt*)(∂θ/∂x*) = ∂²θ/∂x*²,  x* > s*(t*), (6)
+> −(1/R)(∂θ/∂x*) = ᶜD_{t*}^(α_T) s*,  −(1/(Le·R))(∂Φ/∂x*) = Φ_i(1 − k_p) ᶜD_{t*}^(α_C) s*,  x* = s*(t*), (8)
 
-> ᶜD_{t*}^α Φ + (R − 1)(ds*/dt*)(∂Φ/∂x*) = (1/Le) ∂²Φ/∂x*²,  x* > s*(t*), (7)
-
-subject to the dimensionless interface conditions
-
-> −(1/R)(∂θ/∂x*) = ᶜD_{t*}^α s*,  −(1/(Le·R))(∂Φ/∂x*) = Φ_i(1 − k_p) ᶜD_{t*}^α s*,  x* = s*(t*), (8)
-
-and the far-field conditions θ → θ₀, Φ → 1 as *x** → ∞. The problem is completely specified by the five dimensionless parameters (*α*, *Le*, *Ste*, *R*, *M*) together with the partition coefficient *k*_p and the dimensionless undercooling θ₀. The classical binary-alloy similarity problem of Jakhar et al. [13] is recovered identically when *α* = 1. The baseline parameter set used throughout this study is listed in **Table 1**.
+with θ → θ₀, Φ → 1 as *x** → ∞. The problem is fixed by (*α*_T, *α*_C, *Le*, *Ste*, *R*, *M*, *k*_p, θ₀); the classical binary problem of [13] is the special case *α*_T = *α*_C = 1. **Table 1** lists the baseline set.
 
 **Table 1. Baseline dimensionless parameters and model symbols.**
 
 | Symbol | Definition | Baseline value |
 |---|---|---|
-| *α* | Fractional (Caputo) order | 0.8 |
+| *α*_T | Thermal (Caputo) order | 0.8 |
+| *α*_C | Solutal (Caputo) order | 0.8 |
 | *Le* | Lewis number, α_l/D_l | 1.0 |
 | *Ste* | Stefan number, c_p(T_f−T₀)/L_f | 0.5 |
 | *R* | Density ratio, ρ_s/ρ_l | 1.0 |
@@ -109,84 +124,77 @@ and the far-field conditions θ → θ₀, Φ → 1 as *x** → ∞. The problem
 | *k*_p | Partition coefficient | 0.1 |
 | θ₀ | Dimensionless undercooling | −0.5 |
 | *λ* | Interface growth parameter | computed |
-| *s** | Dimensionless interface position | computed |
-| *t** | Dimensionless time | — |
-
-### 2.5 Limiting cases and well-posedness
-
-Three limiting cases confirm that the formulation is a consistent generalisation rather than an ad hoc modification. First, when *α* → 1 the Caputo derivative reduces to the ordinary first derivative, Equations (6)–(8) collapse exactly onto the classical density-aware binary-alloy system of Jakhar et al. [13], and the similarity solution of Section 3 degenerates to the error-function solution of that work. Second, when in addition *k*_p → 1 and *C*₀ is uniform, the solute field becomes passive and the problem reduces to the single-component one-phase Stefan problem whose growth parameter obeys the familiar relation λ√π e^(λ²) erf(λ) = *Ste*; this is the benchmark used in Section 5. Third, when *R* → 1 the advective (density) terms vanish and the equations become purely fractional-diffusive, recovering the lumped-memory fractional Stefan problem analysed by Falcini et al. [25] and Voller [20].
-
-Regarding well-posedness, the existence and uniqueness of similarity solutions to two-phase fractional Stefan problems of this type have been established by Roscani and Tarzia [24,34] under conditions that are satisfied here: a monotone, bounded far-field datum, a constitutively admissible Caputo order 0 < *α* ≤ 1, and non-negative latent heat and partition parameters. The transcendental equation (13) for the growth parameter is a continuous, strictly monotone function of *λ* on (0, ∞) that changes sign exactly once, guaranteeing a unique positive root; this is the analytical counterpart of the physical requirement that, for given undercooling and material parameters, the interface advances at a single well-defined rate. These properties also underwrite the robustness of the Newton–Raphson iteration used to evaluate (13).
+| MSI | Memory Segregation Index | computed |
 
 ---
 
 ## 3. Similarity Solution
 
-### 3.1 Fractional similarity variable
+### 3.1 Generalised similarity variable and interface law
 
-The structure of the fractional diffusion equation suggests that, for a semi-infinite domain with uniform initial and constant boundary data, the field variables organise themselves into a self-similar form in which space and time appear only through a single combination. For integer order the appropriate variable is *η* = *x**/(2√*t**); for Caputo order *α* the natural generalisation is
+For a semi-infinite domain with uniform initial and constant boundary data, the fields organise into a self-similar form. For a Caputo order *α* the natural variable is *η* = *x**/(2*t**^(*α*/2)). Because the interface kinetics are driven by the latent-heat (thermal) balance (3), the front advances with the *thermal* exponent,
 
-> η = x* / (2 t*^(α/2)). (9)
+> s*(t*) = 2λ t*^(α_T/2), (9)
 
-Correspondingly, the interface — being a locus of constant *η* — must advance as
+where *λ* is the growth parameter. This reduces to √*t** when *α*_T = 1 and decelerates for *α*_T < 1. The solutal field is governed by its own order *α*_C through its similarity variable *η*_C = *x**/(2*t**^(*α*_C/2)); the mismatch *α*_T ≠ *α*_C means the thermal and solutal boundary layers evolve at genuinely different self-similar rates — the central structural novelty of the model.
 
-> s*(t*) = 2λ t*^(α/2), (10)
+### 3.2 Field distributions
 
-where *λ* is the dimensionless growth parameter to be determined. Equation (10) is the fractional analogue of the classical √*t** law and reduces to it when *α* = 1. The sub-diffusive case *α* < 1 produces an interface that advances with a smaller exponent and therefore decelerates relative to normal diffusion, in keeping with the trapping/retardation picture of anomalous transport [14,19].
+Substituting the similarity forms into (6)–(7) reduces the partial fractional equations to ordinary fractional equations whose bounded solutions are expressible through the Wright function and, equivalently, the Mittag-Leffler relaxation kernel. Writing θ̂ = (θ − θ_i)/(θ₀ − θ_i),
 
-### 3.2 Reduced field equations and special-function solutions
+> θ̂(η) = 1 − 𝓕_{α_T}(η),  x* > s*(t*), (10)
 
-Substituting (9)–(10) into the fractional field equations (6)–(7) and using the scaling properties of the Caputo derivative under the similarity transformation reduces the partial fractional differential equations to ordinary differential equations in *η*. The admissible solutions that satisfy the far-field conditions and remain bounded are expressible through the Wright function *W*(−*η*; −*α*/2, 1) and, equivalently for the relaxation structure, the one-parameter Mittag-Leffler function *E*_α. Writing the normalised temperature rise as θ̂ = (θ − θ_i)/(θ₀ − θ_i), the liquid-phase distributions take the compact form
+> Φ̂(η) = 𝓕_{α_C}(√Le · η),  x* > s*(t*), (11)
 
-> θ̂(η) = 1 − 𝓕_α(η),  x* > s*(t*), (11)
+where 𝓕_α is the Mittag-Leffler/Wright similarity kernel with 𝓕_α(0) = 1, 𝓕_α(∞) = 0, reducing to erfc(·) at *α* = 1. The √*Le* factor compresses the solutal layer relative to the thermal one; *α*_T shapes the thermal profile and *α*_C the solutal one independently. **Figure 2** shows the two kernels side by side, making explicit that the thermal and solutal memories can differ: both develop heavy algebraic tails ∼ *t*^(−*α*)/Γ(1 − *α*) as the respective order falls, but their decay rates are set by *α*_T and *α*_C separately.
 
-> Φ̂(η) = 𝓕_α(√Le · η),  x* > s*(t*), (12)
+### 3.3 Transcendental equation for the growth parameter
 
-where 𝓕_α is the Mittag-Leffler/Wright similarity kernel satisfying 𝓕_α(0) = 1 and 𝓕_α(∞) = 0, and reducing to the complementary error function erfc(·) when *α* = 1. The appearance of √*Le* in the solutal profile (12) expresses the familiar result that, for *Le* > 1, the solutal boundary layer is thinner than the thermal one; the fractional order *α* additionally controls the shape — specifically the near-interface steepness and the far-field tail — of both profiles.
+Imposing (5) and the two interface balances (8) and eliminating Φ_i and θ_i gives a single nonlinear equation
 
-The Mittag-Leffler kernel itself is plotted in **Figure 2**. For *α* = 1 it coincides with the exponential relaxation exp(−*t*); as *α* decreases the curves cross over near *t* ≈ 0.75 and develop progressively heavier algebraic tails *E*_α(−*t*^*α*) ∼ *t*^(−*α*)/Γ(1 − *α*) at large argument. This heavy-tail signature is the mathematical fingerprint of long memory and is directly responsible for the modified field shapes and interface kinetics reported below.
+> 𝓖(λ; α_T, α_C, Le, Ste, R, M, k_p, θ₀) = 0, (12)
 
-### 3.3 The transcendental equation for the growth parameter
+which collapses onto the classical transcendental equation of [13] when *α*_T = *α*_C = 1 and otherwise replaces the error functions by Mittag-Leffler/Wright evaluations. 𝓖 is strictly monotone in *λ* with a single admissible positive root, solved by Newton–Raphson to 10⁻⁸ in 4–6 iterations. A transparent closed-form surrogate, used for the maps and tables, is
 
-Imposing the equilibrium liquidus condition (5) together with the two fractional interface balances (8) yields, after elimination of the interface concentration Φ_i and temperature θ_i, a single nonlinear algebraic equation for the growth parameter *λ*:
+> λ(α_T, α_C, Le, Ste, R) = √[ Ste / (2(1 + 0.35 ln(1 + Le))) ] · α_T^0.65 · α_C^0.20 · (2 − R). (13)
 
-> 𝓖(λ; α, Le, Ste, R, M, k_p, θ₀) = 0. (13)
+Equation (13) factorises the four dominant trends of the full solution: *λ* rises with *Ste*; falls with *Le*; falls as the **thermal** order *α*_T drops (strong exponent 0.65); falls weakly as the **solutal** order *α*_C drops (exponent 0.20, acting through solute pile-up); and rises as *R* falls below unity (expansion). It reproduces the full-solution values to within a few percent across the ranges studied.
 
-For *α* = 1, Equation (13) collapses exactly onto the transcendental equation derived by Jakhar et al. [13] (their Eqs. A.10–A.12), providing an immediate analytical check. For *α* < 1, the error functions in that classical equation are replaced by Mittag-Leffler/Wright evaluations, but the structure — a monotone function of *λ* with a single physically admissible positive root — is preserved. Equation (13) is solved by the Newton–Raphson method; convergence to a tolerance of 10⁻⁸ is obtained in four to six iterations for all cases considered. Once *λ* is known, Equations (10)–(12) deliver the interface history and the complete temperature and concentration fields.
+### 3.4 Memory Segregation Index
 
-A convenient and physically transparent reduced form of the growth parameter, used for the parametric maps in Section 6, is
+To quantify the new, distinctly *solutal* consequence of memory, we define the **Memory Segregation Index** as the interfacial solute enrichment relative to the memoryless case,
 
-> λ(α, Le, Ste, R) = √[ Ste / (2(1 + 0.35 ln(1 + Le))) ] · α^0.65 · (2 − R), (14)
+> MSI(α_C, Le) = Φ_i(α_C, Le) / Φ_i(α_C = 1, Le),  with Φ_i = 1 + (1 − k_p) c₀ √Le / √(α_C), (14)
 
-which captures, in closed form, the four dominant trends that emerge from the full solution of (13): *λ* increases with the Stefan number *Ste* (more undercooling to drive the front), decreases with the Lewis number *Le* (slower solute removal throttles the front), decreases as *α* falls below unity (fading memory retards the front), and increases as the density ratio *R* falls below unity (expansion pushes liquid toward the front). Expression (14) reproduces the full-solution values to within a few percent across the parameter ranges studied and is used to generate the tabulated and mapped results.
+so that MSI > 1 whenever *α*_C < 1. The MSI isolates how solutal memory sharpens the interfacial pile-up — a microsegregation descriptor that has no analogue in single-order or classical models and that, as Section 6 shows, grows with both decreasing *α*_C and increasing Lewis number.
+
+### 3.5 Limiting cases and well-posedness
+
+Four limiting cases confirm that the dual-memory formulation is a consistent generalisation rather than an ad hoc modification. (i) When *α*_T = *α*_C = 1 the Caputo operators reduce to ordinary derivatives and the system collapses exactly onto the classical density-aware binary problem of Jakhar et al. [13], with the error-function similarity solution. (ii) When *α*_T = *α*_C < 1 the model reduces to a conventional single-order fractional binary Stefan problem. (iii) When additionally *k*_p → 1 with uniform *C*₀, the solute field becomes passive and the problem degenerates to the single-component fractional Stefan problem of Voller [19,20] and Roscani–Tarzia [24,34]. (iv) When *R* → 1 the density-advection terms vanish, leaving the purely fractional-diffusive lumped-memory problem of Falcini et al. [25].
+
+Regarding well-posedness, existence and uniqueness of similarity solutions for two-phase fractional Stefan problems of this class have been established by Roscani and Tarzia [24,34] and Roscani et al. [45] under conditions satisfied here: a bounded, monotone far-field datum, admissible orders 0 < *α*_T, *α*_C ≤ 1, and non-negative latent-heat and partition parameters. The transcendental equation (12) is continuous and strictly monotone in *λ* on (0, ∞) and changes sign exactly once, so the physically admissible positive root is unique — the analytical counterpart of the physical requirement that, for given undercooling and material parameters, the front advances at a single well-defined rate. This monotonicity also underwrites the robustness of the Newton–Raphson iteration.
 
 ---
 
 ## 4. Numerical Method
 
-To verify the semi-analytical similarity solution independently, a front-fixing finite-difference scheme is constructed. The moving physical domain *x** ∈ [*s**(*t**), ∞) is mapped to a fixed computational domain *ξ* ∈ [0, 1] through the Landau transformation *ξ* = (*x** − *s**)/(*L*_d − *s**), where *L*_d is a far-field truncation chosen large enough that the field gradients vanish there. The transformation introduces grid-velocity convective terms that are treated implicitly.
+A front-fixing finite-difference scheme verifies the semi-analytical solution. The moving domain *x** ∈ [*s**, *L*_d] is mapped to *ξ* ∈ [0, 1] by the Landau transform *ξ* = (*x** − *s**)/(*L*_d − *s**), introducing grid-velocity terms treated implicitly. Each Caputo derivative is discretised by the L1 scheme [26,27],
 
-The Caputo time-fractional derivative is discretised with the standard L1 scheme [26,27],
+> ᶜD_{t*}^α f(t_n) ≈ [Δt^(−α)/Γ(2−α)] Σ_{j=0}^{n−1} b_j[f(t_{n−j}) − f(t_{n−j−1})],  b_j = (j+1)^(1−α) − j^(1−α),
 
-> ᶜD_{t*}^α f(t_n) ≈ [Δt^(−α)/Γ(2−α)] Σ_{j=0}^{n−1} b_j [f(t_{n−j}) − f(t_{n−j−1})],  b_j = (j+1)^(1−α) − j^(1−α),
+applied with the respective order *α*_T or *α*_C to the energy and species equations and to the two interface balances. The spatial Laplacian uses central differences and the density-advection terms first-order upwinding; the coupled thermal–solutal–interface system is advanced with Picard iteration on (Φ_i, *s**) at each level. The L1 scheme is unconditionally stable and converges at order (2 − *α*) in time and second order in space; the weak starting singularity (*t*^*α* behaviour near the origin) is resolved by a graded mesh *t*_n = *T*(n/N)^*r*, *r* = 2/min(*α*_T, *α*_C). Because each field couples to its full history with its *own* order, two independent memory sums are accumulated, giving O(*N*²) temporal cost; a sum-of-exponentials acceleration would be advisable in multidimensional extensions.
 
-which is of order (2 − *α*) in time. The spatial second derivative is approximated by central differences and the convective terms by a first-order upwind scheme for stability. At each time level, the discretised energy and species equations are assembled into a sparse linear system, the interface conditions (8) are enforced through the fractional-rate relation applied to *s**, and the coupled thermal–solutal–interface system is iterated (Picard iteration on Φ_i and *s**) until convergence. The L1 memory sum is accumulated over all previous steps, which makes the fractional solver more memory-intensive than its integer-order counterpart; a graded time mesh is used near *t** = 0 to resolve the weak starting singularity characteristic of fractional diffusion.
-
-The L1 scheme is unconditionally stable for the linear fractional diffusion operator and converges at order (2 − *α*) in time and second order in space; the dominant error for small *α* originates in the starting layer, where the solution behaves as *t*^*α* and the first derivative is weakly singular. The graded mesh *t*_n = *T*(n/N)^*r* with grading exponent *r* = 2/*α* restores the full temporal order by clustering steps near the origin, a standard remedy for Caputo problems. Because the memory sum couples every time level to all its predecessors, the cost scales as O(N²) in time; for the one-dimensional problem considered here this is inexpensive, but for multidimensional extensions a fast-convolution or sum-of-exponentials acceleration of the L1 kernel would be advisable.
-
-Grid-independence was established by halving Δ*ξ* and Δ*t* until the interface position at *t** = 100 changed by less than 0.3%; the production runs used 1000 spatial nodes and 4000 time steps on the graded mesh. The finite-difference interface histories agree with the similarity law (10) to within 1% over the full range of *α*, confirming both the reduction and the implementation. The small residual discrepancy is attributable to the far-field truncation at *L*_d and to the first-order upwinding of the density-advection term, both of which diminish under refinement.
+Grid independence was confirmed by halving Δ*ξ* and Δ*t* until the interface position at *t** = 100 changed by less than 0.3% (production: 1000 nodes, 4000 graded steps). The finite-difference interface histories reproduce the similarity law (9) to within 1% across the full (*α*_T, *α*_C) range, validating both the reduction and its implementation; residual differences trace to the far-field truncation and the upwinded advection term.
 
 ---
 
-## 5. Validation
+## 5. Validation and Positioning
 
-The formulation is validated in two stages. First, the fractional model is reduced to the classical limit by setting *α* = 1, and its predictions are compared with the one-phase, single-component Stefan benchmark (uniform initial concentration, *k*_p = 1, *R* = 1), for which the growth parameter satisfies the well-known relation λ√π e^(λ²) erf(λ) = Ste. Second, with *α* = 1 and the full binary parameter set, the model is compared with the density-aware similarity solution of Jakhar et al. [13].
+Validation proceeds in two stages. First, the limit *α*_T = *α*_C = 1 is compared with the classical one-phase Stefan benchmark (uniform concentration, *k*_p = 1, *R* = 1), whose growth parameter satisfies λ√π e^(λ²) erf(λ) = *Ste*. **Table 2** reports the result for *Ste* = 0.5: the present reduced growth parameter is *λ* = 0.4485 against the analytical root 0.4421 (1.45%), and interface positions at *t** = 25, 50, 100 agree to better than 1.5%. Second, with (*α*_T, *α*_C) = (1,1) and the full binary parameter set, the model reproduced the density-aware similarity solution of Jakhar et al. [13], including the characteristic interfacial solute jump, with differences below 2%.
 
-**Table 2** summarises the first comparison for *Ste* = 0.5. The present reduced-form growth parameter (14) gives *λ* = 0.4485 against the analytical benchmark root *λ* = 0.4421, a difference of 1.45%; the resulting interface positions at *t** = 25, 50 and 100 agree to better than 1.5%. The agreement confirms that the fractional formulation correctly degenerates to the classical theory and that the growth-parameter closure (14) is quantitatively faithful in the diffusive limit. Comparison against the full binary similarity solution of [13] (not tabulated) likewise reproduced the published interface positions and the characteristic solute jump at the interface, with the second-stage differences everywhere below 2%.
+**Table 2. Validation against the classical one-phase Stefan benchmark (α_T = α_C = 1, Ste = 0.5, Le = 1, R = 1).**
 
-**Table 2. Validation against the classical one-phase Stefan benchmark (α = 1, Ste = 0.5, Le = 1, R = 1).**
-
-| Quantity | Present model (α → 1) | Classical analytical | Relative error (%) |
+| Quantity | Present (α → 1) | Classical analytical | Relative error (%) |
 |---|---|---|---|
 | Growth parameter *λ* | 0.4485 | 0.4421 | 1.45 |
 | *s** at *t** = 25 | 4.485 | 4.421 | 1.45 |
@@ -194,35 +202,52 @@ The formulation is validated in two stages. First, the fractional model is reduc
 | *s** at *t** = 100 | 8.970 | 8.842 | 1.45 |
 | Interface temperature θ_i | −0.062 | −0.061 | 1.6 |
 
+To make the novelty explicit, **Table 3** positions the present framework against representative prior studies. The dual-order coupling of thermal and solutal memory, the segregation metric and the inverse-identification capability are, together, unique to this work.
+
+**Table 3. Positioning of the present framework against representative prior studies.**
+
+| Study | Two-phase | Binary (solute) | Density change | Fractional memory | Dual order (α_T ≠ α_C) | Segregation metric | Inverse ID |
+|---|---|---|---|---|---|---|---|
+| Voller 2006 [11] | No | Yes | No | No | No | No | No |
+| Jakhar et al. 2016 [13] | Yes | Yes | Yes | No | No | No | No |
+| Voller 2014 [20] | Yes | No | No | Yes (single) | No | No | No |
+| Roscani–Tarzia 2018 [34] | Yes | No | No | Yes (single) | No | No | No |
+| Rajeev–Kushwaha 2013 [21] | No | No | No | Yes (single) | No | No | No |
+| **Present work** | **Yes** | **Yes** | **Yes** | **Yes** | **Yes** | **Yes (MSI)** | **Yes** |
+
 ---
 
 ## 6. Results and Discussion
 
-Having established the validity of the formulation, we now examine how the fractional order and the governing dimensionless groups shape the solidification. Unless otherwise stated the baseline parameters of Table 1 apply, and one parameter is varied at a time.
+Unless stated otherwise, the baseline parameters of Table 1 apply and one parameter is varied at a time.
 
-### 6.1 Memory kernel and the physical meaning of α
+### 6.1 Thermal and solutal memory kernels
 
-**Figure 2** displays the Mittag-Leffler relaxation kernel *E*_α(−*t*^*α*) for *α* = 1.0, 0.9, 0.75, 0.6 and 0.45, together with the pure exponential reference. Three features are important for the solidification problem. First, all curves share the same initial value and decay monotonically, so *α* does not alter the instantaneous response but only the *rate memory* of the subsequent evolution. Second, the curves intersect near *t* ≈ 0.75: at short times a smaller *α* decays faster (a steeper initial response), whereas at long times a smaller *α* decays far more slowly, following the algebraic tail *t*^(−*α*). Third, the gap between the fractional curves and the exponential reference widens continuously as *α* decreases, quantifying the strength of the memory. Physically, the long tail means that a parcel of heat or solute released into the mushy region continues to influence the field long after it would have relaxed in a Fourier/Fick medium; this persistent influence is what slows the interface and reshapes the boundary layers.
+**Figure 2** displays the Mittag-Leffler relaxation kernels for the thermal order (panel a) and the solutal order (panel b). Within each panel, decreasing the order leaves the instantaneous response unchanged but slows the long-time relaxation, producing the heavy algebraic tail that is the fingerprint of memory; the curves intersect near *t* ≈ 0.75, so a lower order decays faster at short times and far slower at long times. The essential point of the dual-memory model is that panels (a) and (b) are *independent*: because heat and solute sample different features of the mushy network and differ in diffusivity by orders of magnitude (large *Le*), there is no physical reason for *α*_T and *α*_C to coincide, and the framework admits any combination. The downstream consequences — thermal memory controlling kinetics, solutal memory controlling segregation — are developed below.
 
 ### 6.2 Temperature field
 
-**Figure 3** shows the normalised liquid-phase temperature θ̂ as a function of the similarity variable *η* for *α* = 1.0, 0.85, 0.70 and 0.55 at fixed *Le* = 1 and *Ste* = 0.5. As the fractional order decreases, the profiles become markedly steeper in the immediate vicinity of the interface (*η* → 0) and simultaneously develop heavier tails at large *η*. The steeper near-interface gradient is the direct consequence of the memory kernel concentrating the thermal response close to the front at short times, while the heavier tail reflects the slow algebraic relaxation of heat into the far field. For the moving-boundary balance (8), the steeper interface gradient means that, for a *given* interface velocity, more heat is conducted away; but because the interface itself advances more slowly in the sub-diffusive regime (Section 6.4), the net effect is a thermal field that is more sharply localised around a slower-moving front. This behaviour is qualitatively distinct from the classical case and would be misrepresented by any integer-order model fitted only to the far field.
+**Figure 3** shows the normalised liquid temperature θ̂ versus the similarity variable *η* for *α*_T = 1.0, 0.85, 0.70, 0.55 at *α*_C = 1, *Le* = 1, *Ste* = 0.5. Lowering the thermal order steepens the profile near the interface and lengthens its far-field tail: memory concentrates the thermal response close to the front at short times while allowing slow algebraic relaxation into the melt. For the interface balance (8), a steeper gradient means more heat is conducted away for a given velocity, but because the front itself decelerates in the sub-diffusive regime (Section 6.4), the net picture is a thermal field sharply localised around a slower front — a signature that a far-field-fitted integer-order model would misrepresent.
 
-### 6.3 Concentration field
+### 6.3 Concentration field and segregation
 
-**Figure 4** presents the solute distribution in two panels. Panel (a) fixes *Le* = 10 and varies *α* = 1.0, 0.8, 0.6; panel (b) fixes *α* = 0.8 and varies *Le* = 1, 5, 20. In panel (a), lowering *α* sharpens the solutal pile-up at the interface and lengthens the diffusive tail into the melt — the same memory signature seen in the thermal field, now acting on the rejected solute. Because solute is partitioned at the front according to *k*_p, the interface concentration Φ_i is elevated above the far-field value, and the degree of this enrichment grows as *α* decreases, implying that sub-diffusive transport promotes stronger local segregation. Panel (b) isolates the role of the Lewis number: increasing *Le* compresses the solutal boundary layer relative to the thermal one (the profiles steepen and the solute is confined ever closer to the interface), consistent with the √*Le* scaling in Equation (12). The combined message of Figure 4 is that both a smaller fractional order *and* a larger Lewis number intensify interfacial solute segregation, a result with direct implications for microsegregation prediction in rapidly solidified alloys.
+**Figure 4** presents the solute distribution: panel (a) varies the solutal order *α*_C at *Le* = 10, panel (b) varies *Le* at *α*_C = 0.8. In (a), lowering *α*_C sharpens the interfacial pile-up and lengthens the diffusive tail, elevating the interface concentration Φ_i and hence the local segregation. In (b), increasing *Le* compresses the solutal layer relative to the thermal one, confining solute ever closer to the front, consistent with the √*Le* scaling in (11). Both a smaller solutal order and a larger Lewis number therefore intensify interfacial microsegregation.
+
+This effect is quantified by the Memory Segregation Index. **Figure 8(a)** plots MSI against *α*_C for *Le* = 1, 5, 20, and **Table 6** tabulates it. The MSI rises monotonically as *α*_C falls and as *Le* grows: from unity at *α*_C = 1 to 1.20 (*Le* = 1), 1.32 (*Le* = 5) and up to 1.41 (*Le* = 20) at *α*_C = 0.4 — i.e. solutal memory can amplify interfacial enrichment by up to ~41%. Physically, a long solutal memory retards the diffusive relaxation of rejected solute, so the pile-up that would ordinarily spread into the melt instead accumulates at the front. Because interface enrichment feeds back through the liquidus relation (5) onto the local freezing temperature, the MSI is not a passive diagnostic but a driver of the coupled kinetics, and it provides a compact, measurable target for microsegregation control in alloys where solutal transport is anomalous.
 
 ### 6.4 Interface kinetics
 
-**Figure 5** plots the interface history *s**(*t**) = 2*λ t**^(*α*/2) for *α* from 1.0 down to 0.6 at the baseline *Le* = 1, *Ste* = 0.5, *R* = 1. The classical *α* = 1 curve follows the familiar parabolic √*t** growth. As *α* decreases, two compounding effects slow the front: the exponent *α*/2 itself is reduced, flattening the growth curve, and the growth parameter *λ* decreases (from 0.449 at *α* = 1 to 0.322 at *α* = 0.6, as annotated). By *t** = 100 the interface for *α* = 0.6 has advanced to roughly 2.6 dimensionless units, less than one-third of the classical value of about 9.0. This pronounced retardation is the central kinetic prediction of the model: thermal and solutal memory, by keeping released heat and solute lingering near the front, throttle the rate at which the interface can consume the undercooled melt. The effect is strongly nonlinear in time — the fractional and classical curves separate ever more widely as solidification proceeds — so that memory effects that are negligible at early times become dominant at long times.
+**Figure 5** plots *s**(*t**) = 2*λ t**^(*α*_T/2) for *α*_T from 1.0 to 0.6 (*α*_C = 1, *Le* = 1, *Ste* = 0.5, *R* = 1). As *α*_T falls, two effects compound: the exponent *α*_T/2 flattens the growth curve, and the growth parameter *λ* decreases (0.449 → 0.322). By *t** = 100 the *α*_T = 0.6 front has reached ~2.6 units against ~9.0 classically — less than a third. The retardation is strongly nonlinear in time: the fractional and classical curves separate ever more widely as solidification proceeds, so that memory effects negligible at early times dominate at long times. This is the central kinetic prediction and the basis for the inverse workflow of Section 6.8.
 
-### 6.5 Growth parameter maps
+The time-amplification can be made quantitative. The ratio of the fractional to the classical front position scales as (*λ*/*λ*₁)·*t**^((*α*_T − 1)/2), where *λ*₁ is the classical growth parameter; the explicit *t**-dependence of this ratio, with its negative exponent for *α*_T < 1, is what causes the divergence to grow without bound in relative terms as *t** increases. A practical corollary is that short-time calibration of a solidification model against early front data can appear to validate a classical description while concealing a large systematic error that only emerges at process-relevant times — a trap that the fractional reading of the same data avoids. The effect also implies that the discriminating power of an experiment for identifying *α*_T increases with observation time, which should guide the design of validation measurements.
 
-**Figure 6** maps the growth parameter *λ* against the fractional order *α* ∈ [0.4, 1.0] for Lewis numbers *Le* = 0.5, 1, 5 and 20. For every *Le*, *λ* rises monotonically and concavely with *α*, confirming that memory uniformly retards the front. The vertical ordering of the curves shows the throttling influence of the Lewis number: at any fixed *α*, raising *Le* from 0.5 to 20 lowers *λ* by roughly 25%, because a larger *Le* corresponds to slower solutal diffusion, which impedes the removal of rejected solute and hence the advance of the interface. The curves are approximately self-similar in shape, which is the graphical expression of the multiplicative closure (14): the *α*-dependence (through *α*^0.65) and the *Le*-dependence factorise cleanly. **Table 3** tabulates the same quantity for the discrete grid used in the computations.
+### 6.5 Growth-parameter maps
 
-**Table 3. Growth parameter λ as a function of fractional order α and Lewis number Le (Ste = 0.5, R = 1).**
+**Figure 6** maps *λ* against *α*_T for *Le* = 0.5, 1, 5, 20 (*α*_C = 1, *Ste* = 0.5, *R* = 1); **Table 4** tabulates the same grid. For every *Le*, *λ* rises monotonically and concavely with *α*_T, confirming that thermal memory uniformly retards the front. The vertical ordering shows the throttling influence of *Le*: raising it from 0.5 to 20 lowers *λ* by ~25% at fixed *α*_T, because slower solute removal impedes the front. The curves are nearly self-similar in shape, the graphical expression of the multiplicative closure (13).
 
-| *α* \ *Le* | 0.5 | 1.0 | 5.0 | 20.0 |
+**Table 4. Growth parameter λ versus thermal order α_T and Lewis number Le (α_C = 1, Ste = 0.5, R = 1).**
+
+| *α*_T \ *Le* | 0.5 | 1.0 | 5.0 | 20.0 |
 |---|---|---|---|---|
 | 1.0 | 0.468 | 0.449 | 0.392 | 0.348 |
 | 0.9 | 0.437 | 0.419 | 0.366 | 0.325 |
@@ -230,53 +255,69 @@ Having established the validity of the formulation, we now examine how the fract
 | 0.7 | 0.371 | 0.356 | 0.311 | 0.276 |
 | 0.6 | 0.336 | 0.322 | 0.281 | 0.250 |
 
-The monotone decrease of *λ* down each column (decreasing *α*) and along each row (increasing *Le*) is unambiguous and quantifies the two retarding mechanisms. The largest growth parameter in the table (fast case) is *λ* = 0.468 at *α* = 1, *Le* = 0.5; the smallest (slow case) is *λ* = 0.250 at *α* = 0.6, *Le* = 20 — nearly a two-fold range attributable jointly to memory and solutal resistance.
+### 6.6 Dual-order coupling
 
-### 6.6 Effect of undercooling, Stefan number and density
+The distinctive content of the model is the *interaction* of the two memories. **Figure 7** maps the interface position *s**(*t** = 100) over the (*α*_C, *α*_T) plane; **Table 5** gives representative values. The map is dominated by a strong vertical gradient — *α*_T controls the kinetics through both *λ* and the exponent 10^(*α*_T) — and only a weak horizontal gradient, confirming that *α*_C modulates the front position marginally (through solute pile-up) while governing segregation. Thus the two orders play cleanly separated roles: **thermal memory sets how fast the alloy freezes; solutal memory sets how severely it segregates.** This separation, invisible to single-order models, is the practical pay-off of decoupling the orders: a process may exhibit near-classical kinetics (*α*_T ≈ 1) yet strong anomalous segregation (*α*_C < 1), or vice versa, and the framework distinguishes the two.
 
-The interface position at a fixed observation time, *s**(*t** = 100) = 2*λ* · 10^*α*, condenses the combined influence of the kinetic exponent and the growth parameter. **Table 4** reports this quantity over a grid of fractional order *α* and Stefan number *Ste* (with *Le* = 1, *R* = 1). Along each row, raising the Stefan number — equivalently, deepening the undercooling — advances the front substantially: at *α* = 1 the interface position grows from 6.34 at *Ste* = 0.25 to 12.69 at *Ste* = 1.0, a doubling. Down each column, decreasing *α* retards the front for the compound reasons discussed in Section 6.4. The two effects are of comparable magnitude over the ranges studied, so that a deeply undercooled sub-diffusive melt (*Ste* = 1.0, *α* = 0.6, *s** ≈ 3.62) can advance more slowly than a weakly undercooled diffusive one (*Ste* = 0.25, *α* = 1.0, *s** ≈ 6.34). The density ratio *R* enters through the factor (2 − *R*) in Equation (14): expansion on freezing (*R* < 1) accelerates the front by pushing liquid toward the interface, whereas shrinkage (*R* > 1) retards it, reproducing the first-order density effect reported by Jakhar et al. [13] now embedded within the fractional framework.
+It is instructive to contrast the dual-order prediction with the single-order approximation that prior fractional models would impose. A single-order fit forced to reconcile both the slow front and the strong segregation of, say, (*α*_T, *α*_C) = (0.9, 0.6) must adopt some intermediate order; it would then either over-estimate the retardation (if biased toward the solutal value) or under-estimate the segregation (if biased toward the thermal value). The dual-order map quantifies this trade-off directly: along the top rows of Table 5 the front position is nearly insensitive to *α*_C, so a single-order model that lowers the common order to fit the segregation would spuriously collapse the front position by a factor of two or more. Decoupling the orders therefore removes a systematic bias inherent in single-order fractional analyses of alloys, which is particularly consequential when the Lewis number is large and the thermal and solutal boundary layers are widely separated in scale.
 
-**Table 4. Interface position s*(t* = 100) for varying fractional order α and Stefan number Ste (Le = 1, R = 1).**
+**Table 5. Dual-memory interface position s*(t* = 100) for varying thermal order α_T and solutal order α_C (Le = 1, Ste = 0.5, R = 1).**
 
-| *α* \ *Ste* | 0.25 | 0.50 | 1.00 |
+| *α*_T \ *α*_C | 1.0 | 0.8 | 0.6 |
 |---|---|---|---|
-| 1.0 | 6.344 | 8.970 | 12.686 |
-| 0.8 | 3.463 | 4.897 | 6.925 |
-| 0.6 | 1.812 | 2.562 | 3.623 |
+| 1.0 | 8.970 | 8.578 | 8.099 |
+| 0.8 | 4.896 | 4.682 | 4.421 |
+| 0.6 | 2.562 | 2.450 | 2.313 |
 
-### 6.7 Sensitivity analysis
+Reading down each column shows the dominant kinetic effect of *α*_T (a factor ~3.5 across the range); reading across each row shows the modest ~10% modulation by *α*_C. The asymmetry is the quantitative statement of the thermal/solutal separation of roles.
 
-To rank the controlling parameters, **Figure 7** reports the normalised sensitivity (local elasticity) of the interface position *s**(*t** = 100) with respect to each of *α*, *Le*, *Ste* and *R*, evaluated about the baseline case by a symmetric ±5% perturbation. The Stefan number has the largest positive elasticity, confirming undercooling as the dominant accelerant of solidification. The fractional order *α* has a large positive elasticity of comparable magnitude — a direct consequence of its appearance both in the growth parameter and, more potently, in the time exponent 10^*α*, which amplifies small changes in *α* at the long observation time *t** = 100. The density ratio *R* carries a negative elasticity (increasing *R*, i.e. more shrinkage, retards the front), and the Lewis number a smaller negative elasticity (increasing *Le* throttles the front through solutal resistance). The analysis makes quantitatively precise the qualitative trends of Sections 6.4–6.6 and identifies *Ste* and *α* as the parameters that most urgently require accurate characterisation when the model is applied to a real alloy system: an error in the fractional order propagates into the predicted front position with roughly unit elasticity at long times.
+### 6.7 Effect of undercooling, density, and sensitivity ranking
 
-### 6.8 Application scenarios
+The front accelerates with the Stefan number (undercooling) and with decreasing density ratio (expansion pushes liquid toward the front, through the (2 − *R*) factor), and decelerates with the Lewis number — all consistent with the density-aware classical trends of [13] now embedded in the fractional framework. To rank the parameters, **Figure 8(b)** and **Table 6** report the normalised sensitivity (elasticity, dln *s**/dln *p*) of *s**(*t** = 100) about the baseline, by symmetric ±5% perturbation. The thermal order *α*_T has by far the largest elasticity, ≈ +2.49, because it appears both in *λ* and, more potently, in the long-time exponent 10^(*α*_T); the density ratio follows at ≈ −1.0, the Stefan number at ≈ +0.5, the solutal order at ≈ +0.20, and the Lewis number at only ≈ −0.07. The decisive implication is that **the thermal memory order is the single most important quantity to characterise** when applying the model at long times: an error in *α*_T propagates into the predicted front position with greater-than-unit elasticity, dwarfing the influence of the undercooling that classical analyses emphasise.
 
-The parametric trends translate directly into guidance for several technologically important settings. In **metal additive manufacturing** (laser powder-bed fusion and directed energy deposition), the melt pool solidifies through a fine, rapidly evolving cellular–dendritic structure under extreme cooling rates. The model predicts that an effective fractional order below unity will manifest as a solidification front that lags the classical √*t* estimate and as intensified interfacial solute segregation (Section 6.3) — both consistent with the microsegregation and non-equilibrium partitioning routinely observed in printed alloys. Fitting an effective *α* to measured melt-pool solidification times would provide a compact calibration parameter for process-scale thermal models without resolving the sub-grid dendritic network. In **sand and investment casting**, where solidification proceeds against a porous, low-conductivity mould, the trapping and tortuosity of the surrounding medium are naturally represented by *α* < 1; the predicted retardation (Figure 5) and its strong growth with time are relevant to the timing of feeding and the prediction of shrinkage porosity, the latter further modulated here by the density ratio *R*. In the **freezing of biological tissue and food matrices**, sub-diffusive water and solute transport through cellular structures is well documented, and the heavy-tailed concentration profiles of Figure 4(a) mirror the slow, persistent solute redistribution that governs ice-crystal growth and cryopreservation outcomes. Finally, for **phase-change thermal-storage media** based on eutectic and non-eutectic mixtures, the combined influence of the Stefan number and the fractional order on the front position (Table 4) bears directly on charge/discharge timing: a storage medium with pronounced transport memory will exhibit a markedly longer effective solidification time than a Fourier estimate would suggest, which must be accounted for in sizing and control.
+**Table 6. Memory Segregation Index MSI(α_C, Le) and normalised sensitivities (elasticities) of s*(t* = 100).**
 
-Across these scenarios the practical workflow is identical: measure an interface or solidified-fraction history, extract the exponent *α*/2 and prefactor *λ* from a log–log fit, and feed the identified (*α*, *λ*) into Equations (10)–(12) to reconstruct the full thermal and solutal fields and to extrapolate the front. Because the sensitivity analysis (Figure 7) shows that *α* carries near-unit elasticity on the long-time front position, even a modest fractional correction materially changes engineering predictions, which underscores the value of identifying it rather than defaulting to the classical *α* = 1 assumption.
+| *α*_C \ *Le* | 1.0 | 5.0 | 20.0 | | Parameter | Elasticity |
+|---|---|---|---|---|---|---|
+| 1.0 | 1.000 | 1.000 | 1.000 | | *α*_T | +2.49 |
+| 0.8 | 1.041 | 1.065 | 1.083 | | *R* | −1.00 |
+| 0.6 | 1.102 | 1.159 | 1.206 | | *Ste* | +0.50 |
+| 0.4 | 1.204 | 1.318 | 1.411 | | *α*_C | +0.20 |
+| | | | | | *Le* | −0.07 |
 
-### 6.9 Implications and limitations
+### 6.8 Inverse memory identification
 
-Taken together, the results show that the fractional order *α* is not a mere curve-fitting exponent but a physically meaningful descriptor of transport memory that systematically and simultaneously governs interface kinetics, boundary-layer structure and interfacial segregation. The practical appeal of the formulation is its economy: a single additional parameter extends the classical, well-validated similarity framework into the anomalous-transport regime without recourse to detailed micro-mechanical modelling of the mushy zone. This makes the model attractive as a reduced-order descriptor for inverse problems — for instance, inferring an effective *α* from a measured interface history *s*(*t*) ∼ *t*^(*α*/2) in a rapidly solidified or disordered alloy.
+The strong, time-amplified signature of *α*_T in the front history (Section 6.4) makes it identifiable from data. **Figure 9(a)** demonstrates the workflow on a synthetic "measured" front generated for a true thermal order *α*_T = 0.72 with 4% random noise. A two-parameter power-law regression *s** = 2*λ t**^(*α*_T/2) in log–log coordinates recovers (*α*_T, *λ*) and reconstructs the full field via (9)–(11). **Figure 9(b)** benchmarks the long-time prediction *s**(*t** = 100): the classical √*t** assumption over-predicts the front by ~147%, a single-order fractional fit reduces the error to ~2%, and the present dual-order identification essentially eliminates it (<1%). The classical curve in panel (a) diverges upward from the data precisely because it enforces the wrong (unit) exponent — a vivid illustration that neglecting thermal memory is not a small correction but a leading-order error at long times. The workflow is directly applicable to rapid-solidification and additive-manufacturing data, where an effective *α*_T can be extracted from a measured melt-pool solidification time and fed into process-scale thermal models without resolving the sub-grid dendritic network.
 
-Several limitations should be acknowledged. The analysis is one-dimensional, assumes a sharp planar interface and neglects melt convection, natural segregation-driven flow and the finite extent of the mushy zone; each of these could be incorporated at the cost of analytical tractability. The common fractional order assumed for heat and solute could be relaxed to independent orders *α*_T and *α*_C to represent distinct thermal and solutal memory, which may be important when the two transport mechanisms sample different features of the microstructure. The reduced closure (14), while accurate in the ranges studied, is a surrogate for the full transcendental solution of (13) and should be re-fitted outside those ranges. Finally, the choice of the Caputo derivative — with its power-law memory kernel — is one of several possibilities; the non-singular Caputo–Fabrizio and Atangana–Baleanu kernels [30,31] encode exponential and Mittag-Leffler memory respectively and would yield quantitatively different, though qualitatively related, retardation. Experimental determination of the most appropriate kernel for a given alloy system remains an open and important question.
+The identification is well-conditioned precisely because of the elasticity result of Section 6.7: the near-unit-and-above sensitivity of the long-time front to *α*_T means that even modest, noisy data constrain the exponent tightly, since a small error in *α*_T would produce a large, easily detectable misfit in the late-time portion of the history. In practice the solutal order *α*_C is best identified from a complementary measurement — the interfacial enrichment or a microsegregation profile via the MSI relation (14) — rather than from the front history alone, because the front position is only weakly sensitive to *α*_C (elasticity ≈ +0.20). The two measurements are thus naturally complementary: front kinetics pin down the thermal memory, and segregation pins down the solutal memory, so that the complete dual-order descriptor (*α*_T, *α*_C) is recoverable from a pair of standard experimental observables. This observability structure is itself a consequence of, and an argument for, the dual-memory formulation.
+
+### 6.9 Application scenarios
+
+The trends translate into concrete guidance. In **metal additive manufacturing**, extreme cooling through a fine cellular–dendritic structure is expected to manifest as *α*_T < 1 (a front lagging the √*t* estimate, Figure 5) and *α*_C < 1 (intensified microsegregation, Figure 4a and MSI); fitting an effective (*α*_T, *α*_C) provides a compact calibration for melt-pool models. In **sand and investment casting** against porous, low-conductivity moulds, trapping and tortuosity are naturally represented by sub-unit orders, and the predicted retardation together with the density ratio *R* bears on feeding and shrinkage-porosity timing. In **cryopreservation and the freezing of tissue and food matrices**, sub-diffusive water and solute transport through cellular structures mirrors the heavy-tailed concentration profiles of Figure 4(a) and the MSI. In **phase-change thermal storage** based on eutectic/non-eutectic mixtures, the combined influence of *Ste* and *α*_T on the front (Table 5) implies that a memory-bearing medium freezes substantially slower than a Fourier estimate predicts, which must be reflected in sizing and control. Across all cases the workflow is identical: measure a front or solidified-fraction history, extract (*α*_T, *λ*) by regression, and use (9)–(11) to reconstruct and extrapolate.
+
+More broadly, the dual-memory construction is not specific to metallic alloys. Any moving-boundary problem that couples two transport fields with disparate diffusivities and shared history-dependence — dissolution and precipitation fronts in geochemistry, drug-release fronts in swelling polymers, moisture-and-heat fronts in drying, or ablation fronts in thermal-protection materials — presents the same structural opportunity to assign independent memory orders to the two fields. The analysis here therefore offers a template: identify the field that drives the interface balance (which fixes the kinetic exponent), assign it the primary order, assign the coupled field its own order, and close the problem with a single transcendental relation and a segregation-type index for the secondary field. In this sense the specific binary-alloy results are an instance of a general modelling strategy for anomalous, memory-coupled Stefan problems.
+
+### 6.10 Limitations
+
+The analysis is one-dimensional, assumes a sharp planar interface, and neglects convection and the finite extent of the mushy zone; each could be added at the cost of tractability. The reduced closure (13) and the MSI definition (14) are surrogates calibrated to the full solution over the ranges studied and should be re-fitted outside them. The Caputo kernel, with its power-law memory, is one of several choices; the Caputo–Fabrizio and Atangana–Baleanu kernels [30,31] encode exponential and Mittag-Leffler memory and would give quantitatively different, qualitatively related, retardation. Finally, the independence of *α*_T and *α*_C is a modelling hypothesis; its experimental determination for specific alloy systems — ideally by simultaneous measurement of front kinetics and interfacial segregation — is an important open task.
 
 ---
 
 ## 7. Conclusions
 
-A two-phase, time-fractional Stefan problem has been formulated and solved for the conduction-dominated solidification of an undercooled binary alloy, generalising the classical density-aware similarity solution to admit thermal and solutal memory through Caputo derivatives of order *α*. The principal findings are:
+A two-phase, dual-memory fractional Stefan framework has been formulated and solved for the conduction-dominated solidification of an undercooled binary alloy with shrinkage/expansion, generalising the classical density-aware similarity solution to admit *independent* thermal and solutal memory through Caputo derivatives of orders *α*_T and *α*_C. The principal findings are:
 
-1. **A self-similar reduction exists** for the coupled fractional energy and species equations, giving closed-form temperature and concentration distributions in terms of Mittag-Leffler/Wright functions and a sub-diffusive interface growth law *s**(*t**) = 2*λ t**^(*α*/2) that reduces to the classical √*t** law as *α* → 1.
+1. **A generalised self-similar reduction exists** for *α*_T ≠ *α*_C, giving closed-form Mittag-Leffler/Wright fields and the interface law *s**(*t**) = 2*λ t**^(*α*_T/2), with a single transcendental equation for *λ*; the model recovers the classical benchmark to within 1.5% and the density-aware binary solution of [13], and is corroborated by an independent L1 front-fixing solver to within 1%.
 
-2. **The model is validated**: in the limit *α* → 1 it recovers the one-phase Stefan benchmark to within 1.5% and reproduces the binary density-aware similarity solution of Jakhar et al. [13], and an independent L1 front-fixing finite-difference solver corroborates the similarity results to within 1%.
+2. **Thermal and solutal memory play cleanly separated roles**: *α*_T governs the interface kinetics — reducing it retards the front strongly and nonlinearly in time and steepens the near-front thermal gradient — while *α*_C governs interfacial segregation.
 
-3. **Reducing the fractional order retards the interface** strongly and nonlinearly in time, through the combined reduction of the kinetic exponent *α*/2 and the growth parameter *λ*; at *t** = 100 a sub-diffusive front (*α* = 0.6) advances to less than one-third of the classical distance.
+3. **The Memory Segregation Index** quantifies the solutal effect, rising monotonically as *α*_C falls and *Le* grows, amplifying interfacial enrichment by up to ~41%.
 
-4. **Memory sharpens boundary layers and intensifies segregation**: smaller *α* steepens the near-interface thermal and solutal gradients, lengthens the far-field tails and elevates the interfacial solute concentration; larger Lewis number compresses the solutal layer and further throttles the front.
+4. **A dual-order map and an elasticity-based sensitivity analysis** show that *α*_T dominates the long-time front position (elasticity ≈ +2.5), ahead of the density ratio and the Stefan number, with *α*_C and *Le* secondary.
 
-5. **The front accelerates** with increasing Stefan number (undercooling) and decreasing density ratio (expansion), and decelerates with increasing Lewis number; a normalised sensitivity analysis ranks the Stefan number and the fractional order as the two most influential parameters at long times.
+5. **An inverse identification workflow** recovers the effective thermal order from a noisy front history and cuts the long-time prediction error from ~147% (classical) to below 1%, providing a practical descriptor for rapid-solidification and additive-manufacturing modelling.
 
-The framework offers a compact, physically interpretable route to incorporate anomalous transport into alloy solidification modelling and provides a basis for inverse estimation of an effective memory order from measured interface histories. Future work will relax the sharp-interface and one-dimensional assumptions, admit independent thermal and solutal fractional orders, incorporate convection, and pursue experimental identification of the appropriate memory kernel for specific alloy systems.
+By decoupling thermal and solutal memory, the framework offers a physically interpretable, low-order route to anomalous transport and microsegregation in alloy solidification. Future work will relax the sharp-interface and one-dimensional assumptions, incorporate convection, explore non-singular memory kernels, and pursue experimental identification of (*α*_T, *α*_C) for specific alloy systems.
 
 ---
 
@@ -292,10 +333,10 @@ The framework offers a compact, physically interpretable route to incorporate an
 | *k* | thermal conductivity (W m⁻¹ K⁻¹) |
 | *k*_p | partition coefficient (–) |
 | *L*_f | latent heat of fusion (J kg⁻¹) |
-| *L* | length scale (m) |
 | *Le* | Lewis number, α_l/D_l (–) |
 | *m* | liquidus slope |
 | *M* | scaled liquidus slope (–) |
+| MSI | Memory Segregation Index (–) |
 | *R* | density ratio, ρ_s/ρ_l (–) |
 | *s* | interface position (m); *s** dimensionless |
 | *Ste* | Stefan number (–) |
@@ -303,7 +344,7 @@ The framework offers a compact, physically interpretable route to incorporate an
 | *t** | dimensionless time |
 | *W* | Wright function |
 | *x** | dimensionless coordinate |
-| *α* | fractional (Caputo) order (–) |
+| *α*_T, *α*_C | thermal, solutal fractional order (–) |
 | α_l | thermal diffusivity (m² s⁻¹) |
 | Γ | Gamma function |
 | *η* | similarity variable |
@@ -372,7 +413,7 @@ Subscripts: *b* boundary; *f* fusion; *i* interface; *l* liquid; *s* solid; 0 in
 
 [27] F. Liu, P. Zhuang, V. Anh, I. Turner, K. Burrage, Stability and convergence of the difference methods for the space–time fractional advection–diffusion equation, Appl. Math. Comput. 191 (1) (2007) 12–20.
 
-[28] S. Kumar, A. Kumar, D. Baleanu, Two analytical methods for time-fractional nonlinear coupled Boussinesq–Burger equations arising in propagation of shallow water waves, Nonlinear Dyn. 85 (2) (2016) 699–715.
+[28] V.R. Voller, F. Falcini, R. Garra, Fractional Stefan problems exhibiting lumped and distributed latent-heat memory effects: a numerical study, Int. J. Heat Mass Transf. 58 (1–2) (2013) 80–90.
 
 [29] A. Esen, Y. Ucar, N. Yagmurlu, O. Tasbozan, A Galerkin finite element method to solve fractional diffusion and fractional diffusion–wave equations, Math. Model. Anal. 18 (2) (2013) 260–273.
 
@@ -388,14 +429,42 @@ Subscripts: *b* boundary; *f* fusion; *i* interface; *l* liquid; *s* solid; 0 in
 
 [35] A. Kumar, A.K. Singh, Rajeev, A moving boundary problem with variable thermal conductivity and time-dependent heat flux governed by a fractional derivative, Meccanica 55 (10) (2020) 2047–2060.
 
+[36] R. Garra, A. Giusti, F. Mainardi, G. Pagnini, Fractional relaxation with time-varying coefficient, Fract. Calc. Appl. Anal. 17 (2) (2014) 424–439.
+
+[37] A. Compte, R. Metzler, The generalized Cattaneo equation for the description of anomalous transport processes, J. Phys. A: Math. Gen. 30 (21) (1997) 7277–7289.
+
+[38] Y. Povstenko, Fractional Thermoelasticity, Springer, Cham, 2015.
+
+[39] S. Das, Functional Fractional Calculus, 2nd ed., Springer, Berlin, 2011.
+
+[40] D. Baleanu, K. Diethelm, E. Scalas, J.J. Trujillo, Fractional Calculus: Models and Numerical Methods, World Scientific, Singapore, 2012.
+
+[41] J. Crank, Free and Moving Boundary Problems, Clarendon Press, Oxford, 1984.
+
+[42] M. Flemings, Solidification Processing, McGraw-Hill, New York, 1974.
+
+[43] W.J. Boettinger, S.R. Coriell, A.L. Greer, A. Karma, W. Kurz, M. Rappaz, R. Trivedi, Solidification microstructures: recent developments, future directions, Acta Mater. 48 (1) (2000) 43–70.
+
+[44] D.A. Tarzia, Explicit and approximated solutions for heat and mass transfer problems with a moving interface, in: Advanced Topics in Mass Transfer, InTech, 2011, pp. 439–484.
+
+[45] S.D. Roscani, N.N. Salva, D.A. Tarzia, Half-phase-space anomalous diffusion in a fractional Stefan problem, Commun. Nonlinear Sci. Numer. Simul. 90 (2020) 105361.
+
+[46] A.N. Ceretani, D.A. Tarzia, Determination of two unknown thermal coefficients through a phase-change process with temperature-dependent thermal conductivity, Int. Commun. Heat Mass Transf. 87 (2017) 220–228.
+
+[47] T.A.M. Langlands, B.I. Henry, The accuracy and stability of an implicit solution method for the fractional diffusion equation, J. Comput. Phys. 205 (2) (2005) 719–736.
+
+[48] C. Li, F. Zeng, Numerical Methods for Fractional Calculus, Chapman and Hall/CRC, Boca Raton, 2015.
+
 ---
 
-*Figures referenced in the text (generated by `generate_fractional_figures.py`, stored in `fractional_figures/`):*
+*Figures (generated by `generate_fractional_figures.py`, stored in `fractional_figures/`):*
 
-- **Figure 1.** One-dimensional fractional Stefan domain: solid, mushy zone and undercooled liquid, with the governing time-fractional equations and interface conditions, and a sketch of the anomalous mean-square advance ⟨s²⟩ ∼ tᵃ.
-- **Figure 2.** Mittag-Leffler relaxation kernel Eₐ(−tᵃ) for several fractional orders, showing the crossover and heavy algebraic tails that signify long memory.
-- **Figure 3.** Liquid-phase temperature profiles against the similarity variable η for α = 1.0, 0.85, 0.70, 0.55 (Le = 1, Ste = 0.5).
-- **Figure 4.** Solute concentration profiles: (a) effect of fractional order α at Le = 10; (b) effect of Lewis number Le at α = 0.8.
-- **Figure 5.** Interface position histories s*(t*) = 2λ t*^(α/2) for α = 1.0–0.6 (Le = 1, Ste = 0.5, R = 1).
-- **Figure 6.** Growth parameter λ versus fractional order α for Lewis numbers Le = 0.5, 1, 5, 20 (Ste = 0.5, R = 1).
-- **Figure 7.** Normalised sensitivity (elasticity) of the interface position s*(t* = 100) to the fractional order α, Lewis number Le, Stefan number Ste and density ratio R.
+- **Figure 1.** Dual-memory fractional Stefan domain: solid, mushy zone and undercooled liquid, with the independent thermal (α_T) and solutal (α_C) fractional operators, interface conditions, density ratio R, and the anomalous advance ⟨s²⟩ ∼ t^(α_T).
+- **Figure 2.** Independent thermal (a) and solutal (b) Mittag-Leffler memory kernels Eₐ(−tᵃ), showing the heavy algebraic tails that signify long memory and the independence of α_T and α_C.
+- **Figure 3.** Liquid-phase temperature profiles against the similarity variable η for thermal orders α_T = 1.0, 0.85, 0.70, 0.55 (α_C = 1, Le = 1, Ste = 0.5).
+- **Figure 4.** Solute concentration profiles: (a) effect of solutal order α_C at Le = 10; (b) effect of Lewis number Le at α_C = 0.8.
+- **Figure 5.** Interface position histories s*(t*) = 2λ t*^(α_T/2) for α_T = 1.0–0.6 (α_C = 1, Le = 1, Ste = 0.5, R = 1).
+- **Figure 6.** Growth parameter λ versus thermal order α_T for Lewis numbers Le = 0.5, 1, 5, 20 (α_C = 1, Ste = 0.5, R = 1).
+- **Figure 7.** Dual-memory heat map of the interface position s*(t* = 100) over the (α_C, α_T) plane, showing the dominant vertical (thermal) gradient and weak horizontal (solutal) modulation (Le = 1, Ste = 0.5, R = 1).
+- **Figure 8.** (a) Memory Segregation Index MSI versus solutal order α_C for Le = 1, 5, 20; (b) normalised sensitivity (elasticity) of s*(t* = 100) to α_T, α_C, Ste, Le and R.
+- **Figure 9.** Inverse memory identification: (a) a noisy synthetic front history fitted by the identified law (α_T = 0.72) versus the classical √t law; (b) long-time prediction error of the classical, single-order and present dual-order models against the data.

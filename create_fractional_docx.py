@@ -23,12 +23,14 @@ OUT = os.path.join(BASE, 'Fractional_Stefan_Binary_Alloy.docx')
 
 FIG_FILES = {
     1: 'Figure_1_Problem_Schematic.png',
-    2: 'Figure_2_Mittag_Leffler.png',
+    2: 'Figure_2_Memory_Kernels.png',
     3: 'Figure_3_Temperature.png',
     4: 'Figure_4_Concentration.png',
     5: 'Figure_5_Interface_Kinetics.png',
     6: 'Figure_6_Lambda_Map.png',
-    7: 'Figure_7_Sensitivity.png',
+    7: 'Figure_7_DualOrder_Map.png',
+    8: 'Figure_8_Segregation_Sensitivity.png',
+    9: 'Figure_9_Inverse_Identification.png',
 }
 
 EMU_PER_INCH = 914400
