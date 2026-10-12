@@ -21,12 +21,13 @@ IMG_W_EMU = 5486400    # 6.0 in display width
 # figure number -> file
 FIGS = {
     1: 'Fig1_schematic.png',
-    2: 'Fig2_pressure_validation.png',
-    3: 'Fig3_peakpressure_validation.png',
-    4: 'Fig4_pressure_index.png',
-    5: 'Fig5_temperature_index.png',
-    6: 'Fig6_load_index.png',
-    7: 'Fig7_film_eccentricity.png',
+    2: 'Fig2_methodology_flowchart.png',
+    3: 'Fig3_pressure_validation.png',
+    4: 'Fig4_peakpressure_validation.png',
+    5: 'Fig5_pressure_index.png',
+    6: 'Fig6_temperature_index.png',
+    7: 'Fig7_load_index.png',
+    8: 'Fig8_film_eccentricity.png',
 }
 
 
