@@ -8,55 +8,25 @@ The thermo-hydrodynamic (THD) analysis of journal bearings operating with non-Ne
 
 ---
 
-## 1. Introduction
+## 1. Introduction and Literature Review
 
-Hydrodynamic journal bearings remain the dominant load-carrying element in rotating machinery, supporting turbine, compressor, pump, engine, and generator shafts through a converging lubricant wedge that generates load-supporting pressure without solid contact [18, 31]. The classical Reynolds equation [23] describes this pressure field under the assumptions of a thin, iso-viscous, Newtonian film separating rigid surfaces. For modern machine elements subjected to high specific loads, elevated sliding speeds, and chemically complex lubricants, each of these assumptions is increasingly difficult to justify. Lubricants such as additive-laden mineral oils, greases, polymer-thickened oils, emulsions, and bio-lubricants deviate from the linear stress–strain-rate relation and are commonly represented by the Ostwald–de Waele power-law model [1, 12, 13]. The viscous dissipation that accompanies shearing of these films raises the lubricant temperature, which in turn lowers its consistency and alters the pressure field, so that a thermo-hydrodynamic (THD) treatment is required to predict performance realistically [5, 6, 14].
+Hydrodynamic journal bearings remain the dominant load-carrying element in rotating machinery, supporting turbine, compressor, pump, engine, and generator shafts through a converging lubricant wedge that generates pressure without solid contact [18, 31, 51]. The classical Reynolds equation [23], later generalised by Dowson [32], describes this pressure field for a thin, iso-viscous, Newtonian film between rigid surfaces. For modern machine elements under high specific load, elevated speed, and chemically complex lubricants, each of these assumptions is difficult to justify, which has driven decades of effort toward non-Newtonian rheology, thermal coupling, elastic deformation, and cavitation.
 
-A substantial body of work has established the THD framework for power-law lubricants: Dien and Elrod [13] derived a generalised Reynolds equation for non-Newtonian fluids, Wang, Zhu, and Wen [14] analysed couple-stress films, Mishra [8] examined finite-bearing stability under adiabatic thermal and non-Newtonian effects, Peng and Khonsari [15] treated foil bearings, Liu, Zhang, and Zhang [21] proposed a one-dimensional thermal model, and Prasad and co-workers [17, 19] added squeezing, temperature, and consistency variation. Among semi-analytical approaches, Sekhar et al. [20] introduced a delta-profile concept that locates the zero-velocity-gradient surface across the film, reducing the coupled Reynolds and energy equations to a system integrated with a Runge–Kutta–Fehlberg scheme; they reported the influence of the power-law index and eccentricity ratio on pressure, temperature, and load, with agreement against two-axial-groove bearing data [11].
+Practical lubricants — additive-laden mineral oils, greases, polymer-thickened oils, emulsions, and bio-lubricants — deviate from the linear stress–strain-rate law and are most often represented by the Ostwald–de Waele power-law model [1, 12, 13]. Oliver [1] showed experimentally that polymer thickening enhances load capacity, and Dien and Elrod [13] gave the subject a firm footing with a generalised Reynolds equation; the power-law description is favoured for its two-parameter economy, a consistency and a flow-behaviour index distinguishing pseudo-plastic, Newtonian, and dilatant behaviour [8, 17, 19, 22]. Experimental and integral-transform studies [2, 3] mapped the resulting pressure field, while recent finite-volume [37], two-lobe [40], and grooved-rubber [41] analyses confirm that the flow index is a first-order design parameter, with shear-thickening fluids generally outperforming shear-thinning ones.
 
-Despite these advances, the delta-profile model and comparable semi-analytical treatments retain two simplifications. First, the surfaces are assumed rigid, whereas the hydrodynamic pressure elastically deflects the bush and liner, enlarging the clearance, reducing and spreading the peak, and raising the minimum film thickness, especially for compliant liners and at high load [10, 33, 34]. Second, the full-film assumption admits sub-ambient pressures in the divergent region, whereas real films rupture and cavitate near the cavitation pressure [16, 24]; truncating negative pressures violates mass conservation and mispredicts flow, friction, and the reformation location [25, 26, 27].
+Because viscous dissipation both heats the film and, through the temperature dependence of consistency, feeds back on pressure, non-Newtonian analysis is inseparable from thermal analysis. Ma and Taylor [5] measured significant circumferential and axial temperature variation, and Sun et al. [6] reported the influence of temperature on load, leakage, and friction in misaligned rough bearings. Simplified one-dimensional models [21] capture the leading-order rise but omit heat conducted into the solids; conjugate thermo-hydrodynamic (THD) treatments that solve the solid-conduction field with the film energy equation predict metal temperatures between the adiabatic and isothermal limits and are more realistic [14, 36]. Peng and Khonsari [15] developed a THD analysis of compliant foil bearings, and CFD studies confirm conjugate effects are essential at elevated Reynolds number [39, 44]. Among semi-analytical methods — valued for the physical insight their closed forms provide [4, 49, 50] — Sekhar et al. [20] introduced a delta-profile concept that locates the zero-velocity-gradient surface across the film, reducing the coupled Reynolds and energy equations to a system integrated with a Runge–Kutta–Fehlberg scheme, and validated it against two-axial-groove bearing data [11].
 
-The present work addresses both deficiencies by formulating a thermo-elasto-hydrodynamic (TEHD) model that augments the power-law delta-profile THD framework with elastic deformation and mass-conserving cavitation. The specific objectives are: (a) to derive the coupled governing equations — a generalised power-law Reynolds equation, an elastic compliance film-thickness relation, a JFO/Elrod–Adams cavitation formulation, and a conjugate energy equation; (b) to establish a staggered solution algorithm that recovers the rigid, full-film THD solution as a limiting case; (c) to validate the model against independent experimental and numerical benchmarks; and (d) to analyse, with reference to the prior literature, how elasticity and cavitation modify the pressure, temperature, and load for Newtonian and non-Newtonian lubricants.
+Two idealisations nonetheless persist in the delta-profile model and comparable treatments. First, the surfaces are assumed rigid, whereas hydrodynamic pressure elastically deflects the bush and liner, enlarging the clearance, lowering and spreading the pressure peak, and raising the minimum film thickness — effects pronounced for compliant liners and at high load. Oh and Goenka [34] and Boedo and Booker [33] quantified these elastohydrodynamic trends, Fantino and Frêne [35] treated combined thermal–elastic distortion, and Linjamaa et al. [10] modelled hybrid-bearing deformation; the influence-coefficient (compliance-matrix) method is the standard device for incorporating deflection economically [33, 34]. Second, the full-film assumption admits sub-ambient pressures in the divergent clearance, whereas real films rupture and cavitate near the cavitation pressure [16, 24]. Truncating negative pressures violates mass conservation; the Jakobsson–Floberg–Olsson theory [25, 26] remedies this with a fractional-film-content variable, which Elrod and Adams [27, 28] cast as a switch-function algorithm, Vijayaraghavan and Keith [29] refined, and Bayada and Chambat [30] placed on a rigorous footing. Mass conservation materially changes the predicted pressure and load relative to non-conservative truncation [39].
 
----
+A parallel stream pursues performance through lubricant and surface engineering — nanoparticle additives that raise viscosity and load capacity [38, 45, 46, 47], experimental–CFD studies of composite bearings [48], and surface texturing or topology optimisation that raises minimum film thickness and lowers friction [42, 43]. Stochastic and experimental investigations further characterise surface roughness and severe-condition behaviour [7, 9, 11]. Such refinements invariably rest on accurate thermal, elastic, and cavitation predictions, underscoring the need for an integrated framework.
 
-## 2. Literature Analysis
-
-### 2.1 Non-Newtonian lubrication of journal bearings
-
-The recognition that practical lubricants rarely behave as ideal Newtonian fluids has driven decades of modelling effort. Oliver [1] demonstrated experimentally that polymer thickening enhances the load capacity of a short model journal bearing, an early indication that shear-rate-dependent viscosity materially affects performance. Safar [12] analysed dynamically loaded bearings operating with non-Newtonian films, and Dien and Elrod [13] placed the subject on a firm theoretical footing with a generalised steady-state Reynolds equation applicable to a broad class of non-Newtonian fluids. The power-law model has since become the most widely adopted constitutive description because of its generality and its two-parameter economy: a consistency and a flow-behaviour index distinguish pseudo-plastic, Newtonian, and dilatant behaviour [8, 17, 41]. Nessil et al. [22] analysed journal-bearing lubrication with non-Newtonian fluids and reported that the pressure field and load capacity depend sensitively on the flow index, while Kasolong et al. [2] and Santos et al. [3] established complementary experimental and integral-transform descriptions of the hydrodynamic pressure field.
-
-Recent studies refine this picture: a finite-volume THD analysis showed that coupling the modified power-law Reynolds equation with the energy equation shifts the predicted temperature and load relative to iso-viscous treatments [37]; a two-lobe power-law analysis found shear-thickening fluids outperform Newtonian and pseudo-plastic lubricants, with side leakage falling as geometric asymmetry rises [40]; and grooved-rubber-bearing studies confirmed the power-law description captures the dominant rheological influence [41]. Collectively these establish the flow-behaviour index as a first-order design parameter, motivating its retention here.
-
-### 2.2 Thermal effects and conjugate heat transfer
-
-Thermal effects are inseparable from non-Newtonian analysis because viscous dissipation both heats the film and, through the temperature dependence of consistency, feeds back on the pressure. Ma and Taylor [5] experimentally demonstrated significant circumferential and axial temperature variation in circular and elliptical bearings, and Sun et al. [6] reported the influence of temperature on load, leakage, and friction in misaligned rough bearings. Simplified one-dimensional models [21] capture the leading-order temperature rise but cannot represent heat conducted into the solids; conjugate treatments that solve the solid-conduction field with the film energy equation predict metal temperatures between the adiabatic and isothermal idealisations and are more realistic [14, 36]. The delta-profile model [20] used an exponential thermo-viscous consistency and reported that temperature increases with the flow index. The present work adds convective transport and conjugate conduction, shown by recent CFD studies [39, 44] to be essential at elevated Reynolds number.
-
-### 2.3 Elastic deformation and elastohydrodynamic coupling
-
-Surface elastic deformation under hydrodynamic pressure is well established in the elastohydrodynamic (EHL) literature [31]. For conformal bearings, Oh and Goenka [34] and Boedo and Booker [33] showed that compliance reduces peak pressure and raises minimum film thickness, Fantino and Frêne [35] treated combined thermal–elastic distortion, and Linjamaa et al. [10] quantified the resulting changes in load and film geometry. The influence-coefficient (compliance-matrix) method — expressing the deflection as a convolution of pressure with a precomputed elastic kernel — is the standard device for including deformation without re-solving the full elasticity problem each iteration [33, 34]. The present model adopts it, with a Winkler elastic-foundation reduction for compliant liners [10].
-
-### 2.4 Cavitation modelling
-
-Cavitation sets the extent of the active pressure-generating region and hence the load, friction, and leakage. Early analyses used the half-Sommerfeld or Reynolds (Swift–Stieber) condition, which zeroes pressure and its gradient at rupture but does not conserve mass at reformation [16, 24]. The Jakobsson–Floberg–Olsson (JFO) theory [25, 26] remedies this with a complementary fractional-film-content variable that conserves mass across both boundaries; Elrod and Adams [28] and Elrod [27] recast it as a switch-function algorithm with a single universal variable, Vijayaraghavan and Keith [29] refined it for journal bearings, and Bayada and Chambat [30] gave it a rigorous foundation. FSI–cavitation CFD [39] confirms that mass conservation materially changes the predicted pressure and load. The present model employs the Elrod–Adams formulation, enforcing the complementarity conditions cell by cell.
-
-### 2.5 Advanced lubricants and surface engineering
-
-A parallel research stream seeks gains through lubricant and surface engineering. Nanoparticle additives — titanium dioxide, carbon nanotubes, and hybrids — raise the effective viscosity and load capacity while modifying the thermal response [38, 44, 45, 46, 47], and experimental–CFD studies of composite bearings report improvements in pressure, friction, and wear [48]. Surface texturing and topology optimisation raise the minimum film thickness and reduce friction through micro-wedge and micro-reservoir effects [42, 43]. Although the present work models neither additives nor textures explicitly, it provides the thermal, elastic, and cavitation infrastructure on which such refinements depend [45, 48].
-
-### 2.6 Semi-analytical versus fully numerical approaches
-
-A methodological divide runs through the literature. Fully numerical approaches — finite-difference [8], finite-volume [37], and CFD with fluid–structure interaction [39, 48] — accommodate arbitrary geometry and surface features but are costly and offer limited analytical insight. Semi-analytical approaches — integral transforms [3], exact Reynolds-equation solutions [4], the mobility method [49], the dynamic-coefficient framework [50], and the delta-profile closure [20] — trade geometric generality for tractability, yielding closed-form expressions that expose the dependence on the flow index and eccentricity ratio directly. The delta-profile method is attractive because it preserves this transparency for non-Newtonian films; the present contribution is to show that elastic deformation and mass-conserving cavitation can be grafted onto it without sacrificing its central economy — the avoidance of a nested cross-film pressure iteration — positioning the model between the one-dimensional reductions of [21] and the full CFD treatments of [39, 44].
-
-### 2.7 Synthesis and research gap
-
-The literature offers mature but largely separate treatments of power-law rheology [1, 13, 22], thermal effects [5, 6, 20], elastic deformation [10, 33, 34], and mass-conserving cavitation [27, 28, 30]. Scarce is a single semi-analytical framework integrating all four within the efficient delta-profile closure, so that the flow index and eccentricity ratio can be studied without discarding elastic realism or mass conservation. The present TEHD model fills this gap.
+The literature thus offers mature but largely separate treatments of power-law rheology [1, 13, 22], thermal effects [5, 6, 20], elastic deformation [10, 33, 34], and mass-conserving cavitation [27, 28, 30]. Scarce is a single semi-analytical framework that integrates all four within the efficient delta-profile closure, so that the flow index and eccentricity ratio can be studied without discarding either elastic realism or mass conservation. The present work fills this gap by formulating a thermo-elasto-hydrodynamic (TEHD) model that augments the power-law delta-profile THD framework with elastic deformation and mass-conserving cavitation. Its objectives are: (a) to derive the coupled governing equations — a generalised power-law Reynolds equation, a compliance film-thickness relation, a JFO/Elrod–Adams cavitation formulation, and a conjugate energy equation; (b) to establish a staggered algorithm that recovers the rigid, full-film THD solution as a limiting case; (c) to validate the model against independent experimental and numerical benchmarks; and (d) to analyse, against the prior literature, how elasticity and cavitation modify the pressure, temperature, and load for Newtonian and non-Newtonian lubricants.
 
 ---
 
-## 3. Mathematical Modelling and Governing Equations
+## 2. Mathematical Modelling and Governing Equations
 
-### 3.1 Geometry, assumptions, and field equations
+### 2.1 Geometry, assumptions, and field equations
 
 **Figure 1.** Schematic of the thermo-elasto-hydrodynamic journal-bearing model, showing the eccentric rotating journal, the fixed bush with an elastically deformed liner, the converging and diverging film regions, and the mass-conserving cavitated (ruptured) zone in the divergent clearance. *(see `tehd_figures/Fig1_schematic.png`)*
 
@@ -84,7 +54,7 @@ $$
 
 where $u$, $v$, and $w$ are the velocity components along $x$, $y$, and $z$.
 
-### 3.2 Power-law rheology with thermo-piezo-viscous consistency
+### 2.2 Power-law rheology with thermo-piezo-viscous consistency
 
 The lubricant obeys the Ostwald–de Waele power-law relation between shear stress and the cross-film shear rate,
 
@@ -106,7 +76,7 @@ $$
 
 where $m_0$ is the reference consistency at reference temperature $T_0$, $\alpha$ is the piezo-viscous coefficient, and $\beta$ is the thermo-viscous coefficient. Equation (7) couples the rheology to both the pressure field (through $\alpha$) and the thermal field (through $\beta$).
 
-### 3.3 Film thickness with elastic deformation
+### 2.3 Film thickness with elastic deformation
 
 The rigid film of the base model is augmented by the normal elastic deflection $\delta_e$ of the bush/liner and a thermal-expansion clearance change $\delta_T$. The undeformed (rigid) film is
 
@@ -146,7 +116,7 @@ $$
 
 where $\alpha_b$ and $\alpha_j$ are the thermal-expansion coefficients. Because $h$ depends on $p$ through Equations (9)–(12) and $p$ depends on $h$ through the Reynolds equation derived below, the hydrodynamic and elastic problems are two-way coupled.
 
-### 3.4 Delta-profile velocity field
+### 2.4 Delta-profile velocity field
 
 The delta profile [20] locates the surface $y=\delta(\theta)$ at which the cross-film velocity gradient vanishes,
 
@@ -186,7 +156,7 @@ $$
 \delta^{*} = \frac{\sin(\phi_1 - \phi_2)}{\dfrac{\sin(\theta - \phi_2)}{R + h_1} + \dfrac{\sin(\phi_1 - \theta)}{R}}, \qquad \phi_1 = -\theta_1 - \varepsilon_1,\; \phi_2 = -\theta_1 + \varepsilon_1. \tag{20}
 $$
 
-### 3.5 Flow rate and the pressure-gradient relations
+### 2.5 Flow rate and the pressure-gradient relations
 
 The volumetric flow per unit width through any section is
 
@@ -210,7 +180,7 @@ $$
 \frac{\mathrm{d}p_2}{\mathrm{d}\theta} = -m R \left(\frac{2n+1}{n}\right)^{\!n}\!\left[\frac{U(h_1/2)-U(h-\delta)}{\delta^{\frac{2n+1}{n}} + (h-\delta)^{\frac{2n+1}{n}}}\right]^{n}, \quad -\theta_1<\theta\le\pi. \tag{24}
 $$
 
-### 3.6 Generalised two-dimensional power-law Reynolds equation
+### 2.6 Generalised two-dimensional power-law Reynolds equation
 
 For a finite-length bearing the axial flow must be retained. Combining the circumferential and axial flow balances with Equation (4) gives the generalised power-law Reynolds equation,
 
@@ -236,7 +206,7 @@ $$
 \Phi_z = \frac{n}{2n+1}\left(\frac{1}{m}\right)^{1/n}\!\Big[\delta^{\frac{2n+1}{n}} + (h-\delta)^{\frac{2n+1}{n}}\Big]\left|\frac{\partial p}{\partial z}\right|^{\frac{1}{n}-1}. \tag{28}
 $$
 
-### 3.7 Mass-conserving cavitation (JFO / Elrod–Adams)
+### 2.7 Mass-conserving cavitation (JFO / Elrod–Adams)
 
 To conserve mass across rupture and reformation, the JFO framework [25, 26] is implemented through the Elrod–Adams switch function [27, 28]. A single universal variable $\Theta$ denotes the fractional film content ($0\le\Theta\le1$), and a switch $g$ distinguishes the full-film and cavitated regions. The gauge pressure relative to the cavitation pressure $p_{cav}$ is
 
@@ -271,7 +241,7 @@ $$
 
 so that mass is conserved across both boundaries and the extent of the cavitated zone is determined as part of the solution.
 
-### 3.8 Energy equation and conjugate heat transfer
+### 2.8 Energy equation and conjugate heat transfer
 
 The cross-film energy balance generalises the base-model conduction equation by retaining circumferential and axial convection,
 
@@ -335,7 +305,7 @@ $$
 c = \frac{T_{11}-T_{12}}{h} + \left(\frac{m}{hk}\right)\frac{n^2}{(2n+1)(3n+1)}\left(\frac{1}{m}\frac{\mathrm{d}p_1}{\mathrm{d}x}\right)^{\frac{n+1}{n}}\!\Big[(h-\delta)^{\frac{3n+1}{n}} - \delta^{\frac{3n+1}{n}}\Big]. \tag{44}
 $$
 
-### 3.9 Non-dimensionalisation
+### 2.9 Non-dimensionalisation
 
 Following [20], the dimensionless variables are
 
@@ -357,7 +327,7 @@ $$
 
 The dimensionless elasticity number $C_e = C_{\text{diag}}\,p_{\text{ref}}/c$ and the dimensionless cavitation pressure $\bar p_{cav} = \alpha p_{cav}$ complete the parameter set; setting $C_e=0$ and $\bar p_{cav}\to-\infty$ recovers the rigid, full-film base model exactly.
 
-### 3.10 Load, attitude angle, and performance
+### 2.10 Load, attitude angle, and performance
 
 The radial and tangential load components follow from integrating the non-negative pressure field over the bearing surface,
 
@@ -385,7 +355,7 @@ with $N$ the rotational speed and $P$ the specific load. Equations (1)–(51) co
 
 ---
 
-## 4. Numerical Solution Methodology
+## 3. Numerical Solution Methodology
 
 The coupled system is solved by a staggered (segregated) finite-volume scheme on a structured $\theta$–$z$ grid, with the four physics advanced in sequence within an outer iteration:
 
@@ -400,7 +370,7 @@ Within step 2 the delta-profile closed forms (14)–(20) and (23)–(24) are use
 
 ---
 
-## 5. Validation
+## 4. Validation
 
 The model was validated against two independent benchmarks, and the input data used throughout are listed in Table 1.
 
@@ -420,7 +390,7 @@ The model was validated against two independent benchmarks, and the input data u
 | Liner modulus (compliant case) | $E_L$ | 3.0 | GPa |
 | Cavitation pressure | $p_{cav}$ | 0 (gauge) | Pa |
 
-First, with the compliance set to zero and the cavitation pressure driven to minus infinity, the model reproduced the circumferential pressure and mean-temperature distributions of the rigid, full-film base model [20] to within the discretisation error (load difference < 0.5%), confirming correct limiting-case recovery. Second, the full TEHD model was compared with the experimental two-axial-groove bearing data of Chatterton et al. [11] and with the rigid THD prediction. **Figure 2** compares the dimensionless circumferential pressure distribution: the rigid THD model produces a sharp positive peak and a deep sub-ambient loop, whereas the present TEHD model yields a lower, broader peak and a cavitation-clipped sub-ambient region that follows the experimental points closely. **Figure 3** compares the peak dimensionless pressure as a function of eccentricity ratio; the rigid model over-predicts the peak increasingly as $\varepsilon$ rises, while the TEHD prediction, relieved by elastic deflection, tracks the measured values. The agreement across both benchmarks, summarised in Table 2, is substantially better for the TEHD model than for the rigid, full-film treatment. The residual discrepancy between the TEHD prediction and experiment (of the order of 5%) is attributable to the simplified Winkler compliance and the steady-state thermal assumption, both of which are discussed in Section 6.8; it is well within the scatter typically reported for instrumented-bearing measurements under severe operating conditions [11]. Importantly, the two benchmarks test complementary aspects of the model: Figure 2 isolates the shape of the pressure field, which is governed jointly by elastic relief and cavitation clipping, whereas Figure 3 isolates the load-scaling with eccentricity, which is dominated by elastic relief. That a single parameter set reproduces both lends confidence that the governing mechanisms, and not merely a calibration, are responsible for the improved agreement.
+First, with the compliance set to zero and the cavitation pressure driven to minus infinity, the model reproduced the circumferential pressure and mean-temperature distributions of the rigid, full-film base model [20] to within the discretisation error (load difference < 0.5%), confirming correct limiting-case recovery. Second, the full TEHD model was compared with the experimental two-axial-groove bearing data of Chatterton et al. [11] and with the rigid THD prediction. **Figure 2** compares the dimensionless circumferential pressure distribution: the rigid THD model produces a sharp positive peak and a deep sub-ambient loop, whereas the present TEHD model yields a lower, broader peak and a cavitation-clipped sub-ambient region that follows the experimental points closely. **Figure 3** compares the peak dimensionless pressure as a function of eccentricity ratio; the rigid model over-predicts the peak increasingly as $\varepsilon$ rises, while the TEHD prediction, relieved by elastic deflection, tracks the measured values. The agreement across both benchmarks, summarised in Table 2, is substantially better for the TEHD model than for the rigid, full-film treatment. The residual discrepancy between the TEHD prediction and experiment (of the order of 5%) is attributable to the simplified Winkler compliance and the steady-state thermal assumption, both of which are discussed in Section 5.8; it is well within the scatter typically reported for instrumented-bearing measurements under severe operating conditions [11]. Importantly, the two benchmarks test complementary aspects of the model: Figure 2 isolates the shape of the pressure field, which is governed jointly by elastic relief and cavitation clipping, whereas Figure 3 isolates the load-scaling with eccentricity, which is dominated by elastic relief. That a single parameter set reproduces both lends confidence that the governing mechanisms, and not merely a calibration, are responsible for the improved agreement.
 
 **Figure 2.** Dimensionless circumferential pressure distribution $P^{*}$ versus $\theta$: present TEHD model, rigid full-film THD model [20], and experimental data [11]. *(see `tehd_figures/Fig2_pressure_validation.png`)*
 
@@ -436,19 +406,19 @@ First, with the compliance set to zero and the cavitation pressure driven to min
 
 ---
 
-## 6. Results and Discussion
+## 5. Results and Discussion
 
-### 6.1 Pressure distribution
+### 5.1 Pressure distribution
 
 The TEHD coupling changes the pressure field in two physically distinct ways, both visible in Figure 2. Elastic compliance redistributes the load: as the surface deflects outward in the high-pressure zone, the local clearance increases and the sharp pressure peak characteristic of the rigid model [20] is reduced in magnitude and broadened in the circumferential direction. For the reference case (ε = 0.66, n = 1.0, Table 2) the peak dimensionless pressure falls from 0.71 in the rigid model to 0.57 in the TEHD model — a reduction of about 20% — while the angular width of the positive-pressure lobe increases by roughly one-third. This behaviour is quantitatively consistent with the elastohydrodynamic journal-bearing analyses of Oh and Goenka [34] and Boedo and Booker [33], which reported peak-pressure reductions of the order of 15–25% for compliant conformal contacts, and with the hybrid-bearing deformation study of Linjamaa et al. [10]. Physically, the deflection acts as a negative feedback on the pressure: wherever the pressure is highest the surface yields most, which locally opens the gap and relaxes the pressure gradient of Equation (25), so the peak cannot grow without bound as it does in the rigid solution.
 
 Mass-conserving cavitation acts independently in the divergent region. Whereas the full-film base model admits a deep sub-ambient loop — a tensile pressure that no real lubricant can sustain — the Elrod–Adams treatment of Equations (29)–(33) clips the pressure at $p_{cav}$, replaces the loop with a striated two-phase zone of fractional film content $\Theta < 1$, and fixes the rupture and reformation boundaries as part of the solution. The resulting field is everywhere non-negative, in agreement with the JFO-based solutions of Vijayaraghavan and Keith [29], the foundational treatments of Jakobsson and Floberg [25] and Olsson [26], and the two-way FSI–cavitation CFD results for nano-lubricated bearings [39]. The experimental points of Chatterton et al. [11] fall close to the TEHD curve in both the pressurised and the ruptured regions, confirming that elastic relief and mass conservation are jointly, and not individually, necessary to reproduce the measured distribution; a non-conservative half-Sommerfeld truncation would reproduce the clipped peak but misplace the reformation boundary.
 
-### 6.2 Effect of the power-law index
+### 5.2 Effect of the power-law index
 
 Figure 4 shows the computed dimensionless pressure distribution for four flow indices spanning strongly pseudo-plastic (n = 0.4) to dilatant (n = 1.15) behaviour at fixed eccentricity, and Table 3 reports the corresponding load capacity for both the rigid and the TEHD models. Consistent with the base study [20] and with the two-lobe power-law analysis of [40], the load increases monotonically with $n$: shear-thickening fluids generate higher pressures than Newtonian and pseudo-plastic fluids because their apparent viscosity, given by Equation (6), rises with shear rate in the high-shear convergent zone, stiffening the load-bearing wedge. Figure 4 makes the mechanism explicit — the pressure peak sharpens and intensifies as $n$ increases, and the peak location migrates slightly toward the minimum-film position where the shear rate is greatest.
 
-The TEHD model preserves this ordering but predicts a lower absolute load at every value of $n$, and, crucially, the relative reduction is itself an increasing function of $n$: Table 3 shows the load deficit relative to the rigid model growing from 12% for the strongly pseudo-plastic fluid to 17% for the dilatant fluid. This is a direct consequence of the pressure–deflection feedback described in Section 6.1: the dilatant fluid produces the sharpest, highest peak and therefore suffers the largest elastic relief. The result refines the rigid-model conclusion of [20] in a design-relevant way — although dilatant lubricants remain advantageous for load capacity, a rigid analysis overstates their advantage, a caution also implicit in the compliant-liner results of Linjamaa et al. [10] and in the finite-volume THD study of [37], where temperature-dependent consistency was likewise found to erode the load gain predicted by iso-viscous power-law models.
+The TEHD model preserves this ordering but predicts a lower absolute load at every value of $n$, and, crucially, the relative reduction is itself an increasing function of $n$: Table 3 shows the load deficit relative to the rigid model growing from 12% for the strongly pseudo-plastic fluid to 17% for the dilatant fluid. This is a direct consequence of the pressure–deflection feedback described in Section 5.1: the dilatant fluid produces the sharpest, highest peak and therefore suffers the largest elastic relief. The result refines the rigid-model conclusion of [20] in a design-relevant way — although dilatant lubricants remain advantageous for load capacity, a rigid analysis overstates their advantage, a caution also implicit in the compliant-liner results of Linjamaa et al. [10] and in the finite-volume THD study of [37], where temperature-dependent consistency was likewise found to erode the load gain predicted by iso-viscous power-law models.
 
 **Figure 4.** Dimensionless pressure distribution $P^{*}$ versus $\theta$ for flow indices n = 0.4, 0.545, 1.0, and 1.15 (ε = 0.66), showing the sharpening and intensification of the pressure peak with increasing $n$. *(see `tehd_figures/Fig4_pressure_index.png`)*
 
@@ -461,7 +431,7 @@ The TEHD model preserves this ordering but predicts a lower absolute load at eve
 | 0.545 | 0.000863 | 0.000748 | 13.3 | pseudo-plastic |
 | 0.40 | 0.000814 | 0.000716 | 12.0 | pseudo-plastic |
 
-### 6.3 Effect of the eccentricity ratio
+### 5.3 Effect of the eccentricity ratio
 
 Table 4 reports the effect of the eccentricity ratio and the elasticity number on the peak pressure, maximum temperature, and minimum film thickness, and Figure 3 compares the TEHD and rigid peak-pressure trends against experiment. The rigid base model [20] found that the peak pressure decreases with increasing $\varepsilon$ for dilatant and pseudo-plastic fluids but increases for the Newtonian fluid; the TEHD model reproduces these qualitative trends while reducing the absolute peak pressure, and the reduction grows sharply with $\varepsilon$ — from about 12% at ε = 0.40 to roughly 30% at ε = 0.80 (Table 4) — because both the deflection of Equation (11) and the cavitated extent increase at high eccentricity. The divergence between the rigid and TEHD curves in Figure 3 is therefore not a constant offset but a widening gap, which explains why rigid full-film models are progressively more optimistic, and hence progressively less safe, as the load increases.
 
@@ -477,7 +447,7 @@ The minimum film thickness, plotted against eccentricity in Figure 7, is corresp
 | 0.80 | 0.10 | 0.84 | 1.19 | 1.74 | 0.218 |
 | 0.80 | 0.20 | 0.73 | 1.19 | 1.71 | 0.242 |
 
-### 6.4 Temperature distribution
+### 5.4 Temperature distribution
 
 Figure 5 shows the computed mean-film-temperature distribution for the four flow indices. Because the viscous dissipation scales as $m\,|\partial u/\partial y|^{n+1}$ (Equation 35), the highest temperatures remain localised near the minimum-film-thickness region, as in the base model [20] and the experimental maps of Ma and Taylor [5]; Figure 5 confirms that the temperature rise intensifies with $n$, mirroring the pressure trend of Figure 4 because both are driven by the same shear field. Two TEHD mechanisms modify the thermal field. First, conjugate conduction into the bush and journal (Equations 37–39) spreads heat away from the film, lowering the peak film temperature relative to an adiabatic assumption but raising it relative to an isothermal-wall idealisation; this intermediate behaviour matches the conjugate-THD findings of Wang et al. [14] and the high-Reynolds-number CFD study of [44]. Second, scaling the dissipation by the fractional film content $\Theta$ in the cavitated region removes the spurious heating that a full-film energy balance would predict there, a correction emphasised in mass-conserving CFD analyses [39]. Table 4 shows that the maximum dimensionless temperature rises monotonically with eccentricity ratio, consistent with the increased shear in the thinning film, while increasing the elasticity number slightly lowers the peak temperature because the enlarged clearance reduces the shear rate.
 
@@ -485,33 +455,33 @@ The modified Prandtl group $p_r$ of Equation (47) governs the thermal feedback o
 
 **Figure 5.** Dimensionless mean film temperature $\bar T_m$ versus $\theta$ for flow indices n = 0.4, 0.545, 1.0, and 1.15 (ε = 0.66), showing the intensification and localisation of the temperature rise with increasing $n$. *(see `tehd_figures/Fig5_temperature_index.png`)*
 
-### 6.5 Load, friction, and leakage
+### 5.5 Load, friction, and leakage
 
 Figure 6 compares the dimensionless load capacity predicted by the rigid and the TEHD models as a function of the flow index, making graphical the deficit tabulated in Table 3. The load capacity computed from the bounded TEHD pressure field (Equations 48–50) is lower than the rigid, full-film value at all operating points, by 12–17% across the range of flow indices in Table 3 and by up to 30% at the highest eccentricity in Table 4. This systematic reduction reconciles the long-standing observation that rigid full-film predictions are optimistic relative to measurement [11, 35]. Mass conservation also yields physically correct side-leakage and friction in the cavitated zone: because only a fraction $\Theta$ of the gap carries lubricant there, both the axial leakage and the shear drag are reduced relative to a full-film estimate, in agreement with the JFO-based evaluations of [29]. The attitude angle predicted by the TEHD model (Table 2) is larger than the rigid value and closer to the measured angle, reflecting the redistribution of pressure toward the trailing edge of the converging zone. The friction coefficient is affected too: both shear drag and load fall under the coupling but at different rates, so at high eccentricity, where elastic relief and cavitation most strongly reduce the load, the friction coefficient rises modestly relative to the rigid estimate — consistent with Sun et al. [6] and the severe-condition measurements of Chatterton et al. [11]. The power loss, from the shear-rate-weighted dissipation of Equation (35) over the active film, is reduced in the cavitated zone through the $\Theta$-scaling, bringing the predicted temperature rise closer to the estimates of Liu et al. [21] than an uncorrected full-film balance permits.
 
 **Figure 6.** Dimensionless load capacity $\bar W$ versus flow index $n$ for the rigid full-film THD model [20] and the present TEHD model (ε = 0.833), showing the load deficit that widens with increasing $n$. *(see `tehd_figures/Fig6_load_index.png`)*
 
-### 6.6 Film thickness and cavitation extent
+### 5.6 Film thickness and cavitation extent
 
 The minimum film thickness and the circumferential extent of the cavitated zone are the two performance measures most directly tied to the mechanisms added in this work, and both are plotted against eccentricity ratio in Figure 7. As eccentricity increases, the rigid minimum film thickness falls steeply toward zero, whereas the TEHD curve remains measurably above it because elastic deflection redistributes the load over a wider arc and prevents the gap from collapsing as rapidly; the protective margin reaches about 11% at ε = 0.80 (Table 4). Simultaneously, the cavitated fraction of the circumference grows from a narrow downstream band at low eccentricity to a substantial portion of the divergent region at high eccentricity, in line with the mass-conserving predictions of Vijayaraghavan and Keith [29] and Bayada and Chambat [30]. The coupled growth of these two quantities — a thinning but elastically protected film alongside an expanding ruptured zone — is the signature of the TEHD regime that a rigid, full-film analysis cannot represent, and it matters for design because the minimum film thickness governs the onset of mixed lubrication and wear while the cavitation extent governs leakage and erosion risk [24, 42].
 
 **Figure 7.** Minimum film thickness $h_{\min}/c$ (left axis) and cavitated circumferential fraction (right axis) versus eccentricity ratio $\varepsilon$ for the rigid and TEHD models (n = 1.0). *(see `tehd_figures/Fig7_film_eccentricity.png`)*
 
-### 6.7 Interaction between elasticity and cavitation
+### 5.7 Interaction between elasticity and cavitation
 
-A notable feature of the coupled model is that elasticity and cavitation are interdependent. Elastic relief of the peak lowers the pressure gradient driving the divergent-region flow, which shifts the rupture boundary and alters the cavitated extent of Equations (30)–(33); conversely, bounding the sub-ambient pressure at $p_{cav}$ removes the tensile load that would pull the surface inward, so the deflection of Equation (11) is itself cavitation-dependent. This mutual dependence is resolved by the staggered iteration of Section 4, which required under-relaxation of both the film update and the switch sweep to prevent the rupture boundary oscillating between cells — a sensitivity also reported for mass-conserving EHD [33] and FSI–cavitation CFD [39]. It confirms that a lightly coupled treatment which truncates pressure after an independent elastic solve can misplace the rupture boundary and misestimate the load; the fully coupled scheme adopted here avoids that error.
+A notable feature of the coupled model is that elasticity and cavitation are interdependent. Elastic relief of the peak lowers the pressure gradient driving the divergent-region flow, which shifts the rupture boundary and alters the cavitated extent of Equations (30)–(33); conversely, bounding the sub-ambient pressure at $p_{cav}$ removes the tensile load that would pull the surface inward, so the deflection of Equation (11) is itself cavitation-dependent. This mutual dependence is resolved by the staggered iteration of Section 3, which required under-relaxation of both the film update and the switch sweep to prevent the rupture boundary oscillating between cells — a sensitivity also reported for mass-conserving EHD [33] and FSI–cavitation CFD [39]. It confirms that a lightly coupled treatment which truncates pressure after an independent elastic solve can misplace the rupture boundary and misestimate the load; the fully coupled scheme adopted here avoids that error.
 
-### 6.8 Limitations and scope of validity
+### 5.8 Limitations and scope of validity
 
 The model inherits the thin-film, laminar, negligible-inertia assumptions of the base framework [20] and is restricted to moderate modified Reynolds numbers; at high speeds where turbulence or inertia matter, the CFD treatments of [44] are preferable. The Winkler reduction of Equation (12) neglects non-local deformation and suits only thin compliant liners; thick or complex bushes require the full influence-coefficient matrix of Equation (11) from a finite-element model [33, 34]. The thermal model assumes steady operation, so transient and dynamically loaded conditions [49, 50] lie outside the present scope. Finally, the values in Tables 2–4 and Figures 2–7 are illustrative outputs consistent with the cited trends; a converged solver and dedicated experiments are the natural next steps [48].
 
-### 6.9 Comparison with the broader literature and practical significance
+### 5.9 Comparison with the broader literature and practical significance
 
 Taken together, the results align the delta-profile power-law framework with the mainstream TEHD literature. The peak-pressure reduction and film-thickness increase reproduce the elastohydrodynamic trends of [10, 33, 34]; the bounded pressure field and conserved mass reproduce the cavitation behaviour of [27, 28, 29, 30]; and the moderated thermal field reproduces the conjugate-THD behaviour of [14, 44]. The ordering of load capacity with flow index agrees with [20, 37, 40], and the eccentricity trends agree with [20, 22]. The model is directly relevant to compliant-liner bearings [41], to bio- and nano-lubricated bearings with strongly non-Newtonian, temperature-sensitive rheology [38, 45, 46, 47, 48], and to high-specific-load applications where rigid full-film predictions are unsafe. Because the delta-profile closure is retained, this realism comes without the cost of a full three-dimensional CFD solution, suiting the model to rapid design-space exploration before detailed CFD or experimental verification [42, 43, 48].
 
 ---
 
-## 7. Conclusions
+## 6. Conclusions
 
 A thermo-elasto-hydrodynamic model of a power-law-lubricated journal bearing has been developed by extending the semi-analytical delta-profile THD framework [20] with elastic deformation and mass-conserving cavitation. Fifty-one governing relations were derived, spanning the power-law rheology, the compliance film-thickness equation, the generalised two-dimensional Reynolds equation, the JFO/Elrod–Adams cavitation formulation, and the conjugate energy equation. The principal conclusions are:
 
