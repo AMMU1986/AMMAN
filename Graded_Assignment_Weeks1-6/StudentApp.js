@@ -1,260 +1,206 @@
-/* =====================================================================
-   Graded Assignment (Weeks 1-6) - Question 2
-   JavaScript validation, Student class, and cookie handling
-   Name: AMMAN JAKHAR | Student ID (UID): 2025eb01187
-   =====================================================================
-   Contents:
-     1. Field validation functions (fire on the "onfocusout" event)
-     2. Student class used to build an object from the form fields
-     3. Cookie store (on submit) and cookie retrieve (on button click)
-   ===================================================================== */
+/* ===========================================================================
+   Web Development :: Graded Assignment (Weeks 1-6)  -  Question 2
+   Field checks (onfocusout), an Applicant class, and cookie save/load.
+   AMMAN JAKHAR  |  UID 2025eb01187
 
+   Design notes:
+     - Each checker returns true/false and writes a message beneath its field.
+     - Name is tested character by character (letters + spaces only).
+     - DOB is split on "/" and validated piece by piece, then age is derived.
+     - Cookies use the max-age attribute and are read with Array.find().
+   =========================================================================== */
 
-/* =====================================================================
-   1. VALIDATION FUNCTIONS
-   Each function returns true/false and shows an inline error message.
-   ===================================================================== */
+"use strict";
 
-/* ---- Name: only alphabets and spaces, must not be blank ---- */
-function validateName() {
-    const field = document.getElementById("name");
-    const error = document.getElementById("nameError");
-    const value = field.value.trim();
+/* tiny helpers ------------------------------------------------------------- */
+const el = (id) => document.getElementById(id);
 
-    // Regular expression: one or more letters/spaces only
-    const namePattern = /^[A-Za-z ]+$/;
-
-    if (value === "") {
-        error.textContent = "Name cannot be blank.";
-        return false;
-    }
-    if (!namePattern.test(value)) {
-        error.textContent = "Name must contain only alphabets and spaces.";
-        return false;
-    }
-
-    error.textContent = "";
-    return true;
+// write (or clear) the red note under a field; returns true when there is no error
+function note(field, text) {
+  el(field + "Error").textContent = text || "";
+  return !text;
 }
 
-/* ---- Date of Birth: must be in dd/mm/yyyy format, not blank ---- */
-function validateDob() {
-    const field = document.getElementById("dob");
-    const error = document.getElementById("dobError");
-    const value = field.value.trim();
-
-    // dd/mm/yyyy : 2 digits / 2 digits / 4 digits
-    const dobPattern = /^(\d{2})\/(\d{2})\/(\d{4})$/;
-
-    if (value === "") {
-        error.textContent = "Date of birth cannot be blank.";
-        document.getElementById("age").value = "";
-        return false;
+/* 1. NAME :: letters and spaces only, not empty --------------------------- */
+function checkName() {
+  const value = el("name").value.trim();
+  if (value.length === 0) {
+    return note("name", "Please enter your name.");
+  }
+  for (const ch of value) {
+    const letter = (ch >= "a" && ch <= "z") || (ch >= "A" && ch <= "Z");
+    if (!letter && ch !== " ") {
+      return note("name", "Name may contain letters and spaces only.");
     }
-
-    const match = value.match(dobPattern);
-    if (!match) {
-        error.textContent = "Date of birth must be in dd/mm/yyyy format.";
-        document.getElementById("age").value = "";
-        return false;
-    }
-
-    // Basic range check on day and month
-    const day = parseInt(match[1], 10);
-    const month = parseInt(match[2], 10);
-    if (day < 1 || day > 31 || month < 1 || month > 12) {
-        error.textContent = "Please enter a valid day and month.";
-        document.getElementById("age").value = "";
-        return false;
-    }
-
-    error.textContent = "";
-    // Once the date is valid, calculate the age automatically
-    calculateAge(match);
-    return true;
+  }
+  return note("name", "");
 }
 
-/* ---- Age: calculated from the date of birth (read-only field) ---- */
-function calculateAge(match) {
-    const day = parseInt(match[1], 10);
-    const month = parseInt(match[2], 10);
-    const year = parseInt(match[3], 10);
+/* 2. DOB :: strict dd/mm/yyyy, not empty; also fills the age box ----------- */
+function checkDob() {
+  const value = el("dob").value.trim();
+  el("age").value = "";                       // reset age until DOB is valid
 
-    const birthDate = new Date(year, month - 1, day);
-    const today = new Date();
+  if (value.length === 0) {
+    return note("dob", "Please enter your date of birth.");
+  }
 
-    let age = today.getFullYear() - birthDate.getFullYear();
+  const parts = value.split("/");
+  const shaped =
+    parts.length === 3 &&
+    parts[0].length === 2 &&
+    parts[1].length === 2 &&
+    parts[2].length === 4 &&
+    parts.every((p) => /^[0-9]+$/.test(p));
 
-    // Adjust if the birthday has not occurred yet this year
-    const monthDiff = today.getMonth() - birthDate.getMonth();
-    if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
-    }
+  if (!shaped) {
+    return note("dob", "Use the dd/mm/yyyy format, e.g. 29/08/1986.");
+  }
 
-    document.getElementById("age").value = age >= 0 ? age : "";
+  const day = Number(parts[0]);
+  const month = Number(parts[1]);
+  const year = Number(parts[2]);
+  if (day < 1 || day > 31 || month < 1 || month > 12) {
+    return note("dob", "That is not a valid calendar date.");
+  }
+
+  el("age").value = ageFrom(day, month, year);
+  return note("dob", "");
 }
 
-/* ---- Mobile: digits [0-9] only, not blank, cannot start with 0 ---- */
-function validateMobile() {
-    const field = document.getElementById("mobile");
-    const error = document.getElementById("mobileError");
-    const value = field.value.trim();
+/* AGE :: whole years between the DOB and today ---------------------------- */
+function ageFrom(day, month, year) {
+  const today = new Date();
+  let years = today.getFullYear() - year;
 
-    // First digit 1-9, followed by any digits
-    const mobilePattern = /^[1-9][0-9]*$/;
-
-    if (value === "" || !mobilePattern.test(value)) {
-        error.textContent =
-            "Mobile must be digits only, not blank, and cannot start with 0.";
-        field.value = "";          // Rule: clear the field on error
-        return false;
-    }
-
-    error.textContent = "";
-    return true;
+  // step back a year if this year's birthday has not arrived yet
+  const todayMonth = today.getMonth() + 1;
+  const beforeBirthday =
+    todayMonth < month || (todayMonth === month && today.getDate() < day);
+  if (beforeBirthday) {
+    years -= 1;
+  }
+  return years >= 0 ? years : "";
 }
 
-/* ---- Email: must contain "@", not begin with "@", end with .com/.in ---- */
-function validateEmail() {
-    const field = document.getElementById("email");
-    const error = document.getElementById("emailError");
-    const value = field.value.trim();
+/* 3. MOBILE :: digits only, not empty, no leading zero -------------------- */
+function checkMobile() {
+  const box = el("mobile");
+  const value = box.value.trim();
 
-    const hasAt = value.includes("@");
-    const startsWithAt = value.startsWith("@");
-    const endsCorrectly = value.endsWith(".com") || value.endsWith(".in");
-
-    if (!hasAt || startsWithAt || !endsCorrectly) {
-        error.textContent =
-            'Email must contain "@", not start with "@", and end with ".com" or ".in".';
-        field.value = "";          // Rule: clear the field on error
-        return false;
-    }
-
-    error.textContent = "";
-    return true;
+  const allDigits = value.length > 0 && [...value].every((c) => c >= "0" && c <= "9");
+  if (!allDigits || value.charAt(0) === "0") {
+    box.value = "";                           // rule: wipe the bad input
+    return note("mobile", "Enter digits only; not blank and not starting with 0.");
+  }
+  return note("mobile", "");
 }
 
+/* 4. EMAIL :: has "@" (not first char) and ends in .com or .in ------------ */
+function checkEmail() {
+  const box = el("email");
+  const value = box.value.trim();
 
-/* =====================================================================
-   2. STUDENT CLASS
-   Used to bundle all form fields into a single object.
-   ===================================================================== */
-class Student {
-    constructor(name, dob, age, mobile, email) {
-        this.name = name;
-        this.dob = dob;
-        this.age = age;
-        this.mobile = mobile;
-        this.email = email;
-    }
-
-    // Convert the student object into a string for cookie storage
-    toCookieString() {
-        return JSON.stringify(this);
-    }
+  const atPos = value.indexOf("@");
+  const goodTail = value.endsWith(".com") || value.endsWith(".in");
+  if (atPos < 1 || !goodTail) {
+    box.value = "";                           // rule: wipe the bad input
+    return note("email", 'Needs "@" (not at the start) and must end with .com or .in.');
+  }
+  return note("email", "");
 }
 
+/* -------------------------------------------------------------------------
+   Applicant :: one object that carries the whole form
+   ------------------------------------------------------------------------- */
+class Applicant {
+  constructor(name, dob, age, mobile, email) {
+    this.name = name;
+    this.dob = dob;
+    this.age = age;
+    this.mobile = mobile;
+    this.email = email;
+  }
 
-/* =====================================================================
-   3. COOKIE HELPERS
-   ===================================================================== */
-
-/* Store a cookie with a given name, value and lifetime (in days) */
-function setCookie(cookieName, value, days) {
-    const date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    const expires = "expires=" + date.toUTCString();
-    // encodeURIComponent keeps the JSON safe inside the cookie
-    document.cookie =
-        cookieName + "=" + encodeURIComponent(value) + ";" + expires + ";path=/";
+  // single-line summary, handy for the console
+  summary() {
+    return [this.name, this.dob, "age " + this.age, this.mobile, this.email].join(" | ");
+  }
 }
 
-/* Read a cookie by name; returns the decoded value or null */
-function getCookie(cookieName) {
-    const target = cookieName + "=";
-    const parts = document.cookie.split(";");
-    for (let part of parts) {
-        part = part.trim();
-        if (part.indexOf(target) === 0) {
-            return decodeURIComponent(part.substring(target.length));
-        }
-    }
-    return null;
+/* -------------------------------------------------------------------------
+   Cookie save / load  (max-age style; read via find())
+   ------------------------------------------------------------------------- */
+function saveCookie(key, value, days) {
+  const seconds = days * 24 * 60 * 60;
+  document.cookie =
+    key + "=" + encodeURIComponent(value) + "; max-age=" + seconds + "; path=/";
 }
 
+function loadCookie(key) {
+  const prefix = key + "=";
+  const jar = document.cookie ? document.cookie.split("; ") : [];
+  const row = jar.find((item) => item.indexOf(prefix) === 0);
+  return row ? decodeURIComponent(row.slice(prefix.length)) : null;
+}
 
-/* =====================================================================
-   FORM SUBMISSION
-   Validate everything, build the Student object, store it in a cookie,
-   log it to the console, and move to the retrieve page.
-   ===================================================================== */
-function submitForm(event) {
-    event.preventDefault();   // stop the page from reloading
+/* -------------------------------------------------------------------------
+   Submit :: validate everything, build + log the object, store the cookie
+   ------------------------------------------------------------------------- */
+function onSubmit(event) {
+  event.preventDefault();
 
-    // Run every validation; all must pass
-    const valid =
-        validateName() &
-        validateDob() &
-        validateMobile() &
-        validateEmail();
-
-    if (!valid) {
-        alert("Please correct the highlighted fields before submitting.");
-        return false;
-    }
-
-    // Build the object from the form using the Student class
-    const student = new Student(
-        document.getElementById("name").value.trim(),
-        document.getElementById("dob").value.trim(),
-        document.getElementById("age").value.trim(),
-        document.getElementById("mobile").value.trim(),
-        document.getElementById("email").value.trim()
-    );
-
-    // Requirement: display the object details in the console log
-    console.log("Student object created:", student);
-
-    // Store the object (as JSON) inside a cookie for 7 days.
-    // The mobile number is also stored separately as the lookup key.
-    setCookie("studentData", student.toCookieString(), 7);
-    setCookie("studentMobile", student.mobile, 7);
-
-    // "Navigate" to the next page by swapping the visible sections
-    document.getElementById("formPage").classList.add("hidden");
-    document.getElementById("retrievePage").classList.remove("hidden");
-
+  // run all four checks (keep them all so every message shows)
+  const passed = [checkName(), checkDob(), checkMobile(), checkEmail()];
+  if (passed.some((ok) => ok === false)) {
+    alert("Please fix the fields marked in red, then submit again.");
     return false;
+  }
+
+  const applicant = new Applicant(
+    el("name").value.trim(),
+    el("dob").value.trim(),
+    el("age").value.trim(),
+    el("mobile").value.trim(),
+    el("email").value.trim()
+  );
+
+  // requirement: show the object in the console
+  console.log("Applicant created ->", applicant);
+  console.log("Applicant summary ->", applicant.summary());
+
+  // keep the record in a cookie for a week
+  saveCookie("applicant", JSON.stringify(applicant), 7);
+
+  // move to the retrieve panel
+  el("formPage").style.display = "none";
+  el("retrievePage").style.display = "block";
+  return false;
 }
 
+/* -------------------------------------------------------------------------
+   Retrieve :: match the typed mobile against the cookie and alert the data
+   ------------------------------------------------------------------------- */
+function onRetrieve() {
+  const typed = el("retrieveMobile").value.trim();
+  const stored = loadCookie("applicant");
 
-/* =====================================================================
-   RETRIEVE DETAILS FROM COOKIE
-   The user types a mobile number; if it matches the stored one,
-   the saved student details are shown in an alert.
-   ===================================================================== */
-function retrieveCookie() {
-    const enteredMobile = document.getElementById("retrieveMobile").value.trim();
-    const storedData = getCookie("studentData");
+  if (!stored) {
+    alert("No application is stored in the cookie yet.");
+    return;
+  }
 
-    if (!storedData) {
-        alert("No student record was found in the cookie.");
-        return;
-    }
-
-    const student = JSON.parse(storedData);
-
-    if (enteredMobile === student.mobile) {
-        const message =
-            "Student Details Retrieved from Cookie:\n\n" +
-            "Name   : " + student.name + "\n" +
-            "DOB    : " + student.dob + "\n" +
-            "Age    : " + student.age + "\n" +
-            "Mobile : " + student.mobile + "\n" +
-            "Email  : " + student.email;
-        alert(message);
-    } else {
-        alert("No matching record found for mobile number: " + enteredMobile);
-    }
+  const data = JSON.parse(stored);
+  if (typed === data.mobile) {
+    alert(
+      "Details fetched from the cookie\n\n" +
+      "Name   : " + data.name + "\n" +
+      "DOB    : " + data.dob + "\n" +
+      "Age    : " + data.age + "\n" +
+      "Mobile : " + data.mobile + "\n" +
+      "Email  : " + data.email
+    );
+  } else {
+    alert("No stored record matches the mobile number " + typed + ".");
+  }
 }

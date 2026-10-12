@@ -1,86 +1,66 @@
 <!DOCTYPE html>
 <!--
-=====================================================================
-  Graded Assignment (Weeks 1-6) - Question 1
-  Student Identity Card
-  Name: AMMAN JAKHAR
-  Student ID (UID): 2025eb01187
-=====================================================================
+  Web Development :: Graded Assignment (Weeks 1-6)
+  Question 1  -  Student Identity Card
+  Prepared by : AMMAN JAKHAR
+  UID         : 2025eb01187
+  Note        : semantic markup (header / figure / dl / footer); styled from
+                an external sheet. Title holds the UID for the submission snap.
 -->
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <!-- Make the card responsive on mobile + desktop -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- The page title is set to the Student ID so it is visible in screenshots -->
-    <title>2025eb01187</title>
-
-    <!-- Link the external CSS file to this HTML document -->
-    <link rel="stylesheet" href="IDCard_styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2025eb01187</title>
+  <link rel="stylesheet" href="IDCard_styles.css" />
 </head>
 
 <body>
-    <!-- =============================================================
-         Main container that holds the whole identity card
-    ============================================================== -->
-    <div class="id-card">
+  <main class="badge">
 
-        <!-- Card header with the institution name -->
-        <header class="card-header">
-            <h1>BITS PILANI</h1>
-            <p class="sub-title">Student Identity Card</p>
-        </header>
+    <!-- top strip: issuing body -->
+    <header class="badge__top">
+      <p class="badge__org">BITS Pilani</p>
+      <p class="badge__kind">Student Identity Card</p>
+    </header>
 
-        <!-- Card body: photograph on the left, details on the right -->
-        <div class="card-body">
+    <!-- middle: photo on one side, facts on the other -->
+    <section class="badge__main">
 
-            <!-- Photograph section (placeholder box for the photo) -->
-            <div class="photo-section">
-                <!-- Self-contained placeholder standing in for the student photo -->
-                <div class="photo" role="img" aria-label="Student Photograph">
-                    <span>PHOTO</span>
-                </div>
-            </div>
+      <figure class="badge__photo">
+        <div class="badge__photo-box">Photo</div>
+        <figcaption>affix recent photo</figcaption>
+      </figure>
 
-            <!-- Details section with all student information -->
-            <div class="details-section">
-                <ul class="details-list">
-                    <li>
-                        <span class="label">Name</span>
-                        <span class="value">AMMAN JAKHAR</span>
-                    </li>
-                    <li>
-                        <span class="label">Date of Birth</span>
-                        <span class="value">29/08/1986</span>
-                    </li>
-                    <li>
-                        <span class="label">Department</span>
-                        <span class="value">M.Tech (Online) - Computer Science</span>
-                    </li>
-                    <li>
-                        <span class="label">Mobile</span>
-                        <span class="value">+91 98765 43210</span>
-                    </li>
-                    <li>
-                        <span class="label">Email ID</span>
-                        <span class="value">2025eb01187@online.bits-pilani.ac.in</span>
-                    </li>
-                    <li>
-                        <span class="label">Address</span>
-                        <span class="value">BITS Pilani, Vidya Vihar, Pilani, Rajasthan - 333031</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
+      <!-- a definition list keeps each label paired with its value -->
+      <dl class="badge__facts">
+        <dt>Name</dt>
+        <dd>AMMAN JAKHAR</dd>
 
-        <!-- Card footer with a signature line -->
-        <footer class="card-footer">
-            <span class="footer-id">UID: 2025eb01187</span>
-            <span class="signature">Authorised Signature</span>
-        </footer>
-    </div>
+        <dt>Date of Birth</dt>
+        <dd>29/08/1986</dd>
+
+        <dt>Department</dt>
+        <dd>M.Tech (Online) &ndash; Computer Science</dd>
+
+        <dt>Mobile</dt>
+        <dd>+91 98765 43210</dd>
+
+        <dt>Email</dt>
+        <dd>2025eb01187@online.bits-pilani.ac.in</dd>
+
+        <dt>Address</dt>
+        <dd>BITS Pilani, Vidya Vihar, Pilani, Rajasthan &ndash; 333031</dd>
+      </dl>
+    </section>
+
+    <!-- bottom strip: identifiers -->
+    <footer class="badge__bottom">
+      <span class="badge__uid">UID&nbsp;2025eb01187</span>
+      <span class="badge__sign">Registrar</span>
+    </footer>
+  </main>
 </body>
 
 </html>

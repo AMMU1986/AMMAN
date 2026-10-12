@@ -1,159 +1,172 @@
 <!DOCTYPE html>
 <!--
-=====================================================================
-  Graded Assignment (Weeks 1-6) - Question 2
-  Student ID Card Application Form
-  Name: AMMAN JAKHAR
-  Student ID (UID): 2025eb01187
-=====================================================================
+  Web Development :: Graded Assignment (Weeks 1-6)
+  Question 2  -  Student ID Card Application Form
+  Prepared by : AMMAN JAKHAR
+  UID         : 2025eb01187
+  Each input runs its checker on the onfocusout event; submit builds an
+  Applicant object, logs it, and parks it in a cookie. A second panel then
+  reads that cookie back by mobile number.
 -->
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2025eb01187</title>
 
-    <!-- Page title set to the Student ID so it is visible in screenshots -->
-    <title>2025eb01187</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 36px 14px;
+      font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+      color: #13343b;
+      background: #eef3f2;
+      display: flex;
+      justify-content: center;
+    }
 
-    <!-- Minimal inline styling just to make the form readable -->
-    <style>
-        body {
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: #eef2f7;
-            margin: 0;
-            padding: 30px 15px;
-            display: flex;
-            justify-content: center;
-        }
+    .panel {
+      width: 430px;
+      max-width: 100%;
+      padding: 26px 28px 30px;
+      background: #fff;
+      border-top: 6px solid #e0a800;
+      border-radius: 6px;
+      box-shadow: 0 8px 22px rgba(19, 52, 59, 0.18);
+    }
 
-        .card {
-            background: #fff;
-            width: 420px;
-            max-width: 100%;
-            padding: 25px 30px;
-            border: 2px solid #1a3c6e;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        }
+    .panel__title {
+      margin: 0 0 4px;
+      font-size: 21px;
+    }
 
-        h2 {
-            text-align: center;
-            color: #1a3c6e;
-            margin-top: 0;
-        }
+    .panel__hint {
+      margin: 0 0 10px;
+      font-size: 12px;
+      color: #5c7177;
+    }
 
-        label {
-            display: block;
-            margin-top: 14px;
-            font-weight: 600;
-            font-size: 14px;
-            color: #333;
-        }
+    .field {
+      border: 0;
+      margin: 16px 0 0;
+      padding: 0;
+    }
 
-        input {
-            width: 100%;
-            padding: 9px 10px;
-            margin-top: 5px;
-            border: 1px solid #bbb;
-            border-radius: 5px;
-            font-size: 14px;
-            box-sizing: border-box;
-        }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
 
-        input[readonly] {
-            background: #f0f0f0;
-        }
+    input {
+      width: 100%;
+      padding: 10px 11px;
+      font-size: 14px;
+      color: #13343b;
+      background: #fbfdfc;
+      border: 1px solid #c3cdcb;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
 
-        .error {
-            color: #c0392b;
-            font-size: 12px;
-            min-height: 15px;
-            display: block;
-            margin-top: 3px;
-        }
+    input:focus {
+      outline: 2px solid #e0a800;
+      border-color: #e0a800;
+    }
 
-        button {
-            width: 100%;
-            margin-top: 20px;
-            padding: 11px;
-            background: #1a3c6e;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-        }
+    input[readonly] {
+      background: #eef1f0;
+      color: #566;
+    }
 
-        button:hover {
-            background: #16325c;
-        }
+    .msg {
+      display: block;
+      min-height: 16px;
+      margin-top: 4px;
+      font-size: 12px;
+      color: #b3261e;
+    }
 
-        .hidden {
-            display: none;
-        }
-    </style>
+    .go {
+      width: 100%;
+      margin-top: 22px;
+      padding: 12px;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: #fff;
+      background: #13343b;
+      border: 0;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .go:hover {
+      background: #0c252b;
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- =============================================================
-         PAGE 1 : Student application form
-    ============================================================== -->
-    <div class="card" id="formPage">
-        <h2>Student ID Card Application</h2>
+  <!-- ===== Panel 1 : the application form ===== -->
+  <section id="formPage" class="panel">
+    <h1 class="panel__title">Student ID Card Application</h1>
+    <p class="panel__hint">Fields are checked as you leave each box.</p>
 
-        <form id="studentForm" onsubmit="return submitForm(event)">
+    <form id="appForm" onsubmit="return onSubmit(event)" novalidate>
 
-            <!-- Name field -->
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name"
-                   onfocusout="validateName()" placeholder="Enter full name" />
-            <span class="error" id="nameError"></span>
+      <fieldset class="field">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" autocomplete="off" onfocusout="checkName()" />
+        <small id="nameError" class="msg"></small>
+      </fieldset>
 
-            <!-- Date of birth field -->
-            <label for="dob">Date of Birth (dd/mm/yyyy)</label>
-            <input type="text" id="dob" name="dob"
-                   onfocusout="validateDob()" placeholder="dd/mm/yyyy" />
-            <span class="error" id="dobError"></span>
+      <fieldset class="field">
+        <label for="dob">Date of Birth <span style="font-weight:400">(dd/mm/yyyy)</span></label>
+        <input id="dob" type="text" autocomplete="off" placeholder="dd/mm/yyyy" onfocusout="checkDob()" />
+        <small id="dobError" class="msg"></small>
+      </fieldset>
 
-            <!-- Age field (read-only, auto-calculated) -->
-            <label for="age">Age</label>
-            <input type="text" id="age" name="age" readonly placeholder="Auto-calculated" />
-            <span class="error" id="ageError"></span>
+      <fieldset class="field">
+        <label for="age">Age</label>
+        <input id="age" type="text" readonly placeholder="filled from DOB" />
+        <small id="ageError" class="msg"></small>
+      </fieldset>
 
-            <!-- Mobile number field -->
-            <label for="mobile">Mobile Number</label>
-            <input type="text" id="mobile" name="mobile"
-                   onfocusout="validateMobile()" placeholder="Enter mobile number" />
-            <span class="error" id="mobileError"></span>
+      <fieldset class="field">
+        <label for="mobile">Mobile Number</label>
+        <input id="mobile" type="text" autocomplete="off" onfocusout="checkMobile()" />
+        <small id="mobileError" class="msg"></small>
+      </fieldset>
 
-            <!-- Email ID field -->
-            <label for="email">Email ID</label>
-            <input type="text" id="email" name="email"
-                   onfocusout="validateEmail()" placeholder="name@example.com" />
-            <span class="error" id="emailError"></span>
+      <fieldset class="field">
+        <label for="email">Email ID</label>
+        <input id="email" type="text" autocomplete="off" onfocusout="checkEmail()" />
+        <small id="emailError" class="msg"></small>
+      </fieldset>
 
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+      <button type="submit" class="go">Submit Application</button>
+    </form>
+  </section>
 
-    <!-- =============================================================
-         PAGE 2 : Retrieve details from the cookie
-         (shown only after a successful submission)
-    ============================================================== -->
-    <div class="card hidden" id="retrievePage">
-        <h2>Retrieve Student Details</h2>
+  <!-- ===== Panel 2 : read the saved cookie back ===== -->
+  <section id="retrievePage" class="panel" style="display:none">
+    <h1 class="panel__title">Retrieve Saved Details</h1>
+    <p class="panel__hint">Type the mobile number you submitted.</p>
 
-        <label for="retrieveMobile">Mobile Number</label>
-        <input type="text" id="retrieveMobile" placeholder="Enter mobile number" />
+    <fieldset class="field">
+      <label for="retrieveMobile">Mobile Number</label>
+      <input id="retrieveMobile" type="text" autocomplete="off" />
+    </fieldset>
 
-        <button type="button" onclick="retrieveCookie()">Retrieve Cookie</button>
-    </div>
+    <button type="button" class="go" onclick="onRetrieve()">Retrieve Cookie</button>
+  </section>
 
-    <!-- Link the external JavaScript file -->
-    <script src="StudentApp.js"></script>
+  <script src="StudentApp.js"></script>
 </body>
 
 </html>

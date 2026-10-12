@@ -1,172 +1,176 @@
-/* =====================================================================
-   Graded Assignment (Weeks 1-6) - Question 1
+/* ---------------------------------------------------------------------------
+   Web Development :: Graded Assignment (Weeks 1-6)  -  Question 1
    Stylesheet for the Student Identity Card
-   Name: AMMAN JAKHAR | Student ID (UID): 2025eb01187
-   =====================================================================
-   This file demonstrates:
-     - Element selectors   (body, h1, ul, li, img ...)
-     - Class selectors     (.id-card, .label, .value ...)
-     - ID-style targeting   via descendant/class combinations
-     - Font styling        (family, size, weight)
-     - Borders             to separate card sections
-     - Responsive layout   using a media query
-   ===================================================================== */
+   AMMAN JAKHAR  |  UID 2025eb01187
 
-/* ---------- Element selector: page background & base font ---------- */
+   Selector mix used below:
+     * type selectors ...... body, dt, dd, figcaption
+     * class selectors ..... .badge, .badge__facts, .badge__top ...
+     * pseudo-class ........ dd:last-of-type
+     * descendant combos ... .badge__facts dt
+   Layout uses CSS Grid for the label/value pairs; a palette of charcoal + amber.
+--------------------------------------------------------------------------- */
+
+:root {
+  --ink: #13343b;
+  --ink-soft: #4a6168;
+  --amber: #e0a800;
+  --line: #d7dedc;
+  --paper: #ffffff;
+}
+
+/* page canvas */
 body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e0eafc, #cfdef3);
-    margin: 0;
-    padding: 40px 15px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
+  margin: 0;
+  min-height: 100vh;
+  padding: 46px 16px;
+  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at top, #f2f6f5, #d8e4e2);
+  display: grid;
+  place-items: start center;
 }
 
-/* ---------- Class selector: the main ID card container ---------- */
-.id-card {
-    width: 420px;
-    max-width: 100%;
-    background: #ffffff;
-    border: 3px solid #1a3c6e;      /* strong outer border for the whole card */
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
-    overflow: hidden;
+/* the card itself */
+.badge {
+  width: 430px;
+  max-width: 100%;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 14px 30px rgba(19, 52, 59, 0.28);
+  overflow: hidden;
 }
 
-/* ---------- Card header ---------- */
-.card-header {
-    background: #1a3c6e;
-    color: #ffffff;
+/* ---- top strip ---- */
+.badge__top {
+  padding: 18px 20px 14px;
+  text-align: center;
+  color: var(--paper);
+  background: var(--ink);
+  border-bottom: 5px solid var(--amber);
+}
+
+.badge__org {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.badge__kind {
+  margin: 4px 0 0;
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+/* ---- middle ---- */
+.badge__main {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 18px;
+  padding: 22px 20px;
+}
+
+/* photo column */
+.badge__photo {
+  margin: 0;
+  text-align: center;
+}
+
+.badge__photo-box {
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 132px;
+  color: var(--ink-soft);
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: repeating-linear-gradient(45deg, #f3f6f5, #f3f6f5 8px, #eaf0ef 8px, #eaf0ef 16px);
+  border: 2px solid var(--ink);
+  border-radius: 6px;
+}
+
+.badge__photo figcaption {
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+/* facts column: two-column grid, label then value */
+.badge__facts {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  column-gap: 12px;
+  row-gap: 0;
+  margin: 0;
+  align-content: start;
+}
+
+.badge__facts dt {
+  padding: 7px 0 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--amber);
+  grid-column: 1 / -1;      /* label sits on its own line */
+}
+
+.badge__facts dd {
+  margin: 0 0 7px;
+  padding-bottom: 7px;
+  font-size: 14px;
+  color: var(--ink);
+  border-bottom: 1px dotted var(--line);
+  grid-column: 1 / -1;      /* value spans full width under the label */
+  word-break: break-word;
+}
+
+.badge__facts dd:last-of-type {
+  border-bottom: none;
+}
+
+/* ---- bottom strip ---- */
+.badge__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 11px 20px;
+  font-size: 12px;
+  background: #f4f7f6;
+  border-top: 2px solid var(--ink);
+}
+
+.badge__uid {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.badge__sign {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* ---- small screens: stack photo above the facts ---- */
+@media (max-width: 460px) {
+  .badge__main {
+    grid-template-columns: 1fr;
+    justify-items: center;
     text-align: center;
-    padding: 16px 10px;
-    border-bottom: 4px solid #f4b400;   /* accent border under the header */
-}
+  }
 
-/* Element selector for the heading inside the header */
-.card-header h1 {
-    margin: 0;
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 1px;
-}
+  .badge__facts {
+    justify-items: start;
+    text-align: left;
+    width: 100%;
+  }
 
-.card-header .sub-title {
-    margin: 4px 0 0;
-    font-size: 13px;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #f4b400;
-}
-
-/* ---------- Card body: photo + details side by side ---------- */
-.card-body {
-    display: flex;
-    gap: 16px;
-    padding: 20px;
-}
-
-/* ---------- Photograph placeholder ---------- */
-.photo-section {
-    flex: 0 0 auto;
-}
-
-.photo {
-    width: 110px;
-    height: 130px;
-    border: 2px dashed #1a3c6e;     /* dashed border to show it is a placeholder */
-    border-radius: 6px;
-    background: #f0f4fa;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #1a3c6e;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
-
-/* ---------- Details list ---------- */
-.details-section {
-    flex: 1 1 auto;
-}
-
-/* Element selector: remove default list styling */
-.details-list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-/* Each detail row gets a thin separating border */
-.details-list li {
-    padding: 6px 0;
-    border-bottom: 1px solid #e3e3e3;   /* separates each piece of information */
-    font-size: 14px;
-    line-height: 1.4;
-}
-
-/* The last row should not have a bottom border */
-.details-list li:last-child {
-    border-bottom: none;
-}
-
-/* Class selector: field labels */
-.label {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: #888;
-}
-
-/* Class selector: field values */
-.value {
-    display: block;
-    font-size: 14px;
-    font-weight: 500;
-    color: #222;
-}
-
-/* ---------- Card footer ---------- */
-.card-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background: #f0f4fa;
-    border-top: 2px solid #1a3c6e;      /* border separating footer from body */
-    font-size: 12px;
-}
-
-.footer-id {
-    font-weight: 700;
-    color: #1a3c6e;
-}
-
-.signature {
-    font-style: italic;
-    color: #555;
-}
-
-/* =====================================================================
-   Responsive design: stack photo above details on small screens
-   ===================================================================== */
-@media (max-width: 480px) {
-    .card-body {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
-    .details-list li {
-        text-align: left;
-    }
-
-    .card-header h1 {
-        font-size: 18px;
-    }
+  .badge__org {
+    font-size: 20px;
+  }
 }
