@@ -1,0 +1,172 @@
+/* =====================================================================
+   Graded Assignment (Weeks 1-6) - Question 1
+   Stylesheet for the Student Identity Card
+   Student ID: STU2024001
+   =====================================================================
+   This file demonstrates:
+     - Element selectors   (body, h1, ul, li, img ...)
+     - Class selectors     (.id-card, .label, .value ...)
+     - ID-style targeting   via descendant/class combinations
+     - Font styling        (family, size, weight)
+     - Borders             to separate card sections
+     - Responsive layout   using a media query
+   ===================================================================== */
+
+/* ---------- Element selector: page background & base font ---------- */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0eafc, #cfdef3);
+    margin: 0;
+    padding: 40px 15px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+}
+
+/* ---------- Class selector: the main ID card container ---------- */
+.id-card {
+    width: 420px;
+    max-width: 100%;
+    background: #ffffff;
+    border: 3px solid #1a3c6e;      /* strong outer border for the whole card */
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+}
+
+/* ---------- Card header ---------- */
+.card-header {
+    background: #1a3c6e;
+    color: #ffffff;
+    text-align: center;
+    padding: 16px 10px;
+    border-bottom: 4px solid #f4b400;   /* accent border under the header */
+}
+
+/* Element selector for the heading inside the header */
+.card-header h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.card-header .sub-title {
+    margin: 4px 0 0;
+    font-size: 13px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #f4b400;
+}
+
+/* ---------- Card body: photo + details side by side ---------- */
+.card-body {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+}
+
+/* ---------- Photograph placeholder ---------- */
+.photo-section {
+    flex: 0 0 auto;
+}
+
+.photo {
+    width: 110px;
+    height: 130px;
+    border: 2px dashed #1a3c6e;     /* dashed border to show it is a placeholder */
+    border-radius: 6px;
+    background: #f0f4fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a3c6e;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* ---------- Details list ---------- */
+.details-section {
+    flex: 1 1 auto;
+}
+
+/* Element selector: remove default list styling */
+.details-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Each detail row gets a thin separating border */
+.details-list li {
+    padding: 6px 0;
+    border-bottom: 1px solid #e3e3e3;   /* separates each piece of information */
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+/* The last row should not have a bottom border */
+.details-list li:last-child {
+    border-bottom: none;
+}
+
+/* Class selector: field labels */
+.label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #888;
+}
+
+/* Class selector: field values */
+.value {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #222;
+}
+
+/* ---------- Card footer ---------- */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background: #f0f4fa;
+    border-top: 2px solid #1a3c6e;      /* border separating footer from body */
+    font-size: 12px;
+}
+
+.footer-id {
+    font-weight: 700;
+    color: #1a3c6e;
+}
+
+.signature {
+    font-style: italic;
+    color: #555;
+}
+
+/* =====================================================================
+   Responsive design: stack photo above details on small screens
+   ===================================================================== */
+@media (max-width: 480px) {
+    .card-body {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .details-list li {
+        text-align: left;
+    }
+
+    .card-header h1 {
+        font-size: 18px;
+    }
+}

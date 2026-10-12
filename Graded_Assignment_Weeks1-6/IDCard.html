@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--
+=====================================================================
+  Graded Assignment (Weeks 1-6) - Question 1
+  Student Identity Card
+  Student ID: STU2024001          <-- replace with your real Student ID
+=====================================================================
+-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- Make the card responsive on mobile + desktop -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- The page title is set to the Student ID so it is visible in screenshots -->
+    <title>STU2024001</title>
+
+    <!-- Link the external CSS file to this HTML document -->
+    <link rel="stylesheet" href="IDCard_styles.css" />
+</head>
+
+<body>
+    <!-- =============================================================
+         Main container that holds the whole identity card
+    ============================================================== -->
+    <div class="id-card">
+
+        <!-- Card header with the institution name -->
+        <header class="card-header">
+            <h1>GREENWOOD UNIVERSITY</h1>
+            <p class="sub-title">Student Identity Card</p>
+        </header>
+
+        <!-- Card body: photograph on the left, details on the right -->
+        <div class="card-body">
+
+            <!-- Photograph section (placeholder box for the photo) -->
+            <div class="photo-section">
+                <!-- Self-contained placeholder standing in for the student photo -->
+                <div class="photo" role="img" aria-label="Student Photograph">
+                    <span>PHOTO</span>
+                </div>
+            </div>
+
+            <!-- Details section with all student information -->
+            <div class="details-section">
+                <ul class="details-list">
+                    <li>
+                        <span class="label">Name</span>
+                        <span class="value">Ananya Sharma</span>
+                    </li>
+                    <li>
+                        <span class="label">Date of Birth</span>
+                        <span class="value">15/08/2003</span>
+                    </li>
+                    <li>
+                        <span class="label">Department</span>
+                        <span class="value">Computer Science &amp; Engineering</span>
+                    </li>
+                    <li>
+                        <span class="label">Mobile</span>
+                        <span class="value">+91 98765 43210</span>
+                    </li>
+                    <li>
+                        <span class="label">Email ID</span>
+                        <span class="value">ananya.sharma@greenwood.edu.in</span>
+                    </li>
+                    <li>
+                        <span class="label">Address</span>
+                        <span class="value">42, Lake View Road, Bengaluru, Karnataka - 560001</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Card footer with a signature line -->
+        <footer class="card-footer">
+            <span class="footer-id">ID: STU2024001</span>
+            <span class="signature">Authorised Signature</span>
+        </footer>
+    </div>
+</body>
+
+</html>
