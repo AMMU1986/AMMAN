@@ -1,21 +1,12 @@
-/* ===========================================================================
-   Web Development :: Graded Assignment (Weeks 1-6)  -  Question 2
-   Field checks (onfocusout), an Applicant class, and cookie save/load.
-   AMMAN JAKHAR  |  UID 2025eb01187
-
-   Design notes:
-     - Each checker returns true/false and writes a message beneath its field.
-     - Name is tested character by character (letters + spaces only).
-     - DOB is split on "/" and validated piece by piece, then age is derived.
-     - Cookies use the max-age attribute and are read with Array.find().
-   =========================================================================== */
+/* Q2 logic | AMMAN JAKHAR | UID 2025eb01187
+   Field checks run on onfocusout; submit builds an Applicant and stores it in
+   a cookie; the retrieve panel reads it back by mobile number. */
 
 "use strict";
 
-/* tiny helpers ------------------------------------------------------------- */
 const el = (id) => document.getElementById(id);
 
-// write (or clear) the red note under a field; returns true when there is no error
+// show or clear the red note under a field; true means "no error"
 function note(field, text) {
   el(field + "Error").textContent = text || "";
   return !text;

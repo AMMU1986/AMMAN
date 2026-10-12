@@ -1,176 +1,155 @@
-/* ---------------------------------------------------------------------------
-   Web Development :: Graded Assignment (Weeks 1-6)  -  Question 1
-   Stylesheet for the Student Identity Card
-   AMMAN JAKHAR  |  UID 2025eb01187
+/* Q1 identity-card styling | AMMAN JAKHAR | UID 2025eb01187 */
 
-   Selector mix used below:
-     * type selectors ...... body, dt, dd, figcaption
-     * class selectors ..... .badge, .badge__facts, .badge__top ...
-     * pseudo-class ........ dd:last-of-type
-     * descendant combos ... .badge__facts dt
-   Layout uses CSS Grid for the label/value pairs; a palette of charcoal + amber.
---------------------------------------------------------------------------- */
-
-:root {
-  --ink: #13343b;
-  --ink-soft: #4a6168;
-  --amber: #e0a800;
-  --line: #d7dedc;
-  --paper: #ffffff;
+/* ---- whole page ---- */
+html,
+body {
+  height: 100%;
 }
 
-/* page canvas */
 body {
   margin: 0;
-  min-height: 100vh;
-  padding: 46px 16px;
-  font-family: "Trebuchet MS", "Segoe UI", system-ui, sans-serif;
-  color: var(--ink);
-  background: radial-gradient(circle at top, #f2f6f5, #d8e4e2);
+  padding: 3rem 1rem;
+  box-sizing: border-box;
+  background-image: linear-gradient(160deg, #f4f8f6 0%, #d6e3e0 100%);
+  color: #163038;
+  font-family: "Trebuchet MS", Verdana, system-ui, sans-serif;
   display: grid;
-  place-items: start center;
+  justify-items: center;
 }
 
-/* the card itself */
+/* ---- the card shell ---- */
 .badge {
-  width: 430px;
-  max-width: 100%;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  box-shadow: 0 14px 30px rgba(19, 52, 59, 0.28);
-  overflow: hidden;
+  inline-size: 27rem;
+  max-inline-size: 100%;
+  background: #fff;
+  border-radius: 0.9rem;
+  box-shadow: 0 1rem 2.2rem -0.4rem rgba(22, 48, 56, 0.4);
+  outline: 1px solid #d4ddda;
+  overflow: clip;
 }
 
-/* ---- top strip ---- */
+/* ---- banner ---- */
 .badge__top {
-  padding: 18px 20px 14px;
+  color: #fff;
+  background: #163038;
   text-align: center;
-  color: var(--paper);
-  background: var(--ink);
-  border-bottom: 5px solid var(--amber);
+  padding-block: 1.1rem 0.9rem;
+  padding-inline: 1.25rem;
+  border-bottom: 0.3rem solid #d99a1c;
 }
 
 .badge__org {
   margin: 0;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 2px;
+  letter-spacing: 0.12em;
+  font-size: 1.55rem;
 }
 
 .badge__kind {
-  margin: 4px 0 0;
-  font-size: 12px;
-  letter-spacing: 4px;
+  margin: 0.25rem 0 0;
+  color: #d99a1c;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--amber);
 }
 
-/* ---- middle ---- */
+/* ---- middle region ---- */
 .badge__main {
   display: grid;
-  grid-template-columns: 120px 1fr;
-  gap: 18px;
-  padding: 22px 20px;
+  grid-template-columns: 7.5rem auto;
+  gap: 1.1rem;
+  padding: 1.4rem 1.25rem;
 }
 
-/* photo column */
 .badge__photo {
   margin: 0;
   text-align: center;
 }
 
 .badge__photo-box {
+  block-size: 8.25rem;
+  inline-size: 6.9rem;
+  margin-inline: auto;
   display: grid;
-  place-items: center;
-  width: 110px;
-  height: 132px;
-  color: var(--ink-soft);
+  place-content: center;
+  color: #51696f;
   font-weight: 700;
-  letter-spacing: 1px;
-  background: repeating-linear-gradient(45deg, #f3f6f5, #f3f6f5 8px, #eaf0ef 8px, #eaf0ef 16px);
-  border: 2px solid var(--ink);
-  border-radius: 6px;
+  letter-spacing: 0.06em;
+  border: 2px solid #163038;
+  border-radius: 0.4rem;
+  background-image: repeating-linear-gradient(135deg, #f2f6f5 0 0.5rem, #e8efed 0.5rem 1rem);
 }
 
 .badge__photo figcaption {
-  margin-top: 6px;
-  font-size: 10px;
-  letter-spacing: 1px;
+  margin-top: 0.4rem;
+  color: #51696f;
+  font-size: 0.62rem;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-soft);
 }
 
-/* facts column: two-column grid, label then value */
+/* label + value pairs, each on their own line */
 .badge__facts {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  column-gap: 12px;
-  row-gap: 0;
   margin: 0;
+  display: grid;
   align-content: start;
 }
 
 .badge__facts dt {
-  padding: 7px 0 2px;
-  font-size: 10px;
+  margin: 0;
+  padding-top: 0.45rem;
+  color: #c0860f;
+  font-size: 0.62rem;
   font-weight: 700;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
-  color: var(--amber);
-  grid-column: 1 / -1;      /* label sits on its own line */
 }
 
 .badge__facts dd {
-  margin: 0 0 7px;
-  padding-bottom: 7px;
-  font-size: 14px;
-  color: var(--ink);
-  border-bottom: 1px dotted var(--line);
-  grid-column: 1 / -1;      /* value spans full width under the label */
-  word-break: break-word;
+  margin: 0;
+  padding: 0.1rem 0 0.45rem;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  border-bottom: 1px dotted #cfd8d5;
+  overflow-wrap: anywhere;
 }
 
 .badge__facts dd:last-of-type {
-  border-bottom: none;
+  border-bottom: 0;
 }
 
-/* ---- bottom strip ---- */
+/* ---- footer strip ---- */
 .badge__bottom {
   display: flex;
+  gap: 0.5rem;
   justify-content: space-between;
   align-items: center;
-  padding: 11px 20px;
-  font-size: 12px;
-  background: #f4f7f6;
-  border-top: 2px solid var(--ink);
+  padding: 0.7rem 1.25rem;
+  background: #eef3f1;
+  border-top: 2px solid #163038;
+  font-size: 0.78rem;
 }
 
 .badge__uid {
   font-weight: 700;
-  color: var(--ink);
 }
 
 .badge__sign {
+  color: #51696f;
   font-style: italic;
-  color: var(--ink-soft);
 }
 
-/* ---- small screens: stack photo above the facts ---- */
-@media (max-width: 460px) {
+/* ---- narrow screens: photo sits above the facts ---- */
+@media (max-width: 29rem) {
   .badge__main {
     grid-template-columns: 1fr;
     justify-items: center;
-    text-align: center;
   }
 
   .badge__facts {
-    justify-items: start;
-    text-align: left;
-    width: 100%;
+    inline-size: 100%;
   }
 
   .badge__org {
-    font-size: 20px;
+    font-size: 1.25rem;
   }
 }
