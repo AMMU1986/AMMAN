@@ -1,7 +1,7 @@
 /* =====================================================================
    Graded Assignment (Weeks 1-6) - Question 2
    JavaScript validation, Student class, and cookie handling
-   Student ID: STU2024001
+   Name: AMMAN JAKHAR | Student ID (UID): 2025eb01187
    =====================================================================
    Contents:
      1. Field validation functions (fire on the "onfocusout" event)
