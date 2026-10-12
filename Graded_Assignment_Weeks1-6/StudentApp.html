@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!-- Q2 application form | AMMAN JAKHAR | UID 2025eb01187 (also set as the page title) -->
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>2025eb01187</title>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 2.3rem 1rem;
+      box-sizing: border-box;
+      font-family: "Trebuchet MS", Verdana, system-ui, sans-serif;
+      color: #163038;
+      background: #eaf1ef;
+      display: grid;
+      justify-items: center;
+    }
+
+    .panel {
+      inline-size: 27rem;
+      max-inline-size: 100%;
+      padding: 1.6rem 1.75rem 1.9rem;
+      background: #fff;
+      border-top: 0.35rem solid #d99a1c;
+      border-radius: 0.4rem;
+      box-shadow: 0 0.5rem 1.4rem -0.2rem rgba(22, 48, 56, 0.3);
+    }
+
+    .panel__title {
+      margin: 0 0 0.2rem;
+      font-size: 1.32rem;
+    }
+
+    .panel__hint {
+      margin: 0 0 0.6rem;
+      color: #5e7278;
+      font-size: 0.76rem;
+    }
+
+    .field {
+      border: 0;
+      margin: 1rem 0 0;
+      padding: 0;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 700;
+      font-size: 0.82rem;
+    }
+
+    input {
+      box-sizing: border-box;
+      inline-size: 100%;
+      padding: 0.6rem 0.7rem;
+      background: #fbfdfc;
+      color: #163038;
+      border: 1px solid #c6d0cd;
+      border-radius: 0.25rem;
+      font-size: 0.9rem;
+    }
+
+    input:focus {
+      border-color: #d99a1c;
+      outline: 2px solid #d99a1c;
+    }
+
+    input[readonly] {
+      background: #edf1f0;
+      color: #566;
+    }
+
+    .msg {
+      display: block;
+      min-block-size: 1rem;
+      margin-top: 0.25rem;
+      color: #b02a1f;
+      font-size: 0.74rem;
+    }
+
+    .go {
+      inline-size: 100%;
+      margin-top: 1.4rem;
+      padding: 0.75rem;
+      color: #fff;
+      background: #163038;
+      border: 0;
+      border-radius: 0.25rem;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .go:hover {
+      background: #0e2228;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===== Panel 1 : the application form ===== -->
+  <section id="formPage" class="panel">
+    <h1 class="panel__title">Student ID Card Application</h1>
+    <p class="panel__hint">Fields are checked as you leave each box.</p>
+
+    <form id="appForm" onsubmit="return onSubmit(event)" novalidate>
+
+      <fieldset class="field">
+        <label for="name">Full Name</label>
+        <input id="name" type="text" autocomplete="off" onfocusout="checkName()" />
+        <small id="nameError" class="msg"></small>
+      </fieldset>
+
+      <fieldset class="field">
+        <label for="dob">Date of Birth <span style="font-weight:400">(dd/mm/yyyy)</span></label>
+        <input id="dob" type="text" autocomplete="off" placeholder="dd/mm/yyyy" onfocusout="checkDob()" />
+        <small id="dobError" class="msg"></small>
+      </fieldset>
+
+      <fieldset class="field">
+        <label for="age">Age</label>
+        <input id="age" type="text" readonly placeholder="filled from DOB" />
+        <small id="ageError" class="msg"></small>
+      </fieldset>
+
+      <fieldset class="field">
+        <label for="mobile">Mobile Number</label>
+        <input id="mobile" type="text" autocomplete="off" onfocusout="checkMobile()" />
+        <small id="mobileError" class="msg"></small>
+      </fieldset>
+
+      <fieldset class="field">
+        <label for="email">Email ID</label>
+        <input id="email" type="text" autocomplete="off" onfocusout="checkEmail()" />
+        <small id="emailError" class="msg"></small>
+      </fieldset>
+
+      <button type="submit" class="go">Submit Application</button>
+    </form>
+  </section>
+
+  <!-- ===== Panel 2 : read the saved cookie back ===== -->
+  <section id="retrievePage" class="panel" style="display:none">
+    <h1 class="panel__title">Retrieve Saved Details</h1>
+    <p class="panel__hint">Type the mobile number you submitted.</p>
+
+    <fieldset class="field">
+      <label for="retrieveMobile">Mobile Number</label>
+      <input id="retrieveMobile" type="text" autocomplete="off" />
+    </fieldset>
+
+    <button type="button" class="go" onclick="onRetrieve()">Retrieve Cookie</button>
+  </section>
+
+  <script src="StudentApp.js"></script>
+</body>
+
+</html>
