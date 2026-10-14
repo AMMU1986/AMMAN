@@ -80,6 +80,78 @@ def escape_xml(t):
              .replace('>', '&gt;').replace('"', '&quot;'))
 
 
+import os
+EMU_PER_PX = 9525          # at 96 DPI
+MAX_WIDTH_EMU = 5486400    # 6.0 inches content width
+
+# collected images: list of dicts {rid, target, abspath, w_emu, h_emu, cap}
+MEDIA = []
+
+
+def png_size(path):
+    with open(path, 'rb') as f:
+        head = f.read(26)
+    if head[:8] != b'\x89PNG\r\n\x1a\n':
+        return (800, 600)
+    import struct as _s
+    w, h = _s.unpack('>II', head[16:24])
+    return (w, h)
+
+
+def image_block(path, caption):
+    """Return docx XML for a centered inline image + caption, registering media."""
+    abspath = path if os.path.isabs(path) else os.path.join(
+        '/projects/sandbox/AMMAN', path)
+    if not os.path.exists(abspath):
+        return para(f'[missing image: {path}]', jc='center')
+    w_px, h_px = png_size(abspath)
+    w_emu = w_px * EMU_PER_PX
+    h_emu = h_px * EMU_PER_PX
+    if w_emu > MAX_WIDTH_EMU:
+        scale = MAX_WIDTH_EMU / w_emu
+        w_emu = int(w_emu * scale)
+        h_emu = int(h_emu * scale)
+    idx = len(MEDIA) + 1
+    rid = f'rIdImg{idx}'
+    target = f'media/image{idx}.png'
+    MEDIA.append({'rid': rid, 'target': target, 'abspath': abspath})
+    docpr_id = 1000 + idx
+    drawing = (
+        '<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="120" w:after="40"/></w:pPr>'
+        '<w:r><w:drawing>'
+        f'<wp:inline distT="0" distB="0" distL="0" distR="0" '
+        'xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing">'
+        f'<wp:extent cx="{w_emu}" cy="{h_emu}"/>'
+        '<wp:effectExtent l="0" t="0" r="0" b="0"/>'
+        f'<wp:docPr id="{docpr_id}" name="Figure{idx}"/>'
+        '<wp:cNvGraphicFramePr><a:graphicFrameLocks '
+        'xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" noChangeAspect="1"/>'
+        '</wp:cNvGraphicFramePr>'
+        '<a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main">'
+        '<a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        '<pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+        '<pic:nvPicPr>'
+        f'<pic:cNvPr id="{docpr_id}" name="Figure{idx}"/>'
+        '<pic:cNvPicPr/></pic:nvPicPr>'
+        f'<pic:blipFill><a:blip r:embed="{rid}" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>'
+        '<a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
+        '<pic:spPr><a:xfrm><a:off x="0" y="0"/>'
+        f'<a:ext cx="{w_emu}" cy="{h_emu}"/></a:xfrm>'
+        '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr>'
+        '</pic:pic></a:graphicData></a:graphic></wp:inline>'
+        '</w:drawing></w:r></w:p>'
+    )
+    cap = ''
+    if caption:
+        runs = ''.join(run_xml(t, b, i, m, 18)
+                       for (t, b, i, m) in inline_runs(caption))
+        cap = (f'<w:p><w:pPr><w:jc w:val="center"/>'
+               '<w:spacing w:after="160"/></w:pPr>'
+               f'{runs}</w:p>')
+    return drawing + cap
+
+
 # ----------------------------------------------------------------------
 # Inline run parsing: **bold**, *italic*, `code`, $math$
 # ----------------------------------------------------------------------
@@ -194,6 +266,14 @@ def convert(md):
     while i < n:
         line = lines[i].rstrip()
 
+        # Image:  ![caption](path)
+        img = re.match(r'^!\[(.*?)\]\((.*?)\)\s*$', line.strip())
+        if img:
+            caption, path = img.group(1), img.group(2)
+            out.append(image_block(path, caption))
+            i += 1
+            continue
+
         # Block equation $$ ... $$
         if line.strip().startswith('$$'):
             buf = []
@@ -291,6 +371,7 @@ CONTENT_TYPES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
   <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
   <Default Extension="xml" ContentType="application/xml"/>
+  <Default Extension="png" ContentType="image/png"/>
   <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
   <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
 </Types>'''
@@ -317,13 +398,29 @@ def main():
                 '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>'
                 '<w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>'
                 '</w:body></w:document>')
+    # Build word relationships (styles + each embedded image)
+    rel_items = ['<Relationship Id="rId1" '
+                 'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" '
+                 'Target="styles.xml"/>']
+    for m in MEDIA:
+        rel_items.append(
+            f'<Relationship Id="{m["rid"]}" '
+            'Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" '
+            f'Target="{m["target"]}"/>')
+    word_rels = ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
+                 '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'
+                 + ''.join(rel_items) + '</Relationships>')
+
     with zipfile.ZipFile(OUT, 'w', zipfile.ZIP_DEFLATED) as zf:
         zf.writestr('[Content_Types].xml', CONTENT_TYPES)
         zf.writestr('_rels/.rels', RELS)
-        zf.writestr('word/_rels/document.xml.rels', WORD_RELS)
+        zf.writestr('word/_rels/document.xml.rels', word_rels)
         zf.writestr('word/document.xml', document)
         zf.writestr('word/styles.xml', STYLES)
-    print('Created', OUT)
+        for m in MEDIA:
+            with open(m['abspath'], 'rb') as f:
+                zf.writestr('word/' + m['target'], f.read())
+    print('Created', OUT, 'with', len(MEDIA), 'embedded image(s)')
 
 
 if __name__ == '__main__':

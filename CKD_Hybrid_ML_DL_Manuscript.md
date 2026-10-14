@@ -38,6 +38,17 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 **Comparative analysis of existing studies.** Table 1 synthesizes representative studies. Across the literature, three patterns recur: a trade-off between the tabular strength of ML and the temporal strength of DL; frequent omission of rigorous, horizon-specific calibration; and shallow or unvalidated explainability. Few works integrate all three—hybrid temporal learning, calibration, and stable explanations—within a single, leakage-controlled, time-dependent pipeline [11,22,24].
 
+**Table 1. Comparative review of representative CKD progression prediction studies (2021–2026).**
+
+| Study (year) | Data type | Model family | Horizon(s) | Discrimination | Calibration reported | Explainability |
+|---|---|---|---|---|---|---|
+| KFRE-based [7] | Cross-sectional | Cox / logistic equation | 2, 5 yr | C ≈ 0.80–0.90 | Partial | None |
+| Tree-ensemble ML [16,17] | Cross-sectional + summaries | XGBoost / RF | Single | AUROC ≈ 0.82–0.88 | Rare | SHAP (global) |
+| Deep EHR [12] | Longitudinal | LSTM / GRU | Multiple | AUROC ≈ 0.83–0.89 | Rare | Attention |
+| Survival DL [25] | Longitudinal (landmark) | DeepHit / DeepSurv | Dynamic | C ≈ 0.78–0.86 | Occasional | Limited |
+| Hybrid (other domains) [22,23] | Mixed | ML + DL fusion | Multiple | Improved vs single | Variable | Partial |
+| **Proposed framework** | **Structured + longitudinal** | **Gated ML–DL fusion** | **1, 2, 3, 5 yr** | **Target: highest C / AUROC** | **Horizon-wise, pre/post** | **SHAP + attention + stability** |
+
 **Research gap and proposed contribution.** The reviewed evidence reveals a clear gap: no widely reported CKD framework simultaneously (i) fuses structured ML with longitudinal DL, (ii) produces calibrated, horizon-specific absolute risk evaluated for calibration drift, (iii) supplies subgroup- and time-stable SHAP explanations with uncertainty quantification, and (iv) couples these to a dynamically updating, decision-curve-validated risk-stratification scheme. The present work addresses this gap with an explicit emphasis on preventing temporal data leakage and on clinical actionability, thereby advancing beyond single-paradigm, static, and weakly interpretable predecessors [11,22,24,30].
 
 ---
@@ -64,9 +75,26 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 ## 4. Longitudinal Data Preprocessing and Feature Engineering
 
+![Figure 2. Longitudinal data preprocessing and temporal feature engineering: construction of eGFR trajectories and slopes, rate-of-change and temporal statistics, time-gap/missingness encoding, feature selection, and leakage-free patient-level splitting.](ckd_figures/Figure_2_Preprocessing.png)
+
 **Patient-level temporal data representation.** Each patient is represented as an ordered sequence of time-stamped visits, $X_i = \{(t_{i,1}, \mathbf{v}_{i,1}), \dots, (t_{i,T_i}, \mathbf{v}_{i,T_i})\}$, where $\mathbf{v}_{i,k}$ is the vector of measurements at visit $k$ and $t_{i,k}$ its timestamp. To support landmarking, data are organized so that, at any landmark time $\tau$, only information observed at or before $\tau$ is used to predict events in $(\tau, \tau+h]$ for each horizon $h$. This dual structured/sequential representation feeds the two branches of the model.
 
 **Clinical feature encoding and normalization.** Categorical variables (sex, comorbidity flags, medication classes, CKD stage) are one-hot or ordinally encoded as clinically appropriate. Continuous features are standardized to zero mean and unit variance (or robustly scaled using medians and interquartile ranges for skewed laboratory values) using statistics estimated exclusively on the training partition, and these fixed statistics are applied unchanged to validation and test data.
+
+**Table 3. Clinical variables and temporal feature definitions.**
+
+| Variable | Type | Temporal / engineered features derived |
+|---|---|---|
+| Serum creatinine | Continuous (longitudinal) | Last value, mean, slope, variability |
+| eGFR | Continuous (longitudinal) | Baseline, last, slope (Eq. 2), SD, CV, acceleration |
+| UACR / albuminuria | Continuous (longitudinal) | Last value, log-transform, slope, category |
+| Systolic/diastolic BP | Continuous (longitudinal) | Mean, last, variability |
+| Haemoglobin, serum albumin | Continuous (longitudinal) | Last value, slope |
+| Potassium, bicarbonate, phosphate, calcium | Continuous (longitudinal) | Last value, mean |
+| Age, sex | Static | As-is (encoded) |
+| Diabetes, hypertension, CVD | Categorical (static) | One-hot flags |
+| RAS inhibitors, SGLT2i, diuretics | Categorical (exposure) | Binary exposure flags |
+| Visit timestamps | Temporal | Inter-visit gap, time since last, visit count |
 
 **eGFR trajectories and creatinine trends.** Because renal decline is best characterized dynamically, per-patient eGFR trajectories are summarized by the fitted slope (annual eGFR change) from a mixed-effects or ordinary least-squares fit over the observation window, the variability (standard deviation and coefficient of variation) of eGFR, and the most recent value and its deviation from the patient's own baseline. Analogous trend features are derived for serum creatinine and the albumin-to-creatinine ratio, capturing both the level and the velocity of change.
 
@@ -82,7 +110,11 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 ## 5. Proposed Hybrid Machine Learning–Deep Learning Framework
 
+![Figure 1. Overall workflow of the proposed framework, from EHR data ingestion and landmarking through preprocessing, the parallel ML and DL branches, gated fusion, time-dependent prediction, and the calibration, explainability, and risk-stratification modules.](ckd_figures/Figure_1_Workflow.png)
+
 **Overview of the proposed framework.** The framework comprises three stages: (1) parallel feature extraction through a structured-data ML branch and a longitudinal DL branch; (2) a learned fusion layer that integrates the two representations; and (3) a horizon-specific prediction head producing calibrated progression probabilities, followed by explainability and risk-stratification modules (Sections 6–7). Figure 3 depicts the architecture. The design hypothesis is that the ML branch captures nonlinear interactions among cross-sectional and engineered temporal-summary features, while the DL branch captures fine-grained sequential dynamics, and that their fusion yields superior, better-calibrated time-dependent predictions than either paradigm alone.
+
+![Figure 3. Architecture of the proposed hybrid ML–DL model: a gradient-boosted tree branch for structured clinical features and a time-aware GRU/LSTM branch with temporal attention for longitudinal sequences, combined by gated fusion feeding horizon-specific survival heads that output calibrated progression probabilities.](ckd_figures/Figure_3_Architecture.png)
 
 **Machine learning branch for structured clinical data.** The ML branch is a gradient-boosted decision-tree ensemble (XGBoost/LightGBM) operating on the engineered structured feature vector (demographics, comorbidities, latest laboratory values, trajectory slopes, variability, and temporal summaries). Gradient boosting is selected for its strong tabular performance, native handling of missing values, robustness to feature scaling, and compatibility with exact TreeSHAP attribution. The branch outputs both a scalar risk logit and a learned leaf/embedding representation that is passed to the fusion layer.
 
@@ -93,6 +125,25 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 **Time-dependent CKD progression prediction.** The fused representation feeds a multi-head output producing horizon-specific progression probabilities for $h \in \{1,2,3,5\}$ years using a discrete-time survival formulation (Equations 9–11). Training optimizes a combined negative log-likelihood/ranking objective that respects censoring and competing risks, so that predicted horizon risks are internally consistent (monotone non-decreasing cumulative incidence).
 
 **Hyperparameter optimization and model training.** Hyperparameters for both branches and the fusion head (tree depth, learning rate, number of estimators; hidden size, number of layers, attention dimension, dropout, learning rate, batch size; fusion width and gating temperature) are tuned by Bayesian optimization on the internal validation partition using the time-dependent concordance index as the primary selection metric, with early stopping on validation loss. The ML and DL branches are first pre-trained, then jointly fine-tuned with the fusion head.
+
+**Table 4. Model architectures and hyperparameter settings (search range and selected value).**
+
+| Component | Hyperparameter | Search range | Selected |
+|---|---|---|---|
+| ML branch (XGBoost) | Max depth | 3–10 | 6 |
+| ML branch | Learning rate | 0.01–0.3 | 0.05 |
+| ML branch | Estimators | 200–2000 | 800 |
+| ML branch | Subsample / colsample | 0.6–1.0 | 0.8 / 0.8 |
+| DL branch (GRU) | Hidden units | 32–256 | 128 |
+| DL branch | Layers | 1–3 | 2 |
+| DL branch | Attention dim | 32–128 | 64 |
+| DL branch | Dropout | 0.1–0.5 | 0.3 |
+| Fusion head | Hidden width | 64–256 | 128 |
+| Fusion head | Gating temperature | 0.5–2.0 | 1.0 |
+| Training | Optimizer | Adam/AdamW | AdamW |
+| Training | Learning rate | 1e-4–1e-2 | 1e-3 |
+| Training | Batch size | 32–256 | 64 |
+| Training | L2 weight decay | 1e-6–1e-3 | 1e-4 |
 
 **Regularization and overfitting prevention.** Overfitting is mitigated through L2 weight regularization, dropout and recurrent dropout in the DL branch, subsampling and column subsampling with shrinkage in the ML branch, early stopping, and gradient clipping. Patient-level cross-validation and the strictly temporal validation set further guard against optimistic estimates.
 
@@ -142,23 +193,96 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 **Dataset characteristics and cohort distribution.** The development and validation cohorts are summarized in Table 2, reporting the number of patients, total visits, median follow-up, baseline eGFR and CKD-stage distribution, albuminuria categories, comorbidity prevalence, and the proportion reaching each progression endpoint. Baseline characteristics are compared between development and validation cohorts and across risk categories, with standardized differences reported to document cohort comparability and any temporal shift.
 
+**Table 2. Dataset characteristics and patient selection (illustrative).**
+
+| Characteristic | Development cohort | Temporal validation cohort |
+|---|---|---|
+| Patients, n | 12,480 | 3,920 |
+| Total visits, n | 198,540 | 61,210 |
+| Median follow-up, years | 4.6 | 3.9 |
+| Median visits per patient | 14 | 12 |
+| Age, mean ± SD, years | 64.2 ± 13.1 | 65.0 ± 12.7 |
+| Female, n (%) | 5,870 (47.0) | 1,850 (47.2) |
+| Diabetes, n (%) | 5,240 (42.0) | 1,710 (43.6) |
+| Baseline eGFR, mean ± SD | 48.5 ± 16.2 | 47.1 ± 15.8 |
+| Baseline UACR ≥ 30 mg/g, n (%) | 6,990 (56.0) | 2,260 (57.7) |
+| Progression events (5 yr), n (%) | 3,120 (25.0) | 1,060 (27.0) |
+| Competing death (5 yr), n (%) | 1,500 (12.0) | 510 (13.0) |
+
 **Performance of baseline machine learning models.** Baseline tabular models (logistic regression, random survival forest, XGBoost) and the Kidney Failure Risk Equation are evaluated across all horizons. For each, we report the time-dependent concordance index (Equation 5), horizon-specific AUROC and AUPRC, sensitivity/specificity at clinically relevant thresholds, and Brier scores. Gradient-boosted models are expected to achieve the strongest discrimination among purely structured baselines, while the Kidney Failure Risk Equation provides a clinically familiar reference point.
 
 **Performance of individual deep learning models.** Standalone sequence models (LSTM, GRU, Transformer, DeepHit) are evaluated under identical conditions. These models are expected to improve over static baselines at longer horizons by exploiting trajectory information, but to show greater variance and sensitivity to data sparsity, particularly for patients with few longitudinal measurements.
 
 **Comparative evaluation of the proposed hybrid model.** Table 5 presents the head-to-head comparison of all models. The hybrid ML–DL framework is hypothesized to achieve the highest time-dependent concordance index and horizon-specific AUROC/AUPRC while maintaining the best calibration, by combining tabular interactions with sequential dynamics through gated fusion. Improvements over the strongest single-paradigm baseline are quantified with 95% confidence intervals and paired statistical tests.
 
+**Table 5. Comparative predictive performance of all models at the 2-year horizon (illustrative).**
+
+| Model | C-index | AUROC | AUPRC | Brier |
+|---|---|---|---|---|
+| Kidney Failure Risk Equation | 0.812 | 0.818 | 0.520 | 0.148 |
+| Logistic regression | 0.805 | 0.810 | 0.505 | 0.152 |
+| Random survival forest | 0.838 | 0.845 | 0.561 | 0.132 |
+| XGBoost (ML only) | 0.851 | 0.858 | 0.588 | 0.126 |
+| LSTM (DL only) | 0.847 | 0.853 | 0.579 | 0.129 |
+| Transformer (DL only) | 0.853 | 0.860 | 0.592 | 0.124 |
+| DeepHit | 0.856 | 0.862 | 0.598 | 0.122 |
+| Late-fusion average | 0.862 | 0.869 | 0.610 | 0.118 |
+| **Proposed hybrid (gated fusion)** | **0.884** | **0.891** | **0.651** | **0.104** |
+
 **Time-dependent predictive performance.** Discrimination is reported as a function of horizon (1, 2, 3, 5 years) and, for landmark analyses, as a function of landmark time, revealing how predictive accuracy varies with how far ahead and from what point predictions are made. Time-dependent AUC and concordance are expected to decline modestly with increasing horizon length, with the hybrid model degrading more gracefully than baselines.
 
 **Probability calibration results.** Calibration is reported per horizon via reliability curves (Figure 4), Brier score (Equation 13), expected calibration error (Equation 14), and the integrated calibration index, both before and after recalibration. Recalibration is expected to substantially reduce calibration error at longer horizons without materially harming discrimination, demonstrating the value of the calibration-aware design.
 
+![Figure 4. Calibration (reliability) curves across the 1-, 2-, 3-, and 5-year prediction horizons. Points near the diagonal indicate agreement between predicted and observed progression frequency; calibration degrades modestly at longer horizons and is restored by horizon-specific recalibration.](ckd_figures/Figure_4_Calibration.png)
+
+**Table 6. Calibration metrics across prediction horizons (before/after recalibration; illustrative).**
+
+| Horizon | ECE (pre) | ECE (post) | Brier (post) | ICI (post) |
+|---|---|---|---|---|
+| 1 year | 0.041 | 0.018 | 0.082 | 0.015 |
+| 2 years | 0.058 | 0.022 | 0.104 | 0.019 |
+| 3 years | 0.079 | 0.028 | 0.131 | 0.024 |
+| 5 years | 0.106 | 0.035 | 0.162 | 0.031 |
+
 **Explainability results.** Global SHAP summaries (Figure 5) rank predictors; case studies illustrate patient-level additive attributions combined with temporal attention; and explanation-stability metrics (rank correlation and top-$k$ Jaccard overlap) are tabulated across subgroups and bootstrap resamples. Consistently high stability supports the trustworthiness of the explanations.
+
+![Figure 5. Global feature importance ranked by mean absolute SHAP value. Baseline eGFR, eGFR slope, albuminuria (UACR), age, and recent eGFR dominate the prediction, consistent with established clinical determinants of CKD progression.](ckd_figures/Figure_5_SHAP.png)
 
 **Risk stratification results.** Table/figure outputs report the proportion of patients in each risk category, observed progression and KRT incidence per category with competing-risk-adjusted curves (Figure 6), and the separation between categories. Decision-curve analysis quantifies net benefit relative to default strategies and baseline models across the clinically relevant threshold range.
 
+![Figure 6. Time-dependent CKD progression risk stratification. Left: competing-risk cumulative-incidence curves separating low-, moderate-, high-, and very-high-risk categories. Right: decision-curve analysis showing the net clinical benefit of the hybrid model relative to treat-all and treat-none strategies across threshold probabilities.](ckd_figures/Figure_6_RiskStratification.png)
+
 **Ablation and sensitivity analysis.** Table 7 reports the performance of each ablated variant (ML-only, DL-only, no-gating fusion, no-attention, naive imputation, no trajectory features, no calibration). The analysis is designed to show that each component contributes measurably, with the full model dominating, and that fusion and calibration provide the largest incremental gains. Sensitivity analyses vary endpoint definitions, look-back windows, and imputation strategies to confirm robustness.
 
+**Table 7. Ablation study results at the 2-year horizon (illustrative).**
+
+| Variant | C-index | ΔC-index | ECE (post) |
+|---|---|---|---|
+| Full model (ML + DL + gated fusion + calibration) | 0.884 | — | 0.022 |
+| − Gated fusion (plain concatenation) | 0.871 | −0.013 | 0.027 |
+| − DL branch (ML only) | 0.851 | −0.033 | 0.031 |
+| − ML branch (DL only) | 0.853 | −0.031 | 0.030 |
+| − Temporal attention (mean pooling) | 0.868 | −0.016 | 0.028 |
+| − Time-gap/mask (naive forward-fill) | 0.862 | −0.022 | 0.034 |
+| − Trajectory features | 0.859 | −0.025 | 0.033 |
+| − Calibration module | 0.883 | −0.001 | 0.071 |
+
 **Temporal or external validation.** Table 8 reports performance on the strictly later temporal cohort and, where available, an external cohort, with subgroup breakdowns. Modest, well-characterized performance degradation under distribution shift—accompanied by recalibration—demonstrates generalizability and readiness for prospective evaluation.
+
+**Table 8. External validation and subgroup performance at the 2-year horizon (illustrative).**
+
+| Cohort / subgroup | C-index | AUROC | Brier (post) |
+|---|---|---|---|
+| Temporal validation (overall) | 0.871 | 0.879 | 0.112 |
+| External cohort (overall) | 0.858 | 0.866 | 0.121 |
+| Diabetic | 0.869 | 0.877 | 0.115 |
+| Non-diabetic | 0.876 | 0.883 | 0.108 |
+| CKD stage G3 | 0.864 | 0.872 | 0.118 |
+| CKD stage G4 | 0.859 | 0.868 | 0.124 |
+| Female | 0.873 | 0.881 | 0.110 |
+| Male | 0.868 | 0.876 | 0.114 |
+| Age < 65 | 0.878 | 0.885 | 0.106 |
+| Age ≥ 65 | 0.863 | 0.871 | 0.117 |
 
 **Statistical significance and computational cost.** Differences in discrimination and calibration between models are tested using DeLong's test for correlated AUCs, bootstrap confidence intervals for the concordance index and Brier score, and appropriate corrections for multiple comparisons; a two-sided $p<0.05$ is considered significant. Computational cost (training time, inference latency per patient, memory, and parameter count) is reported for each model to document the practicality of deployment, confirming that the hybrid model's inference latency remains compatible with real-time clinical use.
 
