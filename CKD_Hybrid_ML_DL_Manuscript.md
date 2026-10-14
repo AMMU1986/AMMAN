@@ -59,9 +59,17 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 **Patient cohort and selection criteria.** Eligible patients are adults (≥18 years) with a confirmed CKD diagnosis (two eGFR values <60 mL/min/1.73 m² ≥90 days apart, or persistent albuminuria) and at least two eGFR measurements over a minimum 12-month observation window. Patients already receiving kidney replacement therapy at baseline, those with a functioning transplant, and those with fewer than two longitudinal measurements are excluded to ensure a well-defined baseline and sufficient trajectory information.
 
-**Clinical variables and longitudinal measurements.** Variables include demographics (age, sex), comorbidities (diabetes, hypertension, cardiovascular disease), vital signs (systolic/diastolic blood pressure, body mass index), and serial laboratory measurements (serum creatinine, eGFR, urine albumin-to-creatinine ratio, haemoglobin, serum albumin, potassium, bicarbonate, phosphate, calcium), together with medication exposures (renin–angiotensin system inhibitors, SGLT2 inhibitors, diuretics).
+**Clinical variables and longitudinal measurements.** Variables include demographics (age, sex), comorbidities (diabetes, hypertension, cardiovascular disease), vital signs (systolic/diastolic blood pressure, body mass index), and serial laboratory measurements (serum creatinine, eGFR, urine albumin-to-creatinine ratio, haemoglobin, serum albumin, potassium, bicarbonate, phosphate, calcium), together with medication exposures (renin–angiotensin system inhibitors, SGLT2 inhibitors, diuretics). Kidney function is quantified by the estimated glomerular filtration rate (eGFR), computed with the race-free CKD-EPI 2021 creatinine equation given in Equation (1):
 
-**Definition of CKD progression.** Progression is defined a priori as a sustained ≥40% decline in eGFR from baseline, a transition to a more advanced KDIGO eGFR category, or initiation of kidney replacement therapy, consistent with established endpoints. Death without progression is treated as a competing risk.
+$$\text{eGFR} = 142 \times \min\!\left(\frac{S_{cr}}{\kappa},1\right)^{\alpha} \times \max\!\left(\frac{S_{cr}}{\kappa},1\right)^{-1.200} \times 0.9938^{\,\text{Age}} \times 1.012^{[\text{female}]} \tag{1}$$
+
+where $S_{cr}$ is serum creatinine (mg/dL), $\kappa=0.7$ for females and $0.9$ for males, $\alpha=-0.241$ for females and $-0.302$ for males, and the indicator $[\text{female}]=1$ for females and $0$ otherwise.
+
+**Definition of CKD progression.** Progression is defined a priori as a sustained ≥40% decline in eGFR from baseline, a transition to a more advanced KDIGO eGFR category, or initiation of kidney replacement therapy (KRT), consistent with established endpoints. Formally, the binary progression label $y_{i,h}$ for patient $i$ over prediction horizon $h$ is defined in Equation (2):
+
+$$y_{i,h} = \mathbb{1}\!\left[\big(g^{\min}_{(\tau,\tau+h]} \le 0.60\,g_i^{\text{base}}\big) \;\lor\; \text{stage advance} \;\lor\; \text{KRT in } (\tau,\tau+h]\right] \tag{2}$$
+
+where $\mathbb{1}[\cdot]$ is the indicator function, $g_i^{\text{base}}$ the baseline eGFR, $g^{\min}_{(\tau,\tau+h]}$ the minimum eGFR observed in the interval $(\tau,\tau+h]$, and $\lor$ the logical OR. Death without progression is treated as a competing risk and is excluded from the positive-event definition.
 
 **Prediction horizons and follow-up periods.** Horizon-specific progression is predicted at 1-, 2-, 3-, and 5-year windows from each landmark time, enabling dynamic, time-dependent assessment throughout follow-up.
 
@@ -79,14 +87,18 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 **Patient-level temporal data representation.** Each patient is represented as an ordered sequence of time-stamped visits, $X_i = \{(t_{i,1}, \mathbf{v}_{i,1}), \dots, (t_{i,T_i}, \mathbf{v}_{i,T_i})\}$, where $\mathbf{v}_{i,k}$ is the vector of measurements at visit $k$ and $t_{i,k}$ its timestamp. To support landmarking, data are organized so that, at any landmark time $\tau$, only information observed at or before $\tau$ is used to predict events in $(\tau, \tau+h]$ for each horizon $h$. This dual structured/sequential representation feeds the two branches of the model.
 
-**Clinical feature encoding and normalization.** Categorical variables (sex, comorbidity flags, medication classes, CKD stage) are one-hot or ordinally encoded as clinically appropriate. Continuous features are standardized to zero mean and unit variance (or robustly scaled using medians and interquartile ranges for skewed laboratory values) using statistics estimated exclusively on the training partition, and these fixed statistics are applied unchanged to validation and test data.
+**Clinical feature encoding and normalization.** Categorical variables (sex, comorbidity flags, medication classes, CKD stage) are one-hot or ordinally encoded as clinically appropriate. Continuous features are standardized to zero mean and unit variance (or robustly scaled using medians and interquartile ranges for skewed laboratory values) using statistics estimated exclusively on the training partition. As formalized in Equation (3), each continuous feature $j$ is standardized using the training-set mean and standard deviation, and these fixed statistics are applied unchanged to the validation and test data to prevent information leakage:
+
+$$\tilde{x}_{j} = \frac{x_{j}-\mu_{j}^{\text{train}}}{\sigma_{j}^{\text{train}}} \tag{3}$$
+
+where $x_j$ is the raw feature value, $\tilde{x}_j$ its standardized value, and $\mu_j^{\text{train}}$ and $\sigma_j^{\text{train}}$ the mean and standard deviation of feature $j$ computed on the training partition only.
 
 **Table 3. Clinical variables and temporal feature definitions.**
 
 | Variable | Type | Temporal / engineered features derived |
 |---|---|---|
 | Serum creatinine | Continuous (longitudinal) | Last value, mean, slope, variability |
-| eGFR | Continuous (longitudinal) | Baseline, last, slope (Eq. 2), SD, CV, acceleration |
+| eGFR | Continuous (longitudinal) | Baseline, last, slope (Eq. 4), SD, CV, acceleration |
 | UACR / albuminuria | Continuous (longitudinal) | Last value, log-transform, slope, category |
 | Systolic/diastolic BP | Continuous (longitudinal) | Mean, last, variability |
 | Haemoglobin, serum albumin | Continuous (longitudinal) | Last value, slope |
@@ -96,11 +108,19 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 | RAS inhibitors, SGLT2i, diuretics | Categorical (exposure) | Binary exposure flags |
 | Visit timestamps | Temporal | Inter-visit gap, time since last, visit count |
 
-**eGFR trajectories and creatinine trends.** Because renal decline is best characterized dynamically, per-patient eGFR trajectories are summarized by the fitted slope (annual eGFR change) from a mixed-effects or ordinary least-squares fit over the observation window, the variability (standard deviation and coefficient of variation) of eGFR, and the most recent value and its deviation from the patient's own baseline. Analogous trend features are derived for serum creatinine and the albumin-to-creatinine ratio, capturing both the level and the velocity of change.
+**eGFR trajectories and creatinine trends.** Because renal decline is best characterized dynamically, per-patient eGFR trajectories are summarized by the fitted slope (annual eGFR change) from a mixed-effects or ordinary least-squares fit over the observation window, the variability (standard deviation and coefficient of variation) of eGFR, and the most recent value and its deviation from the patient's own baseline. The per-patient eGFR slope $\beta_i$—a key determinant of progression velocity—is obtained by ordinary least-squares (or mixed-effects) regression of eGFR on time, as given in Equation (4):
+
+$$\beta_i = \frac{\sum_{k=1}^{T_i} (t_{i,k}-\bar{t}_i)\,(g_{i,k}-\bar{g}_i)}{\sum_{k=1}^{T_i} (t_{i,k}-\bar{t}_i)^2} \tag{4}$$
+
+where $g_{i,k}$ is the eGFR of patient $i$ at visit $k$, $t_{i,k}$ the corresponding visit time, $\bar{g}_i$ and $\bar{t}_i$ their means over the $T_i$ visits, and $\beta_i$ (mL/min/1.73 m²/year) the fitted rate of decline. Analogous trend features are derived for serum creatinine and the albumin-to-creatinine ratio, capturing both the level and the velocity of change.
 
 **Temporal statistics and rate-of-change features.** For each longitudinal biomarker we compute summary statistics over configurable look-back windows: mean, minimum, maximum, last value, count of measurements, time since last measurement, and first-order rate of change (slope) as well as second-order acceleration where sufficient data exist. These engineered temporal statistics constitute much of the input to the structured ML branch, while raw ordered sequences feed the DL branch.
 
-**Handling irregularly sampled clinical measurements.** Clinical sampling is irregular and non-random. Rather than forcing a fixed grid, we retain actual inter-visit intervals and provide them to the sequence model through time-gap encoding and binary missingness masks per feature. A decay mechanism down-weights stale observations as the elapsed time since the last measurement grows, allowing the model to represent informative missingness without naive forward-filling that would otherwise distort trends.
+**Handling irregularly sampled clinical measurements.** Clinical sampling is irregular and non-random. Rather than forcing a fixed grid, we retain actual inter-visit intervals and provide them to the sequence model through time-gap encoding and binary missingness masks per feature. A decay mechanism down-weights stale observations as the elapsed time since the last measurement grows, as defined in Equation (5):
+
+$$w_{i,k} = \exp\!\big(-\lambda\,\Delta t_{i,k}\big), \qquad \Delta t_{i,k} = \tau - t_{i,k} \tag{5}$$
+
+where $\Delta t_{i,k}$ is the time elapsed between the landmark $\tau$ and measurement $k$, $w_{i,k}\in(0,1]$ the resulting weight, and $\lambda \ge 0$ a learned/validated decay rate so that larger gaps receive smaller weights. This allows the model to represent informative missingness without naive forward-filling that would otherwise distort trends.
 
 **Feature selection and redundancy analysis.** To control dimensionality and multicollinearity, we assess pairwise correlation and variance inflation among engineered structured features and prune highly redundant variables, retaining the more clinically interpretable member of each correlated cluster. Model-based importance (permutation importance and SHAP on the training/validation data only) guides a stability-selection procedure that keeps features robustly contributing across resamples. Clinically essential variables (e.g., eGFR, albuminuria, age) are protected from removal regardless of statistical redundancy.
 
@@ -116,15 +136,53 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 ![Figure 3. Architecture of the proposed hybrid ML–DL model: a gradient-boosted tree branch for structured clinical features and a time-aware GRU/LSTM branch with temporal attention for longitudinal sequences, combined by gated fusion feeding horizon-specific survival heads that output calibrated progression probabilities.](ckd_figures/Figure_3_Architecture.png)
 
-**Machine learning branch for structured clinical data.** The ML branch is a gradient-boosted decision-tree ensemble (XGBoost/LightGBM) operating on the engineered structured feature vector (demographics, comorbidities, latest laboratory values, trajectory slopes, variability, and temporal summaries). Gradient boosting is selected for its strong tabular performance, native handling of missing values, robustness to feature scaling, and compatibility with exact TreeSHAP attribution. The branch outputs both a scalar risk logit and a learned leaf/embedding representation that is passed to the fusion layer.
+**Machine learning branch for structured clinical data.** The ML branch is a gradient-boosted decision-tree ensemble (XGBoost/LightGBM) operating on the engineered structured feature vector (demographics, comorbidities, latest laboratory values, trajectory slopes, variability, and temporal summaries). Gradient boosting is selected for its strong tabular performance, native handling of missing values, robustness to feature scaling, and compatibility with exact TreeSHAP attribution. The branch produces an additive ensemble prediction, as given in Equation (6):
 
-**Deep learning branch for longitudinal sequences.** The DL branch ingests the ordered, time-stamped biomarker sequences with their time-gap encodings and missingness masks. A time-aware recurrent backbone (GRU/LSTM) augmented with a temporal attention layer encodes each sequence into a fixed-length context vector, with attention weights indicating the relative influence of each visit. The attention-pooled representation is the branch's contribution to fusion and simultaneously supports temporal explanations (Section 6).
+$$f_{ML}(\mathbf{x}_i) = \sum_{m=1}^{M} \eta\, \phi_m(\mathbf{x}_i), \qquad \phi_m \in \mathcal{F} \tag{6}$$
 
-**Hybrid feature-fusion mechanism.** The structured embedding $\mathbf{z}_{ML}$ and the sequential context $\mathbf{z}_{DL}$ are combined by a learned fusion function—concatenation followed by fully connected layers with a gating mechanism that adaptively weights the two sources per patient (Equation 8). Gated fusion allows the model to rely more on the DL branch for patients with rich longitudinal data and more on the ML branch when sequences are sparse, improving robustness across heterogeneous data availability.
+where $\mathbf{x}_i$ is the structured feature vector, $\phi_m$ the $m$-th regression tree drawn from the space $\mathcal{F}$ of CART trees, $M$ the number of boosting rounds, and $\eta$ the shrinkage (learning rate). The branch outputs both a scalar risk logit $f_{ML}$ and a learned embedding $\mathbf{z}_{ML}$ that is passed to the fusion layer.
 
-**Time-dependent CKD progression prediction.** The fused representation feeds a multi-head output producing horizon-specific progression probabilities for $h \in \{1,2,3,5\}$ years using a discrete-time survival formulation (Equations 9–11). Training optimizes a combined negative log-likelihood/ranking objective that respects censoring and competing risks, so that predicted horizon risks are internally consistent (monotone non-decreasing cumulative incidence).
+**Deep learning branch for longitudinal sequences.** The DL branch ingests the ordered, time-stamped biomarker sequences with their time-gap encodings and missingness masks. A time-aware recurrent backbone (GRU/LSTM) updates its hidden state at each visit according to Equation (7):
 
-**Hyperparameter optimization and model training.** Hyperparameters for both branches and the fusion head (tree depth, learning rate, number of estimators; hidden size, number of layers, attention dimension, dropout, learning rate, batch size; fusion width and gating temperature) are tuned by Bayesian optimization on the internal validation partition using the time-dependent concordance index as the primary selection metric, with early stopping on validation loss. The ML and DL branches are first pre-trained, then jointly fine-tuned with the fusion head.
+$$
+\begin{aligned}
+\mathbf{r}_k &= \sigma(W_r[\mathbf{h}_{k-1},\mathbf{v}_k,\Delta t_k]+b_r), \\
+\mathbf{u}_k &= \sigma(W_u[\mathbf{h}_{k-1},\mathbf{v}_k,\Delta t_k]+b_u), \\
+\tilde{\mathbf{h}}_k &= \tanh\!\big(W_h[\mathbf{r}_k\odot\mathbf{h}_{k-1},\mathbf{v}_k,\Delta t_k]+b_h\big), \\
+\mathbf{h}_k &= (1-\mathbf{u}_k)\odot\mathbf{h}_{k-1} + \mathbf{u}_k\odot\tilde{\mathbf{h}}_k
+\end{aligned}
+\tag{7}
+$$
+
+where $\mathbf{v}_k$ is the measurement vector at visit $k$, $\Delta t_k$ the inter-visit gap, $\mathbf{h}_k$ the hidden state, $\mathbf{r}_k$ and $\mathbf{u}_k$ the reset and update gates, $\sigma(\cdot)$ the logistic sigmoid, and $\odot$ the element-wise product. A temporal attention layer then pools the hidden states into a fixed-length context vector, as given in Equation (8):
+
+$$\alpha_k = \frac{\exp(\mathbf{a}^{\top}\tanh(W_a\mathbf{h}_k))}{\sum_{j=1}^{T}\exp(\mathbf{a}^{\top}\tanh(W_a\mathbf{h}_j))}, \qquad \mathbf{z}_{DL}=\sum_{k=1}^{T}\alpha_k\,\mathbf{h}_k \tag{8}$$
+
+where $\alpha_k$ is the normalized attention weight for visit $k$ (which doubles as a temporal explanation), $\mathbf{a}$ and $W_a$ are learned attention parameters, and $\mathbf{z}_{DL}$ is the attention-pooled context vector contributed to fusion.
+
+**Hybrid feature-fusion mechanism.** The structured embedding $\mathbf{z}_{ML}$ and the sequential context $\mathbf{z}_{DL}$ are combined by a learned gated fusion function, defined in Equation (9):
+
+$$\mathbf{g} = \sigma\!\big(W_g[\mathbf{z}_{ML},\mathbf{z}_{DL}]+b_g\big), \qquad \mathbf{z}_{\text{fus}} = \mathbf{g}\odot\mathbf{z}_{ML} + (1-\mathbf{g})\odot\mathbf{z}_{DL} \tag{9}$$
+
+where $\mathbf{g}$ is a learned per-dimension gate (with weights $W_g$ and bias $b_g$) that adaptively balances the two representations into the fused vector $\mathbf{z}_{\text{fus}}$. Gated fusion allows the model to rely more on the DL branch for patients with rich longitudinal data and more on the ML branch when sequences are sparse, improving robustness across heterogeneous data availability.
+
+**Time-dependent CKD progression prediction.** The fused representation feeds a multi-head output producing horizon-specific progression probabilities for $h \in \{1,2,3,5\}$ years using a discrete-time survival formulation. The conditional hazard for each interval is modelled by Equation (10), and the cumulative progression probability is recovered from the survival function in Equation (11):
+
+$$\lambda_h(\mathbf{z}_{\text{fus}}) = P(y_h=1 \mid y_{<h}=0, \mathbf{z}_{\text{fus}}) = \sigma\!\big(\mathbf{w}_h^{\top}\mathbf{z}_{\text{fus}}+b_h\big) \tag{10}$$
+
+$$S_h = \prod_{l=1}^{h}\big(1-\lambda_l\big), \qquad \hat{p}_h = 1 - S_h = 1-\prod_{l=1}^{h}\big(1-\lambda_l\big) \tag{11}$$
+
+where $\lambda_h$ is the conditional hazard of progressing in interval $h$ given progression-free survival through earlier intervals, $\mathbf{w}_h$ and $b_h$ the horizon-specific head parameters, $S_h$ the probability of remaining progression-free through horizon $h$, and $\hat{p}_h$ the cumulative progression probability—monotone non-decreasing in $h$ by construction, so that predicted horizon risks are internally consistent.
+
+**Hyperparameter optimization and model training.** The network is trained by minimizing the censoring-aware discrete-time survival loss with regularization, as given in Equation (12):
+
+$$\mathcal{L} = -\sum_{i=1}^{N}\sum_{h=1}^{H} \delta_{i,h}\Big[y_{i,h}\log\lambda_{h}^{(i)} + (1-y_{i,h})\log\big(1-\lambda_{h}^{(i)}\big)\Big] + \gamma\,\Omega(\Theta) \tag{12}$$
+
+where $\delta_{i,h}=1$ when patient $i$ remains under observation (uncensored) in interval $h$, $\Omega(\Theta)$ is the parameter-regularization penalty, and $\gamma$ its weight. Hyperparameters for both branches and the fusion head (tree depth, learning rate, number of estimators; hidden size, number of layers, attention dimension, dropout, batch size; fusion width and gating temperature; Table 4) are tuned by Bayesian optimization on the internal validation partition using the time-dependent concordance index of Equation (13) as the primary selection metric, with early stopping on the validation loss:
+
+$$C_{td}(h)=\frac{\sum_{i,j}\mathbb{1}[T_i<T_j]\,\mathbb{1}[\hat{p}_h^{(i)}>\hat{p}_h^{(j)}]\,\delta_i}{\sum_{i,j}\mathbb{1}[T_i<T_j]\,\delta_i} \tag{13}$$
+
+where an ordered pair $(i,j)$ is concordant when the patient who progresses earlier carries the higher predicted risk, and $\delta_i$ indicates an observed event. The ML and DL branches are first pre-trained, then jointly fine-tuned with the fusion head.
 
 **Table 4. Model architectures and hyperparameter settings (search range and selected value).**
 
@@ -155,17 +213,31 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 ## 6. Calibration-Aware Prediction and Explainable AI
 
-**Time-dependent probability estimation.** For each landmark time and horizon $h$, the fused model outputs a conditional progression probability $\hat{p}_h = P(\text{progression in } (\tau, \tau+h] \mid \text{survival to } \tau, X_{\le\tau})$ via the discrete-time hazard formulation (Equations 9–11). Cumulative incidence across horizons is enforced to be monotone, yielding a coherent time-dependent risk profile per patient.
+**Time-dependent probability estimation.** For each landmark time and horizon $h$, the fused model outputs a conditional progression probability $\hat{p}_h = P(\text{progression in } (\tau, \tau+h] \mid \text{survival to } \tau, X_{\le\tau})$ via the discrete-time hazard formulation of Equations (10) and (11). Cumulative incidence across horizons is enforced to be monotone, yielding a coherent time-dependent risk profile per patient.
 
-**Probability calibration techniques.** Raw model outputs, especially from flexible learners, can be systematically over- or under-confident. We therefore recalibrate each horizon's probabilities on a dedicated calibration split using horizon-specific isotonic regression and Platt/temperature scaling, selecting the method that minimizes validation calibration error while preserving discrimination (Equation 12). Calibration mappings are fit only on held-out calibration data to avoid leakage.
+**Probability calibration techniques.** Raw model outputs, especially from flexible learners, can be systematically over- or under-confident. We therefore recalibrate each horizon's probabilities on a dedicated calibration split using horizon-specific isotonic regression (or Platt/temperature scaling), as defined in Equation (14):
 
-**Calibration evaluation across prediction horizons.** Calibration is assessed separately at 1, 2, 3, and 5 years using reliability (calibration) curves, the Brier score (Equation 13), expected calibration error (Equation 14), and the integrated calibration index. Reporting per horizon exposes calibration drift—typically worsening at longer horizons—so that reliability can be verified where predictions most inform decisions. Table 6 and Figure 4 summarize these results.
+$$\hat{p}_h^{\text{cal}} = \mathcal{C}_h(\hat{p}_h), \qquad \mathcal{C}_h = \arg\min_{\mathcal{C}\in\mathcal{M}\uparrow}\sum_{i\in\mathcal{D}_{\text{cal}}}\big(\mathcal{C}(\hat{p}_h^{(i)})-y_{i,h}\big)^2 \tag{14}$$
 
-**Global feature importance using SHAP.** Global explanations use SHAP values (Equation 15), computed with TreeSHAP for the ML branch and gradient/kernel SHAP for the fused model. Mean absolute SHAP values rank predictors, expected to foreground baseline and recent eGFR, eGFR slope, albuminuria, age, and diabetes status, providing a transparent account of population-level drivers (Figure 5).
+where $\mathcal{C}_h$ is a horizon-specific monotone (isotonic) calibration map fit on the calibration set $\mathcal{D}_{\text{cal}}$, $\mathcal{M}\uparrow$ the family of non-decreasing functions (replaced by a logistic map for Platt scaling), and $\hat{p}_h^{\text{cal}}$ the calibrated probability. The method minimizing validation calibration error while preserving discrimination is selected, and all calibration mappings are fit only on held-out calibration data to avoid leakage.
+
+**Calibration evaluation across prediction horizons.** Calibration is assessed separately at 1, 2, 3, and 5 years using reliability (calibration) curves, the time-dependent Brier score of Equation (15), the expected calibration error (ECE) of Equation (16), and the integrated calibration index:
+
+$$\text{BS}(h) = \frac{1}{N}\sum_{i=1}^{N}\big(\hat{p}_h^{\text{cal},(i)}-y_{i,h}\big)^2 \tag{15}$$
+
+$$\text{ECE}(h)=\sum_{b=1}^{B}\frac{|\mathcal{B}_b|}{N}\,\big|\,\text{acc}(\mathcal{B}_b)-\text{conf}(\mathcal{B}_b)\,\big| \tag{16}$$
+
+where $\text{BS}(h)$ is the mean squared difference between calibrated predicted risk and observed outcome at horizon $h$ (lower is better); predictions are partitioned into $B$ probability bins $\mathcal{B}_b$; and $\text{acc}(\mathcal{B}_b)$ and $\text{conf}(\mathcal{B}_b)$ denote the observed event frequency and mean predicted probability within bin $b$. Reporting per horizon exposes calibration drift—typically worsening at longer horizons—so that reliability can be verified where predictions most inform decisions. Table 6 and Figure 4 summarize these results.
+
+**Global feature importance using SHAP.** Global explanations use SHAP (Shapley additive explanation) values, computed with TreeSHAP for the ML branch and gradient/kernel SHAP for the fused model. SHAP decomposes a prediction into additive, locally faithful feature contributions, as given in the first expression of Equation (17); mean absolute SHAP values then rank predictors globally, expected to foreground baseline and recent eGFR, eGFR slope, albuminuria, age, and diabetes status (Figure 5):
+
+$$\hat{p}_h = \phi_0 + \sum_{j=1}^{F}\phi_j, \qquad R_i = 100\cdot\frac{\sum_{h}\omega_h\,\hat{p}_h^{\text{cal},(i)}}{\sum_{h}\omega_h} \tag{17}$$
+
+where $\phi_0$ is the base (expected) value, $\phi_j$ the SHAP contribution of feature $j$ across $F$ features, and $R_i\in[0,100]$ the clinically weighted composite progression-risk score (with horizon weights $\omega_h$) that underpins the risk categories defined in Section 7.
 
 **Patient-level and temporal explanations.** For individual patients, local SHAP attributions decompose a specific horizon risk into additive feature contributions, while the DL branch's attention weights identify which visits most influenced the prediction. Combining additive attributions with temporal attention yields explanations that are both feature-wise and time-wise, supporting clinician trust and case-level review.
 
-**Prediction uncertainty and reliability assessment.** Point risks are accompanied by uncertainty estimates obtained through Monte Carlo dropout and deep-ensemble variance in the DL branch and quantile/bootstrapped intervals in the ML branch (Equation 16). Predictions with wide intervals or low reliability are flagged, preventing overconfident guidance when the underlying data are sparse or atypical.
+**Prediction uncertainty and reliability assessment.** Point risks are accompanied by uncertainty estimates obtained through Monte Carlo dropout and deep-ensemble variance in the DL branch and quantile/bootstrapped intervals in the ML branch. Predictions with wide intervals or low reliability are flagged, preventing overconfident guidance when the underlying data are sparse or atypical.
 
 **Stability of explanations across subgroups.** Explanation stability is explicitly tested by comparing SHAP importance rankings across subgroups (sex, diabetes status, CKD stage, age bands) and across bootstrap resamples, quantified by rank-correlation and the mean Jaccard overlap of top-$k$ features. Stable rankings indicate that the model's reasoning is consistent and not driven by spurious subgroup-specific artefacts, strengthening the case for equitable clinical deployment.
 
@@ -209,7 +281,7 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 | Progression events (5 yr), n (%) | 3,120 (25.0) | 1,060 (27.0) |
 | Competing death (5 yr), n (%) | 1,500 (12.0) | 510 (13.0) |
 
-**Performance of baseline machine learning models.** Baseline tabular models (logistic regression, random survival forest, XGBoost) and the Kidney Failure Risk Equation are evaluated across all horizons. For each, we report the time-dependent concordance index (Equation 5), horizon-specific AUROC and AUPRC, sensitivity/specificity at clinically relevant thresholds, and Brier scores. Gradient-boosted models are expected to achieve the strongest discrimination among purely structured baselines, while the Kidney Failure Risk Equation provides a clinically familiar reference point.
+**Performance of baseline machine learning models.** Baseline tabular models (logistic regression, random survival forest, XGBoost) and the Kidney Failure Risk Equation are evaluated across all horizons. For each, we report the time-dependent concordance index (Equation 13), horizon-specific AUROC and AUPRC, sensitivity/specificity at clinically relevant thresholds, and Brier scores. Gradient-boosted models are expected to achieve the strongest discrimination among purely structured baselines, while the Kidney Failure Risk Equation provides a clinically familiar reference point.
 
 **Performance of individual deep learning models.** Standalone sequence models (LSTM, GRU, Transformer, DeepHit) are evaluated under identical conditions. These models are expected to improve over static baselines at longer horizons by exploiting trajectory information, but to show greater variance and sensitivity to data sparsity, particularly for patients with few longitudinal measurements.
 
@@ -231,7 +303,7 @@ The remainder of the paper is organized as follows. Section 2 reviews related wo
 
 **Time-dependent predictive performance.** Discrimination is reported as a function of horizon (1, 2, 3, 5 years) and, for landmark analyses, as a function of landmark time, revealing how predictive accuracy varies with how far ahead and from what point predictions are made. Time-dependent AUC and concordance are expected to decline modestly with increasing horizon length, with the hybrid model degrading more gracefully than baselines.
 
-**Probability calibration results.** Calibration is reported per horizon via reliability curves (Figure 4), Brier score (Equation 13), expected calibration error (Equation 14), and the integrated calibration index, both before and after recalibration. Recalibration is expected to substantially reduce calibration error at longer horizons without materially harming discrimination, demonstrating the value of the calibration-aware design.
+**Probability calibration results.** Calibration is reported per horizon via reliability curves (Figure 4), Brier score (Equation 15), expected calibration error (Equation 16), and the integrated calibration index, both before and after recalibration. Recalibration is expected to substantially reduce calibration error at longer horizons without materially harming discrimination, demonstrating the value of the calibration-aware design.
 
 ![Figure 4. Calibration (reliability) curves across the 1-, 2-, 3-, and 5-year prediction horizons. Points near the diagonal indicate agreement between predicted and observed progression frequency; calibration degrades modestly at longer horizons and is restored by horizon-specific recalibration.](ckd_figures/Figure_4_Calibration.png)
 
@@ -312,120 +384,9 @@ We proposed an explainable, calibration-aware hybrid machine learning–deep lea
 
 ---
 
-## Governing Equations
+## Nomenclature
 
-The following 17 equations define the proposed framework. A consolidated list of symbols follows the equations.
-
-**Equation 1 — Estimated glomerular filtration rate (CKD-EPI 2021 form):**
-
-$$\text{eGFR} = 142 \times \min\!\left(\frac{S_{cr}}{\kappa},1\right)^{\alpha} \times \max\!\left(\frac{S_{cr}}{\kappa},1\right)^{-1.200} \times 0.9938^{\,\text{Age}} \times 1.012^{[\text{female}]}$$
-
-where $S_{cr}$ is serum creatinine (mg/dL), $\kappa=0.7$ (female) or $0.9$ (male), and $\alpha=-0.241$ (female) or $-0.302$ (male); $[\text{female}]=1$ if female, else $0$.
-
-**Equation 2 — Per-patient eGFR trajectory slope (rate of decline):**
-
-$$\beta_i = \frac{\sum_{k=1}^{T_i} (t_{i,k}-\bar{t}_i)\,(g_{i,k}-\bar{g}_i)}{\sum_{k=1}^{T_i} (t_{i,k}-\bar{t}_i)^2}$$
-
-where $g_{i,k}$ is eGFR for patient $i$ at visit $k$, $t_{i,k}$ the visit time, and $\bar{t}_i,\bar{g}_i$ their means. $\beta_i$ (mL/min/1.73 m²/year) quantifies decline velocity.
-
-**Equation 3 — Standardized (z-score) feature normalization:**
-
-$$\tilde{x}_{j} = \frac{x_{j}-\mu_{j}^{\text{train}}}{\sigma_{j}^{\text{train}}}$$
-
-where $\mu_j^{\text{train}}$ and $\sigma_j^{\text{train}}$ are the mean and standard deviation of feature $j$ estimated on the training partition only (leakage-free scaling).
-
-**Equation 4 — Time-decay weighting of stale measurements:**
-
-$$w_{i,k} = \exp\!\big(-\lambda\,\Delta t_{i,k}\big), \qquad \Delta t_{i,k} = \tau - t_{i,k}$$
-
-where $\Delta t_{i,k}$ is the elapsed time between landmark $\tau$ and measurement $k$, and $\lambda \ge 0$ is a learned/validated decay rate; larger gaps receive smaller weights.
-
-**Equation 5 — Progression label (CKD progression indicator):**
-
-$$y_{i,h} = \mathbb{1}\!\left[\big(g^{\min}_{(\tau,\tau+h]} \le 0.60\,g_i^{\text{base}}\big) \;\lor\; \text{stage advance} \;\lor\; \text{KRT in } (\tau,\tau+h]\right]$$
-
-where $y_{i,h}=1$ denotes progression within horizon $h$, $g_i^{\text{base}}$ is baseline eGFR, and $\lor$ is logical OR; death without progression is treated as a competing event.
-
-**Equation 6 — Gradient-boosted machine learning branch:**
-
-$$f_{ML}(\mathbf{x}_i) = \sum_{m=1}^{M} \eta\, \phi_m(\mathbf{x}_i), \qquad \phi_m \in \mathcal{F}$$
-
-where $\phi_m$ is the $m$-th regression tree from the space $\mathcal{F}$ of CART trees, $M$ the number of boosting rounds, and $\eta$ the learning rate; the branch yields logit $f_{ML}$ and embedding $\mathbf{z}_{ML}$.
-
-**Equation 7 — Time-aware GRU update for the sequence branch:**
-
-$$
-\begin{aligned}
-\mathbf{r}_k &= \sigma(W_r[\mathbf{h}_{k-1},\mathbf{v}_k,\Delta t_k]+b_r), \\
-\mathbf{u}_k &= \sigma(W_u[\mathbf{h}_{k-1},\mathbf{v}_k,\Delta t_k]+b_u), \\
-\tilde{\mathbf{h}}_k &= \tanh\!\big(W_h[\mathbf{r}_k\odot\mathbf{h}_{k-1},\mathbf{v}_k,\Delta t_k]+b_h\big), \\
-\mathbf{h}_k &= (1-\mathbf{u}_k)\odot\mathbf{h}_{k-1} + \mathbf{u}_k\odot\tilde{\mathbf{h}}_k
-\end{aligned}
-$$
-
-where $\mathbf{v}_k$ is the measurement vector, $\Delta t_k$ the inter-visit gap, $\mathbf{h}_k$ the hidden state, $\mathbf{r}_k$/$\mathbf{u}_k$ the reset/update gates, $\sigma$ the sigmoid, and $\odot$ element-wise product.
-
-**Equation 8 — Temporal attention pooling (sequence context):**
-
-$$\alpha_k = \frac{\exp(\mathbf{a}^{\top}\tanh(W_a\mathbf{h}_k))}{\sum_{j=1}^{T}\exp(\mathbf{a}^{\top}\tanh(W_a\mathbf{h}_j))}, \qquad \mathbf{z}_{DL}=\sum_{k=1}^{T}\alpha_k\,\mathbf{h}_k$$
-
-where $\alpha_k$ is the attention weight (temporal explanation) for visit $k$, and $\mathbf{z}_{DL}$ is the attention-pooled context vector.
-
-**Equation 9 — Gated hybrid feature fusion:**
-
-$$\mathbf{g} = \sigma\!\big(W_g[\mathbf{z}_{ML},\mathbf{z}_{DL}]+b_g\big), \qquad \mathbf{z}_{\text{fus}} = \mathbf{g}\odot\mathbf{z}_{ML} + (1-\mathbf{g})\odot\mathbf{z}_{DL}$$
-
-where $\mathbf{g}$ is a learned per-dimension gate that adaptively balances the structured ($\mathbf{z}_{ML}$) and sequential ($\mathbf{z}_{DL}$) representations into the fused vector $\mathbf{z}_{\text{fus}}$.
-
-**Equation 10 — Discrete-time hazard for horizon $h$:**
-
-$$\lambda_h(\mathbf{z}_{\text{fus}}) = P(y_h=1 \mid y_{<h}=0, \mathbf{z}_{\text{fus}}) = \sigma\!\big(\mathbf{w}_h^{\top}\mathbf{z}_{\text{fus}}+b_h\big)$$
-
-where $\lambda_h$ is the conditional hazard of progressing in interval $h$ given progression-free survival through earlier intervals.
-
-**Equation 11 — Survival and cumulative progression probability:**
-
-$$S_h = \prod_{l=1}^{h}\big(1-\lambda_l\big), \qquad \hat{p}_h = 1 - S_h = 1-\prod_{l=1}^{h}\big(1-\lambda_l\big)$$
-
-where $S_h$ is the probability of remaining progression-free through horizon $h$ and $\hat{p}_h$ the cumulative progression probability (monotone non-decreasing in $h$).
-
-**Equation 12 — Discrete-time survival loss with censoring (training objective):**
-
-$$\mathcal{L} = -\sum_{i=1}^{N}\sum_{h=1}^{H} \delta_{i,h}\Big[y_{i,h}\log\lambda_{h}^{(i)} + (1-y_{i,h})\log\big(1-\lambda_{h}^{(i)}\big)\Big] + \gamma\,\Omega(\Theta)$$
-
-where $\delta_{i,h}=1$ if patient $i$ is under observation (uncensored) in interval $h$, $\Omega(\Theta)$ is the regularization penalty, and $\gamma$ its weight.
-
-**Equation 13 — Isotonic/Platt recalibration mapping:**
-
-$$\hat{p}_h^{\text{cal}} = \mathcal{C}_h(\hat{p}_h), \qquad \mathcal{C}_h = \arg\min_{\mathcal{C}\in\mathcal{M}\uparrow}\sum_{i\in\mathcal{D}_{\text{cal}}}\big(\mathcal{C}(\hat{p}_h^{(i)})-y_{i,h}\big)^2$$
-
-where $\mathcal{C}_h$ is a horizon-specific monotone (isotonic) calibration function fit on the calibration set $\mathcal{D}_{\text{cal}}$; Platt scaling replaces $\mathcal{M}\uparrow$ with a logistic map.
-
-**Equation 14 — Time-dependent Brier score:**
-
-$$\text{BS}(h) = \frac{1}{N}\sum_{i=1}^{N}\big(\hat{p}_h^{\text{cal},(i)}-y_{i,h}\big)^2$$
-
-measuring the mean squared difference between calibrated predicted risk and observed outcome at horizon $h$ (lower is better).
-
-**Equation 15 — Expected calibration error (ECE):**
-
-$$\text{ECE}(h)=\sum_{b=1}^{B}\frac{|\mathcal{B}_b|}{N}\,\big|\,\text{acc}(\mathcal{B}_b)-\text{conf}(\mathcal{B}_b)\,\big|$$
-
-where predictions are partitioned into $B$ probability bins $\mathcal{B}_b$, and $\text{acc}$/$\text{conf}$ are the observed event frequency and mean predicted probability in each bin.
-
-**Equation 16 — Time-dependent concordance index (discrimination):**
-
-$$C_{td}(h)=\frac{\sum_{i,j}\mathbb{1}[T_i<T_j]\,\mathbb{1}[\hat{p}_h^{(i)}>\hat{p}_h^{(j)}]\,\delta_i}{\sum_{i,j}\mathbb{1}[T_i<T_j]\,\delta_i}$$
-
-where ordered pairs $(i,j)$ are concordant when the patient who progresses earlier has the higher predicted risk; $\delta_i$ indicates an observed event.
-
-**Equation 17 — SHAP additive explanation and composite risk score:**
-
-$$\hat{p}_h = \phi_0 + \sum_{j=1}^{F}\phi_j, \qquad R_i = 100\cdot\frac{\sum_{h}\omega_h\,\hat{p}_h^{\text{cal},(i)}}{\sum_{h}\omega_h}$$
-
-where $\phi_0$ is the base value, $\phi_j$ the SHAP contribution of feature $j$ (with $F$ features), and $R_i\in[0,100]$ is the clinically weighted composite progression-risk score using horizon weights $\omega_h$ that defines the risk categories of Section 7.
-
-### List of Symbols
+The mathematical symbols used throughout Equations (1)–(17) are summarized below.
 
 | Symbol | Description |
 |---|---|

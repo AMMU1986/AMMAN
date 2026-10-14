@@ -45,12 +45,12 @@ SUB = str.maketrans('0123456789+-=()aeioxhklmnpst', '₀₁₂₃₄₅₆₇₈
 
 def _supersub(s):
     # ^{...} and _{...}
+    sup_ok = set('0123456789+-=()n')
     def rep_sup(m):
         inner = m.group(1)
-        try:
+        if inner and all(c in sup_ok for c in inner):
             return inner.translate(SUP)
-        except Exception:
-            return '^(' + inner + ')'
+        return '^(' + inner + ')'
     def rep_sub(m):
         inner = m.group(1)
         return inner.translate(SUB) if all(c in '0123456789+-=()aeioxhklmnpst' for c in inner) else '_' + inner
@@ -62,9 +62,24 @@ def _supersub(s):
 
 
 def latex_to_unicode(s):
+    s = re.sub(r'\\tag\{([^{}]*)\}', r'    (\1)', s)
+    s = re.sub(r'\\(?:begin|end)\{[a-zA-Z*]+\}', '', s)
+    s = s.replace('&', '')
     s = s.replace('\\\\', ' ; ')
-    s = re.sub(r'\\(?:frac|dfrac)\{([^{}]*)\}\{([^{}]*)\}', r'(\1)/(\2)', s)
-    s = re.sub(r'\\(?:text|mathrm|mathbf|mathcal|operatorname|boldsymbol)\{([^{}]*)\}', r'\1', s)
+    s = s.replace('\\mid', ' | ')
+    s = s.replace('^{\\top}', 'ᵀ').replace('^\\top', 'ᵀ').replace('\\top', 'ᵀ')
+    # strip font/text wrappers first (allow one nested brace level), repeat
+    for _ in range(4):
+        s = re.sub(r'\\(?:text|mathrm|mathbf|mathcal|operatorname|boldsymbol)'
+                   r'\{((?:[^{}]|\{[^{}]*\})*)\}', r'\1', s)
+    # accents -> keep base symbol (after font wrappers removed)
+    for _ in range(3):
+        s = re.sub(r'\\(?:hat|bar|tilde|vec|dot|ddot|overline|widehat|widetilde)'
+                   r'\{((?:[^{}]|\{[^{}]*\})*)\}', r'\1', s)
+    # fractions (handle one nested brace level, repeat for multiple fractions)
+    for _ in range(4):
+        s = re.sub(r'\\(?:frac|dfrac)\{((?:[^{}]|\{[^{}]*\})*)\}\{((?:[^{}]|\{[^{}]*\})*)\}',
+                   r'(\1)/(\2)', s)
     s = re.sub(r'\\(?:left|right|big|Big|,|;|!|quad|qquad)', ' ', s)
     s = re.sub(r'\\min\\!?', 'min', s)
     for pat, rep in LATEX_MAP:
