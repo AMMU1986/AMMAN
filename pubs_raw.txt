@@ -1,0 +1,584 @@
+Modeling and analysis of wave propagation under generalized Klein–Gordon nonlocal thermoelasticity theories
+S Mondal, S Mukhopadhyay
+Mechanics of Materials, 105834
+2026
+On some reciprocity and variational theorems in the temperature rate dependent two temperature piezothermoelasticity theory
+A Srivastava, S Mukhopadhyay
+Archive of Applied Mechanics 96 (5), 107
+2026
+Multi-layer skin tissue modeling with fourth-order Moore-Gibson-Thompson bio-heat equation and Eringen's nonlocal elasticity under a moving heat source
+S Mondal, RV Singh, S Mukhopadhyay
+Applied Mathematical Modelling, 116879
+3	2026
+On Optimal Fixed Time Stability: Its Application in Secure Communication Using Sliding Mode Control
+R Kushwah, A Mapui, S Mukhopadhyay
+European Journal of Control, 101467
+2026
+Size dependency and dual phase-lag effects on thermoelastic damping of a piezothermoelastic thin rectangular Kirchhoff plate
+A Srivastava, S Mukhopadhyay
+Journal of Thermal Stresses 48 (12), 1771-1791
+8	2025
+Prescribed-time stabilisation of nonlinear time-varying systems exhibiting impulsive behaviour
+A Mapui, S Mukhopadhyay
+International Journal of Control 98 (12), 2775-2788
+1	2025
+On temperature-rate-dependent two-temperature piezothermoelasticity theory
+A Srivastava, ON Shivay, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 76 (6), 245
+2025
+Practical prescribed/prescribed time stabilization via event-triggered impulsive control with actuation delays
+A Mapui, S Mukhopadhyay
+Systems & Control Letters 204, 106149
+1	2025
+Tracing Fluid Pathways Related to Hydrothermal Gold Mineralization in Hutti–Maski Schist Belt Using Imaging Spectroscopy
+H Kumar, TH Syed, AS Rajawat, R Jain, A Mohanan, P Jayaprasad
+Journal of the Indian Society of Remote Sensing 53 (10), 3251-3267
+2025
+Lyapunov-like prescribed-time stability of impulsive systems via event & self-triggered impulsive control
+A Mapui, S Mukhopadhyay
+Nonlinear Analysis: Hybrid Systems 57, 101598
+7	2025
+Thermomechanical interactions due to mode-I crack under modified temperature-rate dependent two-temperature thermoelasticity theory
+ON Shivay, S Mukhopadhyay
+Waves in Random and Complex Media 35 (4), 7733-7752
+4	2025
+Lyapunov-like conditions for prescribed-time stability of perturbed impulsive systems
+A Mapui, S Mukhopadhyay
+Applied Mathematics and Computation 490, 129187
+2	2025
+On optimal upper bound for the settling time of fixed-time stable systems and its application in secure communication
+A Mapui, MA Jamal, S Mukhopadhyay
+Nonlinear Dynamics 113 (6), 5359-5381
+3	2025
+Vibration analysis of a transversely isotropic piezothermoelastic beam resonators under nonlocal strain gradient theory with DPL model
+A Srivastava, S Mukhopadhyay
+Acta Mechanica 236 (2), 1071-1090
+8	2025
+Thermoelastic wave propagation and reflection in biological tissue under nonlocal elasticity and Moore–Gibson–Thompson heat conduction: modeling and analysis
+S Mondal, A Srivastava, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 76 (1), 30
+26	2025
+Fixed/predefined-time stability and designing of terminal sliding mode control of impulsive dynamical systems
+A Mapui, M Arzoo Jamal, S Mukhopadhyay
+International Journal of Systems Science 56 (1), 139-156
+6	2025
+Analysis of the dynamic responses of a piezothermoelastic microbeam resonator under dual-phase-lag heat conduction
+A Srivastava, S Mukhopadhyay
+Waves in Random and Complex Media, 1-22
+5	2024
+Functionally graded micro and nanostructures: introduction, modeling, and applications
+R Tiwari, S Mukhopadhyay, A Abouelregal
+Advances in Modelling and Analysis of Functionally Graded Micro-and Nanostructures
+2024
+Thermoelastic damping analysis in micro-beam resonators in the frame of modified couple stress and Moore–Gibson–Thompson (MGT) thermoelasticity theories
+B Singh, H Kumar, S Mukhopadhyay
+Waves in Random and Complex Media 34 (5), 4960-4977
+39	2024
+Thermoelastic damping analysis for a piezothermoelastic nanobeam resonator using DPL model under modified couple stress theory
+A Srivastava, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 75 (4), 139
+8	2024
+Damping analysis of a transversely isotropic piezothermoelastic nanobeam resonator based on the MGT thermoelasticity
+A Srivastava, S Mukhopadhyay
+European Journal of Mechanics-A/Solids 106, 105327
+18	2024
+On propagation of harmonic plane waves under the Moore–Gibson–Thompson thermoelasticity theory
+K Jangid, M Gupta, S Mukhopadhyay
+Waves in Random and Complex Media 34 (3), 1976-1999
+34	2024
+Predefined-time stability and its applications using non-singular sliding mode control
+A Mapui, MA Jamal, S Mukhopadhyay
+Communications in Nonlinear Science and Numerical Simulation 132, 107901
+26	2024
+Legendre wavelet collocation method for investigating thermo-mechanical responses on biological tissue during laser irradiation
+K Jangid, B Singh, S Mukhopadhyay
+Mathematics and Computers in Simulation 219, 404-423
+9	2024
+On the reflection of thermoelastic waves under an exact heat conduction model with a delay and temperature-dependent elastic parameters
+M Gupta, S Mukhopadhyay
+Waves in Random and Complex Media 34 (2), 969-1000
+2	2024
+Fixed-time synchronization of delayed inertial Cohen–Grossberg neural networks with desynchronizing impulses
+MA Jamal, S Das, S Mukhopadhyay
+Communications in Nonlinear Science and Numerical Simulation 130, 107772
+10	2024
+Thermoelastic vibration of Timoshenko beam under the modified couple stress theory and the Moore–Gibson–Thompson heat conduction model
+B Singh, S Mukhopadhyay
+Mathematics and Mechanics of Solids 29 (3), 436-451
+12	2024
+Implementation of Legendre wavelet method for the size dependent bending analysis of nano beam resonator under nonlocal strain gradient theory
+B Singh, K Jangid, S Mukhopadhyay
+Computers & Mathematics with Applications 153, 94-107
+16	2024
+Mathematical significance of strain rate and temperature rate on heat conduction in thermoelastic material due to line heat source
+RV Singh, S Mukhopadhyay
+Journal of Thermal Stresses 46 (11), 1164-1179
+3	2023
+A study of thermoelastic interactions in thin and long radiating rods under Moore–Gibson–Thompson theory of thermoelasticity
+A Srivastava, S Mukhopadhyay
+Acta Mechanica 234 (10), 4509-4522
+4	2023
+Application of Legendre wavelet collocation method to the analysis of poro-thermoelastic coupling with variable thermal conductivity
+K Jangid, S Mukhopadhyay
+Computers & Mathematics with Applications 146, 1-11
+8	2023
+Fixed-time stability of Cohen-Grossberg BAM neural networks with impulsive perturbations
+MA Jamal, R Kumar, S Mukhopadhyay, OM Kwon
+Neurocomputing 550, 126501
+20	2023
+Study the effects of temperature and strain rates on transient thermomechanical responses on multilayer skin tissue
+RV Singh, S Mukhopadhyay
+European Journal of Mechanics-A/Solids 100, 105028
+11	2023
+On fundamental solution of Moore–Gibson–Thompson (MGT) thermoelasticity theory
+B Singh, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 74 (3), 105
+16	2023
+Further results on fixed-time synchronization of the memristor neural networks with impulsive effects
+MA Jamal, A Mapui, S Das, S Mukhopadhyay
+Communications in Nonlinear Science and Numerical Simulation 118, 107038
+21	2023
+Size-dependent thermoelastic damping analysis in nanobeam resonators based on Eringen's nonlocal elasticity and modified couple stress theories
+H Kumar, S Mukhopadhyay
+Journal of Vibration and Control 29 (7-8), 1510-1523
+49	2023
+Analysis of size effects on thermoelastic damping in the Kirchhoff's plate resonator under Moore–Gibson–Thompson thermoelasticity
+B Singh, H Kumar, S Mukhopadhyay
+Thin-Walled Structures 180, 109793
+36	2022
+Thermoelastic interactions on temperature-rate-dependent two-temperature thermoelasticity in an infinite medium subjected to a line heat source
+K Jangid, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 73 (5), 196
+3	2022
+On the existence and decay in a new thermoelastic theory with two temperatures
+JR Fernández, S Mukhopadhyay, R Quintanilla, ON Shivay
+Zeitschrift für Analysis und ihre Anwendungen 41 (1), 37-48
+3	2022
+Domain of influence results of dual-phase-lag thermoelasticity theory for natural stress–heat-flux problem
+M Gupta, K Jangid, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 73 (4), 169
+2	2022
+Variational principle and continuous dependence results on the generalized poro-thermoelasticity theory with one relaxation parameter
+K Jangid, S Mukhopadhyay
+Continuum Mechanics and Thermodynamics 34 (3), 867-881
+4	2022
+Fixed-time stability of dynamical systems with impulsive effects
+MA Jamal, R Kumar, S Mukhopadhyay, S Das
+Journal of the Franklin Institute 359 (7), 3164-3182
+46	2022
+Surface energy effects on thermoelastic vibration of nanomechanical systems under Moore–Gibson–Thompson thermoelasticity and Eringen's nonlocal elasticity theories
+H Kumar, S Mukhopadhyay
+European Journal of Mechanics-A/Solids 93, 104530
+19	2022
+Study of wave propagation in an infinite solid due to a line heat source under Moore–Gibson–Thompson thermoelasticity
+RV Singh, S Mukhopadhyay
+Acta Mechanica 232 (12), 4747-4760
+12	2021
+Analysis of harmonic plane wave propagation predicted by strain and temperature-rate-dependent thermoelastic model
+M Gupta, S Mukhopadhyay
+Waves in Random and Complex Media 31 (6), 2481-2498
+12	2021
+A porothermoelasticity theory for anisotropic medium
+ON Shivay, S Mukhopadhyay
+Continuum Mechanics and Thermodynamics 33 (6), 2515-2532
+3	2021
+Variational principle and reciprocity theorem on the temperature-rate-dependent poro-thermoelasticity theory
+ON Shivay, S Mukhopadhyay
+Acta Mechanica 232 (9), 3655-3667
+5	2021
+Response of deflection and thermal moment of Timoshenko microbeams considering modified couple stress theory and dual-phase-lag heat conduction model
+H Kumar, S Mukhopadhyay
+Composite Structures 263, 113620
+27	2021
+Galerkin-type solution for the Moore–Gibson–Thompson thermoelasticity theory
+B Singh, S Mukhopadhyay
+Acta Mechanica 232 (4), 1273-1283
+39	2021
+Relaxation effects on thermoelastic interactions for time-dependent moving heat source under a recent model of thermoelasticity
+RV Singh, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 72 (1), 31
+6	2021
+A domain of influence theorem under MGT thermoelasticity theory
+K Jangid, S Mukhopadhyay
+Mathematics and Mechanics of Solids 26 (2), 285-295
+63	2021
+A domain of influence theorem for a natural stress–heat-flux problem in the Moore–Gibson–Thompson thermoelasticity theory
+K Jangid, S Mukhopadhyay
+Acta Mechanica 232 (1), 177-187
+56	2021
+Variational and reciprocal principles on the temperature-rate dependent two-temperature thermoelasticity theory
+K Jangid, S Mukhopadhyay
+Journal of Thermal Stresses 43 (7), 816-828
+14	2020
+Thermoelastic damping analysis in microbeam resonators based on Moore–Gibson–Thompson generalized thermoelasticity theory
+H Kumar, S Mukhopadhyay
+Acta Mechanica 231 (7), 3003-3015
+102	2020
+On the fundamental solutions for the strain and temperature rate-dependent generalized thermoelasticity theory
+B Singh, M Gupta, S Mukhopadhyay
+Journal of Thermal Stresses 43 (5), 650-664
+15	2020
+An investigation on strain and temperature rate-dependent thermoelasticity and its infinite speed behavior
+RV Singh, S Mukhopadhyay
+Journal of Thermal Stresses 43 (3), 269-283
+19	2020
+A complete Galerkin's type approach of finite element for the solution of a problem on modified Green–Lindsay thermoelasticity for a functionally graded hollow disk
+ON Shivay, S Mukhopadhyay
+European Journal of Mechanics-A/Solids 80, 103914
+21	2020
+Thermoelastic damping analysis for size-dependent microplate resonators utilizing the modified couple stress theory and the three-phase-lag heat conduction model
+H Kumar, S Mukhopadhyay
+International Journal of Heat and Mass Transfer 148, 118997
+90	2020
+On the temperature-rate dependent two-temperature thermoelasticity theory
+ON Shivay, S Mukhopadhyay
+Journal of Heat Transfer 142 (2), 022102
+22	2020
+Thermoelastic damping in micro and nano-mechanical resonators utilizing entropy generation approach and heat conduction model with a single delay term
+H Kumar, S Mukhopadhyay
+International Journal of Mechanical Sciences 165, 105211
+44	2020
+Galerkin-type solution for the theory of strain and temperature rate-dependent thermoelasticity
+M Gupta, S Mukhopadhyay
+Acta Mechanica 230 (10), 3633-3643
+23	2019
+A study on generalized thermoelasticity theory based on non-local heat conduction model with dual-phase-lag
+M Gupta, S Mukhopadhyay
+Journal of Thermal Stresses 42 (9), 1123-1135
+53	2019
+Analysis of the quality factor of micro-beam resonators based on heat conduction model with a single delay term
+H Kumar, S Mukhopadhyay
+Journal of Thermal Stresses 42 (8), 929-942
+16	2019
+Some basic theorems on a recent model of linear thermoelasticity for a homogeneous and isotropic medium
+ON Shivay, S Mukhopadhyay
+Mathematics and Mechanics of Solids 24 (8), 2444-2457
+11	2019
+An investigation on responses of thermoelastic interactions in a generalized thermoelasticity with memory-dependent derivatives inside a thick plate
+S Kant, S Mukhopadhyay
+Mathematics and Mechanics of Solids 24 (8), 2392-2409
+27	2019
+Stochastic thermoelastic interaction under a dual phase-lag model due to random temperature distribution at the boundary of a half-space
+M Gupta, S Mukhopadhyay
+Mathematics and Mechanics of Solids 24 (6), 1873-1892
+19	2019
+Modeling and forecasting Indian malaria incidence using generalized time series models
+S Mukhopadhyay, R Tiwari, P Shetty, NJ Gogtay, UM Thatte
+Communications in Statistics: Case Studies, Data Analysis and Applications 5
+12	2019
+Investigation of harmonic plane waves: detailed analysis of recent thermoplastic model with single delay term
+B Kumari, A Kumar, S Mukhopadhyay
+Mathematics and Mechanics of Solids 24 (3), 828-844
+5	2019
+Infinite speed behavior of two-temperature Green–Lindsay thermoelasticity theory under temperature-dependent thermal conductivity
+A Kumar, ON Shivay, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 70 (1), 26
+16	2019
+On the solution of a problem of extended thermoelasticity theory (ETE) by using a complete finite element approach
+ON Shivay, S Mukhopadhyay
+CMST 25 (2), 61-70
+6	2019
+Analysis of wave propagation in the presence of a continuous line heat source under heat transfer with memory dependent derivatives
+R Tiwari, S Mukhopadhyay
+Mathematics and Mechanics of Solids 23 (5), 820-834
+43	2018
+An investigation on a two-dimensional problem of Mode-I crack in a thermoelastic medium
+S Kant, M Gupta, ON Shivay, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 69 (2), 21
+6	2018
+Investigation on effects of stochastic loading at the boundary under thermoelasticity with two relaxation parameters
+S Kant, S Mukhopadhyay
+Applied Mathematical Modelling 54, 648-669
+4	2018
+On linear theory of thermoelasticity for an anisotropic medium under a recent exact heat conduction model
+M Gupta, S Mukhopadhyay
+International Conference on Mathematics and Computing, 309-324
+5	2018
+Analysis of a recent heat conduction model with a delay for thermoelastic interactions in an unbounded medium with a spherical cavity
+B Kumari, A Kumar, M Gupta, S Mukhopadhyay
+Applications and Applied Mathematics: An International Journal (AAM) 13 (2), 17
+1	2018
+A domain of influence theorem for thermoelasticity without energy dissipation
+B Kumari, S Mukhopadhyay
+Mathematics and Mechanics of Solids 22 (11), 2156-2164
+6	2017
+On electromagneto-thermoelastic plane waves under Green–Naghdi theory of thermoelasticity-II
+R Tiwari, S Mukhopadhyay
+Journal of Thermal Stresses 40 (8), 1040-1062
+43	2017
+Investigation on the effects of temperature dependency of material parameters on a thermoelastic loading problem
+A Kumar, S Mukhopadhyay
+Zeitschrift für angewandte Mathematik und Physik 68 (4), 98
+5	2017
+Fundamental solutions of thermoelasticity with a recent heat conduction model with a single delay term
+B Kumari, S Mukhopadhyay
+Journal of Thermal Stresses 40 (7), 866-878
+8	2017
+A detailed comparative study on responses of four heat conduction models for an axisymmetric problem of coupled thermoelastic interactions inside a thick plate
+S Kant, S Mukhopadhyay
+International Journal of Thermal Sciences 117, 196-211
+7	2017
+Investigation of a problem of an elastic half space subjected to stochastic temperature distribution at the boundary
+S Kant, S Mukhopadhyay
+Applied Mathematical Modelling 46, 492-518
+13	2017
+Some theorems on linear theory of thermoelasticity for an anisotropic medium under an exact heat conduction model with a delay
+B Kumari, S Mukhopadhyay
+Mathematics and Mechanics of Solids 22 (5), 1177-1189
+19	2017
+A note on a two-temperature model in linear thermoelasticity
+S Mukhopadhyay, R Picard, S Trostorff, M Waurick
+Mathematics and Mechanics of Solids 22 (5), 905-918
+15	2017
+On harmonic plane wave propagation under fractional order thermoelasticity: an analysis of fractional order heat conduction equation
+R Tiwari, S Mukhopadhyay
+Mathematics and Mechanics of Solids 22 (4), 782-797
+31	2017
+An in-depth investigation on plane harmonic waves under two-temperature thermoelasticity with two relaxation parameters
+A Kumar, S Kant, S Mukhopadhyay
+Mathematics and Mechanics of Solids 22 (2), 191-209
+17	2017
+Thermo-Mechanical Responses of an Annular Cylinder with Temperature Dependent Material Properties under Thermoelasticity without Energy Dissipation
+A Kumar, B Kumari, S Mukhopadhyay
+CMST 23 (4), 317-329
+2017
+An investigation on coupled thermoelastic interactions in a thick plate due to axi-symmetric temperature distribution under an exact heat conduction with a delay
+S Kant, S Mukhopadhyay
+International Journal of Thermal Sciences 110, 159-173
+11	2016
+On some models in linear thermo-elasticity with rational material laws
+S Mukhopadhyay, R Picard, S Trostorff, M Waurick
+Mathematics and Mechanics of Solids 21 (9), 1149-1163
+17	2016
+A domain of influence theorem for a natural stress–heat-flux disturbance in thermoelasticity of type-II
+B Kumari, S Mukhopadhyay
+Journal of Thermal Stresses 39 (8), 991-1001
+3	2016
+An investigation on thermoelastic interactions under an exact heat conduction model with a delay term
+A Kumar, S Mukhopadhyay
+Journal of Thermal Stresses 39 (8), 1002-1016
+10	2016
+An investigation on thermoelastic interactions under two-temperature thermoelasticity with two relaxation parameters
+R Kumar, A Kumar, S Mukhopadhyay
+Mathematics and Mechanics of Solids 21 (6), 725-736
+14	2016
+Study of a Problem of Annular Cylinder Under Two-Temperature Thermoelasticity with Thermal Relaxation Parameters
+S Mukhopadhyay, R Kumar
+Recent Trends in Mathematical Sciences
+1	2016
+Investigation on magneto-thermoelastic disturbances induced by thermal shock in an elastic half space having finite conductivity under dual phase-lag heat conduction
+R Tiwari, A Kumar, S Mukhopadhyay
+CMST 22 (4), 201-215
+6	2016
+Boundary integral equation formulation for generalized thermoelastic diffusion–Analytical aspects
+S Semwal, S Mukhopadhyay
+Applied Mathematical Modelling 38 (14), 3523-3537
+6	2014
+Dual phase-lag thermoelasticity
+S Mukhopadhyay, S Kothari, R Kumar
+Encyclopedia of thermal stresses, 1003-1019
+18	2014
+Boundary integral equations formulation for fractional order thermoelasticity
+R Tiwari, S Mukhopadhyay
+CMST 20 (2), 49-58
+8	2014
+Some theorems in linear thermoelasticity with dual phase-lags for an anisotropic medium
+S Kothari, S Mukhopadhyay
+Journal of Thermal Stresses 36 (10), 985-1000
+22	2013
+Study of a problem of functionally graded hollow disk under different thermoelasticity theories—an analysis of phase-lag effects
+S Kothari, S Mukhopadhyay
+Computers & Mathematics with Applications 66 (7), 1306-1321
+20	2013
+A study of influence of diffusion inside a spherical shell under thermoelastic diffusion with relaxation times
+S Kothari, S Mukhopadhyay
+Mathematics and mechanics of solids 18 (7), 722-737
+18	2013
+A two-dimensional problem of a mode I crack in a type III thermoelastic medium
+R Prasad, S Das, S Mukhopadhyay
+Mathematics and Mechanics of Solids 18 (5), 506-523
+23	2013
+Boundary integral equation formulation for coupled thermoelasticity with three phase-lags
+R Prasad, S Das, S Mukhopadhyay
+Mathematics and Mechanics of Solids 18 (1), 44-58
+10	2013
+Fractional order thermoelasticity for an infinite medium with a spherical cavity subjected to different types of thermal loading
+S Kothari, S Mukhopadhyay
+J. Thermoelast 1, 35-41
+6	2013
+Study of harmonic plane waves in rotating thermoelastic media of type III
+S Kothari, S Mukhopadhyay
+Mathematics and Mechanics of Solids 17 (8), 824-839
+28	2012
+On the representations of solutions in the theory of generalized thermoelastic diffusion
+S Kothari, S Mukhopadhyay
+Mathematics and mechanics of solids 17 (2), 120-130
+12	2012
+Comments on the article "On the propagation of harmonic plane waves under the two-temperature theory"
+S Mukhopadhyay, R Kumar, R Prasad
+International Journal of Engineering Science 51, 344-347
+2	2012
+Propagation of harmonic plane waves in a rotating elastic medium under two-temperature thermoelasticity with relaxation parameter
+R Prasad
+Computational Methods in Science and Technology
+2	2012
+Effects of rotation on harmonic plane waves under two-temperature thermoelasticity
+R Prasad, S Mukhopadhyay
+Journal of thermal stresses 35 (11), 1037-1055
+21	2012
+Stress intensity factor of an edge crack in composite media
+S Das, R Prasad, S Mukhopadhyay
+International journal of fracture 172 (2), 201-207
+11	2011
+A domain of influence theorem for thermoelasticity with dual phase-lags
+S Mukhopadhyay, S Kothari, R Kumar
+Journal of Thermal Stresses 34 (9), 923-933
+22	2011
+Some theorems on two-temperature generalized thermoelasticity
+R Kumar, R Prasad, S Mukhopadhyay
+Archive of Applied Mechanics 81 (8), 1031-1040
+17	2011
+A problem on elastic half space under fractional order theory of thermoelasticity
+S Kothari, S Mukhopadhyay
+Journal of Thermal Stresses 34 (7), 724-739
+44	2011
+Variational and reciprocal principles in linear theory of type-III thermoelasticity
+S Mukhopadhyay, R Prasad, R Kumar
+Mathematics and mechanics of solids 16 (4), 435-444
+24	2011
+On the theory of two-temperature thermoelasticity with two phase-lags
+S Mukhopadhyay, R Prasad, R Kumar
+Journal of Thermal Stresses 34 (4), 352-365
+44	2011
+Effects of phase lags on wave propagation in an infinite solid due to a continuous line heat source
+R Prasad, R Kumar, S Mukhopadhyay
+Acta mechanica 217 (3), 243-256
+20	2011
+Stress intensity factor of an edge crack in bonded orthotropic materials
+S Das, S Mukhopadhyay, R Prasad
+International Journal of Fracture 168 (1), 117-123
+19	2011
+Some theorems on generalized thermoelastic diffusion
+R Kumar, S Kothari, S Mukhopadhyay
+Acta mechanica 217 (3), 287-296
+30	2011
+Propagation of harmonic plane waves under thermoelasticity with dual-phase-lags
+R Prasad, R Kumar, S Mukhopadhyay
+International Journal of Engineering Science 48 (12), 2028-2043
+52	2010
+On the representation of solutions for the theory of generalized thermoelasticity with three phase-lags
+S Mukhopadhyay, S Kothari, R Kumar
+Acta Mechanica 214 (3), 305-314
+41	2010
+On the fundamental solutions of generalized thermoelasticity with three phase-lags
+S Kothari, R Kumar, S Mukhopadhyay
+Journal of Thermal Stresses 33 (11), 1035-1048
+14	2010
+State-space approach to thermoelastic interactions in generalized thermoelasticity type III
+S Mukhopadhyay, R Kumar
+Archive of Applied Mechanics 80 (8), 869-881
+8	2010
+A problem of infinite elastic medium with cylindrical cavity under two-temperature thermoelasticity with thermal relaxation parameters
+R Kumar, S Mukhopadhyay
+Proceedings of the National Academy of Sciences India Section A-Physical Sciences
+2010
+Analysis of phase-lag effects on wave propagation in a thick plate under axisymmetric temperature distribution
+S Mukhopadhyay, R Kumar
+Acta mechanica 210 (3), 331-344
+52	2010
+Variational and reciprocal principles in two-temperature generalized thermoelasticity
+R Kumar, R Prasad, S Mukhopadhyay
+Journal of Thermal Stresses 33 (3), 161-171
+42	2010
+Effects of thermal relaxation time on plane wave propagation under two-temperature thermoelasticity
+R Kumar, S Mukhopadhyay
+International Journal of Engineering Science 48 (2), 128-139
+90	2010
+Analysis of the effects of phase-lags on propagation of harmonic plane waves in thermoelastic media
+R Kumar, S Mukhopadhyay
+CMST 16 (1), 19-28
+17	2010
+Effects of three phase lags on generalized thermoelasticity for an infinite medium with a cylindrical cavity
+R Kumar, S Mukhopadhyay
+Journal of Thermal Stresses 32 (11), 1149-1165
+35	2009
+Thermoelastic interactions on two-temperature generalized thermoelasticity in an infinite medium with a cylindrical cavity
+S Mukhopadhyay, R Kumar
+Journal of Thermal Stresses 32 (4), 341-360
+62	2009
+A problem on thermoelastic interactions without energy dissipation in an unbounded medium with a spherical cavity
+S Mukhopadhyay, R Kumar
+Proceedings of the National Academy of Sciences India Section A-Physical Sciences
+6	2009
+Solution of a problem of generalized thermoelasticity of an annular cylinder with variable material properties by finite difference method
+R Kumar
+Computational Methods in Science and Technology
+41	2009
+A study of generalized thermoelastic interactions in an unbounded medium with a spherical cavity
+S Mukhopadhyay, R Kumar
+Computers & Mathematics with Applications 56 (9), 2329-2339
+43	2008
+A problem on thermoelastic interactions in an infinite medium with a cylindrical hole in generalized thermoelasticity III
+S Mukhopadhyay, R Kumar
+Journal of thermal stresses 31 (5), 455-475
+34	2008
+One dimensional state space approach to thermoelastic interactions without energy dissipation
+S Mukhopadhyay
+Indian Journal of Pure and Applied Mathematics 37 (3), 151
+4	2006
+Thermoelastic interactions without energy dissipation in an unbounded body with a spherical cavity subjected to harmonically varying temperature
+S Mukhopadhyay
+Mechanics Research Communications 31 (1), 81-89
+43	2004
+Thermoelastic interactions without energy dissipation in an unbounded medium with a spherical cavity due to a thermal shock at the boundary
+S Mukhopadhyay
+Journal of thermal stresses 25 (9), 877-887
+40	2002
+Thermoelastic interactions in a transversely isotropic cylinder subjected to ramp type increase in boundary temperature and load
+S Mukhopadhyay, RN Mukherjee
+Indian Journal of Pure and Applied Mathematics 33 (5), 635-646
+7	2002
+Thermoelastic interactions in a transversely isotropic elastic medium with a cylindrical hole subjected to ramp-type increase in boundary temperature or load
+S Mukhopadhyay
+Journal of thermal stresses 25 (4), 341-362
+10	2002
+Relaxation effects on thermally induced vibration in a transversely isotropic medium with a spherical cavity
+S Mukhopadhyay
+Proceedings-National Academy of Sciences India Section A, 257-268
+2002
+Relaxation effects on thermoelastic interactions in a transversely isotropic unbounded body with a spherical cavity subjected to periodic loading
+S Mukhopadhyay
+Indian Journal of Pure and Applied Mathematics 32 (12), 1809-1818
+2001
+Effects of thermal relaxations on thermoviscoelastic interactions in an unbounded body with a spherical cavity subjected to a periodic loading on the boundary
+S Mukhopadhyay
+Journal of Thermal Stresses 23 (7), 675-684
+72	2000
+Effect of rotation and relaxation times on plane waves in generalized thermo-visco-elasticity
+SK Roychoudhuri, S Mukhopadhyay
+International Journal of Mathematics and Mathematical Sciences 23 (7), 497-505
+88	2000
+Relaxation effects on thermally induced vibrations in a generalized thermoviscoelastic medium with a spherical cavity
+S Mukhopadhyay
+Journal of thermal stresses 22 (9), 829-840
+16	1999
+Magneto-thermo-elastic interactions in an infinite visco-elastic cylinder of temperature rate dependent material subjected to a periodic loading
+SK Roychoudhuri, S Banerjee Mukhopadhyay
+International Journal of Engineering Science 36, 635-643
+39	1998
+Magneto-thermo-elastic interactions in an infinite isotropic elastic cylinder subjected to a periodic loading
+SK Roychoudhuri, S Banerjee Mukhopadhyay
+International Journal of Engineering Science 35, 437-444
+35	1997
+Magneto-thermoelastic waves induced by a thermal shock in a finitely conducting elastic half-space
+S Banerjee Mukhopadhyay, SK Roychoudhuri
+International Journal of Mathematics and Mathematical Sciences 19, 131-134
+22	1996
+Spherically symmetric thermo-visco-elastic waves in a viscoelastic medium with a spherical cavity
+S Banerjee Mukhopadhyay, SK Roychoudhuri
+Computers and Mathematics with Applications 30 (1), 91-98
+41	1995
+Note on wave propagation in elastic bars of finite length with randomly and linearly varying Young's modulus
+SK Roychoudhuri, S Banerjee Mukhopadhyay
+Indian Journal of Pure and Applied Mathematics 24, 69-76
+2	1993
