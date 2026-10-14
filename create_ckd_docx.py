@@ -13,6 +13,7 @@ Features:
 
 import zipfile
 import re
+import latex_omml
 
 SRC = '/projects/sandbox/AMMAN/CKD_Hybrid_ML_DL_Manuscript.md'
 OUT = '/projects/sandbox/AMMAN/CKD_Hybrid_ML_DL_Manuscript.docx'
@@ -99,8 +100,9 @@ import os
 EMU_PER_PX = 9525          # at 96 DPI
 MAX_WIDTH_EMU = 5486400    # 6.0 inches content width
 
-# collected images: list of dicts {rid, target, abspath, w_emu, h_emu, cap}
+# collected media parts: list of dicts {rid, target, abspath}
 MEDIA = []
+_FIG = [0]
 
 
 def png_size(path):
@@ -113,23 +115,43 @@ def png_size(path):
     return (w, h)
 
 
+def svg_size(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        head = f.read(500)
+    w = re.search(r'width="(\d+(?:\.\d+)?)"', head)
+    h = re.search(r'height="(\d+(?:\.\d+)?)"', head)
+    if w and h:
+        return (float(w.group(1)), float(h.group(1)))
+    return (1180, 720)
+
+
 def image_block(path, caption):
-    """Return docx XML for a centered inline image + caption, registering media."""
-    abspath = path if os.path.isabs(path) else os.path.join(
+    """Centered figure: embeds crisp SVG (if available) with a PNG fallback."""
+    abspng = path if os.path.isabs(path) else os.path.join(
         '/projects/sandbox/AMMAN', path)
-    if not os.path.exists(abspath):
+    if not os.path.exists(abspng):
         return para(f'[missing image: {path}]', jc='center')
-    w_px, h_px = png_size(abspath)
-    w_emu = w_px * EMU_PER_PX
-    h_emu = h_px * EMU_PER_PX
+    svgpath = abspng[:-4] + '.svg' if abspng.lower().endswith('.png') else ''
+    has_svg = bool(svgpath) and os.path.exists(svgpath)
+    w_px, h_px = svg_size(svgpath) if has_svg else png_size(abspng)
+    w_emu = int(w_px * EMU_PER_PX)
+    h_emu = int(h_px * EMU_PER_PX)
     if w_emu > MAX_WIDTH_EMU:
         scale = MAX_WIDTH_EMU / w_emu
         w_emu = int(w_emu * scale)
         h_emu = int(h_emu * scale)
-    idx = len(MEDIA) + 1
-    rid = f'rIdImg{idx}'
-    target = f'media/image{idx}.png'
-    MEDIA.append({'rid': rid, 'target': target, 'abspath': abspath})
+    _FIG[0] += 1
+    idx = _FIG[0]
+    png_rid = f'rIdImg{idx}p'
+    MEDIA.append({'rid': png_rid, 'target': f'media/image{idx}.png', 'abspath': abspng})
+    blip_ext = ''
+    if has_svg:
+        svg_rid = f'rIdImg{idx}s'
+        MEDIA.append({'rid': svg_rid, 'target': f'media/image{idx}.svg', 'abspath': svgpath})
+        blip_ext = (
+            '<a:extLst><a:ext uri="{96DAC541-7B7A-43D3-8B79-37D633B846F1}">'
+            '<asvg:svgBlip xmlns:asvg="http://schemas.microsoft.com/office/drawing/2016/SVG/main" '
+            f'r:embed="{svg_rid}"/></a:ext></a:extLst>')
     docpr_id = 1000 + idx
     drawing = (
         '<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="120" w:after="40"/></w:pPr>'
@@ -148,8 +170,10 @@ def image_block(path, caption):
         '<pic:nvPicPr>'
         f'<pic:cNvPr id="{docpr_id}" name="Figure{idx}"/>'
         '<pic:cNvPicPr/></pic:nvPicPr>'
-        f'<pic:blipFill><a:blip r:embed="{rid}" '
-        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"/>'
+        '<pic:blipFill>'
+        f'<a:blip r:embed="{png_rid}" '
+        'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+        f'{blip_ext}</a:blip>'
         '<a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
         '<pic:spPr><a:xfrm><a:off x="0" y="0"/>'
         f'<a:ext cx="{w_emu}" cy="{h_emu}"/></a:xfrm>'
@@ -159,8 +183,7 @@ def image_block(path, caption):
     )
     cap = ''
     if caption:
-        runs = ''.join(run_xml(t, b, i, m, 18)
-                       for (t, b, i, m) in inline_runs(caption))
+        runs = render_inline(caption, 18)
         cap = (f'<w:p><w:pPr><w:jc w:val="center"/>'
                '<w:spacing w:after="160"/></w:pPr>'
                f'{runs}</w:p>')
@@ -170,35 +193,50 @@ def image_block(path, caption):
 # ----------------------------------------------------------------------
 # Inline run parsing: **bold**, *italic*, `code`, $math$
 # ----------------------------------------------------------------------
-def inline_runs(text):
-    """Return list of (text, bold, italic, mono) runs."""
-    runs = []
+def inline_segments(text):
+    """Return ('run', text, bold, italic, mono) or ('math', latex) segments."""
+    segs = []
     i = 0
     n = len(text)
     while i < n:
         if text.startswith('**', i):
             j = text.find('**', i + 2)
             if j != -1:
-                runs.append((text[i+2:j], True, False, False)); i = j + 2; continue
+                segs.append(('run', text[i+2:j], True, False, False)); i = j + 2; continue
         if text[i] == '`':
             j = text.find('`', i + 1)
             if j != -1:
-                runs.append((text[i+1:j], False, False, True)); i = j + 1; continue
+                segs.append(('run', text[i+1:j], False, False, True)); i = j + 1; continue
         if text[i] == '$':
             j = text.find('$', i + 1)
             if j != -1:
-                runs.append((latex_to_unicode(text[i+1:j]), False, True, False)); i = j + 1; continue
+                segs.append(('math', text[i+1:j])); i = j + 1; continue
         if text[i] == '*':
             j = text.find('*', i + 1)
             if j != -1 and j > i + 1:
-                runs.append((text[i+1:j], False, True, False)); i = j + 1; continue
+                segs.append(('run', text[i+1:j], False, True, False)); i = j + 1; continue
         # plain char: accumulate until next marker
         m = re.search(r'(\*\*|`|\$|\*)', text[i:])
         if m:
-            runs.append((text[i:i+m.start()], False, False, False)); i += m.start()
+            segs.append(('run', text[i:i+m.start()], False, False, False)); i += m.start()
         else:
-            runs.append((text[i:], False, False, False)); i = n
-    return [r for r in runs if r[0] != '']
+            segs.append(('run', text[i:], False, False, False)); i = n
+    return [s for s in segs if not (s[0] == 'run' and s[1] == '')]
+
+
+def render_inline(text, size=None, force_bold=False):
+    """Render inline text with **bold**/*italic*/`code` and native $math$ (OMML)."""
+    out = []
+    for s in inline_segments(text):
+        if s[0] == 'math':
+            try:
+                out.append(latex_omml.omath(s[1]))
+            except Exception:
+                out.append(run_xml(latex_to_unicode(s[1]), italic=True, size=size))
+        else:
+            _, t, b, it, mo = s
+            out.append(run_xml(t, b or force_bold, it, mo, size))
+    return ''.join(out)
 
 
 def run_xml(text, bold=False, italic=False, mono=False, size=None):
@@ -221,7 +259,7 @@ def para(text='', style='Normal', jc=None, size=None):
     ppr = f'<w:pPr>{"".join(ppr_items)}</w:pPr>' if ppr_items else ''
     if text == '':
         return f'<w:p>{ppr}</w:p>'
-    runs = ''.join(run_xml(t, b, i, m, size) for (t, b, i, m) in inline_runs(text))
+    runs = render_inline(text, size)
     return f'<w:p>{ppr}{runs}</w:p>'
 
 
@@ -230,8 +268,22 @@ def mono_para(text, jc='center', size=20):
             f'{run_xml(text, mono=True, size=size)}</w:p>')
 
 
+def equation_paragraph(latex, number=''):
+    """A centered native Word equation (OMML) with a right-aligned number."""
+    try:
+        math = latex_omml.omath(latex)
+    except Exception:
+        return mono_para(latex_to_unicode(re.sub(r'\\tag\{[^{}]*\}', '', latex)))
+    tabs = ('<w:tabs><w:tab w:val="center" w:pos="4680"/>'
+            '<w:tab w:val="right" w:pos="9350"/></w:tabs>')
+    numrun = (f'<w:r><w:tab/><w:t xml:space="preserve">({number})</w:t></w:r>'
+              if number else '')
+    return (f'<w:p><w:pPr>{tabs}<w:spacing w:before="120" w:after="120"/></w:pPr>'
+            f'<w:r><w:tab/></w:r>{math}{numrun}</w:p>')
+
+
 def bullet_para(text, size=None):
-    runs = ''.join(run_xml(t, b, i, m, size) for (t, b, i, m) in inline_runs(text))
+    runs = render_inline(text, size)
     return ('<w:p><w:pPr><w:ind w:left="360" w:hanging="360"/></w:pPr>'
             f'<w:r><w:t xml:space="preserve">•  </w:t></w:r>{runs}</w:p>')
 
@@ -252,8 +304,7 @@ def build_table(rows):
         xml.append('<w:tr>')
         for cell in row:
             shade = '<w:shd w:val="clear" w:fill="D9E2F3"/>' if ri == 0 else ''
-            runs = ''.join(run_xml(t, (b or ri == 0), i, m, 18)
-                           for (t, b, i, m) in inline_runs(cell))
+            runs = render_inline(cell, 18, force_bold=(ri == 0))
             if not runs:
                 runs = run_xml('', size=18)
             xml.append(f'<w:tc><w:tcPr><w:tcW w:w="0" w:type="auto"/>{shade}</w:tcPr>'
@@ -306,11 +357,9 @@ def convert(md):
                     if tail: buf.append(tail)
                     i += 1
             raw = ' '.join(x.strip() for x in buf if x.strip())
-            # split aligned eqns on \\ -> separate lines
-            for piece in latex_to_unicode(raw).split(' ; '):
-                if piece.strip():
-                    out.append(mono_para(piece.strip()))
-            out.append(para(''))
+            mnum = re.search(r'\\tag\{([^{}]*)\}', raw)
+            number = mnum.group(1) if mnum else ''
+            out.append(equation_paragraph(raw, number))
             continue
 
         # Table
@@ -387,6 +436,7 @@ CONTENT_TYPES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
   <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
   <Default Extension="xml" ContentType="application/xml"/>
   <Default Extension="png" ContentType="image/png"/>
+  <Default Extension="svg" ContentType="image/svg+xml"/>
   <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
   <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
 </Types>'''
@@ -408,7 +458,8 @@ def main():
     body = convert(md)
     document = ('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>'
                 '<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" '
-                'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships">'
+                'xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" '
+                'xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">'
                 f'<w:body>{body}'
                 '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>'
                 '<w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr>'
