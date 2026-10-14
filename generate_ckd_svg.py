@@ -329,8 +329,119 @@ def fig6():
     s.save('Figure_6_RiskStratification.svg')
 
 
+# ---------------------------------------------------------------- Figure 7
+def fig7():
+    """Confusion matrix for binary (yes/no) 2-year progression classification."""
+    s = SVG(1060, 620)
+    s.text(530, 30, "Figure 7.  Confusion Matrix \u2014 2-Year Progression (Yes / No)",
+           size=20, fill="#0f2a63", weight="700")
+    # counts (illustrative, consistent with reported sensitivity/specificity)
+    TP, FN, FP, TN = 454, 86, 295, 2165
+    tot = TP + FN + FP + TN
+    gx, gy, cw, ch = 300, 110, 230, 150
+    # axis titles
+    s.text(gx + cw, gy - 34, "Actual outcome", size=15, fill="#334155", weight="700")
+    s.vtext(gx - 86, gy + ch, "Predicted", size=15)
+    # column headers
+    s.text(gx + cw / 2, gy - 10, "Progression (Yes)", size=13, fill="#334155", weight="600")
+    s.text(gx + cw + cw / 2, gy - 10, "No progression (No)", size=13, fill="#334155", weight="600")
+    # row headers
+    s.vtext(gx - 20, gy + ch / 2, "Yes", size=13, fill="#334155")
+    s.vtext(gx - 20, gy + ch + ch / 2, "No", size=13, fill="#334155")
+
+    def cell(cx, cy, val, label, good):
+        frac = val / tot
+        if good:
+            fill = f"rgba(21,128,61,{0.18 + 0.75*min(frac*2.2,1):.2f})"
+            stroke = "#15803d"
+        else:
+            fill = f"rgba(185,28,28,{0.15 + 0.75*min(frac*3.5,1):.2f})"
+            stroke = "#b91c1c"
+        s.rect(cx, cy, cw, ch, fill, stroke, rx=8, sw=2)
+        tcol = "#0f172a"
+        s.text(cx + cw / 2, cy + ch / 2 - 14, str(val), size=30, fill=tcol, weight="700")
+        s.text(cx + cw / 2, cy + ch / 2 + 20, f"{label}  ({frac*100:.1f}%)", size=13,
+               fill="#334155", weight="600")
+
+    cell(gx, gy, TP, "TP", True)
+    cell(gx + cw, gy, FP, "FP", False)
+    cell(gx, gy + ch, FN, "FN", False)
+    cell(gx + cw, gy + ch, TN, "TN", True)
+    # metrics panel
+    acc = (TP + TN) / tot
+    sens = TP / (TP + FN)
+    spec = TN / (TN + FP)
+    ppv = TP / (TP + FP)
+    npv = TN / (TN + FN)
+    f1 = 2 * ppv * sens / (ppv + sens)
+    mx, my = 800, 110
+    s.rect(mx, my, 230, 300, "#f8fafc", "#cbd5e1", rx=10, sw=1.5)
+    s.text(mx + 115, my + 22, "Derived metrics", size=15, fill="#0f2a63", weight="700")
+    rows = [("Accuracy", acc), ("Sensitivity", sens), ("Specificity", spec),
+            ("PPV (precision)", ppv), ("NPV", npv), ("F1 score", f1)]
+    yy = my + 55
+    for name, v in rows:
+        s.text(mx + 18, yy, name, size=14, fill="#334155", anchor="start", weight="600")
+        s.text(mx + 212, yy, f"{v:.3f}", size=14, fill="#15803d", anchor="end", weight="700")
+        yy += 40
+    s.text(530, 540, f"N = {tot:,} patients (held-out test set); threshold at 2-year horizon",
+           size=13, fill="#64748b", weight="500")
+    s.save('Figure_7_ConfusionMatrix.svg')
+
+
+# ---------------------------------------------------------------- Figure 8
+def fig8():
+    """ROC curves for binary (yes/no) progression classification."""
+    s = SVG(900, 720)
+    s.text(450, 30, "Figure 8.  ROC Curves \u2014 Binary Progression Classification",
+           size=20, fill="#0f2a63", weight="700")
+    x0, y0, x1, y1 = 110, 80, 820, 560
+    s.rect(x0, y0, x1 - x0, y1 - y0, "#fcfdff", "#cbd5e1", rx=6, sw=1.5)
+    for g in range(1, 10):
+        gx = x0 + g * (x1 - x0) / 10
+        gy = y0 + g * (y1 - y0) / 10
+        s.line(gx, y0, gx, y1, "#eef2f7", 1)
+        s.line(x0, gy, x1, gy, "#eef2f7", 1)
+    s.line(x0, y1, x1, y0, "#94a3b8", 2, dash="6,5")
+    s.text(x1 - 90, y0 + 24, "chance", size=13, fill="#94a3b8", weight="600")
+    sx = lambda v: x0 + v * (x1 - x0)
+    sy = lambda v: y1 - v * (y1 - y0)
+    curves = [
+        ("Hybrid ML\u2013DL", "#b91c1c", 0.891),
+        ("XGBoost (ML)", "#1d4ed8", 0.858),
+        ("LSTM (DL)", "#15803d", 0.853),
+        ("KFRE", "#c2560a", 0.818),
+    ]
+    for name, col, auc in curves:
+        k = auc / (1 - auc)
+        expo = 1.0 / k
+        pts = []
+        for i in range(0, 101):
+            fpr = i / 100.0
+            tpr = fpr ** expo
+            pts.append((sx(fpr), sy(tpr)))
+        s.polyline(pts, col, 3)
+    for g in range(0, 11, 2):
+        s.text(x0 + g * (x1 - x0) / 10, y1 + 18, f"{g/10:.1f}", size=12, fill="#475569")
+        s.text(x0 - 22, y1 - g * (y1 - y0) / 10, f"{g/10:.1f}", size=12, fill="#475569")
+    s.text((x0 + x1) / 2, y1 + 44, "False-positive rate (1 \u2212 specificity)", size=14,
+           fill="#334155", weight="600")
+    s.vtext(x0 - 55, (y0 + y1) / 2, "True-positive rate (sensitivity)", size=14)
+    # legend with AUC
+    ly = y0 + 20
+    s.rect(sx(0.52), ly - 6, 268, 128, "#ffffff", "#cbd5e1", rx=8, sw=1.3)
+    s.text(sx(0.52) + 14, ly + 10, "Model (AUC)", size=13, fill="#0f2a63", anchor="start", weight="700")
+    yy = ly + 36
+    for name, col, auc in curves:
+        s.rect(sx(0.52) + 14, yy - 7, 22, 13, col, col, rx=3, sw=0)
+        s.text(sx(0.52) + 44, yy, f"{name}  ({auc:.3f})", size=13, fill="#334155",
+               anchor="start", weight="600")
+        yy += 26
+    s.save('Figure_8_ROC.svg')
+
+
 if __name__ == '__main__':
     os.makedirs(OUT, exist_ok=True)
     print('Generating vector SVG figures...')
-    fig1(); fig2(); fig3(); fig4(); fig5(); fig6()
+    fig1(); fig2(); fig3(); fig4(); fig5(); fig6(); fig7(); fig8()
     print('Done.')

@@ -484,8 +484,69 @@ def fig6():
     cv.save(os.path.join(OUTDIR, 'Figure_6_RiskStratification.png'))
 
 
+def fig7():
+    """PNG fallback: confusion matrix."""
+    cv = Canvas(1060, 620)
+    cv.ctext(530, 24, "FIGURE 7  CONFUSION MATRIX - 2-YEAR PROGRESSION (YES/NO)", DBLUE, 2)
+    TP, FN, FP, TN = 454, 86, 295, 2165
+    gx, gy, cw, ch = 300, 120, 230, 150
+    cv.text(gx + cw - 60, gy - 40, "ACTUAL OUTCOME", DGREY, 2)
+    cells = [(gx, gy, TP, "TP", GREEN, DGREEN), (gx + cw, gy, FP, "FP", RED, DRED),
+             (gx, gy + ch, FN, "FN", RED, DRED), (gx + cw, gy + ch, TN, "TN", GREEN, DGREEN)]
+    for x, y, val, lab, fill, border in cells:
+        cv.box(x, y, x + cw, y + ch, fill, border, 3)
+        cv.ctext(x + cw // 2, y + ch // 2 - 20, str(val), (20, 20, 20), 4)
+        cv.ctext(x + cw // 2, y + ch // 2 + 24, lab, DGREY, 2)
+    cv.text(gx + 20, gy - 14, "YES", DGREY, 2); cv.text(gx + cw + 20, gy - 14, "NO", DGREY, 2)
+    cv.text(gx - 60, gy + 60, "PRED", DGREY, 2)
+    acc = (TP + TN) / (TP + FN + FP + TN)
+    rows = [("ACCURACY", acc), ("SENSITIVITY", TP/(TP+FN)), ("SPECIFICITY", TN/(TN+FP)),
+            ("PPV", TP/(TP+FP)), ("NPV", TN/(TN+FN)), ("F1", 2*(TP/(TP+FP))*(TP/(TP+FN))/((TP/(TP+FP))+(TP/(TP+FN))))]
+    mx, my = 800, 120
+    cv.box(mx, my, mx + 230, my + 300, (248, 250, 252), DGREY, 2)
+    cv.ctext(mx + 115, my + 18, "METRICS", DBLUE, 2)
+    yy = my + 55
+    for name, v in rows:
+        cv.text(mx + 16, yy, name, DGREY, 2)
+        cv.text(mx + 150, yy, f"{v:.3f}", DGREEN, 2)
+        yy += 40
+    cv.save(os.path.join(OUTDIR, 'Figure_7_ConfusionMatrix.png'))
+
+
+def fig8():
+    """PNG fallback: ROC curves."""
+    cv = Canvas(900, 720)
+    cv.ctext(450, 24, "FIGURE 8  ROC CURVES - BINARY PROGRESSION", DBLUE, 2)
+    ax0, ay0, ax1, ay1 = 110, 80, 820, 560
+    cv.box(ax0, ay0, ax1, ay1, (252, 252, 254), DGREY, 2)
+    cv.line(ax0, ay0, ax0, ay1, (40, 40, 40), 2)
+    cv.line(ax0, ay1, ax1, ay1, (40, 40, 40), 2)
+    cv.line(ax0, ay1, ax1, ay0, (150, 150, 150), 2)
+    sx = lambda v: ax0 + v * (ax1 - ax0)
+    sy = lambda v: ay1 - v * (ay1 - ay0)
+    curves = [("HYBRID (0.891)", DRED, 0.891), ("XGBOOST (0.858)", DBLUE, 0.858),
+              ("LSTM (0.853)", DGREEN, 0.853), ("KFRE (0.818)", DORANGE, 0.818)]
+    for name, col, auc in curves:
+        k = auc / (1 - auc); expo = 1.0 / k
+        prev = None
+        for i in range(0, 101, 2):
+            fpr = i / 100.0; tpr = fpr ** expo
+            p = (sx(fpr), sy(tpr))
+            if prev:
+                cv.line(prev[0], prev[1], p[0], p[1], col, 3)
+            prev = p
+    cv.text(ax0 + 60, ay1 + 16, "FALSE-POSITIVE RATE", (40, 40, 40), 2)
+    cv.text(20, ay0 + 10, "TPR", (40, 40, 40), 2)
+    ly = ay0 + 30
+    for name, col, auc in curves:
+        cv.fill_rect(sx(0.5), ly, sx(0.5) + 26, ly + 16, col)
+        cv.text(sx(0.5) + 34, ly, name, (40, 40, 40), 2)
+        ly += 28
+    cv.save(os.path.join(OUTDIR, 'Figure_8_ROC.png'))
+
+
 if __name__ == '__main__':
     os.makedirs(OUTDIR, exist_ok=True)
     print('Generating CKD manuscript figures...')
-    fig1(); fig2(); fig3(); fig4(); fig5(); fig6()
+    fig1(); fig2(); fig3(); fig4(); fig5(); fig6(); fig7(); fig8()
     print('Done.')

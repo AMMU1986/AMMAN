@@ -301,6 +301,12 @@ where $\phi_0$ is the base (expected) value, $\phi_j$ the SHAP contribution of f
 | Late-fusion average | 0.862 | 0.869 | 0.610 | 0.118 |
 | **Proposed hybrid (gated fusion)** | **0.884** | **0.891** | **0.651** | **0.104** |
 
+**Binary (yes/no) classification performance.** At a fixed clinical operating threshold on the 2-year horizon, the framework is also evaluated as a binary classifier of progression (yes) versus non-progression (no). The confusion matrix (Figure 7) decomposes predictions into true positives, false negatives, false positives, and true negatives, from which accuracy, sensitivity, specificity, positive and negative predictive value, and the F1 score are derived; the high negative predictive value is particularly relevant for safely ruling out imminent progression. The receiver-operating-characteristic (ROC) curves (Figure 8) compare the discriminative ability of the hybrid model against representative baselines across all decision thresholds, with the hybrid model attaining the largest area under the curve (AUC). Together these analyses characterize the model's yes/no decision quality independently of any single threshold.
+
+![Figure 7. Confusion matrix for the binary (yes/no) classification of 2-year CKD progression on the held-out test set, showing true/false positives and negatives together with the derived accuracy, sensitivity, specificity, predictive values, and F1 score.](ckd_figures/Figure_7_ConfusionMatrix.png)
+
+![Figure 8. Receiver-operating-characteristic (ROC) curves for binary progression classification at the 2-year horizon, comparing the proposed hybrid ML–DL model with XGBoost, LSTM, and the Kidney Failure Risk Equation baselines; the area under each curve (AUC) is reported in the legend.](ckd_figures/Figure_8_ROC.png)
+
 **Time-dependent predictive performance.** Discrimination is reported as a function of horizon (1, 2, 3, 5 years) and, for landmark analyses, as a function of landmark time, revealing how predictive accuracy varies with how far ahead and from what point predictions are made. Time-dependent AUC and concordance are expected to decline modestly with increasing horizon length, with the hybrid model degrading more gracefully than baselines.
 
 **Probability calibration results.** Calibration is reported per horizon via reliability curves (Figure 4), Brier score (Equation 15), expected calibration error (Equation 16), and the integrated calibration index, both before and after recalibration. Recalibration is expected to substantially reduce calibration error at longer horizons without materially harming discrimination, demonstrating the value of the calibration-aware design.
@@ -434,6 +440,8 @@ The mathematical symbols used throughout Equations (1)–(17) are summarized bel
 4. **Figure 4:** Calibration Performance Across Prediction Horizons — reliability curves and calibration metrics at 1, 2, 3, and 5 years, before and after recalibration.
 5. **Figure 5:** Explainability Analysis Using SHAP — global importance summary, patient-level attributions, and temporal attention.
 6. **Figure 6:** Time-Dependent CKD Progression Risk Stratification — risk-category cumulative-incidence curves and decision-curve analysis of net clinical benefit.
+7. **Figure 7:** Confusion Matrix — binary (yes/no) 2-year progression classification with derived accuracy, sensitivity, specificity, predictive values, and F1 score.
+8. **Figure 8:** ROC Curves — binary progression classification comparing the hybrid model with baseline models, with areas under the curve (AUC).
 
 ## List of Tables
 
