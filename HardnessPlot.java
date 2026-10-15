@@ -17,8 +17,8 @@ public class HardnessPlot {
     static final int W = 2000, H = 1200;
     static final int ML = 150, MR = 410, MT = 120, MB = 150;
     static final int PW = W - ML - MR, PH = H - MT - MB;
-    static final double X_MIN = -8, X_MAX = 8, Y_MIN = 215, Y_MAX = 275;
-    static final double FZ = 5, HAZ = 7, BM = 245;
+    static final double X_MIN = -8, X_MAX = 8, Y_MIN = 190, Y_MAX = 290;
+    static final double FZ = 5, HAZ = 7, BM = 215;
 
     static double sx(double x) { return ML + (x - X_MIN) / (X_MAX - X_MIN) * PW; }
     static double sy(double y) { return MT + (Y_MAX - y) / (Y_MAX - Y_MIN) * PH; }
@@ -70,7 +70,7 @@ public class HardnessPlot {
 
         // ---- grid + ticks ----
         g.setFont(new Font("SansSerif", Font.PLAIN, 22));
-        for (int y = 215; y <= 275; y += 5) {
+        for (int y = 190; y <= 290; y += 10) {
             double yp = sy(y);
             g.setColor(new Color(224,224,224));
             g.setStroke(new BasicStroke(1.2f));
@@ -115,7 +115,7 @@ public class HardnessPlot {
         // ---- titles ----
         g.setColor(Color.BLACK);
         g.setFont(new Font("SansSerif", Font.BOLD, 34));
-        center(g, "Microhardness Profile across API X70 SMAW Weld Joints", ML + PW / 2.0, 58);
+        center(g, "Microhardness Traverse across API X70 SMAW Weld Joints", ML + PW / 2.0, 58);
 
         g.setFont(new Font("SansSerif", Font.BOLD, 26));
         center(g, "Distance from Weld Centreline (mm)", ML + PW / 2.0, H - 40);
@@ -131,11 +131,11 @@ public class HardnessPlot {
         int lx = ML + PW + 40, ly = MT + 40;
         g.setFont(new Font("SansSerif", Font.BOLD, 24));
         g.setColor(Color.BLACK);
-        g.drawString("Electrode", lx, ly - 14);
+        g.drawString("Weld metal (FZ)", lx, ly - 14);
         String[] names = {
-            "E6018  (FZ 238 / HAZ 225)",
-            "E7018  (FZ 252 / HAZ 232)",
-            "E9018  (FZ 268 / HAZ 241)" };
+            "E6018  ~210 HV (soft)",
+            "E7018  ~232 HV",
+            "E9018  ~258 HV" };
         g.setFont(new Font("SansSerif", Font.PLAIN, 23));
         g.setStroke(new BasicStroke(5f));
         for (int i = 0; i < 3; i++) {
@@ -150,7 +150,7 @@ public class HardnessPlot {
         g.setStroke(dashed(4f, 9f, 7f));
         g.draw(new Line2D.Double(lx, yy, lx + 44, yy));
         g.setColor(Color.BLACK);
-        g.drawString("Base metal 245 HV", lx + 56, yy + 8);
+        g.drawString("Base metal ~215 HV", lx + 56, yy + 8);
 
         g.dispose();
         ImageIO.write(img, "png", new File("hardness_profile.png"));
