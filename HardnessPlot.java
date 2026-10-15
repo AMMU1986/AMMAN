@@ -119,7 +119,7 @@ public class HardnessPlot {
             for (double xt = X_MIN; xt <= X_MAX + 1e-6; xt += 0.5) {
                 double v = valueAt(rows, xt, c + 1);
                 if (Double.isNaN(v)) continue;
-                double sd = 0.05 * v;                 // SD = 5%
+                double sd = 0.02 * v;                 // SD = 2%
                 double px = sx(xt);
                 double yHi = sy(v + sd), yLo = sy(v - sd);
                 g.setStroke(new BasicStroke(1.5f));
@@ -175,7 +175,7 @@ public class HardnessPlot {
         int ey = yy + 46;
         g.setColor(new Color(80,80,80));
         g.setFont(new Font("SansSerif", Font.ITALIC, 20));
-        g.drawString("Error bars: \u00B1SD (5% of HV),", lx, ey);
+        g.drawString("Error bars: \u00B1SD (2% of HV),", lx, ey);
         g.drawString("at 0.5 mm spacing", lx, ey + 26);
 
         g.dispose();

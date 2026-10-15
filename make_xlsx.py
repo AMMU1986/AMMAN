@@ -60,9 +60,9 @@ for row in rows:
     x, e6, e7, e9, zone = row
     e6, e7, e9 = float(e6), float(e7), float(e9)
     data_rows.append([(float(x), True, 0),
-                      (e6, True, 0), (round(0.05 * e6, 2), True, 0),
-                      (e7, True, 0), (round(0.05 * e7, 2), True, 0),
-                      (e9, True, 0), (round(0.05 * e9, 2), True, 0),
+                      (e6, True, 0), (round(0.02 * e6, 2), True, 0),
+                      (e7, True, 0), (round(0.02 * e7, 2), True, 0),
+                      (e9, True, 0), (round(0.02 * e9, 2), True, 0),
                       (zone, False, 0)])
 
 # ---- zone statistics ----
@@ -85,7 +85,7 @@ srow(("Microhardness Traverse — API X70 SMAW Weld Joints", False, 1))
 srow(("Generated", False, 0), (datetime.date.today().isoformat(), False, 0))
 srow(("Traverse", False, 0), ("-8 mm to +8 mm, step 0.05 mm (321 points/curve)", False, 0))
 srow(("Fusion line", False, 0), ("|x| = 5 mm; HAZ 5-7 mm; Base metal |x| > 7 mm", False, 0))
-srow(("Error bars", False, 0), ("SD = 5% of each HV value (see *_SD columns on Hardness Data)", False, 0))
+srow(("Error bars", False, 0), ("SD = 2% of each HV value (see *_SD columns on Hardness Data)", False, 0))
 srow()
 srow(("Zone statistics (HV0.1): mean / min / max", False, 1))
 srow(("Electrode", False, 1), ("Region", False, 1), ("Mean", False, 1),
