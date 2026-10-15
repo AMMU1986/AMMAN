@@ -112,6 +112,25 @@ public class HardnessPlot {
             g.draw(path);
         }
 
+        // ---- error bars: +/- SD (5% of HV) at 0.5 mm indentation spacing ----
+        double capHalf = 7;          // px half-width of the cap
+        for (int c = 0; c < 3; c++) {
+            g.setColor(colors[c]);
+            for (double xt = X_MIN; xt <= X_MAX + 1e-6; xt += 0.5) {
+                double v = valueAt(rows, xt, c + 1);
+                if (Double.isNaN(v)) continue;
+                double sd = 0.05 * v;                 // SD = 5%
+                double px = sx(xt);
+                double yHi = sy(v + sd), yLo = sy(v - sd);
+                g.setStroke(new BasicStroke(1.5f));
+                g.draw(new Line2D.Double(px, yHi, px, yLo));           // whisker
+                g.draw(new Line2D.Double(px - capHalf, yHi, px + capHalf, yHi)); // top cap
+                g.draw(new Line2D.Double(px - capHalf, yLo, px + capHalf, yLo)); // bot cap
+                double r = 3.2;                                        // marker
+                g.fill(new Ellipse2D.Double(px - r, sy(v) - r, 2 * r, 2 * r));
+            }
+        }
+
         // ---- titles ----
         g.setColor(Color.BLACK);
         g.setFont(new Font("SansSerif", Font.BOLD, 34));
@@ -152,9 +171,23 @@ public class HardnessPlot {
         g.setColor(Color.BLACK);
         g.drawString("Base metal ~215 HV", lx + 56, yy + 8);
 
+        // error-bar note
+        int ey = yy + 46;
+        g.setColor(new Color(80,80,80));
+        g.setFont(new Font("SansSerif", Font.ITALIC, 20));
+        g.drawString("Error bars: \u00B1SD (5% of HV),", lx, ey);
+        g.drawString("at 0.5 mm spacing", lx, ey + 26);
+
         g.dispose();
         ImageIO.write(img, "png", new File("hardness_profile.png"));
         System.out.println("wrote hardness_profile.png (" + W + "x" + H + ")");
+    }
+
+    /** Nearest-sample hardness value for column col (1=E6018,2=E7018,3=E9018). */
+    static double valueAt(List<double[]> rows, double x, int col) {
+        for (double[] r : rows)
+            if (Math.abs(r[0] - x) < 1e-6) return r[col];
+        return Double.NaN;
     }
 
     static void band(Graphics2D g, double x0, double x1, Color base, int alpha) {
