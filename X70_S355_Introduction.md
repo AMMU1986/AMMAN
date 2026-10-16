@@ -49,3 +49,15 @@ Despite this breadth of research, a combined assessment of the impact toughness,
 [15] Hernández-Sandoval, J., et al. (2015). Effect of gas metal arc welding (GMAW) parameters on wear behavior of heat-affected zone of HSLA steel plates. *MRS Online Proceedings Library*, 1766. https://doi.org/10.1557/opl.2015.410 †
 
 [16] Ligier, K., Bramowicz, M., Kulesza, S., Lemecha, M., & Pszczółkowski, B. (2023). Use of the ball-cratering method to assess the wear resistance of a welded joint of XAR400 steel. *Materials*, 16(13), 4523. https://doi.org/10.3390/ma16134523
+
+[17] Sharma, L., Jakhar, A., et al. (2024). Effect of filler on the microstructural behavior of dissimilar MIG weldments for high pressure vessel applications. *National Academy Science Letters*. https://doi.org/10.1007/s40009-024-01489-y †(author list)
+
+[18] Stornelli, G., Rodríguez-Vargas, B. R., Tselikova, A., Schmidt, R., Mortello, M., & Di Schino, A. (2025). The vanadium micro-alloying effect on the microstructure of HSLA steel welded joints by GMAW. *Metals*, 15(10), 1127. https://doi.org/10.3390/met15101127
+
+[19] Wang, Y., Li, R., Wen, Q., Xiao, W., Wu, S., Zhai, X., & Zhang, F. (2025). Comparison of microstructure and mechanical properties of ultra-narrow gap-welded and submerged arc-welded Q355E HSLA steel. *Materials*, 18(12), 2805. https://doi.org/10.3390/ma18122805
+
+[20] Maurya, A. K., Chhibber, R., & Pandey, C. (2024). Tribological behavior and residual stresses of gas tungsten arc welded dissimilar joint of sDSS 2507/X-70 pipeline steel. *Metallurgical and Materials Transactions B*, 55. https://doi.org/10.1007/s11663-024-03053-x †(author list)
+
+[21] Cai, Y., et al. (2023). Microstructure evolution of weld root in dissimilar weld metal in S690QL high-strength steel under multiple welding thermal cycles. *Journal of Materials Science*, 58. https://doi.org/10.1007/s10853-023-08478-4 †(author list)
+
+[22] Mazur, M., et al. (2021). Comparative research of microstructure and mechanical properties of stainless and structural steel dissimilar welds. *Materials*, 14(20), 6180. https://doi.org/10.3390/ma14206180 †(author list)
