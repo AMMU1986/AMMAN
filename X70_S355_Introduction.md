@@ -1,0 +1,63 @@
+# To study the mechanical, microstructural and wear behaviour of dissimilar API X70 and S355 structural steel SMAW welds fabricated by using E9018 electrodes
+
+## Introduction
+
+The sustained growth in global energy demand has expanded the construction of long-distance hydrocarbon transmission networks, in which high-strength low-alloy (HSLA) pipeline steels such as API 5L X70 are extensively employed for their combination of high strength, good toughness and weldability. The service integrity of such lines is governed largely by their welded joints, where the non-equilibrium thermal cycle generates pronounced microstructural gradients across the base metal (BM), fusion zone (FZ) and heat-affected zone (HAZ) that control the local mechanical response [1]. The toughness and strength of X70 weld metal are optimised when a high fraction of fine, interlocking acicular ferrite develops, since this constituent simultaneously raises strength and resists cleavage-crack propagation, whereas coarse grain-boundary and polygonal ferrite degrade these properties [2]. In multi-pass shielded metal arc welding (SMAW), the reheating of previously deposited passes produces alternating columnar and refined regions together with a characteristic hardness distribution across the joint, further linking the weld thermal history to the final properties [3].
+
+Structural steel S355 is, in parallel, one of the most widely used grades for construction, bridges, cranes, offshore platforms and wind-turbine support structures, owing to its moderate strength, excellent weldability and economy. Its welded assemblies are routinely exposed to fatigue, residual stresses and demanding fabrication sequences, and their performance is strongly dependent on the HAZ microstructure, where micro-alloying additions and the inter-critically reheated sub-zones govern toughness through the formation and decomposition of martensite–austenite constituents [4]. The expanding use of hybrid steel structures—in which X70-grade pipeline components interface with S355 structural supports, nozzles and transition pieces—has created a practical need for reliable dissimilar X70/S355 welds. Joining steels that differ markedly in chemistry, strength and hardenability, however, introduces well-documented metallurgical difficulties such as weld-pool dilution, elemental partitioning and carbon migration across the fusion boundary, together with brittle or softened sub-zones that can sharply localise strain and compromise joint reliability [5]. Because X70 has a higher carbon equivalent and strength than S355, the two sides of the joint respond differently to an identical thermal cycle, typically yielding an asymmetric hardness profile with a harder HAZ on the X70 side and a softer HAZ and base metal on the S355 side.
+
+A recurring concern in dissimilar and high-strength steel welds is HAZ softening, in which the fine-grained and inter-critical regions of the lower-hardenability steel lose hardness relative to the base metal, forming a weak band that localises deformation [6]. Conversely, the dilution of alloying elements into the fusion zone can either raise weld-metal hardenability—promoting hard transformation products—or shift it toward softer ferritic structures, depending on the filler and base-metal combination [7]. Such effects have motivated systematic studies of dissimilar X70 joints with austenitic and super-duplex stainless steels, which have clarified the roles of filler selection and heat input on interfacial microstructure, hardness and toughness [8], [9]. Investigations of X70 welded to super-duplex stainless steel by laser beam processing have similarly correlated weld-zone microstructure with mechanical and corrosion performance [10], while the present authors’ earlier work on dissimilar X70/SA 516 joints demonstrated the decisive influence of the filler metal on the microstructure and hardness distribution across such ferritic dissimilar welds [11]. Despite these efforts, the X70/S355 combination—both ferritic, yet differing substantially in strength and carbon equivalent—remains largely unexplored, particularly for the SMAW process that dominates field fabrication and repair.
+
+The welding consumable is decisive for the properties of such joints. The E9018 low-alloy electrode is attractive for dissimilar X70/S355 welding because its controlled alloy chemistry and low-hydrogen coating favour an acicular-ferrite-rich weld metal with a balanced strength–toughness response; micro-alloying additions are known to promote the intragranular nucleation of acicular ferrite and to inhibit austenite-grain coarsening in the coarse-grained HAZ [12]. The nucleation of acicular ferrite on intragranular non-metallic inclusions, and the conditions under which this transformation prevails over bainite, have been established as key to the fine, chaotically oriented ferrite laths that impede crack propagation and raise impact toughness [13].
+
+Beyond strength and toughness, the tribological behaviour of welded joints is an increasingly important but frequently neglected performance criterion for components subject to sliding contact, erosion and abrasion. The distinct weld regions exhibit different wear responses governed by the welding thermal cycle and the resulting microstructure and hardness [14], and the welding heat input directly modifies the wear resistance of the HAZ in HSLA steels [15]. Measurements across welded cross-sections consistently identify the HAZ as the region of lowest wear resistance, reflecting its heterogeneous and often softened microstructure, as revealed by controlled abrasion and pin-on-disc testing [16]. For a dissimilar X70/S355 joint, where hardness varies steeply from one base metal to the other, such localised wear characterisation is particularly important for predicting durability in abrasive or contact-loaded service.
+
+Despite this breadth of research, a combined assessment of the impact toughness, microhardness distribution, microstructural evolution and dry-sliding wear behaviour of dissimilar API X70/S355 SMAW joints fabricated with E9018 electrodes has not been reported. The present study therefore characterises these aspects jointly and correlates the mechanical and wear performance of the BM, FZ and HAZ regions with their microstructures, in order to identify the governing metallurgical factors and to establish the suitability of E9018-based SMAW for such dissimilar structural–pipeline connections.
+
+## References
+
+*Only articles with a verifiable DOI are included. DOIs were checked against publisher records; items marked † should still have their author order confirmed against the publisher page before final submission.*
+
+[1] Dong, Y., Liu, D., Hong, L., Liu, J., & Zuo, X. (2022). Correlation between microstructure and mechanical properties of welded joint of X70 submarine pipeline steel with heavy wall thickness. *Metals*, 12(5), 716. https://doi.org/10.3390/met12050716
+
+[2] Liu, D., Dong, Y., Li, R., Jiang, J., Li, X., Wang, Z., & Zuo, X. (2022). Evaluation of mechanical properties and microstructure of X70 pipeline steel with strain-based design. *Metals*, 12(10), 1616. https://doi.org/10.3390/met12101616
+
+[3] Maamache, B., Bouabdallah, M., & Brahimi, A. (2025). Microstructural evolution, mechanical properties, and corrosion resistance of welded X70 pipeline steel: effects of thermal welding cycles on cap and root regions. *The International Journal of Advanced Manufacturing Technology*, 139, 2965–2975. https://doi.org/10.1007/s00170-025-16052-2 †
+
+[4] Stornelli, G., Tselikova, A., Mirabile Gattia, D., Mortello, M., Schmidt, R., Sgambetterra, M., Testani, C., Zucca, G., & Di Schino, A. (2023). Influence of vanadium micro-alloying on the microstructure of structural high strength steels welded joints. *Materials*, 16(7), 2897. https://doi.org/10.3390/ma16072897
+
+[5] Rogalski, G., Landowski, M., Fydrych, D., & Łabanowski, J. (2016). Dissimilar welded joints operating in sub-zero temperature environment. *The International Journal of Advanced Manufacturing Technology*, 85, 2423–2436. https://doi.org/10.1007/s00170-016-8711-4 †
+
+[6] Li, X., She, Z., Lv, X., Zhang, Z., Li, L., & Han, B. (2026). Effect of base metal microstructure on softening behavior of the heat-affected zone of X80 GMAW girth weld. *Metals*, 16(3), 247. https://doi.org/10.3390/met16030247
+
+[7] Yang, H., Chen, J., Zhao, X., Huda, N., & Gerlich, A. P. (2024). Effect of filler wire composition on weld metal microstructure and mechanical properties in X80 steel laser welds. *Materials*, 17(21), 5235. https://doi.org/10.3390/ma17215235
+
+[8] Maurya, A. K., Pandey, C., & Chhibber, R. (2023). Study on microstructure–mechanical integrity of the dissimilar gas tungsten arc weld joint of sDSS 2507/X-70 steels for marine applications. *Journal of Materials Science*, 58, 11862–11884. https://doi.org/10.1007/s10853-023-08723-w †
+
+[9] Maurya, A. K., Chhibber, R., & Pandey, C. (2024). Structure–property relationship assessment of dissimilar gas tungsten arc welded joint of pipeline steel and super duplex stainless steel for marine applications. *Archives of Civil and Mechanical Engineering*, 24, 184. https://doi.org/10.1007/s43452-024-00977-8 †
+
+[10] Maurya, A. K., Pandey, S. M., Chhibber, R., & Pandey, C. (2023). Structure–property relationships and corrosion behavior of laser-welded X-70/UNS S32750 dissimilar joint. *Archives of Civil and Mechanical Engineering*, 23, 109. https://doi.org/10.1007/s43452-023-00627-5
+
+[11] Sharma, L., Jakhar, A., Mankotia, K., Kumar, V., & Saini, S. (2025). Investigation on mechanical and microstructural behavior of API X70 and SA 516 dissimilar MIG welded joint. *International Journal of Materials Research*, 116(7), 601–609. https://doi.org/10.1515/ijmr-2024-0126
+
+[12] Chen, J., Shi, Z., Luo, X., Chai, F., Pan, T., Feng, G., & Yang, C. (2025). Micro-alloying effects on microstructure and weldability of high-strength low-alloy steel: a review. *Materials*, 18(5), 1036. https://doi.org/10.3390/ma18051036
+
+[13] Loder, D., & Michelic, S. K. (2018). Conditions for the occurrence of acicular ferrite transformation in HSLA steels. *Journal of Materials Science*, 53, 5078–5099. https://doi.org/10.1007/s10853-017-1781-3
+
+[14] Flores-Herrera, L. A., et al. (2019). The wear responses of the welded joints of ASTM A335 Gr. P11 steels affected by accelerated flow corrosion. *Materials*, 12(21), 3630. https://doi.org/10.3390/ma12213630 †
+
+[15] Hernández-Sandoval, J., et al. (2015). Effect of gas metal arc welding (GMAW) parameters on wear behavior of heat-affected zone of HSLA steel plates. *MRS Online Proceedings Library*, 1766. https://doi.org/10.1557/opl.2015.410 †
+
+[16] Ligier, K., Bramowicz, M., Kulesza, S., Lemecha, M., & Pszczółkowski, B. (2023). Use of the ball-cratering method to assess the wear resistance of a welded joint of XAR400 steel. *Materials*, 16(13), 4523. https://doi.org/10.3390/ma16134523
+
+[17] Sharma, L., Jakhar, A., et al. (2024). Effect of filler on the microstructural behavior of dissimilar MIG weldments for high pressure vessel applications. *National Academy Science Letters*. https://doi.org/10.1007/s40009-024-01489-y †(author list)
+
+[18] Stornelli, G., Rodríguez-Vargas, B. R., Tselikova, A., Schmidt, R., Mortello, M., & Di Schino, A. (2025). The vanadium micro-alloying effect on the microstructure of HSLA steel welded joints by GMAW. *Metals*, 15(10), 1127. https://doi.org/10.3390/met15101127
+
+[19] Wang, Y., Li, R., Wen, Q., Xiao, W., Wu, S., Zhai, X., & Zhang, F. (2025). Comparison of microstructure and mechanical properties of ultra-narrow gap-welded and submerged arc-welded Q355E HSLA steel. *Materials*, 18(12), 2805. https://doi.org/10.3390/ma18122805
+
+[20] Maurya, A. K., Chhibber, R., & Pandey, C. (2024). Tribological behavior and residual stresses of gas tungsten arc welded dissimilar joint of sDSS 2507/X-70 pipeline steel. *Metallurgical and Materials Transactions B*, 55. https://doi.org/10.1007/s11663-024-03053-x †(author list)
+
+[21] Cai, Y., et al. (2023). Microstructure evolution of weld root in dissimilar weld metal in S690QL high-strength steel under multiple welding thermal cycles. *Journal of Materials Science*, 58. https://doi.org/10.1007/s10853-023-08478-4 †(author list)
+
+[22] Mazur, M., et al. (2021). Comparative research of microstructure and mechanical properties of stainless and structural steel dissimilar welds. *Materials*, 14(20), 6180. https://doi.org/10.3390/ma14206180 †(author list)
