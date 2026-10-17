@@ -31,7 +31,7 @@ with open(CSV_IN, newline="") as f:
     r = csv.reader(f)
     header = next(r)
     for line in r:
-        rows.append(line)  # [x, region, unch, chg]
+        rows.append(line)  # [x, region, unch, chg, sd_unch, sd_chg]
 
 N = len(rows)
 last = N + 1  # last worksheet row (1-based, incl. header)
@@ -42,7 +42,7 @@ last = N + 1  # last worksheet row (1-based, incl. header)
 sb = []
 sb.append('<?xml version="1.0" encoding="UTF-8" standalone="yes"?>')
 sb.append('<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">')
-sb.append(f'<dimension ref="A1:D{last}"/>')
+sb.append(f'<dimension ref="A1:F{last}"/>')
 sb.append('<sheetData>')
 # header row (inline strings)
 sb.append('<row r="1">'
@@ -50,8 +50,10 @@ sb.append('<row r="1">'
           '<c r="B1" t="inlineStr"><is><t>region</t></is></c>'
           '<c r="C1" t="inlineStr"><is><t>hardness_uncharged_HV</t></is></c>'
           '<c r="D1" t="inlineStr"><is><t>hardness_charged_HV</t></is></c>'
+          '<c r="E1" t="inlineStr"><is><t>sd_uncharged_HV (1.5%)</t></is></c>'
+          '<c r="F1" t="inlineStr"><is><t>sd_charged_HV (1.5%)</t></is></c>'
           '</row>')
-for i, (x, region, unch, chg) in enumerate(rows):
+for i, (x, region, unch, chg, sdu, sdc) in enumerate(rows):
     rr = i + 2
     sb.append(
         f'<row r="{rr}">'
@@ -59,6 +61,8 @@ for i, (x, region, unch, chg) in enumerate(rows):
         f'<c r="B{rr}" t="inlineStr"><is><t>{esc(region)}</t></is></c>'
         f'<c r="C{rr}"><v>{unch}</v></c>'
         f'<c r="D{rr}"><v>{chg}</v></c>'
+        f'<c r="E{rr}"><v>{sdu}</v></c>'
+        f'<c r="F{rr}"><v>{sdc}</v></c>'
         f'</row>')
 sb.append('</sheetData>')
 sb.append('</worksheet>')

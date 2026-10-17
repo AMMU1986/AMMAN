@@ -72,29 +72,37 @@ def region_name(x):
     return "Base metal"
 
 
+# Measurement scatter is modelled as a 1.5% standard deviation of the local
+# mean hardness (sigma = SD_FRAC * mean).
+SD_FRAC = 0.015
+
+
 def build_profile(seed):
     rng = random.Random(seed)
     n = int(round((X_MAX - X_MIN) / STEP))
-    xs, unch, chg = [], [], []
+    xs, unch, chg, sdu, sdc = [], [], [], [], []
     for i in range(n + 1):
         x = round(X_MIN + i * STEP, 2)
-        s = std_at(x)
-        # modest measurement scatter (0.25*std) so trend stays readable at 0.01 mm
+        mu, mc = mean_at(x, 0), mean_at(x, 1)
+        su, sc = SD_FRAC * mu, SD_FRAC * mc    # 1.5% standard deviation
         xs.append(x)
-        unch.append(mean_at(x, 0) + rng.gauss(0.0, 0.25 * s))
-        chg.append(mean_at(x, 1) + rng.gauss(0.0, 0.25 * s))
-    return xs, unch, chg
+        unch.append(mu + rng.gauss(0.0, su))
+        chg.append(mc + rng.gauss(0.0, sc))
+        sdu.append(su)
+        sdc.append(sc)
+    return xs, unch, chg, sdu, sdc
 
 
-xs, y_unch, y_chg = build_profile(seed=20250117)
+xs, y_unch, y_chg, sd_unch, sd_chg = build_profile(seed=20250117)
 
 # ----------------------------------------------------------------------------
-# 2. Write CSV
+# 2. Write CSV  (includes 1.5% standard-deviation columns)
 # ----------------------------------------------------------------------------
 with open("hardness_profile_data.csv", "w") as f:
-    f.write("x_mm,region,hardness_uncharged_HV,hardness_charged_HV\n")
-    for x, u, c in zip(xs, y_unch, y_chg):
-        f.write(f"{x:.2f},{region_name(x)},{u:.2f},{c:.2f}\n")
+    f.write("x_mm,region,hardness_uncharged_HV,hardness_charged_HV,"
+            "sd_uncharged_HV,sd_charged_HV\n")
+    for x, u, c, su, sc in zip(xs, y_unch, y_chg, sd_unch, sd_chg):
+        f.write(f"{x:.2f},{region_name(x)},{u:.2f},{c:.2f},{su:.2f},{sc:.2f}\n")
 
 # ----------------------------------------------------------------------------
 # 3. Build SVG plot
