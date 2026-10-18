@@ -1,0 +1,4 @@
+Region,HV_uncharged,SD_uncharged,HV_charged,SD_charged,Delta_HV,Increase_pct
+Base Metal,214.6,5.0,220.0,5.0,5.4,2.5
+Fusion Zone (E9018),196.0,5.7,209.0,5.7,13.0,6.6
+HAZ (CGHAZ),252.6,7.0,275.0,7.0,22.4,8.9
