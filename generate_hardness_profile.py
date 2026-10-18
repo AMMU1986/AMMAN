@@ -41,11 +41,37 @@ def sigmoid(t):
     return 1.0 / (1.0 + math.exp(-t))
 
 
+# --- Realistic asymmetry -----------------------------------------------------
+# A real girth-weld traverse is never a perfect mirror image: the two HAZ sides
+# differ slightly in peak hardness, width and position (different thermal
+# history of each pass side). We make the left/right boundaries and region
+# levels slightly different, and add a smooth low-frequency undulation so the
+# curve wanders organically instead of sitting on a flat plateau.
+
+# side-specific boundaries (mm): (FZ half-width, HAZ outer edge)
+BND_LEFT = (5.05, 7.60)
+BND_RIGHT = (4.90, 7.38)
+
+# side-specific hardness offsets (HV) added to region means
+HAZ_OFF = {"L": +3.2, "R": -2.4}     # left HAZ runs a bit harder
+BM_OFF = {"L": +1.8, "R": -2.6}
+FZ_OFF = {"L": -1.2, "R": +1.5}
+
+
+def undulation(x):
+    """Smooth, deterministic low-frequency wander (~+/-3 HV), not mirror-even."""
+    return (1.7 * math.sin(0.83 * x + 0.6)
+            + 1.1 * math.sin(1.97 * x + 2.1)
+            + 0.7 * math.sin(3.31 * x + 0.25)
+            + 0.5 * math.sin(0.41 * x - 1.0))
+
+
 def region_weights(x):
     """Smoothly blended weights (w_fz, w_haz, w_bm) summing to 1."""
     a = abs(x)
-    w1 = sigmoid((a - FZ_HALF) / TW)     # 0 inside FZ -> 1 outside
-    w2 = sigmoid((a - HAZ_OUTER) / TW)   # 0 inside HAZ -> 1 in BM
+    fzh, hzo = BND_LEFT if x < 0 else BND_RIGHT
+    w1 = sigmoid((a - fzh) / TW)     # 0 inside FZ -> 1 outside
+    w2 = sigmoid((a - hzo) / TW)     # 0 inside HAZ -> 1 in BM
     w_fz = 1.0 - w1
     w_haz = w1 * (1.0 - w2)
     w_bm = w2
@@ -55,7 +81,11 @@ def region_weights(x):
 def mean_at(x, which):
     """which = 0 -> uncharged mean, 1 -> charged mean."""
     w_fz, w_haz, w_bm = region_weights(x)
-    return w_fz * FZ[which] + w_haz * HAZ[which] + w_bm * BM[which]
+    s = "L" if x < 0 else "R"
+    fz_v = FZ[which] + FZ_OFF[s]
+    haz_v = HAZ[which] + HAZ_OFF[s]
+    bm_v = BM[which] + BM_OFF[s]
+    return w_fz * fz_v + w_haz * haz_v + w_bm * bm_v + undulation(x)
 
 
 def std_at(x):
