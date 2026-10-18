@@ -74,13 +74,18 @@ CHARGED_SD_FRAC = 0.015  # SD = 1.5 % of each charged value
 
 
 def region_of(pos):
-    """Classify a traverse position (mm) into BM / HAZ / FZ."""
+    """Classify a traverse position (mm) by the user-defined weld geometry.
+
+        weld / fusion zone (FZ) : -5   .. +5   mm
+        HAZ                     : +/-5 .. +/-7.5 mm
+        base metal (BM)         : beyond +/-7.5 mm
+    """
     ax = abs(pos)
-    if ax >= 5.0:
-        return 'BM'
-    if 4.0 <= ax < 5.0:   # the CGHAZ hardness peaks sit at +/-4.5 mm
+    if ax <= 5.0:
+        return 'FZ'
+    if ax <= 7.5:
         return 'HAZ'
-    return 'FZ'
+    return 'BM'
 
 
 def charging_factor(pos):
@@ -177,14 +182,14 @@ def plot(rows):
 
     c.text_c(W // 2, 18, "API X70 SMAW Microhardness: Uncharged vs H-Charged", BLACK, 2)
 
-    # Region shading bands (FZ | HAZ | BM) based on classification boundaries
-    # FZ: |x|<4 ; HAZ: 4<=|x|<5 ; BM: |x|>=5
+    # Region shading bands for the user-defined weld geometry:
+    #   weld/FZ: |x|<=5 ; HAZ: 5<|x|<=7.5 ; BM: |x|>7.5
     bands = [
-        (-8.0, -5.0, PALE_BLUE),   # BM
-        (-5.0, -4.0, LIGHT_RED),   # HAZ
-        (-4.0, 4.0, LIGHT_GREEN),  # FZ
-        (4.0, 5.0, LIGHT_RED),     # HAZ
-        (5.0, 8.0, PALE_BLUE),     # BM
+        (-8.0, -7.5, PALE_BLUE),    # BM
+        (-7.5, -5.0, LIGHT_RED),    # HAZ
+        (-5.0, 5.0, LIGHT_GREEN),   # weld / FZ
+        (5.0, 7.5, LIGHT_RED),      # HAZ
+        (7.5, 8.0, PALE_BLUE),      # BM
     ]
     for x0, x1, col in bands:
         c.fill_rect(sx(x0), py0, sx(x1), py1, col)
@@ -250,33 +255,16 @@ def plot(rows):
     c.circle(lx + 21, ly + 36, 3, RED, LIGHT_RED)
     c.text(lx + 42, ly + 32, "H-charged (+SD 1.5%)", BLACK, 1)
 
-    # Dashed reference lines at the manuscript (Table 1) CHARGED values
-    def dashed_h(x0mm, x1mm, yval, color):
-        y = sy(yval)
-        x0, x1 = sx(x0mm), sx(x1mm)
-        xx = x0
-        while xx < x1:
-            c.hline(xx, min(xx + 6, x1), y, color)
-            xx += 12
-
-    ref_col = (120, 0, 0)
-    # BM charged 220 (both outer bands), FZ charged 209 (centre), HAZ 275 (peaks)
-    dashed_h(-8.0, -5.0, TEXT_REPRESENTATIVE['BM'][2], ref_col)
-    dashed_h(5.0, 8.0, TEXT_REPRESENTATIVE['BM'][2], ref_col)
-    dashed_h(-4.0, 4.0, TEXT_REPRESENTATIVE['FZ'][2], ref_col)
-    c.text(sx(5.2), sy(TEXT_REPRESENTATIVE['BM'][2]) - 9, "220", ref_col, 1)
-    c.text(sx(-1.1), sy(TEXT_REPRESENTATIVE['FZ'][2]) - 9, "209", ref_col, 1)
-    c.text(sx(4.6), sy(TEXT_REPRESENTATIVE['HAZ'][2]) - 3, "275", ref_col, 1)
-    c.circle(sx(4.5), sy(TEXT_REPRESENTATIVE['HAZ'][2]), 2, ref_col, ref_col)
-    c.circle(sx(-4.5), sy(TEXT_REPRESENTATIVE['HAZ'][2]), 2, ref_col, ref_col)
+    # Zone boundary markers at +/-5 and +/-7.5 mm
+    for bx in (-7.5, -5.0, 5.0, 7.5):
+        c.vline(sx(bx), py0, py1, GRAY)
 
     # Region captions
-    c.text_c(sx(-6.5), py0 + 70, "BM", DARK_BLUE, 1)
-    c.text_c(sx(0.0), py0 + 70, "FZ", DARK_GREEN, 1)
-    c.text_c(sx(6.5), py0 + 70, "BM", DARK_BLUE, 1)
-    c.text_c(sx(-4.5), py1 - 14, "HAZ", RED, 1)
-    c.text_c(sx(4.5), py1 - 14, "HAZ", RED, 1)
-    c.text(px0 + 210, py0 + 16, "dashed = text (Table 1) charged values", ref_col, 1)
+    c.text_c(sx(0.0), py0 + 70, "WELD (FZ)", DARK_GREEN, 1)
+    c.text_c(sx(-6.25), py1 - 14, "HAZ", RED, 1)
+    c.text_c(sx(6.25), py1 - 14, "HAZ", RED, 1)
+    c.text_c(sx(-7.75), py0 + 70, "BM", DARK_BLUE, 1)
+    c.text_c(sx(7.75), py0 + 70, "BM", DARK_BLUE, 1)
 
     out = os.path.join(OUT_DIR, 'Fig_microhardness_charged.png')
     c.save(out)
@@ -284,44 +272,68 @@ def plot(rows):
 
 
 SUMMARY_CSV = os.path.join(HERE, 'microhardness_region_summary.csv')
-REGION_NAME = {'BM': 'Base Metal', 'FZ': 'Fusion Zone (E9018)', 'HAZ': 'HAZ (CGHAZ)'}
+REGION_NAME = {'BM': 'Base Metal', 'FZ': 'Weld (Fusion Zone)', 'HAZ': 'HAZ'}
+REGION_SPAN = {'BM': '|x| > 7.5 mm', 'FZ': '-5 to 5 mm', 'HAZ': '5 to 7.5 mm'}
+REGION_ORDER = ('BM', 'FZ', 'HAZ')
 
 
-def write_summary_csv():
-    """Reproduce manuscript Table 1 exactly from the stated text values."""
+def region_stats(rows):
+    """Per-zone statistics computed from the interpolated traverse."""
+    stats = {}
+    for reg in REGION_ORDER:
+        rs = [r for r in rows if r['region'] == reg]
+        if not rs:
+            stats[reg] = None
+            continue
+        n = len(rs)
+        us = [r['hv_uncharged'] for r in rs]
+        cs = [r['hv_charged'] for r in rs]
+        mu = sum(us) / n
+        mc = sum(cs) / n
+        sdu = (sum((x - mu) ** 2 for x in us) / n) ** 0.5
+        stats[reg] = {
+            'n': n, 'mu': mu, 'sdu': sdu,
+            'mc': mc, 'sdc': mc * CHARGED_SD_FRAC,
+            'pk_u': max(us), 'pk_c': max(cs),
+        }
+    return stats
+
+
+def write_summary_csv(rows):
+    """Per-zone summary for the user-defined weld geometry (from the data)."""
+    st = region_stats(rows)
     with open(SUMMARY_CSV, 'w', newline='') as f:
         w = csv.writer(f)
         w.writerow(['Region', 'HV_uncharged', 'SD_uncharged',
                     'HV_charged', 'SD_charged', 'Delta_HV', 'Increase_pct'])
-        for reg in ('BM', 'FZ', 'HAZ'):
-            hu, su, hc, sc = TEXT_REPRESENTATIVE[reg]
-            w.writerow([REGION_NAME[reg], f"{hu:.1f}", f"{su:.1f}",
-                        f"{hc:.1f}", f"{sc:.1f}", f"{hc - hu:.1f}",
-                        f"{(hc / hu - 1) * 100:.1f}"])
-    print(f"CSV  -> {SUMMARY_CSV}  (matches manuscript Table 1)")
+        for reg in REGION_ORDER:
+            s = st[reg]
+            if not s:
+                continue
+            w.writerow([REGION_NAME[reg], f"{s['mu']:.1f}", f"{s['sdu']:.1f}",
+                        f"{s['mc']:.1f}", f"{s['sdc']:.1f}",
+                        f"{s['mc'] - s['mu']:.1f}",
+                        f"{(s['mc'] / s['mu'] - 1) * 100:.1f}"])
+    print(f"CSV  -> {SUMMARY_CSV}  (zones: weld +/-5, HAZ 5-7.5, BM >7.5 mm)")
 
 
 def region_summary(rows):
-    print("\nRepresentative values (match manuscript text / Table 1):")
-    for reg in ('BM', 'FZ', 'HAZ'):
-        hu, su, hc, sc = TEXT_REPRESENTATIVE[reg]
-        print(f"  {reg:3s}: {hu:6.1f} +/- {su:.1f}  ->  {hc:6.1f} +/- {sc:.1f} HV"
-              f"   (+{hc - hu:4.1f}, +{(hc / hu - 1) * 100:4.1f}%)")
-
-    print("\nInterpolated traverse landmarks (measured shape x text ratio):")
-    for reg in ('BM', 'FZ', 'HAZ'):
-        rs = [r for r in rows if r['region'] == reg]
-        if not rs:
+    st = region_stats(rows)
+    print("\nPer-zone summary (weld +/-5 mm | HAZ 5-7.5 mm | BM >7.5 mm):")
+    for reg in REGION_ORDER:
+        s = st[reg]
+        if not s:
             continue
-        pk_u = max(r['hv_uncharged'] for r in rs)
-        pk_c = max(r['hv_charged'] for r in rs)
-        print(f"  {reg:3s}: peak {pk_u:6.1f} -> {pk_c:6.1f} HV")
+        print(f"  {REGION_NAME[reg]:20s} [{REGION_SPAN[reg]:>11s}]  "
+              f"{s['mu']:6.1f} +/- {s['sdu']:4.1f}  ->  "
+              f"{s['mc']:6.1f} +/- {s['sdc']:4.1f} HV   "
+              f"(+{(s['mc'] / s['mu'] - 1) * 100:4.1f}%, peak {s['pk_c']:.1f})")
 
 
 def main():
     rows = build_grid()
     write_csv(rows)
-    write_summary_csv()
+    write_summary_csv(rows)
     plot(rows)
     region_summary(rows)
 

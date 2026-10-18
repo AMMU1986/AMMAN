@@ -19,7 +19,7 @@ import os
 import zipfile
 
 from hydrogen_charged_microhardness import (
-    build_grid, TEXT_REPRESENTATIVE, REGION_NAME,
+    build_grid, region_stats, REGION_NAME, REGION_ORDER,
 )
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -245,14 +245,19 @@ def main():
     s1_numeric = {0, 2, 3, 4, 5, 6}
     sheet1 = sheet_xml(s1_header, s1_rows, s1_numeric)
 
-    # Sheet 2: region summary (Table 1)
+    # Sheet 2: region summary (user-defined weld geometry, computed from data)
     s2_header = ['Region', 'HV_uncharged', 'SD_uncharged', 'HV_charged',
                  'SD_charged', 'Delta_HV', 'Increase_pct']
+    st = region_stats(rows)
     s2_rows = []
-    for reg in ('BM', 'FZ', 'HAZ'):
-        hu, su, hc, sc = TEXT_REPRESENTATIVE[reg]
-        s2_rows.append([REGION_NAME[reg], hu, su, hc, sc,
-                        round(hc - hu, 1), round((hc / hu - 1) * 100, 1)])
+    for reg in REGION_ORDER:
+        s = st[reg]
+        if not s:
+            continue
+        s2_rows.append([REGION_NAME[reg], round(s['mu'], 1), round(s['sdu'], 1),
+                        round(s['mc'], 1), round(s['sdc'], 1),
+                        round(s['mc'] - s['mu'], 1),
+                        round((s['mc'] / s['mu'] - 1) * 100, 1)])
     s2_numeric = {1, 2, 3, 4, 5, 6}
     sheet2 = sheet_xml(s2_header, s2_rows, s2_numeric)
 
