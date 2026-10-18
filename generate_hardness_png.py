@@ -200,7 +200,7 @@ C_FZ = (234, 240, 251)
 ML, MR, MT, MB = 120, 300, 140, 90
 PW, PH = W - ML - MR, H - MT - MB
 X_MIN, X_MAX = -8.0, 8.0
-Y_MIN, Y_MAX = 170.0, 295.0
+Y_MIN, Y_MAX = 170.0, 300.0
 X_TICKS = [-8, -6, -4, -2, 0, 2, 4, 6, 8]
 Y_TICKS = [170, 190, 210, 230, 250, 270, 290]
 
@@ -288,9 +288,9 @@ draw_line(lx + 14, ly + 56, lx + 54, ly + 56, BLUE, 3)
 text(lx + 64, ly + 48, "Without charging", BLACK, 2)
 draw_line(lx + 14, ly + 86, lx + 54, ly + 86, RED, 3)
 text(lx + 64, ly + 78, "With H charging", BLACK, 2)
-text(lx + 14, ly + 118, "Mean HV (unch -> chg):", GREY, 2)
-text(lx + 14, ly + 146, "BM  214.6 -> 220", DGREY, 2)
-text(lx + 14, ly + 170, "FZ  196.0 -> 209", DGREY, 2)
+text(lx + 14, ly + 118, "Region HV (unch -> chg):", GREY, 2)
+text(lx + 14, ly + 146, "BM  214 -> 220", DGREY, 2)
+text(lx + 14, ly + 170, "FZ  196 -> 209", DGREY, 2)
 text(lx + 14, ly + 194, "HAZ 252.6 -> 275", DGREY, 2)
 
 # ---------------------------------------------------------------------------

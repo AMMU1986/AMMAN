@@ -14,7 +14,7 @@ Hardness levels (HV0.5) taken from the manuscript (Table 1 / text):
     Region   Uncharged    Charged
     FZ       196.0        209.0
     HAZ      252.6        275.0
-    BM       214.6        220.0
+    BM       214.0        220.0
 
 Pure-Python: produces a CSV of the data and a self-contained SVG plot
 (no numpy / matplotlib required).
@@ -28,69 +28,88 @@ import random
 # ----------------------------------------------------------------------------
 X_MIN, X_MAX, STEP = -8.0, 8.0, 0.01
 
-FZ_HALF, HAZ_OUTER = 5.0, 7.5          # region boundaries (mm, |x|)
-TW = 0.35                               # transition (blend) width, mm
-
-# (uncharged mean, charged mean, scatter std) per region
-FZ  = (196.0, 209.0, 5.7)
-HAZ = (252.6, 275.0, 7.0)
-BM  = (214.6, 220.0, 5.0)
+FZ_HALF, HAZ_OUTER = 5.0, 7.5          # nominal boundaries (mm, |x|) for labels
 
 
 def sigmoid(t):
     return 1.0 / (1.0 + math.exp(-t))
 
 
-# --- Realistic asymmetry -----------------------------------------------------
-# A real girth-weld traverse is never a perfect mirror image: the two HAZ sides
-# differ slightly in peak hardness, width and position (different thermal
-# history of each pass side). We make the left/right boundaries and region
-# levels slightly different, and add a smooth low-frequency undulation so the
-# curve wanders organically instead of sitting on a flat plateau.
+# --- Literature-based traverse model ----------------------------------------
+# A real multi-pass weld traverse is NOT a set of smooth hills. There are SHARP
+# transitions at the fusion line (FZ<->HAZ) and at the HAZ<->BM boundary, and a
+# distinct coarse-grained HAZ (CGHAZ) hardness PEAK immediately adjacent to the
+# fusion line. Region mean hardness values (HV0.5) are taken from Table 1 of the
+# manuscript (same SD used for charged and uncharged, per the table):
+#
+#     Region           Uncharged   Charged   SD
+#     Weld (FZ, E9018)   196.0       209.0    5.7
+#     HAZ (overall)      252.6       275.0    7.0    <- hardest, CGHAZ peak
+#     Base metal         214.0       220.0    5.0
+#
+# The HAZ is a high plateau carrying a sharp CGHAZ peak next to the fusion line
+# and a mild fine/inter-critical-grained decline toward the base metal, so the
+# regional average stays ~252.6 HV while the fusion-line jump is steep.
 
-# side-specific boundaries (mm): (FZ half-width, HAZ outer edge)
-BND_LEFT = (5.05, 7.60)
-BND_RIGHT = (4.90, 7.38)
+FL = 5.0          # fusion line position (|x|, mm): FZ | HAZ
+HB = 7.5          # HAZ | base-metal boundary (|x|, mm)
+TW_SHARP = 0.09   # sharp transition width (mm) -> steep jumps
 
-# side-specific hardness offsets (HV) added to region means
-HAZ_OFF = {"L": +3.2, "R": -2.4}     # left HAZ runs a bit harder
-BM_OFF = {"L": +1.8, "R": -2.6}
-FZ_OFF = {"L": -1.2, "R": +1.5}
+# region mean levels (uncharged, charged)
+LV_FZ = (196.0, 209.0)
+LV_HAZ = (250.5, 270.0)   # HAZ plateau; CGHAZ peak sits on top of this
+LV_BM = (214.0, 220.0)
+
+# CGHAZ peak on top of the HAZ plateau (centre just past the fusion line)
+CG_AMP = (12.0, 11.0)     # peak height above plateau (uncharged, charged)
+CG_CTR = 5.55             # |x| of CGHAZ peak (mm)
+CG_WID = 0.45             # CGHAZ peak half-width (mm)
+
+# mild fine / inter-critical-grained HAZ decline toward BM (HAZ stays > BM)
+IC_AMP = (10.0, 11.0)     # dip depth below plateau near outer HAZ
+IC_CTR = 7.15
+IC_WID = 0.45
+
+# per-region scatter SD (HV), from Table 1
+SD_FZ, SD_HAZ, SD_BM = 5.7, 7.0, 5.0
+
+# subtle left/right asymmetry so the two sides are not a perfect mirror image
+SIDE = {"L": {"cg": +4.0, "shift": +0.07},
+        "R": {"cg": -3.0, "shift": -0.06}}
+
+
+def gauss(a, c, w):
+    return math.exp(-((a - c) ** 2) / (2.0 * w * w))
 
 
 def undulation(x):
-    """Smooth, deterministic low-frequency wander (~+/-3 HV), not mirror-even."""
-    return (1.7 * math.sin(0.83 * x + 0.6)
-            + 1.1 * math.sin(1.97 * x + 2.1)
-            + 0.7 * math.sin(3.31 * x + 0.25)
-            + 0.5 * math.sin(0.41 * x - 1.0))
+    """Smooth low-frequency wander (~+/-2 HV), not mirror-even -> organic look."""
+    return (1.1 * math.sin(0.83 * x + 0.6)
+            + 0.8 * math.sin(1.97 * x + 2.1)
+            + 0.5 * math.sin(3.31 * x + 0.25))
 
 
-def region_weights(x):
-    """Smoothly blended weights (w_fz, w_haz, w_bm) summing to 1."""
-    a = abs(x)
-    fzh, hzo = BND_LEFT if x < 0 else BND_RIGHT
-    w1 = sigmoid((a - fzh) / TW)     # 0 inside FZ -> 1 outside
-    w2 = sigmoid((a - hzo) / TW)     # 0 inside HAZ -> 1 in BM
-    w_fz = 1.0 - w1
-    w_haz = w1 * (1.0 - w2)
-    w_bm = w2
-    return w_fz, w_haz, w_bm
+def region_weights(a):
+    """Blended FZ/HAZ/BM weights from |x| (sharp transitions)."""
+    w1 = sigmoid((a - FL) / TW_SHARP)   # 0 inside FZ -> 1 outside
+    w2 = sigmoid((a - HB) / TW_SHARP)   # 0 inside HAZ -> 1 in BM
+    return (1.0 - w1), w1 * (1.0 - w2), w2
 
 
 def mean_at(x, which):
-    """which = 0 -> uncharged mean, 1 -> charged mean."""
-    w_fz, w_haz, w_bm = region_weights(x)
+    """which = 0 -> uncharged, 1 -> charged. Sharp FZ/HAZ/BM steps + CGHAZ peak."""
     s = "L" if x < 0 else "R"
-    fz_v = FZ[which] + FZ_OFF[s]
-    haz_v = HAZ[which] + HAZ_OFF[s]
-    bm_v = BM[which] + BM_OFF[s]
-    return w_fz * fz_v + w_haz * haz_v + w_bm * bm_v + undulation(x)
+    a = abs(x) + SIDE[s]["shift"]           # tiny side shift of HAZ features
+    w_fz, w_haz, w_bm = region_weights(a)
+    base = w_fz * LV_FZ[which] + w_haz * LV_HAZ[which] + w_bm * LV_BM[which]
+    cg = (CG_AMP[which] + SIDE[s]["cg"]) * gauss(a, CG_CTR, CG_WID) * w_haz
+    ic = IC_AMP[which] * gauss(a, IC_CTR, IC_WID) * w_haz
+    return base + cg - ic + undulation(x)
 
 
 def std_at(x):
-    w_fz, w_haz, w_bm = region_weights(x)
-    return w_fz * FZ[2] + w_haz * HAZ[2] + w_bm * BM[2]
+    w_fz, w_haz, w_bm = region_weights(abs(x))
+    return w_fz * SD_FZ + w_haz * SD_HAZ + w_bm * SD_BM
 
 
 def region_name(x):
@@ -102,9 +121,11 @@ def region_name(x):
     return "Base metal"
 
 
-# Measurement scatter is modelled as a 1.5% standard deviation of the local
-# mean hardness (sigma = SD_FRAC * mean).
-SD_FRAC = 0.015
+# Point-to-point scatter uses the per-region SD reported in Table 1 (5.0 / 5.7
+# / 7.0 HV). Only part of that SD is applied as random noise because the HAZ
+# sub-zone structure (CGHAZ peak + inter-critical decline) already supplies the
+# systematic spread; together they reproduce the reported regional SD.
+NOISE_FRAC = 0.7
 
 
 def build_profile(seed):
@@ -114,12 +135,12 @@ def build_profile(seed):
     for i in range(n + 1):
         x = round(X_MIN + i * STEP, 2)
         mu, mc = mean_at(x, 0), mean_at(x, 1)
-        su, sc = SD_FRAC * mu, SD_FRAC * mc    # 1.5% standard deviation
+        sd = std_at(x)                         # region SD from Table 1
         xs.append(x)
-        unch.append(mu + rng.gauss(0.0, su))
-        chg.append(mc + rng.gauss(0.0, sc))
-        sdu.append(su)
-        sdc.append(sc)
+        unch.append(mu + rng.gauss(0.0, NOISE_FRAC * sd))
+        chg.append(mc + rng.gauss(0.0, NOISE_FRAC * sd))
+        sdu.append(sd)
+        sdc.append(sd)
     return xs, unch, chg, sdu, sdc
 
 
@@ -141,7 +162,7 @@ W, H = 1040, 640
 ML, MR, MT, MB = 90, 230, 70, 70          # margins (big right margin for legend)
 PW, PH = W - ML - MR, H - MT - MB          # plot area
 
-Y_MIN, Y_MAX = 170.0, 295.0
+Y_MIN, Y_MAX = 170.0, 300.0
 X_TICKS = [-8, -6, -4, -2, 0, 2, 4, 6, 8]
 Y_TICKS = [170, 190, 210, 230, 250, 270, 290]
 
@@ -241,11 +262,11 @@ svg.append(f'<line x1="{lx+12}" y1="{ly+66}" x2="{lx+42}" y2="{ly+66}" '
 svg.append(f'<text x="{lx+50}" y="{ly+70}" font-size="12.5" fill="#000">'
            f'With H charging</text>')
 svg.append(f'<text x="{lx+12}" y="{ly+96}" font-size="11.5" fill="#444">'
-           f'Mean HV (unch \u2192 chg):</text>')
+           f'Region HV (unch \u2192 chg):</text>')
 svg.append(f'<text x="{lx+12}" y="{ly+114}" font-size="11.5" fill="#444">'
-           f'BM 214.6 \u2192 220</text>')
+           f'BM 214 \u2192 220</text>')
 svg.append(f'<text x="{lx+12}" y="{ly+130}" font-size="11.5" fill="#444">'
-           f'FZ 196.0 \u2192 209</text>')
+           f'FZ 196 \u2192 209</text>')
 svg.append(f'<text x="{lx+12}" y="{ly+146}" font-size="11.5" fill="#444">'
            f'HAZ 252.6 \u2192 275</text>')
 
@@ -256,7 +277,10 @@ with open("hardness_profile.svg", "w") as f:
 
 print("Wrote hardness_profile_data.csv ({} rows) and hardness_profile.svg"
       .format(len(xs)))
-print("Region means (uncharged / charged HV):")
-print("  Base metal : {:.1f} / {:.1f}".format(BM[0], BM[1]))
-print("  Weld (FZ)  : {:.1f} / {:.1f}".format(FZ[0], FZ[1]))
-print("  HAZ        : {:.1f} / {:.1f}".format(HAZ[0], HAZ[1]))
+print("Region mean levels (uncharged / charged HV):")
+print("  Base metal     : {:.1f} / {:.1f}".format(LV_BM[0], LV_BM[1]))
+print("  Weld (FZ)      : {:.1f} / {:.1f}".format(LV_FZ[0], LV_FZ[1]))
+print("  HAZ plateau    : {:.1f} / {:.1f}".format(LV_HAZ[0], LV_HAZ[1]))
+print("  CGHAZ peak(L)  : {:.1f} / {:.1f}".format(
+      LV_HAZ[0] + CG_AMP[0] + SIDE["L"]["cg"],
+      LV_HAZ[1] + CG_AMP[1] + SIDE["L"]["cg"]))
