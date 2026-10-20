@@ -14,6 +14,7 @@ OUT = os.path.join(os.path.dirname(__file__), "fxts_figures")
 os.makedirs(OUT, exist_ok=True)
 
 COLORS = ["#1f77b4", "#d62728", "#2ca02c", "#9467bd", "#ff7f0e", "#17becf"]
+ALL_FIGS = []  # records (path, series, title, xlabel, ylabel, T, vmark, vlabel)
 
 
 # ----------------------------------------------------------------------
@@ -21,6 +22,7 @@ COLORS = ["#1f77b4", "#d62728", "#2ca02c", "#9467bd", "#ff7f0e", "#17becf"]
 # ----------------------------------------------------------------------
 def svg_plot(path, series, title, xlabel, ylabel, T, vmark=None, vlabel=None):
     """series: list of (label, list_of_(t,value)). vmark: optional x to mark."""
+    ALL_FIGS.append((path, series, title, xlabel, ylabel, T, vmark, vlabel))
     W, H = 680, 420
     ml, mr, mt, mb = 70, 140, 48, 56
     pw, ph = W - ml - mr, H - mt - mb
@@ -307,3 +309,155 @@ print("Ex2 ctrl2 FXTS observed settling:", st2)
 
 print("ln(1.2)/0.1 =", math.log(1.2) / 0.1)
 print("done")
+
+
+# ======================================================================
+# Pure-Python PNG rasterizer (no external libraries) so figures render
+# as real raster images in any Word version.
+# ======================================================================
+import zlib, struct
+
+FONT5x7 = {
+    "0": ["01110", "10001", "10011", "10101", "11001", "10001", "01110"],
+    "1": ["00100", "01100", "00100", "00100", "00100", "00100", "01110"],
+    "2": ["01110", "10001", "00001", "00010", "00100", "01000", "11111"],
+    "3": ["11111", "00010", "00100", "00010", "00001", "10001", "01110"],
+    "4": ["00010", "00110", "01010", "10010", "11111", "00010", "00010"],
+    "5": ["11111", "10000", "11110", "00001", "00001", "10001", "01110"],
+    "6": ["00110", "01000", "10000", "11110", "10001", "10001", "01110"],
+    "7": ["11111", "00001", "00010", "00100", "01000", "01000", "01000"],
+    "8": ["01110", "10001", "10001", "01110", "10001", "10001", "01110"],
+    "9": ["01110", "10001", "10001", "01111", "00001", "00010", "01100"],
+    ".": ["00000", "00000", "00000", "00000", "00000", "00110", "00110"],
+    "-": ["00000", "00000", "00000", "11111", "00000", "00000", "00000"],
+    " ": ["00000", "00000", "00000", "00000", "00000", "00000", "00000"],
+}
+
+
+class Canvas:
+    def __init__(self, w, h):
+        self.w, self.h = w, h
+        self.buf = bytearray(b"\xff" * (w * h * 3))
+
+    def px(self, x, y, rgb):
+        x, y = int(x), int(y)
+        if 0 <= x < self.w and 0 <= y < self.h:
+            i = (y * self.w + x) * 3
+            self.buf[i:i + 3] = bytes(rgb)
+
+    def line(self, x0, y0, x1, y1, rgb, thick=1):
+        x0, y0, x1, y1 = int(x0), int(y0), int(x1), int(y1)
+        dx, dy = abs(x1 - x0), abs(y1 - y0)
+        sx = 1 if x0 < x1 else -1
+        sy = 1 if y0 < y1 else -1
+        err = dx - dy
+        while True:
+            for ox in range(thick):
+                for oy in range(thick):
+                    self.px(x0 + ox, y0 + oy, rgb)
+            if x0 == x1 and y0 == y1:
+                break
+            e2 = 2 * err
+            if e2 > -dy:
+                err -= dy; x0 += sx
+            if e2 < dx:
+                err += dx; y0 += sy
+
+    def rect(self, x, y, w, h, rgb):
+        self.line(x, y, x + w, y, rgb)
+        self.line(x, y + h, x + w, y + h, rgb)
+        self.line(x, y, x, y + h, rgb)
+        self.line(x + w, y, x + w, y + h, rgb)
+
+    def text(self, x, y, s, rgb, scale=1, anchor="start"):
+        tw = len(s) * 6 * scale
+        if anchor == "end":
+            x -= tw
+        elif anchor == "middle":
+            x -= tw // 2
+        cx = x
+        for ch in s:
+            g = FONT5x7.get(ch, FONT5x7[" "])
+            for ry, row in enumerate(g):
+                for rx, bit in enumerate(row):
+                    if bit == "1":
+                        for ox in range(scale):
+                            for oy in range(scale):
+                                self.px(cx + rx * scale + ox, y + ry * scale + oy, rgb)
+            cx += 6 * scale
+
+    def save(self, path):
+        raw = bytearray()
+        stride = self.w * 3
+        for yy in range(self.h):
+            raw.append(0)
+            raw.extend(self.buf[yy * stride:(yy + 1) * stride])
+        comp = zlib.compress(bytes(raw), 9)
+
+        def chunk(typ, data):
+            c = struct.pack(">I", len(data)) + typ + data
+            crc = zlib.crc32(typ + data) & 0xffffffff
+            return c + struct.pack(">I", crc)
+        with open(path, "wb") as f:
+            f.write(b"\x89PNG\r\n\x1a\n")
+            f.write(chunk(b"IHDR", struct.pack(">IIBBBBB", self.w, self.h, 8, 2, 0, 0, 0)))
+            f.write(chunk(b"IDAT", comp))
+            f.write(chunk(b"IEND", b""))
+
+
+def hex2rgb(h):
+    h = h.lstrip("#")
+    return (int(h[0:2], 16), int(h[2:4], 16), int(h[4:6], 16))
+
+
+def png_plot(path, series, title, xlabel, ylabel, T, vmark=None, vlabel=None):
+    W, H = 680, 420
+    ml, mr, mt, mb = 70, 150, 40, 50
+    pw, ph = W - ml - mr, H - mt - mb
+    ys = [v for _, pts in series for _, v in pts]
+    ymin, ymax = min(ys), max(ys)
+    if ymax - ymin < 1e-9:
+        ymax += 1.0; ymin -= 1.0
+    pad = 0.08 * (ymax - ymin)
+    ymin -= pad; ymax += pad
+    xmin, xmax = 0.0, T
+    c = Canvas(W, H)
+
+    def X(t): return ml + (t - xmin) / (xmax - xmin) * pw
+    def Y(v): return mt + (ymax - v) / (ymax - ymin) * ph
+
+    grid = (225, 225, 225); axis = (60, 60, 60); black = (0, 0, 0)
+    for i in range(6):
+        v = ymin + (ymax - ymin) * i / 5; yy = Y(v)
+        c.line(ml, yy, ml + pw, yy, grid)
+        c.text(ml - 6, yy - 3, "%.2f" % v, axis, 1, "end")
+    for i in range(7):
+        t = xmin + (xmax - xmin) * i / 6; xx = X(t)
+        c.line(xx, mt, xx, mt + ph, grid)
+        c.text(xx, mt + ph + 8, "%.1f" % t, axis, 1, "middle")
+    c.rect(ml, mt, pw, ph, axis)
+    if vmark is not None and vmark <= T:
+        xx = X(vmark)
+        y = mt
+        while y < mt + ph:
+            c.line(xx, y, xx, min(y + 5, mt + ph), black)
+            y += 10
+    for idx, (label, pts) in enumerate(series):
+        col = hex2rgb(COLORS[idx % len(COLORS)])
+        prev = None
+        for (t, v) in pts:
+            cur = (X(t), Y(v))
+            if prev is not None:
+                c.line(prev[0], prev[1], cur[0], cur[1], col, thick=2)
+            prev = cur
+        ly = mt + 12 + idx * 16
+        c.line(ml + pw + 12, ly, ml + pw + 34, ly, col, thick=3)
+    c.save(path)
+    print("wrote", path)
+
+
+# render PNG twins of every recorded SVG figure
+for rec in ALL_FIGS:
+    p = rec[0].replace(".svg", ".png")
+    png_plot(p, *rec[1:])
+print("PNG rasterization complete:", len(ALL_FIGS), "figures")

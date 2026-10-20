@@ -776,19 +776,19 @@ destabilizes the controlled system, as shown in Figure 4: impulses that are too 
 
 ![Figure 1](fxts_figures/Fig1_CPS_free_noattack.svg)
 
-**Fig. 1.** Cyber-physical system (64) with neither controller nor deception attack: the two signals $x_1(t),x_2(t)$ remain bounded but do not settle to the origin (initial state $x_1(0)=0.2$, $x_2(0)=0.1$).
+**Fig. 1.** Cyber-physical system (64) with neither controller nor deception attack: the two signals $x_1(t),x_2(t)$ remain bounded but do not settle to the origin (initial state $x_1(0)=0.2$, $x_2(0)=0.1$). Colour key: blue $=x_1(t)$, red $=x_2(t)$.
 
 ![Figure 2](fxts_figures/Fig2_CPS_attack_noctrl.svg)
 
-**Fig. 2.** System (64) under destabilizing impulsive attacks ($\xi=1.2$, sequence (66) with $\tau_a=2,N_0=2,h=0.1$) and no control: the states grow without bound.
+**Fig. 2.** System (64) under destabilizing impulsive attacks ($\xi=1.2$, sequence (66) with $\tau_a=2,N_0=2,h=0.1$) and no control: the states grow without bound. Colour key: blue $=x_1(t)$, red $=x_2(t)$.
 
 ![Figure 3](fxts_figures/Fig3_CPS_ctrl_FXTS.svg)
 
-**Fig. 3.** System (64) with controller (65) and $\tau_a=1>0.536$: fixed-time convergence to the origin; the dashed line marks the observed settling time $T\approx 1.10$, within the estimate (72).
+**Fig. 3.** System (64) with controller (65) and $\tau_a=1>0.536$: fixed-time convergence to the origin; the dashed line marks the observed settling time $T\approx 1.10$, within the estimate (72). Colour key: blue $=x_1(t)$, red $=x_2(t)$.
 
 ![Figure 4](fxts_figures/Fig4_CPS_ctrl_notFXTS.svg)
 
-**Fig. 4.** System (64) with controller (65) but $\tau_a=0.1<0.536$ (condition (71) violated): the destabilizing impulses prevent convergence.
+**Fig. 4.** System (64) with controller (65) but $\tau_a=0.1<0.536$ (condition (71) violated): the destabilizing impulses prevent convergence. Colour key: blue $=x_1(t)$, red $=x_2(t)$.
 
 **Table 2.** Example 1 (cyber-physical system): parameters and fixed-time-stability verification.
 
@@ -914,11 +914,11 @@ Figure 5 shows the uncontrolled network, whose trajectories oscillate persistent
 
 ![Figure 5](fxts_figures/Fig5_BAM_nocontrol.svg)
 
-**Fig. 5.** Delayed CGBAMNN (74) without control: the four states oscillate and do not converge (initial state $(1.5,-1.0,-1.5,1.0)$, delays $\sigma=\rho=0.2$).
+**Fig. 5.** Delayed CGBAMNN (74) without control: the four states oscillate and do not converge (initial state $(1.5,-1.0,-1.5,1.0)$, delays $\sigma=\rho=0.2$). Colour key: blue $=x_1(t)$, red $=x_2(t)$, green $=y_1(t)$, purple $=y_2(t)$.
 
 ![Figure 6](fxts_figures/Fig6_BAM_ctrl1_FXTS.svg)
 
-**Fig. 6.** Delayed CGBAMNN (74) with the first controller (38), $\xi=1.1$, $\tau_a=0.8>0.172$: fixed-time convergence; dashed line marks the observed settling time $T\approx 0.68$, within the estimate (88).
+**Fig. 6.** Delayed CGBAMNN (74) with the first controller (38), $\xi=1.1$, $\tau_a=0.8>0.172$: fixed-time convergence; dashed line marks the observed settling time $T\approx 0.68$, within the estimate (88). Colour key: blue $=x_1(t)$, red $=x_2(t)$, green $=y_1(t)$, purple $=y_2(t)$.
 
 **Table 3.** Example 2, first controller (38): parameters and verification.
 
@@ -1012,7 +1012,7 @@ By Remark 2, the two-term inequality (96) cannot compensate destabilizing impuls
 
 ![Figure 7](fxts_figures/Fig7_BAM_ctrl2_ablation.svg)
 
-**Fig. 7.** Delayed CGBAMNN (74): maximum state magnitude under the second controller (51) with its linear term (converges in fixed time, $T\approx 0.58$) versus the ablated controller (95) without the linear term (does not converge), under the same impulsive sequence ($\tilde\xi=1.44$, $\tau_a=0.5$).
+**Fig. 7.** Delayed CGBAMNN (74): maximum state magnitude under the second controller (51) with its linear term (converges in fixed time, $T\approx 0.58$) versus the ablated controller (95) without the linear term (does not converge), under the same impulsive sequence ($\tilde\xi=1.44$, $\tau_a=0.5$). Colour key: blue $=$ full controller (51), red $=$ ablated controller (95).
 
 ### 4.5. Discussion
 

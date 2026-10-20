@@ -128,10 +128,12 @@ def add_figure(svgpath):
     fid = fig_counter[0]
     name = os.path.basename(svgpath)
     svg_bytes = open(svgpath, "rb").read()
+    pngpath = svgpath.replace(".svg", ".png")
+    png_bytes = open(pngpath, "rb").read() if os.path.exists(pngpath) else PNG1x1
     png_name = "fig%d.png" % fid
     svg_name = "fig%d.svg" % fid
-    media.append((png_name, PNG1x1))
-    media.append((svg_name, svg_bytes))
+    media.append((png_name, png_bytes))   # real raster -> draws in all Word versions
+    media.append((svg_name, svg_bytes))   # vector overlay -> crisp in Word 2016+/365
     rel_counter[0] += 1
     rid_png = "rId%d" % rel_counter[0]
     rels.append((rid_png, "media/" + png_name))
