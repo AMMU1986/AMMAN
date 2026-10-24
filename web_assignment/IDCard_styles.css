@@ -1,0 +1,190 @@
+/*
+====================================================================
+  Student ID Card - Stylesheet (Question 1)
+  --------------------------------------------------------------
+  Student Name : AMMAN JAKHAR
+  Student UID  : 2025EB01187
+  --------------------------------------------------------------
+  File         : IDCard_styles.css
+  Description  : Styles the elements defined in IDCard.html to
+                 produce a visually appealing student ID card.
+====================================================================
+*/
+
+/* ---------- Global reset so sizing is predictable ---------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Page background : centres the card on screen ---------- */
+body {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ---------- The ID card itself ---------- */
+.id-card {
+    width: 360px;
+    background: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    overflow: hidden;
+    border: 1px solid #d0d0d0;
+}
+
+/* ---------- Header : coloured band with logo + university name ---------- */
+.card-header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #ffffff;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+/* Circular logo badge */
+.logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: #ffffff;
+    color: #1e3c72;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.university-name {
+    font-size: 18px;
+    line-height: 1.2;
+}
+
+.university-sub {
+    font-size: 12px;
+    opacity: 0.85;
+    margin-top: 3px;
+}
+
+/* ---------- Body : photo on the left, details on the right ---------- */
+.card-body {
+    display: flex;
+    padding: 20px;
+    gap: 18px;
+}
+
+/* Photo placeholder box */
+.photo-section {
+    flex-shrink: 0;
+}
+
+.photo {
+    width: 100px;
+    height: 120px;
+    border: 3px solid #2a5298;
+    border-radius: 8px;
+    background: #f0f4ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.photo-text {
+    color: #2a5298;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* Details list */
+.details-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+}
+
+/* Each label / value pair */
+.detail-row {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px dashed #e0e0e0;
+    padding-bottom: 4px;
+}
+
+.label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #888888;
+    letter-spacing: 0.5px;
+}
+
+.value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1e3c72;
+}
+
+/* ---------- Footer : signature + barcode ---------- */
+.card-footer {
+    background: #f7f9fc;
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 2px solid #2a5298;
+}
+
+.signature {
+    display: flex;
+    flex-direction: column;
+}
+
+.sign-line {
+    font-family: "Brush Script MT", cursive;
+    font-size: 20px;
+    color: #333333;
+    border-bottom: 1px solid #999999;
+    padding: 0 10px 2px 0;
+}
+
+.sign-label {
+    font-size: 10px;
+    color: #888888;
+    margin-top: 3px;
+}
+
+/* Simple barcode built with a repeating gradient */
+.barcode {
+    text-align: center;
+}
+
+.barcode::before {
+    content: "";
+    display: block;
+    width: 110px;
+    height: 36px;
+    background-image: repeating-linear-gradient(
+        to right,
+        #222 0, #222 2px,
+        #fff 2px, #fff 4px,
+        #222 4px, #222 5px,
+        #fff 5px, #fff 8px
+    );
+}
+
+.barcode-number {
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: #333333;
+}

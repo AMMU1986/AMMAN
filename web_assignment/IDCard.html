@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--
+====================================================================
+  Student ID Card  -  Question 1
+  --------------------------------------------------------------
+  Student Name : AMMAN JAKHAR
+  Student UID  : 2025EB01187
+  Date of Birth: 29.08.1986
+  --------------------------------------------------------------
+  File         : IDCard.html
+  Description  : HTML structure for a university Student ID Card.
+                 Styling is kept in the external file
+                 "IDCard_styles.css".
+====================================================================
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- The page title is set to the Student ID as required -->
+    <title>2025EB01187</title>
+
+    <!-- Link to the external stylesheet for all the styling -->
+    <link rel="stylesheet" href="IDCard_styles.css">
+</head>
+
+<body>
+
+    <!-- ============ ID CARD CONTAINER ============ -->
+    <div class="id-card">
+
+        <!-- ---------- Card Header : University branding ---------- -->
+        <header class="card-header">
+            <div class="logo">UoH</div>
+            <div class="university-info">
+                <h1 class="university-name">University of Higher Studies</h1>
+                <p class="university-sub">Department of Computer Science</p>
+            </div>
+        </header>
+
+        <!-- ---------- Card Body : Photo + Student details ---------- -->
+        <main class="card-body">
+
+            <!-- Student photograph (placeholder) -->
+            <div class="photo-section">
+                <div class="photo">
+                    <span class="photo-text">PHOTO</span>
+                </div>
+            </div>
+
+            <!-- Student details, arranged as label / value rows -->
+            <div class="details-section">
+                <div class="detail-row">
+                    <span class="label">Name</span>
+                    <span class="value">AMMAN JAKHAR</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">UID</span>
+                    <span class="value">2025EB01187</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Date of Birth</span>
+                    <span class="value">29.08.1986</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Course</span>
+                    <span class="value">M.Sc. Computer Science</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Blood Group</span>
+                    <span class="value">O+</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Valid Thru</span>
+                    <span class="value">08 / 2027</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- ---------- Card Footer : Signature + Barcode ---------- -->
+        <footer class="card-footer">
+            <div class="signature">
+                <span class="sign-line">A. Jakhar</span>
+                <span class="sign-label">Card Holder</span>
+            </div>
+            <div class="barcode">
+                <span class="barcode-number">2025 EB 01187</span>
+            </div>
+        </footer>
+
+    </div>
+    <!-- ============ END ID CARD CONTAINER ============ -->
+
+</body>
+</html>
