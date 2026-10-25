@@ -1,105 +1,118 @@
-<!DOCTYPE html>                                  <!-- Declare this document as HTML5 -->
+<!DOCTYPE html>                                  <!-- HTML5 doctype: keeps the browser in standards mode -->
 <!--
 =====================================================================
-  QUESTION 1  |  STUDENT IDENTITY CARD (STRUCTURE)
+  QUESTION 1 - STUDENT IDENTITY CARD (the markup)
   -----------------------------------------------------------------
-  Student Name : AMMAN JAKHAR
-  Student UID  : 2025EB01187
-  Date of Birth: 29.08.1986
+  Author : AMMAN JAKHAR
+  UID    : 2025EB01187
+  DOB    : 29.08.1986
   -----------------------------------------------------------------
-  File         : IDCard.html
-  Purpose      : Holds only the HTML skeleton of a university
-                 student identity card. Every visual rule is kept
-                 separate inside "IDCard_styles.css" so that the
-                 markup stays clean and easy to read.
+  My plan for this file:
+    - keep ONLY the structure here (no colours, no sizes),
+    - push every visual decision into IDCard_styles.css,
+    - so that if a teacher asks "where is the layout defined?"
+      the answer is always "in the stylesheet, not the markup".
+  I picked a header / body / footer split because a real plastic
+  ID card is laid out the same way: branding on top, the holder in
+  the middle, and the signature + barcode along the bottom edge.
 =====================================================================
 -->
-<html lang="en">                                   <!-- Root element; page language is English -->
+<html lang="en">                                   <!-- lang="en" helps screen readers pronounce the text -->
 
-<head>                                            <!-- Non-visible metadata for the page -->
-    <meta charset="UTF-8">                        <!-- Use Unicode so every character renders -->
-    <!-- Make the layout responsive on phones -->
+<head>                                            <!-- head = information the visitor never sees directly -->
+    <meta charset="UTF-8">                        <!-- UTF-8 so accented names / symbols never turn into gibberish -->
+    <!-- the viewport line below makes the card behave on a phone instead of looking zoomed-out -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- The browser tab caption must display the student UID -->
+    <!-- Requirement for Q1: the tab caption has to be my UID, so the title IS the UID -->
     <title>2025EB01187</title>
 
-    <!-- Pull in the external stylesheet that paints this card -->
+    <!-- one external stylesheet; all the "paint" lives there, not here -->
     <link rel="stylesheet" href="IDCard_styles.css">
 </head>
 
-<body>                                            <!-- Everything the user can see starts here -->
+<body>                                            <!-- body = the part a visitor actually looks at -->
 
-    <!-- ================= OUTER CARD WRAPPER ================= -->
-    <div class="id-card">                         <!-- Single container that frames the whole card -->
+    <!-- =============== the whole card sits in one wrapper =============== -->
+    <!-- I use a single .id-card box so the shadow + rounded corners wrap everything as a unit -->
+    <div class="id-card">
 
-        <!-- ---------- TOP STRIP : institution branding ---------- -->
-        <header class="card-header">              <!-- Coloured banner across the top -->
-            <div class="logo">UoH</div>           <!-- Round badge standing in for a crest/logo -->
-            <div class="university-info">         <!-- Text block beside the logo -->
-                <h1 class="university-name">University of Higher Studies</h1>  <!-- Institution name -->
-                <p class="university-sub">Department of Computer Science</p>   <!-- Owning department -->
+        <!-- ---------- TOP: who issued the card ---------- -->
+        <!-- header is semantic: it tells browsers/readers "this is introductory banner content" -->
+        <header class="card-header">
+            <div class="logo">UoH</div>           <!-- stand-in for a crest; initials of the university -->
+            <div class="university-info">         <!-- the two text lines live together so they align beside the logo -->
+                <h1 class="university-name">University of Higher Studies</h1>  <!-- h1 = the single most important heading -->
+                <p class="university-sub">Department of Computer Science</p>   <!-- a quieter supporting line -->
             </div>
         </header>
 
-        <!-- ---------- MIDDLE STRIP : photo + personal data ---------- -->
-        <main class="card-body">                  <!-- Main informative region of the card -->
+        <!-- ---------- MIDDLE: the actual card holder ---------- -->
+        <!-- main is where the real "content" of the card lives: the photo and the data -->
+        <main class="card-body">
 
-            <!-- Left column : a placeholder for the student photograph -->
-            <div class="photo-section">           <!-- Keeps the photo box from stretching -->
-                <div class="photo">               <!-- Framed square that would hold a real photo -->
-                    <span class="photo-text">PHOTO</span>  <!-- Caption shown inside the box -->
+            <!-- left side: a placeholder box where a passport photo would be glued -->
+            <div class="photo-section">           <!-- wrapper exists so the photo never gets stretched by flexbox -->
+                <div class="photo">               <!-- the framed rectangle itself -->
+                    <span class="photo-text">PHOTO</span>  <!-- just a label until a real image is dropped in -->
                 </div>
             </div>
 
-            <!-- Right column : label/value pairs describing the holder -->
-            <div class="details-section">         <!-- Stacks all the detail rows vertically -->
+            <!-- right side: one .detail-row per fact, each is a caption stacked over its value -->
+            <div class="details-section">
 
-                <div class="detail-row">          <!-- One field : Name -->
-                    <span class="label">Name</span>               <!-- Field caption -->
-                    <span class="value">AMMAN JAKHAR</span>       <!-- Field value -->
+                <!-- row = Name -->
+                <div class="detail-row">
+                    <span class="label">Name</span>               <!-- the small grey caption -->
+                    <span class="value">AMMAN JAKHAR</span>       <!-- the bold blue answer -->
                 </div>
 
-                <div class="detail-row">          <!-- One field : UID -->
+                <!-- row = UID (the same number that titles the tab) -->
+                <div class="detail-row">
                     <span class="label">UID</span>
                     <span class="value">2025EB01187</span>
                 </div>
 
-                <div class="detail-row">          <!-- One field : Date of Birth -->
+                <!-- row = Date of Birth -->
+                <div class="detail-row">
                     <span class="label">Date of Birth</span>
                     <span class="value">29.08.1986</span>
                 </div>
 
-                <div class="detail-row">          <!-- One field : Course -->
+                <!-- row = Course -->
+                <div class="detail-row">
                     <span class="label">Course</span>
                     <span class="value">M.Sc. Computer Science</span>
                 </div>
 
-                <div class="detail-row">          <!-- One field : Blood Group -->
+                <!-- row = Blood Group (handy on a real campus ID in an emergency) -->
+                <div class="detail-row">
                     <span class="label">Blood Group</span>
                     <span class="value">O+</span>
                 </div>
 
-                <div class="detail-row">          <!-- One field : expiry date -->
+                <!-- row = expiry; every card needs a "use-by" date -->
+                <div class="detail-row">
                     <span class="label">Valid Thru</span>
                     <span class="value">08 / 2027</span>
                 </div>
             </div>
         </main>
 
-        <!-- ---------- BOTTOM STRIP : signature + barcode ---------- -->
-        <footer class="card-footer">              <!-- Closing band at the foot of the card -->
-            <div class="signature">               <!-- Signature cluster on the left -->
-                <span class="sign-line">A. Jakhar</span>    <!-- Handwritten-style signature -->
-                <span class="sign-label">Card Holder</span> <!-- Caption under the signature -->
+        <!-- ---------- BOTTOM: signature on the left, barcode on the right ---------- -->
+        <!-- footer is the closing strip; I split it left/right with flexbox in the CSS -->
+        <footer class="card-footer">
+            <div class="signature">               <!-- two stacked lines: the "ink" and its caption -->
+                <span class="sign-line">A. Jakhar</span>    <!-- styled later with a handwriting font -->
+                <span class="sign-label">Card Holder</span> <!-- tells the reader whose signature that is -->
             </div>
-            <div class="barcode">                 <!-- Decorative barcode cluster on the right -->
-                <span class="barcode-number">2025 EB 01187</span>  <!-- Human-readable code -->
+            <div class="barcode">                 <!-- the bars themselves are drawn in CSS, not an image -->
+                <span class="barcode-number">2025 EB 01187</span>  <!-- the human-readable version under the bars -->
             </div>
         </footer>
 
     </div>
-    <!-- ================= END CARD WRAPPER ================= -->
+    <!-- =============== end of the card wrapper =============== -->
 
 </body>
 </html>

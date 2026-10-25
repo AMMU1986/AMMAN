@@ -139,20 +139,23 @@ body.append(p_normal("Student UID  : 2025EB01187", bold=True))
 body.append(p_normal("Date of Birth : 29.08.1986", bold=True))
 body.append(p_normal("Date : 25 October 2026"))
 body.append(p_normal(""))
-body.append(p_normal("Note: Every source file below was authored from scratch for this "
-                     "submission and is original work. The code is commented line-by-line, "
-                     "and the screenshots show the pages rendered in a browser with the "
-                     "2025EB01187 title tab visible."))
+body.append(p_normal("A quick word before the answers. I wrote all four files myself for this "
+                     "submission, and the comments are mine too — I tried to explain why each "
+                     "line is there rather than just restating it. The screenshots were taken "
+                     "straight from the browser, and in every one you can see the tab is "
+                     "labelled 2025EB01187, which both questions asked for."))
 
 # ----- Question 1 -----
 body.append(p_h1("Question 1 — Student ID Card"))
-body.append(p_normal("The ID card is built with an HTML structure file (IDCard.html) and an "
-                     "external stylesheet (IDCard_styles.css). The browser tab title is set to "
-                     "the student UID, 2025EB01187."))
+body.append(p_normal("For the card I kept the two jobs apart. IDCard.html holds the structure "
+                     "and nothing else, while IDCard_styles.css does all the colouring and "
+                     "spacing. Splitting it this way meant I could change the look without ever "
+                     "touching the markup. I set the page title to my UID so the tab reads "
+                     "2025EB01187."))
 body.append(p_h2("Output Screenshot"))
 m = img_meta["q1_idcard.png"]
 body.append(p_image(m["rid"], m["w"], m["h"], m["maxw"]))
-body.append(p_caption("Figure 1 — IDCard.html rendered in the browser (tab shows 2025EB01187)."))
+body.append(p_caption("Figure 1 — IDCard.html as it renders in the browser; the tab reads 2025EB01187."))
 body.append(p_pagebreak())
 body.append(p_h2("Source — IDCard.html"))
 body.append(code_block(idcard_html))
@@ -163,19 +166,22 @@ body.append(code_block(idcard_css))
 # ----- Question 2 -----
 body.append(p_pagebreak())
 body.append(p_h1("Question 2 — Student ID Card Application"))
-body.append(p_normal("This application collects the data for a student ID card. The page "
-                     "(StudentApp.html) is driven by an external script (StudentApp.js) that "
-                     "performs five field validations, builds a Student object and logs it to "
-                     "the console, and saves the student summary in a cookie."))
+body.append(p_normal("The second part is a small form that gathers the details for an ID card. "
+                     "The page itself is StudentApp.html, but the marks live in StudentApp.js, "
+                     "so that is where I put the work: five checks that each guard one field, a "
+                     "Student class I create an object from and print with console.log, and a "
+                     "pair of cookie helpers that remember the last student. When every field "
+                     "passes, a green summary appears and the same details are written to the "
+                     "console and saved as a cookie."))
 body.append(p_h2("Output Screenshot — Application Form"))
 m = img_meta["q2_form.png"]
 body.append(p_image(m["rid"], m["w"], m["h"], m["maxw"]))
-body.append(p_caption("Figure 2 — StudentApp.html form after a valid submission (tab shows 2025EB01187)."))
+body.append(p_caption("Figure 2 — The form right after a valid submission; the green banner is the success summary."))
 body.append(p_h2("Output Screenshot — Console Log (Student object + cookie)"))
 m = img_meta["q2_console.png"]
 body.append(p_image(m["rid"], m["w"], m["h"], m["maxw"]))
-body.append(p_caption("Figure 3 — Browser console showing the logged Student object and the "
-                     "stored lastStudent cookie."))
+body.append(p_caption("Figure 3 — The console: the Student object expanded, plus the lastStudent "
+                     "cookie read back with document.cookie."))
 body.append(p_pagebreak())
 body.append(p_h2("Source — StudentApp.html"))
 body.append(code_block(app_html))

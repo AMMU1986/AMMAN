@@ -1,174 +1,174 @@
-<!DOCTYPE html>                                   <!-- Mark the file as HTML5 -->
+<!DOCTYPE html>                                   <!-- standards-mode HTML5 -->
 <!--
 =====================================================================
-  QUESTION 2  |  STUDENT ID CARD APPLICATION (FORM PAGE)
+  QUESTION 2 - STUDENT ID CARD APPLICATION (the form page)
   -----------------------------------------------------------------
-  Student Name : AMMAN JAKHAR
-  Student UID  : 2025EB01187
-  Date of Birth: 29.08.1986
+  Author : AMMAN JAKHAR  |  UID : 2025EB01187  |  DOB : 29.08.1986
   -----------------------------------------------------------------
-  File         : StudentApp.html
-  Purpose      : Provides the on-screen form that gathers the data
-                 for a student ID card. Every behaviour (field
-                 checking, building the Student object, and the
-                 cookie read/write) is handled in "StudentApp.js".
+  This page is just the "shape" of the form. The marks for Q2 are in
+  the JavaScript, so I deliberately kept the styling short and inline
+  and moved ALL the behaviour (validation, the Student object, and
+  the cookie) into StudentApp.js. Each input has:
+      - a <label> (good for accessibility and for clicking),
+      - an id the JS can grab,
+      - an empty .error <div> the JS fills in if something is wrong.
 =====================================================================
 -->
-<html lang="en">                                   <!-- Document root, English language -->
+<html lang="en">
 
-<head>                                            <!-- Page metadata and styling -->
-    <meta charset="UTF-8">                        <!-- Unicode character support -->
-    <!-- Responsive scaling on mobiles -->
+<head>
+    <meta charset="UTF-8">                        <!-- UTF-8 so names/symbols survive -->
+    <!-- responsive on phones; without this the form looks shrunk on mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Browser tab caption must show the student UID -->
+    <!-- Q2 rule again: the tab caption must be my UID -->
     <title>2025EB01187</title>
 
-    <!-- Styling is kept inline here because the JavaScript file is the graded part -->
+    <!-- CSS is inline on purpose: it is small and the JS file is the real deliverable -->
     <style>
-        * { box-sizing: border-box; }            /* Padding/border counted inside width */
+        * { box-sizing: border-box; }            /* count padding+border inside every width */
 
-        body {                                    /* Overall page canvas */
-            font-family: "Segoe UI", Tahoma, Arial, sans-serif; /* Clean font stack */
-            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* Blue wash */
-            margin: 0;                            /* Remove default body margin */
-            padding: 30px;                        /* Space around the card */
-            display: flex;                        /* Flexbox to centre the card */
-            justify-content: center;              /* Horizontal centring */
+        body {                                    /* the page behind the form */
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif; /* readable sans-serif ladder */
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* same blue wash as Q1, for consistency */
+            margin: 0;
+            padding: 30px;                        /* keep the card off the window edges */
+            display: flex;                        /* flexbox just to... */
+            justify-content: center;              /* ...centre the form horizontally */
         }
 
-        .form-card {                              /* White panel that holds the form */
-            background: #ffffff;                  /* White surface */
-            width: 440px;                         /* Comfortable reading width */
-            padding: 28px 32px;                   /* Inner spacing */
-            border-radius: 14px;                  /* Rounded corners */
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* Drop shadow for depth */
+        .form-card {                              /* the white sheet the form sits on */
+            background: #ffffff;
+            width: 440px;                         /* narrow enough to read in one eye-line */
+            padding: 28px 32px;
+            border-radius: 14px;                  /* rounded, matching the Q1 card */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* float it above the page */
         }
 
-        h1 {                                      /* Main heading */
-            font-size: 22px;                      /* Prominent size */
-            color: #1e3c72;                       /* Brand blue */
-            margin: 0 0 4px 0;                    /* Tight bottom margin */
-            text-align: center;                   /* Centre the title */
+        h1 {                                      /* the form's title */
+            font-size: 22px;
+            color: #1e3c72;                       /* brand dark-blue */
+            margin: 0 0 4px 0;
+            text-align: center;
         }
 
-        .subtitle {                               /* Grey helper line under the title */
-            text-align: center;                   /* Centred */
-            font-size: 13px;                      /* Small */
-            color: #888;                          /* Muted grey */
-            margin-bottom: 22px;                  /* Gap before the first field */
+        .subtitle {                               /* one grey helper line under the title */
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 22px;                  /* space before the first field */
         }
 
-        .field { margin-bottom: 16px; }          /* Vertical rhythm between fields */
+        .field { margin-bottom: 16px; }          /* consistent gap between each field group */
 
-        label {                                   /* Caption above each input */
-            display: block;                       /* Force onto its own line */
-            font-size: 13px;                      /* Small caption */
-            font-weight: 600;                     /* Semi-bold */
-            color: #333;                          /* Dark grey */
-            margin-bottom: 5px;                   /* Gap before the input */
+        label {                                   /* the caption above each input */
+            display: block;                       /* force it onto its own line */
+            font-size: 13px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
         }
 
-        input, select {                           /* Shared look for text inputs + dropdown */
-            width: 100%;                          /* Fill the available width */
-            padding: 10px 12px;                   /* Inner spacing */
-            font-size: 14px;                      /* Readable text */
-            border: 1px solid #ccc;               /* Light grey border */
-            border-radius: 7px;                   /* Soft corners */
-            outline: none;                        /* Remove default focus ring */
-            transition: border-color 0.2s;        /* Smooth colour change on focus */
+        input, select {                           /* one shared style for every control */
+            width: 100%;                          /* fill the card's width */
+            padding: 10px 12px;                   /* comfortable to tap/type in */
+            font-size: 14px;
+            border: 1px solid #ccc;               /* calm grey border at rest */
+            border-radius: 7px;
+            outline: none;                        /* I replace the default focus ring with my own colour */
+            transition: border-color 0.2s;        /* animate the border when focus changes */
         }
 
-        input:focus, select:focus { border-color: #2a5298; } /* Blue border while focused */
+        input:focus, select:focus { border-color: #2a5298; } /* blue edge tells you where the cursor is */
 
-        /* JavaScript adds .invalid to any field that fails a check */
-        input.invalid, select.invalid { border-color: #e74c3c; background: #fdf0ef; }
+        /* the JS adds .invalid to any control that fails its check */
+        input.invalid, select.invalid { border-color: #e74c3c; background: #fdf0ef; } /* red edge + pink tint = "fix me" */
 
-        .error {                                  /* Inline message beneath a field */
-            color: #e74c3c;                       /* Red warning colour */
-            font-size: 12px;                      /* Small */
-            min-height: 15px;                     /* Reserve space so layout never jumps */
-            margin-top: 4px;                      /* Gap above the message */
+        .error {                                  /* the little message that appears under a bad field */
+            color: #e74c3c;                       /* red = problem */
+            font-size: 12px;
+            min-height: 15px;                     /* reserve the row even when empty, so nothing jumps around */
+            margin-top: 4px;
         }
 
-        button {                                  /* The submit button */
-            width: 100%;                          /* Full width */
-            padding: 12px;                        /* Tall, easy to click */
-            margin-top: 6px;                      /* Gap above the button */
-            font-size: 15px;                      /* Readable label */
-            font-weight: 600;                     /* Semi-bold */
-            color: #fff;                          /* White text */
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Blue gradient */
-            border: none;                         /* No default border */
-            border-radius: 8px;                   /* Rounded */
-            cursor: pointer;                      /* Hand cursor on hover */
+        button {                                  /* the submit button */
+            width: 100%;
+            padding: 12px;                        /* big tap target */
+            margin-top: 6px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* the brand gradient again */
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;                      /* show a hand so it reads as clickable */
         }
 
-        button:hover { opacity: 0.92; }          /* Subtle feedback on hover */
+        button:hover { opacity: 0.92; }          /* a tiny dim on hover = "I'm interactive" */
 
-        .result {                                 /* Green success banner (shown by JS) */
-            margin-top: 18px;                     /* Space above the banner */
-            padding: 14px;                        /* Inner spacing */
-            border-radius: 8px;                   /* Rounded */
-            background: #eafaf1;                  /* Pale green */
-            border: 1px solid #27ae60;            /* Green outline */
-            color: #1e7e44;                       /* Dark green text */
-            font-size: 13px;                      /* Small */
-            display: none;                        /* Hidden until a valid submit */
-            white-space: pre-line;                /* Honour the line breaks we insert */
+        .result {                                 /* the green summary banner the JS reveals on success */
+            margin-top: 18px;
+            padding: 14px;
+            border-radius: 8px;
+            background: #eafaf1;                  /* pale green = success */
+            border: 1px solid #27ae60;
+            color: #1e7e44;
+            font-size: 13px;
+            display: none;                        /* hidden by default; JS flips this to block */
+            white-space: pre-line;                /* so the "\n" line breaks I add in JS are honoured */
         }
     </style>
 </head>
 
-<body>                                            <!-- Visible page content -->
+<body>
 
-    <div class="form-card">                       <!-- The white application panel -->
-        <h1>Student ID Card Application</h1>      <!-- Panel heading -->
-        <p class="subtitle">Please fill in all the fields below</p> <!-- Helper text -->
+    <div class="form-card">                       <!-- the white panel -->
+        <h1>Student ID Card Application</h1>      <!-- title -->
+        <p class="subtitle">Please fill in all the fields below</p> <!-- instruction -->
 
-        <!-- novalidate turns off the browser's built-in checks so our JS runs instead -->
+        <!-- novalidate = switch OFF the browser's own popups so MY JavaScript is the only validator -->
         <form id="studentForm" novalidate>
 
-            <!-- Field 1 : Full Name -->
+            <!-- Field 1: Full Name -->
             <div class="field">
-                <label for="fullName">Full Name</label>                 <!-- Caption -->
-                <input type="text" id="fullName" placeholder="e.g. Amman Jakhar"> <!-- Input -->
-                <div class="error" id="err-fullName"></div>             <!-- Error slot -->
+                <label for="fullName">Full Name</label>                 <!-- "for" links the label to the input id -->
+                <input type="text" id="fullName" placeholder="e.g. Amman Jakhar"> <!-- placeholder shows an example -->
+                <div class="error" id="err-fullName"></div>             <!-- JS writes the error here, keyed by id -->
             </div>
 
-            <!-- Field 2 : University ID -->
+            <!-- Field 2: University ID -->
             <div class="field">
                 <label for="uid">University ID (UID)</label>
                 <input type="text" id="uid" placeholder="e.g. 2025EB01187">
                 <div class="error" id="err-uid"></div>
             </div>
 
-            <!-- Field 3 : Email -->
+            <!-- Field 3: Email -->
             <div class="field">
                 <label for="email">Email Address</label>
                 <input type="text" id="email" placeholder="e.g. name@example.com">
                 <div class="error" id="err-email"></div>
             </div>
 
-            <!-- Field 4 : Phone -->
+            <!-- Field 4: Phone -->
             <div class="field">
                 <label for="phone">Phone Number</label>
                 <input type="text" id="phone" placeholder="10 digit mobile number">
                 <div class="error" id="err-phone"></div>
             </div>
 
-            <!-- Field 5 : Date of Birth -->
+            <!-- Field 5: Date of Birth (type=date gives a free calendar picker) -->
             <div class="field">
                 <label for="dob">Date of Birth</label>
                 <input type="date" id="dob">
                 <div class="error" id="err-dob"></div>
             </div>
 
-            <!-- Supporting field : Course (outside the five graded validations) -->
+            <!-- Extra field: Course. It is a dropdown, and it is NOT one of the five graded validations. -->
             <div class="field">
                 <label for="course">Course</label>
-                <select id="course">                                    <!-- Dropdown -->
-                    <option value="">-- Select a course --</option>     <!-- Default/empty -->
+                <select id="course">
+                    <option value="">-- Select a course --</option>     <!-- empty value = "nothing chosen yet" -->
                     <option value="M.Sc. Computer Science">M.Sc. Computer Science</option>
                     <option value="B.Tech. Mechanical">B.Tech. Mechanical</option>
                     <option value="MBA">MBA</option>
@@ -176,14 +176,14 @@
                 <div class="error" id="err-course"></div>
             </div>
 
-            <button type="submit">Generate ID Card</button>             <!-- Triggers the JS -->
+            <button type="submit">Generate ID Card</button>             <!-- type=submit is what fires the form's submit event -->
         </form>
 
-        <!-- The script fills this banner in after a successful submission -->
+        <!-- stays empty + hidden until a clean submission fills it in -->
         <div class="result" id="result"></div>
     </div>
 
-    <!-- Load the external JavaScript deliverable -->
+    <!-- the graded logic lives in this one external file -->
     <script src="StudentApp.js"></script>
 </body>
 </html>
