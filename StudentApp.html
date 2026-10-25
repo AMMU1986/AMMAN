@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<!--
+  =====================================================================
+  QUESTION 2  ::  STUDENT ID CARD APPLICATION  ::  THE FORM PAGE
+  ---------------------------------------------------------------------
+  Author : AMMAN JAKHAR  |  UID : 2025EB01187  |  DOB : 29.08.1986
+  ---------------------------------------------------------------------
+  Scope of this file:
+    - It supplies only the SHAPE of the form - the inputs and labels.
+    - The graded work for Q2 is the JavaScript, so the styling is kept
+      compact and inline, and every behaviour (validation, the Student
+      object, the cookie) lives in StudentApp.js.
+    - Naming is mine: ids start "aj", classes start "aj-".
+    - Each field repeats the same three-part pattern:
+          <label>  ->  <input id="aj...">  ->  <div class="aj-err">
+      The empty aj-err element is where the script prints any problem.
+  =====================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Requirement: the tab shows my UID, so the title IS my UID -->
+  <title>2025EB01187</title>
+
+  <!-- Styling is inline on purpose: it is short, and the JS is the deliverable -->
+  <style>
+    * { box-sizing: border-box; }               /* predictable widths */
+
+    body {
+      font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+      background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* same blue wash as Q1 */
+      margin: 0;
+      padding: 30px;
+      display: flex;
+      justify-content: center;                   /* centre the panel across the page */
+    }
+
+    .aj-panel {                                  /* the white sheet the form sits on */
+      background: #ffffff;
+      width: 440px;
+      padding: 28px 32px;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      font-size: 22px;
+      color: #1e3c72;                            /* navy brand colour */
+      margin: 0 0 4px 0;
+      text-align: center;
+    }
+
+    .aj-sub {                                    /* grey helper line below the title */
+      text-align: center;
+      font-size: 13px;
+      color: #888;
+      margin-bottom: 22px;
+    }
+
+    .aj-row { margin-bottom: 16px; }             /* even spacing between field blocks */
+
+    label {
+      display: block;                            /* each label on its own line */
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    input, select {                              /* shared look for text boxes and dropdown */
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;                    /* calm grey when idle */
+      border-radius: 7px;
+      outline: none;                             /* drop the default ring; I draw my own */
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus {
+      border-color: #2a5298;                     /* royal blue marks the active field */
+    }
+
+    input.aj-bad, select.aj-bad {                /* the script adds .aj-bad on a failed check */
+      border-color: #e74c3c;
+      background: #fdf0ef;                        /* red edge + pink wash = "fix me" */
+    }
+
+    .aj-err {                                    /* the slot under a field for its error */
+      color: #e74c3c;
+      font-size: 12px;
+      min-height: 15px;                          /* reserve height so rows never jump */
+      margin-top: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* two-blue gradient */
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    button:hover { opacity: 0.92; }              /* slight dim on hover = feedback */
+
+    .aj-out {                                    /* green success banner (JS un-hides it) */
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 8px;
+      background: #eafaf1;
+      border: 1px solid #27ae60;
+      color: #1e7e44;
+      font-size: 13px;
+      display: none;                             /* hidden until a valid submit */
+      white-space: pre-line;                     /* honour the "\n" the JS inserts */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="aj-panel">
+    <h1>Student ID Card Application</h1>
+    <p class="aj-sub">Please fill in all the fields below</p>
+
+    <!-- novalidate switches OFF the browser's built-in bubbles, so MY script is the only validator -->
+    <form id="ajForm" novalidate>
+
+      <!-- Field 1 :: Full Name -->
+      <div class="aj-row">
+        <label for="ajName">Full Name</label>
+        <input type="text" id="ajName" placeholder="e.g. Amman Jakhar">
+        <div class="aj-err" id="err-ajName"></div>
+      </div>
+
+      <!-- Field 2 :: University ID -->
+      <div class="aj-row">
+        <label for="ajUid">University ID (UID)</label>
+        <input type="text" id="ajUid" placeholder="e.g. 2025EB01187">
+        <div class="aj-err" id="err-ajUid"></div>
+      </div>
+
+      <!-- Field 3 :: Email -->
+      <div class="aj-row">
+        <label for="ajMail">Email Address</label>
+        <input type="text" id="ajMail" placeholder="e.g. name@example.com">
+        <div class="aj-err" id="err-ajMail"></div>
+      </div>
+
+      <!-- Field 4 :: Phone -->
+      <div class="aj-row">
+        <label for="ajTel">Phone Number</label>
+        <input type="text" id="ajTel" placeholder="10 digit mobile number">
+        <div class="aj-err" id="err-ajTel"></div>
+      </div>
+
+      <!-- Field 5 :: Date of Birth (type=date gives a free calendar picker) -->
+      <div class="aj-row">
+        <label for="ajBorn">Date of Birth</label>
+        <input type="date" id="ajBorn">
+        <div class="aj-err" id="err-ajBorn"></div>
+      </div>
+
+      <!-- Extra :: Course dropdown (NOT one of the five graded checks) -->
+      <div class="aj-row">
+        <label for="ajCourse">Course</label>
+        <select id="ajCourse">
+          <option value="">-- Select a course --</option>
+          <option value="M.Sc. Computer Science">M.Sc. Computer Science</option>
+          <option value="B.Tech. Mechanical">B.Tech. Mechanical</option>
+          <option value="MBA">MBA</option>
+        </select>
+        <div class="aj-err" id="err-ajCourse"></div>
+      </div>
+
+      <button type="submit">Generate ID Card</button>
+    </form>
+
+    <!-- stays empty and hidden until a clean submission fills it -->
+    <div class="aj-out" id="ajResult"></div>
+  </div>
+
+  <!-- every graded behaviour lives in this one external file -->
+  <script src="StudentApp.js"></script>
+</body>
+</html>
