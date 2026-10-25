@@ -1,0 +1,191 @@
+/*
+=====================================================================
+  QUESTION 1  |  STUDENT IDENTITY CARD (STYLES)
+  -----------------------------------------------------------------
+  Student Name : AMMAN JAKHAR
+  Student UID  : 2025EB01187
+  -----------------------------------------------------------------
+  File         : IDCard_styles.css
+  Purpose      : Turns the plain markup in IDCard.html into a
+                 polished, print-like student identity card.
+=====================================================================
+*/
+
+/* ---------- Baseline reset so every browser starts equal ---------- */
+* {                                   /* The universal selector hits every element */
+    margin: 0;                        /* Remove default outer spacing */
+    padding: 0;                       /* Remove default inner spacing */
+    box-sizing: border-box;           /* Width now includes padding + border */
+}
+
+/* ---------- Page canvas : parks the card in the centre ---------- */
+body {
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;  /* Clean sans-serif stack */
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* Soft blue backdrop */
+    min-height: 100vh;                /* Fill at least the full viewport height */
+    display: flex;                    /* Flexbox lets us centre easily */
+    justify-content: center;          /* Centre horizontally */
+    align-items: center;              /* Centre vertically */
+    padding: 20px;                    /* Breathing room on very small screens */
+}
+
+/* ---------- The physical card body ---------- */
+.id-card {
+    width: 360px;                     /* Fixed, card-like width */
+    background: #ffffff;              /* White base so text reads clearly */
+    border-radius: 16px;              /* Gently rounded corners */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25); /* Lifts the card off the page */
+    overflow: hidden;                 /* Clip child corners to the rounded edge */
+    border: 1px solid #d0d0d0;        /* Faint outline for definition */
+}
+
+/* ---------- Header band : logo plus institution text ---------- */
+.card-header {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* Deep blue banner */
+    color: #ffffff;                   /* White text on the dark banner */
+    padding: 18px 20px;               /* Comfortable spacing inside the band */
+    display: flex;                    /* Lay logo and text side by side */
+    align-items: center;              /* Vertically align the two blocks */
+    gap: 14px;                        /* Space between logo and text */
+}
+
+/* Circular badge that imitates a university crest */
+.logo {
+    width: 52px;                      /* Badge diameter */
+    height: 52px;                     /* Equal height keeps it a perfect circle */
+    border-radius: 50%;               /* Make the square a circle */
+    background: #ffffff;              /* White badge */
+    color: #1e3c72;                   /* Blue initials inside */
+    font-weight: bold;                /* Emphasise the initials */
+    font-size: 18px;                  /* Readable badge text */
+    display: flex;                    /* Centre the initials inside the circle */
+    justify-content: center;          /* Horizontal centring */
+    align-items: center;              /* Vertical centring */
+    flex-shrink: 0;                   /* Never let the circle squash */
+}
+
+.university-name {
+    font-size: 18px;                  /* Prominent institution title */
+    line-height: 1.2;                 /* Tighten wrapped lines */
+}
+
+.university-sub {
+    font-size: 12px;                  /* Smaller supporting line */
+    opacity: 0.85;                    /* Slightly muted next to the title */
+    margin-top: 3px;                  /* Small gap below the title */
+}
+
+/* ---------- Body : photo column + details column ---------- */
+.card-body {
+    display: flex;                    /* Place the two columns in a row */
+    padding: 20px;                    /* Inner padding around both columns */
+    gap: 18px;                        /* Space between photo and details */
+}
+
+/* Keep the photo column at its natural size */
+.photo-section {
+    flex-shrink: 0;                   /* Prevent the photo box from shrinking */
+}
+
+/* The framed placeholder box for the photo */
+.photo {
+    width: 100px;                     /* Standard passport-photo-ish width */
+    height: 120px;                    /* Taller than wide, like a real photo */
+    border: 3px solid #2a5298;        /* Blue frame around the box */
+    border-radius: 8px;               /* Soft corners on the frame */
+    background: #f0f4ff;              /* Very light blue fill */
+    display: flex;                    /* Centre the "PHOTO" caption */
+    justify-content: center;          /* Horizontal centring */
+    align-items: center;              /* Vertical centring */
+}
+
+.photo-text {
+    color: #2a5298;                   /* Match the frame colour */
+    font-size: 13px;                  /* Small caption */
+    font-weight: bold;                /* Make it stand out */
+    letter-spacing: 1px;              /* Spread the letters slightly */
+}
+
+/* Column that lists every student detail */
+.details-section {
+    flex: 1;                          /* Take all remaining horizontal space */
+    display: flex;                    /* Stack rows with flexbox */
+    flex-direction: column;           /* One row beneath another */
+    justify-content: center;          /* Centre the rows vertically */
+    gap: 8px;                         /* Even spacing between rows */
+}
+
+/* A single label-over-value pair */
+.detail-row {
+    display: flex;                    /* Flex container for the pair */
+    flex-direction: column;           /* Label sits above its value */
+    border-bottom: 1px dashed #e0e0e0;/* Dotted divider under each row */
+    padding-bottom: 4px;              /* Gap above the divider line */
+}
+
+.label {
+    font-size: 10px;                  /* Tiny caption text */
+    text-transform: uppercase;        /* Shout the captions in caps */
+    color: #888888;                   /* Muted grey so values dominate */
+    letter-spacing: 0.5px;            /* Light letter spacing for polish */
+}
+
+.value {
+    font-size: 14px;                  /* Larger than the label */
+    font-weight: 600;                 /* Semi-bold to emphasise the data */
+    color: #1e3c72;                   /* Brand blue for the actual data */
+}
+
+/* ---------- Footer : signature on the left, barcode on the right ---------- */
+.card-footer {
+    background: #f7f9fc;              /* Very light grey strip */
+    padding: 14px 20px;               /* Inner spacing */
+    display: flex;                    /* Put signature and barcode in a row */
+    justify-content: space-between;   /* Push them to opposite ends */
+    align-items: flex-end;            /* Align both to the bottom edge */
+    border-top: 2px solid #2a5298;    /* Blue rule separating body and footer */
+}
+
+.signature {
+    display: flex;                    /* Stack the two signature lines */
+    flex-direction: column;           /* Signature above its caption */
+}
+
+.sign-line {
+    font-family: "Brush Script MT", cursive; /* Handwriting-style font */
+    font-size: 20px;                  /* Large enough to look like a signature */
+    color: #333333;                   /* Dark ink colour */
+    border-bottom: 1px solid #999999; /* The line the signature rests on */
+    padding: 0 10px 2px 0;            /* Spacing so ink sits above the line */
+}
+
+.sign-label {
+    font-size: 10px;                  /* Small caption */
+    color: #888888;                   /* Muted grey */
+    margin-top: 3px;                  /* Gap below the signature line */
+}
+
+/* ---------- Faux barcode drawn purely with CSS ---------- */
+.barcode {
+    text-align: center;               /* Centre the number under the bars */
+}
+
+.barcode::before {                    /* Generated element that becomes the bars */
+    content: "";                      /* Required for a pseudo-element to appear */
+    display: block;                   /* Give it its own line/box */
+    width: 110px;                     /* Barcode width */
+    height: 36px;                     /* Barcode height */
+    background-image: repeating-linear-gradient(  /* Repeating stripes = bars */
+        to right,                     /* Bars run left to right */
+        #222 0, #222 2px,             /* Thick black bar */
+        #fff 2px, #fff 4px,           /* White gap */
+        #222 4px, #222 5px,           /* Thin black bar */
+        #fff 5px, #fff 8px            /* Wider white gap, then the pattern repeats */
+    );
+}
+
+.barcode-number {
+    font-size: 10px;                  /* Small code text */
+    letter-spacing: 1px;              /* Spread digits for a scanner-ish look */
+    color: #333333;                   /* Dark readable grey */
+}
