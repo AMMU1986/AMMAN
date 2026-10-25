@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+  =====================================================================
+  QUESTION 1  ::  STUDENT IDENTITY CARD  ::  STRUCTURE (HTML)
+  ---------------------------------------------------------------------
+  Author : AMMAN JAKHAR
+  UID    : 2025EB01187
+  DOB    : 29.08.1986
+  ---------------------------------------------------------------------
+  Design notes:
+    - This file is deliberately structure-only. It lays out WHICH parts
+      the card has; it never decides how any of them look.
+    - All appearance (colour, size, spacing, fonts) is kept in the
+      external sheet IDCard_styles.css that is linked in the head.
+    - Class names are prefixed "aj-" (my initials) so they are clearly
+      my own and cannot collide with a library's names.
+    - The card is split into three horizontal bands - header, body and
+      footer - which mirrors how a physical campus card is laid out.
+  =====================================================================
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- Keep the layout usable on a phone instead of a shrunken desktop view -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Requirement: the browser tab must display my UID, so the title IS my UID -->
+  <title>2025EB01187</title>
+  <!-- Single external stylesheet - every visual rule lives there, not here -->
+  <link rel="stylesheet" href="IDCard_styles.css">
+</head>
+<body>
+
+  <!-- One wrapper surrounds the whole card so the rounded corners and the
+       drop shadow apply to it as a single object. -->
+  <div class="aj-idcard">
+
+    <!-- BAND 1 (header): the issuing institution -->
+    <header class="aj-idcard__head">
+      <div class="aj-crest">UoH</div>
+      <div class="aj-org">
+        <h1 class="aj-org__name">University of Higher Studies</h1>
+        <p class="aj-org__dept">Department of Computer Science</p>
+      </div>
+    </header>
+
+    <!-- BAND 2 (body): the photo on the left, the card holder's data on the right -->
+    <main class="aj-idcard__body">
+
+      <!-- Left column: a framed placeholder where the photograph belongs -->
+      <div class="aj-photo-col">
+        <div class="aj-photo">
+          <span class="aj-photo__text">PHOTO</span>
+        </div>
+      </div>
+
+      <!-- Right column: one .aj-fact block per detail (a label sitting above its value) -->
+      <div class="aj-facts">
+
+        <div class="aj-fact">
+          <span class="aj-fact__key">Name</span>
+          <span class="aj-fact__val">AMMAN JAKHAR</span>
+        </div>
+
+        <div class="aj-fact">
+          <span class="aj-fact__key">UID</span>
+          <span class="aj-fact__val">2025EB01187</span>
+        </div>
+
+        <div class="aj-fact">
+          <span class="aj-fact__key">Date of Birth</span>
+          <span class="aj-fact__val">29.08.1986</span>
+        </div>
+
+        <div class="aj-fact">
+          <span class="aj-fact__key">Course</span>
+          <span class="aj-fact__val">M.Sc. Computer Science</span>
+        </div>
+
+        <div class="aj-fact">
+          <span class="aj-fact__key">Blood Group</span>
+          <span class="aj-fact__val">O+</span>
+        </div>
+
+        <div class="aj-fact">
+          <span class="aj-fact__key">Valid Thru</span>
+          <span class="aj-fact__val">08 / 2027</span>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- BAND 3 (footer): signature on one side, barcode on the other -->
+    <footer class="aj-idcard__foot">
+      <div class="aj-sign">
+        <span class="aj-sign__ink">A. Jakhar</span>
+        <span class="aj-sign__cap">Card Holder</span>
+      </div>
+      <div class="aj-code">
+        <span class="aj-code__digits">2025 EB 01187</span>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+</html>
