@@ -1,189 +1,191 @@
-<!DOCTYPE html>                                   <!-- standards-mode HTML5 -->
+<!DOCTYPE html>                                   <!-- modern HTML5, standards mode -->
 <!--
-=====================================================================
-  QUESTION 2 - STUDENT ID CARD APPLICATION (the form page)
-  -----------------------------------------------------------------
-  Author : AMMAN JAKHAR  |  UID : 2025EB01187  |  DOB : 29.08.1986
-  -----------------------------------------------------------------
-  This page is just the "shape" of the form. The marks for Q2 are in
-  the JavaScript, so I deliberately kept the styling short and inline
-  and moved ALL the behaviour (validation, the Student object, and
-  the cookie) into StudentApp.js. Each input has:
-      - a <label> (good for accessibility and for clicking),
-      - an id the JS can grab,
-      - an empty .error <div> the JS fills in if something is wrong.
-=====================================================================
+#####################################################################
+#  QUESTION 2  ::  STUDENT ID CARD APPLICATION  ::  THE FORM PAGE
+#  ---------------------------------------------------------------
+#  Written by : AMMAN JAKHAR  |  UID : 2025EB01187  |  DOB : 29.08.1986
+#  ---------------------------------------------------------------
+#  What this file is and isn't:
+#    * It is ONLY the shape of the form - the boxes and their labels.
+#    * The marks for Q2 are in the JavaScript, so I kept the styling
+#      short and inline and moved every behaviour (the checks, the
+#      Student object, the cookie) into StudentApp.js.
+#    * My own naming scheme again: ids start "aj" and classes "aj-".
+#    * Each field follows the same 3-part pattern:
+#         <label>  ->  <input id="aj...">  ->  <div class="aj-err">
+#      The empty aj-err box is where the script prints a problem.
+#####################################################################
 -->
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">                        <!-- UTF-8 so names/symbols survive -->
-    <!-- responsive on phones; without this the form looks shrunk on mobile -->
+    <meta charset="UTF-8">                        <!-- Unicode, so names and symbols are safe -->
+    <!-- make it behave on a phone instead of rendering shrunk -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Q2 rule again: the tab caption must be my UID -->
+    <!-- Q2 rule: the tab must show my UID, so the page title is my UID -->
     <title>2025EB01187</title>
 
-    <!-- CSS is inline on purpose: it is small and the JS file is the real deliverable -->
+    <!-- the CSS is inline on purpose - it is small, and the JS is the graded deliverable -->
     <style>
-        * { box-sizing: border-box; }            /* count padding+border inside every width */
+        * { box-sizing: border-box; }            /* count border+padding inside every width (predictable sizing) */
 
-        body {                                    /* the page behind the form */
-            font-family: "Segoe UI", Tahoma, Arial, sans-serif; /* readable sans-serif ladder */
-            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* same blue wash as Q1, for consistency */
-            margin: 0;
-            padding: 30px;                        /* keep the card off the window edges */
-            display: flex;                        /* flexbox just to... */
-            justify-content: center;              /* ...centre the form horizontally */
+        body {                                    /* the page sitting behind the form */
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif; /* a readable sans-serif fallback chain */
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* the SAME blue wash as Q1, on purpose */
+            margin: 0;                            /* drop the browser's default body margin */
+            padding: 30px;                        /* hold the panel away from the window edges */
+            display: flex;                        /* flexbox, only so I can... */
+            justify-content: center;              /* ...centre the panel left-to-right */
         }
 
-        .form-card {                              /* the white sheet the form sits on */
-            background: #ffffff;
-            width: 440px;                         /* narrow enough to read in one eye-line */
-            padding: 28px 32px;
-            border-radius: 14px;                  /* rounded, matching the Q1 card */
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* float it above the page */
+        .aj-panel {                               /* the white sheet the form lives on */
+            background: #ffffff;                  /* clean white surface */
+            width: 440px;                         /* a width that reads comfortably in one glance */
+            padding: 28px 32px;                   /* roomy inner spacing */
+            border-radius: 14px;                  /* rounded, to echo the Q1 card */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2); /* a shadow so it floats above the page */
         }
 
-        h1 {                                      /* the form's title */
-            font-size: 22px;
-            color: #1e3c72;                       /* brand dark-blue */
-            margin: 0 0 4px 0;
-            text-align: center;
+        h1 {                                      /* the form's main title */
+            font-size: 22px;                      /* clearly the biggest text */
+            color: #1e3c72;                       /* my navy brand colour */
+            margin: 0 0 4px 0;                    /* tight gap under it */
+            text-align: center;                   /* centred over the form */
         }
 
-        .subtitle {                               /* one grey helper line under the title */
-            text-align: center;
-            font-size: 13px;
-            color: #888;
+        .aj-sub {                                 /* the one grey helper line below the title */
+            text-align: center;                   /* centred to match the title */
+            font-size: 13px;                      /* small */
+            color: #888;                          /* muted grey */
             margin-bottom: 22px;                  /* space before the first field */
         }
 
-        .field { margin-bottom: 16px; }          /* consistent gap between each field group */
+        .aj-row { margin-bottom: 16px; }          /* equal vertical spacing between every field block */
 
-        label {                                   /* the caption above each input */
-            display: block;                       /* force it onto its own line */
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
+        label {                                   /* the caption above each control */
+            display: block;                       /* each label gets its own line */
+            font-size: 13px;                      /* small, but readable */
+            font-weight: 600;                     /* semi-bold so it stands out from the input */
+            color: #333;                          /* dark grey */
+            margin-bottom: 5px;                   /* a little gap before its input */
         }
 
-        input, select {                           /* one shared style for every control */
-            width: 100%;                          /* fill the card's width */
-            padding: 10px 12px;                   /* comfortable to tap/type in */
-            font-size: 14px;
-            border: 1px solid #ccc;               /* calm grey border at rest */
-            border-radius: 7px;
-            outline: none;                        /* I replace the default focus ring with my own colour */
-            transition: border-color 0.2s;        /* animate the border when focus changes */
+        input, select {                           /* one shared look for text boxes AND the dropdown */
+            width: 100%;                          /* stretch to the panel's width */
+            padding: 10px 12px;                   /* comfortable to type in / tap */
+            font-size: 14px;                      /* legible */
+            border: 1px solid #ccc;               /* a calm grey border when idle */
+            border-radius: 7px;                   /* softly rounded */
+            outline: none;                        /* drop the browser's default focus ring (I draw my own) */
+            transition: border-color 0.2s;        /* fade the border colour when focus changes */
         }
 
-        input:focus, select:focus { border-color: #2a5298; } /* blue edge tells you where the cursor is */
+        input:focus, select:focus { border-color: #2a5298; } /* a royal-blue border marks where the cursor is */
 
-        /* the JS adds .invalid to any control that fails its check */
-        input.invalid, select.invalid { border-color: #e74c3c; background: #fdf0ef; } /* red edge + pink tint = "fix me" */
+        /* the script adds .aj-bad to any control that fails a check */
+        input.aj-bad, select.aj-bad { border-color: #e74c3c; background: #fdf0ef; } /* red edge + pink wash = "fix me" */
 
-        .error {                                  /* the little message that appears under a bad field */
-            color: #e74c3c;                       /* red = problem */
-            font-size: 12px;
-            min-height: 15px;                     /* reserve the row even when empty, so nothing jumps around */
-            margin-top: 4px;
+        .aj-err {                                 /* the slot under a field where an error appears */
+            color: #e74c3c;                       /* red means something's wrong */
+            font-size: 12px;                      /* small print */
+            min-height: 15px;                     /* keep the row's height even when empty, so nothing jumps */
+            margin-top: 4px;                      /* small gap above the message */
         }
 
         button {                                  /* the submit button */
-            width: 100%;
-            padding: 12px;                        /* big tap target */
-            margin-top: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            color: #fff;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* the brand gradient again */
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;                      /* show a hand so it reads as clickable */
+            width: 100%;                          /* full-width, easy to hit */
+            padding: 12px;                        /* a tall target */
+            margin-top: 6px;                      /* space above it */
+            font-size: 15px;                      /* a clear label */
+            font-weight: 600;                     /* semi-bold */
+            color: #fff;                          /* white text... */
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* ...on my two-blue gradient */
+            border: none;                         /* no default border */
+            border-radius: 8px;                   /* rounded corners */
+            cursor: pointer;                      /* a hand cursor says "click me" */
         }
 
-        button:hover { opacity: 0.92; }          /* a tiny dim on hover = "I'm interactive" */
+        button:hover { opacity: 0.92; }          /* a slight dim on hover = visual feedback */
 
-        .result {                                 /* the green summary banner the JS reveals on success */
-            margin-top: 18px;
-            padding: 14px;
-            border-radius: 8px;
+        .aj-out {                                 /* the green summary banner (the JS un-hides it) */
+            margin-top: 18px;                     /* space above the banner */
+            padding: 14px;                        /* inner spacing */
+            border-radius: 8px;                   /* rounded */
             background: #eafaf1;                  /* pale green = success */
-            border: 1px solid #27ae60;
-            color: #1e7e44;
-            font-size: 13px;
-            display: none;                        /* hidden by default; JS flips this to block */
-            white-space: pre-line;                /* so the "\n" line breaks I add in JS are honoured */
+            border: 1px solid #27ae60;            /* a green outline */
+            color: #1e7e44;                       /* dark green text */
+            font-size: 13px;                      /* small */
+            display: none;                        /* HIDDEN until a valid submit; the JS switches this to block */
+            white-space: pre-line;                /* honour the "\n" line breaks the JS inserts */
         }
     </style>
 </head>
 
 <body>
 
-    <div class="form-card">                       <!-- the white panel -->
-        <h1>Student ID Card Application</h1>      <!-- title -->
-        <p class="subtitle">Please fill in all the fields below</p> <!-- instruction -->
+    <div class="aj-panel">                        <!-- the white panel -->
+        <h1>Student ID Card Application</h1>      <!-- the title -->
+        <p class="aj-sub">Please fill in all the fields below</p> <!-- a short instruction -->
 
-        <!-- novalidate = switch OFF the browser's own popups so MY JavaScript is the only validator -->
-        <form id="studentForm" novalidate>
+        <!-- novalidate = turn OFF the browser's built-in bubbles so MY JavaScript is the sole validator -->
+        <form id="ajForm" novalidate>
 
-            <!-- Field 1: Full Name -->
-            <div class="field">
-                <label for="fullName">Full Name</label>                 <!-- "for" links the label to the input id -->
-                <input type="text" id="fullName" placeholder="e.g. Amman Jakhar"> <!-- placeholder shows an example -->
-                <div class="error" id="err-fullName"></div>             <!-- JS writes the error here, keyed by id -->
+            <!-- Field 1 :: Full Name -->
+            <div class="aj-row">
+                <label for="ajName">Full Name</label>                   <!-- "for" ties this label to the input's id -->
+                <input type="text" id="ajName" placeholder="e.g. Amman Jakhar"> <!-- placeholder = a greyed-out example -->
+                <div class="aj-err" id="err-ajName"></div>              <!-- the script writes any error text here -->
             </div>
 
-            <!-- Field 2: University ID -->
-            <div class="field">
-                <label for="uid">University ID (UID)</label>
-                <input type="text" id="uid" placeholder="e.g. 2025EB01187">
-                <div class="error" id="err-uid"></div>
+            <!-- Field 2 :: University ID -->
+            <div class="aj-row">
+                <label for="ajUid">University ID (UID)</label>
+                <input type="text" id="ajUid" placeholder="e.g. 2025EB01187">
+                <div class="aj-err" id="err-ajUid"></div>
             </div>
 
-            <!-- Field 3: Email -->
-            <div class="field">
-                <label for="email">Email Address</label>
-                <input type="text" id="email" placeholder="e.g. name@example.com">
-                <div class="error" id="err-email"></div>
+            <!-- Field 3 :: Email -->
+            <div class="aj-row">
+                <label for="ajMail">Email Address</label>
+                <input type="text" id="ajMail" placeholder="e.g. name@example.com">
+                <div class="aj-err" id="err-ajMail"></div>
             </div>
 
-            <!-- Field 4: Phone -->
-            <div class="field">
-                <label for="phone">Phone Number</label>
-                <input type="text" id="phone" placeholder="10 digit mobile number">
-                <div class="error" id="err-phone"></div>
+            <!-- Field 4 :: Phone -->
+            <div class="aj-row">
+                <label for="ajTel">Phone Number</label>
+                <input type="text" id="ajTel" placeholder="10 digit mobile number">
+                <div class="aj-err" id="err-ajTel"></div>
             </div>
 
-            <!-- Field 5: Date of Birth (type=date gives a free calendar picker) -->
-            <div class="field">
-                <label for="dob">Date of Birth</label>
-                <input type="date" id="dob">
-                <div class="error" id="err-dob"></div>
+            <!-- Field 5 :: Date of Birth (type=date hands me a free calendar picker) -->
+            <div class="aj-row">
+                <label for="ajBorn">Date of Birth</label>
+                <input type="date" id="ajBorn">
+                <div class="aj-err" id="err-ajBorn"></div>
             </div>
 
-            <!-- Extra field: Course. It is a dropdown, and it is NOT one of the five graded validations. -->
-            <div class="field">
-                <label for="course">Course</label>
-                <select id="course">
-                    <option value="">-- Select a course --</option>     <!-- empty value = "nothing chosen yet" -->
+            <!-- Extra :: Course. A dropdown, and NOT one of the five graded checks. -->
+            <div class="aj-row">
+                <label for="ajCourse">Course</label>
+                <select id="ajCourse">
+                    <option value="">-- Select a course --</option>     <!-- blank value means "nothing picked yet" -->
                     <option value="M.Sc. Computer Science">M.Sc. Computer Science</option>
                     <option value="B.Tech. Mechanical">B.Tech. Mechanical</option>
                     <option value="MBA">MBA</option>
                 </select>
-                <div class="error" id="err-course"></div>
+                <div class="aj-err" id="err-ajCourse"></div>
             </div>
 
-            <button type="submit">Generate ID Card</button>             <!-- type=submit is what fires the form's submit event -->
+            <button type="submit">Generate ID Card</button>             <!-- type=submit is what raises the form's "submit" event -->
         </form>
 
-        <!-- stays empty + hidden until a clean submission fills it in -->
-        <div class="result" id="result"></div>
+        <!-- stays empty and hidden until a clean submission fills it in -->
+        <div class="aj-out" id="ajResult"></div>
     </div>
 
-    <!-- the graded logic lives in this one external file -->
+    <!-- all the graded logic lives in this single external file -->
     <script src="StudentApp.js"></script>
 </body>
 </html>

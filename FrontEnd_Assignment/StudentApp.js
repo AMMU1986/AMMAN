@@ -1,248 +1,253 @@
 /*
-=====================================================================
-  QUESTION 2 - STUDENT ID CARD APPLICATION (the logic)
-  -----------------------------------------------------------------
-  Author : AMMAN JAKHAR  |  UID : 2025EB01187  |  DOB : 29.08.1986
-  -----------------------------------------------------------------
-  This file carries the three things Q2 is marked on:
-      SECTION 1  five separate validation functions        [5 marks]
-      SECTION 2  a Student class + an object I console.log  [3 marks]
-      SECTION 3  cookie save + read helpers                 [2 marks]
-  SECTION 4 is the "glue": it waits for the page, listens for the
-  submit button, and calls the pieces above in order.
-
-  Design choice I made throughout: every validator RETURNS a string.
-  An empty string "" means "all good"; any other text is the exact
-  message to show the user. Returning instead of alert()-ing keeps
-  the checks pure and easy to reuse or test on their own.
-=====================================================================
+#####################################################################
+#  QUESTION 2  ::  STUDENT ID CARD APPLICATION  ::  THE LOGIC
+#  ---------------------------------------------------------------
+#  Written by : AMMAN JAKHAR  |  UID : 2025EB01187  |  DOB : 29.08.1986
+#  ---------------------------------------------------------------
+#  This single file holds the three graded pieces:
+#      PART 1 - five independent field checks            [5 marks]
+#      PART 2 - a Student class + an object I console.log [3 marks]
+#      PART 3 - cookie write + read helpers              [2 marks]
+#  PART 4 is the "glue": it waits for the page to load, listens for
+#  the submit button, and runs the three parts above in order.
+#
+#  One rule I follow in every check below: the function RETURNS a
+#  string. "" (empty) means the field is fine; any other text is the
+#  exact message to show the user. Returning (instead of popping an
+#  alert) keeps each check self-contained and easy to reuse.
+#
+#  Naming: my ids are "ajName / ajUid / ..." and my helpers are
+#  "rule... / paintError / writeCookie / readCookie" so the code is
+#  clearly my own rather than copied boilerplate.
+#####################################################################
 */
 
-"use strict";                                 // strict mode: turns silent mistakes into real errors early
+"use strict";                                 // strict mode: silent slips become loud errors, which I prefer while learning
 
-/* ==================================================================
-   SECTION 1 : THE FIVE FIELD CHECKS                     [5 marks]
-   Each one takes the raw text from a field and hands back "" or a
-   message. I trim() first everywhere so stray spaces never pass by
-   accident (e.g. "   " should still count as empty).
-   ================================================================== */
+/* =================================================================
+   PART 1 :: THE FIVE FIELD CHECKS                        [5 marks]
+   Every check trims the text first, so a box full of only spaces is
+   treated as empty rather than sneaking through.
+   ================================================================= */
 
-// (1) Full name: letters and spaces only, and at least 3 characters.
-function validateFullName(value) {
-    const name = value.trim();                // remove leading/trailing spaces first
-    if (name === "") {                        // guard the empty case before the regex
+// (1) Full name - letters and spaces only, three characters or more.
+function ruleName(text) {
+    const cleaned = text.trim();              // chop off any spaces at the start/end
+    if (cleaned === "") {                     // handle "typed nothing" before testing the pattern
         return "Full name is required.";
     }
-    // ^...$ anchors the WHOLE string; [A-Za-z ] = letters or space; {3,} = three or more
-    if (!/^[A-Za-z ]{3,}$/.test(name)) {
+    // ^ and $ clamp the WHOLE value; [A-Za-z ] allows letters/spaces; {3,} demands 3+ characters
+    if (!/^[A-Za-z ]{3,}$/.test(cleaned)) {
         return "Name must be at least 3 letters (alphabets and spaces only).";
     }
-    return "";                                // reached here => the name is fine
+    return "";                                // got here => the name passed
 }
 
-// (2) UID: the fixed shape 4 digits + 2 letters + 5 digits, e.g. 2025EB01187.
-function validateUID(value) {
-    const uid = value.trim().toUpperCase();   // force caps so "eb" and "EB" are both accepted
-    if (uid === "") {
+// (2) UID - the strict shape: 4 digits, then 2 letters, then 5 digits (e.g. 2025EB01187).
+function ruleUid(text) {
+    const cleaned = text.trim().toUpperCase(); // trim, and upper-case so "eb" counts the same as "EB"
+    if (cleaned === "") {
         return "UID is required.";
     }
-    // [0-9]{4} four digits, [A-Z]{2} two letters, [0-9]{5} five digits - nothing else allowed
-    if (!/^[0-9]{4}[A-Z]{2}[0-9]{5}$/.test(uid)) {
+    // [0-9]{4} = four digits, [A-Z]{2} = two letters, [0-9]{5} = five digits, and nothing else
+    if (!/^[0-9]{4}[A-Z]{2}[0-9]{5}$/.test(cleaned)) {
         return "UID must look like 2025EB01187 (4 digits, 2 letters, 5 digits).";
     }
     return "";
 }
 
-// (3) Email: must have "something @ something . something" with no spaces.
-function validateEmail(value) {
-    const email = value.trim();
-    if (email === "") {
+// (3) Email - roughly "text @ text . text", and no spaces anywhere.
+function ruleMail(text) {
+    const cleaned = text.trim();
+    if (cleaned === "") {
         return "Email is required.";
     }
-    // [^\s@]+ = one-or-more chars that are NOT a space or @, repeated around an @ and a dot
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    // [^\s@]+ means "one or more characters that are NOT a space or an @", placed around the @ and the dot
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(cleaned)) {
         return "Please enter a valid email address.";
     }
     return "";
 }
 
-// (4) Phone: exactly ten digits - no +, no spaces, no dashes.
-function validatePhone(value) {
-    const phone = value.trim();
-    if (phone === "") {
+// (4) Phone - exactly ten digits (no +, no spaces, no dashes).
+function ruleTel(text) {
+    const cleaned = text.trim();
+    if (cleaned === "") {
         return "Phone number is required.";
     }
-    if (!/^[0-9]{10}$/.test(phone)) {         // {10} pins the length to ten, the ^$ forbid extras
+    if (!/^[0-9]{10}$/.test(cleaned)) {       // {10} fixes the length at ten; the ^ and $ forbid anything extra
         return "Phone number must be exactly 10 digits.";
     }
     return "";
 }
 
-// (5) Date of birth: required, and it has to be a date that already happened.
-function validateDOB(value) {
-    if (value === "") {                       // the date picker gives "" when untouched
+// (5) Date of birth - must be filled in, and must be a date in the past.
+function ruleBorn(text) {
+    if (text === "") {                        // the date picker reports "" when it is untouched
         return "Date of birth is required.";
     }
-    const dob = new Date(value);              // turn the "YYYY-MM-DD" string into a real Date
-    const today = new Date();                 // "now", to compare against
-    if (dob >= today) {                       // being born today or in the future makes no sense
+    const chosen = new Date(text);            // convert the "YYYY-MM-DD" string into a real Date object
+    const rightNow = new Date();              // the current moment, to compare against
+    if (chosen >= rightNow) {                 // you cannot be born today or in the future
         return "Date of birth must be in the past.";
     }
     return "";
 }
 
-/* Small UI helper (shared by all five checks above).
-   Given a field id and a message, it writes the message into that
-   field's .error box and toggles the red ".invalid" look on/off. */
-function showError(fieldId, message) {
-    const input = document.getElementById(fieldId);          // the input/select itself
-    const errorBox = document.getElementById("err-" + fieldId); // its matching error <div>
-    errorBox.textContent = message;           // textContent (not innerHTML) = safe, no HTML injection
+/* A small UI helper that every check above leans on.
+   Given a field's id and a message, it drops the message into that
+   field's matching .aj-err box and flips the red ".aj-bad" look. */
+function paintError(fieldId, message) {
+    const box = document.getElementById(fieldId);            // the input/select itself
+    const slot = document.getElementById("err-" + fieldId);  // its paired error <div> (same id, "err-" in front)
+    slot.textContent = message;               // textContent (not innerHTML) keeps it safe from HTML injection
     if (message === "") {
-        input.classList.remove("invalid");    // happy path: strip the red styling
+        box.classList.remove("aj-bad");       // no message => remove the red styling
     } else {
-        input.classList.add("invalid");       // problem: paint it red
+        box.classList.add("aj-bad");          // a message => turn the control red
     }
 }
 
-/* ==================================================================
-   SECTION 2 : THE STUDENT CLASS                         [3 marks]
-   A class is my blueprint; "new Student(...)" stamps out one object
-   from it. I gave it two methods so the object can describe itself.
-   ================================================================== */
+/* =================================================================
+   PART 2 :: THE STUDENT CLASS                            [3 marks]
+   The class is a blueprint; "new Student(...)" presses out one
+   object from it. I gave the object two helper methods so it can
+   describe itself (its age, and a one-line summary).
+   ================================================================= */
 
 class Student {
-    // the constructor copies each argument onto the new object as a property
+    // the constructor runs once per "new Student(...)" and saves each argument onto the object
     constructor(fullName, uid, email, phone, dob, course) {
-        this.fullName = fullName;             // "this" = the specific object being built
+        this.fullName = fullName;             // "this" refers to the exact object being created right now
         this.uid = uid;
         this.email = email;
         this.phone = phone;
-        this.dob = dob;                       // kept as the raw "YYYY-MM-DD" string
+        this.dob = dob;                       // stored as the raw "YYYY-MM-DD" text
         this.course = course;
     }
 
-    // method: turn the stored DOB into an age in whole years
-    getAge() {
-        const birth = new Date(this.dob);     // parse the stored string
-        const now = new Date();
-        let age = now.getFullYear() - birth.getFullYear(); // first pass: just subtract the years
-        const monthDiff = now.getMonth() - birth.getMonth(); // how far we are into the year, by month
-        // if this year's birthday hasn't arrived yet, I counted one year too many, so take it back
-        if (monthDiff < 0 || (monthDiff === 0 && now.getDate() < birth.getDate())) {
-            age--;
+    // method :: work out a whole-number age from the stored date of birth
+    calcAge() {
+        const born = new Date(this.dob);      // parse the stored date string
+        const today = new Date();             // today
+        let years = today.getFullYear() - born.getFullYear(); // rough answer: subtract the years
+        const monthGap = today.getMonth() - born.getMonth();  // are we before or after the birthday month?
+        // if this year's birthday hasn't happened yet, the rough answer is one too high, so step it back
+        if (monthGap < 0 || (monthGap === 0 && today.getDate() < born.getDate())) {
+            years--;
         }
-        return age;
+        return years;
     }
 
-    // method: a compact one-liner about the student (I log and store this)
-    getSummary() {
-        // template literal (backticks) lets me drop values straight into the text with ${...}
-        return `${this.fullName} (UID: ${this.uid}) | ${this.course} | Age: ${this.getAge()}`;
+    // method :: a neat single-line description (this exact string is what I log and store in the cookie)
+    asLine() {
+        // backtick template literal: ${...} drops each value straight into the sentence
+        return `${this.fullName} (UID: ${this.uid}) | ${this.course} | Age: ${this.calcAge()}`;
     }
 }
 
-/* ==================================================================
-   SECTION 3 : COOKIES                                   [2 marks]
-   Two tiny helpers. setCookie writes one that expires in N days;
-   getCookie reads one back by name. I encode/decode the value so
-   spaces and symbols survive the trip (cookies dislike raw spaces).
-   ================================================================== */
+/* =================================================================
+   PART 3 :: COOKIE HELPERS                               [2 marks]
+   writeCookie saves a "name=value" that self-destructs after N days;
+   readCookie fetches one back by name. I encode on the way in and
+   decode on the way out so spaces and symbols survive (cookies choke
+   on raw spaces).
+   ================================================================= */
 
-// write document.cookie = "name=value; expires=...; path=/"
-function setCookie(name, value, days) {
-    const expires = new Date();               // start from now...
-    expires.setTime(expires.getTime() + days * 24 * 60 * 60 * 1000); // ...+ N days expressed in milliseconds
+// save document.cookie = "name=value; expires=...; path=/"
+function writeCookie(name, value, days) {
+    const dies = new Date();                  // begin from the current moment...
+    dies.setTime(dies.getTime() + days * 24 * 60 * 60 * 1000); // ...then add N days, converted into milliseconds
     document.cookie = name + "=" + encodeURIComponent(value) + // encode makes the value cookie-safe
-                      ";expires=" + expires.toUTCString() +    // the browser deletes it after this moment
-                      ";path=/";                               // "/" = valid across the whole site
+                      ";expires=" + dies.toUTCString() +       // the browser auto-deletes it after this instant
+                      ";path=/";                               // "/" keeps it readable across the whole site
 }
 
-// read back a single cookie's value, or "" if that name isn't stored
-function getCookie(name) {
-    const cookies = document.cookie.split(";"); // the whole cookie string -> ["a=1"," b=2", ...]
-    for (let i = 0; i < cookies.length; i++) {
-        const parts = cookies[i].trim().split("="); // trim the leading space, then split name from value
-        if (parts[0] === name) {              // is this the cookie I asked for?
-            return decodeURIComponent(parts[1]); // undo the encoding from setCookie and return it
+// return one named cookie's value, or "" when that name isn't present
+function readCookie(name) {
+    const jar = document.cookie.split(";");   // the full cookie string, split into ["a=1", " b=2", ...]
+    for (let i = 0; i < jar.length; i++) {    // walk each cookie in turn
+        const pair = jar[i].trim().split("="); // trim the leading space, then split "name=value" into two halves
+        if (pair[0] === name) {               // is this the one I'm after?
+            return decodeURIComponent(pair[1]); // reverse the encoding writeCookie applied, and return it
         }
     }
-    return "";                                // fell through the loop => not found
+    return "";                                // loop finished without a match => not found
 }
 
-/* ==================================================================
-   SECTION 4 : WIRING IT ALL TOGETHER
-   Nothing here runs until the HTML is parsed, so I wrap it in the
-   DOMContentLoaded event - otherwise getElementById could return
-   null because the form wouldn't exist yet.
-   ================================================================== */
+/* =================================================================
+   PART 4 :: WIRING EVERYTHING TOGETHER
+   I delay all of this until DOMContentLoaded fires - if I ran it
+   sooner, getElementById could hand back null because the form
+   wouldn't have been built yet.
+   ================================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // On every load, peek at the cookie so a returning user is recognised.
-    const saved = getCookie("lastStudent");
-    if (saved !== "") {                       // only shout about it if there actually is one
-        console.log("Retrieved previously saved student from cookie: " + saved);
+    // on each visit, glance at the cookie so a returning student is greeted
+    const remembered = readCookie("lastStudent");
+    if (remembered !== "") {                  // only mention it if a cookie was actually there
+        console.log("Retrieved previously saved student from cookie: " + remembered);
     }
 
-    const form = document.getElementById("studentForm");
+    const theForm = document.getElementById("ajForm");
 
-    // the single event that drives the whole page: the form being submitted
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();               // stop the browser's default "reload and clear" behaviour
+    // the whole page is driven by this one event: the form being submitted
+    theForm.addEventListener("submit", function (event) {
+        event.preventDefault();               // cancel the browser's default "reload the page and wipe it" action
 
-        // snapshot every field's current value
-        const fullName = document.getElementById("fullName").value;
-        const uid      = document.getElementById("uid").value;
-        const email    = document.getElementById("email").value;
-        const phone    = document.getElementById("phone").value;
-        const dob      = document.getElementById("dob").value;
-        const course   = document.getElementById("course").value;
+        // grab the current text of each field
+        const nameVal   = document.getElementById("ajName").value;
+        const uidVal    = document.getElementById("ajUid").value;
+        const mailVal   = document.getElementById("ajMail").value;
+        const telVal    = document.getElementById("ajTel").value;
+        const bornVal   = document.getElementById("ajBorn").value;
+        const courseVal = document.getElementById("ajCourse").value;
 
-        // run all checks once and keep each result under its field's name
-        const errors = {
-            fullName: validateFullName(fullName),
-            uid:      validateUID(uid),
-            email:    validateEmail(email),
-            phone:    validatePhone(phone),
-            dob:      validateDOB(dob),
-            // the dropdown isn't one of the five, but I still refuse an empty choice
-            course:   course === "" ? "Please select a course." : ""
+        // run every check once; store each result under the matching field id
+        const results = {
+            ajName:   ruleName(nameVal),
+            ajUid:    ruleUid(uidVal),
+            ajMail:   ruleMail(mailVal),
+            ajTel:    ruleTel(telVal),
+            ajBorn:   ruleBorn(bornVal),
+            // the dropdown isn't one of the five, but I still reject an empty choice
+            ajCourse: courseVal === "" ? "Please select a course." : ""
         };
 
-        // paint every message (or clear it) and note if ANY field failed
-        let isValid = true;                   // optimistic until proven otherwise
-        for (const field in errors) {         // loop the keys: fullName, uid, ...
-            showError(field, errors[field]);  // reflect this field's result on screen
-            if (errors[field] !== "") {       // a non-empty string means this field is bad
-                isValid = false;
+        // show (or clear) each message, and remember whether ANY field failed
+        let everythingOk = true;              // start hopeful, flip to false on the first problem
+        for (const id in results) {           // loop the keys: ajName, ajUid, ...
+            paintError(id, results[id]);      // reflect this field's verdict on screen
+            if (results[id] !== "") {         // a non-empty message means this field is bad
+                everythingOk = false;
             }
         }
 
-        // if anything was wrong, stop here - do NOT build an object from bad data
-        if (!isValid) {
+        // if anything failed, stop now - I will NOT build an object out of bad data
+        if (!everythingOk) {
             console.log("Validation failed. Please correct the highlighted fields.");
             return;
         }
 
-        // ---- all clear: build the Student object from the clean inputs ----
-        const student = new Student(fullName, uid, email, phone, dob, course);
+        // ---- all five passed: build the Student object from the clean values ----
+        const student = new Student(nameVal, uidVal, mailVal, telVal, bornVal, courseVal);
 
-        // show the object (and its derived info) in the browser console
+        // print the object and the facts I derived from it, into the browser console
         console.log("=== New Student object created ===");
-        console.log(student);                 // logging the object itself lets me expand it in DevTools
-        console.log("Summary : " + student.getSummary());
-        console.log("Age     : " + student.getAge() + " years");
+        console.log(student);                 // logging the raw object lets me expand its fields in DevTools
+        console.log("Summary : " + student.asLine());
+        console.log("Age     : " + student.calcAge() + " years");
 
-        // ---- remember this student for 7 days via a cookie ----
-        setCookie("lastStudent", student.getSummary(), 7);
-        console.log("Student saved to cookie: " + getCookie("lastStudent")); // read it straight back as proof
+        // ---- keep this student for 7 days inside a cookie ----
+        writeCookie("lastStudent", student.asLine(), 7);
+        console.log("Student saved to cookie: " + readCookie("lastStudent")); // read it straight back as proof it stuck
 
-        // ---- finally, reveal the green banner with a human-readable summary ----
-        const result = document.getElementById("result");
-        result.style.display = "block";       // flip it from hidden to visible
-        // each "\n" becomes a real line break because the CSS set white-space: pre-line
-        result.textContent =
+        // ---- finally, reveal the green banner with a tidy, readable summary ----
+        const panel = document.getElementById("ajResult");
+        panel.style.display = "block";        // switch it from hidden to visible
+        // each "\n" turns into a real line break because the CSS set white-space: pre-line on .aj-out
+        panel.textContent =
             "ID Card generated successfully!\n" +
             "Name   : " + student.fullName + "\n" +
             "UID    : " + student.uid + "\n" +
@@ -250,7 +255,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "Phone  : " + student.phone + "\n" +
             "DOB    : " + student.dob + "\n" +
             "Course : " + student.course + "\n" +
-            "Age    : " + student.getAge() + " years\n" +
+            "Age    : " + student.calcAge() + " years\n" +
             "(Details also logged to the console and saved in a cookie.)";
     });
 });

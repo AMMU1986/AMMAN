@@ -1,189 +1,211 @@
 /*
-=====================================================================
-  QUESTION 1 - STUDENT IDENTITY CARD (the look)
-  -----------------------------------------------------------------
-  Author : AMMAN JAKHAR  |  UID : 2025EB01187
-  -----------------------------------------------------------------
-  Everything the eye sees is decided in this file. I kept the colour
-  story to two blues (#1e3c72 dark, #2a5298 lighter) so the card
-  feels like one brand instead of a rainbow. Comments below explain
-  WHY a rule exists, not just what it does.
-=====================================================================
+#####################################################################
+#  QUESTION 1  ::  STUDENT IDENTITY CARD  ::  THE STYLING
+#  ---------------------------------------------------------------
+#  Written by : AMMAN JAKHAR   |   UID : 2025EB01187
+#  ---------------------------------------------------------------
+#  Notes to myself / the examiner:
+#    * Every class here starts with "aj-" so the names are my own.
+#    * I limited the palette on purpose: two blues plus white and a
+#      couple of greys. A small palette makes the card feel designed
+#      rather than random.
+#    * The two blues I reuse everywhere:
+#          #1e3c72  (deep navy)   and   #2a5298  (lighter royal).
+#    * Comments say WHY, not just WHAT, so the reasoning is visible.
+#####################################################################
 */
 
-/* ---------- step 0: wipe the browser's built-in spacing ---------- */
-/* Different browsers ship different default margins; this makes them agree. */
+/* =============================================================== */
+/* STEP 0 - a "reset" so every browser starts from the same place. */
+/* Chrome, Firefox and Safari each ship slightly different default */
+/* margins; zeroing them first means my layout looks identical     */
+/* everywhere instead of drifting a few pixels per browser.        */
+/* =============================================================== */
 * {
-    margin: 0;                        /* kill the default outer gaps */
-    padding: 0;                       /* kill the default inner gaps */
-    box-sizing: border-box;           /* my widths now INCLUDE border+padding, which saves a lot of maths */
+    margin: 0;                        /* remove every element's default outside gap */
+    padding: 0;                       /* remove every element's default inside gap */
+    box-sizing: border-box;           /* make width/height COUNT the border+padding, so my sizes are exact */
 }
 
-/* ---------- step 1: the page, used only to centre the card ---------- */
+/* =============================================================== */
+/* STEP 1 - the page itself. Its only job is to park the card dead */
+/* centre of the screen, on a soft blue backdrop.                  */
+/* =============================================================== */
 body {
-    font-family: "Segoe UI", Tahoma, Arial, sans-serif;  /* a safe sans-serif ladder: fall back if the first is missing */
-    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* a soft diagonal blue so the white card pops */
-    min-height: 100vh;                /* make the body at least one screen tall... */
-    display: flex;                    /* ...then use flexbox... */
-    justify-content: center;          /* ...to centre left-to-right... */
-    align-items: center;              /* ...and top-to-bottom. */
-    padding: 20px;                    /* stops the card kissing the edges on tiny screens */
+    font-family: "Segoe UI", Tahoma, Arial, sans-serif;  /* try Segoe first, then fall back down the list */
+    background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%); /* a gentle diagonal blue so a white card stands out */
+    min-height: 100vh;                /* make the body fill at least one full screen height... */
+    display: flex;                    /* ...turn it into a flex container... */
+    justify-content: center;          /* ...centre its child across (x-axis)... */
+    align-items: center;              /* ...and centre it down (y-axis). */
+    padding: 20px;                    /* keep a margin so the card never touches the window edge */
 }
 
-/* ---------- step 2: the card shell ---------- */
-.id-card {
-    width: 360px;                     /* a credit-card-ish fixed width reads as "a card" */
-    background: #ffffff;              /* white body so the blue text has maximum contrast */
-    border-radius: 16px;              /* rounded corners = friendlier, more card-like */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25); /* a soft drop shadow so it looks to float above the page */
-    overflow: hidden;                 /* clip the header/footer to the rounded corners (no square bleed) */
-    border: 1px solid #d0d0d0;        /* a hairline edge so a white card is visible on a light page */
+/* =============================================================== */
+/* STEP 2 - the card shell (the white plastic itself).             */
+/* =============================================================== */
+.aj-idcard {
+    width: 360px;                     /* a fixed, wallet-sized width immediately reads as "a card" */
+    background: #ffffff;              /* plain white gives the coloured text the most contrast */
+    border-radius: 16px;              /* round the corners so it feels like real laminated plastic */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25); /* a soft shadow lifts the card off the page */
+    overflow: hidden;                 /* clip the coloured bands to those rounded corners (no square overhang) */
+    border: 1px solid #d0d0d0;        /* a faint outline so a white card is still visible on a pale page */
 }
 
-/* ---------- step 3: the header band ---------- */
-.card-header {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* the two-blue brand gradient */
-    color: #ffffff;                   /* white text because the band is dark */
-    padding: 18px 20px;               /* roomy band so the logo has air around it */
-    display: flex;                    /* logo + text sit on one row */
-    align-items: center;              /* vertically line them up with each other */
-    gap: 14px;                        /* a tidy gap instead of margins on each child */
+/* =============================================================== */
+/* STEP 3 - the header band (badge + the university's name).       */
+/* =============================================================== */
+.aj-idcard__head {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); /* my two-blue brand gradient */
+    color: #ffffff;                   /* white text, because this band is dark */
+    padding: 18px 20px;               /* generous padding so nothing feels cramped */
+    display: flex;                    /* lay the badge and the text out in one row */
+    align-items: center;              /* line them up vertically with each other */
+    gap: 14px;                        /* a clean gap between them (nicer than adding margins) */
 }
 
-/* the round "crest" */
-.logo {
-    width: 52px; height: 52px;        /* equal width+height is what lets border-radius make a true circle */
-    border-radius: 50%;               /* 50% of a square = a circle */
-    background: #ffffff;              /* white disc against the blue band */
-    color: #1e3c72;                   /* dark-blue initials inside */
-    font-weight: bold;                /* initials should shout a little */
-    font-size: 18px;
-    display: flex;                    /* centre the "UoH" text inside the disc... */
+/* the circular badge that imitates a crest */
+.aj-crest {
+    width: 52px; height: 52px;        /* equal width AND height is what makes border-radius a perfect circle */
+    border-radius: 50%;               /* half of a square's side turns the square into a circle */
+    background: #ffffff;              /* a white disc sitting on the blue band */
+    color: #1e3c72;                   /* navy initials inside the disc */
+    font-weight: bold;                /* the initials should carry some weight */
+    font-size: 18px;                  /* big enough to read at a glance */
+    display: flex;                    /* use flex to centre the "UoH" text inside the circle... */
     justify-content: center;          /* ...horizontally... */
     align-items: center;              /* ...and vertically. */
-    flex-shrink: 0;                   /* never let flexbox squash the circle into an oval */
+    flex-shrink: 0;                   /* forbid flexbox from squashing the circle into an egg shape */
 }
 
-.university-name {
-    font-size: 18px;                  /* the loudest line in the header */
-    line-height: 1.2;                 /* tighten it in case the name wraps to two lines */
+.aj-org__name {
+    font-size: 18px;                  /* the most important line in the header */
+    line-height: 1.2;                 /* snug line spacing in case the name wraps */
 }
 
-.university-sub {
-    font-size: 12px;                  /* clearly secondary to the name above it */
-    opacity: 0.85;                    /* slightly faded so it recedes */
-    margin-top: 3px;                  /* a hair of space below the name */
+.aj-org__dept {
+    font-size: 12px;                  /* clearly smaller, so it ranks below the name */
+    opacity: 0.85;                    /* slightly see-through so it recedes into the band */
+    margin-top: 3px;                  /* a sliver of space under the name */
 }
 
-/* ---------- step 4: the body (photo column + data column) ---------- */
-.card-body {
-    display: flex;                    /* two columns side by side */
-    padding: 20px;                    /* breathing room inside the white area */
-    gap: 18px;                        /* space between the photo and the details */
+/* =============================================================== */
+/* STEP 4 - the body: photo on the left, the list of facts right.  */
+/* =============================================================== */
+.aj-idcard__body {
+    display: flex;                    /* two columns, side by side */
+    padding: 20px;                    /* air around the content inside the white area */
+    gap: 18px;                        /* the gap between the photo column and the facts column */
 }
 
-.photo-section {
-    flex-shrink: 0;                   /* the photo keeps its size; only the text column flexes */
+.aj-photo-col {
+    flex-shrink: 0;                   /* the photo column must keep its size; only the text column may flex */
 }
 
-/* the framed photo placeholder */
-.photo {
-    width: 100px; height: 120px;      /* portrait proportions, like a real ID photo */
-    border: 3px solid #2a5298;        /* a blue frame to echo the header */
-    border-radius: 8px;               /* softly rounded, matching the card */
-    background: #f0f4ff;              /* a barely-there blue fill so the empty box isn't stark white */
-    display: flex;                    /* centre the "PHOTO" word inside... */
+/* the bordered placeholder for a photo */
+.aj-photo {
+    width: 100px; height: 120px;      /* taller than wide = normal ID-photo proportions */
+    border: 3px solid #2a5298;        /* a royal-blue frame that echoes the header */
+    border-radius: 8px;               /* gently rounded to match the card */
+    background: #f0f4ff;              /* a whisper of blue so the empty box isn't glaring white */
+    display: flex;                    /* centre the word "PHOTO" inside this box... */
     justify-content: center;          /* ...across... */
     align-items: center;              /* ...and down. */
 }
 
-.photo-text {
-    color: #2a5298;                   /* same blue as the frame for a coherent look */
-    font-size: 13px;
-    font-weight: bold;
-    letter-spacing: 1px;              /* spacing the letters makes a short word feel deliberate */
+.aj-photo__text {
+    color: #2a5298;                   /* same blue as the frame, for a tidy, matched look */
+    font-size: 13px;                  /* a small caption */
+    font-weight: bold;                /* bold so the single word carries */
+    letter-spacing: 1px;              /* spreading the letters makes a short word look intentional */
 }
 
-/* the column that lists the facts */
-.details-section {
-    flex: 1;                          /* eat up whatever width the photo didn't use */
-    display: flex;
-    flex-direction: column;           /* stack the rows top to bottom */
-    justify-content: center;          /* centre the stack against the taller photo */
-    gap: 8px;                         /* even rhythm between rows */
+/* the right-hand column that stacks every fact */
+.aj-facts {
+    flex: 1;                          /* grow to take whatever width the photo left behind */
+    display: flex;                    /* stack with flexbox... */
+    flex-direction: column;           /* ...one fact above the next... */
+    justify-content: center;          /* ...and centre the whole stack against the taller photo. */
+    gap: 8px;                         /* an even gap between facts */
 }
 
-/* one caption-over-value pair */
-.detail-row {
-    display: flex;
-    flex-direction: column;           /* caption on top, value underneath */
-    border-bottom: 1px dashed #e0e0e0;/* a dotted rule hints at a "fill-in-the-blank" form */
-    padding-bottom: 4px;              /* lift the text a touch off that rule */
+/* a single caption-over-value pair */
+.aj-fact {
+    display: flex;                    /* flex container... */
+    flex-direction: column;           /* ...so the caption sits ON TOP of the value */
+    border-bottom: 1px dashed #e0e0e0;/* a dotted underline, like the ruled line of a form */
+    padding-bottom: 4px;              /* lift the text slightly off that dotted line */
 }
 
-.label {
-    font-size: 10px;                  /* captions are deliberately tiny */
-    text-transform: uppercase;        /* caps make them read as labels, not sentences */
-    color: #888888;                   /* grey so the real value wins the eye */
-    letter-spacing: 0.5px;            /* a little spacing for polish */
+.aj-fact__key {
+    font-size: 10px;                  /* captions are intentionally tiny */
+    text-transform: uppercase;        /* ALL CAPS makes them read as labels, not sentences */
+    color: #888888;                   /* grey, so the real answer wins the eye */
+    letter-spacing: 0.5px;            /* a touch of tracking for neatness */
 }
 
-.value {
-    font-size: 14px;                  /* bigger than the caption above it */
-    font-weight: 600;                 /* semi-bold so the data is what you notice */
-    color: #1e3c72;                   /* brand dark-blue for the answers */
+.aj-fact__val {
+    font-size: 14px;                  /* noticeably bigger than its caption */
+    font-weight: 600;                 /* semi-bold so the data is the thing you notice */
+    color: #1e3c72;                   /* navy for every answer */
 }
 
-/* ---------- step 5: the footer (signature | barcode) ---------- */
-.card-footer {
-    background: #f7f9fc;              /* a faintly grey strip to separate it from the white body */
-    padding: 14px 20px;
-    display: flex;
-    justify-content: space-between;   /* signature flush left, barcode flush right */
-    align-items: flex-end;            /* sit both on the same baseline at the bottom */
-    border-top: 2px solid #2a5298;    /* a blue divider that ties back to the header */
+/* =============================================================== */
+/* STEP 5 - the footer: signature on the left, barcode on the right*/
+/* =============================================================== */
+.aj-idcard__foot {
+    background: #f7f9fc;              /* a barely-grey strip that separates it from the white body */
+    padding: 14px 20px;               /* inner spacing */
+    display: flex;                    /* two halves in a row */
+    justify-content: space-between;   /* shove the signature fully left and the barcode fully right */
+    align-items: flex-end;            /* rest both halves on the same bottom line */
+    border-top: 2px solid #2a5298;    /* a blue rule that ties the footer back to the header */
 }
 
-.signature {
-    display: flex;
-    flex-direction: column;           /* the "ink" line above, its caption below */
+.aj-sign {
+    display: flex;                    /* stack the signature's two lines... */
+    flex-direction: column;           /* ...the "ink" on top, its caption beneath. */
 }
 
-.sign-line {
-    font-family: "Brush Script MT", cursive; /* a script face so it reads as handwriting */
-    font-size: 20px;
-    color: #333333;                   /* dark grey, like real pen ink */
-    border-bottom: 1px solid #999999; /* the line a signature usually rests on */
-    padding: 0 10px 2px 0;            /* nudge the "ink" to sit just above that line */
+.aj-sign__ink {
+    font-family: "Brush Script MT", cursive; /* a cursive face so it reads as real handwriting */
+    font-size: 20px;                  /* large, the way a signature usually is */
+    color: #333333;                   /* near-black, like pen ink */
+    border-bottom: 1px solid #999999; /* the line a signature rests on */
+    padding: 0 10px 2px 0;            /* nudge the "ink" to float just above that line */
 }
 
-.sign-label {
-    font-size: 10px;
-    color: #888888;                   /* a muted caption under the signature */
-    margin-top: 3px;
+.aj-sign__cap {
+    font-size: 10px;                  /* a tiny caption */
+    color: #888888;                   /* muted grey */
+    margin-top: 3px;                  /* a little space under the signature line */
 }
 
-/* ---------- step 6: a barcode made of pure CSS (no image file) ---------- */
-.barcode {
-    text-align: center;               /* centre the number beneath the bars */
+/* =============================================================== */
+/* STEP 6 - a barcode drawn with PURE CSS (no image downloaded).   */
+/* A repeating gradient paints the stripes for me, so the card has */
+/* zero external image files to load.                              */
+/* =============================================================== */
+.aj-code {
+    text-align: center;               /* centre the number under the stripes */
 }
 
-/* I draw the stripes with a repeating gradient so there is nothing to download. */
-.barcode::before {
-    content: "";                      /* a pseudo-element needs SOME content to render, even empty */
-    display: block;                   /* give it a box of its own */
-    width: 110px; height: 36px;       /* the size of the "scan area" */
-    background-image: repeating-linear-gradient(  /* this one gradient tiles itself to make many bars */
-        to right,                     /* the stripes run horizontally */
+.aj-code::before {                    /* a generated box that becomes the stripes */
+    content: "";                      /* a pseudo-element needs some "content" to exist, even if empty */
+    display: block;                   /* give it its own rectangular box */
+    width: 110px; height: 36px;       /* the size of the "scannable" area */
+    background-image: repeating-linear-gradient(  /* ONE gradient that tiles itself into many bars */
+        to right,                     /* the stripes run left-to-right */
         #222 0, #222 2px,             /* a thick dark bar */
         #fff 2px, #fff 4px,           /* a white gap */
         #222 4px, #222 5px,           /* a thin dark bar */
-        #fff 5px, #fff 8px            /* a wider gap, and then the whole 0-8px pattern repeats */
+        #fff 5px, #fff 8px            /* a wider white gap; the 0->8px block then repeats across */
     );
 }
 
-.barcode-number {
-    font-size: 10px;
-    letter-spacing: 1px;              /* spaced digits look like a scanned code */
-    color: #333333;
+.aj-code__digits {
+    font-size: 10px;                  /* small print, like a real code */
+    letter-spacing: 1px;              /* spaced digits look scanner-like */
+    color: #333333;                   /* dark, readable grey */
 }
