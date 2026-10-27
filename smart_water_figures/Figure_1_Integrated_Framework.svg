@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="620" viewBox="0 0 900 620" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="900" height="620" fill="#ffffff"/>
+  <text x="450" y="36" text-anchor="middle" font-size="22" font-weight="700" fill="#0b3d5c">Integrated Strategic Framework for Smart Water Systems</text>
+  <text x="450" y="60" text-anchor="middle" font-size="13" fill="#5a6b77">Four mutually reinforcing domains linked by bidirectional feedback</text>
+
+  <!-- central node -->
+  <ellipse cx="450" cy="320" rx="135" ry="70" fill="#0b3d5c"/>
+  <text x="450" y="312" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Sustainable,</text>
+  <text x="450" y="332" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Resilient &amp; Equitable</text>
+  <text x="450" y="352" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Smart Water Systems</text>
+
+  <!-- top: Research Innovation -->
+  <rect x="330" y="90" width="240" height="78" rx="12" fill="#e8f1f8" stroke="#1f7a9c" stroke-width="2"/>
+  <text x="450" y="123" text-anchor="middle" font-size="16" font-weight="700" fill="#134e68">Research Innovation</text>
+  <text x="450" y="145" text-anchor="middle" font-size="12" fill="#3a5563">Leak detection · quality sensing · analytics</text>
+
+  <!-- right: Commercialization -->
+  <rect x="650" y="281" width="230" height="78" rx="12" fill="#eaf5ec" stroke="#2e8b57" stroke-width="2"/>
+  <text x="765" y="314" text-anchor="middle" font-size="16" font-weight="700" fill="#1e5e3a">Commercialization</text>
+  <text x="765" y="336" text-anchor="middle" font-size="12" fill="#3a5563">Business models · finance · markets</text>
+
+  <!-- bottom: Implementation -->
+  <rect x="330" y="472" width="240" height="78" rx="12" fill="#fdf2e3" stroke="#d98b25" stroke-width="2"/>
+  <text x="450" y="505" text-anchor="middle" font-size="16" font-weight="700" fill="#99611a">Implementation</text>
+  <text x="450" y="527" text-anchor="middle" font-size="12" fill="#3a5563">Pilots · scaling · capacity · M&amp;E</text>
+
+  <!-- left: Policy Development -->
+  <rect x="20" y="281" width="230" height="78" rx="12" fill="#f3eaf6" stroke="#7a4f9c" stroke-width="2"/>
+  <text x="135" y="314" text-anchor="middle" font-size="16" font-weight="700" fill="#4e2e68">Policy Development</text>
+  <text x="135" y="336" text-anchor="middle" font-size="12" fill="#3a5563">Standards · governance · regulation</text>
+
+  <!-- bidirectional arrows definitions -->
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,3 L0,6 Z" fill="#6b7b86"/>
+    </marker>
+  </defs>
+  <g stroke="#6b7b86" stroke-width="2.4" fill="none" marker-start="url(#arrow)" marker-end="url(#arrow)">
+    <!-- research <-> center -->
+    <line x1="450" y1="168" x2="450" y2="250"/>
+    <!-- commercialization <-> center -->
+    <line x1="650" y1="320" x2="585" y2="320"/>
+    <!-- implementation <-> center -->
+    <line x1="450" y1="472" x2="450" y2="390"/>
+    <!-- policy <-> center -->
+    <line x1="250" y1="320" x2="315" y2="320"/>
+  </g>
+
+  <!-- outer cyclic feedback arcs -->
+  <g stroke="#9bb0bd" stroke-width="2" fill="none" stroke-dasharray="6 5" marker-end="url(#arrow)">
+    <path d="M565,128 Q760,170 775,281"/>
+    <path d="M820,359 Q720,520 565,515"/>
+    <path d="M335,515 Q180,520 110,359"/>
+    <path d="M90,281 Q150,160 335,128"/>
+  </g>
+  <text x="450" y="600" text-anchor="middle" font-size="12" fill="#5a6b77">Dashed arcs: feedback loops — deployment evidence reshapes research and policy; market and policy signals redirect research and investment.</text>
+</svg>

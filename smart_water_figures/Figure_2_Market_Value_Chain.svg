@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="940" height="560" viewBox="0 0 940 560" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="940" height="560" fill="#ffffff"/>
+  <text x="470" y="34" text-anchor="middle" font-size="21" font-weight="700" fill="#0b3d5c">Market Segments and Commercialization Value Chain</text>
+  <text x="470" y="56" text-anchor="middle" font-size="12" fill="#5a6b77">From technology supply through delivery models to end-use market segments</text>
+
+  <defs>
+    <marker id="a3" markerWidth="12" markerHeight="12" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#0b3d5c"/>
+    </marker>
+  </defs>
+
+  <!-- column 1: technologies -->
+  <text x="160" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#134e68">Technologies</text>
+  <g font-size="11.5" fill="#1e3a47">
+    <rect x="40" y="105" width="240" height="38" rx="8" fill="#e8f1f8" stroke="#1f7a9c"/><text x="160" y="129" text-anchor="middle">Smart metering (AMI)</text>
+    <rect x="40" y="150" width="240" height="38" rx="8" fill="#e8f1f8" stroke="#1f7a9c"/><text x="160" y="174" text-anchor="middle">Leak detection &amp; localization</text>
+    <rect x="40" y="195" width="240" height="38" rx="8" fill="#e8f1f8" stroke="#1f7a9c"/><text x="160" y="219" text-anchor="middle">Water-quality sensors</text>
+    <rect x="40" y="240" width="240" height="38" rx="8" fill="#e8f1f8" stroke="#1f7a9c"/><text x="160" y="264" text-anchor="middle">Intelligent treatment</text>
+    <rect x="40" y="285" width="240" height="38" rx="8" fill="#e8f1f8" stroke="#1f7a9c"/><text x="160" y="309" text-anchor="middle">Predictive maintenance</text>
+  </g>
+
+  <!-- column 2: delivery / business models -->
+  <text x="470" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#1e5e3a">Delivery &amp; Business Models</text>
+  <g font-size="11.5" fill="#1e3a47">
+    <rect x="350" y="120" width="240" height="38" rx="8" fill="#eaf5ec" stroke="#2e8b57"/><text x="470" y="144" text-anchor="middle">Equipment sale / leasing</text>
+    <rect x="350" y="170" width="240" height="38" rx="8" fill="#eaf5ec" stroke="#2e8b57"/><text x="470" y="194" text-anchor="middle">Subscription / SaaS</text>
+    <rect x="350" y="220" width="240" height="38" rx="8" fill="#eaf5ec" stroke="#2e8b57"/><text x="470" y="244" text-anchor="middle">Performance-based contracts</text>
+    <rect x="350" y="270" width="240" height="38" rx="8" fill="#eaf5ec" stroke="#2e8b57"/><text x="470" y="294" text-anchor="middle">Water-as-a-service / PPP</text>
+  </g>
+
+  <!-- column 3: market segments -->
+  <text x="800" y="92" text-anchor="middle" font-size="14" font-weight="700" fill="#99611a">Market Segments</text>
+  <g font-size="11.5" fill="#1e3a47">
+    <rect x="680" y="120" width="230" height="38" rx="8" fill="#fdf2e3" stroke="#d98b25"/><text x="795" y="144" text-anchor="middle">Municipal utilities</text>
+    <rect x="680" y="170" width="230" height="38" rx="8" fill="#fdf2e3" stroke="#d98b25"/><text x="795" y="194" text-anchor="middle">Industrial water</text>
+    <rect x="680" y="220" width="230" height="38" rx="8" fill="#fdf2e3" stroke="#d98b25"/><text x="795" y="244" text-anchor="middle">Agriculture / irrigation</text>
+    <rect x="680" y="270" width="230" height="38" rx="8" fill="#fdf2e3" stroke="#d98b25"/><text x="795" y="294" text-anchor="middle">Wastewater &amp; reuse</text>
+  </g>
+
+  <!-- flow arrows between columns -->
+  <g stroke="#0b3d5c" stroke-width="2.4" fill="none" marker-end="url(#a3)">
+    <line x1="285" y1="214" x2="345" y2="214"/>
+    <line x1="595" y1="214" x2="675" y2="214"/>
+  </g>
+
+  <!-- financing band -->
+  <rect x="40" y="360" width="870" height="56" rx="10" fill="#eef3f6" stroke="#5a6b77" stroke-width="1.5"/>
+  <text x="475" y="383" text-anchor="middle" font-size="13" font-weight="700" fill="#0b3d5c">Financing enablers</text>
+  <text x="475" y="404" text-anchor="middle" font-size="11.5" fill="#3a5563">government grants · infrastructure funds · blended finance · impact investment · private capital</text>
+
+  <!-- value driver band -->
+  <rect x="40" y="430" width="870" height="56" rx="10" fill="#0b3d5c"/>
+  <text x="475" y="453" text-anchor="middle" font-size="13" font-weight="700" fill="#ffffff">Value drivers</text>
+  <text x="475" y="474" text-anchor="middle" font-size="11.5" fill="#dce7ee">non-revenue-water reduction · energy savings · compliance · resilience · deferred capital</text>
+
+  <text x="475" y="520" text-anchor="middle" font-size="11.5" fill="#5a6b77">Commercial success depends on matching a technology to a delivery model, a market segment, and a financing structure.</text>
+</svg>

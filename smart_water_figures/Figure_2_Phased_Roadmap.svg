@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="560" viewBox="0 0 960 560" font-family="Segoe UI, Arial, sans-serif">
+  <rect width="960" height="560" fill="#ffffff"/>
+  <text x="480" y="38" text-anchor="middle" font-size="22" font-weight="700" fill="#0b3d5c">Phased Roadmap for Smart Water System Deployment (2027–2035)</text>
+  <text x="480" y="62" text-anchor="middle" font-size="13" fill="#5a6b77">Phases permit overlap and iteration; a monitoring &amp; evaluation layer runs throughout</text>
+
+  <defs>
+    <marker id="a2" markerWidth="12" markerHeight="12" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4 L0,8 Z" fill="#0b3d5c"/>
+    </marker>
+  </defs>
+
+  <!-- phase chevrons -->
+  <!-- Phase 1 -->
+  <g>
+    <polygon points="40,110 210,110 240,160 210,210 40,210 70,160" fill="#1f7a9c"/>
+    <text x="140" y="150" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">1. Research &amp;</text>
+    <text x="140" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Development</text>
+  </g>
+  <!-- Phase 2 -->
+  <g>
+    <polygon points="250,110 420,110 450,160 420,210 250,210 280,160" fill="#2a6f9e"/>
+    <text x="350" y="150" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">2. Policy</text>
+    <text x="350" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Alignment</text>
+  </g>
+  <!-- Phase 3 -->
+  <g>
+    <polygon points="460,110 630,110 660,160 630,210 460,210 490,160" fill="#2e8b57"/>
+    <text x="560" y="150" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">3. Pilot</text>
+    <text x="560" y="170" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Validation</text>
+  </g>
+  <!-- Phase 4 -->
+  <g>
+    <polygon points="670,110 840,110 870,160 840,210 670,210 700,160" fill="#c98a1f"/>
+    <text x="770" y="162" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">4. Investment</text>
+  </g>
+
+  <!-- second row -->
+  <!-- Phase 5 -->
+  <g>
+    <polygon points="250,250 460,250 490,300 460,350 250,350 280,300" fill="#b5651d"/>
+    <text x="360" y="305" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">5. Commercialization</text>
+  </g>
+  <!-- Phase 6 -->
+  <g>
+    <polygon points="510,250 760,250 790,300 760,350 510,350 540,300" fill="#0b3d5c"/>
+    <text x="645" y="297" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">6. Large-Scale</text>
+    <text x="645" y="317" text-anchor="middle" font-size="14" font-weight="700" fill="#ffffff">Deployment</text>
+  </g>
+
+  <!-- connector from row1 to row2 -->
+  <path d="M850,210 Q900,230 820,248 Q500,250 470,250" stroke="#0b3d5c" stroke-width="2.6" fill="none" marker-end="url(#a2)"/>
+
+  <!-- timeline -->
+  <line x1="40" y1="400" x2="870" y2="400" stroke="#9bb0bd" stroke-width="3"/>
+  <g font-size="12" fill="#3a5563" text-anchor="middle">
+    <circle cx="90" cy="400" r="4" fill="#0b3d5c"/><text x="90" y="422">2027</text>
+    <circle cx="300" cy="400" r="4" fill="#0b3d5c"/><text x="300" y="422">2029</text>
+    <circle cx="520" cy="400" r="4" fill="#0b3d5c"/><text x="520" y="422">2031</text>
+    <circle cx="700" cy="400" r="4" fill="#0b3d5c"/><text x="700" y="422">2033</text>
+    <circle cx="860" cy="400" r="4" fill="#0b3d5c"/><text x="860" y="422">2035</text>
+  </g>
+
+  <!-- M&E band -->
+  <rect x="40" y="460" width="830" height="60" rx="10" fill="#eef3f6" stroke="#5a6b77" stroke-width="1.5"/>
+  <text x="455" y="485" text-anchor="middle" font-size="14" font-weight="700" fill="#0b3d5c">Monitoring &amp; Evaluation (continuous across all phases)</text>
+  <text x="455" y="507" text-anchor="middle" font-size="12" fill="#3a5563">Water-loss reduction · service reliability · quality compliance · energy intensity · affordability · return on investment</text>
+</svg>
