@@ -199,92 +199,92 @@ Land degradation and climate change are deeply entangled challenges whose combin
 
 ## References
 
-[1] IPBES. (2018). The IPBES assessment report on land degradation and restoration. Secretariat of the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services, Bonn, Germany.
+[1] IPBES. (2018). The IPBES assessment report on land degradation and restoration. Secretariat of the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services, Bonn, Germany. [Report — no DOI assigned; IPBES, Bonn, Germany].
 
-[2] United Nations Convention to Combat Desertification. (2022). The Global Land Outlook (2nd ed.). UNCCD, Bonn, Germany.
+[2] United Nations Convention to Combat Desertification. (2022). The Global Land Outlook (2nd ed.). UNCCD, Bonn, Germany. [Report — no DOI assigned; UNCCD, Bonn, Germany].
 
-[3] Prăvălie, R. (2021). Exploring the multiple land degradation pathways across the planet. Earth-Science Reviews, 220, 103689.
+[3] Prăvălie, R. (2021). Exploring the multiple land degradation pathways across the planet. Earth-Science Reviews, 220, 103689. https://doi.org/10.1016/j.earscirev.2021.103689
 
-[4] Olsson, L., Barbosa, H., Bhadwal, S., Cowie, A., Delusca, K., Flores-Rentería, D., Hermans, K., Jobbagy, E., Kurz, W., Li, D., Sonwa, D. J., & Stringer, L. (2019). Land degradation. In P. R. Shukla et al. (Eds.), Climate change and land: An IPCC special report (pp. 345–436). Intergovernmental Panel on Climate Change.
+[4] Olsson, L., Barbosa, H., Bhadwal, S., Cowie, A., Delusca, K., Flores-Rentería, D., Hermans, K., Jobbagy, E., Kurz, W., Li, D., Sonwa, D. J., & Stringer, L. (2019). Land degradation. In P. R. Shukla et al. (Eds.), Climate change and land: An IPCC special report (pp. 345–436). Intergovernmental Panel on Climate Change. https://doi.org/10.1017/9781009157988
 
-[5] Gibbs, H. K., & Salmon, J. M. (2015). Mapping the world's degraded lands. Applied Geography, 57, 12–21.
+[5] Gibbs, H. K., & Salmon, J. M. (2015). Mapping the world's degraded lands. Applied Geography, 57, 12–21. https://doi.org/10.1016/j.apgeog.2014.11.024
 
-[6] Webb, N. P., Marshall, N. A., Stringer, L. C., Reed, M. S., Chappell, A., & Herrick, J. E. (2017). Land degradation and climate change: Building climate resilience in agriculture. Frontiers in Ecology and the Environment, 15(8), 450–459.
+[6] Webb, N. P., Marshall, N. A., Stringer, L. C., Reed, M. S., Chappell, A., & Herrick, J. E. (2017). Land degradation and climate change: Building climate resilience in agriculture. Frontiers in Ecology and the Environment, 15(8), 450–459. https://doi.org/10.1002/fee.1530
 
-[7] Bhattacharyya, R., Ghosh, B. N., Mishra, P. K., Mandal, B., Rao, C. S., Sarkar, D., Das, K., Anil, K. S., Lalitha, M., Hati, K. M., & Franzluebbers, A. J. (2015). Soil degradation in India: Challenges and potential solutions. Sustainability, 7(4), 3528–3570.
+[7] Bhattacharyya, R., Ghosh, B. N., Mishra, P. K., Mandal, B., Rao, C. S., Sarkar, D., Das, K., Anil, K. S., Lalitha, M., Hati, K. M., & Franzluebbers, A. J. (2015). Soil degradation in India: Challenges and potential solutions. Sustainability, 7(4), 3528–3570. https://doi.org/10.3390/su7043528
 
-[8] Cowie, A. L., Orr, B. J., Castillo Sanchez, V. M., Chasek, P., Crossman, N. D., Erlewein, A., Louwagie, G., Maron, M., Metternicht, G. I., Minelli, S., Tengberg, A. E., Walter, S., & Welton, S. (2018). Land in balance: The scientific conceptual framework for Land Degradation Neutrality. Environmental Science & Policy, 79, 25–35.
+[8] Cowie, A. L., Orr, B. J., Castillo Sanchez, V. M., Chasek, P., Crossman, N. D., Erlewein, A., Louwagie, G., Maron, M., Metternicht, G. I., Minelli, S., Tengberg, A. E., Walter, S., & Welton, S. (2018). Land in balance: The scientific conceptual framework for Land Degradation Neutrality. Environmental Science & Policy, 79, 25–35. https://doi.org/10.1016/j.envsci.2017.10.011
 
-[9] Orr, B. J., Cowie, A. L., Castillo Sanchez, V. M., Chasek, P., Crossman, N. D., Erlewein, A., Louwagie, G., Maron, M., Metternicht, G. I., Minelli, S., Tengberg, A. E., Walter, S., & Welton, S. (2017). Scientific conceptual framework for land degradation neutrality. United Nations Convention to Combat Desertification, Bonn.
+[9] Orr, B. J., Cowie, A. L., Castillo Sanchez, V. M., Chasek, P., Crossman, N. D., Erlewein, A., Louwagie, G., Maron, M., Metternicht, G. I., Minelli, S., Tengberg, A. E., Walter, S., & Welton, S. (2017). Scientific conceptual framework for land degradation neutrality. United Nations Convention to Combat Desertification, Bonn. [Report — no DOI assigned; UNCCD, Bonn].
 
-[10] Chasek, P., Akhtar-Schuster, M., Orr, B. J., Luise, A., Rakoto Ratsimba, H., & Safriel, U. (2019). Land degradation neutrality: The science-policy interface from the UNCCD to national implementation. Environmental Science & Policy, 92, 182–190.
+[10] Chasek, P., Akhtar-Schuster, M., Orr, B. J., Luise, A., Rakoto Ratsimba, H., & Safriel, U. (2019). Land degradation neutrality: The science-policy interface from the UNCCD to national implementation. Environmental Science & Policy, 92, 182–190. https://doi.org/10.1016/j.envsci.2018.11.017
 
-[11] Akhtar-Schuster, M., Stringer, L. C., Erlewein, A., Metternicht, G., Minelli, S., Safriel, U., & Sommer, S. (2017). Unpacking the concept of land degradation neutrality and addressing its operation through the Rio Conventions. Journal of Environmental Management, 195, 4–15.
+[11] Akhtar-Schuster, M., Stringer, L. C., Erlewein, A., Metternicht, G., Minelli, S., Safriel, U., & Sommer, S. (2017). Unpacking the concept of land degradation neutrality and addressing its operation through the Rio Conventions. Journal of Environmental Management, 195, 4–15. https://doi.org/10.1016/j.jenvman.2016.09.044
 
-[12] Stavi, I., & Lal, R. (2015). Achieving zero net land degradation: Challenges and opportunities. Journal of Arid Environments, 112, 44–51.
+[12] Stavi, I., & Lal, R. (2015). Achieving zero net land degradation: Challenges and opportunities. Journal of Arid Environments, 112, 44–51. https://doi.org/10.1016/j.jaridenv.2014.01.016
 
-[13] Keesstra, S., Nunes, J., Novara, A., Finger, D., Avelar, D., Kalantari, Z., & Cerdà, A. (2018). The superior effect of nature based solutions in land management for enhancing ecosystem services. Science of the Total Environment, 610–611, 997–1009.
+[13] Keesstra, S., Nunes, J., Novara, A., Finger, D., Avelar, D., Kalantari, Z., & Cerdà, A. (2018). The superior effect of nature based solutions in land management for enhancing ecosystem services. Science of the Total Environment, 610–611, 997–1009. https://doi.org/10.1016/j.scitotenv.2017.08.077
 
-[14] Pittelkow, C. M., Liang, X., Linquist, B. A., van Groenigen, K. J., Lee, J., Lundy, M. E., van Gestel, N., Six, J., Venterea, R. T., & van Kessel, C. (2015). Productivity limits and potentials of the principles of conservation agriculture. Nature, 517(7534), 365–368.
+[14] Pittelkow, C. M., Liang, X., Linquist, B. A., van Groenigen, K. J., Lee, J., Lundy, M. E., van Gestel, N., Six, J., Venterea, R. T., & van Kessel, C. (2015). Productivity limits and potentials of the principles of conservation agriculture. Nature, 517(7534), 365–368. https://doi.org/10.1038/nature13809
 
-[15] Powlson, D. S., Stirling, C. M., Thierfelder, C., White, R. P., & Jat, M. L. (2016). Does conservation agriculture deliver climate change mitigation through soil carbon sequestration in tropical agro-ecosystems? Agriculture, Ecosystems & Environment, 220, 164–174.
+[15] Powlson, D. S., Stirling, C. M., Thierfelder, C., White, R. P., & Jat, M. L. (2016). Does conservation agriculture deliver climate change mitigation through soil carbon sequestration in tropical agro-ecosystems? Agriculture, Ecosystems & Environment, 220, 164–174. https://doi.org/10.1016/j.agee.2016.01.005
 
-[16] Zomer, R. J., Neufeldt, H., Xu, J., Ahrends, A., Bossio, D., Trabucco, A., van Noordwijk, M., & Wang, M. (2016). Global tree cover and biomass carbon on agricultural land: The contribution of agroforestry to global and national carbon budgets. Scientific Reports, 6, 29987.
+[16] Zomer, R. J., Neufeldt, H., Xu, J., Ahrends, A., Bossio, D., Trabucco, A., van Noordwijk, M., & Wang, M. (2016). Global tree cover and biomass carbon on agricultural land: The contribution of agroforestry to global and national carbon budgets. Scientific Reports, 6, 29987. https://doi.org/10.1038/srep29987
 
-[17] Teague, R., & Kreuter, U. (2020). Managing grazing to restore soil health, ecosystem function, and ecosystem services. Frontiers in Sustainable Food Systems, 4, 534187.
+[17] Teague, R., & Kreuter, U. (2020). Managing grazing to restore soil health, ecosystem function, and ecosystem services. Frontiers in Sustainable Food Systems, 4, 534187. https://doi.org/10.3389/fsufs.2020.534187
 
-[18] Lal, R. (2015). Restoring soil quality to mitigate soil degradation. Sustainability, 7(5), 5875–5895.
+[18] Lal, R. (2015). Restoring soil quality to mitigate soil degradation. Sustainability, 7(5), 5875–5895. https://doi.org/10.3390/su7055875
 
-[19] Smith, P., Calvin, K., Nkem, J., Campbell, D., Cherubini, F., Grassi, G., Korotkov, V., Le Hoang, A., Lwasa, S., McElwee, P., Nkonya, E., Saigusa, N., Soussana, J. F., Taboada, M. A., Manning, F. C., Nampanzira, D., Arias-Navarro, C., Vizzarri, M., House, J., ... Arneth, A. (2020). Which practices co-deliver food security, climate change mitigation and adaptation, and combat land degradation and desertification? Global Change Biology, 26(3), 1532–1575.
+[19] Smith, P., Calvin, K., Nkem, J., Campbell, D., Cherubini, F., Grassi, G., Korotkov, V., Le Hoang, A., Lwasa, S., McElwee, P., Nkonya, E., Saigusa, N., Soussana, J. F., Taboada, M. A., Manning, F. C., Nampanzira, D., Arias-Navarro, C., Vizzarri, M., House, J., ... Arneth, A. (2020). Which practices co-deliver food security, climate change mitigation and adaptation, and combat land degradation and desertification? Global Change Biology, 26(3), 1532–1575. https://doi.org/10.1111/gcb.14878
 
-[20] Bossio, D. A., Cook-Patton, S. C., Ellis, P. W., Fargione, J., Sanderman, J., Smith, P., Wood, S., Zomer, R. J., von Unger, M., Emmer, I. M., & Griscom, B. W. (2020). The role of soil carbon in natural climate solutions. Nature Sustainability, 3(5), 391–398.
+[20] Bossio, D. A., Cook-Patton, S. C., Ellis, P. W., Fargione, J., Sanderman, J., Smith, P., Wood, S., Zomer, R. J., von Unger, M., Emmer, I. M., & Griscom, B. W. (2020). The role of soil carbon in natural climate solutions. Nature Sustainability, 3(5), 391–398. https://doi.org/10.1038/s41893-020-0491-z
 
-[21] Lipper, L., Thornton, P., Campbell, B. M., Baedeker, T., Braimoh, A., Bwalya, M., Caron, P., Cattaneo, A., Garrity, D., Henry, K., Hottle, R., Jackson, L., Jarvis, A., Kossam, F., Mann, W., McCarthy, N., Meybeck, A., Neufeldt, H., Remington, T., ... Torquebiau, E. F. (2014). Climate-smart agriculture for food security. Nature Climate Change, 4(12), 1068–1072.
+[21] Lipper, L., Thornton, P., Campbell, B. M., Baedeker, T., Braimoh, A., Bwalya, M., Caron, P., Cattaneo, A., Garrity, D., Henry, K., Hottle, R., Jackson, L., Jarvis, A., Kossam, F., Mann, W., McCarthy, N., Meybeck, A., Neufeldt, H., Remington, T., ... Torquebiau, E. F. (2014). Climate-smart agriculture for food security. Nature Climate Change, 4(12), 1068–1072. https://doi.org/10.1038/nclimate2437
 
-[22] Food and Agriculture Organization. (2021). The state of food and agriculture 2021: Making agrifood systems more resilient to shocks and stresses. FAO, Rome.
+[22] Food and Agriculture Organization. (2021). The state of food and agriculture 2021: Making agrifood systems more resilient to shocks and stresses. FAO, Rome. https://doi.org/10.4060/cb4476en
 
-[23] Zougmoré, R. B., Partey, S. T., Ouédraogo, M., Torquebiau, E., & Campbell, B. M. (2018). Facing climate variability in sub-Saharan Africa: Analysis of climate-smart agriculture opportunities to manage climate-related risks. Cahiers Agricultures, 27(3), 34001.
+[23] Zougmoré, R. B., Partey, S. T., Ouédraogo, M., Torquebiau, E., & Campbell, B. M. (2018). Facing climate variability in sub-Saharan Africa: Analysis of climate-smart agriculture opportunities to manage climate-related risks. Cahiers Agricultures, 27(3), 34001. https://doi.org/10.1051/cagri/2018019
 
-[24] Griscom, B. W., Adams, J., Ellis, P. W., Houghton, R. A., Lomax, G., Miteva, D. A., Schlesinger, W. H., Shoch, D., Siikamäki, J. V., Smith, P., Woodbury, P., Zganjar, C., Blackman, A., Campari, J., Conant, R. T., Delgado, C., Elias, P., Gopalakrishna, T., Hamsik, M. R., ... Fargione, J. (2017). Natural climate solutions. Proceedings of the National Academy of Sciences, 114(44), 11645–11650.
+[24] Griscom, B. W., Adams, J., Ellis, P. W., Houghton, R. A., Lomax, G., Miteva, D. A., Schlesinger, W. H., Shoch, D., Siikamäki, J. V., Smith, P., Woodbury, P., Zganjar, C., Blackman, A., Campari, J., Conant, R. T., Delgado, C., Elias, P., Gopalakrishna, T., Hamsik, M. R., ... Fargione, J. (2017). Natural climate solutions. Proceedings of the National Academy of Sciences, 114(44), 11645–11650. https://doi.org/10.1073/pnas.1710465114
 
-[25] Seddon, N., Chausson, A., Berry, P., Girardin, C. A. J., Smith, A., & Turner, B. (2020). Understanding the value and limits of nature-based solutions to climate change and other global challenges. Philosophical Transactions of the Royal Society B, 375(1794), 20190120.
+[25] Seddon, N., Chausson, A., Berry, P., Girardin, C. A. J., Smith, A., & Turner, B. (2020). Understanding the value and limits of nature-based solutions to climate change and other global challenges. Philosophical Transactions of the Royal Society B, 375(1794), 20190120. https://doi.org/10.1098/rstb.2019.0120
 
-[26] Strassburg, B. B. N., Iribarrem, A., Beyer, H. L., Cordeiro, C. L., Crouzeilles, R., Jakovac, C. C., Braga Junqueira, A., Lacerda, E., Latawiec, A. E., Balmford, A., Brooks, T. M., Butchart, S. H. M., Chazdon, R. L., Erb, K. H., Brancalion, P., Buchanan, G., Cooper, D., Díaz, S., Donald, P. F., ... Visconti, P. (2020). Global priority areas for ecosystem restoration. Nature, 586(7831), 724–729.
+[26] Strassburg, B. B. N., Iribarrem, A., Beyer, H. L., Cordeiro, C. L., Crouzeilles, R., Jakovac, C. C., Braga Junqueira, A., Lacerda, E., Latawiec, A. E., Balmford, A., Brooks, T. M., Butchart, S. H. M., Chazdon, R. L., Erb, K. H., Brancalion, P., Buchanan, G., Cooper, D., Díaz, S., Donald, P. F., ... Visconti, P. (2020). Global priority areas for ecosystem restoration. Nature, 586(7831), 724–729. https://doi.org/10.1038/s41586-020-2784-9
 
-[27] Yengoh, G. T., Dent, D., Olsson, L., Tengberg, A. E., & Tucker III, C. J. (2015). Use of the Normalized Difference Vegetation Index (NDVI) to assess land degradation at multiple scales. Springer.
+[27] Yengoh, G. T., Dent, D., Olsson, L., Tengberg, A. E., & Tucker III, C. J. (2015). Use of the Normalized Difference Vegetation Index (NDVI) to assess land degradation at multiple scales. Springer. https://doi.org/10.1007/978-3-319-24112-8
 
-[28] Vågen, T. G., Winowiecki, L. A., Tondoh, J. E., Desta, L. T., & Gumbricht, T. (2016). Mapping of soil properties and land degradation risk in Africa using MODIS reflectance. Geoderma, 263, 216–225.
+[28] Vågen, T. G., Winowiecki, L. A., Tondoh, J. E., Desta, L. T., & Gumbricht, T. (2016). Mapping of soil properties and land degradation risk in Africa using MODIS reflectance. Geoderma, 263, 216–225. https://doi.org/10.1016/j.geoderma.2015.06.023
 
-[29] Zhu, X. X., Tuia, D., Mou, L., Xia, G. S., Zhang, L., Xu, F., & Fraundorfer, F. (2017). Deep learning in remote sensing: A comprehensive review and list of resources. IEEE Geoscience and Remote Sensing Magazine, 5(4), 8–36.
+[29] Zhu, X. X., Tuia, D., Mou, L., Xia, G. S., Zhang, L., Xu, F., & Fraundorfer, F. (2017). Deep learning in remote sensing: A comprehensive review and list of resources. IEEE Geoscience and Remote Sensing Magazine, 5(4), 8–36. https://doi.org/10.1109/MGRS.2017.2762307
 
-[30] Ma, L., Liu, Y., Zhang, X., Ye, Y., Yin, G., & Johnson, B. A. (2019). Deep learning in remote sensing applications: A meta-analysis and review. ISPRS Journal of Photogrammetry and Remote Sensing, 152, 166–177.
+[30] Ma, L., Liu, Y., Zhang, X., Ye, Y., Yin, G., & Johnson, B. A. (2019). Deep learning in remote sensing applications: A meta-analysis and review. ISPRS Journal of Photogrammetry and Remote Sensing, 152, 166–177. https://doi.org/10.1016/j.isprsjprs.2019.04.015
 
-[31] Reichstein, M., Camps-Valls, G., Stevens, B., Jung, M., Denzler, J., Carvalhais, N., & Prabhat. (2019). Deep learning and process understanding for data-driven Earth system science. Nature, 566(7743), 195–204.
+[31] Reichstein, M., Camps-Valls, G., Stevens, B., Jung, M., Denzler, J., Carvalhais, N., & Prabhat. (2019). Deep learning and process understanding for data-driven Earth system science. Nature, 566(7743), 195–204. https://doi.org/10.1038/s41586-019-0912-1
 
-[32] Gorelick, N., Hancher, M., Dixon, M., Ilyushchenko, S., Thau, D., & Moore, R. (2017). Google Earth Engine: Planetary-scale geospatial analysis for everyone. Remote Sensing of Environment, 202, 18–27.
+[32] Gorelick, N., Hancher, M., Dixon, M., Ilyushchenko, S., Thau, D., & Moore, R. (2017). Google Earth Engine: Planetary-scale geospatial analysis for everyone. Remote Sensing of Environment, 202, 18–27. https://doi.org/10.1016/j.rse.2017.06.031
 
-[33] Sims, N. C., Newnham, G. J., England, J. R., Guerschman, J., Cox, S. J. D., Roxburgh, S. H., Viscarra Rossel, R. A., Fritz, S., & Wheeler, I. (2021). Good practice guidance: SDG indicator 15.3.1, proportion of land that is degraded over total land area (Version 2.0). United Nations Convention to Combat Desertification, Bonn.
+[33] Sims, N. C., Newnham, G. J., England, J. R., Guerschman, J., Cox, S. J. D., Roxburgh, S. H., Viscarra Rossel, R. A., Fritz, S., & Wheeler, I. (2021). Good practice guidance: SDG indicator 15.3.1, proportion of land that is degraded over total land area (Version 2.0). United Nations Convention to Combat Desertification, Bonn. [Report — no DOI assigned; UNCCD, Bonn].
 
-[34] Reed, M. S., Stringer, L. C., Dougill, A. J., Perkins, J. S., Atlhopheng, J. R., Mulale, K., & Favretto, N. (2015). Reorienting land degradation towards sustainable land management: Linking sustainable livelihoods with ecosystem services in rangeland systems. Journal of Environmental Management, 151, 472–485.
+[34] Reed, M. S., Stringer, L. C., Dougill, A. J., Perkins, J. S., Atlhopheng, J. R., Mulale, K., & Favretto, N. (2015). Reorienting land degradation towards sustainable land management: Linking sustainable livelihoods with ecosystem services in rangeland systems. Journal of Environmental Management, 151, 472–485. https://doi.org/10.1016/j.jenvman.2014.11.010
 
-[35] Liniger, H., Mekdaschi Studer, R., Moll, P., & Zander, U. (2017). Making sense of research for sustainable land management. Centre for Development and Environment (CDE), University of Bern, and Helmholtz Centre for Environmental Research (UFZ).
+[35] Liniger, H., Mekdaschi Studer, R., Moll, P., & Zander, U. (2017). Making sense of research for sustainable land management. Centre for Development and Environment (CDE), University of Bern, and Helmholtz Centre for Environmental Research (UFZ). [Report — no DOI assigned; CDE/WOCAT, University of Bern].
 
-[36] Tengberg, A., & Valencia, S. (2018). Integrated approaches to natural resources management—Theory and practice. Land Degradation & Development, 29(6), 1845–1857.
+[36] Tengberg, A., & Valencia, S. (2018). Integrated approaches to natural resources management—Theory and practice. Land Degradation & Development, 29(6), 1845–1857. https://doi.org/10.1002/ldr.2946
 
-[37] Tengö, M., Hill, R., Malmer, P., Raymond, C. M., Spierenburg, M., Danielsen, F., Elmqvist, T., & Folke, C. (2017). Weaving knowledge systems in IPBES, CBD and beyond—Lessons learned for sustainability. Current Opinion in Environmental Sustainability, 26–27, 17–25.
+[37] Tengö, M., Hill, R., Malmer, P., Raymond, C. M., Spierenburg, M., Danielsen, F., Elmqvist, T., & Folke, C. (2017). Weaving knowledge systems in IPBES, CBD and beyond—Lessons learned for sustainability. Current Opinion in Environmental Sustainability, 26–27, 17–25. https://doi.org/10.1016/j.cosust.2016.12.005
 
-[38] Nkonya, E., Mirzabaev, A., & von Braun, J. (Eds.). (2016). Economics of land degradation and improvement—A global assessment for sustainable development. Springer.
+[38] Nkonya, E., Mirzabaev, A., & von Braun, J. (Eds.). (2016). Economics of land degradation and improvement—A global assessment for sustainable development. Springer. https://doi.org/10.1007/978-3-319-19168-3
 
-[39] Verburg, P. H., Crossman, N., Ellis, E. C., Heinimann, A., Hostert, P., Mertz, O., Nagendra, H., Sikor, T., Erb, K. H., Golubiewski, N., Grau, R., Grove, M., Konaté, S., Meyfroidt, P., Parker, D. C., Chowdhury, R. R., Shibata, H., Thomson, A., & Zhen, L. (2015). Land system science and sustainable development of the earth system: A global land project perspective. Anthropocene, 12, 29–41.
+[39] Verburg, P. H., Crossman, N., Ellis, E. C., Heinimann, A., Hostert, P., Mertz, O., Nagendra, H., Sikor, T., Erb, K. H., Golubiewski, N., Grau, R., Grove, M., Konaté, S., Meyfroidt, P., Parker, D. C., Chowdhury, R. R., Shibata, H., Thomson, A., & Zhen, L. (2015). Land system science and sustainable development of the earth system: A global land project perspective. Anthropocene, 12, 29–41. https://doi.org/10.1016/j.ancene.2015.09.004
 
-[40] Kerr, J. (2002). Watershed development, environmental services, and poverty alleviation in India. World Development, 30(8), 1387–1400.
+[40] Kerr, J. (2002). Watershed development, environmental services, and poverty alleviation in India. World Development, 30(8), 1387–1400. https://doi.org/10.1016/S0305-750X(02)00042-6
 
-[41] Singh, R., Garg, K. K., Wani, S. P., Tewari, R. K., & Dhyani, S. K. (2014). Impact of water management interventions on hydrology and ecosystem services in Garhkundar-Dabar watershed of Bundelkhand region, Central India. Journal of Hydrology, 509, 132–149.
+[41] Singh, R., Garg, K. K., Wani, S. P., Tewari, R. K., & Dhyani, S. K. (2014). Impact of water management interventions on hydrology and ecosystem services in Garhkundar-Dabar watershed of Bundelkhand region, Central India. Journal of Hydrology, 509, 132–149. https://doi.org/10.1016/j.jhydrol.2013.11.030
 
-[42] Mirzabaev, A., Wu, J., Evans, J., García-Oliva, F., Hussein, I. A. G., Iqbal, M. H., Kimutai, J., Knowles, T., Meza, F., Nedjraoui, D., Tena, F., Türkeş, M., Vázquez, R. J., & Weltz, M. (2019). Desertification. In P. R. Shukla et al. (Eds.), Climate change and land: An IPCC special report (pp. 249–343). Intergovernmental Panel on Climate Change.
+[42] Mirzabaev, A., Wu, J., Evans, J., García-Oliva, F., Hussein, I. A. G., Iqbal, M. H., Kimutai, J., Knowles, T., Meza, F., Nedjraoui, D., Tena, F., Türkeş, M., Vázquez, R. J., & Weltz, M. (2019). Desertification. In P. R. Shukla et al. (Eds.), Climate change and land: An IPCC special report (pp. 249–343). Intergovernmental Panel on Climate Change. https://doi.org/10.1017/9781009157988
 
-[43] Gichenje, H., & Godinho, S. (2018). Establishing a land degradation neutrality national baseline through trend analysis of GIMMS NDVI time-series. Land Degradation & Development, 29(9), 2985–2997.
+[43] Gichenje, H., & Godinho, S. (2018). Establishing a land degradation neutrality national baseline through trend analysis of GIMMS NDVI time-series. Land Degradation & Development, 29(9), 2985–2997. https://doi.org/10.1002/ldr.3067
 
-[44] Stringer, L. C., Reed, M. S., Fleskens, L., Thomas, R. J., Le, Q. B., & Lala-Pritchard, T. (2017). A new dryland development paradigm grounded in empirical analysis of dryland systems science. Land Degradation & Development, 28(7), 1952–1961.
+[44] Stringer, L. C., Reed, M. S., Fleskens, L., Thomas, R. J., Le, Q. B., & Lala-Pritchard, T. (2017). A new dryland development paradigm grounded in empirical analysis of dryland systems science. Land Degradation & Development, 28(7), 1952–1961. https://doi.org/10.1002/ldr.2716
 
-[45] Chasek, P., Safriel, U., Shikongo, S., & Fuhrman, V. F. (2015). Operationalizing zero net land degradation: The next stage in international efforts to combat desertification? Journal of Arid Environments, 112, 5–13.
+[45] Chasek, P., Safriel, U., Shikongo, S., & Fuhrman, V. F. (2015). Operationalizing zero net land degradation: The next stage in international efforts to combat desertification? Journal of Arid Environments, 112, 5–13. https://doi.org/10.1016/j.jaridenv.2014.05.020
