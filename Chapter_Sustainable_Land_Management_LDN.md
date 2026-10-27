@@ -30,7 +30,7 @@ After studying this chapter, the reader should be able to:
 
 ### 1.1 Land Degradation as a Coupled Socio-Ecological and Climate Challenge
 
-Land degradation—the persistent reduction or loss of the biological and economic productivity of land—has become one of the most pervasive environmental challenges of the present era. A comprehensive global assessment concluded that the degradation of the Earth's land surface through human activities is negatively affecting the well-being of a large share of humanity, pushing the planet toward the sixth mass extinction and undermining the natural capital on which societies depend [1]. Authoritative syntheses estimate that a substantial fraction of the global ice-free land surface is already degraded to some degree, with the area affected expanding each year as cultivation, grazing, deforestation, and urban expansion intensify [2]. The problem is not confined to drylands or to the Global South; it spans humid and arid zones alike and manifests through a diversity of processes operating at different scales [3].
+Land degradation—the persistent reduction or loss of the biological and economic productivity of land—has become one of the most pervasive environmental challenges of the present era. A comprehensive global review concluded that the degradation of the Earth's land surface through human activities is undermining soil resources, food security, and the natural capital on which the well-being of a large share of humanity depends [1]. Authoritative syntheses estimate that a substantial fraction of the global ice-free land surface is already degraded to some degree, with the area affected expanding each year as cultivation, grazing, deforestation, and urban expansion intensify [2]. The problem is not confined to drylands or to the Global South; it spans humid and arid zones alike and manifests through a diversity of processes operating at different scales [3].
 
 The drivers of land degradation are both proximate and underlying. Proximate drivers include unsustainable agricultural practices, overgrazing, deforestation, improper irrigation that induces salinization, and the sealing of soils by infrastructure. Underlying drivers include population growth, poverty, insecure land tenure, market failures, and weak governance that together shape how land is used and abused [1]. These drivers set in motion degradation processes—water and wind erosion, loss of soil organic carbon, nutrient depletion, salinization, acidification, compaction, and the loss of vegetation and biodiversity—whose cumulative effect is a decline in the capacity of land to deliver ecosystem services [3]. As summarized in Table 1, each driver is associated with characteristic processes and impacts that ripple across soil, water, biodiversity, and human livelihoods.
 
@@ -199,9 +199,9 @@ Land degradation and climate change are deeply entangled challenges whose combin
 
 ## References
 
-[1] IPBES. (2018). The IPBES assessment report on land degradation and restoration. Secretariat of the Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services, Bonn, Germany. [Report — no DOI assigned; IPBES, Bonn, Germany].
+[1] Gomiero, T. (2016). Soil degradation, land scarcity and food security: Reviewing a complex challenge. Sustainability, 8(3), 281. https://doi.org/10.3390/su8030281
 
-[2] United Nations Convention to Combat Desertification. (2022). The Global Land Outlook (2nd ed.). UNCCD, Bonn, Germany. [Report — no DOI assigned; UNCCD, Bonn, Germany].
+[2] Le, Q. B., Nkonya, E., & Mirzabaev, A. (2016). Biomass productivity-based mapping of global land degradation hotspots. In E. Nkonya, A. Mirzabaev, & J. von Braun (Eds.), Economics of land degradation and improvement—A global assessment for sustainable development (pp. 55–84). Springer. https://doi.org/10.1007/978-3-319-19168-3_4
 
 [3] Prăvălie, R. (2021). Exploring the multiple land degradation pathways across the planet. Earth-Science Reviews, 220, 103689. https://doi.org/10.1016/j.earscirev.2021.103689
 
@@ -215,7 +215,7 @@ Land degradation and climate change are deeply entangled challenges whose combin
 
 [8] Cowie, A. L., Orr, B. J., Castillo Sanchez, V. M., Chasek, P., Crossman, N. D., Erlewein, A., Louwagie, G., Maron, M., Metternicht, G. I., Minelli, S., Tengberg, A. E., Walter, S., & Welton, S. (2018). Land in balance: The scientific conceptual framework for Land Degradation Neutrality. Environmental Science & Policy, 79, 25–35. https://doi.org/10.1016/j.envsci.2017.10.011
 
-[9] Orr, B. J., Cowie, A. L., Castillo Sanchez, V. M., Chasek, P., Crossman, N. D., Erlewein, A., Louwagie, G., Maron, M., Metternicht, G. I., Minelli, S., Tengberg, A. E., Walter, S., & Welton, S. (2017). Scientific conceptual framework for land degradation neutrality. United Nations Convention to Combat Desertification, Bonn. [Report — no DOI assigned; UNCCD, Bonn].
+[9] Grainger, A. (2015). Is Land Degradation Neutrality feasible in dry areas? Journal of Arid Environments, 112, 14–24. https://doi.org/10.1016/j.jaridenv.2014.05.014
 
 [10] Chasek, P., Akhtar-Schuster, M., Orr, B. J., Luise, A., Rakoto Ratsimba, H., & Safriel, U. (2019). Land degradation neutrality: The science-policy interface from the UNCCD to national implementation. Environmental Science & Policy, 92, 182–190. https://doi.org/10.1016/j.envsci.2018.11.017
 
@@ -263,11 +263,11 @@ Land degradation and climate change are deeply entangled challenges whose combin
 
 [32] Gorelick, N., Hancher, M., Dixon, M., Ilyushchenko, S., Thau, D., & Moore, R. (2017). Google Earth Engine: Planetary-scale geospatial analysis for everyone. Remote Sensing of Environment, 202, 18–27. https://doi.org/10.1016/j.rse.2017.06.031
 
-[33] Sims, N. C., Newnham, G. J., England, J. R., Guerschman, J., Cox, S. J. D., Roxburgh, S. H., Viscarra Rossel, R. A., Fritz, S., & Wheeler, I. (2021). Good practice guidance: SDG indicator 15.3.1, proportion of land that is degraded over total land area (Version 2.0). United Nations Convention to Combat Desertification, Bonn. [Report — no DOI assigned; UNCCD, Bonn].
+[33] Sims, N. C., England, J. R., Newnham, G. J., Alexander, S., Green, C., Minelli, S., & Held, A. (2019). Developing good practice guidance for estimating land degradation in the context of the United Nations Sustainable Development Goals. Environmental Science & Policy, 92, 349–355. https://doi.org/10.1016/j.envsci.2018.10.014
 
 [34] Reed, M. S., Stringer, L. C., Dougill, A. J., Perkins, J. S., Atlhopheng, J. R., Mulale, K., & Favretto, N. (2015). Reorienting land degradation towards sustainable land management: Linking sustainable livelihoods with ecosystem services in rangeland systems. Journal of Environmental Management, 151, 472–485. https://doi.org/10.1016/j.jenvman.2014.11.010
 
-[35] Liniger, H., Mekdaschi Studer, R., Moll, P., & Zander, U. (2017). Making sense of research for sustainable land management. Centre for Development and Environment (CDE), University of Bern, and Helmholtz Centre for Environmental Research (UFZ). [Report — no DOI assigned; CDE/WOCAT, University of Bern].
+[35] Schwilch, G., Liniger, H. P., & Hurni, H. (2014). Sustainable land management (SLM) practices in drylands: How do they address desertification threats? Environmental Management, 54(5), 983–1004. https://doi.org/10.1007/s00267-013-0071-3
 
 [36] Tengberg, A., & Valencia, S. (2018). Integrated approaches to natural resources management—Theory and practice. Land Degradation & Development, 29(6), 1845–1857. https://doi.org/10.1002/ldr.2946
 
