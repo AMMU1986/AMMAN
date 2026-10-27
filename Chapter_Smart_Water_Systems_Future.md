@@ -227,47 +227,47 @@ The integrated framework of **Figure 4** and the phased roadmap of **Figure 3** 
 
 ## References
 
-1. Mutchek M, Williams E. Moving towards sustainable and resilient smart water grids. Challenges. 2014;5(1):123–137.
-2. Hu Z, Chen B, Chen W, Tan D, Shen D. Review of model-based and data-driven approaches for leak detection and location in water distribution systems. Water Supply. 2021;21(7):3282–3306.
-3. Zhuang Y, Zhang L, Du C, Li C. Recent advances in real-time water quality monitoring sensors for smart water networks. Sensors. 2022;22(18):6836.
-4. Howell S, Rezgui Y, Beach T. Integrating building and urban semantics to empower smart water solutions. Autom Constr. 2017;81:434–448.
-5. Donkor EA, Mazzuchi TA, Soyer R, Roberson JA. Urban water demand forecasting: review of methods and models. J Water Resour Plan Manag. 2014;140(2):146–159.
-6. Dogo EM, Nwulu NI, Twala B, Aigbavboa C. A survey of machine learning methods applied to anomaly detection on drinking-water quality data. Urban Water J. 2019;16(3):235–248.
-7. Eggimann S, Mutzner L, Wani O, Schneider MY, Spuhler D, Moy de Vitry M, et al. The potential of knowing more: a review of data-driven urban water management. Environ Sci Technol. 2017;51(5):2538–2553.
-8. Nearing GS, Kratzert F, Sampson AK, Pelissier CS, Klotz D, Frame JM, et al. What role does hydrological science play in the age of machine learning? Water Resour Res. 2021;57(3):e2020WR028091.
-9. Milly PCD, Betancourt J, Falkenmark M, Hirsch RM, Kundzewicz ZW, Lettenmaier DP, et al. Stationarity is dead: whither water management? Science. 2008;319(5863):573–574.
-10. Guest JS, Skerlos SJ, Barnard JL, Beck MB, Daigger GT, Hilger H, et al. A new planning and design paradigm to achieve sustainable resource recovery from wastewater. Environ Sci Technol. 2009;43(16):6126–6130.
-11. Kakwani NS, Kalbar PP. Review of circular economy in urban water sector: challenges and opportunities in India. J Environ Manage. 2020;271:111010.
-12. Corominas L, Byrne DM, Guest JS, Hospido A, Roux P, Shaw A, et al. The application of life cycle assessment to wastewater treatment: a best practice guide. Water Res. 2020;184:116058.
-13. OECD. Water Governance in Cities. Paris: OECD Studies on Water, OECD Publishing; 2016.
-14. Sedlak D. Water 4.0: The Past, Present, and Future of the World's Most Vital Resource. New Haven: Yale University Press; 2014.
-15. World Health Organization. Guidelines for Drinking-water Quality. 4th ed. incorporating the first addendum. Geneva: WHO; 2017.
-16. Rozos E. Machine learning, urban water resources management and operating policy. Resources. 2019;8(4):173.
-17. Hassanzadeh A, Rasekh A, Galelli S, Aghashahi M, Taormina R, Ostfeld A, et al. A review of cybersecurity incidents in the water sector. J Environ Eng. 2020;146(5):03120003.
-18. McKenna SA, Fusco F, Eck BJ. Water demand pattern classification from smart meter data. Procedia Eng. 2014;70:1121–1130.
-19. Mounce SR, Mounce RB, Boxall JB. Novelty detection for time series data analysis in water distribution systems using support vector machines. J Hydroinform. 2011;13(4):672–686.
-20. Pahl-Wostl C. Transitions towards adaptive management of water facing climate and global change. Water Resour Manag. 2007;21(1):49–62.
-21. Marlow DR, Moglia M, Cook S, Beale DJ. Towards sustainable urban water management: a critical reassessment. Water Res. 2013;47(20):7150–7161.
-22. Mitlin D, Beard VA, Satterthwaite D, Du J. Unaffordable and undrinkable: rethinking urban water access in the global south. Washington DC: World Resources Institute; 2019.
-23. Grand View Research. Smart Water Management Market Size, Share & Trends Analysis Report. San Francisco: Grand View Research; 2023.
-24. Gleick PH, Cooley H. Water and energy use in the industrial sector: trends and opportunities. Annu Rev Environ Resour. 2021;46:59–87.
-25. AlShehhi A, Welsch R. Artificial intelligence for smart water management: opportunities and challenges. J Clean Prod. 2023;399:136681.
-26. Boyle T, Giurco D, Mukheibir P, Liu A, Moy C, White S, et al. Intelligent metering for urban water: a review. Water. 2013;5(3):1052–1081.
-27. Ajami NK, Thompson BH, Victor DG. The path to water innovation. Washington DC: The Hamilton Project, Brookings Institution; 2014.
-28. Marques RC, Berg S. Risks, contracts, and private-sector participation in infrastructure. J Constr Eng Manag. 2011;137(11):925–932.
-29. Hukka JJ, Katko TS. Resilient asset management and governance for deteriorating water services infrastructure. Procedia Econ Finance. 2015;21:112–119.
-30. OECD. Financing Water Supply, Sanitation and Flood Protection: Challenges in EU Member States. Paris: OECD Publishing; 2020.
-31. Molinos-Senante M, Hernández-Sancho F, Sala-Garrido R. Economic feasibility study for wastewater treatment: a cost–benefit analysis. Sci Total Environ. 2010;408(20):4396–4402.
-32. Rogers P, de Silva R, Bhatia R. Water is an economic good: how to use prices to promote equity, efficiency, and sustainability. Water Policy. 2002;4(1):1–17.
-33. Monks I, Stewart RA, Sahin O, Keller R. Revealing unreported benefits of digital water metering: literature review and expert opinions. Water. 2019;11(4):838.
-34. Mankins JC. Technology readiness assessments: a retrospective. Acta Astronaut. 2009;65(9–10):1216–1223.
-35. Kerkez B, Gruden C, Lewis M, Montestruque L, Quigley M, Wong B, et al. Smarter stormwater systems. Environ Sci Technol. 2016;50(14):7267–7273.
-36. Sarni W, White C, Webb R, Cross K, Glotzbach R. Digital Water: Industry Leaders Chart the Transformation Journey. London: International Water Association and Xylem; 2019.
-37. Larsen TA, Hoffmann S, Lüthi C, Truffer B, Maurer M. Emerging solutions to the water challenges of an urbanizing world. Science. 2016;352(6288):928–933.
-38. Garrido-Baserba M, Corominas L, Cortés U, Rosso D, Poch M. The fourth-revolution in the water sector encounters the digital revolution. Environ Sci Technol. 2020;54(8):4698–4705.
-39. Ziolkowska JR. Water law and governance in the era of digitalization: emerging regulatory challenges. Water Int. 2022;47(5):671–689.
-40. Daigger GT, Voutchkov N, Lall U, Sarni W. The future of water: a collection of essays on "disruptive" technologies that may transform the water sector. Washington DC: Inter-American Development Bank; 2019.
-41. Beven K. Facets of uncertainty: epistemic uncertainty, non-stationarity, likelihood, hypothesis testing, and communication. Hydrol Sci J. 2016;61(9):1652–1665.
-42. Gaffoor Z, Pietersen K, Jovanovic N, Bagula A, Kanyerere T. A survey of smart water monitoring and the role of edge and cloud computing. J Water Process Eng. 2020;38:101578.
-43. Rajaee T, Khani S, Ravansalar M. Artificial intelligence-based single and hybrid models for prediction of water quality in rivers: a review. Chemom Intell Lab Syst. 2020;200:103978.
-44. United Nations. The Sustainable Development Goals Report 2023: Special Edition. New York: United Nations; 2023.
+1. Mutchek M, Williams E. Moving towards sustainable and resilient smart water grids. Challenges. 2014;5(1):123–137. https://doi.org/10.3390/challe5010123
+2. Farah E, Shahrour I. Water leak detection: a comprehensive review of methods, challenges, and future directions. Water. 2024;16(20):2975. https://doi.org/10.3390/w16202975
+3. Jan F, Min-Allah N, Düştegör D. IoT based smart water quality monitoring: recent techniques, trends and challenges for domestic applications. Water. 2021;13(13):1729. https://doi.org/10.3390/w13131729
+4. Howell S, Rezgui Y, Beach T. Integrating building and urban semantics to empower smart water solutions. Autom Constr. 2017;81:434–448. https://doi.org/10.1016/j.autcon.2017.02.004
+5. Donkor EA, Mazzuchi TA, Soyer R, Roberson JA. Urban water demand forecasting: review of methods and models. J Water Resour Plan Manag. 2014;140(2):146–159. https://doi.org/10.1061/(ASCE)WR.1943-5452.0000314
+6. Dogo EM, Nwulu NI, Twala B, Aigbavboa C. A survey of machine learning methods applied to anomaly detection on drinking-water quality data. Urban Water J. 2019;16(3):235–248. https://doi.org/10.1080/1573062X.2019.1637002
+7. Eggimann S, Mutzner L, Wani O, Schneider MY, Spuhler D, Moy de Vitry M, et al. The potential of knowing more: a review of data-driven urban water management. Environ Sci Technol. 2017;51(5):2538–2553. https://doi.org/10.1021/acs.est.6b04267
+8. Nearing GS, Kratzert F, Sampson AK, Pelissier CS, Klotz D, Frame JM, et al. What role does hydrological science play in the age of machine learning? Water Resour Res. 2021;57(3):e2020WR028091. https://doi.org/10.1029/2020WR028091
+9. Milly PCD, Betancourt J, Falkenmark M, Hirsch RM, Kundzewicz ZW, Lettenmaier DP, et al. Stationarity is dead: whither water management? Science. 2008;319(5863):573–574. https://doi.org/10.1126/science.1151915
+10. Guest JS, Skerlos SJ, Barnard JL, Beck MB, Daigger GT, Hilger H, et al. A new planning and design paradigm to achieve sustainable resource recovery from wastewater. Environ Sci Technol. 2009;43(16):6126–6130. https://doi.org/10.1021/es9010515
+11. Kakwani NS, Kalbar PP. Review of circular economy in urban water sector: challenges and opportunities in India. J Environ Manage. 2020;271:111010. https://doi.org/10.1016/j.jenvman.2020.111010
+12. Corominas L, Byrne DM, Guest JS, Hospido A, Roux P, Shaw A, et al. The application of life cycle assessment to wastewater treatment: a best practice guide and critical review. Water Res. 2020;184:116058. https://doi.org/10.1016/j.watres.2020.116058
+13. OECD. Water Governance in Cities. Paris: OECD Studies on Water, OECD Publishing; 2016. https://doi.org/10.1787/9789264251090-en
+14. Sedlak D. Water 4.0: The Past, Present, and Future of the World's Most Vital Resource. New Haven: Yale University Press; 2014. ISBN 978-0-300-17649-0. (book — no DOI)
+15. World Health Organization. Guidelines for Drinking-water Quality. 4th ed. incorporating the first addendum. Geneva: WHO; 2017. ISBN 978-92-4-154995-0. (report — no DOI)
+16. Rozos E. Machine learning, urban water resources management and operating policy. Resources. 2019;8(4):173. https://doi.org/10.3390/resources8040173
+17. Hassanzadeh A, Rasekh A, Galelli S, Aghashahi M, Taormina R, Ostfeld A, et al. A review of cybersecurity incidents in the water sector. J Environ Eng. 2020;146(5):03120003. https://doi.org/10.1061/(ASCE)EE.1943-7870.0001686
+18. McKenna SA, Fusco F, Eck BJ. Water demand pattern classification from smart meter data. Procedia Eng. 2014;70:1121–1130. https://doi.org/10.1016/j.proeng.2014.02.124
+19. Mounce SR, Mounce RB, Boxall JB. Novelty detection for time series data analysis in water distribution systems using support vector machines. J Hydroinform. 2011;13(4):672–686. https://doi.org/10.2166/hydro.2010.144
+20. Pahl-Wostl C. Transitions towards adaptive management of water facing climate and global change. Water Resour Manag. 2007;21(1):49–62. https://doi.org/10.1007/s11269-006-9040-4
+21. Marlow DR, Moglia M, Cook S, Beale DJ. Towards sustainable urban water management: a critical reassessment. Water Res. 2013;47(20):7150–7161. https://doi.org/10.1016/j.watres.2013.07.046
+22. Mitlin D, Beard VA, Satterthwaite D, Du J. Unaffordable and undrinkable: rethinking urban water access in the global south. Washington DC: World Resources Institute; 2019. Available at: https://www.wri.org/research/unaffordable-and-undrinkable-rethinking-urban-water-access-global-south (report — no DOI)
+23. Grand View Research. Smart Water Management Market Size, Share & Trends Analysis Report. San Francisco: Grand View Research; 2023. Available at: https://www.grandviewresearch.com/industry-analysis/smart-water-management-market (market report — no DOI)
+24. Gleick PH, Cooley H. Freshwater scarcity. Annu Rev Environ Resour. 2021;46:319–348. https://doi.org/10.1146/annurev-environ-012220-101319
+25. Krishnan SR, Nallakaruppan MK, Chengoden R, Koppu S, Iyapparaja M, Sadhasivam J, Sethuraman S. Smart water resource management using artificial intelligence—a review. Sustainability. 2022;14(20):13384. https://doi.org/10.3390/su142013384
+26. Boyle T, Giurco D, Mukheibir P, Liu A, Moy C, White S, et al. Intelligent metering for urban water: a review. Water. 2013;5(3):1052–1081. https://doi.org/10.3390/w5031052
+27. Ajami NK, Thompson BH, Victor DG. The path to water innovation. Washington DC: The Hamilton Project, Brookings Institution; 2014. Available at: https://www.hamiltonproject.org/publication/the-path-to-water-innovation/ (discussion paper — no DOI)
+28. Marques RC, Berg S. Risks, contracts, and private-sector participation in infrastructure. J Constr Eng Manag. 2011;137(11):925–932. https://doi.org/10.1061/(ASCE)CO.1943-7862.0000347
+29. Hukka JJ, Katko TS. Resilient asset management and governance for deteriorating water services infrastructure. Procedia Econ Finance. 2015;21:112–119. https://doi.org/10.1016/S2212-5671(15)00157-7
+30. OECD. Financing Water Supply, Sanitation and Flood Protection: Challenges in EU Member States. Paris: OECD Publishing; 2020. https://doi.org/10.1787/6893cdac-en
+31. Molinos-Senante M, Hernández-Sancho F, Sala-Garrido R. Economic feasibility study for new technological alternatives in wastewater treatment processes: a review. Sci Total Environ. 2010;408(20):4396–4402. https://doi.org/10.1016/j.scitotenv.2010.07.014
+32. Rogers P, de Silva R, Bhatia R. Water is an economic good: how to use prices to promote equity, efficiency, and sustainability. Water Policy. 2002;4(1):1–17. https://doi.org/10.1016/S1366-7017(02)00004-1
+33. Monks I, Stewart RA, Sahin O, Keller R. Revealing unreported benefits of digital water metering: literature review and expert opinions. Water. 2019;11(4):838. https://doi.org/10.3390/w11040838
+34. Mankins JC. Technology readiness assessments: a retrospective. Acta Astronaut. 2009;65(9–10):1216–1223. https://doi.org/10.1016/j.actaastro.2009.03.058
+35. Kerkez B, Gruden C, Lewis M, Montestruque L, Quigley M, Wong B, et al. Smarter stormwater systems. Environ Sci Technol. 2016;50(14):7267–7273. https://doi.org/10.1021/acs.est.5b05870
+36. Sarni W, White C, Webb R, Cross K, Glotzbach R. Digital Water: Industry Leaders Chart the Transformation Journey. London: International Water Association and Xylem; 2019. Available at: https://iwa-network.org/publications/digital-water/ (industry report — no DOI)
+37. Larsen TA, Hoffmann S, Lüthi C, Truffer B, Maurer M. Emerging solutions to the water challenges of an urbanizing world. Science. 2016;352(6288):928–933. https://doi.org/10.1126/science.aad8641
+38. Garrido-Baserba M, Corominas L, Cortés U, Rosso D, Poch M. The fourth-revolution in the water sector encounters the digital revolution. Environ Sci Technol. 2020;54(8):4698–4705. https://doi.org/10.1021/acs.est.9b04251
+39. Dai Y, Huang Z, Khan N, Labbo MS. Smart water management: governance innovation, technological integration, and policy pathways toward economic and ecological sustainability. Water. 2025;17(13):1932. https://doi.org/10.3390/w17131932
+40. Daigger GT, Voutchkov N, Lall U, Sarni W. The future of water: a collection of essays on "disruptive" technologies that may transform the water sector. Washington DC: Inter-American Development Bank; 2019. https://doi.org/10.18235/0001567
+41. Beven K. Facets of uncertainty: epistemic uncertainty, non-stationarity, likelihood, hypothesis testing, and communication. Hydrol Sci J. 2016;61(9):1652–1665. https://doi.org/10.1080/02626667.2015.1031761
+42. Gaffoor Z, Pietersen K, Jovanovic N, Bagula A, Kanyerere T. Big data analytics and its role to support groundwater management in the Southern African Development Community. Water. 2020;12(10):2796. https://doi.org/10.3390/w12102796
+43. Rajaee T, Khani S, Ravansalar M. Artificial intelligence-based single and hybrid models for prediction of water quality in rivers: a review. Chemom Intell Lab Syst. 2020;200:103978. https://doi.org/10.1016/j.chemolab.2020.103978
+44. United Nations. The Sustainable Development Goals Report 2023: Special Edition. New York: United Nations; 2023. Available at: https://unstats.un.org/sdgs/report/2023/ (report — no DOI)
