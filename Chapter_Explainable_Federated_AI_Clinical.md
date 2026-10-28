@@ -140,88 +140,88 @@ This chapter has argued that the secure and trustworthy deployment of artificial
 
 ## References
 
-[1] Topol EJ. High-performance medicine: the convergence of human and artificial intelligence. Nature Medicine. 2019;25(1):44-56.
+[1] Topol EJ. High-performance medicine: the convergence of human and artificial intelligence. Nature Medicine. 2019;25(1):44-56. https://doi.org/10.1038/s41591-018-0300-7
 
-[2] Shortliffe EH. Computer-Based Medical Consultations: MYCIN. New York: Elsevier; 1976.
+[2] Shortliffe EH. Computer-Based Medical Consultations: MYCIN. New York: Elsevier; 1976. (Print monograph; no DOI assigned.)
 
-[3] Esteva A, Robicquet A, Ramsundar B, Kuleshov V, DePristo M, Chou K, et al. A guide to deep learning in healthcare. Nature Medicine. 2019;25(1):24-29.
+[3] Esteva A, Robicquet A, Ramsundar B, Kuleshov V, DePristo M, Chou K, et al. A guide to deep learning in healthcare. Nature Medicine. 2019;25(1):24-29. https://doi.org/10.1038/s41591-018-0316-z
 
-[4] Rajkomar A, Dean J, Kohane I. Machine learning in medicine. New England Journal of Medicine. 2019;380(14):1347-1358.
+[4] Rajkomar A, Dean J, Kohane I. Machine learning in medicine. New England Journal of Medicine. 2019;380(14):1347-1358. https://doi.org/10.1056/NEJMra1814259
 
-[5] Sutton RT, Pincock D, Baumgart DC, Sadowski DC, Fedorak RN, Kroeker KI. An overview of clinical decision support systems: benefits, risks, and strategies for success. npj Digital Medicine. 2020;3:17.
+[5] Sutton RT, Pincock D, Baumgart DC, Sadowski DC, Fedorak RN, Kroeker KI. An overview of clinical decision support systems: benefits, risks, and strategies for success. npj Digital Medicine. 2020;3:17. https://doi.org/10.1038/s41746-020-0221-y
 
-[6] Price WN, Cohen IG. Privacy in the age of medical big data. Nature Medicine. 2019;25(1):37-43.
+[6] Price WN, Cohen IG. Privacy in the age of medical big data. Nature Medicine. 2019;25(1):37-43. https://doi.org/10.1038/s41591-018-0272-7
 
-[7] Kaissis GA, Makowski MR, Ruckert D, Braren RF. Secure, privacy-preserving and federated machine learning in medical imaging. Nature Machine Intelligence. 2020;2(6):305-311.
+[7] Kaissis GA, Makowski MR, Ruckert D, Braren RF. Secure, privacy-preserving and federated machine learning in medical imaging. Nature Machine Intelligence. 2020;2(6):305-311. https://doi.org/10.1038/s42256-020-0186-1
 
-[8] Voigt P, von dem Bussche A. The EU General Data Protection Regulation (GDPR): A Practical Guide. Cham: Springer; 2017.
+[8] Voigt P, von dem Bussche A. The EU General Data Protection Regulation (GDPR): A Practical Guide. Cham: Springer; 2017. https://doi.org/10.1007/978-3-319-57959-7
 
-[9] Shokri R, Stronati M, Song C, Shmatikov V. Membership inference attacks against machine learning models. In: IEEE Symposium on Security and Privacy; 2017. p. 3-18.
+[9] Shokri R, Stronati M, Song C, Shmatikov V. Membership inference attacks against machine learning models. In: IEEE Symposium on Security and Privacy; 2017. p. 3-18. https://doi.org/10.1109/SP.2017.41
 
-[10] Vayena E, Blasimme A, Cohen IG. Machine learning in medicine: addressing ethical challenges. PLoS Medicine. 2018;15(11):e1002689.
+[10] Vayena E, Blasimme A, Cohen IG. Machine learning in medicine: addressing ethical challenges. PLoS Medicine. 2018;15(11):e1002689. https://doi.org/10.1371/journal.pmed.1002689
 
-[11] McMahan B, Moore E, Ramage D, Hampson S, Aguera y Arcas B. Communication-efficient learning of deep networks from decentralized data. In: Proceedings of AISTATS; 2017. p. 1273-1282.
+[11] McMahan B, Moore E, Ramage D, Hampson S, Aguera y Arcas B. Communication-efficient learning of deep networks from decentralized data. In: Proceedings of AISTATS; 2017. p. 1273-1282. https://doi.org/10.48550/arXiv.1602.05629
 
-[12] Rieke N, Hancox J, Li W, Milletari F, Roth HR, Albarqouni S, et al. The future of digital health with federated learning. npj Digital Medicine. 2020;3:119.
+[12] Rieke N, Hancox J, Li W, Milletari F, Roth HR, Albarqouni S, et al. The future of digital health with federated learning. npj Digital Medicine. 2020;3:119. https://doi.org/10.1038/s41746-020-00323-1
 
-[13] Yang Q, Liu Y, Chen T, Tong Y. Federated machine learning: concept and applications. ACM Transactions on Intelligent Systems and Technology. 2019;10(2):12.
+[13] Yang Q, Liu Y, Chen T, Tong Y. Federated machine learning: concept and applications. ACM Transactions on Intelligent Systems and Technology. 2019;10(2):12. https://doi.org/10.1145/3298981
 
-[14] Sheller MJ, Edwards B, Reina GA, Martin J, Pati S, Kotrotsou A, et al. Federated learning in medicine: facilitating multi-institutional collaborations without sharing patient data. Scientific Reports. 2020;10:12598.
+[14] Sheller MJ, Edwards B, Reina GA, Martin J, Pati S, Kotrotsou A, et al. Federated learning in medicine: facilitating multi-institutional collaborations without sharing patient data. Scientific Reports. 2020;10:12598. https://doi.org/10.1038/s41598-020-69250-1
 
-[15] Li T, Sahu AK, Talwalkar A, Smith V. Federated learning: challenges, methods, and future directions. IEEE Signal Processing Magazine. 2020;37(3):50-60.
+[15] Li T, Sahu AK, Talwalkar A, Smith V. Federated learning: challenges, methods, and future directions. IEEE Signal Processing Magazine. 2020;37(3):50-60. https://doi.org/10.1109/MSP.2020.2975749
 
-[16] Dayan I, Roth HR, Zhong A, Harouni A, Gentili A, Abidin AZ, et al. Federated learning for predicting clinical outcomes in patients with COVID-19. Nature Medicine. 2021;27(10):1735-1743.
+[16] Dayan I, Roth HR, Zhong A, Harouni A, Gentili A, Abidin AZ, et al. Federated learning for predicting clinical outcomes in patients with COVID-19. Nature Medicine. 2021;27(10):1735-1743. https://doi.org/10.1038/s41591-021-01506-3
 
-[17] Dwork C, Roth A. The algorithmic foundations of differential privacy. Foundations and Trends in Theoretical Computer Science. 2014;9(3-4):211-407.
+[17] Dwork C, Roth A. The algorithmic foundations of differential privacy. Foundations and Trends in Theoretical Computer Science. 2014;9(3-4):211-407. https://doi.org/10.1561/0400000042
 
-[18] Abadi M, Chu A, Goodfellow I, McMahan HB, Mironov I, Talwar K, et al. Deep learning with differential privacy. In: Proceedings of the ACM SIGSAC Conference on Computer and Communications Security; 2016. p. 308-318.
+[18] Abadi M, Chu A, Goodfellow I, McMahan HB, Mironov I, Talwar K, et al. Deep learning with differential privacy. In: Proceedings of the ACM SIGSAC Conference on Computer and Communications Security; 2016. p. 308-318. https://doi.org/10.1145/2976749.2978318
 
-[19] Bonawitz K, Ivanov V, Kreuter B, Marcedone A, McMahan HB, Patel S, et al. Practical secure aggregation for privacy-preserving machine learning. In: Proceedings of the ACM SIGSAC Conference on Computer and Communications Security; 2017. p. 1175-1191.
+[19] Bonawitz K, Ivanov V, Kreuter B, Marcedone A, McMahan HB, Patel S, et al. Practical secure aggregation for privacy-preserving machine learning. In: Proceedings of the ACM SIGSAC Conference on Computer and Communications Security; 2017. p. 1175-1191. https://doi.org/10.1145/3133956.3133982
 
-[20] Acar A, Aksu H, Uluagac AS, Conti M. A survey on homomorphic encryption schemes: theory and implementation. ACM Computing Surveys. 2018;51(4):79.
+[20] Acar A, Aksu H, Uluagac AS, Conti M. A survey on homomorphic encryption schemes: theory and implementation. ACM Computing Surveys. 2018;51(4):79. https://doi.org/10.1145/3214303
 
-[21] Zhu L, Liu Z, Han S. Deep leakage from gradients. In: Advances in Neural Information Processing Systems; 2019. p. 14774-14784.
+[21] Zhu L, Liu Z, Han S. Deep leakage from gradients. In: Advances in Neural Information Processing Systems; 2019. p. 14774-14784. https://doi.org/10.48550/arXiv.1906.08935
 
-[22] Bagdasaryan E, Veit A, Hua Y, Estrin D, Shmatikov V. How to backdoor federated learning. In: Proceedings of AISTATS; 2020. p. 2938-2948.
+[22] Bagdasaryan E, Veit A, Hua Y, Estrin D, Shmatikov V. How to backdoor federated learning. In: Proceedings of AISTATS; 2020. p. 2938-2948. https://doi.org/10.48550/arXiv.1807.00459
 
-[23] Lyu L, Yu H, Yang Q. Threats to federated learning: a survey. arXiv preprint arXiv:2003.02133. 2020.
+[23] Lyu L, Yu H, Yang Q. Threats to federated learning: a survey. arXiv preprint arXiv:2003.02133. 2020. https://doi.org/10.48550/arXiv.2003.02133
 
-[24] Caruana R, Lou Y, Gehrke J, Koch P, Sturm M, Elhadad N. Intelligible models for healthcare: predicting pneumonia risk and hospital 30-day readmission. In: Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining; 2015. p. 1721-1730.
+[24] Caruana R, Lou Y, Gehrke J, Koch P, Sturm M, Elhadad N. Intelligible models for healthcare: predicting pneumonia risk and hospital 30-day readmission. In: Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining; 2015. p. 1721-1730. https://doi.org/10.1145/2783258.2788613
 
-[25] Ribeiro MT, Singh S, Guestrin C. "Why should I trust you?": explaining the predictions of any classifier. In: Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining; 2016. p. 1135-1144.
+[25] Ribeiro MT, Singh S, Guestrin C. "Why should I trust you?": explaining the predictions of any classifier. In: Proceedings of the ACM SIGKDD International Conference on Knowledge Discovery and Data Mining; 2016. p. 1135-1144. https://doi.org/10.1145/2939672.2939778
 
-[26] Lundberg SM, Lee SI. A unified approach to interpreting model predictions. In: Advances in Neural Information Processing Systems; 2017. p. 4765-4774.
+[26] Lundberg SM, Lee SI. A unified approach to interpreting model predictions. In: Advances in Neural Information Processing Systems; 2017. p. 4765-4774. https://doi.org/10.48550/arXiv.1705.07874
 
-[27] Selvaraju RR, Cogswell M, Das A, Vedantam R, Parikh D, Batra D. Grad-CAM: visual explanations from deep networks via gradient-based localization. In: Proceedings of the IEEE International Conference on Computer Vision; 2017. p. 618-626.
+[27] Selvaraju RR, Cogswell M, Das A, Vedantam R, Parikh D, Batra D. Grad-CAM: visual explanations from deep networks via gradient-based localization. In: Proceedings of the IEEE International Conference on Computer Vision; 2017. p. 618-626. https://doi.org/10.1109/ICCV.2017.74
 
-[28] Wachter S, Mittelstadt B, Russell C. Counterfactual explanations without opening the black box: automated decisions and the GDPR. Harvard Journal of Law and Technology. 2017;31(2):841-887.
+[28] Wachter S, Mittelstadt B, Russell C. Counterfactual explanations without opening the black box: automated decisions and the GDPR. Harvard Journal of Law and Technology. 2017;31(2):841-887. https://doi.org/10.2139/ssrn.3063289
 
-[29] Rudin C. Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. Nature Machine Intelligence. 2019;1(5):206-215.
+[29] Rudin C. Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. Nature Machine Intelligence. 2019;1(5):206-215. https://doi.org/10.1038/s42256-019-0048-x
 
-[30] Tjoa E, Guan C. A survey on explainable artificial intelligence (XAI): toward medical XAI. IEEE Transactions on Neural Networks and Learning Systems. 2021;32(11):4793-4813.
+[30] Tjoa E, Guan C. A survey on explainable artificial intelligence (XAI): toward medical XAI. IEEE Transactions on Neural Networks and Learning Systems. 2021;32(11):4793-4813. https://doi.org/10.1109/TNNLS.2020.3027314
 
-[31] Arrieta AB, Diaz-Rodriguez N, Del Ser J, Bennetot A, Tabik S, Barbado A, et al. Explainable artificial intelligence (XAI): concepts, taxonomies, opportunities and challenges toward responsible AI. Information Fusion. 2020;58:82-115.
+[31] Arrieta AB, Diaz-Rodriguez N, Del Ser J, Bennetot A, Tabik S, Barbado A, et al. Explainable artificial intelligence (XAI): concepts, taxonomies, opportunities and challenges toward responsible AI. Information Fusion. 2020;58:82-115. https://doi.org/10.1016/j.inffus.2019.12.012
 
-[32] Markus AF, Kors JA, Rijnbeek PR. The role of explainability in creating trustworthy artificial intelligence for health care: a comprehensive survey of the terminology, design choices, and evaluation strategies. Journal of Biomedical Informatics. 2021;113:103655.
+[32] Markus AF, Kors JA, Rijnbeek PR. The role of explainability in creating trustworthy artificial intelligence for health care: a comprehensive survey of the terminology, design choices, and evaluation strategies. Journal of Biomedical Informatics. 2021;113:103655. https://doi.org/10.1016/j.jbi.2020.103655
 
-[33] Amann J, Blasimme A, Vayena E, Frey D, Madai VI. Explainability for artificial intelligence in healthcare: a multidisciplinary perspective. BMC Medical Informatics and Decision Making. 2020;20:310.
+[33] Amann J, Blasimme A, Vayena E, Frey D, Madai VI. Explainability for artificial intelligence in healthcare: a multidisciplinary perspective. BMC Medical Informatics and Decision Making. 2020;20:310. https://doi.org/10.1186/s12911-020-01332-6
 
-[34] Chaddad A, Peng J, Xu J, Bouridane A. Survey of explainable AI techniques in healthcare. Sensors. 2023;23(2):634.
+[34] Chaddad A, Peng J, Xu J, Bouridane A. Survey of explainable AI techniques in healthcare. Sensors. 2023;23(2):634. https://doi.org/10.3390/s23020634
 
-[35] Warnat-Herresthal S, Schultze H, Shastry KL, Manamohan S, Mukherjee S, Garg V, et al. Swarm learning for decentralized and confidential clinical machine learning. Nature. 2021;594(7862):265-270.
+[35] Warnat-Herresthal S, Schultze H, Shastry KL, Manamohan S, Mukherjee S, Garg V, et al. Swarm learning for decentralized and confidential clinical machine learning. Nature. 2021;594(7862):265-270. https://doi.org/10.1038/s41586-021-03583-3
 
-[36] Ogier du Terrail J, Ayed SS, Cyffers E, Grimberg F, He C, Loeb R, et al. FLamby: datasets and benchmarks for cross-silo federated learning in healthcare. In: Advances in Neural Information Processing Systems; 2022.
+[36] Ogier du Terrail J, Ayed SS, Cyffers E, Grimberg F, He C, Loeb R, et al. FLamby: datasets and benchmarks for cross-silo federated learning in healthcare. In: Advances in Neural Information Processing Systems; 2022. https://doi.org/10.48550/arXiv.2210.04620
 
-[37] Antunes RS, Andre da Costa C, Kuderle A, Yari IA, Eskofier B. Federated learning for healthcare: systematic review and architecture proposal. ACM Transactions on Intelligent Systems and Technology. 2022;13(4):54.
+[37] Antunes RS, Andre da Costa C, Kuderle A, Yari IA, Eskofier B. Federated learning for healthcare: systematic review and architecture proposal. ACM Transactions on Intelligent Systems and Technology. 2022;13(4):54. https://doi.org/10.1145/3501813
 
-[38] Nguyen DC, Pham QV, Pathirana PN, Ding M, Seneviratne A, Lin Z, et al. Federated learning for smart healthcare: a survey. ACM Computing Surveys. 2022;55(3):60.
+[38] Nguyen DC, Pham QV, Pathirana PN, Ding M, Seneviratne A, Lin Z, et al. Federated learning for smart healthcare: a survey. ACM Computing Surveys. 2022;55(3):60. https://doi.org/10.1145/3501296
 
-[39] Gerke S, Minssen T, Cohen G. Ethical and legal challenges of artificial intelligence-driven healthcare. In: Artificial Intelligence in Healthcare. London: Academic Press; 2020. p. 295-336.
+[39] Gerke S, Minssen T, Cohen G. Ethical and legal challenges of artificial intelligence-driven healthcare. In: Artificial Intelligence in Healthcare. London: Academic Press; 2020. p. 295-336. https://doi.org/10.1016/B978-0-12-818438-7.00012-5
 
-[40] Reddy S, Allan S, Coghlan S, Cooper P. A governance model for the application of AI in health care. Journal of the American Medical Informatics Association. 2020;27(3):491-497.
+[40] Reddy S, Allan S, Coghlan S, Cooper P. A governance model for the application of AI in health care. Journal of the American Medical Informatics Association. 2020;27(3):491-497. https://doi.org/10.1093/jamia/ocz192
 
-[41] U.S. Food and Drug Administration. Artificial Intelligence/Machine Learning (AI/ML)-Based Software as a Medical Device (SaMD) Action Plan. Silver Spring, MD: FDA; 2021.
+[41] U.S. Food and Drug Administration. Artificial Intelligence/Machine Learning (AI/ML)-Based Software as a Medical Device (SaMD) Action Plan. Silver Spring, MD: FDA; 2021. Available from: https://www.fda.gov/media/145022/download (Government report; no DOI assigned.)
 
-[42] Kairouz P, McMahan HB, Avent B, Bellet A, Bennis M, Bhagoji AN, et al. Advances and open problems in federated learning. Foundations and Trends in Machine Learning. 2021;14(1-2):1-210.
+[42] Kairouz P, McMahan HB, Avent B, Bellet A, Bennis M, Bhagoji AN, et al. Advances and open problems in federated learning. Foundations and Trends in Machine Learning. 2021;14(1-2):1-210. https://doi.org/10.1561/2200000083
 
-[43] Mothukuri V, Parizi RM, Pouriyeh S, Huang Y, Dehghantanha A, Srivastava G. A survey on security and privacy of federated learning. Future Generation Computer Systems. 2021;115:619-640.
+[43] Mothukuri V, Parizi RM, Pouriyeh S, Huang Y, Dehghantanha A, Srivastava G. A survey on security and privacy of federated learning. Future Generation Computer Systems. 2021;115:619-640. https://doi.org/10.1016/j.future.2020.10.007
