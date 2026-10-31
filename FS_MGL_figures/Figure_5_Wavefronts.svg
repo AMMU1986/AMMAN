@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="460" viewBox="0 0 680 460" font-family="Helvetica,Arial,sans-serif">
+<rect width="680" height="460" fill="white"/>
+<rect x="70" y="40" width="580" height="365" fill="none" stroke="#333" stroke-width="1.2"/>
+<line x1="70.0" y1="40" x2="70.0" y2="405" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="70.0" y1="405" x2="70.0" y2="410" stroke="#333" stroke-width="1"/>
+<text x="70.0" y="423" font-size="11" text-anchor="middle" fill="#222">0.002</text>
+<line x1="166.7" y1="40" x2="166.7" y2="405" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="166.7" y1="405" x2="166.7" y2="410" stroke="#333" stroke-width="1"/>
+<text x="166.7" y="423" font-size="11" text-anchor="middle" fill="#222">0.003</text>
+<line x1="263.3" y1="40" x2="263.3" y2="405" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="263.3" y1="405" x2="263.3" y2="410" stroke="#333" stroke-width="1"/>
+<text x="263.3" y="423" font-size="11" text-anchor="middle" fill="#222">0.004</text>
+<line x1="360.0" y1="40" x2="360.0" y2="405" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="360.0" y1="405" x2="360.0" y2="410" stroke="#333" stroke-width="1"/>
+<text x="360.0" y="423" font-size="11" text-anchor="middle" fill="#222">0.005</text>
+<line x1="456.7" y1="40" x2="456.7" y2="405" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="456.7" y1="405" x2="456.7" y2="410" stroke="#333" stroke-width="1"/>
+<text x="456.7" y="423" font-size="11" text-anchor="middle" fill="#222">0.007</text>
+<line x1="553.3" y1="40" x2="553.3" y2="405" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="553.3" y1="405" x2="553.3" y2="410" stroke="#333" stroke-width="1"/>
+<text x="553.3" y="423" font-size="11" text-anchor="middle" fill="#222">0.008</text>
+<line x1="650.0" y1="40" x2="650.0" y2="405" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="650.0" y1="405" x2="650.0" y2="410" stroke="#333" stroke-width="1"/>
+<text x="650.0" y="423" font-size="11" text-anchor="middle" fill="#222">0.009</text>
+<line x1="70" y1="405.0" x2="650" y2="405.0" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="65" y1="405.0" x2="70" y2="405.0" stroke="#333" stroke-width="1"/>
+<text x="61" y="409.0" font-size="11" text-anchor="end" fill="#222">0</text>
+<line x1="70" y1="344.2" x2="650" y2="344.2" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="65" y1="344.2" x2="70" y2="344.2" stroke="#333" stroke-width="1"/>
+<text x="61" y="348.2" font-size="11" text-anchor="end" fill="#222">0.00183</text>
+<line x1="70" y1="283.3" x2="650" y2="283.3" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="65" y1="283.3" x2="70" y2="283.3" stroke="#333" stroke-width="1"/>
+<text x="61" y="287.3" font-size="11" text-anchor="end" fill="#222">0.00367</text>
+<line x1="70" y1="222.5" x2="650" y2="222.5" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="65" y1="222.5" x2="70" y2="222.5" stroke="#333" stroke-width="1"/>
+<text x="61" y="226.5" font-size="11" text-anchor="end" fill="#222">0.0055</text>
+<line x1="70" y1="161.7" x2="650" y2="161.7" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="65" y1="161.7" x2="70" y2="161.7" stroke="#333" stroke-width="1"/>
+<text x="61" y="165.7" font-size="11" text-anchor="end" fill="#222">0.00733</text>
+<line x1="70" y1="100.8" x2="650" y2="100.8" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="65" y1="100.8" x2="70" y2="100.8" stroke="#333" stroke-width="1"/>
+<text x="61" y="104.8" font-size="11" text-anchor="end" fill="#222">0.00917</text>
+<line x1="70" y1="40.0" x2="650" y2="40.0" stroke="#e6e6e6" stroke-width="0.8"/>
+<line x1="65" y1="40.0" x2="70" y2="40.0" stroke="#333" stroke-width="1"/>
+<text x="61" y="44.0" font-size="11" text-anchor="end" fill="#222">0.011</text>
+<path d="M70.0,344.7 L111.4,329.6 L152.9,314.5 L194.3,299.4 L235.7,284.3 L277.1,269.3 L318.6,254.2 L360.0,239.1 L401.4,224.0 L442.9,208.9 L484.3,193.8 L525.7,178.8 L567.1,163.7 L608.6,148.6 L650.0,133.5" fill="none" stroke="#d62728" stroke-width="2"/>
+<path d="M70.0,370.1 L111.4,361.3 L152.9,352.6 L194.3,343.9 L235.7,335.1 L277.1,326.4 L318.6,317.7 L360.0,308.9 L401.4,300.2 L442.9,291.5 L484.3,282.8 L525.7,274.0 L567.1,265.3 L608.6,256.6 L650.0,247.8" fill="none" stroke="#1f77b4" stroke-width="2"/>
+<path d="M70.0,-262.8 L111.4,-341.6 L152.9,-412.8 L194.3,-478.4 L235.7,-539.4 L277.1,-596.7 L318.6,-650.8 L360.0,-702.4 L401.4,-751.6 L442.9,-798.8 L484.3,-844.3 L525.7,-888.1 L567.1,-930.5 L608.6,-971.6 L650.0,-1011.6" fill="none" stroke="#000000" stroke-width="2"/>
+<text x="360" y="446" font-size="13" text-anchor="middle" fill="#111">t</text>
+<text x="18" y="222" font-size="13" text-anchor="middle" fill="#111" transform="rotate(-90 18 222)">r_front</text>
+<text x="360" y="24" font-size="14" text-anchor="middle" fill="#111" font-weight="bold">Wavefront position vs time: finite vs infinite speed</text>
+<rect x="482" y="40" width="158" height="62" fill="white" stroke="#bbb"/>
+<line x1="490" y1="50" x2="514" y2="50" stroke="#d62728" stroke-width="2.4"/>
+<text x="520" y="54" font-size="11" fill="#222">FS-MGL elastic front  r=t/a81</text>
+<line x1="490" y1="68" x2="514" y2="68" stroke="#1f77b4" stroke-width="2.4"/>
+<text x="520" y="72" font-size="11" fill="#222">FS-MGL thermal front  r=t/a61</text>
+<line x1="490" y1="86" x2="514" y2="86" stroke="#000000" stroke-width="2.4"/>
+<text x="520" y="90" font-size="11" fill="#222">MGL diffusive reach (unbounded)</text>
+</svg>

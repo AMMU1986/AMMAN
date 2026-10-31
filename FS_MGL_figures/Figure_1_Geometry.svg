@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="460" viewBox="0 0 680 460" font-family="Helvetica,Arial,sans-serif">
+<rect width="680" height="460" fill="white"/>
+<polygon points="140,330 520,330 600,250 220,250" fill="#d9d9d9" stroke="#555" stroke-width="1.3"/>
+<polygon points="140,330 520,330 520,360 140,360" fill="#bdbdbd" stroke="#555" stroke-width="1.3"/>
+<polygon points="520,330 600,250 600,280 520,360" fill="#a8a8a8" stroke="#555" stroke-width="1.3"/>
+<ellipse cx="320" cy="295" rx="80" ry="24" fill="none" stroke="#444" stroke-dasharray="5,4" stroke-width="1.2"/>
+<line x1="320" y1="90" x2="320" y2="300" stroke="#b22222" stroke-width="2.6"/>
+<polygon points="315,96 325,96 320,80" fill="#b22222"/>
+<text x="328" y="92" font-size="13" fill="#b22222" font-weight="bold">z (line source)</text>
+<line x1="320" y1="295" x2="430" y2="268" stroke="#1f77b4" stroke-width="2"/>
+<polygon points="430,268 418,266 420,278" fill="#1f77b4"/>
+<text x="382" y="275" font-size="13" fill="#1f77b4">r</text>
+<line x1="320" y1="295" x2="470" y2="330" stroke="#333" stroke-width="1"/>
+<text x="475" y="334" font-size="12" fill="#333">x</text>
+<line x1="320" y1="295" x2="170" y2="330" stroke="#333" stroke-width="1"/>
+<text x="155" y="334" font-size="12" fill="#333">y</text>
+<text x="330" y="150" font-size="13" fill="#111">Q = (Q&#8320;/2&#960;r) &#948;(r) H(t)</text>
+<text x="420" y="360" font-size="12" fill="#111" font-style="italic">(&#952;, &#963;rr, &#963;&#966;&#966;) &#8594; 0 as r &#8594; &#8734;</text>
+<text x="360" y="28" font-size="14" text-anchor="middle" fill="#111" font-weight="bold">Infinite isotropic medium with a continuous line heat source</text>
+</svg>
