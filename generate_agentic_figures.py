@@ -1,214 +1,183 @@
 #!/usr/bin/env python3
 """
-Generate 3 figure images (PNG) for the chapter
-"Agentic AI and Autonomous Systems".
+Figures for the chapter "Agentic AI and Autonomous Systems" (written as code).
 
-Reuses the pure-standard-library PNGCanvas toolkit from generate_figures.py
-so it runs without any third-party dependencies in the sandbox.
+    python3 generate_agentic_figures.py
 
-Figures:
-  Figure 1 - Evolutionary trajectory: rule-based -> ML -> generative -> agentic
-  Figure 2 - Reference architecture of an autonomous AI agent
-  Figure 3 - Layered interoperability framework for heterogeneous multi-agent
-             collaboration
+Figure 1 - Evolutionary trajectory: rule-based -> ML -> generative -> agentic AI
+Figure 2 - Reference architecture of an autonomous AI agent
+Figure 3 - Layered interoperability framework for heterogeneous multi-agent systems
 """
-
 import os
-import math
+import sys
 
-from generate_figures import (
-    PNGCanvas,
-    DARK_BLUE, MED_BLUE, LIGHT_BLUE, PALE_BLUE,
-    DARK_GREEN, MED_GREEN, LIGHT_GREEN,
-    ORANGE, LIGHT_ORANGE,
-    RED, LIGHT_RED,
-    PURPLE, LIGHT_PURPLE,
-    GOLD, LIGHT_GOLD,
-    GRAY, LIGHT_GRAY,
-    BLACK, WHITE,
-)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'tools'))
+from svgfig import Figure, col  # noqa: E402
 
-OUTPUT_DIR = '/projects/sandbox/AMMAN/agentic_figures'
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'agentic_figures')
 
 
-def _wrapped_lines(canvas, cx, y, lines, color, scale=1, line_h=12):
-    """Draw a list of centered text lines starting at y."""
-    for i, ln in enumerate(lines):
-        canvas.text_c(cx, y + i * line_h, ln, color, scale)
+def bullets(items, size=15, lh=1.65):
+    return ('<div style="text-align:left;font-size:%spx;line-height:%s">' % (size, lh) +
+            ''.join('<div>• %s</div>' % b for b in items) + '</div>')
 
 
-def gen_fig1():
-    """Figure 1: Evolutionary trajectory of AI toward agentic systems."""
-    c = PNGCanvas(760, 430)
-    c.text_c(380, 10, "Evolution from Rule-Based Systems to Agentic AI", BLACK, 2)
-
+def fig1():
+    f = Figure(1500, 800, title='Evolution of Artificial Intelligence toward Agentic Systems',
+               subtitle='From hand-coded rules to goal-directed agents that plan, use tools and act')
     stages = [
-        ("Rule-Based", "Expert Systems", "1970s-1980s", DARK_BLUE, PALE_BLUE,
-         ["Hand-coded", "if-then rules", "Narrow, brittle"]),
-        ("Machine", "Learning", "1990s-2010s", MED_BLUE, LIGHT_BLUE,
-         ["Learned", "patterns", "Reactive"]),
-        ("Generative", "AI", "2018-2022", MED_GREEN, LIGHT_GREEN,
-         ["Foundation", "models", "Single-turn"]),
-        ("Agentic", "AI", "2023-present", ORANGE, LIGHT_ORANGE,
-         ["Goal-directed", "Plans & acts", "Autonomous"]),
+        ('Rule-Based<br>Expert Systems', '1970s – 1980s', 'blue',
+         ['Hand-coded if–then rules', 'Symbolic inference engines', 'Narrow and brittle'], 'Reasoning'),
+        ('Statistical<br>Machine Learning', '1990s – 2010s', 'teal',
+         ['Patterns learned from data', 'Deep neural networks', 'Reactive prediction'], '+ Perception'),
+        ('Generative AI &<br>Foundation Models', '2018 – 2022', 'violet',
+         ['Large pre-trained models', 'Text, image and code generation', 'Mostly single-turn'], '+ Generation'),
+        ('Agentic AI', '2023 – present', 'orange',
+         ['Goal-directed planning', 'Memory and tool use', 'Multi-step autonomous action'], '+ Planning & Action'),
     ]
-
-    bw, bh = 150, 90
-    top = 90
-    gap = 40
-    xs = []
-    for i, (l1, l2, era, col, fill, bullets) in enumerate(stages):
-        bx = 30 + i * (bw + gap)
-        xs.append((bx, bx + bw))
-        c.rect(bx, top, bx + bw, top + bh, col, fill)
-        c.text_c(bx + bw // 2, top + 12, l1, BLACK, 1)
-        c.text_c(bx + bw // 2, top + 26, l2, BLACK, 1)
-        c.text_c(bx + bw // 2, top + 44, era, GRAY, 1)
-        for j, b in enumerate(bullets):
-            c.text_c(bx + bw // 2, top + 58 + j * 11, b, BLACK, 1)
-        if i > 0:
-            px = xs[i - 1][1]
-            c.arrow(px + 4, top + bh // 2, bx - 4, top + bh // 2, GRAY, 3, 10)
-
-    # Rising-autonomy indicator arrow spanning the bottom
-    ay = top + bh + 70
-    c.arrow(40, ay, 720, ay - 55, DARK_GREEN, 3, 12)
-    c.text(300, ay - 20, "Increasing autonomy and scope", DARK_GREEN, 1)
-
-    # Capability annotations under each stage
-    caps = ["Reasoning", "Perception", "+ Generation", "+ Planning & Action"]
-    for i, cap in enumerate(caps):
-        bx = 30 + i * (bw + gap)
-        c.text_c(bx + bw // 2, top + bh + 14, cap, MED_BLUE, 1)
-
-    c.text(40, 410, "Figure 1: Evolutionary trajectory of AI toward autonomous agentic systems", BLACK, 1)
-    c.save(os.path.join(OUTPUT_DIR, 'Figure_1_Evolution_of_Agentic_AI.png'))
-    print("  Figure_1_Evolution_of_Agentic_AI.png done")
+    ramp = f.lingrad('#DBEAFE', '#FED7AA', horizontal=True)
+    f.polygon([(60, 640), (1440, 640), (1440, 200), (60, 520)], fill=ramp, opacity=0.6)
+    bw, bh, gap, x0 = 300, 255, 50, 75
+    tops = [330, 280, 230, 180]
+    for i, (name, era, c, bl, cap) in enumerate(stages):
+        x, y = x0 + i * (bw + gap), tops[i]
+        f.card(x, y, bw, bh, name, bullets(bl), color=c, title_size=19, header_h=78, valign='top')
+        f.pill(x + bw / 2, y + bh - 34, era, color=c, size=14)
+        f.pill(x + bw / 2, y - 24, cap, color=c, size=14, solid=False)
+        if i:
+            f.arrow(x - gap + 8, y + bh / 2 + 45, x - 8, y + bh / 2 + 20, color=c, sw=5)
+        f.text(x + bw / 2, 680, ['Level 1 · Assistive', 'Level 2 · Predictive', 'Level 3 · Generative',
+                                 'Level 4 · Autonomous'][i], size=16, weight=700, color=col(c, 2))
+    g = f.lingrad(col('blue'), col('orange'), horizontal=True)
+    f.path('M90,715 L1395,715', stroke=None)
+    f.rect(90, 707, 1300, 16, fill=g, rx=8, shadow='softshadow')
+    f.polygon([(1385, 695), (1420, 715), (1385, 735)], fill=col('orange'))
+    f.text(750, 752, 'Increasing autonomy, scope of action and need for governance', size=15.5,
+           weight=700, color='#334155')
+    f.footnote('Each stage subsumes the capabilities of the previous one; agentic systems add persistent goals, '
+               'planning, memory and the ability to act on their environment.', y=785)
+    f.save(os.path.join(OUT, 'Figure_1_Evolution_of_Agentic_AI.png'))
 
 
-def gen_fig2():
-    """Figure 2: Reference architecture of an autonomous AI agent."""
-    c = PNGCanvas(760, 470)
-    c.text_c(380, 10, "Reference Architecture of an Autonomous AI Agent", BLACK, 2)
+def fig2():
+    f = Figure(1500, 1010, title='Reference Architecture of an Autonomous AI Agent',
+               subtitle='Perception → memory-augmented reasoning → tool use → action, closed by environmental feedback')
+    f.soft(30, 100, 1440, 860, None, color='sky', dash='12,8', shadow=False, rx=30)
+    f.pill(215, 124, 'ENVIRONMENT  ·  digital and/or physical', color='sky', size=14)
+    # agent boundary
+    f.rect(290, 165, 920, 720, fill=f.lingrad('#FFFFFF', '#F5F3FF'), stroke=col('indigo'), sw=2.5, rx=28)
+    f.pill(750, 165, 'AUTONOMOUS AGENT', color='indigo', size=15)
+    # inputs / effects
+    ins = [('User goals &amp; instructions', 'blue'), ('Sensors &amp; telemetry', 'cyan'),
+           ('Data streams &amp; documents', 'teal'), ('Messages from other agents', 'violet')]
+    outs = [('Digital systems &amp; APIs', 'orange'), ('Physical actuators &amp; robots', 'red'),
+            ('Other agents', 'violet'), ('Humans (reports, requests)', 'pink')]
+    f.text(155, 300, 'INPUTS', size=15, weight=800, color=col('blue', 2), spacing=2)
+    f.text(1345, 300, 'EFFECTS', size=15, weight=800, color=col('orange', 2), spacing=2)
+    for i, (s, c) in enumerate(ins):
+        y = 320 + i * 95
+        f.soft(55, y, 200, 70, s, color=c, size=14)
+        f.arrow(257, y + 35, 320, 495, color=c, sw=2.2, dash='1,0')
+    for i, (s, c) in enumerate(outs):
+        y = 320 + i * 95
+        f.soft(1245, y, 200, 70, s, color=c, size=14)
+    # perception
+    f.card(320, 410, 240, 170, 'PERCEPTION', 'Parse, ground and filter observations into a structured state',
+           color='blue', title_size=17, body_size=14.5)
+    # memory
+    f.card(590, 205, 320, 130, 'MEMORY', 'Working context · episodic log · long-term vector store with retrieval',
+           color='violet', title_size=17, body_size=14.5)
+    # tools
+    f.card(940, 410, 240, 170, 'TOOLS & APIs', 'Search, code execution, databases, enterprise systems, actuators',
+           color='orange', title_size=17, body_size=14.5)
+    # action
+    f.card(590, 650, 320, 125, 'ACTION', 'Execute selected step and change the state of the environment',
+           color='red', title_size=17, body_size=14.5)
+    # core
+    cx, cy = 750, 495
+    f.circle(cx, cy, 128, fill=f.radgrad('#6EE7B7', '#047857'), shadow=True)
+    f.circle(cx, cy, 108, fill='none', stroke='#FFFFFF', sw=2, opacity=0.7)
+    f.html(cx - 105, cy - 90, 210, 180,
+           '<div style="color:#fff"><div style="font-size:20px;font-weight:800">REASONING CORE</div>'
+           '<div style="font-size:14.5px;margin-top:4px">LLM-based planner</div>'
+           '<div style="font-size:13.5px;margin-top:8px">Reason → Plan → Act<br>→ Observe → Reflect</div></div>')
+    # internal arrows
+    f.arrow(562, 495, 618, 495, color='blue', sw=4, label='state', label_dy=-14)
+    f.arrow(720, 337, 720, 368, color='violet', sw=4)
+    f.arrow(780, 368, 780, 337, color='violet', sw=4)
+    f.text(855, 360, 'read / write', size=13.5, weight=700, color=col('violet', 2))
+    f.arrow(880, 470, 938, 470, color='orange', sw=4, label='invoke', label_dy=-14)
+    f.arrow(938, 525, 880, 525, color='slate', sw=3, label='results', label_dy=26)
+    f.arrow(750, 625, 750, 648, color='red', sw=4)
+    # action -> effects
+    f.path('M912,712 L1226,712', stroke='red', sw=3.2)
+    f.path('M1226,355 L1226,712', stroke='red', sw=3.2)
+    for i in range(4):
+        f.arrow(1226, 355 + i * 95, 1241, 355 + i * 95, color='red', sw=3.2)
+    f.circle(1226, 712, 5, fill=col('red'))
+    # guardrails bar
+    g = f.lingrad(col('amber'), col('rose'), horizontal=True)
+    f.rect(320, 800, 860, 58, fill=g, rx=14, shadow='softshadow')
+    f.html(320, 800, 860, 58, '🛡 &nbsp;Guardrails &amp; human oversight: permissions · policy checks · '
+           'audit logging · escalation to a human', size=15.5, color='#FFFFFF', weight=700)
+    # feedback loop
+    f.path('M1345,705 C1345,935 1200,935 750,935 C300,935 155,935 155,705', stroke='emerald', sw=4,
+           arrow=True, dash='12,7')
+    f.pill(750, 935, 'Observation & feedback loop: outcomes become new inputs', color='emerald', size=14)
+    f.save(os.path.join(OUT, 'Figure_2_Agent_Architecture.png'))
 
-    # Central reasoning core
-    core_x1, core_y1, core_x2, core_y2 = 300, 150, 470, 250
-    c.rect(core_x1, core_y1, core_x2, core_y2, DARK_GREEN, LIGHT_GREEN)
-    c.text_c(385, 170, "REASONING CORE", BLACK, 1)
-    c.text_c(385, 190, "LLM Planner", BLACK, 1)
-    c.text_c(385, 210, "Reason -> Plan", GRAY, 1)
-    c.text_c(385, 226, "-> Act -> Observe", GRAY, 1)
 
-    # Perception (left, in)
-    c.rect(40, 160, 190, 230, MED_BLUE, LIGHT_BLUE)
-    c.text_c(115, 180, "PERCEPTION", BLACK, 1)
-    c.text_c(115, 198, "Sensors,", BLACK, 1)
-    c.text_c(115, 212, "data, inputs", BLACK, 1)
-    c.arrow(190, 195, core_x1 - 4, 185, MED_BLUE, 3, 10)
-    c.text(210, 165, "percepts", MED_BLUE, 1)
-
-    # Memory (top)
-    c.rect(300, 55, 470, 120, PURPLE, LIGHT_PURPLE)
-    c.text_c(385, 68, "MEMORY", BLACK, 1)
-    c.text_c(385, 84, "Short-term / Working", BLACK, 1)
-    c.text_c(385, 98, "Long-term + Retrieval", BLACK, 1)
-    c.arrow(385, 120, 385, core_y1 - 4, PURPLE, 3, 10)
-    c.arrow(360, core_y1 - 4, 360, 120, PURPLE, 2, 8)
-    c.text(475, 88, "read / write", PURPLE, 1)
-
-    # Tools & APIs (right)
-    c.rect(580, 150, 730, 250, ORANGE, LIGHT_ORANGE)
-    c.text_c(655, 168, "TOOLS & APIs", BLACK, 1)
-    c.text_c(655, 186, "Code, search,", BLACK, 1)
-    c.text_c(655, 200, "databases,", BLACK, 1)
-    c.text_c(655, 214, "actuators", BLACK, 1)
-    c.arrow(core_x2 + 4, 190, 580 - 4, 190, ORANGE, 3, 10)
-    c.text(490, 172, "invoke", ORANGE, 1)
-    c.arrow(580 - 4, 215, core_x2 + 4, 215, GRAY, 2, 8)
-    c.text(490, 222, "results", GRAY, 1)
-
-    # Action (bottom)
-    c.rect(300, 300, 470, 370, RED, LIGHT_RED)
-    c.text_c(385, 318, "ACTION", BLACK, 1)
-    c.text_c(385, 336, "Effect change in", BLACK, 1)
-    c.text_c(385, 350, "the environment", BLACK, 1)
-    c.arrow(385, core_y2 + 4, 385, 300 - 4, RED, 3, 10)
-    c.text(395, 270, "act", RED, 1)
-
-    # Environment enclosure
-    c.rect(30, 400, 730, 440, DARK_BLUE, PALE_BLUE)
-    c.text_c(380, 415, "ENVIRONMENT (digital and/or physical)", BLACK, 1)
-    # feedback loop from action & environment back to perception
-    c.line(300, 335, 115, 335, GRAY, 1)
-    c.line(115, 335, 115, 230, GRAY, 1)
-    c.arrow(115, 230, 115, 232, GRAY, 1, 6)
-    c.text(150, 322, "feedback loop", GRAY, 1)
-
-    c.text(40, 458, "Figure 2: Core components - perception, memory, reasoning, tools, and action", BLACK, 1)
-    c.save(os.path.join(OUTPUT_DIR, 'Figure_2_Agent_Architecture.png'))
-    print("  Figure_2_Agent_Architecture.png done")
-
-
-def gen_fig3():
-    """Figure 3: Layered interoperability framework for multi-agent systems."""
-    c = PNGCanvas(760, 470)
-    c.text_c(380, 10, "Layered Interoperability for Heterogeneous Multi-Agent Systems", BLACK, 2)
-
+def fig3():
+    f = Figure(1500, 1000, title='Layered Interoperability for Heterogeneous Multi-Agent Systems',
+               subtitle='Agents built by different organisations on different models collaborate only if every layer aligns')
     layers = [
-        ("Coordination / Policy Layer", "Norms, negotiation, workflow orchestration", PURPLE, LIGHT_PURPLE),
-        ("Semantic Layer", "Shared ontologies, meaning, intent", DARK_GREEN, LIGHT_GREEN),
-        ("Message Format Layer", "Communication acts, structured schemas", ORANGE, LIGHT_ORANGE),
-        ("Transport Layer", "Networks, protocols, routing", MED_BLUE, LIGHT_BLUE),
+        ('Coordination & Policy', 'purple', 'Roles, norms, negotiation, task allocation, workflow orchestration',
+         'contract-net · auctions · voting · shared plans'),
+        ('Semantic', 'emerald', 'Shared ontologies, vocabularies and intent, so that messages mean the same thing',
+         'ontologies · knowledge graphs · capability descriptions'),
+        ('Message Format', 'orange', 'Communicative acts and structured, validated schemas',
+         'request · inform · propose · JSON schema'),
+        ('Transport', 'blue', 'Networks, protocols, addressing, security and delivery guarantees',
+         'HTTP/gRPC · message queues · pub/sub · TLS'),
     ]
-
-    lx1, lx2 = 120, 640
-    top = 55
-    lh = 58
-    gap = 12
-    for i, (title, sub, col, fill) in enumerate(layers):
-        y1 = top + i * (lh + gap)
-        y2 = y1 + lh
-        c.rect(lx1, y1, lx2, y2, col, fill)
-        c.text_c((lx1 + lx2) // 2, y1 + 16, title, BLACK, 1)
-        c.text_c((lx1 + lx2) // 2, y1 + 34, sub, GRAY, 1)
-        if i < len(layers) - 1:
-            midx = (lx1 + lx2) // 2
-            c.arrow(midx, y2 + gap, midx, y2 + 2, GRAY, 2, 7)
-            c.arrow(midx + 40, y2 + 2, midx + 40, y2 + gap, GRAY, 2, 7)
-
-    # Two heterogeneous agents on either side communicating through the stack
-    c.rect(20, 150, 105, 250, DARK_BLUE, PALE_BLUE)
-    _wrapped_lines(c, 62, 175, ["Agent A", "Org 1", "Model X"], BLACK, 1, 16)
-    c.rect(655, 150, 740, 250, RED, LIGHT_RED)
-    _wrapped_lines(c, 697, 175, ["Agent B", "Org 2", "Model Y"], BLACK, 1, 16)
-
-    # connective arrows into the stack
-    c.arrow(105, 200, lx1 - 4, 200, GRAY, 2, 8)
-    c.arrow(lx2 + 4, 200, 655 - 4, 200, GRAY, 2, 8)
-
-    # Note box
-    c.rect(120, 320, 640, 390, GOLD, LIGHT_GOLD)
-    c.text_c(380, 335, "Each layer must align for correct collaboration", BLACK, 1)
-    c.text_c(380, 355, "Misaligned semantics -> messages valid but misunderstood", BLACK, 1)
-    c.text_c(380, 372, "-> coordination failure", GRAY, 1)
-
-    c.text(40, 458, "Figure 3: Layered interoperability framework for heterogeneous multi-agent collaboration", BLACK, 1)
-    c.save(os.path.join(OUTPUT_DIR, 'Figure_3_Interoperability_Framework.png'))
-    print("  Figure_3_Interoperability_Framework.png done")
-
-
-def main():
-    os.makedirs(OUTPUT_DIR, exist_ok=True)
-    print("Generating agentic AI chapter figures...")
-    gen_fig1()
-    gen_fig2()
-    gen_fig3()
-    print(f"\nAll figures saved to {OUTPUT_DIR}/")
-    for f in sorted(os.listdir(OUTPUT_DIR)):
-        if f.endswith('.png'):
-            sz = os.path.getsize(os.path.join(OUTPUT_DIR, f))
-            print(f"  {f}: {sz / 1024:.1f} KB")
+    top, lh, gap = 205, 122, 30
+    ax, bx, sw_ = 70, 1150, 280
+    f.tile(ax, 115, sw_, 70, '<b>Agent A</b><br><span style="font-size:13px">Organisation 1 · Model X</span>',
+           color='indigo', size=17)
+    f.tile(bx, 115, sw_, 70, '<b>Agent B</b><br><span style="font-size:13px">Organisation 2 · Model Y</span>',
+           color='rose', size=17)
+    f.text(750, 145, 'Peer protocols: each layer talks to its counterpart', size=17, weight=700, color='#334155')
+    f.text(750, 172, 'and relies on the layer beneath it', size=15, color='#64748B', italic=True)
+    for i, (name, c, desc, ex) in enumerate(layers):
+        y = top + i * (lh + gap)
+        for x in (ax, bx):
+            f.tile(x, y, sw_, lh, '<div style="font-size:19px;font-weight:800">%s</div>'
+                   '<div style="font-size:13px;font-weight:500;margin-top:6px;opacity:.95">Layer %d</div>'
+                   % (name.replace('&', '&amp;'), 4 - i), color=c)
+        f.soft(400, y + 10, 700, lh - 20,
+               '<div style="font-size:15.5px;font-weight:700">%s</div>'
+               '<div style="font-size:13.5px;font-weight:500;margin-top:8px;font-style:italic">e.g. %s</div>'
+               % (desc, ex), color=c, shadow=False)
+        f.arrow(ax + sw_ + 4, y + lh / 2, 398, y + lh / 2, color=c, sw=3, dash='8,6')
+        f.arrow(1102, y + lh / 2, bx - 4, y + lh / 2, color=c, sw=3, dash='8,6')
+        if i < 3:
+            for x in (ax, bx):
+                f.arrow(x + sw_ / 2, y + lh + 3, x + sw_ / 2, y + lh + gap - 3, color='slate', sw=3, both=True)
+    yb = top + 4 * (lh + gap) - 4
+    g = f.lingrad(col('blue'), col('cyan'), horizontal=True)
+    f.rect(ax, yb, bx + sw_ - ax, 42, fill=g, rx=12, shadow='softshadow')
+    f.text(750, yb + 27, 'Shared network infrastructure (physical exchange of bytes)', size=15.5, weight=700,
+           color='#FFFFFF')
+    f.soft(70, yb + 62, 1360, 92,
+           '<div><b>Peer-to-peer alignment is required at every layer.</b> A message can be delivered '
+           '(transport) and parsed (format) yet still be misunderstood (semantics) or conflict with the '
+           'other agent\'s commitments (coordination), producing silent coordination failures.</div>',
+           color='amber', size=15, weight=500, align='left')
+    f.save(os.path.join(OUT, 'Figure_3_Interoperability_Framework.png'))
 
 
 if __name__ == '__main__':
-    main()
+    os.makedirs(OUT, exist_ok=True)
+    fig1()
+    fig2()
+    fig3()
