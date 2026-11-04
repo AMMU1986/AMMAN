@@ -59,8 +59,9 @@ Table 1. Intersectional Dimensions of Climate Vulnerability Across Social Axes
 
 The interaction of these axes produces what may be described as a matrix of compounded disadvantage, in which the effects of multiple marginalizations are not merely stacked but multiplied. Figure 1 conceptualizes this matrix, depicting how overlapping identities converge on individuals and households to intensify climate risk while simultaneously constraining the pathways available for adaptation. The figure emphasizes that the individuals located at the densest intersection of subordinated categories are typically the least visible to conventional planning instruments and the least served by mainstream interventions [7].
 
-[Insert Figure 1 here]
-Figure 1. The Intersectional Matrix of Compounded Climate Vulnerability
+![Figure 1](intersectionality_figures/Figure_1_Intersectional_Matrix.png)
+
+**Figure 1.** The Intersectional Matrix of Compounded Climate Vulnerability
 
 This conceptualization carries a critical methodological implication. Because compounded disadvantage is produced relationally, it cannot be captured by counting the number of disadvantaged attributes a person possesses; it must instead be understood through attention to the specific mechanisms by which one form of subordination amplifies another [11]. The disaggregated pattern summarized in Table 1 is therefore best read not as a checklist of additive risks but as a set of interacting pathways, any pair of which may combine to generate a distinctive and often severe form of disadvantage that neither axis would produce in isolation [13]. A woman's restricted mobility, for instance, interacts with her caste-based exclusion from communal water sources to produce a distinctive burden during drought that neither gender nor caste alone would generate [14]. Recognizing such mechanisms is the analytical work that an intersectional approach demands and that reductive vulnerability metrics cannot perform.
 
@@ -95,8 +96,9 @@ An intersectional analysis of gender resists treating women as a monolithic cate
 
 The comparative profiles in Figure 2 also carry a cautionary lesson for policy. Interventions that target "women" as an undifferentiated category tend, in practice, to benefit those women who are already relatively well positioned—literate, mobile, connected to institutions, and holding some claim to land—while bypassing those whose intersecting subordinations place them furthest from resources and voice [7]. Effective targeting therefore requires the kind of disaggregated analysis that Figure 2 exemplifies, attending to the specific configuration of identities and constraints that defines each group's vulnerability rather than assuming a uniform female experience [17]. This insight recurs throughout the empirical material examined in the next section.
 
-[Insert Figure 2 here]
-Figure 2. Comparative Vulnerability Profiles of Differently Positioned Women
+![Figure 2](intersectionality_figures/Figure_2_Vulnerability_Profiles.png)
+
+**Figure 2.** Comparative Vulnerability Profiles of Differently Positioned Women
 
 ## 4. Empirical Case Studies from the Global South
 
@@ -149,8 +151,9 @@ Community resilience so understood rests on several interdependent foundations: 
 
 Read through an intersectional lens, the pillars set out in Figure 3 are not neutral technical requirements but arenas of contestation. Whether livelihoods can be diversified, whether collective institutions are inclusive, and whose voice carries weight in the adaptation cycle all depend on the distribution of power along the axes of gender, caste, class, and indigeneity examined earlier [10]. A resilience-building process that leaves these power relations untouched may strengthen a community in aggregate while leaving its most marginalized members as exposed as before. The community-based adaptation cycle depicted in Figure 3 therefore acquires its transformative potential only when the stages of assessment, planning, action, and learning are themselves made inclusive, deliberately drawing the knowledge and priorities of marginalized members into each iteration [32].
 
-[Insert Figure 3 here]
-Figure 3. Pillars of Community Resilience and the Community-Based Adaptation Cycle
+![Figure 3](intersectionality_figures/Figure_3_Resilience_Pillars_Cycle.png)
+
+**Figure 3.** Pillars of Community Resilience and the Community-Based Adaptation Cycle
 
 ### 5.2 Indigenous and Local Knowledge Systems
 
@@ -201,8 +204,9 @@ These insights have prompted calls to re-politicize the debate on gender and cli
 
 Feminist and decolonial frameworks contribute essential critical resources to the project of just climate governance. Feminist analyses insist on attending to the gendered division of labor, the politics of care, and the systematic devaluation of women's knowledge and work, while pressing for the redistribution of resources and the transformation of the institutions that perpetuate gender injustice [12]. Decolonial perspectives interrogate the historical and ongoing relations of domination—rooted in colonialism and extractivism—that produced contemporary patterns of vulnerability, and they center the self-determination, knowledge, and rights of indigenous and formerly colonized peoples [28]. Figure 4 presents an integrated framework for intersectional, community-centered climate action that synthesizes these commitments, linking analysis of compounded vulnerability to inclusive governance and transformative outcomes.
 
-[Insert Figure 4 here]
-Figure 4. An Integrated Framework for Intersectional, Community-Centered Climate Action
+![Figure 4](intersectionality_figures/Figure_4_Integrated_Framework.png)
+
+**Figure 4.** An Integrated Framework for Intersectional, Community-Centered Climate Action
 
 Together, these frameworks reframe climate action as an inherently political undertaking bound up with questions of justice, power, and rights [5]. They caution against the depoliticization of adaptation and insist that genuinely effective responses must address the structural conditions—unequal land ownership, exclusionary institutions, and the marginalization of subordinated knowledge—that render some populations chronically vulnerable [8]. In doing so, they connect the local practice of community resilience to the broader global agenda of climate justice [1].
 

@@ -90,21 +90,29 @@ Repeated-measures analysis demonstrated a significant change in knowledge scores
 
 **Medication-safety practice:** Improvement was also observed in reported medication-administration practices. The proportion of caregivers routinely checking the medication name and dose increased from 61.8% at baseline to 89.5% at 4 weeks and 85.4% at 3 months. Similarly, appropriate medication storage and maintenance of medication schedules improved following the intervention, mirroring the practice gains reported when caregiver counseling incorporates health-literacy strategies and standardized dosing support [6], as depicted in Figure 1.
 
-**Figure 1:** Changes in medication-safety practices among caregivers following AI-assisted education
+![Figure 1](medication_figures/Figure_1_Medication_Safety_Practices.png)
+
+**Figure 1.** Changes in medication-safety practices among caregivers following AI-assisted education
 
 **Adverse drug reaction and medication-error recognition:** Recognition of common medication-related problems improved following the intervention. At baseline, 72 (42.4%) caregivers correctly identified at least three important medication-related warning symptoms. This increased to 139 (85.8%) at 4 weeks and remained 126 (80.3%) at 3 months. Similarly, the proportion correctly identifying potential medication errors increased from 48.8% at baseline to 87.0% at 4 weeks and 82.8% at 3 months.
 
-**Figure 2:** ADR, medication-error and adherence knowledge over time from baseline to 3 months.
+![Figure 2](medication_figures/Figure_2_ADR_Error_Adherence_Knowledge.png)
+
+**Figure 2.** ADR, medication-error and adherence knowledge over time from baseline to 3 months.
 
 **Caregiver confidence and Knowledge retention:** Mean caregiver confidence regarding safe medication administration increased from 5.6 ± 1.8 at baseline to 8.1 ± 1.2 at 4 weeks and remained at 7.7 ± 1.4 at 3 months on a 10-point scale. The overall change across the three assessment points was statistically significant (P < 0.001).
 
 The mean knowledge gain immediately following the intervention was 26.8 percentage points. At 3 months, the mean gain relative to baseline remained 22.4 percentage points. Using the predefined retention calculation, approximately 83.6% of the initial knowledge gain was retained at 3 months. This indicated a moderate decline from the 4-week assessment but maintenance of substantially improved knowledge compared with baseline.
 
-**Figure 3:** Changes in Caregiver Confidence (3A) and Knowledge gain immediately after AI-assisted education and retention at 3 months (3B).
+![Figure 3](medication_figures/Figure_3_Confidence_and_Retention.png)
+
+**Figure 3.** Changes in Caregiver Confidence (3A) and Knowledge gain immediately after AI-assisted education and retention at 3 months (3B).
 
 **Predictors of knowledge improvement:** In exploratory multivariable analysis, higher baseline educational level, previous exposure to medication counseling, and lower baseline knowledge were associated with greater improvement in knowledge scores depicted in Figure 4.
 
-**Figure 4:** Predictors of improvement in medication-safety knowledge among caregivers
+![Figure 4](medication_figures/Figure_4_Predictors_of_Improvement.png)
+
+**Figure 4.** Predictors of improvement in medication-safety knowledge among caregivers
 
 ## Discussion
 

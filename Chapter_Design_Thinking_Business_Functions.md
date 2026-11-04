@@ -20,8 +20,9 @@ The historical trajectory of design thinking reveals three distinct phases of de
 
 The core process model of design thinking, as illustrated in Figure 1, encompasses five interconnected stages: empathize, define, ideate, prototype, and test [10]. Unlike linear problem-solving methodologies, design thinking operates through iterative cycles that allow practitioners to revisit earlier stages as new insights emerge. This iterative nature distinguishes design thinking from traditional business planning approaches and enables organizations to navigate uncertainty with greater agility [11]. The empathy stage requires deep engagement with stakeholders to understand their latent needs, while the define stage synthesizes research findings into actionable problem statements. Ideation generates diverse solution concepts, prototyping makes ideas tangible for evaluation, and testing validates solutions against real-world conditions.
 
-[Insert Figure 1 here]
-Figure 1. The Design Thinking Process Model: Five Stages of Human-Centered Innovation
+![Figure 1](design_thinking_figures/Figure_1_Design_Thinking_Process.png)
+
+**Figure 1.** The Design Thinking Process Model: Five Stages of Human-Centered Innovation
 
 
 Contemporary applications of design thinking in business contexts extend well beyond product development to encompass service design, organizational design, and strategic planning [12]. The methodology's emphasis on abductive reasoning—the logic of what might be—complements the deductive and inductive reasoning traditionally employed in business strategy [9]. This cognitive orientation enables organizations to envision new possibilities rather than merely optimizing existing solutions, fostering breakthrough innovation alongside incremental improvement. As organizations face increasing complexity, volatility, and disruption, design thinking provides a methodology for navigating ambiguity while maintaining focus on human needs and experiences [13].
@@ -79,8 +80,9 @@ The application of design thinking to customer experience management extends bey
 
 Figure 2 illustrates the design thinking-enabled customer experience framework, demonstrating how empathetic research informs experience strategy across multiple business functions. The iterative nature of design thinking ensures continuous refinement of customer experiences based on ongoing feedback and evolving needs. The framework presented in Figure 2 shows how marketing, operations, and technology functions collaborate through design thinking to deliver integrated customer experiences.
 
-[Insert Figure 2 here]
-Figure 2. Design Thinking-Enabled Customer Experience Framework: From Empathy to Integrated Experience Delivery
+![Figure 2](design_thinking_figures/Figure_2_Customer_Experience_Framework.png)
+
+**Figure 2.** Design Thinking-Enabled Customer Experience Framework: From Empathy to Integrated Experience Delivery
 
 Personalization represents another domain where design thinking is reshaping marketing practice. While traditional personalization relies on algorithmic segmentation and behavioral targeting, design thinking-informed personalization begins with deep understanding of individual contexts, motivations, and goals [28]. This approach enables organizations to move beyond demographic and behavioral segments to develop personas grounded in empathetic understanding, creating marketing communications and experiences that feel genuinely relevant rather than merely targeted.
 
@@ -171,8 +173,9 @@ Business model innovation—the process of creating, delivering, and capturing v
 
 Figure 3 presents the design thinking-enabled business model innovation process, illustrating how empathetic research, creative ideation, and iterative prototyping drive the development of sustainable business models. The process shown in Figure 3 emphasizes the continuous feedback loops between market validation and model refinement that characterize successful business model innovation.
 
-[Insert Figure 3 here]
-Figure 3. Design Thinking-Enabled Business Model Innovation Process
+![Figure 3](design_thinking_figures/Figure_3_Business_Model_Innovation.png)
+
+**Figure 3.** Design Thinking-Enabled Business Model Innovation Process
 
 
 ### 3.3 Digital Technologies, AI, and Data-Driven Design Thinking
@@ -205,8 +208,9 @@ Structural barriers include organizational silos, hierarchical decision-making p
 
 Figure 4 presents a framework for understanding and addressing implementation barriers across organizational dimensions. The diagnostic framework shown in Figure 4 enables organizations to assess their readiness for design thinking implementation and identify priority areas for capability development and cultural change.
 
-[Insert Figure 4 here]
-Figure 4. Organizational Readiness Framework for Design Thinking Implementation
+![Figure 4](design_thinking_figures/Figure_4_Organizational_Readiness.png)
+
+**Figure 4.** Organizational Readiness Framework for Design Thinking Implementation
 
 
 Resource constraints present practical challenges for design thinking implementation, particularly in organizations where short-term financial pressures compete with long-term innovation investments [46]. Design thinking requires investment in research, facilitation, prototyping, and testing—activities whose returns may not be immediately quantifiable through traditional financial metrics. Organizations must develop new metrics and evaluation frameworks that capture the value of design thinking investments, including measures of learning velocity, innovation pipeline quality, and stakeholder engagement.

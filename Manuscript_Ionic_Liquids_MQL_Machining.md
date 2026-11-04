@@ -42,6 +42,10 @@ This paper presents a comprehensive investigation combining experimental machini
 
 Interrupted orthogonal machining experiments were conducted on a CNC vertical machining centre (BFW Surya VF30 with FANUC control system) configured for peripheral down milling (side milling). The experimental setup is illustrated schematically in Fig. 1. Workpiece samples of plain medium carbon steel (C 0.55%, Si 0.24%, Mn 0.73%, Cr 0.27%, balance Fe) in annealed condition (190 BHN) were machined to dimensions of 48 mm × 14 mm × 6 mm. A side and face milling cutter of 50 mm diameter with a positive rake angle of 5° was employed with a single flat-faced, uncoated tungsten carbide insert (TPUN 160308, grade P30). A fresh cutting edge was used for each experiment to minimize effects of tool wear progression.
 
+![Fig. 1](manuscript_figures/Figure_1_Experimental_Setup.png)
+
+**Fig. 1.** Schematic diagram of the interrupted orthogonal machining (peripheral down milling) experimental setup showing workpiece, tool, dynamometer, thermocouple locations, and MQL nozzle positioning. The setup enables simultaneous measurement of cutting forces, temperatures, and surface roughness under controlled MWF application conditions.
+
 Two sets of cutting parameters were employed to evaluate ionic liquid performance under different machining severities:
 
 - **Light machining:** Cutting speed Vc = 150 m/min, feed per tooth f = 0.1 mm, radial depth of cut = 0.3 mm
@@ -74,6 +78,10 @@ For cutting temperature measurements, fine wire K-type (chromel–alumel) thermo
 ### 3.1 Heat Generation Zones in Machining
 
 In machining, most of the work done is converted into heat. Three principal heat generation zones exist (Fig. 2): (i) the primary shear zone, where incoming workpiece material is plastically deformed in a narrow shear band during chip formation; (ii) the secondary heat zone at the tool rake face near the cutting edge, where the chip slides over the rake surface generating frictional heat; and (iii) the tertiary heat zone formed by rubbing of the machined workpiece surface against the cutting tool's flank surface [3,30].
+
+![Fig. 2](manuscript_figures/Figure_2_FD_Model_Discretization.png)
+
+**Fig. 2.** (a) Heat generation zones in orthogonal machining showing primary shear zone, secondary zone at tool rake face, and tertiary zone at tool flank-workpiece interface. (b) Finite difference discretization of the workpiece domain (30 mm × 8 mm) showing boundary conditions: ambient temperature on left, right, and bottom boundaries; convective heat loss on top exposed surface; and moving heat source representing heat influx near the tool-workpiece contact zone. Thermocouple location is at 11 mm from left boundary and 3 mm below the top surface.
 
 Accurate estimation of heat generation in metal cutting is extremely arduous due to the complexity and non-linearity inherent in the process. Machining involves high strain and strain rate coupled with high temperature, which significantly alters local material properties of the workpiece and tool [4]. Analytical models based on the classic heat partition model by Blok [31] and friction slider model by Jaeger [32] assume steady-state conditions and uniform heat sources, making them inapplicable to intermittent cutting (milling) due to the inherent transient nature of the process [30]. Numerical models, while offering superior capabilities, require extensive computing resources and still demand specification of friction coefficients and heat partition ratios as input parameters [33,34].
 
@@ -140,6 +148,10 @@ The average tool rake face temperatures in the tool-chip contact zone estimated 
 
 The machining forces recorded under different MWF application conditions are presented in Fig. 3 for light and heavy machining at different cutting speeds. As shown in Fig. 3, the addition of ionic liquids to the base lubricants resulted in significant reductions in cutting forces under specific conditions.
 
+![Fig. 3](manuscript_figures/Figure_3_Machining_Forces.png)
+
+**Fig. 3.** Machining forces under different MWF application conditions: (a) Light machining at Vc = 150 m/min; (b) Light machining at Vc = 250 m/min; (c) Heavy machining at Vc = 150 m/min; (d) Heavy machining at Vc = 250 m/min. Results show that ionic liquid additives reduce cutting forces, with the magnitude of reduction dependent on cutting speed and whether temperatures exceed lubricant decomposition thresholds (Table 1).
+
 In light machining at low cutting speed (150 m/min), the peak cutting forces for MQL machining with oil containing BMIM PF6 were approximately 28% lower than those in dry machining. Ionic liquids BMIM PF6 and BMIM BF4 consistently produced lower machining forces compared to dry cutting, flood cooling, and MQL with neat vegetable oil. However, BMIM TFSI showed cutting forces in the same range as neat vegetable oil, attributable to its similar viscosity and density properties (Table 1).
 
 The cutting force results presented in Fig. 3 reveal an important speed-dependent behavior. At low cutting speed under heavy machining conditions, machining forces were lower for IL1 and PEG+IL1. Since temperatures in this regime (discussed in Section 4.4) were above the fluid's decomposition temperature, IL1 probably decomposed, resulting in liberation of fluorine which bonded with freshly cut iron surfaces to reduce adhesion between tool and workpiece material, consequently reducing cutting forces.
@@ -149,6 +161,10 @@ As cutting speed increased, the effect of all ionic liquids diminished under hea
 ### 4.4 Estimated Temperatures in Machining Zones
 
 Average shear zone temperatures estimated with the finite difference model under different cutting fluid application conditions are presented in Fig. 4 for light and heavy machining at different cutting speeds. The corresponding tool rake face temperatures in the tool-chip contact zone are also shown in Fig. 4.
+
+![Fig. 4](manuscript_figures/Figure_4_Temperature_Estimates.png)
+
+**Fig. 4.** Estimated temperatures from the finite difference thermal model: (a) Average shear zone temperatures in light machining at different cutting speeds; (b) Average tool rake face temperatures in the tool-chip contact zone in light machining; (c) Average shear zone temperatures in heavy machining; (d) Average tool rake face temperatures in heavy machining. Dashed horizontal lines indicate thermal decomposition temperatures of key lubricants from Table 1.
 
 From the temperature estimates in Fig. 4, it can be observed that at low cutting speed in light machining, the temperatures in the shear zone and the workpiece–tool flank contact area are well below the thermal decomposition temperatures of all lubricants listed in Table 1. Consequently, in such machining situations, the viscosity of the lubricant plays a dominant role in achieving friction reduction. PEG and IL308(1%), which have higher viscosity than the other MWFs used in this study (Table 1), performed better in terms of lower machining forces, as evidenced by the force data in Fig. 3.
 
@@ -172,6 +188,10 @@ The mechanism of action of ionic liquids in MQL machining can be understood by c
 As shown in Table 2, the viscosity and density of oil + BMIM TFSI mixture are very similar to those of neat vegetable oil, which explains why cutting forces and surface roughness values are similar in both cases. Conversely, BMIM PF6 and BMIM BF4 substantially increase the viscosity of the base oil.
 
 The EDS element dot maps of tool rake faces (Fig. 5) revealed matching presence of fluorine along with iron (workpiece material) deposits. The element map for fluorine showed much higher density in areas where significant iron deposits were present, suggesting that at the temperatures and pressures prevailing at the tool-chip interface, the ionic liquids disintegrated and liberated fluorine. Being more electronegative than oxygen, fluorine readily combined with freshly exposed workpiece material surfaces to form iron fluorides. This chemical bonding mechanism disrupts the intimate tool-chip contact, thereby reducing contact length and machining forces.
+
+![Fig. 5](manuscript_figures/Figure_5_EDS_Surface.png)
+
+**Fig. 5.** (a) EDS element dot maps showing iron (Fe) and fluorine (F) distribution near the cutting edge of tool used in MQL machining with oil + ionic liquid, demonstrating co-localization of fluorine with iron deposits. (b) Optical microscope images (×100) of machined workpiece surfaces comparing neat vegetable oil MQL (showing aggressive scouring from adhesion) versus oil + BMIM PF6 MQL (showing smoother surface with reduced adhesion marks). (c) Representative SEM image of cutting tool edge showing adhered workpiece material near the cutting edge.
 
 Importantly, sulfur and phosphorous (present in some ionic liquids as conventional extreme pressure elements) appeared only in trace quantities in EDS spectra and did not bind effectively with tool or workpiece material. Thus, fluorine is identified as the primary tribo-active element responsible for the improved machining performance of the selected ionic liquids.
 
@@ -280,19 +300,6 @@ The following conclusions are drawn from this comprehensive investigation of ion
 
 ---
 
-## Figure Captions
-
-**Fig. 1.** Schematic diagram of the interrupted orthogonal machining (peripheral down milling) experimental setup showing workpiece, tool, dynamometer, thermocouple locations, and MQL nozzle positioning. The setup enables simultaneous measurement of cutting forces, temperatures, and surface roughness under controlled MWF application conditions.
-
-**Fig. 2.** (a) Heat generation zones in orthogonal machining showing primary shear zone, secondary zone at tool rake face, and tertiary zone at tool flank-workpiece interface. (b) Finite difference discretization of the workpiece domain (30 mm × 8 mm) showing boundary conditions: ambient temperature on left, right, and bottom boundaries; convective heat loss on top exposed surface; and moving heat source representing heat influx near the tool-workpiece contact zone. Thermocouple location is at 11 mm from left boundary and 3 mm below the top surface.
-
-**Fig. 3.** Machining forces under different MWF application conditions: (a) Light machining at Vc = 150 m/min; (b) Light machining at Vc = 250 m/min; (c) Heavy machining at Vc = 150 m/min; (d) Heavy machining at Vc = 250 m/min. Results show that ionic liquid additives reduce cutting forces, with the magnitude of reduction dependent on cutting speed and whether temperatures exceed lubricant decomposition thresholds (Table 1).
-
-**Fig. 4.** Estimated temperatures from the finite difference thermal model: (a) Average shear zone temperatures in light machining at different cutting speeds; (b) Average tool rake face temperatures in the tool-chip contact zone in light machining; (c) Average shear zone temperatures in heavy machining; (d) Average tool rake face temperatures in heavy machining. Dashed horizontal lines indicate thermal decomposition temperatures of key lubricants from Table 1.
-
-**Fig. 5.** (a) EDS element dot maps showing iron (Fe) and fluorine (F) distribution near the cutting edge of tool used in MQL machining with oil + ionic liquid, demonstrating co-localization of fluorine with iron deposits. (b) Optical microscope images (×100) of machined workpiece surfaces comparing neat vegetable oil MQL (showing aggressive scouring from adhesion) versus oil + BMIM PF6 MQL (showing smoother surface with reduced adhesion marks). (c) Representative SEM image of cutting tool edge showing adhered workpiece material near the cutting edge.
-
----
 
 ## References
 

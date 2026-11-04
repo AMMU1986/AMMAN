@@ -38,7 +38,7 @@ The LCOE for HRES configurations varies significantly based on resource availabi
 
 **Figure 1** presents a comprehensive visual comparison of LCOE values across seven major HRES configurations, clearly showing the optimal LCOE (solid bars) alongside the full cost range (lighter bars) for each technology combination. The figure demonstrates that PV/Wind configurations without storage achieve the lowest floor costs (USD 30/MWh) but have limited firm capacity, while PV/Wind/Pumped Hydro achieves the best balance of low cost and high reliability. The complete numerical data supporting this visual comparison is presented in **Table 1**, which provides LCOE ranges, optimal values, capital costs, payback periods, IRR percentages, renewable energy fractions, and effective load carrying capability (ELCC) for each configuration.
 
-![Figure 1: LCOE Comparison Across HRES Configurations (2025 Data)](figures/figure1_lcoe_comparison.png)
+![Figure 1: LCOE Comparison Across HRES Configurations (2025 Data)](HRES_figures/figure1_lcoe_comparison.png)
 
 **Figure 1.** Levelized Cost of Energy (LCOE) comparison across seven major HRES configurations based on 2025 data. Solid bars represent optimal achievable LCOE values (USD/MWh), while lighter extensions show the full cost range depending on resource quality and system sizing. PV/Wind/Pumped Hydro (PV/W/PH) achieves the lowest optimal LCOE at USD 38/MWh, while Offshore Wind/Battery configurations show the highest costs at USD 72/MWh. Data sourced from Table 1.
 
@@ -105,7 +105,7 @@ Artificial intelligence and machine learning algorithms form the economic intell
 
 The economic impact of AI-driven optimization is quantified across all three case studies presented in **Table 3**, which demonstrates consistent revenue uplift of 12–18% compared to basic energy management systems. At utility scale (Case Study 1), the intelligent management system contributes approximately 12% additional annual revenue (approximately USD 1.8 million/year), while community-scale systems (Case Study 2) achieve the highest proportional uplift at 18%, reflecting the greater relative value of optimization for smaller systems facing more complex local market conditions.
 
-![Figure 2: Revenue Stacking - Smart HRES vs Alternatives](figures/figure2_revenue_stacking.png)
+![Figure 2: Revenue Stacking - Smart HRES vs Alternatives](HRES_figures/figure2_revenue_stacking.png)
 
 **Figure 2.** Revenue stacking comparison across four system configurations: Standalone Solar, Standalone Wind, HRES without AI, and Smart HRES with AI optimization (USD/MWh). Each colored segment represents a distinct market revenue stream—energy sales (blue), real-time balancing (purple), frequency regulation (green), reserves (orange), capacity payments (red), RECs (light blue), and demand response (teal). Smart HRES achieves total revenue of approximately USD 130/MWh compared to USD 51/MWh for standalone solar—a 155% improvement enabled by intelligent multi-market participation. Data sourced from Table 2.
 
@@ -236,7 +236,7 @@ The comparative analysis reveals that PV/Wind/Pumped Hydro configurations achiev
 
 The consistent finding across all case studies is that AI-based intelligent management provides 12–18% revenue uplift compared to basic energy management systems, confirming the economic justification for investment in sophisticated optimization platforms [62]. This improvement range—equivalent to USD 1.2–1.8 million annually for utility-scale systems—typically justifies the AI/EMS investment (USD 15–40/kW) within the first 1–2 years of operation.
 
-![Figure 3: Technology Cost Trajectories 2025-2035](figures/figure3_cost_trajectories.png)
+![Figure 3: Technology Cost Trajectories 2025-2035](HRES_figures/figure3_cost_trajectories.png)
 
 **Figure 3.** Technology cost trajectory projections from 2025 to 2035, indexed to 2025 baseline (2025 = 100). Five key HRES component technologies are tracked: Solar PV installed cost (orange), Li-ion Battery packs (green), Onshore Wind (blue), PEM Electrolyzers (purple), and AI/EMS Software (red). PEM Electrolyzers show the steepest cost decline (73% reduction by 2035), followed by Li-ion Batteries (66% reduction) and Solar PV (53% reduction). All technologies demonstrate continued learning-curve-driven cost reductions that will further improve HRES system economics. Numerical projections are detailed in Table 4.
 
@@ -266,7 +266,7 @@ Electricity market designs are evolving to better accommodate and value the capa
 
 These market evolution trends will expand revenue opportunities, with emerging flexibility and distribution-level services potentially adding USD 10–30/MWh to the total revenue stack for optimally positioned smart HRES installations.
 
-![Figure 4: Smart HRES Market Integration Framework](figures/figure4_market_framework.png)
+![Figure 4: Smart HRES Market Integration Framework](HRES_figures/figure4_market_framework.png)
 
 **Figure 4.** Smart HRES Market Integration Framework showing the complete system architecture connecting generation sources (Solar PV, Wind, Backup), energy storage (Battery, Hydrogen), and the central AI/ML-enabled Energy Management System to six market products: Wholesale Energy, Ancillary Services, Capacity Market, P2P Trading, REC Market, and Hydrogen Market. The Intelligence Layer (bottom right) provides forecasting, optimization, blockchain settlement, and digital twin capabilities that enable simultaneous participation across all market products. Revenue potential ranges from USD 73–153/MWh with 15–35% uplift from AI optimization. This framework represents the operational realization of the revenue stacking quantified in Table 2 and Figure 2.
 

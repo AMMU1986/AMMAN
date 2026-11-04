@@ -18,8 +18,9 @@ The intellectual lineage of agentic AI can be traced through several distinct er
 
 A second era, catalysed by advances in statistical machine learning and deep neural networks, shifted the field from hand-crafted rules to learned representations [5]. Systems could now recognize patterns, classify data, and make predictions with superhuman accuracy in constrained tasks, yet they remained fundamentally reactive, producing outputs only in direct response to inputs. The recent emergence of large language models and foundation models constitutes a pivotal inflection point, endowing systems with broad, general-purpose reasoning capabilities that can be directed toward novel tasks without task-specific retraining [6]. As illustrated in Figure 1, the progression from rule-based systems through machine learning and generative AI to fully agentic architectures reflects an expanding scope of autonomy and a diminishing reliance on explicit human specification of every step.
 
-[Insert Figure 1 here]
-Figure 1. Evolutionary Trajectory of Artificial Intelligence: From Rule-Based Systems to Autonomous Agentic AI
+![Figure 1](agentic_figures/Figure_1_Evolution_of_Agentic_AI.png)
+
+**Figure 1.** Evolutionary Trajectory of Artificial Intelligence: From Rule-Based Systems to Autonomous Agentic AI
 
 The distinction between conventional AI, generative AI, and agentic AI is central to understanding the current landscape. Conventional or discriminative AI focuses on prediction and classification within predefined boundaries, such as fraud detection or image recognition [5]. Generative AI produces novel content—text, images, code—in response to prompts, but typically operates in a single-turn, request-response mode without persistent goals [6]. Agentic AI subsumes and extends these capabilities: it may use generative models as reasoning components, but it adds autonomy, memory, planning, and the ability to take actions in digital or physical environments to achieve objectives that unfold over many steps [1, 2]. This qualitative shift—from tools that answer questions to systems that pursue goals—is what distinguishes the agentic paradigm.
 
@@ -33,8 +34,9 @@ Large language models have become the predominant reasoning and planning engines
 
 Memory is a critical component that distinguishes durable agents from stateless respondents. Agents typically employ short-term or working memory to maintain the immediate context of a task, and long-term memory to retain knowledge, past experiences, and learned preferences across sessions [7]. Retrieval-augmented generation supplements the parametric knowledge of a language model with information fetched from external databases or vector stores, grounding responses in current and domain-specific data [10]. Tools and application programming interfaces extend an agent's reach beyond text generation, enabling it to query databases, execute code, browse the web, control software, or actuate physical devices. The disciplined orchestration of memory, tools, and reasoning—illustrated in Figure 2—constitutes the operational anatomy of a capable autonomous agent.
 
-[Insert Figure 2 here]
-Figure 2. Reference Architecture of an Autonomous AI Agent: Perception, Memory, Reasoning, Tools, and Action
+![Figure 2](agentic_figures/Figure_2_Agent_Architecture.png)
+
+**Figure 2.** Reference Architecture of an Autonomous AI Agent: Perception, Memory, Reasoning, Tools, and Action
 
 Beyond single agents, multi-agent architectures compose several specialized agents that collaborate to solve problems exceeding the capacity of any individual agent [11]. In such systems, agents may assume distinct roles—such as planner, researcher, critic, and executor—and communicate through structured messages to coordinate their contributions. Agent-to-agent communication requires shared conventions for message content, intent, and protocol, echoing the speech-act traditions of classical agent communication languages [12]. Orchestration patterns range from hierarchical designs, in which a supervisor agent delegates and integrates subtasks, to decentralized designs, in which peer agents negotiate and self-organize. Table 1 compares the principal agent architecture paradigms across dimensions relevant to system designers.
 
@@ -90,8 +92,9 @@ Distributed knowledge sharing and consensus mechanisms allow agents to maintain 
 
 Interoperability among heterogeneous autonomous agents is a persistent challenge, because agents developed by different organizations may use divergent representations, protocols, and ontologies [24]. Achieving interoperability requires shared vocabularies and semantic frameworks that allow agents to interpret one another's messages correctly, as well as adapters and gateways that bridge protocol differences. As illustrated in Figure 3, effective collaboration in heterogeneous environments depends on layered interoperability spanning transport, message format, semantic meaning, and coordination policy. Without such alignment, agents may exchange messages that are syntactically valid but semantically misunderstood, leading to coordination failures.
 
-[Insert Figure 3 here]
-Figure 3. Layered Interoperability Framework for Heterogeneous Multi-Agent Collaboration
+![Figure 3](agentic_figures/Figure_3_Interoperability_Framework.png)
+
+**Figure 3.** Layered Interoperability Framework for Heterogeneous Multi-Agent Collaboration
 
 Coordination in dynamic and decentralized environments demands mechanisms that remain effective as conditions change and as agents join or leave the system. Decentralized coordination avoids single points of failure and scales more gracefully than centralized control, but it complicates the achievement of global objectives from purely local information [19]. Techniques such as distributed constraint optimization, market mechanisms, and norm-based governance help align local decisions with system-level goals. The design of coordination mechanisms must anticipate partial failures, communication delays, and adversarial behaviour, ensuring that the collective remains functional and safe even under adverse conditions.
 
