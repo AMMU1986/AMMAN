@@ -1,0 +1,75 @@
+# -*- coding: utf-8 -*-
+from cb import *
+
+H1("5. Finite element formulation")
+H2("5.1 Regularised line source")
+P("A point or line source has no finite energy density, so that a finite element mesh cannot represent Eq. (@src@) directly. The singularity is removed by replacing the line source with a heat-generating disc of radius $a$ and a smooth, compactly supported profile that vanishes at its edge. The profile is normalised so that the total power per unit length remains $Q_0$:")
+EQ(r"Q_a(r)=\frac{2Q_0}{\pi a^2}\left(1-\frac{r^2}{a^2}\right)\ (r<a),\qquad \int_0^{a}2\pi r\,Q_a\,dr=Q_0", "reg")
+P("The alternative of a small cavity with a prescribed flux was rejected because it introduces a traction-free boundary near the source and changes the stress field there. With the disc the axis remains part of the domain, the regularity conditions of Eq. (@bc@) apply, and the error is controlled by one parameter. "
+  "The error of the regularised problem relative to the true line source is expected to be of order $a^2$ at distances larger than $a$, by the usual multipole argument for a compact symmetric source; this expectation is tested in Section 8.2. A second numerical requirement is that the integrand of the source vector has a kink at $r=a$, so that a mesh node must lie at $r=a$ for the Gauss quadrature to integrate it exactly. All meshes in this paper are constructed that way.")
+H2("5.2 Weak form")
+P("Eq. (@e1@) is multiplied by a test function $v(r)$ with $v(R_{out})=0$ and by the cylindrical weight $r$, and integrated. The term $\\partial_r(rS_{rr})$ is integrated by parts, and the boundary term vanishes because of the factor $r$ at the axis and because $v=0$ at $R_{out}$. For the temperature, the test function $w$ is used in the same way. The result is: find $u,\\theta$ such that for all $v,w$")
+EQ(r"\int_0^{R}\hat\rho\,v\,\partial_t^2u\;r\,dr=-\left(1+\tau_1\partial_t\right)\int_0^{R}\left(\partial_r v\,S_{rr}+\frac{v}{r}S_{\phi\phi}\right)r\,dr", "wm")
+EQ(r"\int_0^{R}\hat k\,\partial_r w\,\partial_r\theta\;r\,dr+\left(1+\tau_0\partial_t\right)\int_0^{R}w\left[\hat\rho\hat c\,\partial_t\theta+\delta_2 g\,\partial_t e\right]r\,dr=\int_0^{R}w\,Q_a\,r\,dr", "wh")
+P("The two forms contain no derivative of any property ratio, which is the reason for the divergence form of Eq. (@heat@). The properties are evaluated at the Gauss points of each element, so that a smooth or a discontinuous grading is handled in the same way, provided that the discontinuity falls on an element boundary.")
+H2("5.3 Discretisation and element matrices")
+P("The unknowns are interpolated with the same Lagrange shape functions $N_j(r)$ for $u$ and $\\theta$:")
+EQ(r"u_h(r,t)=\sum_{j}N_j(r)\,u_j(t),\qquad \theta_h(r,t)=\sum_{j}N_j(r)\,\theta_j(t)")
+P("Linear (P1) and quadratic (P2) elements were implemented. On the reference element $\\xi\\in[-1,1]$ the quadratic functions are")
+EQ(r"N_1=\frac{\xi(\xi-1)}{2},\qquad N_2=1-\xi^2,\qquad N_3=\frac{\xi(\xi+1)}{2}")
+P("The Galerkin choice $v,w\\in\\{N_i\\}$ leads to six matrices, each assembled from element integrals with five-point Gauss–Legendre quadrature for P2 and three-point quadrature for P1 and evaluated with the weight $r\\,dr$. The mass matrices are")
+EQ(r"M_{ij}=\int\hat\rho\,N_iN_j\,r\,dr,\qquad M^{\theta}_{ij}=\int\hat\rho\hat c\,N_iN_j\,r\,dr")
+P("The mechanical stiffness matrix is symmetric:")
+EQ(r"K_{ij}=\int\left[N_i'\left(PN_j'+L\frac{N_j}{r}\right)+\frac{N_i}{r}\left(LN_j'+P\frac{N_j}{r}\right)\right]r\,dr")
+P("and the two coupling matrices, which are transposes of each other up to the ratio $\\delta_2/\\delta_1$, are")
+EQ(r"G_{ij}=\delta_1\int g\left(N_i'+\frac{N_i}{r}\right)N_j\,r\,dr,\qquad D_{ij}=\delta_2\int g\,N_i\left(N_j'+\frac{N_j}{r}\right)r\,dr")
+P("Finally, the thermal conductivity matrix and the source vector are")
+EQ(r"K^{\theta}_{ij}=\int\hat k\,N_i'N_j'\,r\,dr,\qquad q_i=\int N_i\,Q_a\,r\,dr")
+P("The 1/r terms in $K$, $G$ and $D$ are not singular: the displacement degree of freedom at the axis is removed by $u(0)=0$, the remaining shape functions are $O(r)$ there, and the Gauss points never fall on $r=0$. "
+  "The matrices are stored in sparse form and the system matrix of the time stepping in banded form with half bandwidth $2p+1$ for interleaved unknowns $(u_i,\\theta_i)$, with $p$ the element order. With these definitions the semi-discrete equations are")
+EQ(r"M\ddot{\mathbf{u}}=\left(1+\tau_1\tfrac{d}{dt}\right)\mathbf{f},\quad \mathbf{f}=-K\mathbf{u}+G\boldsymbol{\theta};\qquad K^{\theta}\boldsymbol{\theta}+\left(1+\tau_0\tfrac{d}{dt}\right)\left(M^{\theta}\dot{\boldsymbol{\theta}}+D\dot{\mathbf{u}}\right)=\mathbf{q}", "semi")
+P("where bold symbols are nodal vectors. The matrix equations (@semi@) are linear with constant coefficients. They contain third derivatives of $\\mathbf{u}$ and second derivatives of $\\boldsymbol\\theta$ through the two operators, and a direct second-order treatment would require the time derivatives of the forcing and of the state. The route chosen below avoids this.")
+
+H1("6. Time integration")
+H2("6.1 Auxiliary variables")
+P("Two auxiliary vectors remove the operators. The first is the momentum-like vector $\\mathbf{m}=M\\dot{\\mathbf{u}}-\\tau_1\\mathbf{f}$, whose rate is exactly $\\mathbf{f}$ because $M\\ddot{\\mathbf{u}}=\\mathbf{f}+\\tau_1\\dot{\\mathbf{f}}$. The second is the heat-content rate $\\mathbf{g}=M^{\\theta}\\dot{\\boldsymbol\\theta}+D\\dot{\\mathbf{u}}$, which obeys a first-order relaxation law. The semi-discrete system becomes")
+EQ(r"\dot{\mathbf{m}}=\mathbf{f},\qquad M\dot{\mathbf{u}}=\mathbf{m}+\tau_1\mathbf{f}", "aux1")
+EQ(r"\tau_0\dot{\mathbf{g}}=-\mathbf{g}+\mathbf{R},\qquad \mathbf{R}=\mathbf{q}-K^{\theta}\boldsymbol{\theta},\qquad M^{\theta}\dot{\boldsymbol\theta}+D\dot{\mathbf{u}}=\mathbf{g}", "aux2")
+P("This is a first-order system in the state $(\\mathbf{u},\\mathbf{m},\\boldsymbol\\theta,\\mathbf{g})$ with zero initial values. Its characteristic features are that the derivative of the forcing is not required, that $\\tau_1=0$ and $\\tau_0=0$ are admitted as limits (the classical theory in the second case, in which $\\mathbf{g}=\\mathbf{R}$ is algebraic), and that the momentum equation acquires the damping term $\\tau_1\\mathbf{f}$ that is characteristic of MGL. "
+  "The initial rate of the heat content is $\\dot{\\mathbf{g}}(0^+)=\\mathbf{q}/\\tau_0$, because the source is on at $t=0^+$; the right-hand side $\\mathbf{R}_0=\\mathbf{q}$ is therefore used at the first step.")
+H2("6.2 Trapezoidal marching")
+P("The trapezoidal rule, which is A-stable and second-order accurate, is applied to every component of the state:")
+EQ(r"\mathbf{y}_{n+1}-\mathbf{y}_n=\frac{\Delta t}{2}\left(\dot{\mathbf{y}}_n+\dot{\mathbf{y}}_{n+1}\right)", "trap")
+P("Applied to $(\\mathbf{m},\\mathbf{u})$, it gives $M\\Delta\\mathbf{u}=\\Delta t\\,\\mathbf{m}_n+a(\\mathbf{f}_n+\\mathbf{f}_{n+1})$ with $a=\\tfrac{\\Delta t}{2}\\left(\\tfrac{\\Delta t}{2}+\\tau_1\\right)$. For $\\tau_1=0$ this is the Newmark average-acceleration method with $\\beta=1/4$ and $\\gamma=1/2$, and for $\\tau_1>0$ the term $\\tau_1$ acts as a physical damping. Applied to $(\\mathbf{g},\\boldsymbol\\theta)$ it is the Crank–Nicolson scheme. Eliminating the nodal increments of the auxiliary variables leaves a coupled linear system for the increments $\\Delta\\mathbf{u}$ and $\\Delta\\boldsymbol\\theta$:")
+EQ(r"\left(M+aK\right)\Delta\mathbf{u}-aG\,\Delta\boldsymbol{\theta}=\Delta t\,\mathbf{m}_n+2a\,\mathbf{f}_n", "step1")
+EQ(r"\frac{2}{\Delta t}\left(D\Delta\mathbf{u}+M^{\theta}\Delta\boldsymbol\theta\right)+\frac{\beta}{1+\beta}K^{\theta}\Delta\boldsymbol\theta=\frac{2}{1+\beta}\left(\mathbf{g}_n+\beta\mathbf{R}_n\right),\qquad \beta=\frac{\Delta t}{2\tau_0}", "step2")
+P("The matrix of the left-hand sides depends only on $\\Delta t$ and is factorised once by banded LU decomposition without pivoting; no pivoting was needed for any case reported here, and its adequacy is confirmed by the agreement with the exact and Laplace-domain solutions in Section 8. Each time step then needs one forward and back substitution and three sparse matrix–vector products. The state is updated as")
+EQ(r"\mathbf{f}_{n+1}=\mathbf{f}_n-K\Delta\mathbf{u}+G\Delta\boldsymbol\theta,\quad \mathbf{m}_{n+1}=\mathbf{m}_n+\tfrac{\Delta t}{2}\left(\mathbf{f}_n+\mathbf{f}_{n+1}\right),\quad \mathbf{g}_{n+1}=\frac{(1-\beta)\mathbf{g}_n+\beta\left(\mathbf{R}_n+\mathbf{R}_{n+1}\right)}{1+\beta}")
+P("For $\\tau_0=0$ the factor $\\beta\\to\\infty$ and Eq. (@step2@) reduces to $\\tfrac{2}{\\Delta t}(D\\Delta\\mathbf{u}+M^\\theta\\Delta\\boldsymbol\\theta)+K^\\theta\\Delta\\boldsymbol\\theta=2\\mathbf{R}_n$, with $\\mathbf{g}_{n+1}=\\mathbf{R}_{n+1}$. "
+  "The nodal quantities $S_{rr}$ and $S_{\\phi\\phi}$ are evaluated inside the element that contains the observation point, from the shape function derivatives, and the MGL stress is completed by a centred difference of the stored history:")
+EQ(r"\sigma_{n}=S_{n}+\tau_1\,\frac{S_{n+1}-S_{n-1}}{2\Delta t}", "post")
+P("The unconditional stability of the trapezoidal rule follows from the amplification factor of the test equation $\\dot y=\\Lambda y$,")
+EQ(r"\left|\frac{1+z/2}{1-z/2}\right|\le 1\ \ \text{for}\ \ \mathrm{Re}\,z\le 0,\qquad z=\Lambda\Delta t")
+P("and it applies to the present system whose eigenvalues all have nonpositive real parts, because the MGL system is dissipative for $\\tau_1>0$ and $\\tau_0>0$. The scheme conserves the oscillation amplitude of undamped modes and does not damp parasitic high frequencies, and the consequence is the small precursor in front of the wave seen in the results. "
+  "That is a property of this choice, and a dissipative member of the Newmark or generalised-alpha family could be used to damp it, at the price of lower accuracy at the front.")
+H2("6.3 Laplace-domain finite element route")
+P("The second route keeps the spatial discretisation and treats time exactly. A Laplace transform of Eq. (@semi@) with zero initial data gives, for the unit step source,")
+EQ(r"\left(s^2M+pK\right)\bar{\mathbf{u}}-pG\bar{\boldsymbol\theta}=\mathbf{0},\qquad \Psi s\left(M^{\theta}\bar{\boldsymbol\theta}+D\bar{\mathbf{u}}\right)+K^{\theta}\bar{\boldsymbol\theta}=\frac{\mathbf{q}}{s}", "lapfe")
+P("which is a complex banded system that is solved at every inversion abscissa; the time-domain solution follows from the Durbin formula of Eq. (@durbin@) with $N=600$ terms. This route has no time-step error and handles all terms of the MGL operators without auxiliary variables, but the solution of a complex system is needed for each of $N$ values of $s$ and for each output time, and the Durbin inversion is unreliable at discontinuities. "
+  "The first route gives the entire history in one marching, which is why it is the working method; the second is used as an independent check of the time integration in the graded and porous case, for which no exact solution is available. The comparison therefore tests the time discretisation, the auxiliary variable formulation and the post-processing of stress, but not the spatial discretisation, which is common to both. "
+  "The spatial discretisation of the graded case is tested instead by mesh refinement and by the global energy identity.")
+
+H1("7. Verification measures and numerical set-up")
+P("All results are for the data of Table 1 with $\\tau_0=0.02$, $\\tau_1=0.05$ and $Q_0=1$, a disc radius $a=0.05$, quadratic elements of uniform size $h=0.0125$ up to $r=2.5$ followed by geometric growth with ratio 1.1 to $R_{out}=3.2$ (" + str(CS["H0"]["nn"]) + " nodes), and a time step $\\Delta t=5\\times10^{-4}$ up to $t=0.3$. The front in the reference medium travels about 2.1 units in this time, so that the truncation has no effect. "
+  "The error of a computed quantity $X_h$ against a reference $X$ over a set of samples is measured by the relative discrete $L^2$ norm, expressed in per cent,")
+EQ(r"E_X=100\sqrt{\frac{\sum_i\left(X_{h,i}-X_i\right)^2}{\sum_iX_i^2}}", "err")
+P("The history samples are 11 times between $t=0.05$ and $t=0.30$ at $r=0.3$ and $r=0.8$, and the profile samples are the radii from $0.2$ to $1.2$ at $t=0.2$. The first history sample therefore lies close to the wavefront at $r=0.3$ in the reference medium, which is arrival time " + fx(arrival("H0"), 4) + ", and some error values below are dominated by it. The observed order of convergence between two consecutive meshes is")
+EQ(r"p_{obs}=\frac{\ln\left(E_{h_1}/E_{h_2}\right)}{\ln\left(h_1/h_2\right)}", "order")
+P("Convergence is measured against a finer reference solution of the same regularised problem (self-convergence), so that the regularisation error does not contaminate it. The discrete heat content of the numerical solution is obtained with the vector of ones as test function, that is $\\mathcal H_h=\\mathbf{1}^T\\left(M^\\theta\\boldsymbol\\theta+D\\mathbf{u}\\right)$, and its relative deviation from the exact value of Eq. (@heatc@) is")
+EQ(r"E_{\mathcal H}=\max_{0.05\le t\le 0.3}\left|\frac{\mathcal{H}_h(t)-\mathcal{H}(t)}{\mathcal{H}(t)}\right|", "eh")
+P("A resolution rule for the mesh follows from the requirement that the wave be spanned by enough elements during the relaxation time, and a rule for the time step from the Courant-type number $\\nu$ below, where $c_{max}$ is the largest local speed. The unconditional stability of the time integration means that the second is an accuracy rule only:")
+EQ(r"h\lesssim\frac{c_{min}\tau_0}{4},\qquad \nu=\frac{c_{max}\Delta t}{h}")
+P("With the chosen $h=0.0125$ and $\\tau_0=0.02$ the first rule gives $c_{min}\\tau_0/4$ of " + g(R["prof"]["n1p0.2"]["c"][0] * 0.02 / 4, 2) + " for the slowest medium (the graded porous medium at the source), so that the baseline $h=0.0125$ is about " + fx(100 * (0.0125 / (R["prof"]["n1p0.2"]["c"][0] * 0.02 / 4) - 1), 0) + " per cent coarser than the rule in the slowest region (the rule is a guideline, and the refinement study of Section 8.2 for the graded porous medium shows that the accuracy is adequate), and $\\nu=" + g(7.012 * 0.0005 / 0.0125, 2) + "$ for the reference medium. "
+  "A last relation concerns the regularisation, which is described by a fit of the error to a power law of the source radius,")
+EQ(r"E_X(a)\simeq C_X\,a^{q}", "regfit")
+P("with $q$ determined by regression in Section 8.2. Every calculation used a quiescent initial state, a single processor in pure Python without numerical libraries, and no result is taken from the literature: all numbers in the tables are the output of the programs described in Sections 4 to 6.")

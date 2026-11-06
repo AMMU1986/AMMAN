@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="720" font-family="Noto Sans, DejaVu Sans, Arial, sans-serif"><rect width="100%" height="100%" fill="white"/><defs><marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#222"/></marker></defs>
+<text x="450" y="18" font-size="15" font-weight="bold" text-anchor="middle">(a) Geometry: radially graded / porous medium around the line source</text>
+<rect x="60" y="50" width="780" height="130" fill="#eef2f7" stroke="#555"/>
+<rect x="60" y="50" width="340" height="130" fill="#d9c7a8" stroke="#555"/>
+<line x1="60" y1="115" x2="860" y2="115" stroke="#222" stroke-width="1.5" marker-end="url(#ar)"/>
+<circle cx="60" cy="115" r="7" fill="#c0392b"/>
+<text x="66" y="44" font-size="14" fill="#c0392b">line source (r = 0), Q = Q<tspan baseline-shift="-25%" font-size="75%">0</tspan>δ(r)H(t)/(2πr)</text>
+<text x="230" y="90" font-size="14" text-anchor="middle">graded zone 0 &lt; r &lt; L<tspan baseline-shift="-25%" font-size="75%">g</tspan></text>
+<text x="230" y="140" font-size="14" text-anchor="middle">V<tspan baseline-shift="-25%" font-size="75%">m</tspan>(r) = (r/L<tspan baseline-shift="-25%" font-size="75%">g</tspan>)<tspan baseline-shift="40%" font-size="75%">n</tspan>,  porosity φ(r)</text>
+<text x="620" y="90" font-size="14" text-anchor="middle">homogeneous far field (V<tspan baseline-shift="-25%" font-size="75%">m</tspan> = 1)</text>
+<text x="620" y="140" font-size="14" text-anchor="middle">wave front r = c<tspan baseline-shift="-25%" font-size="75%">w</tspan>t stays inside R<tspan baseline-shift="-25%" font-size="75%">out</tspan></text>
+<line x1="400" y1="50" x2="400" y2="180" stroke="#555" stroke-dasharray="4,3"/>
+<text x="400" y="198" font-size="14" text-anchor="middle">L<tspan baseline-shift="-25%" font-size="75%">g</tspan></text>
+<text x="840" y="198" font-size="14" text-anchor="end">R<tspan baseline-shift="-25%" font-size="75%">out</tspan></text>
+<text x="868" y="120" font-size="14" font-style="italic">r</text>
+<text x="450" y="238" font-size="15" font-weight="bold" text-anchor="middle">(b) Finite element mesh (quadratic elements, regularised source of radius a)</text>
+<line x1="60" y1="290" x2="840" y2="290" stroke="#222" stroke-width="1.5"/>
+<line x1="60" y1="282" x2="60" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="66" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="72" y1="282" x2="72" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="78" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="84" y1="282" x2="84" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="90" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="96" y1="282" x2="96" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="102" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="108" y1="282" x2="108" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="114" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="120" y1="282" x2="120" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="126" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="132" y1="282" x2="132" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="138" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="144" y1="282" x2="144" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="150" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="156" y1="282" x2="156" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="162" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="168" y1="282" x2="168" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="174" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="180" y1="282" x2="180" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="186" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="192" y1="282" x2="192" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="198" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="204" y1="282" x2="204" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="210" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="216" y1="282" x2="216" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="222" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="228" y1="282" x2="228" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="234" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="240" y1="282" x2="240" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="246" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="252" y1="282" x2="252" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="258" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="264" y1="282" x2="264" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="270" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="276" y1="282" x2="276" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="282" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="288" y1="282" x2="288" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="294" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="300" y1="282" x2="300" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="306" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="312" y1="282" x2="312" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="318" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="324" y1="282" x2="324" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="330" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="336" y1="282" x2="336" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="342" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="348" y1="282" x2="348" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="354" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="360" y1="282" x2="360" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="366" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="372" y1="282" x2="372" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="378" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="384" y1="282" x2="384" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="390" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="396" y1="282" x2="396" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="402" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="408" y1="282" x2="408" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="414" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="420" y1="282" x2="420" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="426" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="432" y1="282" x2="432" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="438" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="444" y1="282" x2="444" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="450" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="456" y1="282" x2="456" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="462" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="468" y1="282" x2="468" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="474" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="480" y1="282" x2="480" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="486" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="492" y1="282" x2="492" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="498" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="504" y1="282" x2="504" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="510" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="516" y1="282" x2="516" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="522" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="528" y1="282" x2="528" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<circle cx="534" cy="290" r="2.6" fill="#1f4e9c"/>
+<line x1="541.2" y1="282" x2="541.2" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="555.72" y1="282" x2="555.72" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="571.692" y1="282" x2="571.692" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="589.261" y1="282" x2="589.261" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="608.587" y1="282" x2="608.587" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="629.846" y1="282" x2="629.846" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="653.231" y1="282" x2="653.231" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="678.954" y1="282" x2="678.954" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="707.249" y1="282" x2="707.249" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="738.374" y1="282" x2="738.374" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="772.611" y1="282" x2="772.611" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="810.273" y1="282" x2="810.273" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<line x1="840" y1="282" x2="840" y2="298" stroke="#1f4e9c" stroke-width="1.6"/>
+<rect x="60" y="305" width="60" height="10" fill="#c0392b" fill-opacity="0.5"/>
+<text x="60" y="335" font-size="14" fill="#c0392b">source disc, r &lt; a (mesh aligned to a)</text>
+<text x="480" y="335" font-size="14" text-anchor="middle">uniform h = 0.0125 to r = 2.5</text>
+<text x="790" y="335" font-size="14" text-anchor="middle">geometric growth 1.1</text>
+<text x="60" y="270" font-size="14" >u(0) = 0, θ<tspan baseline-shift="-25%" font-size="75%">r</tspan>(0) = 0</text>
+<text x="840" y="270" font-size="14" text-anchor="end">u = θ = 0 at R<tspan baseline-shift="-25%" font-size="75%">out</tspan></text>
+<text x="450" y="378" font-size="15" font-weight="bold" text-anchor="middle">(c) Solution procedure</text>
+<rect x="120" y="392" width="660" height="44" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.5"/>
+<text x="450" y="419" font-size="14" text-anchor="middle">property fields P, L, k, ρ, ρc, g (grading + porosity)</text>
+<line x1="450" y1="436" x2="450" y2="454" stroke="#222" stroke-width="1.5" marker-end="url(#ar)"/>
+<rect x="120" y="454" width="660" height="44" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.5"/>
+<text x="450" y="481" font-size="14" text-anchor="middle">weak form, element matrices M, K, G, M<tspan baseline-shift="-25%" font-size="75%">θ</tspan>, D, K<tspan baseline-shift="-25%" font-size="75%">θ</tspan></text>
+<line x1="450" y1="498" x2="450" y2="516" stroke="#222" stroke-width="1.5" marker-end="url(#ar)"/>
+<rect x="120" y="516" width="660" height="44" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.5"/>
+<text x="450" y="543" font-size="14" text-anchor="middle">state variables (u, m, θ, g): operators (1+τ<tspan baseline-shift="-25%" font-size="75%">1</tspan>d/dt), (1+τ<tspan baseline-shift="-25%" font-size="75%">0</tspan>d/dt) removed</text>
+<line x1="450" y1="560" x2="450" y2="578" stroke="#222" stroke-width="1.5" marker-end="url(#ar)"/>
+<rect x="120" y="578" width="660" height="44" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.5"/>
+<text x="450" y="605" font-size="14" text-anchor="middle">trapezoidal marching: banded LU once, back-substitution per step</text>
+<line x1="450" y1="622" x2="450" y2="640" stroke="#222" stroke-width="1.5" marker-end="url(#ar)"/>
+<rect x="120" y="640" width="660" height="44" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.5"/>
+<text x="450" y="667" font-size="14" text-anchor="middle">checks: exact K<tspan baseline-shift="-25%" font-size="75%">0</tspan> solution, Laplace-domain FE, convergence, heat balance</text></svg>

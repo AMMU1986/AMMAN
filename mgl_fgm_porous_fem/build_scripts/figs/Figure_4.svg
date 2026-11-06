@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1195" font-family="Noto Sans, DejaVu Sans, Arial, sans-serif"><rect width="100%" height="100%" fill="white"/><rect x="105" y="40" width="760" height="300" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="108.467" y1="40" x2="108.467" y2="340" stroke="#e3e3e3"/>
+<line x1="108.467" y1="340" x2="108.467" y2="335" stroke="#222"/>
+<text x="108.467" y="358" font-size="13" text-anchor="middle">-2.2</text>
+<line x1="276.778" y1="40" x2="276.778" y2="340" stroke="#e3e3e3"/>
+<line x1="276.778" y1="340" x2="276.778" y2="335" stroke="#222"/>
+<text x="276.778" y="358" font-size="13" text-anchor="middle">-2.0</text>
+<line x1="445.089" y1="40" x2="445.089" y2="340" stroke="#e3e3e3"/>
+<line x1="445.089" y1="340" x2="445.089" y2="335" stroke="#222"/>
+<text x="445.089" y="358" font-size="13" text-anchor="middle">-1.8</text>
+<line x1="613.4" y1="40" x2="613.4" y2="340" stroke="#e3e3e3"/>
+<line x1="613.4" y1="340" x2="613.4" y2="335" stroke="#222"/>
+<text x="613.4" y="358" font-size="13" text-anchor="middle">-1.6</text>
+<line x1="781.711" y1="40" x2="781.711" y2="340" stroke="#e3e3e3"/>
+<line x1="781.711" y1="340" x2="781.711" y2="335" stroke="#222"/>
+<text x="781.711" y="358" font-size="13" text-anchor="middle">-1.4</text>
+<line x1="105" y1="284.564" x2="865" y2="284.564" stroke="#e3e3e3"/>
+<line x1="105" y1="284.564" x2="110" y2="284.564" stroke="#222"/>
+<text x="99" y="288.564" font-size="13" text-anchor="end">-3</text>
+<line x1="105" y1="220.923" x2="865" y2="220.923" stroke="#e3e3e3"/>
+<line x1="105" y1="220.923" x2="110" y2="220.923" stroke="#222"/>
+<text x="99" y="224.923" font-size="13" text-anchor="end">-2</text>
+<line x1="105" y1="157.283" x2="865" y2="157.283" stroke="#e3e3e3"/>
+<line x1="105" y1="157.283" x2="110" y2="157.283" stroke="#222"/>
+<text x="99" y="161.283" font-size="13" text-anchor="end">-1</text>
+<line x1="105" y1="93.6423" x2="865" y2="93.6423" stroke="#e3e3e3"/>
+<line x1="105" y1="93.6423" x2="110" y2="93.6423" stroke="#222"/>
+<text x="99" y="97.6423" font-size="13" text-anchor="end">0</text>
+<line x1="105" y1="93.6423" x2="865" y2="93.6423" stroke="#888" stroke-width="0.8"/>
+<clipPath id="c7"><rect x="105" y="40" width="760" height="300"/></clipPath>
+<polyline points="865.00,122.62 611.67,156.06 358.33,177.47 105.00,206.09" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c7)"/>
+<polyline points="865.00,56.07 611.67,79.45 358.33,96.28 105.00,112.97" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c7)"/>
+<polyline points="865.00,154.18 611.67,227.92 358.33,323.93" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c7)"/>
+<polyline points="865.00,67.51 611.67,123.05 358.33,163.24" fill="none" stroke="#7d3c98" stroke-width="2" stroke-dasharray="9,3,2,3" clip-path="url(#c7)"/>
+<rect x="705" y="50" width="150" height="88" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="62" x2="745" y2="62" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="66" font-size="13">P1, θ</text>
+<line x1="713" y1="82" x2="745" y2="82" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="86" font-size="13">P1, σ<tspan baseline-shift="-25%" font-size="75%">rr</tspan></text>
+<line x1="713" y1="102" x2="745" y2="102" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="106" font-size="13">P2, θ</text>
+<line x1="713" y1="122" x2="745" y2="122" stroke="#7d3c98" stroke-width="2" stroke-dasharray="9,3,2,3"/>
+<text x="751" y="126" font-size="13">P2, σ<tspan baseline-shift="-25%" font-size="75%">rr</tspan></text>
+<text x="485" y="380" font-size="15" text-anchor="middle">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> h (spatial refinement, dt = 2.5×10<tspan baseline-shift="40%" font-size="75%">-4</tspan>)</text>
+<text x="47" y="190" font-size="15" text-anchor="middle" transform="rotate(-90 47 190)">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> E (%)</text>
+<text x="105" y="32" font-size="15" font-weight="bold">(a) Spatial self-convergence</text>
+<rect x="105" y="435" width="760" height="300" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="171.367" y1="435" x2="171.367" y2="735" stroke="#e3e3e3"/>
+<line x1="171.367" y1="735" x2="171.367" y2="730" stroke="#222"/>
+<text x="171.367" y="753" font-size="13" text-anchor="middle">-3.4</text>
+<line x1="297.6" y1="435" x2="297.6" y2="735" stroke="#e3e3e3"/>
+<line x1="297.6" y1="735" x2="297.6" y2="730" stroke="#222"/>
+<text x="297.6" y="753" font-size="13" text-anchor="middle">-3.2</text>
+<line x1="423.834" y1="435" x2="423.834" y2="735" stroke="#e3e3e3"/>
+<line x1="423.834" y1="735" x2="423.834" y2="730" stroke="#222"/>
+<text x="423.834" y="753" font-size="13" text-anchor="middle">-3.0</text>
+<line x1="550.067" y1="435" x2="550.067" y2="735" stroke="#e3e3e3"/>
+<line x1="550.067" y1="735" x2="550.067" y2="730" stroke="#222"/>
+<text x="550.067" y="753" font-size="13" text-anchor="middle">-2.8</text>
+<line x1="676.3" y1="435" x2="676.3" y2="735" stroke="#e3e3e3"/>
+<line x1="676.3" y1="735" x2="676.3" y2="730" stroke="#222"/>
+<text x="676.3" y="753" font-size="13" text-anchor="middle">-2.6</text>
+<line x1="802.533" y1="435" x2="802.533" y2="735" stroke="#e3e3e3"/>
+<line x1="802.533" y1="735" x2="802.533" y2="730" stroke="#222"/>
+<text x="802.533" y="753" font-size="13" text-anchor="middle">-2.4</text>
+<line x1="105" y1="696.37" x2="865" y2="696.37" stroke="#e3e3e3"/>
+<line x1="105" y1="696.37" x2="110" y2="696.37" stroke="#222"/>
+<text x="99" y="700.37" font-size="13" text-anchor="end">-3</text>
+<line x1="105" y1="632.96" x2="865" y2="632.96" stroke="#e3e3e3"/>
+<line x1="105" y1="632.96" x2="110" y2="632.96" stroke="#222"/>
+<text x="99" y="636.96" font-size="13" text-anchor="end">-2</text>
+<line x1="105" y1="569.55" x2="865" y2="569.55" stroke="#e3e3e3"/>
+<line x1="105" y1="569.55" x2="110" y2="569.55" stroke="#222"/>
+<text x="99" y="573.55" font-size="13" text-anchor="end">-1</text>
+<line x1="105" y1="506.141" x2="865" y2="506.141" stroke="#e3e3e3"/>
+<line x1="105" y1="506.141" x2="110" y2="506.141" stroke="#222"/>
+<text x="99" y="510.141" font-size="13" text-anchor="end">0</text>
+<line x1="105" y1="442.731" x2="865" y2="442.731" stroke="#e3e3e3"/>
+<line x1="105" y1="442.731" x2="110" y2="442.731" stroke="#222"/>
+<text x="99" y="446.731" font-size="13" text-anchor="end">1</text>
+<line x1="105" y1="506.141" x2="865" y2="506.141" stroke="#888" stroke-width="0.8"/>
+<clipPath id="c8"><rect x="105" y="435" width="760" height="300"/></clipPath>
+<polyline points="865.00,494.74 675.00,549.67 485.00,596.04 295.00,605.19 105.00,637.00" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c8)"/>
+<polyline points="865.00,561.97 675.00,637.16 485.00,652.40 295.00,675.15 105.00,718.93" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c8)"/>
+<polyline points="865.00,453.25 675.00,451.07 485.00,496.93 295.00,592.29 105.00,591.00" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c8)"/>
+<rect x="705" y="657" width="150" height="68" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="669" x2="745" y2="669" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="673" font-size="13">θ</text>
+<line x1="713" y1="689" x2="745" y2="689" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="693" font-size="13">u</text>
+<line x1="713" y1="709" x2="745" y2="709" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="713" font-size="13">σ<tspan baseline-shift="-25%" font-size="75%">rr</tspan></text>
+<text x="485" y="775" font-size="15" text-anchor="middle">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> Δt (h = 0.0125, P2)</text>
+<text x="47" y="585" font-size="15" text-anchor="middle" transform="rotate(-90 47 585)">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> E (%)</text>
+<text x="105" y="427" font-size="15" font-weight="bold">(b) Time-step self-convergence</text>
+<rect x="105" y="830" width="760" height="300" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="106.734" y1="830" x2="106.734" y2="1130" stroke="#e3e3e3"/>
+<line x1="106.734" y1="1130" x2="106.734" y2="1125" stroke="#222"/>
+<text x="106.734" y="1148" font-size="13" text-anchor="middle">-1.6</text>
+<line x1="275.045" y1="830" x2="275.045" y2="1130" stroke="#e3e3e3"/>
+<line x1="275.045" y1="1130" x2="275.045" y2="1125" stroke="#222"/>
+<text x="275.045" y="1148" font-size="13" text-anchor="middle">-1.4</text>
+<line x1="443.356" y1="830" x2="443.356" y2="1130" stroke="#e3e3e3"/>
+<line x1="443.356" y1="1130" x2="443.356" y2="1125" stroke="#222"/>
+<text x="443.356" y="1148" font-size="13" text-anchor="middle">-1.2</text>
+<line x1="611.667" y1="830" x2="611.667" y2="1130" stroke="#e3e3e3"/>
+<line x1="611.667" y1="1130" x2="611.667" y2="1125" stroke="#222"/>
+<text x="611.667" y="1148" font-size="13" text-anchor="middle">-1.0</text>
+<line x1="779.978" y1="830" x2="779.978" y2="1130" stroke="#e3e3e3"/>
+<line x1="779.978" y1="1130" x2="779.978" y2="1125" stroke="#222"/>
+<text x="779.978" y="1148" font-size="13" text-anchor="middle">-0.8</text>
+<line x1="105" y1="1109.52" x2="865" y2="1109.52" stroke="#e3e3e3"/>
+<line x1="105" y1="1109.52" x2="110" y2="1109.52" stroke="#222"/>
+<text x="99" y="1113.52" font-size="13" text-anchor="end">-1.5</text>
+<line x1="105" y1="1056.36" x2="865" y2="1056.36" stroke="#e3e3e3"/>
+<line x1="105" y1="1056.36" x2="110" y2="1056.36" stroke="#222"/>
+<text x="99" y="1060.36" font-size="13" text-anchor="end">-1.0</text>
+<line x1="105" y1="1003.2" x2="865" y2="1003.2" stroke="#e3e3e3"/>
+<line x1="105" y1="1003.2" x2="110" y2="1003.2" stroke="#222"/>
+<text x="99" y="1007.2" font-size="13" text-anchor="end">-0.5</text>
+<line x1="105" y1="950.035" x2="865" y2="950.035" stroke="#e3e3e3"/>
+<line x1="105" y1="950.035" x2="110" y2="950.035" stroke="#222"/>
+<text x="99" y="954.035" font-size="13" text-anchor="end">0</text>
+<line x1="105" y1="896.874" x2="865" y2="896.874" stroke="#e3e3e3"/>
+<line x1="105" y1="896.874" x2="110" y2="896.874" stroke="#222"/>
+<text x="99" y="900.874" font-size="13" text-anchor="end">0.5</text>
+<line x1="105" y1="843.713" x2="865" y2="843.713" stroke="#e3e3e3"/>
+<line x1="105" y1="843.713" x2="110" y2="843.713" stroke="#222"/>
+<text x="99" y="847.713" font-size="13" text-anchor="end">1.0</text>
+<line x1="105" y1="950.035" x2="865" y2="950.035" stroke="#888" stroke-width="0.8"/>
+<clipPath id="c9"><rect x="105" y="830" width="760" height="300"/></clipPath>
+<polyline points="865.00,942.92 611.67,995.91 358.33,1066.85 105.00,1113.93" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c9)"/>
+<polyline points="865.00,846.07 611.67,910.17 358.33,974.20 105.00,1038.21" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c9)"/>
+<polyline points="865.00,863.99 611.67,911.15 358.33,949.17 105.00,997.49" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c9)"/>
+<polyline points="865.00,874.70 611.67,919.24 358.33,927.28 105.00,1015.01" fill="none" stroke="#7d3c98" stroke-width="2" stroke-dasharray="9,3,2,3" clip-path="url(#c9)"/>
+<rect x="705" y="1032" width="150" height="88" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="1044" x2="745" y2="1044" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="1048" font-size="13">θ</text>
+<line x1="713" y1="1064" x2="745" y2="1064" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="1068" font-size="13">u</text>
+<line x1="713" y1="1084" x2="745" y2="1084" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="1088" font-size="13">σ<tspan baseline-shift="-25%" font-size="75%">rr</tspan></text>
+<line x1="713" y1="1104" x2="745" y2="1104" stroke="#7d3c98" stroke-width="2" stroke-dasharray="9,3,2,3"/>
+<text x="751" y="1108" font-size="13">σ<tspan baseline-shift="-25%" font-size="75%">φφ</tspan></text>
+<text x="485" y="1170" font-size="15" text-anchor="middle">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> a (source radius)</text>
+<text x="47" y="980" font-size="15" text-anchor="middle" transform="rotate(-90 47 980)">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> E (%)</text>
+<text x="105" y="822" font-size="15" font-weight="bold">(c) Regularisation error against the exact line source</text></svg>
