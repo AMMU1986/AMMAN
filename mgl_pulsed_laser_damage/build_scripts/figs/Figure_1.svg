@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="616" font-family="Noto Sans, DejaVu Sans, Arial, sans-serif"><rect width="100%" height="100%" fill="white"/><defs><marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#222"/></marker></defs>
+<text x="450" y="22" font-size="15" font-weight="bold" text-anchor="middle">(a) Layered slab, 1-D: tumour 0 &lt; x &lt; h, normal tissue h &lt; x &lt; L</text>
+<rect x="80" y="70" width="140" height="110" fill="#e8c9c9" stroke="#444" stroke-width="1.5"/>
+<rect x="220" y="70" width="600" height="110" fill="#d6e4f0" stroke="#444" stroke-width="1.5"/>
+<text x="150" y="118" font-size="14" text-anchor="middle">tumour (1)</text>
+<text x="150" y="140" font-size="12" text-anchor="middle">kill: Ω ≥ Ω<tspan baseline-shift="-25%" font-size="75%">c</tspan></text>
+<text x="520" y="118" font-size="14" text-anchor="middle">normal tissue (2)</text>
+<text x="520" y="140" font-size="12" text-anchor="middle">collateral damage J (to be minimised)</text>
+<line x1="220" y1="62" x2="220" y2="190" stroke="#222" stroke-dasharray="4,3"/>
+<text x="220" y="208" font-size="14" text-anchor="middle">x = h = 4 mm</text>
+<text x="80" y="208" font-size="14" text-anchor="middle">x = 0</text>
+<text x="820" y="208" font-size="14" text-anchor="end">x = L = 20 mm</text>
+<line x1="100" y1="44" x2="100" y2="66" stroke="#c0392b" stroke-width="2.5" marker-end="url(#ar)"/>
+<line x1="130" y1="44" x2="130" y2="66" stroke="#c0392b" stroke-width="2.5" marker-end="url(#ar)"/>
+<line x1="160" y1="44" x2="160" y2="66" stroke="#c0392b" stroke-width="2.5" marker-end="url(#ar)"/>
+<text x="180" y="52" font-size="14" fill="#c0392b">pulse train I<tspan baseline-shift="-25%" font-size="75%">0</tspan>f(t)</text>
+<text x="84" y="232" font-size="13" >σ<tspan baseline-shift="-25%" font-size="75%">xx</tspan>=0, adiabatic at x = 0;  u = 0, θ = 0 at x = L;  continuity of u, σ, θ and flux at x = h</text>
+<text x="450" y="268" font-size="15" font-weight="bold" text-anchor="middle">(b) Decision variables: pulse train f(t) = Σ [H(t − mP) − H(t − mP − t<tspan baseline-shift="-25%" font-size="75%">p</tspan>)], m = 0 … N<tspan baseline-shift="-25%" font-size="75%">p</tspan>−1</text>
+<line x1="80" y1="340" x2="820" y2="340" stroke="#222" stroke-width="1.5"/>
+<polyline points="99,340 100,340 100,296 170,296 170,340" fill="none" stroke="#1f4e9c" stroke-width="2.5"/>
+<polyline points="249,340 250,340 250,296 320,296 320,340" fill="none" stroke="#1f4e9c" stroke-width="2.5"/>
+<polyline points="399,340 400,340 400,296 470,296 470,340" fill="none" stroke="#1f4e9c" stroke-width="2.5"/>
+<polyline points="549,340 550,340 550,296 620,296 620,340" fill="none" stroke="#1f4e9c" stroke-width="2.5"/>
+<line x1="100" y1="360" x2="170" y2="360" stroke="#222" marker-end="url(#ar)"/>
+<text x="135" y="378" font-size="14" text-anchor="middle">t<tspan baseline-shift="-25%" font-size="75%">p</tspan></text>
+<line x1="100" y1="388" x2="250" y2="388" stroke="#222" marker-end="url(#ar)"/>
+<text x="175" y="406" font-size="14" text-anchor="middle">period P</text>
+<text x="60" y="300" font-size="14" text-anchor="end">I<tspan baseline-shift="-25%" font-size="75%">0</tspan></text>
+<text x="700" y="322" font-size="14" >N<tspan baseline-shift="-25%" font-size="75%">p</tspan> pulses, t<tspan baseline-shift="-25%" font-size="75%">treat</tspan> = N<tspan baseline-shift="-25%" font-size="75%">p</tspan>P ≤ 30 s</text>
+<text x="450" y="436" font-size="15" font-weight="bold" text-anchor="middle">(c) Design workflow</text>
+<rect x="40" y="456" width="140" height="64" rx="6" fill="#f3f3f3" stroke="#444"/>
+<text x="110" y="482" font-size="14" text-anchor="middle" font-weight="bold">design d</text>
+<text x="110" y="504" font-size="11" text-anchor="middle">I<tspan baseline-shift="-25%" font-size="75%">0</tspan>, t<tspan baseline-shift="-25%" font-size="75%">p</tspan>, P, N<tspan baseline-shift="-25%" font-size="75%">p</tspan></text>
+<line x1="180" y1="488" x2="208" y2="488" stroke="#222" marker-end="url(#ar)"/>
+<rect x="208" y="456" width="140" height="64" rx="6" fill="#f3f3f3" stroke="#444"/>
+<text x="278" y="482" font-size="14" text-anchor="middle" font-weight="bold">heat model</text>
+<text x="278" y="504" font-size="11" text-anchor="middle">θ(x,t): FE + BDF2</text>
+<line x1="348" y1="488" x2="376" y2="488" stroke="#222" marker-end="url(#ar)"/>
+<rect x="376" y="456" width="140" height="64" rx="6" fill="#f3f3f3" stroke="#444"/>
+<text x="446" y="482" font-size="14" text-anchor="middle" font-weight="bold">damage</text>
+<text x="446" y="504" font-size="11" text-anchor="middle">Ω = ∫ A e<tspan baseline-shift="40%" font-size="75%">−E_{a</tspan>/RT} dt</text>
+<line x1="516" y1="488" x2="544" y2="488" stroke="#222" marker-end="url(#ar)"/>
+<rect x="544" y="456" width="140" height="64" rx="6" fill="#f3f3f3" stroke="#444"/>
+<text x="614" y="482" font-size="14" text-anchor="middle" font-weight="bold">stress</text>
+<text x="614" y="504" font-size="11" text-anchor="middle">σ<tspan baseline-shift="-25%" font-size="75%">∥</tspan> = −s(θ + τ<tspan baseline-shift="-25%" font-size="75%">1</tspan>θ<tspan baseline-shift="-25%" font-size="75%">t</tspan>)</text>
+<line x1="684" y1="488" x2="712" y2="488" stroke="#222" marker-end="url(#ar)"/>
+<rect x="712" y="456" width="140" height="64" rx="6" fill="#f3f3f3" stroke="#444"/>
+<text x="782" y="482" font-size="14" text-anchor="middle" font-weight="bold">Nelder–Mead</text>
+<text x="782" y="504" font-size="11" text-anchor="middle">min J + penalties</text>
+<path d="M 784 520 L 784 544 L 110 544 L 110 522" fill="none" stroke="#222" marker-end="url(#ar)"/>
+<text x="450" y="562" font-size="12" text-anchor="middle">update d until constraints (kill, T<tspan baseline-shift="-25%" font-size="75%">max</tspan>, |σ|, t<tspan baseline-shift="-25%" font-size="75%">treat</tspan>) hold and J stops decreasing</text>
+<text x="450" y="596" font-size="13" text-anchor="middle" font-style="italic">Schematic only: contains no computed data.</text></svg>

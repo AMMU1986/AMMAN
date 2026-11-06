@@ -1,0 +1,57 @@
+# -*- coding: utf-8 -*-
+from vals import *
+
+add(("title", "Pulsed-Laser Thermal Damage Optimization in Layered Tumour Tissue with an Arrhenius Burn Integral and Thermoelastic Stress: A Model Comparison of Pennes, Cattaneo–Vernotte, Moore–Gibson–Thompson and Modified Green–Lindsay Bioheat Theories"))
+add(("authors", "[Author names, affiliations and corresponding-author e-mail to be inserted]"))
+add(("h1u", "Abstract"))
+add(("abstract",
+ "Laser heating of a tumour must raise the temperature of the whole lesion enough to cause irreversible damage while sparing the surrounding healthy tissue, and the design of the pulse train is a constrained optimization problem. "
+ "This paper formulates and solves such a problem in physical SI units for a one-dimensional slab with a tumour layer (0 < x < 4 mm) in front of normal tissue (to 20 mm), using the layer properties and the Gardner laser source of Jangid, Singh and Mukhopadhyay [13]. "
+ "Four heat conduction models are compared: Pennes, Cattaneo–Vernotte (CV), a Moore–Gibson–Thompson type model (MGT) and the modified Green–Lindsay model (MGL) with a strain-rate lag. "
+ "Thermal damage follows an Arrhenius burn integral, with a tumour parameter set anchored to a thermal-dose point and the Henriques–Moritz skin values as a conservative healthy-tissue proxy, both stated as illustrative. "
+ "The decision variables are the peak intensity, pulse width, period and number of pulses. "
+ "The inertia term is shown to be negligible: with inertia retained in a Laplace-domain reference, the temperature changes by less than $10^{-11}$ in relative terms and the axial stress stays below $2\\times10^{-9}$ of the in-plane stress. "
+ "A finite element code with second-order backward differentiation agrees with the Laplace reference to " + pct(max(max(V["valid"][m]["eth"][1:]) for m in V["valid"]), 2) + " per cent in temperature after the first second. "
+ "A Nelder–Mead search with exact penalties finds a minimal collateral objective of " + f3(base["J"]) + " that is almost independent of the pulse number (variation below 1 per cent), because the dose at the tumour edge is delivered by the slowly decaying thermal field rather than by individual pulses. "
+ "Pennes, CV and MGL give safe-dose multipliers within " + pct(max(abs(1 - C["common"][n]["scale"]) for n in ("CV", "MGL", "Pennes")), 1) + " per cent of each other, whereas the MGT-type thermal-displacement term shifts the dose by 9 per cent and the collateral damage by a factor of 2.4. "
+ "The result is most sensitive to the Arrhenius parameters of the tissues. No experimental data were used, and the study is a model-based design analysis without clinical claims."))
+add(("kw", "pulsed laser; bioheat transfer; Arrhenius damage integral; thermoelastic stress; modified Green–Lindsay; Moore–Gibson–Thompson; design optimization; Nelder–Mead; Pareto front"))
+
+H1("1. Introduction")
+P("Laser irradiation is used to heat superficial and interstitial tumours, and the same physics that makes the treatment possible also limits it. "
+  "Light is absorbed and scattered over a depth of a few millimetres, heat conducts into the surrounding tissue over tens of seconds, blood perfusion removes heat in a temperature-dependent way, and the tissue is damaged by a rate process that depends exponentially on temperature. "
+  "A treatment plan therefore has to choose the intensity, the pulse width, the pulse period and the number of pulses so that the tumour receives a lethal thermal dose everywhere while the normal tissue behind it, and the tissue surface, stay below their own limits. "
+  "Such a plan is naturally written as a constrained optimization problem whose objective is the damage done to healthy tissue. "
+  "The purpose of this paper is to formulate that problem with a physically consistent thermoelastic bioheat model, to solve it with a derivative-free algorithm implemented from scratch, and to find out which modelling choices change the answer.")
+P("The classical description of heat in perfused tissue is the Pennes equation, which adds a perfusion sink proportional to the local temperature rise to Fourier conduction. "
+  "It is parabolic and propagates heat with infinite speed. For heating on the time scale of seconds to tens of seconds, relaxation of the heat flux has been proposed as a correction in the form of Cattaneo–Vernotte and dual-phase-lag models, and relaxation times for biological tissue have been reported in a broad range of roughly one to twenty seconds. "
+  "These values are contested, and in this paper they are used as illustrative inputs, with the aim of finding out how much the optimal design depends on them rather than of asserting that a particular value is correct. "
+  "Beyond Cattaneo–Vernotte, generalised thermoelasticity offers further families. The Green–Lindsay theory adds temperature-rate terms, and the modified Green–Lindsay (MGL) theory of Yu and co-workers (2018) and Quintanilla (2018) adds a strain-rate term, with a mathematical analysis of the role of the strain-rate and temperature-rate terms given in [1, 2]. "
+  "Fundamental solutions and a Galerkin-type representation for this theory are available [3, 4], finite element solutions were obtained for functionally graded geometries [5], and photothermal laser heating has been treated in the related modified Green–Lindsay setting for semiconductors [6]. "
+  "The Moore–Gibson–Thompson (MGT) theory is a third-order alternative whose line-source solutions have been studied in [7, 8]. A review of generalised thermoelasticity and its modified versions is given in [9].")
+P("The baseline for the present work is the study of Jangid, Singh and Mukhopadhyay [13], who solved a layered tumour and normal tissue slab with a Gardner-type laser source, an MGT bioheat equation and a classical elastic response by a Legendre wavelet collocation method. "
+  "That paper supplies the layer properties and the laser source that are used here. It is nondimensionalised with a length unit of order a nanometre and a time unit of order ten picoseconds, a scaling that was found in an earlier stage of this project to make the perfusion and laser terms numerically negligible. "
+  "The present study therefore works entirely in SI units, with thickness in millimetres, time in seconds and temperature in kelvin, so that perfusion, relaxation, laser heating and damage are all physically meaningful. "
+  "Where a dimensionless form is shown, it is used only for presentation of the results.")
+P("Several features distinguish the problem from earlier thermoelastic bioheat studies. "
+  "First, the tissue response is followed over a time horizon of two minutes, because the Arrhenius burn integral keeps accumulating while the tissue cools, and a one-dimensional slab cools slowly. "
+  "A short calculation shows that the dose delivered after the end of the laser pulses is the larger part of the total, so any design study that stops at the end of the pulse train would be misleading. "
+  "Second, on this time scale inertia is irrelevant, because the elastic wave crosses the slab in under a tenth of a millisecond. The elastic part of the problem can then be eliminated analytically, and the quasi-static limit is checked against a Laplace-domain reference solution that retains inertia, so that the claim is quantitative. "
+  "Third, in the quasi-static limit the axial stress of a traction-free one-dimensional slab vanishes identically, which means that the thermoelastic stress which matters for safety is the in-plane stress that develops when lateral expansion is constrained by the surrounding tissue. "
+  "The paper states this explicitly and adopts the in-plane stress, including the strain-rate lag of the MGL theory, as the stress measure. "
+  "Fourth, the optimization is posed with real constraints on the tumour kill, the peak temperature (a vaporization limit), the peak stress and the treatment duration, and the search is verified in terms of constraint satisfaction and of convergence of the discretisation.")
+P("The contributions are as follows. A complete, units-consistent model of laser heating, bioheat transfer with four conduction laws, thermoelastic coupling, perfusion regulation and Arrhenius damage is given for a two-layer slab. "
+  "It is solved by a finite element method with second-order backward differentiation, verified against an independent Laplace-domain solution with numerical inversion, against exact results for the damage integral, and against an energy balance. "
+  "The pulse-train optimization is solved with a Nelder–Mead algorithm with exact-penalty constraints, multi-started over the integer number of pulses, and a Pareto front of collateral damage against the guaranteed kill depth is constructed by the epsilon-constraint method. "
+  "The comparison between conduction models is expressed through the safe-dose multiplier, that is the factor on the laser intensity that is needed to just satisfy the kill constraint for a fixed pulse train. "
+  "Sensitivity to the Arrhenius parameters, perfusion, relaxation times, optical properties, tumour thickness and evaluation horizon is quantified by re-optimizing in each case.")
+P("Three limitations should be stated at the outset. "
+  "No experimental or clinical data are used and none were available, so the work is a model-based design study, not a validation against measurements and not a clinical recommendation. "
+  "The Arrhenius parameters of the tumour are chosen to represent a thermal-dose anchor and are not measured for any tumour. The Henriques–Moritz skin values, which are classical and are named here without a numbered citation, are used as a conservative proxy for healthy soft tissue; they were derived for skin burns. "
+  "The relaxation times are literature-range illustrative values. "
+  "The conclusions about the importance of each parameter are therefore conclusions about the model, and the sensitivity analysis is the main device that tells the reader which assumptions would have to be pinned down by measurement.")
+P("A number of related works are named by author and year only, because their digital object identifiers could not be verified for this manuscript. "
+  "Fractional and non-Fourier bioheat models and their thermoelastic extensions have been reported by Ezzat (2020), Li et al. (2019, 2020), Zhang et al. (2021), Marin et al. (2021), Ragab et al. (2021), Hobiny et al. (2020), Alzahrani and Abbas (2019), and the MGT bioheat model was introduced by Quintanilla (2019). "
+  "Thermoelastic structures have been optimised in other settings, for example topology optimization of composites for stiffness and heat transfer [10], and the transient thermoelastic response of graded plates to thermal shock has been analysed in [11, 12]. "
+  "The present problem differs in that the design variables are the temporal parameters of the heat source and the objective is a biological damage measure. "
+  "The remainder of the paper has the following structure. Section 2 states the governing equations, including the damage law and the optimization problem. Section 3 describes the numerical method, the reference solution, the verification procedures and the optimization algorithm. Section 4 presents the verification results, the optimal designs, the model comparison, the Pareto fronts and the sensitivity analysis. Section 5 summarises the conclusions and the caveats.")

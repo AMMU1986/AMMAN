@@ -1,0 +1,154 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1135" font-family="Noto Sans, DejaVu Sans, Arial, sans-serif"><rect width="100%" height="100%" fill="white"/><rect x="105" y="40" width="760" height="280" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="151.95" y1="40" x2="151.95" y2="320" stroke="#e3e3e3"/>
+<line x1="151.95" y1="320" x2="151.95" y2="315" stroke="#222"/>
+<text x="151.95" y="338" font-size="13" text-anchor="middle">-1.6</text>
+<line x1="246.828" y1="40" x2="246.828" y2="320" stroke="#e3e3e3"/>
+<line x1="246.828" y1="320" x2="246.828" y2="315" stroke="#222"/>
+<text x="246.828" y="338" font-size="13" text-anchor="middle">-1.4</text>
+<line x1="341.706" y1="40" x2="341.706" y2="320" stroke="#e3e3e3"/>
+<line x1="341.706" y1="320" x2="341.706" y2="315" stroke="#222"/>
+<text x="341.706" y="338" font-size="13" text-anchor="middle">-1.2</text>
+<line x1="436.584" y1="40" x2="436.584" y2="320" stroke="#e3e3e3"/>
+<line x1="436.584" y1="320" x2="436.584" y2="315" stroke="#222"/>
+<text x="436.584" y="338" font-size="13" text-anchor="middle">-1.0</text>
+<line x1="531.462" y1="40" x2="531.462" y2="320" stroke="#e3e3e3"/>
+<line x1="531.462" y1="320" x2="531.462" y2="315" stroke="#222"/>
+<text x="531.462" y="338" font-size="13" text-anchor="middle">-0.8</text>
+<line x1="626.34" y1="40" x2="626.34" y2="320" stroke="#e3e3e3"/>
+<line x1="626.34" y1="320" x2="626.34" y2="315" stroke="#222"/>
+<text x="626.34" y="338" font-size="13" text-anchor="middle">-0.6</text>
+<line x1="721.217" y1="40" x2="721.217" y2="320" stroke="#e3e3e3"/>
+<line x1="721.217" y1="320" x2="721.217" y2="315" stroke="#222"/>
+<text x="721.217" y="338" font-size="13" text-anchor="middle">-0.4</text>
+<line x1="816.095" y1="40" x2="816.095" y2="320" stroke="#e3e3e3"/>
+<line x1="816.095" y1="320" x2="816.095" y2="315" stroke="#222"/>
+<text x="816.095" y="338" font-size="13" text-anchor="middle">-0.2</text>
+<line x1="105" y1="319.226" x2="865" y2="319.226" stroke="#e3e3e3"/>
+<line x1="105" y1="319.226" x2="110" y2="319.226" stroke="#222"/>
+<text x="99" y="323.226" font-size="13" text-anchor="end">-4.5</text>
+<line x1="105" y1="256.657" x2="865" y2="256.657" stroke="#e3e3e3"/>
+<line x1="105" y1="256.657" x2="110" y2="256.657" stroke="#222"/>
+<text x="99" y="260.657" font-size="13" text-anchor="end">-4.0</text>
+<line x1="105" y1="194.089" x2="865" y2="194.089" stroke="#e3e3e3"/>
+<line x1="105" y1="194.089" x2="110" y2="194.089" stroke="#222"/>
+<text x="99" y="198.089" font-size="13" text-anchor="end">-3.5</text>
+<line x1="105" y1="131.52" x2="865" y2="131.52" stroke="#e3e3e3"/>
+<line x1="105" y1="131.52" x2="110" y2="131.52" stroke="#222"/>
+<text x="99" y="135.52" font-size="13" text-anchor="end">-3.0</text>
+<line x1="105" y1="68.9511" x2="865" y2="68.9511" stroke="#e3e3e3"/>
+<line x1="105" y1="68.9511" x2="110" y2="68.9511" stroke="#222"/>
+<text x="99" y="72.9511" font-size="13" text-anchor="end">-2.5</text>
+<clipPath id="c4"><rect x="105" y="40" width="760" height="280"/></clipPath>
+<polyline points="676.22,86.45 533.42,240.92 390.61,128.91 247.81,163.89 105.00,196.20" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c4)"/>
+<polyline points="676.22,59.36 533.42,217.01 390.61,114.03 247.81,152.83 105.00,191.06" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c4)"/>
+<polyline points="865.00,55.00 722.19,118.93 579.39,187.92 436.58,274.59 293.78,305.00" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c4)"/>
+<rect x="705" y="242" width="150" height="68" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="254" x2="745" y2="254" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="258" font-size="13">Pennes vs Laplace</text>
+<line x1="713" y1="274" x2="745" y2="274" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="278" font-size="13">MGL vs Laplace</text>
+<line x1="713" y1="294" x2="745" y2="294" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="298" font-size="13">Ω<tspan baseline-shift="-25%" font-size="75%">T,min</tspan>, pulse train</text>
+<text x="485" y="360" font-size="15" text-anchor="middle">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> Δt</text>
+<text x="47" y="180" font-size="15" text-anchor="middle" transform="rotate(-90 47 180)">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> (relative error)</text>
+<text x="105" y="32" font-size="15" font-weight="bold">(a) time-step convergence (Δx = 0.125 mm)</text>
+<rect x="105" y="415" width="760" height="280" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="191.756" y1="415" x2="191.756" y2="695" stroke="#e3e3e3"/>
+<line x1="191.756" y1="695" x2="191.756" y2="690" stroke="#222"/>
+<text x="191.756" y="713" font-size="13" text-anchor="middle">-0.8</text>
+<line x1="360.067" y1="415" x2="360.067" y2="695" stroke="#e3e3e3"/>
+<line x1="360.067" y1="695" x2="360.067" y2="690" stroke="#222"/>
+<text x="360.067" y="713" font-size="13" text-anchor="middle">-0.6</text>
+<line x1="528.378" y1="415" x2="528.378" y2="695" stroke="#e3e3e3"/>
+<line x1="528.378" y1="695" x2="528.378" y2="690" stroke="#222"/>
+<text x="528.378" y="713" font-size="13" text-anchor="middle">-0.4</text>
+<line x1="696.689" y1="415" x2="696.689" y2="695" stroke="#e3e3e3"/>
+<line x1="696.689" y1="695" x2="696.689" y2="690" stroke="#222"/>
+<text x="696.689" y="713" font-size="13" text-anchor="middle">-0.2</text>
+<line x1="865" y1="415" x2="865" y2="695" stroke="#e3e3e3"/>
+<line x1="865" y1="695" x2="865" y2="690" stroke="#222"/>
+<text x="865" y="713" font-size="13" text-anchor="middle">0</text>
+<line x1="105" y1="652.48" x2="865" y2="652.48" stroke="#e3e3e3"/>
+<line x1="105" y1="652.48" x2="110" y2="652.48" stroke="#222"/>
+<text x="99" y="656.48" font-size="13" text-anchor="end">-4</text>
+<line x1="105" y1="581.242" x2="865" y2="581.242" stroke="#e3e3e3"/>
+<line x1="105" y1="581.242" x2="110" y2="581.242" stroke="#222"/>
+<text x="99" y="585.242" font-size="13" text-anchor="end">-3</text>
+<line x1="105" y1="510.005" x2="865" y2="510.005" stroke="#e3e3e3"/>
+<line x1="105" y1="510.005" x2="110" y2="510.005" stroke="#222"/>
+<text x="99" y="514.005" font-size="13" text-anchor="end">-2</text>
+<line x1="105" y1="438.767" x2="865" y2="438.767" stroke="#e3e3e3"/>
+<line x1="105" y1="438.767" x2="110" y2="438.767" stroke="#222"/>
+<text x="99" y="442.767" font-size="13" text-anchor="end">-1</text>
+<clipPath id="c5"><rect x="105" y="415" width="760" height="280"/></clipPath>
+<polyline points="865.00,540.17 611.67,576.42 358.33,604.03 105.00,618.07" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c5)"/>
+<polyline points="865.00,520.24 611.67,571.36 358.33,610.26 105.00,615.14" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c5)"/>
+<polyline points="865.00,510.51 611.67,555.23 358.33,602.99 105.00,680.00" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c5)"/>
+<polyline points="865.00,430.00 611.67,473.13 358.33,517.76 105.00,569.27" fill="none" stroke="#7d3c98" stroke-width="2" stroke-dasharray="9,3,2,3" clip-path="url(#c5)"/>
+<rect x="705" y="597" width="150" height="88" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="609" x2="745" y2="609" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="613" font-size="13">Pennes vs Laplace</text>
+<line x1="713" y1="629" x2="745" y2="629" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="633" font-size="13">MGL vs Laplace</text>
+<line x1="713" y1="649" x2="745" y2="649" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="653" font-size="13">Ω<tspan baseline-shift="-25%" font-size="75%">T,min</tspan>, pulse train</text>
+<line x1="713" y1="669" x2="745" y2="669" stroke="#7d3c98" stroke-width="2" stroke-dasharray="9,3,2,3"/>
+<text x="751" y="673" font-size="13">J<tspan baseline-shift="-25%" font-size="75%">F</tspan>, pulse train</text>
+<text x="485" y="735" font-size="15" text-anchor="middle">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> Δx (mm)</text>
+<text x="47" y="555" font-size="15" text-anchor="middle" transform="rotate(-90 47 555)">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> (relative error)</text>
+<text x="105" y="407" font-size="15" font-weight="bold">(b) mesh convergence (Δt = 0.02 s, or 0.05 s for the pulse train)</text>
+<rect x="105" y="790" width="760" height="280" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="107.6" y1="790" x2="107.6" y2="1070" stroke="#e3e3e3"/>
+<line x1="107.6" y1="1070" x2="107.6" y2="1065" stroke="#222"/>
+<text x="107.6" y="1088" font-size="13" text-anchor="middle">-0.2</text>
+<line x1="233.834" y1="790" x2="233.834" y2="1070" stroke="#e3e3e3"/>
+<line x1="233.834" y1="1070" x2="233.834" y2="1065" stroke="#222"/>
+<text x="233.834" y="1088" font-size="13" text-anchor="middle">0</text>
+<line x1="360.067" y1="790" x2="360.067" y2="1070" stroke="#e3e3e3"/>
+<line x1="360.067" y1="1070" x2="360.067" y2="1065" stroke="#222"/>
+<text x="360.067" y="1088" font-size="13" text-anchor="middle">0.2</text>
+<line x1="486.3" y1="790" x2="486.3" y2="1070" stroke="#e3e3e3"/>
+<line x1="486.3" y1="1070" x2="486.3" y2="1065" stroke="#222"/>
+<text x="486.3" y="1088" font-size="13" text-anchor="middle">0.4</text>
+<line x1="612.533" y1="790" x2="612.533" y2="1070" stroke="#e3e3e3"/>
+<line x1="612.533" y1="1070" x2="612.533" y2="1065" stroke="#222"/>
+<text x="612.533" y="1088" font-size="13" text-anchor="middle">0.6</text>
+<line x1="738.767" y1="790" x2="738.767" y2="1070" stroke="#e3e3e3"/>
+<line x1="738.767" y1="1070" x2="738.767" y2="1065" stroke="#222"/>
+<text x="738.767" y="1088" font-size="13" text-anchor="middle">0.8</text>
+<line x1="865" y1="790" x2="865" y2="1070" stroke="#e3e3e3"/>
+<line x1="865" y1="1070" x2="865" y2="1065" stroke="#222"/>
+<text x="865" y="1088" font-size="13" text-anchor="middle">1.0</text>
+<line x1="105" y1="1029.95" x2="865" y2="1029.95" stroke="#e3e3e3"/>
+<line x1="105" y1="1029.95" x2="110" y2="1029.95" stroke="#222"/>
+<text x="99" y="1033.95" font-size="13" text-anchor="end">-8</text>
+<line x1="105" y1="972.173" x2="865" y2="972.173" stroke="#e3e3e3"/>
+<line x1="105" y1="972.173" x2="110" y2="972.173" stroke="#222"/>
+<text x="99" y="976.173" font-size="13" text-anchor="end">-6</text>
+<line x1="105" y1="914.395" x2="865" y2="914.395" stroke="#e3e3e3"/>
+<line x1="105" y1="914.395" x2="110" y2="914.395" stroke="#222"/>
+<text x="99" y="918.395" font-size="13" text-anchor="end">-4</text>
+<line x1="105" y1="856.617" x2="865" y2="856.617" stroke="#e3e3e3"/>
+<line x1="105" y1="856.617" x2="110" y2="856.617" stroke="#222"/>
+<text x="99" y="860.617" font-size="13" text-anchor="end">-2</text>
+<line x1="105" y1="798.839" x2="865" y2="798.839" stroke="#e3e3e3"/>
+<line x1="105" y1="798.839" x2="110" y2="798.839" stroke="#222"/>
+<text x="99" y="802.839" font-size="13" text-anchor="end">0</text>
+<line x1="105" y1="798.839" x2="865" y2="798.839" stroke="#888" stroke-width="0.8"/>
+<clipPath id="c6"><rect x="105" y="790" width="760" height="280"/></clipPath>
+<polyline points="865.00,848.92 675.00,881.77 485.00,916.03 295.00,950.69 105.00,985.44" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c6)"/>
+<polyline points="865.00,881.77 675.00,916.03 485.00,950.69 295.00,985.44 105.00,1020.22" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c6)"/>
+<polyline points="865.00,916.03 675.00,950.69 485.00,985.44 295.00,1020.22 105.00,1055.00" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c6)"/>
+<polyline points="865.00,805.00 675.00,821.31 485.00,838.40 295.00,855.71 105.00,873.09" fill="none" stroke="#7d3c98" stroke-width="2" stroke-dasharray="9,3,2,3" clip-path="url(#c6)"/>
+<rect x="705" y="800" width="150" height="88" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="812" x2="745" y2="812" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="816" font-size="13">Simpson, 2 panels</text>
+<line x1="713" y1="832" x2="745" y2="832" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="836" font-size="13">Simpson, 4 panels</text>
+<line x1="713" y1="852" x2="745" y2="852" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="856" font-size="13">Simpson, 8 panels</text>
+<line x1="713" y1="872" x2="745" y2="872" stroke="#7d3c98" stroke-width="2" stroke-dasharray="9,3,2,3"/>
+<text x="751" y="876" font-size="13">trapezoid on rate</text>
+<text x="485" y="1110" font-size="15" text-anchor="middle">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> Δt (s)</text>
+<text x="47" y="930" font-size="15" text-anchor="middle" transform="rotate(-90 47 930)">log<tspan baseline-shift="-25%" font-size="75%">10</tspan> (relative error of Ω)</text>
+<text x="105" y="782" font-size="15" font-weight="bold">(c) Arrhenius quadrature on a 0.5 K/s ramp</text></svg>

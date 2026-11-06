@@ -1,0 +1,175 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="1135" font-family="Noto Sans, DejaVu Sans, Arial, sans-serif"><rect width="100%" height="100%" fill="white"/><rect x="105" y="40" width="760" height="280" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="159.286" y1="40" x2="159.286" y2="320" stroke="#e3e3e3"/>
+<line x1="159.286" y1="320" x2="159.286" y2="315" stroke="#222"/>
+<text x="159.286" y="338" font-size="13" text-anchor="middle">2</text>
+<line x1="267.857" y1="40" x2="267.857" y2="320" stroke="#e3e3e3"/>
+<line x1="267.857" y1="320" x2="267.857" y2="315" stroke="#222"/>
+<text x="267.857" y="338" font-size="13" text-anchor="middle">4</text>
+<line x1="376.429" y1="40" x2="376.429" y2="320" stroke="#e3e3e3"/>
+<line x1="376.429" y1="320" x2="376.429" y2="315" stroke="#222"/>
+<text x="376.429" y="338" font-size="13" text-anchor="middle">6</text>
+<line x1="485" y1="40" x2="485" y2="320" stroke="#e3e3e3"/>
+<line x1="485" y1="320" x2="485" y2="315" stroke="#222"/>
+<text x="485" y="338" font-size="13" text-anchor="middle">8</text>
+<line x1="593.571" y1="40" x2="593.571" y2="320" stroke="#e3e3e3"/>
+<line x1="593.571" y1="320" x2="593.571" y2="315" stroke="#222"/>
+<text x="593.571" y="338" font-size="13" text-anchor="middle">10</text>
+<line x1="702.143" y1="40" x2="702.143" y2="320" stroke="#e3e3e3"/>
+<line x1="702.143" y1="320" x2="702.143" y2="315" stroke="#222"/>
+<text x="702.143" y="338" font-size="13" text-anchor="middle">12</text>
+<line x1="810.714" y1="40" x2="810.714" y2="320" stroke="#e3e3e3"/>
+<line x1="810.714" y1="320" x2="810.714" y2="315" stroke="#222"/>
+<text x="810.714" y="338" font-size="13" text-anchor="middle">14</text>
+<line x1="105" y1="309.821" x2="865" y2="309.821" stroke="#e3e3e3"/>
+<line x1="105" y1="309.821" x2="110" y2="309.821" stroke="#222"/>
+<text x="99" y="313.821" font-size="13" text-anchor="end">0</text>
+<line x1="105" y1="235.003" x2="865" y2="235.003" stroke="#e3e3e3"/>
+<line x1="105" y1="235.003" x2="110" y2="235.003" stroke="#222"/>
+<text x="99" y="239.003" font-size="13" text-anchor="end">2</text>
+<line x1="105" y1="160.185" x2="865" y2="160.185" stroke="#e3e3e3"/>
+<line x1="105" y1="160.185" x2="110" y2="160.185" stroke="#222"/>
+<text x="99" y="164.185" font-size="13" text-anchor="end">4</text>
+<line x1="105" y1="85.3674" x2="865" y2="85.3674" stroke="#e3e3e3"/>
+<line x1="105" y1="85.3674" x2="110" y2="85.3674" stroke="#222"/>
+<text x="99" y="89.3674" font-size="13" text-anchor="end">6</text>
+<line x1="105" y1="309.821" x2="865" y2="309.821" stroke="#888" stroke-width="0.8"/>
+<clipPath id="c1"><rect x="105" y="40" width="760" height="280"/></clipPath>
+<polyline points="105.00,279.71 159.29,204.77 213.57,133.45 267.86,92.07 322.14,69.57 376.43,58.75 430.71,55.00 485.00,55.44 539.29,58.27 593.57,62.41 647.86,67.21 702.14,72.28 756.43,77.41 810.71,82.39 865.00,87.07" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c1)"/>
+<polyline points="105.00,279.15 159.29,203.88 213.57,132.93 267.86,91.80 322.14,69.45 376.43,58.71 430.71,55.01 485.00,55.47 539.29,58.32 593.57,62.47 647.86,67.27 702.14,72.34 756.43,77.45 810.71,82.43 865.00,87.12" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c1)"/>
+<polyline points="105.00,294.43 159.29,256.08 213.57,219.03 267.86,196.25 322.14,182.11 376.43,173.22 430.71,167.56 485.00,163.88 539.29,161.46 593.57,159.86 647.86,158.83 702.14,158.19 756.43,157.89 810.71,157.87 865.00,158.05" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c1)"/>
+<polyline points="105.00,294.15 159.29,255.61 213.57,218.74 267.86,196.06 322.14,181.99 376.43,173.15 430.71,167.51 485.00,163.85 539.29,161.44 593.57,159.85 647.86,158.82 702.14,158.20 756.43,157.90 810.71,157.88 865.00,158.06" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c1)"/>
+<polyline points="105.00,305.00 159.29,292.98 213.57,281.33 267.86,274.07 322.14,269.44 376.43,266.36 430.71,264.21 485.00,262.61 539.29,261.34 593.57,260.25 647.86,259.28 702.14,258.37 756.43,257.49 810.71,256.64 865.00,255.87" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c1)"/>
+<polyline points="105.00,304.91 159.29,292.83 213.57,281.23 267.86,274.01 322.14,269.40 376.43,266.33 430.71,264.19 485.00,262.59 539.29,261.32 593.57,260.24 647.86,259.26 702.14,258.36 756.43,257.48 810.71,256.63 865.00,255.86" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c1)"/>
+<rect x="705" y="50" width="150" height="128" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="62" x2="745" y2="62" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="66" font-size="13">FE, x = 0</text>
+<line x1="713" y1="82" x2="745" y2="82" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="86" font-size="13">Laplace, x = 0</text>
+<line x1="713" y1="102" x2="745" y2="102" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="106" font-size="13">FE, x = h</text>
+<line x1="713" y1="122" x2="745" y2="122" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="126" font-size="13">Laplace, x = h</text>
+<line x1="713" y1="142" x2="745" y2="142" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="146" font-size="13">FE, x = 8 mm</text>
+<line x1="713" y1="162" x2="745" y2="162" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="166" font-size="13">Laplace, x = 8 mm</text>
+<text x="485" y="360" font-size="15" text-anchor="middle">t (s)</text>
+<text x="47" y="180" font-size="15" text-anchor="middle" transform="rotate(-90 47 180)">θ (K)</text>
+<text x="105" y="32" font-size="15" font-weight="bold">(a) MGL, linear problem, 2 s pulse: FE vs Laplace inversion</text>
+<rect x="105" y="415" width="760" height="280" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="159.286" y1="415" x2="159.286" y2="695" stroke="#e3e3e3"/>
+<line x1="159.286" y1="695" x2="159.286" y2="690" stroke="#222"/>
+<text x="159.286" y="713" font-size="13" text-anchor="middle">2</text>
+<line x1="267.857" y1="415" x2="267.857" y2="695" stroke="#e3e3e3"/>
+<line x1="267.857" y1="695" x2="267.857" y2="690" stroke="#222"/>
+<text x="267.857" y="713" font-size="13" text-anchor="middle">4</text>
+<line x1="376.429" y1="415" x2="376.429" y2="695" stroke="#e3e3e3"/>
+<line x1="376.429" y1="695" x2="376.429" y2="690" stroke="#222"/>
+<text x="376.429" y="713" font-size="13" text-anchor="middle">6</text>
+<line x1="485" y1="415" x2="485" y2="695" stroke="#e3e3e3"/>
+<line x1="485" y1="695" x2="485" y2="690" stroke="#222"/>
+<text x="485" y="713" font-size="13" text-anchor="middle">8</text>
+<line x1="593.571" y1="415" x2="593.571" y2="695" stroke="#e3e3e3"/>
+<line x1="593.571" y1="695" x2="593.571" y2="690" stroke="#222"/>
+<text x="593.571" y="713" font-size="13" text-anchor="middle">10</text>
+<line x1="702.143" y1="415" x2="702.143" y2="695" stroke="#e3e3e3"/>
+<line x1="702.143" y1="695" x2="702.143" y2="690" stroke="#222"/>
+<text x="702.143" y="713" font-size="13" text-anchor="middle">12</text>
+<line x1="810.714" y1="415" x2="810.714" y2="695" stroke="#e3e3e3"/>
+<line x1="810.714" y1="695" x2="810.714" y2="690" stroke="#222"/>
+<text x="810.714" y="713" font-size="13" text-anchor="middle">14</text>
+<line x1="105" y1="639.686" x2="865" y2="639.686" stroke="#e3e3e3"/>
+<line x1="105" y1="639.686" x2="110" y2="639.686" stroke="#222"/>
+<text x="99" y="643.686" font-size="13" text-anchor="end">1</text>
+<line x1="105" y1="571.204" x2="865" y2="571.204" stroke="#e3e3e3"/>
+<line x1="105" y1="571.204" x2="110" y2="571.204" stroke="#222"/>
+<text x="99" y="575.204" font-size="13" text-anchor="end">2</text>
+<line x1="105" y1="502.722" x2="865" y2="502.722" stroke="#e3e3e3"/>
+<line x1="105" y1="502.722" x2="110" y2="502.722" stroke="#222"/>
+<text x="99" y="506.722" font-size="13" text-anchor="end">3</text>
+<line x1="105" y1="434.239" x2="865" y2="434.239" stroke="#e3e3e3"/>
+<line x1="105" y1="434.239" x2="110" y2="434.239" stroke="#222"/>
+<text x="99" y="438.239" font-size="13" text-anchor="end">4</text>
+<clipPath id="c2"><rect x="105" y="415" width="760" height="280"/></clipPath>
+<polyline points="105.00,574.24 159.29,437.94 213.57,434.83 267.86,433.52 322.14,432.57 376.43,431.96 430.71,431.65 485.00,431.61 539.29,431.82 593.57,432.25 647.86,432.87 702.14,433.67 756.43,434.61 810.71,435.69 865.00,436.88" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c2)"/>
+<polyline points="105.00,572.87 159.29,436.57 213.57,434.80 267.86,433.50 322.14,432.56 376.43,431.95 430.71,431.65 485.00,431.62 539.29,431.83 593.57,432.26 647.86,432.89 702.14,433.69 756.43,434.63 810.71,435.71 865.00,436.91" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c2)"/>
+<polyline points="105.00,575.04 159.29,440.39 213.57,438.40 267.86,437.37 322.14,436.22 376.43,435.09 430.71,434.03 485.00,433.15 539.29,432.49 593.57,432.06 647.86,431.93 702.14,432.11 756.43,432.67 810.71,433.50 865.00,434.42" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c2)"/>
+<polyline points="105.00,573.69 159.29,439.03 213.57,438.36 267.86,437.35 322.14,436.20 376.43,435.06 430.71,434.02 485.00,433.15 539.29,432.49 593.57,432.08 647.86,431.95 702.14,432.14 756.43,432.68 810.71,433.51 865.00,434.47" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c2)"/>
+<polyline points="105.00,680.00 159.29,609.79 213.57,541.97 267.86,500.26 322.14,474.37 376.43,458.11 430.71,447.73 485.00,441.00 539.29,436.58 593.57,433.65 647.86,431.75 702.14,430.60 756.43,430.04 810.71,430.00 865.00,430.33" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c2)"/>
+<polyline points="105.00,679.48 159.29,608.93 213.57,541.43 267.86,499.92 322.14,474.15 376.43,457.97 430.71,447.64 485.00,440.94 539.29,436.54 593.57,433.63 647.86,431.74 702.14,430.60 756.43,430.06 810.71,430.01 865.00,430.35" fill="none" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3" clip-path="url(#c2)"/>
+<rect x="705" y="425" width="150" height="128" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="437" x2="745" y2="437" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="441" font-size="13">FE, Pennes</text>
+<line x1="713" y1="457" x2="745" y2="457" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="461" font-size="13">Laplace, Pennes</text>
+<line x1="713" y1="477" x2="745" y2="477" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="481" font-size="13">FE, CV</text>
+<line x1="713" y1="497" x2="745" y2="497" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="501" font-size="13">Laplace, CV</text>
+<line x1="713" y1="517" x2="745" y2="517" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="521" font-size="13">FE, MGL</text>
+<line x1="713" y1="537" x2="745" y2="537" stroke="#1e8449" stroke-width="2" stroke-dasharray="2,3"/>
+<text x="751" y="541" font-size="13">Laplace, MGL</text>
+<text x="485" y="735" font-size="15" text-anchor="middle">t (s)</text>
+<text x="47" y="555" font-size="15" text-anchor="middle" transform="rotate(-90 47 555)">θ(h, t) (K)</text>
+<text x="105" y="407" font-size="15" font-weight="bold">(b) temperature at the interface for three heat models</text>
+<rect x="105" y="790" width="760" height="280" fill="white" stroke="#222" stroke-width="1.2"/>
+<line x1="105" y1="790" x2="105" y2="1070" stroke="#e3e3e3"/>
+<line x1="105" y1="1070" x2="105" y2="1065" stroke="#222"/>
+<text x="105" y="1088" font-size="13" text-anchor="middle">0</text>
+<line x1="200" y1="790" x2="200" y2="1070" stroke="#e3e3e3"/>
+<line x1="200" y1="1070" x2="200" y2="1065" stroke="#222"/>
+<text x="200" y="1088" font-size="13" text-anchor="middle">2</text>
+<line x1="295" y1="790" x2="295" y2="1070" stroke="#e3e3e3"/>
+<line x1="295" y1="1070" x2="295" y2="1065" stroke="#222"/>
+<text x="295" y="1088" font-size="13" text-anchor="middle">4</text>
+<line x1="390" y1="790" x2="390" y2="1070" stroke="#e3e3e3"/>
+<line x1="390" y1="1070" x2="390" y2="1065" stroke="#222"/>
+<text x="390" y="1088" font-size="13" text-anchor="middle">6</text>
+<line x1="485" y1="790" x2="485" y2="1070" stroke="#e3e3e3"/>
+<line x1="485" y1="1070" x2="485" y2="1065" stroke="#222"/>
+<text x="485" y="1088" font-size="13" text-anchor="middle">8</text>
+<line x1="580" y1="790" x2="580" y2="1070" stroke="#e3e3e3"/>
+<line x1="580" y1="1070" x2="580" y2="1065" stroke="#222"/>
+<text x="580" y="1088" font-size="13" text-anchor="middle">10</text>
+<line x1="675" y1="790" x2="675" y2="1070" stroke="#e3e3e3"/>
+<line x1="675" y1="1070" x2="675" y2="1065" stroke="#222"/>
+<text x="675" y="1088" font-size="13" text-anchor="middle">12</text>
+<line x1="770" y1="790" x2="770" y2="1070" stroke="#e3e3e3"/>
+<line x1="770" y1="1070" x2="770" y2="1065" stroke="#222"/>
+<text x="770" y="1088" font-size="13" text-anchor="middle">14</text>
+<line x1="865" y1="790" x2="865" y2="1070" stroke="#e3e3e3"/>
+<line x1="865" y1="1070" x2="865" y2="1065" stroke="#222"/>
+<text x="865" y="1088" font-size="13" text-anchor="middle">16</text>
+<line x1="105" y1="1003.11" x2="865" y2="1003.11" stroke="#e3e3e3"/>
+<line x1="105" y1="1003.11" x2="110" y2="1003.11" stroke="#222"/>
+<text x="99" y="1007.11" font-size="13" text-anchor="end">-6</text>
+<line x1="105" y1="935.413" x2="865" y2="935.413" stroke="#e3e3e3"/>
+<line x1="105" y1="935.413" x2="110" y2="935.413" stroke="#222"/>
+<text x="99" y="939.413" font-size="13" text-anchor="end">-4</text>
+<line x1="105" y1="867.713" x2="865" y2="867.713" stroke="#e3e3e3"/>
+<line x1="105" y1="867.713" x2="110" y2="867.713" stroke="#222"/>
+<text x="99" y="871.713" font-size="13" text-anchor="end">-2</text>
+<line x1="105" y1="800.013" x2="865" y2="800.013" stroke="#e3e3e3"/>
+<line x1="105" y1="800.013" x2="110" y2="800.013" stroke="#222"/>
+<text x="99" y="804.013" font-size="13" text-anchor="end">0</text>
+<line x1="105" y1="800.013" x2="865" y2="800.013" stroke="#888" stroke-width="0.8"/>
+<clipPath id="c3"><rect x="105" y="790" width="760" height="280"/></clipPath>
+<line x1="295" y1="790" x2="295" y2="1070" stroke="#999" stroke-dasharray="3,3"/>
+<text x="298" y="804" font-size="11" fill="#555">h</text>
+<polyline points="105.00,922.77 152.50,916.05 200.00,898.46 247.50,877.99 295.00,1012.15 390.00,924.95 485.00,866.70 675.00,818.38 865.00,805.00" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c3)"/>
+<polyline points="105.00,922.88 152.50,916.17 200.00,898.57 247.50,878.14 295.00,1012.44 390.00,925.12 485.00,866.79 675.00,818.40 865.00,805.02" fill="none" stroke="#1f4e9c" stroke-width="2" stroke-dasharray="" clip-path="url(#c3)"/>
+<polyline points="105.00,937.29 152.50,930.60 200.00,913.59 247.50,893.72 295.00,1054.92 390.00,952.52 485.00,881.65 675.00,822.55 865.00,806.13" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c3)"/>
+<polyline points="105.00,937.28 152.50,930.59 200.00,913.64 247.50,893.75 295.00,1055.00 390.00,952.44 485.00,881.69 675.00,822.56 865.00,806.15" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4" clip-path="url(#c3)"/>
+<rect x="705" y="972" width="150" height="88" fill="white" fill-opacity="0.9" stroke="#999"/>
+<line x1="713" y1="984" x2="745" y2="984" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="988" font-size="13">FE, t = 3 s</text>
+<line x1="713" y1="1004" x2="745" y2="1004" stroke="#1f4e9c" stroke-width="2" stroke-dasharray=""/>
+<text x="751" y="1008" font-size="13">Laplace, t = 3 s</text>
+<line x1="713" y1="1024" x2="745" y2="1024" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="1028" font-size="13">FE, t = 6 s</text>
+<line x1="713" y1="1044" x2="745" y2="1044" stroke="#c0392b" stroke-width="2" stroke-dasharray="7,4"/>
+<text x="751" y="1048" font-size="13">Laplace, t = 6 s</text>
+<text x="485" y="1110" font-size="15" text-anchor="middle">x (mm)</text>
+<text x="47" y="930" font-size="15" text-anchor="middle" transform="rotate(-90 47 930)">σ<tspan baseline-shift="-25%" font-size="75%">∥</tspan> (kPa)</text>
+<text x="105" y="782" font-size="15" font-weight="bold">(c) in-plane stress, MGL (τ<tspan baseline-shift="-25%" font-size="75%">1</tspan> = 1 s)</text></svg>
