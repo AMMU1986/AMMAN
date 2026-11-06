@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="550" font-family="Noto Sans, DejaVu Sans, Arial, sans-serif"><rect width="100%" height="100%" fill="white"/><defs><marker id="ar" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 z" fill="#222"/></marker></defs>
+<rect x="70" y="30" width="760" height="52" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.6"/>
+<text x="450" y="61" font-size="15" text-anchor="middle">Nondimensional MGL + LS/DPL/TPL equations</text>
+<line x1="450" y1="82" x2="450" y2="105" stroke="#222" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="70" y="105" width="760" height="52" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.6"/>
+<text x="450" y="136" font-size="15" text-anchor="middle">Laplace transform in t; potential u = ∂φ/∂r (or ∇φ)</text>
+<line x1="450" y1="157" x2="450" y2="180" stroke="#222" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="70" y="180" width="760" height="52" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.6"/>
+<text x="450" y="211" font-size="15" text-anchor="middle">Fourth-order equation: (∇²−m<tspan baseline-shift="-25%" font-size="75%">1</tspan>²)(∇²−m<tspan baseline-shift="-25%" font-size="75%">2</tspan>²)φ = −δ<tspan baseline-shift="-25%" font-size="75%">1</tspan>Q/Ψ</text>
+<line x1="450" y1="232" x2="450" y2="255" stroke="#222" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="70" y="255" width="760" height="52" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.6"/>
+<text x="450" y="286" font-size="15" text-anchor="middle">Pulsed source: K<tspan baseline-shift="-25%" font-size="75%">0</tspan>(m<tspan baseline-shift="-25%" font-size="75%">j</tspan>r)   |   Moving source: Fourier in x, closed form in y</text>
+<line x1="450" y1="307" x2="450" y2="330" stroke="#222" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="70" y="330" width="760" height="52" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.6"/>
+<text x="450" y="361" font-size="15" text-anchor="middle">Fields θ, u, σ in the s-domain; large-s asymptotics (waves, speeds)</text>
+<line x1="450" y1="382" x2="450" y2="405" stroke="#222" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="70" y="405" width="760" height="52" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.6"/>
+<text x="450" y="436" font-size="15" text-anchor="middle">Durbin inversion + Wynn-ε; ξ-quadrature for the moving source</text>
+<line x1="450" y1="457" x2="450" y2="480" stroke="#222" stroke-width="1.6" marker-end="url(#ar)"/>
+<rect x="70" y="480" width="760" height="52" rx="8" fill="#eef2f7" stroke="#1f4e9c" stroke-width="1.6"/>
+<text x="450" y="511" font-size="15" text-anchor="middle">Validation: FD solver, limits, truncation, decay, heat content</text></svg>
