@@ -1,0 +1,308 @@
+Abstract
+
+Thermal therapies deposit heat in a tumour that is surrounded by normal tissue with different thermal, mechanical and vascular properties, and the resulting temperature and stress fields depend on how heat conduction, strain rate and blood perfusion are modelled. This paper extends the layered tumour and normal tissue slab of Jangid, Singh and Mukhopadhyay [13] in three directions. The strain-rate and temperature-rate operators of the modified Green–Lindsay (MGL) theory are used; the temperature-rate lag in the energy equation is made fractional by a Caputo derivative of order $1+\alpha$ with $0<\alpha\le1$; and blood perfusion depends on temperature through a law that first increases and then shuts down above a critical temperature rise, with an optional linear dependence of conductivity on temperature handled by a Kirchhoff transform. The model is solved by a Galerkin finite element method with linear elements, a second-order backward-differentiation convolution quadrature for all time derivatives including the fractional one, and Picard iteration for the nonlinear terms. A Legendre wavelet collocation method was not implemented, and the finite element route is the one reported. For the linear model the exact layered solution is derived in the Laplace domain, where the Caputo term becomes $s^{1+\alpha}$, and is inverted numerically. For $\alpha=0.6$ the finite element temperature, displacement and stress agree with it to 0.049, 0.58 and 0.62 per cent at $t=0.4$, and a smooth-data test shows second-order convergence in time. For $\alpha=1$ the discontinuous thermal front limits the accuracy to several per cent. In the source dimensionless scaling the perfusion and laser numbers are of order $10^{-13}$ and $10^{-12}$, so they are negligible, and the perfusion studies use an explicitly rescaled perfusion number. Decreasing $\alpha$ from 1 to 0.45 removes the sharp thermal front, lowers the tumour-edge stress peak from 3.51 to 1.37 and lets the temperature reach $x=0.5$ much earlier. The field does not vanish beyond the interface once $t$ exceeds about 0.063. All results are dimensionless model predictions and carry no clinical claim.
+
+1. Introduction
+
+Heating of living tissue by lasers, focused ultrasound or other sources is used to destroy tumours, and the design of such treatments needs predictions of the temperature and of the thermomechanical stress that the heating produces. The classical model is the Pennes bioheat equation, in which Fourier conduction is combined with a heat sink proportional to the blood perfusion rate and to the local temperature rise. That model is parabolic and therefore gives an infinite speed of heat propagation. For very short heating times, or for tissue with a microstructure that delays the heat flux, a finite speed of thermal waves and a relaxation of the heat flux are introduced in the form of dual-phase-lag, Cattaneo–Vernotte and Moore–Gibson–Thompson (MGT) bioheat models. Because heated tissue also expands, the temperature field is coupled to the displacement field, and generalised thermoelasticity theories supply the framework for this coupling. Reviews of generalised thermoelasticity and of its modified versions are given in [9].
+
+Among the generalised theories, the Green–Lindsay theory introduces two relaxation times through temperature-rate terms in the constitutive law and in the energy equation. Its well known defect is a displacement that can jump at the wavefront. Yu, Xue and Tian (2018) repaired this by adding a strain-rate term that uses the same relaxation time as the temperature rate, and Quintanilla (2018) studied the resulting modified Green–Lindsay (MGL) system. Recent work has clarified the mathematical significance of the strain-rate and temperature-rate terms [1], their infinite-speed behaviour [2], the fundamental solutions [3] and a Galerkin-type representation [4]. Finite element solutions of MGL problems exist for functionally graded geometries [5] and photothermal problems have been treated within the same theory [6]. The MGT theory provides a competing third-order description whose line-source and wave properties have been compared with those of MGL [7, 8]. The present paper stays within the MGL family, and the MGT model is used only as a comparison.
+
+The source of this work is the study of Jangid, Singh and Mukhopadhyay [13]. They consider a one-dimensional slab in which a tumour occupies $0<x<h$ and normal tissue occupies $h<x<L$, with a temperature step at the surface of the tumour, a clamped and isothermal far face, continuity of displacement, stress, temperature and heat flux at the interface, and a laser source with an exponential depth profile. The thermal part is an MGT bioheat equation with a temperature-dependent conductivity that is active in the tumour only, and the system is solved by a Legendre wavelet collocation method. Their reported findings are that the MGT and Lord–Shulman responses are close, that the Biot and Green–Naghdi type III responses are larger, that the variable conductivity matters in the tumour, and that the fields vanish beyond the interface for the times considered.
+
+Three aspects of that model call for extension. First, the elastic part of the source model is classical, whereas the MGL theory supplies the strain-rate regularisation that is known to remove the displacement discontinuity at the front. Second, memory and non-local effects in biological tissue are often described by fractional derivatives, and a Caputo derivative of order $1+\alpha$ interpolates between the diffusive limit and the integer-order hyperbolic model. The fractional-order literature in thermoelasticity and bioheat transfer is large, with contributions by Ezzat (2020), Li et al. (2019, 2020), Zhang et al. (2021), Marin et al. (2021), Ragab et al. (2021) and Hobiny et al. (2020), among others, and the MGT bioheat models of Quintanilla (2019) and Singh and co-workers (2023), and the wavelet analysis of Jangid and Mukhopadhyay (2023) are directly related. These works are named here by author and year only, because their digital object identifiers could not be verified during the preparation of this manuscript. Third, the perfusion rate of living tissue is not constant. It rises with temperature through vasodilation, and it falls when the vasculature is damaged or collapses at higher temperature, which is the physical background of the Weinbaum–Jiji type models and of the observed vascular shutdown in hyperthermia.
+
+The contribution of the paper is a complete, verified computational treatment of this extended problem. The model (Section 2) combines the MGL operators, a fractional temperature-rate lag, a perfusion law with a critical temperature, optional temperature-dependent conductivity and the laser source, and it states exactly which terms are fractional. The solution (Section 3) is a finite element method with a convolution quadrature in time, together with an independent exact Laplace-domain solution of the linear layered problem that is used for validation. The results (Section 4) contain convergence and limit checks, a comparison of the Pennes, MGT, MGL and fractional MGL models, and studies of the fractional order, the strain-rate lag, the perfusion law, the interface position and the laser source. Section 5 summarises the findings.
+
+Several modelling choices were made for the sake of a definite and testable problem, and they are repeated here because they affect interpretation. The preferred solution method for the extension was a Legendre wavelet collocation method with a Caputo operational matrix, as in the source study. That method was not implemented here; the finite element and convolution quadrature route was chosen instead because it could be validated against an exact solution in pure Python within the available effort. Next, the source nondimensionalisation makes the length unit about 1.45 nm and the time unit about 11.4 ps, so that the literal perfusion and laser numbers are negligible, and this fact must be understood before any perfusion result is read. Finally, the relaxation times, the perfusion law and the parameters of the law are illustrative and are not taken from a cited measurement. The numerical results are therefore properties of the model and are expressed in dimensionless form.
+
+2. Governing equations
+
+2.1 Layered medium and MGL thermoelasticity
+
+The slab occupies $0<x<L$ and is divided by the plane $x=h$ into a tumour layer (index 1) and a normal tissue layer (index 2). The displacement $u_i(x,t)$ is along $x$ and the temperature increment above the reference temperature $T_0=T_b=310$ K is $\theta_i(x,t)$:
+
+The coefficient of thermomechanical coupling and the one-dimensional strain are
+
+with $\lambda_i$ and $\mu_i$ the Lamé constants and $\alpha_{Ti}$ the coefficient of linear thermal expansion. In the MGL theory the strain rate is added to the constitutive law with the same lag $\tau_1$ that multiplies the temperature rate, so that the stress and the equation of motion are
+
+Eliminating the stress gives the motion equation in the form used in [1] and [5],
+
+For $\tau_1=0$ the classical coupled equation of motion is recovered. The same lag $\tau_1$ is used in both layers, which is necessary for the stress to be continuous at the interface when the bracket is continuous. The lag is a model parameter, and its value is taken from the range of the other time scales of the problem and not from a measurement.
+
+2.2 Fractional temperature-rate lag and the bioheat equation
+
+The fractional operator is the Caputo derivative. For a function $f$ and an order $\gamma$ with $m-1<\gamma\le m$, where $m$ is an integer,
+
+Its Laplace transform, with $\hat f(s)$ the transform of $f$ and $s$ the transform variable, is
+
+The quiescent initial state of the present problem makes all initial terms vanish for $\gamma=1+\alpha$, so that the fractional term transforms to $s^{1+\alpha}\hat f$ and the layered Laplace-domain solution remains exact. The fractional lag operator acting on a field $z$ is defined by
+
+where $\tau_0$ is the temperature-rate relaxation time and $\tau_0^{\alpha}$ carries the dimension that makes the second term homogeneous in time. For $\alpha=1$ the Caputo derivative of order 2 is the second derivative, and the operator reduces to the Green–Lindsay form,
+
+The heat flux obeys Fourier's law with a temperature-dependent conductivity $k_i(\theta)$, and no lag is placed in the flux, which is the Green–Lindsay choice and which makes the flux continuous across the interface whenever $k\partial_x\theta$ is continuous:
+
+The energy balance of the MGL theory then reads as follows. The lag operator acts on the heat content and on the thermoelastic coupling term, and it does not act on the external heat source or on the perfusion sink:
+
+Two statements about this choice are needed. First, the fractional terms are the Caputo derivative of order $1+\alpha$ of the temperature and of the dilatation, i.e. $\tau_0^{\alpha}D_t^{1+\alpha}\theta$ and $\tau_0^{\alpha}D_t^{1+\alpha}e$ in Eq. (11). The strain-rate lag $\tau_1$, the perfusion sink and the source are integer-order. Second, leaving the perfusion sink outside the lag operator is a modelling decision. In the MGT form of the source model the lag operator multiplies the whole bracket, including the perfusion term, whereas in the Green–Lindsay form the lag multiplies the temperature rate only. The perfusion exchange between blood and tissue is a local process and is not part of the conduction mechanism, and this is why it is treated as an instantaneous sink here. For zero initial conditions the Caputo derivative of order $1+\alpha$ equals the Caputo derivative of order $\alpha$ of the first time derivative, which is the form implemented later:
+
+The memory interpretation of Eq. (12) is useful for the discussion later. The Caputo derivative of order $1+\alpha$ of a field at rest equals a Riemann–Liouville integral of order $1-\alpha$ of the second time derivative, so that the fractional lag term is a weighted average of the past accelerations of the temperature with a power-law kernel $(t-s)^{-\alpha}$. A weight that decays slowly gives the tissue a long memory of its heating history, and the parameter $\tau_0^{\alpha}$ sets the strength of this memory. For $\alpha=1$ the kernel collapses to a delta function and the memory disappears, leaving the instantaneous second derivative. This is why $\alpha=1$ is the integer-order hyperbolic limit and why smaller $\alpha$ moves the model towards diffusion in the sense of a heavier tail of the response, although the model does not reduce to the Pennes equation for any $\alpha>0$ when $\tau_0>0$.
+
+Combining Eqs. (10) and (11) gives the nonlinear fractional bioheat equation for each layer:
+
+Setting $\tau_0=0$, $\tau_1=0$, $W_i=\rho_bc_bw_{bi}\theta_i$ and dropping the coupling gives the Pennes equation, and setting $\alpha=1$ gives the integer-order MGL system. The limit $\alpha\to0$ is not used, because the operator then ceases to be a lag. For $0<\alpha<1$ the large-$s$ behaviour of the Laplace-domain wave number is governed by $s^{(1+\alpha)/2}$, which is slower than $s$, and the solution therefore has no sharp wavefront but a smooth precursor that is unbounded in speed. This is a property of the fractional operator that is verified numerically in Section 4.
+
+2.3 Temperature-dependent conductivity and perfusion
+
+The conductivity is taken to depend linearly on the temperature increment, as in the source model, with the slope $\chi_i$ and with $|\chi_i\theta_i|$ small. It is handled by the Kirchhoff transform, which turns the conduction term into a linear operator on a transformed variable:
+
+The Kirchhoff variable guarantees that the flux $k_{i0}\partial_x\phi_i$ is the same quantity on both sides of the interface, and the finite element weak form uses it directly. The perfusion sink uses the blood properties $\rho_b$ and $c_b$, the baseline perfusion rate $w_{bi0}$ and a dimensionless multiplier $\omega_i(\theta)$:
+
+Two physical effects are represented by the multiplier. The perfusion rate rises with temperature because of vasodilation, and it falls to zero above a critical temperature rise when the vessels are damaged or compressed. A smooth law with both properties and with only three parameters per layer is
+
+where $\Delta T$ is the reference temperature rise, $c_{wi}$ is the vasodilation slope, $\theta_{ci}$ is the dimensionless critical temperature rise and $\Delta_c$ is the width of the shutdown transition. The division by $S_i(0)$ makes $\omega_i(0)=1$ exactly. The law has the following limits:
+
+The parameters are illustrative. The values $c_{w1}=0.5$, $\theta_{c1}=0.6$ for the tumour and $c_{w2}=3$, $\theta_{c2}=0.9$ for the normal tissue encode the common observations that tumour vasculature responds weakly to heating and shuts down earlier, whereas normal tissue vasodilates strongly before it is damaged, and $\Delta_c=0.1$ for both. With $\Delta T=10$ K the critical temperatures correspond to the following values, which are model parameters and not clinical thresholds:
+
+Two properties of the law should be recorded. The multiplier is non-negative by construction, so that the perfusion term $W_i\theta_i$ has the sign of $\theta_i^2$ and removes energy from the tissue at every point where the temperature differs from the blood temperature. The law therefore cannot create energy, and the energy balance of the model remains dissipative with respect to the perfusion mechanism. Second, the product $\omega(\theta)\theta$ is not monotone: it increases for small $\theta$, reaches a maximum near the critical temperature and falls to zero in the stasis region. The sink is therefore a non-monotone function of temperature, and the steady-state problem of Section 3.5 may in principle have more than one solution for large perfusion numbers. In the computations below a single branch was found, and the Picard iteration always started from the solution of the previous time level, which follows the branch continuously.
+
+2.4 Laser source
+
+The laser deposits heat with an exponential depth profile and a rectangular pulse of duration $\tau_p$, in the form used in [13]:
+
+where $I_0$ is the incident intensity, $\mu_a$ and $\mu_s$ are the absorption and scattering coefficients, $g_a$ is the anisotropy factor and $H$ is the Heaviside function. The coefficients depend on the diffuse reflectance $R_d$ through
+
+For $R_d=0.05$ the values are $B_1=2.638$, $B_2=1.293$, $l_1=0.845$ and $l_2=1.932$, and the optical depth is $\delta=2.592$ mm.
+
+2.5 Boundary, interface and initial conditions
+
+The tumour surface is traction free and is held at a raised temperature, and the far face is clamped and kept at the reference temperature:
+
+At the interface the displacement, the stress, the temperature and the heat flux are continuous,
+
+and the medium is initially at rest in the reference state:
+
+2.6 Nondimensional form
+
+The nondimensionalisation of [13] is used. The length scale $l$ and the velocity scale $\nu$ are
+
+The second relation is the choice that makes the coefficient $a_4$ in the tumour equal to one. The dimensionless variables, with $\Delta T=T_\infty-T_0$, are
+
+and the relaxation times are scaled in the same way as $t$; the asterisks are omitted from here on. The coefficients that appear are collected in the following relations. The density, stiffness, coupling, conductivity and heat capacity ratios are
+
+The coefficients $a_1,\dots,a_9$ of the source study that remain are
+
+Their values are listed in Table 2. The coefficients $a_{1i}$ and $a_{2i}$ are equal to $a_{8i}/\hat\rho_i$ and $a_{9i}/\hat\rho_i$ and are given for reference to [13]. The model written in $\hat\rho_i$, $a_{8i}$, $a_{9i}$ keeps the divergence form, so that no derivative of a material property is needed in the weak form. The dimensionless motion equation and stress are
+
+where $S_i$ is the stress before the strain-rate operator acts and $\Sigma_i=\sigma_i^{*}$. The dimensionless energy equation, in Kirchhoff form, is
+
+with $\phi_i=\theta_i+\tfrac12\chi_i\theta_i^2$ and with $\tau_0$ and $\tau_p$ now dimensionless. The depth scale $\delta^{*}=\delta/l$ is introduced in the laser profile, and the boundary and interface conditions become
+
+where $[\cdot]_h$ denotes the jump across $x=h$. Two consequences of the scaling must be stated. First, with the numbers of Table 1 the length scale is $l=1.45$ nm and the time scale is $l/\nu=11.4$ ps, so that the dimensionless slab $L=1$ is only 1.45 nm thick and the optical depth is $\delta^{*}=1.788\times10^{6}$. The laser profile is therefore uniform across the slab. Second, the dimensionless perfusion and laser numbers are $a_{61}=9.721\times10^{-14}$ and $a_7=3.243\times10^{-12}$, which means that the literal model has no measurable perfusion or laser effect. The relation between the perfusion number and a physical length is
+
+so that a perfusion number of order one corresponds to a length scale of a few millimetres. In the studies of Section 4 the tumour perfusion number $\Pi=a_{61}$ is therefore treated as a free parameter, and the normal-tissue value follows from the fixed ratio of the physical data,
+
+This is a rescaling of one dimensionless group while the others are kept at their source values. It is an illustration of what the model does when perfusion is comparable to conduction, and it is not a statement about the time and length scales of a clinical treatment, for which both the relaxation times and the lengths would be many orders of magnitude different from the dimensionless values used here.
+
+3. Modelling
+
+Two solution routes are built. The first is an exact solution of the linear layered problem in the Laplace domain, inverted numerically, and it is used as the reference. The second is a finite element method with convolution quadrature in time, which handles the full nonlinear problem and is the source of all the parametric results. The preferred route of the task, a Legendre wavelet collocation method with a Caputo operational matrix, was not implemented; the reasons are given at the end of Section 3.5.
+
+3.1 Laplace-domain solution of the linear layered problem
+
+Let a hat denote the Laplace transform in time, with $s$ the transform variable, and let a prime denote $\mathrm{d}/\mathrm{d}x$. The reference solution requires constant conductivity ($\chi_i=0$) and constant perfusion ($\omega_i=1$). With the quiescent initial state, the transform of Eq. (34) and of Eq. (35) is, for each layer,
+
+where the layer index is dropped. For the MGL and fractional MGL models the symbols are given by the following relations, and the Caputo derivative has become the power $s^{1+\alpha}$:
+
+The MGT model of the source study is used for comparison. Its energy equation is $\partial_t(\kappa\theta''+a_3v'')=(1+\tau_q\partial_t)(\dots)$ with $v_t=\theta$, and the classical elastic law, so that
+
+The Pennes limit corresponds to $\tau_0=0$ and $\tau_1=0$ in Eq. (42). The laser transform is $\hat Q=a_7g\hat f$ with the pulse transform
+
+Introducing the transformed strain $e=\hat u'$ and the transformed temperature $\hat\theta$ as the state $y=(e,\hat\theta)^{\mathrm{T}}$, differentiating Eq. (40) once and eliminating $\hat\theta''$ with Eq. (41) gives a constant-coefficient system with a forcing term:
+
+where the matrix is written row by row, and where $A=(\hat CT_s+a_6L_p)/\kappa_e$ and $b=a_5T_s/\kappa_e$. The forcing is $F=(r,1)^{\mathrm{T}}L_q\hat Q/\kappa_e$. The eigenvalues $\mu_{1,2}$ of $\mathbf{M}$ give the two wave numbers $q_k$ of the layer, and the eigenvectors follow from the second row:
+
+When the thermoelastic coupling $a_5$ is small, which is the case here with $a_{51}=1.601\times10^{-4}$, the two eigenvectors are nearly the coordinate directions and the wave numbers are close to $\sqrt{m}$ (elastic) and $\sqrt{A}$ (thermal). The eigenvector formula is therefore replaced by the first-row formula $(M_{12},\mu_k-M_{11})^{\mathrm{T}}$ whenever the latter has the larger norm, which avoids a loss of precision. The displacement is not an independent unknown. Eq. (40) determines it algebraically from the strain and the temperature,
+
+and the transformed stress is $\hat\sigma=\sigma_s(a_8e-a_9\hat\theta)$. To avoid exponentials that overflow, each layer $[x_a,x_b]$ uses a mode decaying to the right from $x_a$ and a mode decaying to the left from $x_b$,
+
+The laser has two exponential terms, $e^{-\gamma_jx}$ with $\gamma_j=l_j/\delta^{*}$ and weights $B_1$ and $-B_2$, and for each of them the particular solution $y_p=c_je^{-\gamma_jx}$ follows from a $2\times2$ solve,
+
+The eight amplitudes $c_k^{\pm}$ of the two layers are fixed by four boundary conditions and four interface conditions. The transformed boundary conditions are
+
+These eight linear equations form a complex $8\times8$ system, which is solved by Gaussian elimination with partial pivoting for each value of $s$:
+
+For the temperature ramp test of Section 4.2 the boundary data are changed to $\theta_0(1-e^{-t/\tau_b})$, whose transform is $\theta_0[1/s-1/(s+1/\tau_b)]$. The time-domain solution is obtained with the Durbin formula, in which the inverse transform is approximated by a Fourier series with period $2T$,
+
+and the slowly convergent tail of the partial sums is accelerated with the Wynn epsilon algorithm,
+
+with $\mathcal{S}_j$ the partial sums. The accuracy of the inversion was checked by changing $N$, the Durbin parameters $(c,T)$ and the number of accelerated terms. For $\alpha=0.6$ the largest change of any field over 19 points and three times is $3.6\times10^{-11}$, which means that the reference is accurate to about ten digits. For $\alpha=1$ the solution has jump discontinuities at the thermal and elastic fronts and the series converges slowly near them; the change is $2.6\times10^{-7}$ at $t=0.1$, $4.6\times10^{-3}$ at $t=0.3$ and 0.065 at $t=0.5$ at the worst point, with a median change below $1.9\times10^{-5}$. The integer-order reference is therefore reliable away from fronts and at early times and it is less reliable near fronts at later times.
+
+Two remarks on the reference solution complete this subsection. The inversion needs $s\neq0$, which the Durbin contour guarantees, and the transformed solution has a branch point at $s=0$ for $\alpha<1$ because of the non-integer power. The principal branch of the power is used and the contour lies to the right of the branch cut, so that no special treatment is required. The second remark concerns the two wave numbers. When the thermal and elastic wave numbers are close for some $s$, the eigenvectors could become ill-conditioned, but the weak coupling keeps them well separated, and the first-row and second-row alternatives of the eigenvector formula cover the remaining cases. No loss of precision of the $8\times8$ solution was observed, and the agreement with the finite element solution to the level of four to five digits for $\alpha=0.6$ in the smooth ramp test supports this.
+
+3.2 Weak form and finite element discretisation
+
+The slab is divided into $n_1$ elements in the tumour and $n_2$ elements in the normal tissue, with a node at $x=h$ and a uniform spacing in each layer. The unknowns are $u$ and $\theta$ at the nodes, with linear shape functions $N_j$. Multiplying the motion equation by a test function $w$ with $w(1)=0$ and integrating by parts uses the stress-free condition at $x=0$ and the continuity of $\Sigma$ at the interface as natural conditions,
+
+The energy equation is multiplied by a test function $v$ with $v(0)=v(1)=0$. The Kirchhoff form means that the flux $\hat\kappa\phi'=\hat\kappa(1+\chi\theta)\theta'$ is continuous at the interface as a natural condition, and no derivative of a coefficient appears:
+
+On an element of length $l_e$ with the layer coefficients, the consistent mass matrix, the stiffness matrix, the thermoelastic coupling matrices and the mass matrix of the perfusion term are
+
+where the matrices are written row by row; $\mathbf{G}_e$ is the coupling of the temperature into the momentum equation and $\mathbf{B}_e$ is the coupling of the displacement into the energy equation. The perfusion term uses $a_6\omega_e\mathbf{M}_e$, where $\omega_e$ is evaluated at the element mean temperature. The semi-discrete system for the nodal vectors $\mathbf{u}$ and $\boldsymbol\theta$ is
+
+where the coefficient matrices are assembled element by element with the coefficients of the layer to which the element belongs. The load vector of the laser source uses Simpson's rule on each element, which is exact for the quadratic variation of the integrand over the very small elements used here,
+
+3.3 Convolution quadrature in time
+
+All time derivatives, integer and fractional, are approximated by one family of formulas. For a function $z$ with $z(0)=0$ and with the values $z_n=z(t_n)$ at $t_n=n\Delta t$, the derivative of order $p$ is approximated by a discrete convolution,
+
+where the weights are the coefficients of the power series of the $p$-th power of the generating function of the second-order backward differentiation formula (BDF2):
+
+Because the generating function is rational, its logarithmic derivative gives a three-term recurrence for the coefficients $f_j=\Delta t^{p}\omega_j^{(p)}$, which is exact in exact arithmetic and stable in practice,
+
+For $p=1$ the weights are the BDF2 coefficients $(3,-4,1)/(2\Delta t)$, for $p=2$ they are the five coefficients of the squared operator, and for $p=1+\alpha$ they are infinite in number and form the memory of the fractional derivative. For integer $p$ the weights vanish exactly for $j>2p$ and are set to zero. Convolution quadrature based on a linear multistep method preserves the order of the method for smooth data, and it is A-stable and strongly damped for BDF2, which is why it was selected in preference to the trapezoidal rule whose weights alternate in sign and which rings after a step in the boundary data. The assumption $z(0)=\partial_tz(0)=0$ is satisfied in the interior of the slab, and the initial state of the surface node is treated in Eq. (73) below. By Eq. (12) the fractional term needs only the order $1+\alpha$ weights applied to the field itself. The weights of the three operators that occur are
+
+so that the three operators are $\partial_t^2$, $1+\tau_1\partial_t$ and $\Lambda_\alpha$. At the time level $n$ the unknown vector is $\mathbf{X}_n=(\mathbf{u}_n,\boldsymbol\theta_n)$, with the nodal unknowns interleaved so that the matrix has a half bandwidth of three. The history of the past levels enters only through five vectors,
+
+and the fully discrete equations of the level $n$ become a block system for $\mathbf{X}_n$:
+
+The weight $c_0^{R}=\omega_0^{(2)}=(3/2)^2/\Delta t^2$ and the other weights with $j=0$ are the diagonal coefficients of the system. The stress is obtained afterwards from the element stress before the strain-rate operator, $S_e=a_8\,\partial_xu-a_9\bar\theta_e$ with $\bar\theta_e$ the element mean temperature, by the same convolution:
+
+The surface temperature $\theta_0H(t)$ is a step. The convolution quadrature interprets the node value at $t=0$ as part of the history, and the step is centred on $t=0$ when the value $\theta_0/2$ is used for $H(0)$. For the smooth-ramp tests the boundary data are given by the analytic ramp:
+
+Two properties of this time discretisation are relevant to the accuracy statements of Section 4. The convolution quadrature based on BDF2 has order two for data that are smooth and compatible with the zero initial state, which means that the field and its first time derivative vanish at $t=0$ in a sufficiently regular way. The step in the surface temperature violates this condition at the surface, and the observed first-order behaviour is the known consequence of a missing starting correction. Corrections that restore the second order exist, but they require the expansion of the solution near $t=0$ in powers of $t^{\beta}$ with exponents that depend on the layered problem and on $\alpha$, and they were not added. The second property is stability: the BDF2 generating function is A-stable, so that no restriction links the time step to the mesh size, which is the reason why steps much larger than the transit time of a front across one element can be used.
+
+The cost per time step is proportional to $n\,N_{\mathrm{nodes}}$ for the history sums and to $N_{\mathrm{nodes}}$ for the banded solve, so that the total cost grows as
+
+which is acceptable for the few hundred steps used. For the linear model the matrix is constant and its banded LU factorisation is computed once.
+
+3.4 Picard iteration for the nonlinear terms
+
+With temperature-dependent perfusion or conductivity the matrix in Eq. (71) depends on the unknown temperature. The coefficients are lagged at the previous iterate and evaluated at the element mean temperature, so that the nonlinear term is treated as a quasi-linear operator with a secant coefficient (a Picard iteration),
+
+The linear predictor in the starting guess is a usual device that reduces the number of iterations. A Newton iteration would add the derivative $\omega'(\theta)\theta$ to the matrix and could converge faster. The Picard form was chosen because the mass-like perfusion term has a small coefficient in the physical setting and the lagged matrix remains symmetric positive in its thermal block. The convergence is monitored through the ratio of successive residuals,
+
+and it is superlinear in the computations reported below, which indicates that the fixed point map is a strong contraction at the amplitudes used.
+
+3.5 Error measures, diagnostics and the choice of method
+
+The accuracy is measured against the Laplace-domain reference by the relative discrete $L_2$ error over a set of $N_p=19$ points $x_m=0.05\,m$ at a fixed time, for a field $z\in\{\theta,u,\Sigma\}$, and the convergence order is computed from successive errors $E_k$ at steps $\Delta_k$:
+
+Two diagnostics are used to describe the physics. The position of the leading edge of the temperature disturbance is defined by a threshold, and the severity of the thermomechanical loading at the tumour edge by the peak stress magnitude there,
+
+The nonlinear terms are verified independently by a steady-state computation. At large times the transient terms vanish, and the temperature solves a two-point boundary value problem that does not involve the time discretisation at all,
+
+with continuity of $\theta$ and of $\hat\kappa(1+\chi\theta)\theta'$ at $x=h$. This problem was solved with a finite volume discretisation on 2000 cells and the same Picard iteration, in a separate code. The wavelet route of the source study would replace the finite element space and time discretisation by a Legendre wavelet basis in space and time with an operational matrix of the Caputo derivative and a nonlinear solve per time step. It was not implemented. In order to reach a validated result, a method for which an exact comparison solution was available and which could be coded in pure Python without numerical libraries was chosen. A wavelet code would need its own validation against the same Laplace-domain solution, and the Laplace-domain solution of this paper would serve that purpose without change.
+
+4. Results and discussion
+
+4.1 Setup, characteristic speeds and the question of scale
+
+All computations use the dimensionless setup of the source study: $L=1$, $h=0.2$, $\theta_0=1$, and the coefficients of Table 2. The relaxation times are $\tau_0=0.1$ and $\tau_1=0.05$, the laser pulse length is $\tau_p=0.2$ and the reference temperature rise is $\Delta T=10$ K. These values are illustrative: the source study does not give the relaxation times in a form that can be transferred, and a realistic tissue relaxation time of the order of seconds would be some $10^{11}$ to $10^{12}$ times larger than the dimensionless time unit of 11.4 ps. The finite element production grid is $\Delta x=\Delta t=0.0025$, i.e. 400 elements and 240 steps to $t=0.6$; the time step of the source study, $0.01$, is used in the convergence study. The mapping of the dimensionless numbers to physical units is
+
+The characteristic speeds follow from the coefficients. In the tumour the thermal front of the integer-order model and the elastic front travel with
+
+which gives $c_{\mathrm{th},1}=3.162$ and $c_{\mathrm{el},1}=1$ in the tumour and $c_{\mathrm{th},2}=3.058$ and $c_{\mathrm{el},2}=2.352$ in the normal tissue. The thermal front is thus faster than the elastic front in the tumour and slower in the normal tissue, and it reaches the interface at
+
+Because the thermoelastic coupling is weak ($a_{51}=1.601\times10^{-4}$), the temperature is almost independent of the displacement, and the elastic fields respond to the temperature through the thermal stress. The front amplitude decays as the lag term damps it, so that the integer-order front carries the amplitude
+
+which is 0.729 at the interface and 0.206 at the far face when the difference between the layers is ignored. The remaining parameters of the model were fixed at the values of Table 2 for all runs unless stated.
+
+4.2 Validation against the exact Laplace-domain solution
+
+Figure 2 compares the finite element temperature, displacement and stress histories with the numerically inverted Laplace-domain solution for $\alpha=1$ and $\alpha=0.6$, and Table 3 lists the relative $L_2$ errors over 19 points. The curves are sampled every $0.02$ time units, which draws the thermal front as a ramp. For $\alpha=0.6$ the agreement is close at all times: at $t=0.4$ the errors in $\theta$, $u$ and $\Sigma$ are 0.049, 0.58 and 0.62 per cent. The error is larger at the earliest time shown ($t=0.1$: 0.84, 2.9 and 1.9 per cent) because the start-up error of the step boundary data has not yet been dispersed, and the stress error rises again at $t=0.6$ (4.1 per cent) presumably when the reflected waves from the clamped face arrive. For $\alpha=1$ the errors are larger: 2.6 per cent in $\theta$ and 14 per cent in $\Sigma$ at $t=0.4$, and 17 and 42 per cent at $t=0.1$. This is not a failure of the time stepping alone. The integer-order solution has a jump in temperature at the thermal front and a jump in stress at the elastic front, and a discrete solution with 400 elements and a second-order dissipative scheme smears a jump over several elements, which gives an $L_2$ error of order of the jump width divided by the sampled length. 
+
+Table 3 shows this directly. When the points within 0.08 of the estimated thermal and elastic fronts are excluded, the errors for $\alpha=1$ fall to 1.4 per cent in $\theta$, 1.2 per cent in $u$ and 4 per cent in $\Sigma$ at $t=0.2$, and to 0.53, 0.61 and 5.8 per cent at $t=0.4$. The masked errors at $t=0.1$ are larger for the displacement (6.3 per cent). The remaining error of the integer-order case is not fully explained. Part of it is the Laplace reference itself, whose own uncertainty near the fronts at $t=0.5$ was quantified in Section 3.1, and part is the first-order start-up error described in Section 4.3. The integer-order stress, which contains a jump at the elastic front, is the least accurate quantity, and the stress peaks reported below for $\alpha=1$ should be read as mesh-dependent magnitudes.
+
+The laser-driven linear problem ($\theta_0=0$, $a_7=2$, $\alpha=0.7$) has errors of 0.59, 1.4 and 2.1 per cent at $t=0.2$, and 0.12, 0.85 and 1.3 per cent at $t=0.4$, which validates the load vector and the exponential particular solution. The error in $\theta$ at $t=0.6$ is larger (2.5 per cent) because the temperature there is small after the pulse has ended and the relative measure magnifies absolute differences; the pulse end at $t=0.2$ is a discontinuity of the source that the time stepping resolves with first-order accuracy. The Pennes limit ($\tau_0=\tau_1=0$) and the case $\tau_1=0$ with $\alpha=0.8$ give temperature errors of 0.019 and 0.04 per cent, which shows that the finite element code reproduces the parabolic limit and the LS-type limit of the exact solution. The stress errors for these two cases are about 11 to 12 per cent, because without the strain-rate lag the stress contains the unregularised elastic jump.
+
+4.3 Convergence in time and space
+
+Table 4 and Figure 3 give the errors for decreasing $\Delta t$ and $\Delta x$. For the fractional case $\alpha=0.6$ with the step (Heaviside) boundary data the error in $u$ halves with every halving of $\Delta t$, with observed orders 0.95, 0.98, 1.00, i.e. first order, whereas the same scheme with a smooth ramp $\theta_0(1-e^{-t/0.05})$ shows observed orders 2.27, 2.14, 2.09 for $u$ and 2.03, 2.01, 2.01 for $\theta$, i.e. second order. 
+
+The loss of order for the step data is a start-up effect of the convolution quadrature: the surface value jumps in one step, the solution near the surface is presumably singular in time at $t=0$, and the quadrature, which assumes smooth data, makes an error proportional to $\Delta t$ there. The effect of centring the step on $t=0$ (Eq. (73)) was tested and changes the error by less than 1 per cent, so the first-order behaviour is a property of the singular start and not of the sampling of the step. For the integer-order case the step data again give about first order in $u$ (1.08, 0.92, 1.01), while the ramp data give an order between 1 and 1.3 only in $u$, because the ramp still produces a front across which the derivative jumps. The error model that summarises these observations is
+
+The mesh study at $\Delta t=0.0025$ shows second-order convergence in space until the time-stepping error is reached. For the smooth data the error in $\theta$ falls from 0.036 per cent at $\Delta x=0.04$ to $8.8\times10^{-3}$ per cent at $0.02$ and $2.1\times10^{-3}$ per cent at $0.01$, the ratios being 4.1 and 4.3, and it then stays at the level of the time error. The error in $\Sigma$ drops more erratically because the stress is evaluated on element mid-points, whose positions change with the mesh. A mesh of 200 elements is already sufficient for the temperature, and the production mesh of 400 elements is conservative. The conclusion for the later studies is that the time step $\Delta t=0.0025$ gives an error in $u$ of about 0.59 per cent for $\alpha=0.6$ at $t=0.4$, and the source value $\Delta t=0.01$ gives 2.3 per cent.
+
+4.4 Limit checks and the nonlinear terms
+
+Four limits were checked. First, the fractional model approaches the integer-order model as $\alpha\to1$: the largest nodal difference in $\theta$ at $t=0.4$ between $\alpha=0.999$ and $\alpha=1$ is $2.79\times10^{-3}$, and between $\alpha=0.9$ and $\alpha=1$ it is $6.36\times10^{-2}$. The ratio of the two numbers corresponds to a sensitivity
+
+which is large near $\alpha=1$ because the sharp front of the integer-order model is replaced by a smooth precursor as soon as $\alpha<1$; the limit is continuous in an integral sense but not uniformly at the front. Second, the limit of zero perfusion is exact: with the literal perfusion number $a_6=9.72\times10^{-14}$ the solution is identical to the solution with $a_6=0$ to the last digit of double precision, which confirms that the literal setup is a perfusion-free problem. Third, the nonlinear code path with $c_w$ reduced to $10^{-12}$ reproduces the linear solution exactly (maximum difference zero) after 2 iterations, so that $c_w=0$ recovers the linear case exactly. Fourth, the tumour-edge stress with $\tau_1=0$ is smaller by a factor 2.37 than with $\tau_1=0.05$, which is discussed in Section 4.7.
+
+The nonlinear terms are verified by the steady-state check of Eq. (81). For the perfusion law with $\Pi=20$ the finite element solution at $t=8$ (obtained with $\Delta x=0.005$ and $\Delta t=0.05$) differs from the independent finite volume solution by $8.10\times10^{-5}$ in the maximum norm, and for the case with a variable tumour conductivity $\chi_1=0.2$ in addition by $7.68\times10^{-5}$. These differences are consistent with the spatial error of the coarse finite element mesh. The Picard iteration converged at every step. For the case of Figure 3(c) the first steps need 8 iterations, the last steps 3, with a mean of 3.60 per step, and at the last step the residuals are 1.8e-06, 9.2e-10, 4.4e-13, so that each iteration reduces the residual by a factor of about $10^{3}$ (superlinear convergence). With only the perfusion law and moderate $\Pi$ the maximum number of iterations is 4 to 5, and with $\chi_1=0.3$ it is 9. In summary form, over all steps of the case of Figure 3(c),
+
+The most demanding part of the iteration is the first step, where the step in the boundary data creates large temperature gradients. No failure of convergence was observed.
+
+4.5 Comparison of the Pennes, MGT, MGL and fractional MGL models
+
+The linear models are compared with the Laplace-domain solution. Figure 4 gives temperature profiles at $t=0.1$ and $t=0.4$ and the stress profile at $t=0.1$ for the Pennes model ($\tau_0=\tau_1=0$), the MGT model of [13] with $\tau_q=0.1$, the LS-type model ($\tau_1=0$), the MGL model, and the fractional MGL model with $\alpha=0.75$ and $0.5$. The result that matters most is that the MGT and LS-type curves coincide: the largest difference of any field over the profile at $t=0.4$ is $1.3\times10^{-8}$. The reason is the MGT parameter $a_3=k^{*}l/(k_{10}\nu)$. With the source values this parameter is $2.49\times10^{-10}$, and the additional term $a_3/s$ in $\kappa_e$ has no effect:
+
+This agrees with the observation of the source study that the MGT and LS responses are close. It is a consequence of the nanoscale length unit and not a general property of the MGT model: for a length unit near a millimetre $a_3$ would be of order $10^{-3}$ to $10^{-2}$ times the dimensional ratio $k^{*}/(k\nu)$, and the term would only then become relevant. 
+
+The Pennes temperature at $t=0.1$ is 0.527 at $x=0.3$ against 0.671 for the hyperbolic models, and at $x=0.5$ it is 0.270 against zero. This is the infinite-speed property of the parabolic model, which carries a heat signal far ahead of the thermal wave. At $t=0.4$ the temperature at $x=0.5$ is 0.505 (Pennes), 0.610 (MGL), 0.576 ($\alpha=0.75$) and 0.529 ($\alpha=0.5$). The hyperbolic models are hotter than the Pennes model at this time presumably because the wave has reflected from the isothermal far face and the lag retains heat, and the fractional models lie between the Pennes and the integer-order curves, as expected from an operator that interpolates between diffusion and a wave. The MGL and LS-type temperatures are the same to plotting accuracy, as they should be since $\tau_1$ enters only the elastic equation and the weak coupling lets the displacement feed back on the temperature only at order $a_5$. The strain-rate lag changes the stress. At $t=0.1$ and $x=0.1$ the stress is -0.561 without the lag, -0.290 with $\tau_1=0.05$, -0.283 for $\alpha=0.75$ and -0.263 for $\alpha=0.5$, with Pennes at -0.415. 
+
+A word on the size of the thermoelastic feedback is in order. The coupling coefficient $a_{51}=1.60\times10^{-4}$ is the ratio of the heat absorbed by the volumetric deformation to the heat stored thermally, and with its value the effect of the displacement on the temperature is below the plotting accuracy in all figures: switching the coupling off changes the temperature by a relative amount of the order of $a_5$ times the dilatation, which is about $10^{-4}$ here. The temperature field is therefore a thermal problem on its own, and the displacement and the stress are driven by it. This property simplifies the interpretation of the fractional and perfusion effects, since they act on the stress only through the temperature, but it also shows that the coupled character of the MGL theory is not tested by the dimensionless setup inherited from the source study. A dimensional setup with a length scale of millimetres would not change $a_5$ much, since it depends on the product $l\nu$, which is the thermal diffusivity of the tumour, and not on $l$ alone, so the weakness of the feedback is a property of the material data of Table 1.
+
+4.6 Effect of the fractional order
+
+Figure 5 shows the finite element temperature and stress for $\alpha$ between 1 and 0.3. The effect of the order is first of all on the shape of the front. For $\alpha<1$ the large-$s$ behaviour of the wave number is
+
+so that the inverse transform has no finite front, and heat reaches distant points earlier than it does in the integer-order model. The computed leading edge defined in Eq. (80) confirms this. At $t=0.1$ it is at $x_f=0.39$ for $\alpha=1$, 0.46 for $0.9$, 0.56 for $0.75$, 0.77 for $0.45$ and 0.86 for $0.3$. The temperature at $x=0.5$ and $t=0.1$ is 0.0000, 0.0097 and 0.0758 for $\alpha=1$, $0.75$ and $0.45$. The precursor is small but not zero, and it is a model prediction of non-local, memory-type conduction. The integer-order threshold position at $t=0.05$ is $0.22$ whereas the wave arithmetic gives $0.158$; the difference is the numerical smearing of the jump and the threshold of $10^{-3}$.
+
+The second effect is that decreasing $\alpha$ lowers the temperature behind the early part of the disturbance. The tumour-edge temperature at $t=0.2$ is 0.825, 0.799, 0.756 for $\alpha=1$, $0.75$, $0.45$, and at $t=0.6$ it is 0.839, 0.852 and 0.849. The ordering reverses with time: the fractional models heat the edge more slowly at first because the slower relaxation spreads the heat, and they are slightly warmer later. The third effect is on the stress. The peak tumour-edge stress magnitude of Eq. (80) is 3.51, 2.86, 2.07, 1.67, 1.37 and 1.28 for $\alpha=1,\dots,0.3$, a monotone reduction by a factor 2.75 over the range, because the smooth precursor replaces the steep thermal front that drives the stress. The integer-order value is the most mesh-dependent of the group, as noted in Section 4.2. The relation between the arrival time of the front at a distance $x$ and the order is not a simple power in the present parameters, and no scaling law is claimed.
+
+4.7 Effect of the strain-rate lag
+
+The strain-rate lag $\tau_1$ changes the stress and the displacement but leaves the temperature unchanged to plotting accuracy (the temperature at $x=0.5$ and $t=0.4$ is 0.6098 for $\tau_1=0.05$ and 0.6098 for $\tau_1=0$), as expected for a weakly coupled system. Figure 7(a) shows the stress history at $x=0.1$. The tumour-edge peak stress is 1.48, 2.80, 3.51, 4.59 and 5.45 for $\tau_1=0,0.025,0.05,0.1,0.2$. The increase of the stress with $\tau_1$ is saturating, and it is a viscous contribution: the lag adds a term proportional to the strain rate, which is largest when the heating front passes. For the displacement at the tumour edge at $t=0.6$ the values are -0.311, -0.344 and -0.384 for $\tau_1=0$, $0.05$ and $0.2$. In terms of the ratio to the lag-free value
+
+A higher peak with a larger lag is the opposite of the smoothing that is usually associated with a regularising term. The explanation is that the peak in question is an early-time magnitude reached near the surface heating shock, where the strain-rate term is large; the later stress, for example at $x=0.1$ and $t=0.3$, is -0.252 without the lag and 0.003 with $\tau_1=0.05$, and it is smaller in magnitude with the lag. The MGL term removes the displacement discontinuity but does not reduce the stress peak. The thermal relaxation time $\tau_0$ acts in the opposite direction: the peak edge stress is 4.32 for $\tau_0=0.05$, 3.51 for $0.1$ and 3.04 for $0.2$ at $\alpha=1$.
+
+4.8 Temperature-dependent perfusion and conductivity
+
+The perfusion studies use the law of Eq. (16), shown in Figure 6(a), with the perfusion number $\Pi$ of the tumour as a free parameter. Since the perfusion length of Eq. (38) is 4.65 mm and the dimensionless slab has the length $1$, the perfusion length measured in the units of the slab is
+
+For the values $\Pi=2$ to $20$ the perfusion length is thus between $0.7$ and $0.22$, comparable to the size of the slab, and the perfusion has a visible effect on the steady temperature profile. In the literal setup, $\Pi=9.72\times10^{-14}$, the effect is nil, as shown in Section 4.4. With a constant perfusion the temperature at the tumour edge at $t=0.6$ falls from 0.852 at $\Pi=0$ to 0.710 at $\Pi=10$ and 0.603 at $\Pi=20$. With the temperature-dependent law the same numbers are 0.847 at $\Pi=2$, 0.829 at $\Pi=10$ and 0.808 at $\Pi=20$. The reduction relative to the perfusion-free solution is much smaller with the law, and it can be expressed by
+
+The explanation is the shutdown part of the law. The tumour edge is heated above the critical value $\theta_{c1}=0.6$ (about 316 K), at which the tumour perfusion multiplier falls through one half and then to nearly zero, so that the heat sink is removed exactly where the temperature is highest. The model therefore predicts that a tumour whose perfusion collapses during heating retains the heat much better than the constant-perfusion Pennes model suggests, and this feature is the main effect of the nonlinearity. It follows from the assumed law, whose parameters are illustrative and which has no experimental support in this paper. With the vasodilation slope alone (a law without shutdown) the effect would have the opposite sign. Figure 6(b) shows the profiles at $t=0.6$ for several $\Pi$ and Figure 6(c) the comparison with constant perfusion at $\Pi=10$. A fourfold stronger vasodilation slope in both layers (Table 5, $c_w$ rows) lowers the edge temperature at $t=0.3$ from 0.819 to 0.795, so that the sensitivity to $c_w$ is real but modest compared with the effect of the shutdown. The deeper normal tissue is less affected: at $x=0.5$, $t=0.6$ the temperature is 0.557 ($\Pi=0$), 0.520 (law) and 0.456 (constant), where the normal-tissue perfusion is smaller by the factor $r_w=0.020$.
+
+The variable tumour conductivity with $\chi_1=0.3$ raises the tumour-edge temperature at $t=0.3$ from 0.833 to 0.870 and the peak edge stress from 2.07 to 2.23, and it needs up to 9 Picard iterations. This agrees in direction with the tumour-only effect of the variable conductivity reported in [13]. Adding the perfusion law on top of $\chi_1=0.3$ lowers the edge temperature to 0.857. The numerical entries are in Table 5.
+
+4.9 Interface position and the fields beyond the interface
+
+The source study reports that the fields vanish beyond the interface for the times considered. In the present solution this holds only for very short times. The thermal front of the integer-order model reaches the interface at $t_h=0.063$ (Eq. (84)), and at $t=0.05$ the temperature at $x=0.3$ is 0.0000 for $\alpha=1$, while for $\alpha=0.75$ it is 0.0057 and for $\alpha=0.45$ it is 0.1023. After the arrival time the temperature is large beyond the interface: at $x=0.3$ and $t=0.1$ it is 0.342, at $x=0.5$ and $t=0.2$ it is 0.492 and at $t=0.4$ it is 0.610 for $\alpha=1$. The statement of the source study is therefore not reproduced for $\tau_0=0.1$. It could hold for the source parameters if their relaxation time is much smaller than the one assumed here, or if the times shown are shorter than $h/c_{\mathrm{th}}$, but this cannot be checked because the relaxation times of the source calculations are not transferable. The fraction of the slab that carries a temperature above the threshold is measured by the leading edge $x_f$ of Eq. (80):
+
+so that the whole slab is heated at $t=0.4$. For the elastic fields the same holds: the displacement at $x=0.5$ is 0.002 at $t=0.1$ and 0.034 at $t=0.4$. The result applies to the nanometre-scale slab of the dimensionless setup, where the diffusion time across the slab is of the order of one time unit and the time window to $0.6$ spans a large part of it. Figure 7(b) shows the temperature at $t=0.2$ for four interface positions with $\alpha=0.75$. A larger tumour layer moves the interface into the region where the temperature is higher: the tumour-edge temperature at $t=0.2$ is 0.901, 0.799, 0.680 and 0.538 for $h=0.1,\dots,0.4$, which decreases with $h$ simply because the edge is farther from the heated surface. The tumour-edge stress peak decreases from 3.37 to 0.97 over the same range. 
+
+The reflection of the thermal wave at the isothermal far face, which occurs at about $t=0.32$ for the integer-order model, raises the temperature in the normal tissue again. For late times the temperature profile approaches the linear steady profile of a slab held at one and zero, and this is the reason for the weak dependence of the late-time temperature on the model at $t=0.6$ visible in Figures 4 and 5.
+
+Panel (c) shows the temperature at $x=0.5$ as a function of time. For $\alpha=1$ it stays at zero until the front arrives at about $t=0.17$, for $\alpha=0.45$ it starts to rise immediately, and at $t=0.6$ all three curves are between 0.52 and 0.56, i.e. the long-time state is nearly independent of $\alpha$, which is expected because the steady state does not contain the lag.
+
+4.10 Laser-driven response
+
+A laser-only case with $\theta_0=0$, $a_7=2$ and a pulse of length $\tau_p=0.2$ completes the study. Since the literal $a_7$ is of order $10^{-12}$, the value 2 is an illustrative rescaling in the same sense as $\Pi$. Because the optical depth is $\delta^{*}=1.79\times10^{6}$, the source is uniform in the slab and the steady temperature under a constant uniform source with both faces held at zero is bounded by
+
+The rescaling is large. The intensity that would give $a_7=2$ at the nanometre length unit follows from the definition of $a_7$,
+
+so that the laser-only case is a statement about the dimensionless equations and not about a realistic irradiance. The computed temperature at $x=0.5$ for $\alpha=0.75$ reaches 0.292 at the end of the pulse ($t=0.2$), which is below the steady bound, as it must be since the pulse is shorter than the diffusion time, and it decays to 0.126 at $t=0.4$. The tumour-edge value is 0.174 at $t=0.2$. With the perfusion law active ($\Pi=10$) the maximum value at $x=0.5$ falls to 0.285. The perfusion effect is small because the heating is short and the temperature stays below the critical value of the tumour law. The temperature at $x=0.5$ becomes slightly negative at later times ($-0.012$ at $t=0.6$), an undershoot that is a feature of the Dirichlet faces and of the relaxation, and it is not a numerical instability since it is small and appears in the Laplace-domain solution as well (laser validation of Table 3).
+
+4.11 Limitations
+
+The results are subject to the following limits, all of which affect interpretation. The wavelet collocation method requested for the extension was not implemented, and the finite element scheme has first-order accuracy for the step boundary data. The integer-order case suffers from front smearing and from a degraded Laplace reference near fronts. The relaxation times, the vasodilation and shutdown parameters, the conductivity slope and the rescaled perfusion and laser numbers are illustrative, and a different choice would change the numbers, although not the structure of the findings. The nanometre-scale length unit and the picosecond time unit mean that the dimensionless slab is not a clinical geometry, and the literal perfusion and laser terms vanish in it. Nothing in this paper is a clinical prediction, and the stress magnitudes in particular are dimensionless model values without a failure criterion.
+
+5. Conclusion
+
+The layered tumour and normal tissue model of Jangid, Singh and Mukhopadhyay [13] was extended to a fractional-order modified Green–Lindsay bioheat thermoelasticity with a temperature-dependent perfusion law and an optional temperature-dependent conductivity. The fractional terms are the Caputo derivatives of order $1+\alpha$ of temperature and dilatation in the energy equation; the strain-rate lag, the perfusion sink and the source are integer-order. The model was solved by a Galerkin finite element method with linear elements, a BDF2 convolution quadrature for all time derivatives and a Picard iteration for the nonlinear terms, and a Legendre wavelet collocation method was not implemented. An exact Laplace-domain solution of the linear layered problem, in which the Caputo term becomes $s^{1+\alpha}$, supplied the validation.
+
+The main findings are the following. The code reproduces the Laplace-domain solution to 0.049 per cent in temperature and about 0.58 per cent in displacement for $\alpha=0.6$ at $t=0.4$, converges at second order in time for smooth data and at first order for the step surface temperature, and is accurate to several per cent for the integer-order case where jump fronts limit it. The nonlinear terms were verified by a steady-state comparison with an independent code to $8.1\times10^{-5}$, and the Picard iteration converged superlinearly with a mean of about 3.60 iterations per step. In the source scaling the perfusion and laser numbers are about $10^{-13}$ and $10^{-12}$, so that they have no effect, and the MGT model coincides with the LS-type model for the same reason.
+
+Decreasing the fractional order removes the sharp thermal front and lets a small temperature precursor reach distant points earlier; it lowers the tumour-edge stress peak from 3.51 at $\alpha=1$ to 1.28 at $\alpha=0.3$. The strain-rate lag leaves the temperature unchanged and raises the early edge stress, while a perfusion law that shuts down above a critical temperature reduces the cooling effect of perfusion at the hottest part of the tumour from 17 per cent (constant perfusion, $\Pi=10$) to 2.7 per cent. The fields do not vanish beyond the interface once the thermal front has arrived, which in the present parameters happens at $t=0.063$. These are properties of an illustrative model in dimensionless form.
+
+Future work should implement the wavelet collocation variant and compare it with the present validated solution, should replace the illustrative relaxation times and perfusion parameters with values taken from measurements with verified sources, and should treat the length and time scales of a real treatment instead of the nanometre-scale dimensionless setup. The reference list must also be completed to the full set of recent publications.
+
+References
+
+Data and code availability
+
+The Python scripts used for the computations (Laplace-domain solver, finite element solver, steady-state check, figure and document generation) are in the folder mgl_bioheat_build that accompanies this manuscript. They use only the Python standard library.
+
