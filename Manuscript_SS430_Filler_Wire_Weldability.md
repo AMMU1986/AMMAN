@@ -161,13 +161,13 @@ Fig. 7 shows the comparative engineering stress–strain curves for the three fi
 
 **Fig. 7.** Comparative engineering stress–strain curves of SS430 joints welded with ER410, ER309L, and ER2594 filler wires.
 
-Fig. 8 and Table 3 summarize the Charpy absorbed energies and microhardness values. One impact result in the original data set could not be assigned to a filler condition and zone, and it was excluded. In the FZ, the absorbed energy ranks ER309L (428 J) > ER2594 (304 J) > ER410 (128 J). In the HAZ, the ranking is ER2594 (584 J) > ER410 (488 J) > ER309L (452 J). The error bars in Fig. 8 represent an assumed ±3% of each value, added for visual comparison; they are not replicate-based standard deviations or standard errors. The comparisons are therefore descriptive and have not been tested statistically.
+Fig. 8 and Table 3 summarize the Charpy absorbed energies and microhardness values. One impact result in the original data set could not be assigned to a filler condition and zone, and it was excluded. In the FZ, the absorbed energy ranks ER309L (428 J) > ER2594 (304 J) > ER410 (128 J). In the HAZ, the ranking is ER2594 (584 J) > ER410 (488 J) > ER309L (452 J). Because replicate data were not available, Fig. 8 shows single values without error bars, and the comparisons are descriptive and have not been tested statistically. Section 4.6 compares these values with published data.
 
 The FZ hardness values are 268.0, 313.8, and 176.8 HV0.5 for ER309L, ER410, and ER2594, respectively, and the corresponding HAZ values are 148.4, 147.1, and 141.1 HV0.5. The ER410 FZ is therefore the hardest. Each HAZ is softer than its FZ and than the BM (156.0 HV0.5). The hardness ranking is consistent with different weld-metal constitutions, but hardness alone does not identify martensite, strain hardening, or a particular phase fraction.
 
-[Insert Figure 8 here]
+![Fig. 8](ss430_figures/Figure_8_Charpy_Hardness.png)
 
-**Fig. 8.** (a) Charpy absorbed energy and (b) Vickers microhardness of the FZ and HAZ for each filler. Error bars represent an assumed ±3% of each value for graphical comparison and are not measured standard deviations or standard errors.
+**Fig. 8.** (a) Charpy absorbed energy and (b) Vickers microhardness (HV0.5) of the FZ and HAZ for each filler. Bars show the single values listed in Table 3; replicate statistics were not available. The dashed line in (b) marks the BM hardness (156.0 HV0.5).
 
 **Table 3.** Charpy absorbed energy and Vickers microhardness of the FZ and HAZ.
 
@@ -208,6 +208,26 @@ The corrosion potentials are −0.20 V for the ER2594 weld, −0.18 V for the ER
 
 The *i*<sub>corr</sub> values decrease as the chromium content of the corresponding starting material increases (Table 1: ER410, 12.9 wt%; SS430, 16.3 wt%; ER309L, 23.5 wt%; ER2594, 25 wt%). Chromium-dependent passivation and the influence of other alloying elements, such as molybdenum, are well documented for stainless steels [2, 23]. However, the starting filler chemistry differs from the final weld-metal chemistry after dilution, and the present tests neither characterized the passive film nor separated the individual effects of chromium, molybdenum, phase constitution, and precipitation. The polarization data therefore provide a descriptive ranking of corrosion current density under the stated seawater conditions. They do not show that chromium content is the only controlling factor, and they do not rank pitting resistance. Sensitization was not assessed directly (Section 4.1). Filler assessment should consider these electrochemical results together with the regional mechanical response.
 
+### 4.6 Comparison with published data
+
+Table 5 compares the present FZ results with published data for the same filler classifications. A consumable manufacturer reports typical Charpy absorbed energies of 160 J for ER309LSi and 159 J for ER2594 GMAW all-weld metal at +20 °C [24, 25]. The FZ energies measured here, 428 J for ER309L and 304 J for ER2594, are 2.7 and 1.9 times these values. The HAZ energies (452–584 J) are higher still, although the HAZ fracture surfaces show facets and river-like patterns (Fig. 9). ASTM E23 and ISO 148-1 accept absorbed energies only up to about 80% of the pendulum capacity. All values except that of the ER410 FZ exceed 240 J, the limit for a 300 J pendulum, and four exceed 360 J, the limit for a 450 J pendulum. The test temperature and replicate data were not retained, and the pendulum capacity is not reported. The absolute absorbed energies in Table 3 should therefore be treated with caution; the ranking of fillers and zones within the present data set is the more reliable result.
+
+The ER2594 results also differ from published data. Undiluted ER2594 GMAW deposits are stronger than ER309LSi deposits, with typical 0.2% proof strengths of 659 and 440 MPa and tensile strengths of 832 and 600 MPa, respectively [24, 25]. In the present joints, however, the ER2594 FZ is softer than the ER309L FZ (176.8 vs. 268.0 HV0.5), and the ER2594 condition shows the lowest stress level in Fig. 7. Dilution by SS430 lowers the Ni, Mo, and N contents of the FZ relative to the wire (Table 1) and can shift its phase balance. For ER2594 weld metal in AISI 304/AISI 430 joints, Ghasemi et al. [26] measured a ferrite number of about 57 and found that the weld metals were harder and stronger than the HAZ and the BM. Dilution alone would not be expected to reverse the strength ranking of the ER2594 and ER309L deposits. Because the diluted FZ compositions were not measured and the tensile specimens could not be assigned to fillers with certainty (Section 3.3), the ER2594 hardness and tensile results require confirmation.
+
+For ER410, the present results agree with published data. Shanmugasundar et al. [27] reported acicular ferrite with martensite and austenite in TIG welds of AISI 430 made with 410 filler, and better mechanical properties than with an austenitic 310 filler. This agrees with the austenite and bcc/bct reflections of the ER410 FZ (Fig. 6), its high hardness (Table 3), and its high stress level in Fig. 7. Overall, the published data support the phase and hardness observations for ER410, but not the magnitude of the absorbed energies or the low hardness and strength of the ER2594 FZ. Confirming these values requires the original test records or repeat tests with a recorded test temperature, pendulum capacity, and replicate specimens.
+
+**Table 5.** Comparison of the present FZ results with published data for the same filler classifications.
+
+| Weld metal and condition | Source | KV (J) | R<sub>p0.2</sub> (MPa) | R<sub>m</sub> (MPa) | Other reported findings |
+|---|---|---|---|---|---|
+| ER309LSi, GMAW all-weld metal, as welded | [24] | 160 (+20 °C) | 440 | 600 | Elongation 41% |
+| ER2594, GMAW all-weld metal, as welded | [25] | 159 (+20 °C) | 659 | 832 | Elongation 30% |
+| ER309L and ER2594, GTAW, AISI 304/AISI 430 joints | [26] | – | – | – | FN ≈ 15 (ER309L) and 57 (ER2594); weld metals harder and stronger than HAZ and BM; 430 HAZ weakest (martensite) |
+| ER410, GTAW, AISI 430 joint | [27] | – | – | – | Acicular ferrite with martensite and austenite; better mechanical properties than 310 filler |
+| Present FZ: ER309L / ER410 / ER2594, GMAW, SS430 joints | This work | 428 / 128 / 304 (temperature not recorded) | – | – | 268.0 / 313.8 / 176.8 HV0.5 |
+
+Note: – = not reported. KV, Charpy V-notch absorbed energy; FN, ferrite number.
+
 ## 5. Conclusions
 
 The effect of ER309L, ER410, and ER2594 filler wires on four-pass GMA-welded SS430 joints was evaluated. The main conclusions are as follows.
@@ -217,7 +237,7 @@ The effect of ER309L, ER410, and ER2594 filler wires on four-pass GMA-welded SS4
 3. The ER2594 FZ absorbed 304 J and had a hardness of 176.8 HV0.5. Its HAZ had the highest absorbed energy (584 J) at 141.1 HV0.5, so the local cleavage-like fracture features in this HAZ should be interpreted together with the absorbed energy of the whole specimen.
 4. Optical and SEM observations distinguish the regional morphologies but do not quantify ferrite content, identify a eutectic constituent, or demonstrate sensitization. XRD showed austenitic and ferritic-type reflections in the ER309L and ER2594 FZs, and austenitic together with bcc/bct-type (ferrite and/or martensite) reflections in the ER410 FZ; the phase balance and the presence of martensite were not established.
 5. In natural seawater, the corrosion current density increased in the order ER2594 weld < ER309L weld < SS430 BM < ER410 weld, corresponding to Fe-equivalent penetration rates of 5.85 × 10<sup>−4</sup>, 1.17 × 10<sup>−3</sup>, 3.51 × 10<sup>−3</sup>, and 7.37 × 10<sup>−3</sup> mm/y, respectively.
-6. Filler selection for SS430 must take into account the region of interest and the required combination of tensile response, impact energy, hardness, and corrosion behavior. Because the impact-test conditions, replicate-level uncertainty, shielding-gas composition, seawater chemistry, and a verified filler-to-tensile-specimen mapping were not retained, the comparisons remain descriptive. Service-specific recommendations require confirmation of these experimental details and a qualified welding procedure.
+6. Filler selection for SS430 must take into account the region of interest and the required combination of tensile response, impact energy, hardness, and corrosion behavior. Because the impact-test conditions, replicate-level uncertainty, shielding-gas composition, seawater chemistry, and a verified filler-to-tensile-specimen mapping were not retained, the comparisons remain descriptive. The absorbed energies, and the hardness and strength of the ER2594 FZ, also differ from published values for comparable weld metals (Section 4.6) and should be confirmed by repeat testing. Service-specific recommendations require confirmation of these experimental details and a qualified welding procedure.
 
 ## References
 
@@ -266,3 +286,11 @@ The effect of ER309L, ER410, and ER2594 filler wires on four-pass GMA-welded SS4
 [22] A. Bansod, S. Shukla, G. Gahiga, J. Verma, Influence of filler wire on metallurgical, mechanical, and corrosion behaviour of 430 ferritic stainless steel using a fusion welding process, Materials Research Express 10 (3) (2023) 036513. https://doi.org/10.1088/2053-1591/acb908
 
 [23] J.M. Bastidas, C.L. Torres, E. Cano, J.L. Polo, Influence of molybdenum on passivation of polarised stainless steels in a chloride environment, Corrosion Science 44 (3) (2002) 625–633. https://doi.org/10.1016/S0010-938X(01)00072-5
+
+[24] ESAB, OK Autrod 309LSi (AWS A5.9 ER309LSi): typical all-weld-metal mechanical properties, product information. https://www.thermal-dynamics.com/us/en/products/filler-metals/mig-mag-wires-gmaw/stainless-steel-wires/ok-autrod-309lsi.cfm (accessed 11 November 2026).
+
+[25] ESAB, OK Autrod 2509 (AWS A5.9 ER2594): typical all-weld-metal mechanical properties, product information. https://www.thermal-dynamics.com/us/en/products/filler-metals/mig-mag-wires-gmaw/stainless-steel-wires/ok-autrod-2509.cfm (accessed 11 November 2026).
+
+[26] R. Ghasemi, B. Beidokhti, M. Fazel-Najafabadi, Effect of delta ferrite on the mechanical properties of dissimilar ferritic-austenitic stainless steel welds, Archives of Metallurgy and Materials 63 (1) (2018) 437–443. https://ace.czasopisma.pan.pl/Content/103508/PDF/AMM-2018-1-58-Beidokhti.pdf
+
+[27] G. Shanmugasundar, A. Bansod, V. Schindlerova, R. Čep, Influence of Filler Material on the Microstructural and Mechanical Properties of 430 Ferritic Stainless Steel Weld Joints, Materials 16 (4) (2023) 1590. https://doi.org/10.3390/ma16041590

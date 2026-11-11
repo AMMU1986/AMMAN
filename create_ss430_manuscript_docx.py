@@ -16,6 +16,7 @@ python-docx is not available in this sandbox. Supported Markdown subset:
   **Table N.** / **Fig. N.**   table and figure captions
   <sup>a</sup> ... / Note: ... table notes (paragraph after a table)
   [Insert Figure N here]       figure placeholder
+  ![alt](path/to/figure.png)   embedded PNG figure (path relative to this script)
   1. item                      numbered conclusion
   [n] ...                      reference entry (in the References section)
 
@@ -25,6 +26,7 @@ Usage:
 
 import os
 import re
+import struct
 import zipfile
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -35,11 +37,15 @@ TEXT_WIDTH = 9360  # twips: 6.5 in between 1 in margins on a Letter page
 
 W_NS = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main'
 R_NS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
+WP_NS = 'http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing'
+A_NS = 'http://schemas.openxmlformats.org/drawingml/2006/main'
+PIC_NS = 'http://schemas.openxmlformats.org/drawingml/2006/picture'
 
 CONTENT_TYPES = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types">
   <Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/>
   <Default Extension="xml" ContentType="application/xml"/>
+  <Default Extension="png" ContentType="image/png"/>
   <Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/>
   <Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/>
   <Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/>
@@ -51,10 +57,19 @@ PACKAGE_RELS = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
   <Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/>
 </Relationships>'''
 
-DOCUMENT_RELS = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">
-  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>
-</Relationships>'''
+IMAGE_REL_TYPE = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/image'
+EMU_PER_TWIP = 635  # 914400 EMU per inch / 1440 twips per inch
+
+
+def document_rels(images):
+    rels = ['<?xml version="1.0" encoding="UTF-8" standalone="yes"?>',
+            '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">',
+            '  <Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/'
+            'relationships/styles" Target="styles.xml"/>']
+    for rel_id, _, media_name in images:
+        rels.append(f'  <Relationship Id="{rel_id}" Type="{IMAGE_REL_TYPE}" Target="media/{media_name}"/>')
+    rels.append('</Relationships>')
+    return '\n'.join(rels)
 
 CORE_PROPS = '''<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties"
@@ -247,7 +262,36 @@ def split_row(line):
     return [c.strip() for c in line.strip().strip('|').split('|')]
 
 
-def md_to_body(md_text):
+def png_size(path):
+    with open(path, 'rb') as f:
+        head = f.read(24)
+    if head[:8] != b'\x89PNG\r\n\x1a\n':
+        raise ValueError(f'Not a PNG file: {path}')
+    return struct.unpack('>II', head[16:24])
+
+
+def image_paragraph(rel_id, index, path, name):
+    """Inline picture scaled to the text width, centred in its own paragraph."""
+    px_w, px_h = png_size(path)
+    cx = TEXT_WIDTH * EMU_PER_TWIP
+    cy = int(cx * px_h / px_w)
+    pid = 100 + index
+    name = escape_xml(name)
+    return ('<w:p><w:pPr><w:pStyle w:val="FigurePlaceholder"/></w:pPr><w:r><w:drawing>'
+            '<wp:inline distT="0" distB="0" distL="0" distR="0">'
+            f'<wp:extent cx="{cx}" cy="{cy}"/><wp:effectExtent l="0" t="0" r="0" b="0"/>'
+            f'<wp:docPr id="{pid}" name="{name}"/>'
+            '<wp:cNvGraphicFramePr><a:graphicFrameLocks noChangeAspect="1"/></wp:cNvGraphicFramePr>'
+            '<a:graphic><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture">'
+            f'<pic:pic><pic:nvPicPr><pic:cNvPr id="{pid}" name="{name}"/><pic:cNvPicPr/></pic:nvPicPr>'
+            f'<pic:blipFill><a:blip r:embed="{rel_id}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill>'
+            f'<pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="{cx}" cy="{cy}"/></a:xfrm>'
+            '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic>'
+            '</a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>')
+
+
+def md_to_body(md_text, images):
+    """Convert the Markdown subset to OOXML; embedded images are appended to `images`."""
     elements = []
     lines = md_text.split('\n')
     i = 0
@@ -285,6 +329,16 @@ def md_to_body(md_text):
             elements.append(equation_paragraph(line[len('<p align="center">'):-len('</p>')]))
         elif re.match(r'^\[Insert Figure \d+ here\]$', line):
             elements.append(paragraph(line, 'FigurePlaceholder'))
+        elif re.match(r'^!\[[^\]]*\]\([^)]+\)$', line):
+            alt, rel_path = re.match(r'^!\[([^\]]*)\]\(([^)]+)\)$', line).groups()
+            path = os.path.join(HERE, rel_path)
+            if os.path.exists(path):
+                rel_id = f'rIdImg{len(images) + 1}'
+                media_name = f'image{len(images) + 1}.png'
+                images.append((rel_id, path, media_name))
+                elements.append(image_paragraph(rel_id, len(images), path, alt or media_name))
+            else:
+                elements.append(paragraph(f'[Missing image: {rel_path}]', 'FigurePlaceholder'))
         elif line.startswith('**Fig.'):
             elements.append(paragraph(line, 'FigureCaption'))
         elif line.startswith('**Table'):
@@ -308,9 +362,11 @@ def create_docx(md_path, docx_path):
     title_match = re.search(r'^# (.+)$', md_text, re.M)
     title = title_match.group(1).strip() if title_match else ''
 
-    body = md_to_body(md_text)
+    images = []
+    body = md_to_body(md_text, images)
     document = (f'<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n'
-                f'<w:document xmlns:w="{W_NS}" xmlns:r="{R_NS}"><w:body>\n{body}\n'
+                f'<w:document xmlns:w="{W_NS}" xmlns:r="{R_NS}" xmlns:wp="{WP_NS}" '
+                f'xmlns:a="{A_NS}" xmlns:pic="{PIC_NS}"><w:body>\n{body}\n'
                 '<w:sectPr><w:pgSz w:w="12240" w:h="15840"/>'
                 '<w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440" '
                 'w:header="720" w:footer="720" w:gutter="0"/></w:sectPr>'
@@ -320,11 +376,14 @@ def create_docx(md_path, docx_path):
         zf.writestr('[Content_Types].xml', CONTENT_TYPES)
         zf.writestr('_rels/.rels', PACKAGE_RELS)
         zf.writestr('docProps/core.xml', CORE_PROPS.format(title=escape_xml(title)))
-        zf.writestr('word/_rels/document.xml.rels', DOCUMENT_RELS)
+        zf.writestr('word/_rels/document.xml.rels', document_rels(images))
         zf.writestr('word/document.xml', document)
         zf.writestr('word/styles.xml', STYLES)
+        for _, path, media_name in images:
+            zf.write(path, f'word/media/{media_name}')
 
-    print(f'Created {docx_path} ({os.path.getsize(docx_path) / 1024:.1f} KB)')
+    print(f'Created {docx_path} ({os.path.getsize(docx_path) / 1024:.1f} KB), '
+          f'{len(images)} embedded image(s)')
 
 
 if __name__ == '__main__':

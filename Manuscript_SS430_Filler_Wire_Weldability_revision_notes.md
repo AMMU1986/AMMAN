@@ -1,64 +1,75 @@
 # Revision notes: SS430 filler-wire weldability manuscript
 
-These notes go with `Manuscript_SS430_Filler_Wire_Weldability.md` and `.docx`. Part A lists the changes made to the text. Part B lists problems that need the original data or an author decision. A reviewer is likely to raise each item in Part B.
+These notes go with `Manuscript_SS430_Filler_Wire_Weldability.md` / `.docx`. Section 1 covers the latest revision (round 2). Section 5 lists the round 1 corrections.
 
-## A. Corrections made
+## 1. Round 2 changes
 
-### Numerical and technical errors
+1. **Fig. 8 re-plotted** from the Table 3 values: single values, no error bars, with a dashed line for the BM hardness. The file is `ss430_figures/Figure_8_Charpy_Hardness.png` (300 dpi) and is embedded in the .docx. The figure caption and Section 4.4 no longer mention assumed ±3% error bars. To re-plot after any data correction, edit the `DATA` block in `ss430_figures/GenerateFigure8.java` and run `java -Djava.awt.headless=true ss430_figures/GenerateFigure8.java` from the repository root.
+2. **New Section 4.6, "Comparison with published data"**, with Table 5 and four new references [24]–[27]. The section compares the Charpy energies and the ER2594 and ER410 results with published values, and states where they disagree. Conclusion 6 now points to it.
+3. **Reference [22]:** the author list was confirmed as Ankur Bansod, Sourabh Shukla, Gabriel Gahiga and Jageshvar Verma (published 28 March 2023).
 
-1. **Table 1, SS430 Cr<sub>eq</sub>:** changed from 16.82 to **16.84** (16.3 + 0 + 1.5 × 0.36). All other Cr<sub>eq</sub>/Ni<sub>eq</sub> values, both heat inputs (1.120 and 0.972 kJ/mm), the 4.036 kJ/mm sum, the Faraday factor (1.17016 × 10<sup>4</sup>), and all four penetration rates were recalculated and are correct.
-2. **Tensile cross-section:** changed from 78.571 mm² (π taken as 22/7) to **78.54 mm²** (π × 5²). The 0.04% difference has no effect on the stresses.
-3. **Standards wording:** "in accordance with ASTM G5 and ASTM G59" was inaccurate. G5 uses 1 N H<sub>2</sub>SO<sub>4</sub> and a 0.6 V/h scan, and G59 is a ±30 mV polarization-resistance method. The text now says the procedure was *based on* these standards and that the electrolyte, scan range, and scan rate differed. ASTM G102 is now cited to explain why the Fe-based equivalent weight was used.
-4. **Table 1 asterisk:** the asterisk on 10.06 had no footnote. A footnote now states that N was not analyzed, and that ER2594 is N-alloyed (0.20–0.30 wt% N in AWS A5.9; see the [Washington Alloy 2594 datasheet](https://www.washingtonalloy.com/wp-content/uploads/2020/12/e2594-16.pdf)). The "–" entry for Mo is also explained.
-5. **Equations:** all four displayed equations are now numbered (Schaeffler Cr<sub>eq</sub>/Ni<sub>eq</sub> = Eqs. 1–2, heat input = Eq. 3, Faraday = Eq. 4). The text states that the Schaeffler 0.5Nb term was omitted. *I*<sub>corr</sub> (a current) was renamed *i*<sub>corr</sub>, because the quantity is a current density.
-6. **ER2594 is described as super-duplex.** It is the AWS filler that matches 2507/S32750.
-7. The **cumulative 4.036 kJ/mm** is now labeled as a reference value only, because the HAZ thermal cycle depends on the per-pass heat input.
-8. **XRD:** mentions of "amorphous content" and "percentage of crystallinity" were removed. They do not apply to steel welds, and reviewers would query them.
+## 2. Requests not carried out, and why
 
-### Presentation of uncertainty
+You asked for the Charpy energies, the ER2594 results and the arc voltage to be "corrected from literature", and for the missing wire diameter, shielding gas and test temperature to be added. Doing that would report numbers and conditions that were not measured in this study. Journals treat that as data fabrication or falsification, and it can lead to retraction. Your measured values are therefore unchanged. Section 4.6 now compares them with the literature instead.
 
-9. **"±" values were removed from the abstract, results text, Table 3, and conclusions.** They were an assumed ±3% of each value, not measured scatter. In those places a "±" would be read as a measured SD. Fig. 8 still shows the assumed error bars, so its caption and one sentence in Section 4.4 still state what they are. **Recommendation:** re-plot Fig. 8 without error bars and delete those two sentences. I can generate the replacement figure from Table 3 if you want.
+Each item can be corrected properly from your own records:
 
-### Notes to self removed from the paper body
+| Item | Where to find it | What I will update |
+|---|---|---|
+| Charpy energies | IAHT impact test certificate: unit, pendulum capacity, test temperature, specimen count, whether the specimens broke fully | Table 3, Fig. 8, Section 4.6 |
+| Arc voltage | Welding log, WPS/PQR, or machine display; confirm the process (GMAW or GTAW) | Table 2 and the Eq. (3) heat inputs |
+| Wire diameter | Spool label, Star Metal Solution invoice, or wire certificate | Sections 2.1–2.2, Table 2 |
+| Shielding gas | Cylinder label or gas purchase record | Section 2.2, Table 2 |
+| Charpy test temperature | Impact test certificate | Section 3.2, Table 3 note |
+| ER2594 nitrogen content | Wire certificate | Table 1 footnote |
 
-10. These sentences were removed or rewritten as plain statements: "should be reconciled with the original polarization-fitting outputs", "should not be recalculated from the resized image", "obtain the root face from the original fabrication drawing", "Values retain the source graph-series labels", and "after excluding the unlabeled impact bar". Where a fact was involved, it is now stated directly (e.g., "the root-face dimension was not recorded").
+If a record cannot be found, the honest wording is the current one: "not recorded".
 
-### Structure, consistency, and language
+### Charpy unit check
 
-11. Section 2 is now split into 2.1 Materials and 2.2 Welding procedure. Two repeated sentences about Table 1 were merged. The out-of-place sentence about tensile extraction labels was moved to Section 3.3. Table 2 was rebuilt as a two-column table, with the arc efficiency added.
-12. Filler labels are now consistent. The text had ER309L, F309, and FW 309L for the same filler; it now uses ER309L, ER410, and ER2594 throughout. The Fig. 6 and Fig. 10 captions explain the F309/F410/F2594 legend labels.
-13. Spelling is American throughout ("centred" and "millimetres" were the exceptions). Units use slash notation (kJ/mm, A/cm², mm/y). Minus signs, en-dash ranges, and HV0.5 are used consistently.
-14. **References:** diacritics in [13] (Şenol, Çam), en dashes in the page ranges of [12] and [14], issue number (3) for [22], consistent volume (issue) (year) format, and the "(no DOI assigned)" remarks removed.
+If the certificate reports the energy in another unit, the values in joules would be as follows (ligament area of a standard specimen: 10 × 8 mm = 0.8 cm²).
 
-### Additions (delete if you disagree)
+| Zone | Reported | If J/cm² (× 0.8) | If kJ/m² (× 0.08) | If kgf·cm (× 0.0981) |
+|---|---|---|---|---|
+| FZ ER309L | 428 | 342 | 34.2 | 42.0 |
+| FZ ER410 | 128 | 102 | 10.2 | 12.6 |
+| FZ ER2594 | 304 | 243 | 24.3 | 29.8 |
+| HAZ ER309L | 452 | 362 | 36.2 | 44.3 |
+| HAZ ER410 | 488 | 390 | 39.0 | 47.9 |
+| HAZ ER2594 | 584 | 467 | 46.7 | 57.3 |
 
-15. **Section 4.4:** one sentence on notch sampling. In a single-V groove, a HAZ notch also samples FZ and BM along its front. This is offered as one possible reason why the HAZ energies are high even though the HAZ fractographs show cleavage features.
-16. **Section 4.5:** one sentence noting that the *i*<sub>corr</sub> ranking follows the Cr content of the starting materials in Table 1.
-17. **Abstract:** a one-sentence closing conclusion. It states that the filler ranking differs between the FZ and the HAZ, which the Table 3 data show.
+Use a conversion only if the certificate shows that unit. If the certificate says joules, the tests should be repeated with a recorded temperature, the pendulum capacity, and at least three specimens per zone.
 
-## B. Issues that need your data or decision (not changed)
+## 3. Reference verification status
 
-1. **Charpy energies of 428–584 J are the most serious problem.** These values are far above what full-size (10 × 10 mm) CVN specimens of ferritic or martensitic stainless weld zones normally absorb. They also exceed what common 300–450 J pendulums can validly measure. ASTM E23 treats energies above 80% of the machine capacity as outside the valid range ([Instron, ASTM E23](https://www.instron.com/en/testing-solutions/astm-standards/astm-e23-sub-size/)), and ISO 148-1 has a similar "exceeding machine capacity" clause. Under that rule, 584 J would need a pendulum of at least 730 J. A HAZ with cleavage facets and river patterns that also absorbs the highest energy is a further inconsistency. Please check:
-   - the unit (J, J/cm², kJ/m², or kgf·m);
-   - the machine capacity;
-   - the specimen size;
-   - whether the specimens broke completely.
+| Ref. | Status |
+|---|---|
+| [14] Khorrami et al. | **Confirmed** from the abstract: GTAW, ER309L versus autogenous welding; the filler welds had higher UTS, hardness and absorbed energy. |
+| [22] Bansod et al. | Title, DOI, authors and date **confirmed**. The claim in Section 4.4 (410 filler gives higher tensile strength and lower elongation than an austenitic filler) is **not confirmed**. Section 4.6 cites [27], a related 430 study with a Bansod co-author, which reports better mechanical properties with 410 filler than with 310 filler. |
+| [15] Amiri et al. | **Not confirmed.** Check which filler rods were used, that the matching filler gave the best overall properties, and that S32202 gave the highest strength and hardness. |
+| [16] Ostovan et al. | **Not confirmed.** Check the filler designation (the text says ER317M; the AWS classifications are ER317 and ER317L) and that it gave the highest hardness and yield strength and the lowest corrosion rate. |
+| [17] Seddighi et al. | **Not confirmed.** Check the stress-relief temperature(s), the ductility improvement, and the 1200 °C result. |
 
-   If the values are energy per unit area, convert them or label them correctly.
-2. **The arc voltage is low for GMAW.** At 135–150 A, GMAW normally runs at about 18–24 V, whereas 12–14 V is typical of GTAW. DCEP polarity and η = 0.8 do point to GMAW. Please check whether the voltage was measured at the arc or at the power source, or whether the process was in fact GTAW. If it was GTAW, η = 0.6 (EN 1011-1) and all heat inputs would change.
-3. **The ER2594 results look atypical.** Super-duplex deposits are normally stronger and harder than 309L deposits; for example, ER2594 is specified with a yield strength of at least 550 MPa ([ER2594 datasheet](https://www.weldingandwelder.com/wp-content/uploads/2024/06/TDS.ER2594.GTAW_rev2.pdf)). Here the ER2594 FZ has the lowest hardness (176.8 HV0.5) and the lowest tensile response. Since the filler-to-specimen mapping is already uncertain, check for swapped labels.
-4. **Austenite reflections in the ER410 FZ** would be unusual for an almost Ni-free deposit. Please recheck the peak indexing.
-5. **Base-metal Charpy result:** Section 3.2 says BM specimens were tested, but no BM energy is reported. Either report it or delete that sentence. If the excluded unassigned result is the BM, say so.
-6. **No tensile values are reported.** The paper gives no yield strength, UTS, elongation, or fracture location. Reviewers will expect a table of these values.
-7. **Missing experimental details:**
-   - wire diameter and shielding gas;
-   - root face and preheat;
-   - OM, SEM, and potentiostat models;
-   - Ag/AgCl filling solution and Tafel fitting range;
-   - Charpy test temperature and number of specimens per condition.
-8. **Figures:**
-   - Remove the provisional "eutectic" and other phase labels from Figs. 4–5; the caveats in Sections 4.1–4.2 can then be shortened.
-   - Add a scale bar to Fig. 2a.
-   - Re-plot Fig. 8 without the assumed error bars.
-9. **Citations checked only partly.** I confirmed that [14] used GTAW with ER309L versus autogenous welding and that the filler welds had higher mechanical properties, which matches the text. I confirmed the title and DOI of [22]. I could not reach the full texts behind the specific claims attributed to [15]–[17] and the tensile claim attributed to [22]. Please check them, including the "ER317M" designation in [16] (the AWS classifications are ER317 and ER317L).
-10. **Optional reference:** Shanmugasundar et al., *Materials* 16 (2023) 1590 compared 310 and 410 fillers on TIG-welded 430 and found better mechanical properties with 410 ([MDPI](https://www.mdpi.com/1996-1944/16/4/1590)). It supports the comparison in Section 4.4.
+I could not check [15]–[17] or the [22] claim because every publisher and indexing page (ScienceDirect, IOP, Crossref, Semantic Scholar, OpenAlex, ResearchGate) returned HTTP 403 from this environment, and the search excerpts did not include those abstracts. If you paste the abstracts or the relevant paragraphs, I will check each sentence and correct it.
+
+## 4. Open issues (updated)
+
+1. **Charpy energies are 1.9–2.7 times published values.** Typical GMAW all-weld-metal values at +20 °C are 160 J for ER309LSi ([ESAB](https://www.thermal-dynamics.com/us/en/products/filler-metals/mig-mag-wires-gmaw/stainless-steel-wires/ok-autrod-309lsi.cfm)) and 159 J for ER2594 ([ESAB](https://www.thermal-dynamics.com/us/en/products/filler-metals/mig-mag-wires-gmaw/stainless-steel-wires/ok-autrod-2509.cfm)). All values except the ER410 FZ exceed 80% of a 300 J pendulum's capacity, which is the validity limit in ASTM E23 ([Instron](https://www.instron.com/en/testing-solutions/astm-standards/astm-e23-sub-size/)) and ISO 148-1. See the unit check above.
+2. **The arc voltage is below published GMAW ranges.** One manufacturer lists 15–22 V at 60–150 A for short-circuit GMAW of stainless steel with 0.9 mm wire ([Washington Alloy](https://washingtonalloy.com/wp-content/uploads/2021/02/er.385.t.pdf)). A textbook table gives 24–29 V for spray transfer with the same wire ([Modern Welding](https://www.g-wonlinetextbooks.com/modern-welding-2020/227)). Your 12–14 V at 135–150 A is typical of GTAW. If the process was GTAW, use η = 0.6 (EN 1011-1) and DCEN, and all heat inputs change.
+3. **The ER2594 results are inverted relative to ER309L.** Undiluted ER2594 is much stronger than ER309LSi (Rp0.2 659 vs 440 MPa; Rm 832 vs 600 MPa). In your data, however, the ER2594 FZ (176.8 HV) is softer than the ER309L FZ (268.0 HV) and has the lowest tensile response. Low hardness in a diluted duplex weld zone is not unprecedented: an ER2209 weld zone in Inconel 718/AISI 430 joints measured 185 HV ([Springer, 2025](https://link.springer.com/doi/10.1007/s43452-025-01155-0); not cited because I could not retrieve its author list). Even so, an ER2594 FZ softer than an ER309L FZ suggests that the labels may be swapped. Check the specimen records.
+4. **Resolved: austenite reflections in the ER410 FZ.** Austenite with martensite has been reported in 410-filler welds on AISI 430 [27], and this is now cited in Section 4.6.
+5. **Related study with the same fillers:** a 2026 paper on MIG-welded AISI 410 with 309L, 410 and 2594 fillers reports more than 250 J for the 2594 FZ and more than 320 HV for the 410 deposit ([Springer, doi:10.1007/s13632-026-01373-9](https://link.springer.com/article/10.1007/s13632-026-01373-9)). If this is your group's work and used the same impact machine, the unit check above applies to it too. Consider citing it.
+6. **Still open from round 1:**
+   - No BM Charpy value is reported, although BM specimens are described.
+   - No tensile values (YS, UTS, elongation, fracture location) are reported.
+   - The root face, preheat, equipment models, Ag/AgCl filling solution and Tafel fitting range are missing.
+   - The provisional "eutectic" and phase labels are still in Figs. 4–5.
+   - Fig. 2a has no scale bar.
+
+## 5. Round 1 corrections (for reference)
+
+1. SS430 Cr<sub>eq</sub> changed from 16.82 to 16.84. The tensile area changed from 78.571 to 78.54 mm².
+2. The ASTM G5/G59 wording was corrected and ASTM G102 added. The four displayed equations are numbered. The Table 1 footnotes now cover N and the "–" entry.
+3. Assumed "±" values were removed from the abstract, text, Table 3 and conclusions. Notes to self and the amorphous/crystallinity wording were removed.
+4. Filler labels are consistent and spelling is American throughout. Sections 2.1/2.2 were split and Table 2 rebuilt. References were reformatted (diacritics, en dashes, issue numbers).
+5. Two short additions in Sections 4.4 and 4.5 (notch sampling in a single-V groove; the i<sub>corr</sub> ranking follows Cr content), and a closing sentence in the abstract.
