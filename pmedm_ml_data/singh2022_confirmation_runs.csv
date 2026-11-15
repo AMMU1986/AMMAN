@@ -1,0 +1,4 @@
+setting,toff_us,ton_us,powder,current_A,replicate,mrr_mm3_min,twr_mm3_min
+A2B3C1D3,50,100,graphite,9,1,12.560,0.994
+A2B3C1D3,50,100,graphite,9,2,12.555,1.036
+A2B3C1D3,50,100,graphite,9,3,12.538,1.054
