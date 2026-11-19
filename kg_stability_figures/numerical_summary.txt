@@ -1,0 +1,67 @@
+coupling (alpha_t=1.78e-5) = 0.01680; source = 1.6801; omega* = 1.5364e+11 1/s
+
+=== Table 2: small-k growth law vs numerics (optical branch) ===
+LS      Im[a/b](i/tau1) = -1.58824e-03  k=0.05: numeric 5.0003e-13  formula 5.0032e-13
+LS      Im[a/b](i/tau1) = -1.58824e-03  k=0.2: numeric 1.2811e-10  formula 1.2808e-10
+GN-II   Im[a/b](i/tau1) = -0.00000e+00  k=0.05: numeric 9.3923e-129  formula 0.0000e+00
+GN-II   Im[a/b](i/tau1) = -0.00000e+00  k=0.2: numeric 1.3218e-115  formula 0.0000e+00
+GN-III  Im[a/b](i/tau1) = -6.00000e-03  k=0.05: numeric 1.8901e-12  formula 1.8901e-12
+GN-III  Im[a/b](i/tau1) = -6.00000e-03  k=0.2: numeric 4.8386e-10  formula 4.8386e-10
+DPL-1   Im[a/b](i/tau1) = -8.20588e-03  k=0.05: numeric 2.5827e-12  formula 2.5850e-12
+DPL-1   Im[a/b](i/tau1) = -8.20588e-03  k=0.2: numeric 6.6168e-10  formula 6.6176e-10
+HDPL    Im[a/b](i/tau1) = -7.73867e-03  k=0.05: numeric 2.4382e-12  formula 2.4378e-12
+HDPL    Im[a/b](i/tau1) = -7.73867e-03  k=0.2: numeric 6.2437e-10  formula 6.2408e-10
+MGT     Im[a/b](i/tau1) = -1.57235e-03  k=0.05: numeric 5.0480e-13  formula 4.9532e-13
+MGT     Im[a/b](i/tau1) = -1.57235e-03  k=0.2: numeric 1.2682e-10  formula 1.2680e-10
+
+=== Table 3: peak growth rate (original coupling) ===
+LS      phys: max Re s = 3.1901e-02 at k = 19.83 (= 4.901e+09 1/s, e-folding 2.040e-10 s); source coupling: 3.0577e+00 at k = 19.83
+GN-II   phys: max Re s = 2.8556e-101 at k = 18.63 (= 4.387e-90 1/s, e-folding 2.279e+89 s); source coupling: 3.8318e+01 at k = 128.3
+GN-III  phys: max Re s = 7.9250e-03 at k = 34.72 (= 1.218e+09 1/s, e-folding 8.213e-10 s); source coupling: 7.9356e-01 at k = 32.62
+DPL-1   phys: max Re s = 5.4961e-03 at k = 34.72 (= 8.444e+08 1/s, e-folding 1.184e-09 s); source coupling: 5.5115e-01 at k = 34.72
+HDPL    phys: max Re s = 6.5235e-03 at k = 13.65 (= 1.002e+09 1/s, e-folding 9.977e-10 s); source coupling: 6.5230e-01 at k = 13.65
+MGT     phys: max Re s = 3.2207e-02 at k = 19.83 (= 4.948e+09 1/s, e-folding 2.021e-10 s); source coupling: 3.0844e+00 at k = 19.83
+
+=== Eringen (tau1 = 0) and classical: sup Re s ===
+LS      Eringen -8.400e-09  classical -8.261e-07
+GN-II   Eringen 1.006e-110  classical 3.785e-107
+GN-III  Eringen -8.400e-09  classical -2.338e-05
+DPL-1   Eringen -6.462e-09  classical -8.261e-07
+HDPL    Eringen -5.169e-09  classical -8.261e-07
+MGT     Eringen -8.316e-09  classical -2.315e-05
+
+=== root-finder backward error (max over k, all models) ===
+max backward error = 3.82e-16
+
+=== Table 4: wavefront speeds: Garding bound vs max |Im s|/k at k = 1e6 ===
+LS      KG       bound 10.0000   numeric max|Im s|/k = 10.0000
+LS      Eringen  bound inf   numeric max|Im s|/k = 10.0000
+GN-II   KG       bound 1.6667   numeric max|Im s|/k = 1.6667
+GN-II   Eringen  bound inf   numeric max|Im s|/k = 1.0000
+GN-III  KG       bound inf   numeric max|Im s|/k = 1.6667
+GN-III  Eringen  bound inf   numeric max|Im s|/k = 0.0001
+DPL-1   KG       bound inf   numeric max|Im s|/k = 1.6667
+DPL-1   Eringen  bound inf   numeric max|Im s|/k = 0.0001
+HDPL    KG       bound 17.3205   numeric max|Im s|/k = 17.3205
+HDPL    Eringen  bound inf   numeric max|Im s|/k = 17.3205
+MGT     KG       bound 10.0000   numeric max|Im s|/k = 10.0000
+MGT     Eringen  bound inf   numeric max|Im s|/k = 10.0000
+
+=== elastic instability bands (P: c = 1, S: c = c_s) ===
+tau1 = 0.006: P band None, S band None
+tau1 = 0.01: P band None, S band None
+tau1 = 0.012: P band (53.66750419289199, 186.33249580710802), S band None
+tau1 = 0.015: P band (38.19660112501053, 261.8033988749895), S band None
+tau1 = 0.02: P band (26.794919243112265, 373.2050807568877), S band None
+tau1 = 0.025: P band (20.87121525220768, 479.12878474779205), S band (50.10804608112701, 199.56874757817502)
+
+=== damping variants (sup over k of Re s) ===
+KG operator damping taud=1e-5: LS:1.24e-02 GN-II:1.61e-02 GN-III:1.24e-02 DPL-1:1.33e-02 HDPL:1.39e-02 MGT:1.24e-02 ELASTIC:1.74e-02
+Kelvin-Voigt eta=1e-5: LS:5.00e-02 GN-II:5.00e-02 GN-III:5.00e-02 DPL-1:5.00e-02 HDPL:5.00e-02 MGT:5.00e-02 ELASTIC:5.00e-02
+
+=== Fig.3 data: sup_k Re s for energy-consistent coupling ===
+LS      0.0e+00:3.2e-02 5.0e-06:2.7e-02 1.0e-05:2.3e-02 1.5e-05:1.8e-02 2.0e-05:1.4e-02 2.5e-05:9.1e-03 3.0e-05:4.6e-03 3.5e-05:2.3e-04 4.0e-05:1.0e-15 4.5e-05:1.0e-15 5.0e-05:1.0e-15 5.5e-05:1.0e-15 6.0e-05:1.0e-15 6.5e-05:1.0e-15 7.0e-05:1.0e-15 7.5e-05:1.0e-15 8.0e-05:1.0e-15 8.5e-05:1.0e-15 9.0e-05:1.0e-15 9.5e-05:1.0e-15 1.0e-04:1.0e-15 1.1e-04:7.8e-06 1.1e-04:2.9e-05 1.2e-04:6.4e-05 1.2e-04:1.1e-04 1.3e-04:1.6e-04 1.3e-04:2.3e-04 1.4e-04:2.9e-04 1.4e-04:3.7e-04 1.5e-04:4.5e-04 1.5e-04:5.4e-04 1.5e-04:6.3e-04 1.6e-04:7.3e-04
+GN-III  0.0e+00:7.9e-03 5.0e-06:6.7e-03 1.0e-05:5.6e-03 1.5e-05:4.4e-03 2.0e-05:3.3e-03 2.5e-05:2.1e-03 3.0e-05:1.0e-03 3.5e-05:7.5e-05 4.0e-05:1.0e-15 4.5e-05:1.0e-15 5.0e-05:1.0e-15 5.5e-05:1.0e-15 6.0e-05:1.0e-15 6.5e-05:1.0e-15 7.0e-05:1.0e-15 7.5e-05:1.0e-15 8.0e-05:1.0e-15 8.5e-05:1.0e-15 9.0e-05:1.0e-15 9.5e-05:1.0e-15 1.0e-04:1.0e-15 1.1e-04:7.8e-06 1.1e-04:2.9e-05 1.2e-04:6.4e-05 1.2e-04:1.1e-04 1.3e-04:1.6e-04 1.3e-04:2.3e-04 1.4e-04:2.9e-04 1.4e-04:3.7e-04 1.5e-04:4.5e-04 1.5e-04:5.4e-04 1.5e-04:6.3e-04 1.6e-04:7.2e-04
+DPL-1   0.0e+00:5.5e-03 5.0e-06:4.7e-03 1.0e-05:3.9e-03 1.5e-05:3.1e-03 2.0e-05:2.3e-03 2.5e-05:1.5e-03 3.0e-05:7.2e-04 3.5e-05:5.9e-05 4.0e-05:1.0e-15 4.5e-05:1.0e-15 5.0e-05:1.0e-15 5.5e-05:1.0e-15 6.0e-05:1.0e-15 6.5e-05:1.0e-15 7.0e-05:1.0e-15 7.5e-05:1.0e-15 8.0e-05:1.0e-15 8.5e-05:1.0e-15 9.0e-05:1.0e-15 9.5e-05:1.0e-15 1.0e-04:1.0e-15 1.1e-04:6.0e-06 1.1e-04:2.3e-05 1.2e-04:5.0e-05 1.2e-04:8.4e-05 1.3e-04:1.3e-04 1.3e-04:1.7e-04 1.4e-04:2.3e-04 1.4e-04:2.9e-04 1.5e-04:3.5e-04 1.5e-04:4.2e-04 1.5e-04:4.9e-04 1.6e-04:5.7e-04
+HDPL    0.0e+00:6.5e-03 5.0e-06:5.6e-03 1.0e-05:4.7e-03 1.5e-05:3.8e-03 2.0e-05:2.9e-03 2.5e-05:1.9e-03 3.0e-05:1.0e-03 3.5e-05:1.2e-04 4.0e-05:1.0e-15 4.5e-05:1.0e-15 5.0e-05:1.0e-15 5.5e-05:1.0e-15 6.0e-05:1.0e-15 6.5e-05:1.0e-15 7.0e-05:1.0e-15 7.5e-05:1.0e-15 8.0e-05:1.0e-15 8.5e-05:1.0e-15 9.0e-05:1.0e-15 9.5e-05:1.0e-15 1.0e-04:1.0e-15 1.1e-04:4.8e-06 1.1e-04:1.8e-05 1.2e-04:4.0e-05 1.2e-04:6.8e-05 1.3e-04:1.0e-04 1.3e-04:1.4e-04 1.4e-04:1.9e-04 1.4e-04:2.3e-04 1.5e-04:2.8e-04 1.5e-04:3.4e-04 1.5e-04:4.0e-04 1.6e-04:4.6e-04
+MGT     0.0e+00:3.2e-02 5.0e-06:2.7e-02 1.0e-05:2.3e-02 1.5e-05:1.8e-02 2.0e-05:1.4e-02 2.5e-05:9.2e-03 3.0e-05:4.6e-03 3.5e-05:2.3e-04 4.0e-05:1.0e-15 4.5e-05:1.0e-15 5.0e-05:1.0e-15 5.5e-05:1.0e-15 6.0e-05:1.0e-15 6.5e-05:1.0e-15 7.0e-05:1.0e-15 7.5e-05:1.0e-15 8.0e-05:1.0e-15 8.5e-05:1.0e-15 9.0e-05:1.0e-15 9.5e-05:1.0e-15 1.0e-04:1.0e-15 1.1e-04:7.7e-06 1.1e-04:2.9e-05 1.2e-04:6.3e-05 1.2e-04:1.1e-04 1.3e-04:1.6e-04 1.3e-04:2.2e-04 1.4e-04:2.9e-04 1.4e-04:3.7e-04 1.5e-04:4.5e-04 1.5e-04:5.3e-04 1.5e-04:6.3e-04 1.6e-04:7.2e-04
