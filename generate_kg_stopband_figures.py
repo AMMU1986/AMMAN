@@ -207,6 +207,103 @@ def table_values(res, label):
         log(f'{m:7s} ' + ' ; '.join(row))
 
 
+def perturb_imW2(model, beta, eps1=EPS1, tau1=TAU1, coup=COUP):
+    """First-order (in coupling) elastic-mode attenuation, Eq. (67):
+    Im W2 ~ coup k_e^3 Im q^2 / (2 S |k_e^2 - q^2|^2)."""
+    from kg_thermoelastic_core import thermal_q2
+    S = 1 - eps1 ** 2 * beta ** 2
+    ke2 = elastic_k2(beta, 1.0, eps1, tau1)
+    if isinstance(ke2, complex) or ke2 <= 0:
+        return None
+    ke = math.sqrt(ke2)
+    q2 = thermal_q2(model, beta)
+    return coup * ke ** 3 * q2.imag / (2 * S * abs(ke2 - q2) ** 2)
+
+
+def fig7():
+    """Parametric study in tau1 (LS heat law)."""
+    f = Figure(1000, 470, 'Fig. 7  Effect of tau1 on the elastic mode (LS, eps1 = 0.01)')
+    pa = f.panel(80, 50, 400, 340, (0, 400), (0, 3), xlabel='beta', ylabel='V2')
+    pb = f.panel(570, 50, 400, 340, (0, 400), (1e-4, 1e3), ylog=True,
+                 xlabel='beta', ylabel='abs(Im W2)')
+    bs = linspace(0.5, 400, 1600)
+    cols = [COLORS['GN-III'], COLORS['KG'], COLORS['ORANGE'], COLORS['GN-II']]
+    log('\n=== Fig.7: LS elastic mode for several tau1 (V2, Im W2) ===')
+    for t1, col in zip((0.004, 0.006, 0.008, 0.0095), cols):
+        _, m2 = track_modes('LS', bs, tau1=t1)
+        v = [wave_props(b, w)[0] if abs(w.real) >= abs(w.imag) else None for b, w in zip(bs, m2)]
+        im = [abs(w.imag) if not math.isinf(w.real) and w.imag != 0 else None for w in m2]
+        sty = 'solid'
+        pa.plot(bs, v, col, sty, label=f'tau1 = {t1}  (1/tau1 = {1 / t1:.1f})')
+        pb.plot(bs, im, col, sty, label=f'tau1 = {t1}')
+        i = min(range(len(bs)), key=lambda j: abs(bs[j] - 300))
+        log(f'tau1={t1}: at beta=300  V2={wave_props(bs[i], m2[i])[0]:.4f}  Im W2={m2[i].imag:.4e}')
+    pa.hline(1.0, (120, 120, 120), 'dot')
+    pa.axes()
+    pb.axes()
+    pa.legend('tr')
+    pb.legend('tr')
+    f.save(os.path.join(OUT, 'Figure_7_Tau1_Parametric.png'))
+
+
+def fig8(res):
+    """Validation of the asymptotic formulas against exact roots."""
+    f = Figure(1000, 470, 'Fig. 8  Asymptotic formulas (lines) vs exact roots (dots)')
+    pa = f.panel(80, 50, 400, 340, (0.1, 3000), (1e-6, 1), xlog=True, ylog=True,
+                 xlabel='beta', ylabel='abs(Im W2), elastic mode (KG)')
+    pb = f.panel(570, 50, 400, 340, (0.01, 10), (0.01, 10), xlog=True, ylog=True,
+                 xlabel='beta (low frequency)', ylabel='thermal mode LS: V1 and Q1')
+    log('\n=== Fig.8: perturbation formula Eq.(67) vs exact Im W2 ===')
+    for m in ('LS', 'GN-III', 'HDPL'):
+        W2 = res[m][1]
+        xs, ex, ap = [], [], []
+        for b, w in zip(BETAS, W2):
+            if b < 0.1 or (1 / EPS1 * 0.97 < b < 1 / TAU1 * 1.03) or math.isinf(w.real):
+                continue
+            pv = perturb_imW2(m, b)
+            if pv is None:
+                continue
+            xs.append(b)
+            ex.append(abs(w.imag))
+            ap.append(abs(pv))
+        pa.plot(xs, ap, COLORS[m], 'solid', label=f'{m} Eq. (67)', thick=1)
+        pa.plot(xs[::40], ex[::40], COLORS[m], 'dot', thick=4, label=f'{m} exact')
+        for pb_ in (1, 50, 300, 3000):
+            i = min(range(len(xs)), key=lambda j: abs(xs[j] - pb_))
+            log(f'{m:7s} beta={xs[i]:.4g}: exact {ex[i]:.4e}  Eq.(67) {ap[i]:.4e}')
+    pa.vband(1 / EPS1, 1 / TAU1, SHADE_P)
+    # low-frequency thermal mode
+    bl = logspace(0.01, 10, 300)
+    m1, _ = track_modes('LS', bl)
+    pb.plot(bl, [wave_props(b, w)[0] for b, w in zip(bl, m1)], COLORS['LS'], 'solid', label='V1 exact')
+    pb.plot(bl, [w.imag for w in m1], COLORS['MGT'], 'solid', label='Q1 exact')
+    pb.plot(bl, [math.sqrt(2 * b / (1 + COUP)) for b in bl], (120, 120, 120), 'dash',
+            label='V1 = sqrt(2 beta/(1+eps))')
+    pb.plot(bl, [math.sqrt(b * (1 + COUP) / 2) for b in bl], (200, 120, 120), 'dash',
+            label='Q1 = sqrt(beta(1+eps)/2)')
+    log('\n=== low-frequency LS thermal mode: exact vs Eq.(77) ===')
+    for b0 in (0.01, 0.1, 1.0):
+        i = min(range(len(bl)), key=lambda j: abs(bl[j] - b0))
+        log(f'beta={bl[i]:.4g}: V1 {wave_props(bl[i], m1[i])[0]:.4f} vs {math.sqrt(2 * bl[i] / (1 + COUP)):.4f}; '
+            f'Q1 {m1[i].imag:.4f} vs {math.sqrt(bl[i] * (1 + COUP) / 2):.4f}')
+    pa.axes()
+    pb.axes()
+    pa.legend('bl')
+    pb.legend('tl')
+    f.save(os.path.join(OUT, 'Figure_8_Asymptotic_Validation.png'))
+
+
+def shear_table():
+    log('\n=== shear wave (V3, Im W3) ===')
+    for lab, e1, t1 in (('KG', EPS1, TAU1), ('NE', EPS1, 0.0), ('C', 0.0, 0.0)):
+        row = []
+        for b in (10, 40, 49, 60, 120, 170, 300, 1000):
+            w = elastic_W(b, CS2, e1, t1)
+            v = b / w.real if abs(w.real) > 1e-9 and abs(w.real) >= abs(w.imag) else float('inf')
+            row.append(f'b={b}: {v:.4g},{w.imag:.4g}')
+        log(f'{lab}: ' + ' ; '.join(row))
+
+
 def main():
     oe, ot = critical_freqs(1.0)
     se, st = critical_freqs(CS)
@@ -226,6 +323,9 @@ def main():
     res_src = compute_all(coup=COUP_SOURCE)
     fig5(res)
     fig6(res, res_cl)
+    fig7()
+    fig8(res)
+    shear_table()
     table_values(res, 'KG, physical coupling')
     table_values(res_ne, 'Eringen, physical coupling')
     table_values(res_cl, 'Classical, physical coupling')

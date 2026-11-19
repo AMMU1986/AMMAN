@@ -24,6 +24,8 @@ JOBS = [
             4: 'Figure_4_Phase_Group_Velocity.png',
             5: 'Figure_5_Thermal_Mode.png',
             6: 'Figure_6_Elastic_Mode_Decay_and_Gain.png',
+            7: 'Figure_7_Tau1_Parametric.png',
+            8: 'Figure_8_Asymptotic_Validation.png',
         },
     },
     {

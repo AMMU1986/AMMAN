@@ -8,6 +8,36 @@ DPL-1   wavefront speed bound = inf; thermal-front attenuation limit = inf
 HDPL    wavefront speed bound = 17.3205; thermal-front attenuation limit = 3.8490
 MGT     wavefront speed bound = 10.0000; thermal-front attenuation limit = 4.9500
 
+=== Fig.7: LS elastic mode for several tau1 (V2, Im W2) ===
+tau1=0.004: at beta=300  V2=4.2631  Im W2=-6.6467e-03
+tau1=0.006: at beta=300  V2=1.8898  Im W2=-2.1327e-03
+tau1=0.008: at beta=300  V2=1.2964  Im W2=-1.4075e-03
+tau1=0.0095: at beta=300  V2=1.0598  Im W2=-1.1377e-03
+
+=== Fig.8: perturbation formula Eq.(67) vs exact Im W2 ===
+LS      beta=0.998: exact 4.2164e-03  Eq.(67) 4.2346e-03
+LS      beta=50: exact 1.0334e-02  Eq.(67) 1.0335e-02
+LS      beta=300: exact 2.1338e-03  Eq.(67) 2.1337e-03
+LS      beta=3000: exact 1.6494e-05  Eq.(67) 1.6494e-05
+GN-III  beta=0.998: exact 8.5473e-03  Eq.(67) 8.4010e-03
+GN-III  beta=50: exact 1.0168e-02  Eq.(67) 1.0168e-02
+GN-III  beta=300: exact 1.9841e-03  Eq.(67) 1.9841e-03
+GN-III  beta=3000: exact 1.5589e-05  Eq.(67) 1.5589e-05
+HDPL    beta=0.998: exact 4.1533e-03  Eq.(67) 4.1716e-03
+HDPL    beta=50: exact 8.1066e-03  Eq.(67) 8.1064e-03
+HDPL    beta=300: exact 9.5369e-04  Eq.(67) 9.5368e-04
+HDPL    beta=3000: exact 7.0630e-06  Eq.(67) 7.0630e-06
+
+=== low-frequency LS thermal mode: exact vs Eq.(77) ===
+beta=0.01: V1 0.1402 vs 0.1402; Q1 0.0713 vs 0.0713
+beta=0.1008: V1 0.4447 vs 0.4452; Q1 0.2260 vs 0.2263
+beta=0.9923: V1 1.3900 vs 1.3971; Q1 0.7009 vs 0.7103
+
+=== shear wave (V3, Im W3) ===
+KG: b=10: 0.4901,0 ; b=40: 0.3079,0 ; b=49: 0.1006,0 ; b=60: inf,168.3 ; b=120: inf,76.32 ; b=170: 8.085,0 ; b=300: 1.976,0 ; b=1000: 1.688,0
+NE: b=10: 0.4892,0 ; b=40: 0.2989,0 ; b=49: 0.0962,0 ; b=60: inf,180.4 ; b=120: inf,110 ; b=170: inf,104.6 ; b=300: inf,101.4 ; b=1000: inf,100.1
+C: b=10: 0.4994,0 ; b=40: 0.4994,0 ; b=49: 0.4994,0 ; b=60: 0.4994,0 ; b=120: 0.4994,0 ; b=170: 0.4994,0 ; b=300: 0.4994,0 ; b=1000: 0.4994,0
+
 === KG, physical coupling: (V1, Q1) thermal | (V2, Q2) elastic at selected beta ===
 LS      b=1: 1.394,0.7029 | 1.004,0.004216 ; b=10: 4.247,2.123 | 0.9968,0.008543 ; b=50: 7.861,3.929 | 0.9078,0.01033 ; b=99: 9.088,4.542 | 0.1818,0.07138 ; b=120: 9.323,4.658 | inf,125.3 ; b=160: 9.587,4.778 | inf,36.32 ; b=200: 9.716,4.862 | 2.609,-0.008392 ; b=500: 9.951,4.976 | 1.732,-0.0006445 ; b=3000: 9.999,4.999 | 1.668,-1.649e-05
 GN-II   b=1: 1.067,0 | 0.9373,0 ; b=10: 1.065,0 | 0.9356,0 ; b=50: 1.038,0 | 0.8743,0 ; b=99: 1.013,0 | 0.1794,0 ; b=120: 1.009,0 | inf,126.4 ; b=160: 1.005,-0 | inf,36.47 ; b=200: 1.003,-0 | 2.6,-0 ; b=500: 1.001,-0 | 1.731,-0 ; b=3000: 1,-0 | 1.668,-0
