@@ -34,8 +34,10 @@ JOBS = [
         'fig_dir': f'{BASE}/kg_stability_figures',
         'figures': {
             1: 'Figure_1_Elastic_Spectrum_and_Growth_Band.png',
-            2: 'Figure_2_Growth_Rate_vs_k.png',
-            3: 'Figure_3_Energy_Consistent_Window.png',
+            2: 'Figure_2_First_Order_Growth_Law.png',
+            3: 'Figure_3_Growth_vs_Coupling_and_Tau1.png',
+            4: 'Figure_4_Growth_Rate_vs_k.png',
+            5: 'Figure_5_Energy_Consistent_Window.png',
         },
     },
 ]

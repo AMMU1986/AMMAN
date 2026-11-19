@@ -33,7 +33,7 @@ def log(s=''):
 
 
 def small_k_growth(model, k, coup=COUP, tau1=TAU1):
-    """Leading-order growth rate of the optical branch, Eq. (B.17):
+    """Leading-order growth rate of the optical branch, Eq. (47):
     Re s = -(coup k^4 tau1 / 2) Im[a(i/tau1) / b(i/tau1)]."""
     a, b = heat_polys(model)
     s0 = 1j / tau1
@@ -97,7 +97,7 @@ def growth_curve(model, **kw):
 
 
 def fig2(curves):
-    f = Figure(1000, 470, 'Fig. 2  Growth rate of the optical branch (KG, original coupling)')
+    f = Figure(1000, 470, 'Fig. 4  Growth rate of the optical branch (KG, original coupling)')
     pa = f.panel(80, 50, 400, 340, (1e-2, 1e5), (1e-14, 1), xlog=True, ylog=True,
                  xlabel='wavenumber k', ylabel='max Re s (physical coupling 0.0168)')
     pb = f.panel(570, 50, 400, 340, (1e-2, 1e5), (1e-12, 100), xlog=True, ylog=True,
@@ -109,12 +109,12 @@ def fig2(curves):
     # small-k asymptote for LS
     kk = [k for k in KS if k < 3]
     pa.plot(kk, [small_k_growth('LS', k) for k in kk], (120, 120, 120), 'dot',
-            label='LS small-k law (B.17)')
+            label='LS small-k law, Eq. (47)')
     pa.axes()
     pb.axes()
     pa.legend('br')
     pb.legend('br')
-    f.save(os.path.join(OUT, 'Figure_2_Growth_Rate_vs_k.png'))
+    f.save(os.path.join(OUT, 'Figure_4_Growth_Rate_vs_k.png'))
 
 
 # ---------------------------------------------------------------------------
@@ -123,7 +123,7 @@ def fig2(curves):
 def fig3():
     bbs = linspace(0.0, 1.6e-4, 33)
     ks = logspace(1e-1, 1e4, 90)
-    f = Figure(700, 470, 'Fig. 3  Energy-consistent coupling: sup_k Re s vs b')
+    f = Figure(700, 470, 'Fig. 5  Energy-consistent coupling: sup_k Re s vs b')
     p = f.panel(90, 50, 560, 340, (0, 1.6e-4), (1e-15, 1), ylog=True,
                 xlabel='b', ylabel='sup over k of Re s (floor 1e-15)')
     p.vband(TAU1 ** 2, EPS1 ** 2, SHADE_G)
@@ -140,7 +140,7 @@ def fig3():
     p.axes(xticks=[0, 3.6e-5, 1e-4, 1.6e-4])
     p.text(4.0e-5, 0.1, 'stable window tau1^2 <= b <= eps1^2/c_d^2', (0, 0, 0))
     p.legend('tr')
-    f.save(os.path.join(OUT, 'Figure_3_Energy_Consistent_Window.png'))
+    f.save(os.path.join(OUT, 'Figure_5_Energy_Consistent_Window.png'))
     log('\n=== Fig.3 data: sup_k Re s for energy-consistent coupling ===')
     for m, g in rows.items():
         log(f'{m:7s} ' + ' '.join(f'{bb:.1e}:{v:.1e}' for bb, v in zip(bbs, g)))
@@ -204,6 +204,79 @@ def checks(curves):
         log(f'{lab}: ' + ' '.join(vals))
 
 
+def optical_omega(k, c2=1.0, eps1=EPS1, tau1=TAU1):
+    """Frequency of the purely elastic optical branch (real, stable case)."""
+    A = 1 + eps1 ** 2 * k * k
+    disc = A * A - 4 * tau1 ** 2 * c2 * k * k
+    return math.sqrt((A + math.sqrt(disc)) / (2 * tau1 ** 2))
+
+
+def first_order_growth(model, k, coup=COUP, eps1=EPS1, tau1=TAU1):
+    """Eq. (61): Re s = -coup k^4 Im q^2 / (|k^2 - q^2|^2 * 2 w dD/d(w^2)),
+    evaluated on the optical branch, with q^2 = -b(-i w)/a(-i w)."""
+    from kg_thermoelastic_core import thermal_q2
+    w = optical_omega(k, 1.0, eps1, tau1)
+    dD = (1 + eps1 ** 2 * k * k) - 2 * tau1 ** 2 * w * w
+    q2 = thermal_q2(model, w)
+    return -coup * k ** 4 * q2.imag / (abs(k * k - q2) ** 2 * 2 * w * dD)
+
+
+def fig4(curves):
+    f = Figure(1000, 470, 'Fig. 2  First-order growth law (lines) vs exact roots (dots)')
+    pa = f.panel(80, 50, 400, 340, (1e-2, 1e5), (1e-14, 1), xlog=True, ylog=True,
+                 xlabel='wavenumber k', ylabel='max Re s, eps = 0.0168')
+    pb = f.panel(570, 50, 400, 340, (1e-1, 1e5), (0.98, 1.02), xlog=True,
+                 xlabel='wavenumber k', ylabel='ratio exact / Eq. (61)')
+    log('\n=== Fig.4: first-order growth law vs exact ===')
+    for m in DISSIPATIVE:
+        g = curves[m][0]
+        fo = [first_order_growth(m, k) for k in KS]
+        pa.plot(KS, [x if x > 1e-14 else None for x in fo], COLORS[m], DASH[m], thick=1, label=f'{m} Eq. (61)')
+        pa.plot(KS[::12], [x if x > 1e-14 else None for x in g[::12]], COLORS[m], 'dot', thick=4)
+        pb.plot(KS, [ge / fe if k >= 0.1 and fe > 1e-15 and ge > 1e-15 else None
+                     for k, ge, fe in zip(KS, g, fo)],
+                COLORS[m], DASH[m], label=m)
+        for kk in (0.1, 1, 10, 20, 100, 1e3, 1e4):
+            i = min(range(len(KS)), key=lambda j: abs(math.log(KS[j] / kk)))
+            log(f'{m:7s} k={KS[i]:.4g}: exact {g[i]:.4e}  first-order {fo[i]:.4e}')
+    pb.hline(1.0, (120, 120, 120), 'dot')
+    pa.axes()
+    pb.axes(yticks=[0.98, 0.99, 1.0, 1.01, 1.02])
+    pa.legend('br')
+    pb.legend('tr')
+    f.save(os.path.join(OUT, 'Figure_2_First_Order_Growth_Law.png'))
+
+
+def fig5():
+    f = Figure(1000, 470, 'Fig. 3  Peak growth rate vs coupling constant and vs tau1')
+    pa = f.panel(80, 50, 400, 340, (1e-4, 2), (1e-6, 10), xlog=True, ylog=True,
+                 xlabel='coupling constant eps', ylabel='sup over k of Re s')
+    pb = f.panel(570, 50, 400, 340, (1e-4, 0.0125), (1e-8, 100), xlog=True, ylog=True,
+                 xlabel='tau1 (eps1 = 0.01)', ylabel='sup over k of Re s')
+    ks = logspace(1e-1, 1e4, 120)
+    ks_t = logspace(1e-1, 1e8, 220)
+    epss = logspace(1e-4, 2, 15)
+    taus = sorted(set(logspace(1e-4, 0.0125, 36) + [0.001, 5.7735e-4, 0.006, 0.0095, 0.01]))
+    log('\n=== Fig.5: sup Re s vs coupling and vs tau1 ===')
+    for m in ('LS', 'GN-III', 'HDPL', 'MGT', 'GN-II'):
+        ge = [max(max_growth(p_dispersion_poly(m, k, coup=e)) for k in ks) for e in epss]
+        gt = [max(max_growth(p_dispersion_poly(m, k, tau1=t)) for k in ks_t) for t in taus]
+        pa.plot(epss, [x if x > 1e-6 else None for x in ge], COLORS[m], DASH[m], label=m)
+        pb.plot(taus, [x if x > 1e-8 else None for x in gt], COLORS[m], DASH[m], label=m)
+        log(f'{m:7s} vs eps: ' + ' '.join(f'{e:.1e}:{v:.2e}' for e, v in zip(epss, ge)))
+        log(f'{m:7s} vs tau1: ' + ' '.join(f'{t:.4f}:{v:.2e}' for t, v in zip(taus, gt)))
+    pa.vline(COUP, (120, 120, 120), 'dot')
+    pa.vline(COUP_SOURCE, (120, 120, 120), 'dot')
+    pb.vline(EPS1, (0, 0, 0), 'dot')
+    pb.vline(TAU1, (120, 120, 120), 'dot')
+    pa.axes()
+    pb.vline(0.001, (200, 0, 0), 'dot')
+    pb.axes(xticks=[1e-4, 1e-3, 1e-2])
+    pa.legend('tl')
+    pb.legend('br')
+    f.save(os.path.join(OUT, 'Figure_3_Growth_vs_Coupling_and_Tau1.png'))
+
+
 def main():
     curves = {}
     for m in MODELS:
@@ -212,6 +285,8 @@ def main():
     fig2(curves)
     checks(curves)
     fig3()
+    fig4(curves)
+    fig5()
     with open(os.path.join(OUT, 'numerical_summary.txt'), 'w') as fh:
         fh.write('\n'.join(summary) + '\n')
 
