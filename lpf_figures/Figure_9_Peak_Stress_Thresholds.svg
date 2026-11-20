@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="560" viewBox="0 0 1500 560"><rect width="100%" height="100%" fill="white"/><rect x="110.0" y="50.0" width="600.0" height="400.0" fill="white" stroke="#000" stroke-width="1.2"/>
+<line x1="327.67" y1="50.0" x2="327.67" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="327.67" y1="450.0" x2="327.67" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="327.67" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">2</tspan></text>
+<line x1="110.0" y1="450.00" x2="710.0" y2="450.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="110.0" y1="450.00" x2="116.0" y2="450.00" stroke="#000" stroke-width="1"/>
+<text x="103.0" y="454.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">0</tspan></text>
+<line x1="110.0" y1="288.52" x2="710.0" y2="288.52" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="110.0" y1="288.52" x2="116.0" y2="288.52" stroke="#000" stroke-width="1"/>
+<text x="103.0" y="293.02" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">1</tspan></text>
+<line x1="110.0" y1="127.04" x2="710.0" y2="127.04" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="110.0" y1="127.04" x2="116.0" y2="127.04" stroke="#000" stroke-width="1"/>
+<text x="103.0" y="131.54" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">2</tspan></text>
+<clipPath id="c72144"><rect x="110.0" y="50.0" width="600.0" height="400.0"/></clipPath>
+<g clip-path="url(#c72144)">
+<polyline fill="none" stroke="#1f4e79" stroke-width="1.8" stroke-dasharray="5,4" points="163.01,99.53 327.67,103.28 492.33,106.36 656.99,115.48"/>
+<polyline fill="none" stroke="#1f4e79" stroke-width="2.4"  points="163.01,159.90 327.67,207.11 492.33,236.20 656.99,243.83"/>
+<circle cx="163.01" cy="159.90" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<circle cx="327.67" cy="207.11" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<circle cx="492.33" cy="236.20" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<circle cx="656.99" cy="243.83" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<polyline fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-dasharray="5,4" points="163.01,119.30 327.67,121.27 492.33,121.60 656.99,129.31"/>
+<polyline fill="none" stroke="#2e8b57" stroke-width="2.4"  points="163.01,187.69 327.67,220.54 492.33,230.80 656.99,231.44"/>
+<circle cx="163.01" cy="187.69" r="4.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<circle cx="327.67" cy="220.54" r="4.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<circle cx="492.33" cy="230.80" r="4.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<circle cx="656.99" cy="231.44" r="4.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<rect x="486.33" y="232.37" width="12.0" height="12.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<rect x="486.33" y="227.46" width="12.0" height="12.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+</g>
+<text x="410.0" y="494.0" font-size="15" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Film thickness L (nm)</text>
+<text transform="translate(48.0,250.0) rotate(-90)" font-size="15" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Peak tensile stress per J/m² (MPa)</text>
+<text x="110.0" y="40.0" font-size="15" font-weight="bold" text-anchor="start" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">(a) Peak tension, free-standing film</text>
+<rect x="487.0" y="58.0" width="215.0" height="130.0" fill="white" fill-opacity="0.92" stroke="#999"/>
+<line x1="495.0" y1="70.0" x2="525.0" y2="70.0" stroke="#1f4e79" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="533.0" y="74.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Au, Fourier</text>
+<line x1="495.0" y1="90.0" x2="525.0" y2="90.0" stroke="#1f4e79" stroke-width="2.4" />
+<text x="533.0" y="94.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Au, single delay</text>
+<line x1="495.0" y1="110.0" x2="525.0" y2="110.0" stroke="#2e8b57" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="533.0" y="114.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Cu, Fourier</text>
+<line x1="495.0" y1="130.0" x2="525.0" y2="130.0" stroke="#2e8b57" stroke-width="2.4" />
+<text x="533.0" y="134.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Cu, single delay</text>
+<rect x="504.0" y="144.0" width="12.0" height="12.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<text x="533.0" y="154.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Au, TTM-driven (200 nm)</text>
+<rect x="504.0" y="164.0" width="12.0" height="12.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<text x="533.0" y="174.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Cu, TTM-driven (200 nm)</text><rect x="860.0" y="50.0" width="600.0" height="400.0" fill="white" stroke="#000" stroke-width="1.2"/>
+<line x1="1077.67" y1="50.0" x2="1077.67" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="1077.67" y1="450.0" x2="1077.67" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="1077.67" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">2</tspan></text>
+<line x1="860.0" y1="450.00" x2="1460.0" y2="450.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.0" y1="450.00" x2="866.0" y2="450.00" stroke="#000" stroke-width="1"/>
+<text x="853.0" y="454.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">0</tspan></text>
+<line x1="860.0" y1="316.67" x2="1460.0" y2="316.67" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.0" y1="316.67" x2="866.0" y2="316.67" stroke="#000" stroke-width="1"/>
+<text x="853.0" y="321.17" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">1</tspan></text>
+<line x1="860.0" y1="183.33" x2="1460.0" y2="183.33" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.0" y1="183.33" x2="866.0" y2="183.33" stroke="#000" stroke-width="1"/>
+<text x="853.0" y="187.83" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">2</tspan></text>
+<line x1="860.0" y1="50.00" x2="1460.0" y2="50.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.0" y1="50.00" x2="866.0" y2="50.00" stroke="#000" stroke-width="1"/>
+<text x="853.0" y="54.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">3</tspan></text>
+<clipPath id="c1520"><rect x="860.0" y="50.0" width="600.0" height="400.0"/></clipPath>
+<g clip-path="url(#c1520)">
+<polyline fill="none" stroke="#1f4e79" stroke-width="1.8" stroke-dasharray="5,4" points="913.01,339.38 1077.67,336.29 1242.33,333.75 1406.99,326.21"/>
+<polyline fill="none" stroke="#1f4e79" stroke-width="2.4"  points="913.01,289.54 1077.67,250.56 1242.33,226.54 1406.99,220.23"/>
+<polyline fill="none" stroke="#c00000" stroke-width="1.8" stroke-dasharray="5,4" points="913.01,221.76 1077.67,219.60 1242.33,219.52 1406.99,219.52"/>
+<polyline fill="none" stroke="#c00000" stroke-width="2.4"  points="913.01,169.55 1077.67,134.30 1242.33,111.53 1406.99,105.17"/>
+<polyline fill="none" stroke="#2e8b57" stroke-width="1.8" stroke-dasharray="5,4" points="913.01,323.06 1077.67,321.43 1242.33,321.17 1406.99,314.80"/>
+<polyline fill="none" stroke="#2e8b57" stroke-width="2.4"  points="913.01,266.59 1077.67,239.47 1242.33,231.00 1406.99,230.46"/>
+<polyline fill="none" stroke="#ed7d31" stroke-width="1.8" stroke-dasharray="5,4" points="913.01,209.45 1077.67,208.37 1242.33,208.35 1406.99,208.35"/>
+<polyline fill="none" stroke="#ed7d31" stroke-width="2.4"  points="913.01,152.22 1077.67,126.12 1242.33,117.62 1406.99,117.01"/>
+</g>
+<text x="1160.0" y="494.0" font-size="15" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Film thickness L (nm)</text>
+<text transform="translate(798.0,250.0) rotate(-90)" font-size="15" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Absorbed fluence (J/m²)</text>
+<text x="860.0" y="40.0" font-size="15" font-weight="bold" text-anchor="start" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">(b) Thresholds: tension = 1 GPa and melting</text>
+<rect x="1237.0" y="272.0" width="215.0" height="170.0" fill="white" fill-opacity="0.92" stroke="#999"/>
+<line x1="1245.0" y1="284.0" x2="1275.0" y2="284.0" stroke="#1f4e79" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="1283.0" y="288.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Au spall (1 GPa), Fourier</text>
+<line x1="1245.0" y1="304.0" x2="1275.0" y2="304.0" stroke="#1f4e79" stroke-width="2.4" />
+<text x="1283.0" y="308.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Au spall (1 GPa), delay</text>
+<line x1="1245.0" y1="324.0" x2="1275.0" y2="324.0" stroke="#c00000" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="1283.0" y="328.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Au melting, Fourier</text>
+<line x1="1245.0" y1="344.0" x2="1275.0" y2="344.0" stroke="#c00000" stroke-width="2.4" />
+<text x="1283.0" y="348.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Au melting, delay</text>
+<line x1="1245.0" y1="364.0" x2="1275.0" y2="364.0" stroke="#2e8b57" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="1283.0" y="368.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Cu spall (1 GPa), Fourier</text>
+<line x1="1245.0" y1="384.0" x2="1275.0" y2="384.0" stroke="#2e8b57" stroke-width="2.4" />
+<text x="1283.0" y="388.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Cu spall (1 GPa), delay</text>
+<line x1="1245.0" y1="404.0" x2="1275.0" y2="404.0" stroke="#ed7d31" stroke-width="1.8" stroke-dasharray="5,4"/>
+<text x="1283.0" y="408.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Cu melting, Fourier</text>
+<line x1="1245.0" y1="424.0" x2="1275.0" y2="424.0" stroke="#ed7d31" stroke-width="2.4" />
+<text x="1283.0" y="428.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Cu melting, delay</text></svg>
