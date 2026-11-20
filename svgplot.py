@@ -215,7 +215,7 @@ def save(svg_text, path_png, width, height):
         return svg_path
     html_path = os.path.splitext(path_png)[0] + "._render.html"
     with open(html_path, "w", encoding="utf-8") as f:
-        f.write('<html><body style="margin:0">%s</body></html>' % svg_text)
+        f.write('<html><head><meta charset="utf-8"></head><body style="margin:0">%s</body></html>' % svg_text)
     subprocess.run([chrome, "--no-sandbox", "--disable-gpu", "--hide-scrollbars",
                     "--force-device-scale-factor=2", "--screenshot=" + os.path.abspath(path_png),
                     "--window-size=%d,%d" % (width, height), "file://" + os.path.abspath(html_path)],

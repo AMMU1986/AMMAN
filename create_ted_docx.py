@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Build Manuscript_TED_Single_Delay_Microbeams.docx from the Markdown source.
+Build a Word manuscript (default: Manuscript_TED_Single_Delay_Microbeams.docx) from its Markdown source.
 
 Standard library only. Features:
   * headings, paragraphs with **bold**, *italic*, inline $math$
@@ -32,6 +32,7 @@ SYMBOLS = {
     "le": "≤", "ge": "≥", "leq": "≤", "geq": "≥", "cdot": "·", "times": "×", "infty": "∞",
     "to": "→", "propto": "∝", "dots": "…", "ldots": "…", "gtrsim": "≳", "lesssim": "≲",
     "langle": "⟨", "rangle": "⟩", "neq": "≠", "sim": "∼",
+    "ell": "ℓ", "sum": "∑", "lvert": "|", "rvert": "|", "Longrightarrow": "⟹", "Rightarrow": "⇒",
 }
 FUNCS = {"sin", "cos", "tan", "sinh", "cosh", "tanh", "exp", "ln", "log", "max", "min", "Re", "Im"}
 SPACES = {",": "\u2009", ";": "\u2005", "quad": "\u2003", "qquad": "\u2003\u2003", " ": " ", "!": ""}
@@ -436,8 +437,10 @@ STYLES = """<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </w:styles>"""
 
 
-def build():
-    md = open(SRC, encoding="utf-8").read()
+def build(src=None, out=None):
+    src = src or SRC
+    out = out or OUT
+    md = open(src, encoding="utf-8").read()
     media = Media()
     body = build_body(md, media)
     sect = ("<w:sectPr><w:pgSz w:w=\"11906\" w:h=\"16838\"/><w:pgMar w:top=\"1440\" w:right=\"1273\" w:bottom=\"1440\" "
@@ -469,7 +472,9 @@ def build():
             'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">'
             '<dc:title>Thermoelastic damping and quality factor of micro/nano-beam resonators under an exact single-delay heat conduction model</dc:title>'
             '</cp:coreProperties>')
-    with zipfile.ZipFile(OUT, "w", zipfile.ZIP_DEFLATED) as z:
+    title = re.search(r"^# (.+)$", md, re.M).group(1)
+    core = core.replace("Thermoelastic damping and quality factor of micro/nano-beam resonators under an exact single-delay heat conduction model", escape(title))
+    with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
         z.writestr("[Content_Types].xml", content_types)
         z.writestr("_rels/.rels", root_rels)
         z.writestr("docProps/core.xml", core)
@@ -478,8 +483,13 @@ def build():
         z.writestr("word/_rels/document.xml.rels", doc_rels)
         for rid, name, path in media.items:
             z.write(path, "word/media/" + name)
-    print("wrote", OUT, "| figures:", len(media.items))
+    print("wrote", out, "| figures:", len(media.items))
 
 
 if __name__ == "__main__":
-    build()
+    import sys
+    # usage: python3 create_ted_docx.py [source.md output.docx]
+    if len(sys.argv) == 3:
+        build(os.path.join(HERE, sys.argv[1]), os.path.join(HERE, sys.argv[2]))
+    else:
+        build()
