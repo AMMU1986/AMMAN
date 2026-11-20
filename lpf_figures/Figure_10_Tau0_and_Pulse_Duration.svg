@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="560" viewBox="0 0 1500 560"><rect width="100%" height="100%" fill="white"/><rect x="110.0" y="50.0" width="600.0" height="400.0" fill="white" stroke="#000" stroke-width="1.2"/>
+<line x1="110.00" y1="50.0" x2="110.00" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="110.00" y1="450.0" x2="110.00" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="110.00" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">−12</tspan></text>
+<line x1="310.00" y1="50.0" x2="310.00" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="310.00" y1="450.0" x2="310.00" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="310.00" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">−11</tspan></text>
+<line x1="510.00" y1="50.0" x2="510.00" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="510.00" y1="450.0" x2="510.00" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="510.00" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">−10</tspan></text>
+<line x1="710.00" y1="50.0" x2="710.00" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="710.00" y1="450.0" x2="710.00" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="710.00" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">−9</tspan></text>
+<line x1="110.0" y1="450.00" x2="710.0" y2="450.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="110.0" y1="450.00" x2="116.0" y2="450.00" stroke="#000" stroke-width="1"/>
+<text x="103.0" y="454.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">0</text>
+<line x1="110.0" y1="325.00" x2="710.0" y2="325.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="110.0" y1="325.00" x2="116.0" y2="325.00" stroke="#000" stroke-width="1"/>
+<text x="103.0" y="329.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">50</text>
+<line x1="110.0" y1="200.00" x2="710.0" y2="200.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="110.0" y1="200.00" x2="116.0" y2="200.00" stroke="#000" stroke-width="1"/>
+<text x="103.0" y="204.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">100</text>
+<line x1="110.0" y1="75.00" x2="710.0" y2="75.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="110.0" y1="75.00" x2="116.0" y2="75.00" stroke="#000" stroke-width="1"/>
+<text x="103.0" y="79.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">150</text>
+<clipPath id="c59216"><rect x="110.0" y="50.0" width="600.0" height="400.0"/></clipPath>
+<g clip-path="url(#c59216)">
+<polyline fill="none" stroke="#c00000" stroke-width="2.4"  points="110.00,114.12 210.00,114.65 310.00,118.63 410.00,154.27 510.00,272.65 610.00,375.51 710.00,409.31"/>
+<circle cx="110.00" cy="114.12" r="4.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<circle cx="210.00" cy="114.65" r="4.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<circle cx="310.00" cy="118.63" r="4.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<circle cx="410.00" cy="154.27" r="4.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<circle cx="510.00" cy="272.65" r="4.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<circle cx="610.00" cy="375.51" r="4.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<circle cx="710.00" cy="409.31" r="4.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<polyline fill="none" stroke="#2e8b57" stroke-width="2.4" stroke-dasharray="8,3" points="110.00,399.59 210.00,396.45 310.00,391.47 410.00,395.67 510.00,397.02 610.00,397.24 710.00,397.31"/>
+<rect x="106.00" y="395.59" width="8.0" height="8.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<rect x="206.00" y="392.45" width="8.0" height="8.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<rect x="306.00" y="387.47" width="8.0" height="8.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<rect x="406.00" y="391.67" width="8.0" height="8.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<rect x="506.00" y="393.02" width="8.0" height="8.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<rect x="606.00" y="393.24" width="8.0" height="8.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<rect x="706.00" y="393.31" width="8.0" height="8.0" fill="white" stroke="#2e8b57" stroke-width="1.6"/>
+<line x1="110.00" y1="114.22" x2="710.00" y2="114.22" stroke="#1f4e79" stroke-width="1.3" stroke-dasharray="2,2"/>
+<text x="116.00" y="109.22" font-size="12" fill="#1f4e79" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Fourier</text>
+<line x1="653.75" y1="50.00" x2="653.75" y2="450.00" stroke="#666" stroke-width="1.3" stroke-dasharray="4,3"/>
+<text x="657.75" y="66.00" font-size="12" fill="#666" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">calibrated</text>
+</g>
+<text x="410.0" y="494.0" font-size="15" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Delay time τ₀ (s)</text>
+<text transform="translate(48.0,250.0) rotate(-90)" font-size="15" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Peak tensile stress (MPa)</text>
+<text x="110.0" y="40.0" font-size="15" font-weight="bold" text-anchor="start" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">(a) Effect of τ₀ (Au, 200 nm, k* fixed)</text>
+<rect x="487.0" y="58.0" width="215.0" height="50.0" fill="white" fill-opacity="0.92" stroke="#999"/>
+<line x1="495.0" y1="70.0" x2="525.0" y2="70.0" stroke="#c00000" stroke-width="2.4" />
+<text x="533.0" y="74.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">single delay, k* fixed</text>
+<line x1="495.0" y1="90.0" x2="525.0" y2="90.0" stroke="#2e8b57" stroke-width="2.4" stroke-dasharray="8,3"/>
+<text x="533.0" y="94.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">single delay, ℓ fixed (k* ∝ τ₀⁻²)</text><rect x="860.0" y="50.0" width="600.0" height="400.0" fill="white" stroke="#000" stroke-width="1.2"/>
+<line x1="860.00" y1="50.0" x2="860.00" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.00" y1="450.0" x2="860.00" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="860.00" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">−14</tspan></text>
+<line x1="1032.56" y1="50.0" x2="1032.56" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="1032.56" y1="450.0" x2="1032.56" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="1032.56" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">−13</tspan></text>
+<line x1="1205.11" y1="50.0" x2="1205.11" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="1205.11" y1="450.0" x2="1205.11" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="1205.11" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">−12</tspan></text>
+<line x1="1377.67" y1="50.0" x2="1377.67" y2="450.0" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="1377.67" y1="450.0" x2="1377.67" y2="444.0" stroke="#000" stroke-width="1"/>
+<text x="1377.67" y="470.0" font-size="13" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">10<tspan baseline-shift="super" font-size="10">−11</tspan></text>
+<line x1="860.0" y1="450.00" x2="1460.0" y2="450.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.0" y1="450.00" x2="866.0" y2="450.00" stroke="#000" stroke-width="1"/>
+<text x="853.0" y="454.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">0</text>
+<line x1="860.0" y1="325.00" x2="1460.0" y2="325.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.0" y1="325.00" x2="866.0" y2="325.00" stroke="#000" stroke-width="1"/>
+<text x="853.0" y="329.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">50</text>
+<line x1="860.0" y1="200.00" x2="1460.0" y2="200.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.0" y1="200.00" x2="866.0" y2="200.00" stroke="#000" stroke-width="1"/>
+<text x="853.0" y="204.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">100</text>
+<line x1="860.0" y1="75.00" x2="1460.0" y2="75.00" stroke="#e3e3e3" stroke-width="1"/>
+<line x1="860.0" y1="75.00" x2="866.0" y2="75.00" stroke="#000" stroke-width="1"/>
+<text x="853.0" y="79.50" font-size="13" text-anchor="end" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">150</text>
+<clipPath id="c55248"><rect x="860.0" y="50.0" width="600.0" height="400.0"/></clipPath>
+<g clip-path="url(#c55248)">
+<polyline fill="none" stroke="#1f4e79" stroke-width="2.0" stroke-dasharray="5,4" points="860.00,112.05 1032.56,114.22 1205.11,218.91 1287.44,281.66 1377.67,364.03 1460.00,423.99"/>
+<polyline fill="none" stroke="#c00000" stroke-width="2.4"  points="860.00,397.09 1032.56,397.28 1205.11,398.02 1287.44,400.44 1377.67,408.99 1460.00,426.66"/>
+<circle cx="860.00" cy="112.05" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<circle cx="1032.56" cy="114.22" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<circle cx="1205.11" cy="218.91" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<circle cx="1287.44" cy="281.66" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<circle cx="1377.67" cy="364.03" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<circle cx="1460.00" cy="423.99" r="4.0" fill="white" stroke="#1f4e79" stroke-width="1.6"/>
+<rect x="856.00" y="393.09" width="8.0" height="8.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<rect x="1028.56" y="393.28" width="8.0" height="8.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<rect x="1201.11" y="394.02" width="8.0" height="8.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<rect x="1283.44" y="396.44" width="8.0" height="8.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<rect x="1373.67" y="404.99" width="8.0" height="8.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<rect x="1456.00" y="422.66" width="8.0" height="8.0" fill="white" stroke="#c00000" stroke-width="1.6"/>
+<line x1="1321.61" y1="50.00" x2="1321.61" y2="450.00" stroke="#666" stroke-width="1.3" stroke-dasharray="4,3"/>
+<text x="1325.61" y="66.00" font-size="12" fill="#666" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">δ/c_L</text>
+</g>
+<text x="1160.0" y="494.0" font-size="15" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Pulse half-width tₚ (s)</text>
+<text transform="translate(798.0,250.0) rotate(-90)" font-size="15" text-anchor="middle" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Peak tensile stress (MPa)</text>
+<text x="860.0" y="40.0" font-size="15" font-weight="bold" text-anchor="start" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">(b) Effect of pulse duration (Au, 200 nm)</text>
+<rect x="1237.0" y="58.0" width="215.0" height="50.0" fill="white" fill-opacity="0.92" stroke="#999"/>
+<line x1="1245.0" y1="70.0" x2="1275.0" y2="70.0" stroke="#1f4e79" stroke-width="2.0" stroke-dasharray="5,4"/>
+<text x="1283.0" y="74.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Fourier</text>
+<line x1="1245.0" y1="90.0" x2="1275.0" y2="90.0" stroke="#c00000" stroke-width="2.4" />
+<text x="1283.0" y="94.0" font-size="12.5" font-family="DejaVu Sans, Arial, Helvetica, sans-serif">Single delay (calibrated)</text></svg>
